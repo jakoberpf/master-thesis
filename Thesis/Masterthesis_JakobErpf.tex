@@ -8,11 +8,17 @@
 
 \makeglossaries
 
-\newglossaryentry{formula}
+\newglossaryentry{congstats}
 {
-        name=formula,
-        description={A mathematical expression}
+        name=CONGSTATS,
+        description={is a software product, part of a development contract in which the thesis was conceptualized. Its goal is to supply a statistical analysis tool for engineers examine traffic data}
 }
+\newglossaryentry{evaltool}
+{
+        name=Evaluation Tool,
+        description={is part of the CONGSTATS service and was adapted and expanded for the usage in this thesis}
+}
+
 
 \newacronym{fcd}{FCD}{Floating Car Data}
 \newacronym{gsm}{GSM}{Global System for Mobile Communications}
@@ -50,9 +56,9 @@ B. Sc. Jakob Erpf\\
 % Topic description is mandatory
 \renewcommand\abstractname{Topic}
 \abstract{}Date of Issue: 2020-05-04\newline
-Date of Submission:	2020-12-16\newline
+Date of Submission:	2020-12-11\newline
 \newline
-\par The CONGSTATS service is a statistical analysis tool, developed by the Munich office of SCHLOTHAUER \& WAUER GmbH and the thesis writer for the road administration of north and south Bavaria, to request and analyze traffic data. The traffic data used in this service is based on \acrfull{fcd}, provided by the Bavarian road administration. The aim of the service is to provide statistical monitoring and report functionalities on the traffic situation on freeway and state street network, to identify congestion-prone areas.
+\par The \gls{congstats} service is a statistical analysis tool, developed by the Munich office of SCHLOTHAUER \& WAUER GmbH and the thesis writer for the road administration of north and south Bavaria, to request and analyze traffic data. The traffic data used in this service is based on \acrfull{fcd}, provided by the Bavarian road administration. The aim of the service is to provide statistical monitoring and report functionalities on the traffic situation on freeway and state street network, to identify congestion-prone areas.
 \par An interesting aspect of this congestion analysis is the correlation of congestion events and incidents. What are the circumstances leading to congestion in cause of an incident? What are the dependencies on an occurred incident, for example roadworks or accident? The knowledge on the impact of roadworks on the traffic flow or which accidents lead to traffic capacity reductions could improve traffic management and incident response actions. The question of how the congestions rep-resented by the \acrshort{fcd} correlate with actual traffic incidents and their probably causalities, will be evaluated in this thesis. 
 \par To answer this research question, the writer will be provided with a dataset of traffic data from the CONGSTATS service, which contains congestion and incident data, as well as the service itself. The \acrfull{zvm} provides the incident’s reports, which hold statistics on the traffic incident situation and detailed reports for the specific incidents.
 \par These two datasets then can be analyzed for possible correlations between the detected congestions in the \acrshort{fcd} model and the reported incidents from the \acrshort{zvm}. The scope of the thesis consists of the following tasks:
@@ -75,7 +81,7 @@ Date of Submission:	2020-12-16\newline
 \abstract{Deutsche Fassung.}
 % Englisch abstract
 \renewcommand\abstractname{Abstract}
-\abstract{Current navigation systems often use accumulation strategies to estimate travel time with considering time delays through congestions, which are based on analyzing the history of the time delays on the considered street network. This approach can be disturbed through un-common events creating short time blockages or be bias through regular accruing and long-er-term traffic volume reductions. This thesis evaluates a new idea of predicting time delays and accident probability through analyzing the correlation of congestions and incidents which are placed in the timely and spatial vicinity of each other. To evaluate this, three real world datasets from the year 2019 will be considered. After an initial data scientific approach to analyzing a floating car dataset for congestions and locating spatial and timely adjacent incidents from the Bavarian street information systems, the thesis will evaluate if and how incidents and congestions are correlated with each other. To further give an idea of how such statistical data could be used, the writer will discuss the possibility and plausibility of using correlation statistics for congestion and/or incident prediction.}
+\abstract{Current navigation systems often use accumulation strategies to estimate travel time with considering time delays through congestions, which are based on analyzing the history of the time delays on the considered street network. This approach can be disturbed through un-common events creating short time blockages or be bias through regular accruing and long-er-term traffic volume reductions. This thesis evaluates a new idea of predicting time delays and accident probability through analyzing the correlation of congestions and incidents which are placed in the timely and spatial vicinity of each other. To evaluate this, three real world datasets from the year 2019 will be considered. After an initial data scientific approach to analyzing a derivative of a floating car dataset for congestions and locating spatial and timely adjacent incidents from the Bavarian street information systems, the thesis will evaluate if and how incidents and congestions are correlated with each other. To further give an idea of how such statistical data could be used, the thesis will elaborate on the possibility and plausibility of using correlation statistics for congestion and/or incident prediction.}
 % Disclaimers
 \renewcommand\abstractname{Preliminary information and disclaimers}
 \abstract{
@@ -96,7 +102,7 @@ The current traffic management units and systems in Bavaria, use …
 
 \par This thesis takes another attempt to improve congestion and incident prediction by using the statistical relations of congestions and incidents to predict the chance of a consecutive event. These consecutive events can have the form of a congestion, as well as an incident, since dependent on the severity of the incident a congestion can be provoke and congestions can facilitate accidents due to the change of traffic flow. Another scenario to analyze are construction sites and maintenance which can also lead to both congestions and accidents, because of the reduction of traffic volume, changes of the road guidance or others modification to the normal traffic situation.
 \par The ability to predict a congestion through the characteristic of an accident could help to improve traffic controlling and therefore help to still ensure fluent traffic for lower emissions and static traffic safety. The same can be expected for the prediction of an accident through the characteristic of a congestions and tailoring traffic controlling actions to prevent the above mentioned. Although the scope of the thesis does not cover the specifics on a complete production system for congestion and accident detection, prediction and response, it will take the concept of this system and focus possibility of predicting such events, which then would make the development of such a system possible. Another specialization of this thesis is not just taking accident, but also roadworks, like construction sites or moving maintenance into consideration as incident for triggering congestions. 
-\par A system capable of this just mentioned functionalities would likely consist of the following components.
+\par A system capable of this just mentioned functionalities would likely consist of the following processing components.
 
 \begin{itemize}
   \item Data acquisition for congestion and incident detection
@@ -131,7 +137,7 @@ The current traffic management units and systems in Bavaria, use …
 
 \par The Traffic Messaging Channel (TMC) is a messenger system for congestions and other traffic incidents. The public available service published current congestion notifications in navigation system and in announcements in the local radio channels. To define where an incident is located, in the scope of the TMC the road network is split into TMC sections. These sections typical start and end with road linkups. The TMC obtains data from the police and re-ports from traffic participants. (LAPID, 2020)
 
-\par Another traffic information source is the real time traffic information system (RTTI). RTTI sup-plies traffic participants with information about current events or suggested diversions and can be compared to the “Autofahrer Rundfunk Information” (ARI), with one big difference. Through a “Geocast”, which is expansion of a multicast with a geolocation, the spatial precision of the RTTI is superior to the TMC. This geolocation can be either a geometrical address like a GSM84 coordinate or a symbolic address like an area alias. (Hinden \& Deering, 2006; Imielinski \& Navas, 1996; LAPID, 2020) \newline
+\par Another traffic information source is the \acrfull{rtti}. \acrshort{rtti} supplies traffic participants with information about current events or suggested diversions and can be compared to the “Autofahrer Rundfunk Information” (ARI), with one big difference. Through a “Geocast”, which is expansion of a multicast with a geolocation, the spatial precision of the \acrshort{rtti} is superior to the \acrshort{tmc}. This geolocation can be either a geometrical address like a GSM84 coordinate or a symbolic address like an area alias. \cite{LAPID2020,HindenDeering2006,ImielinskiNavas1996} \newline
 
 % TODO more infos and literature to TMC / Geocasts
 %https://ec.europa.eu/transport/themes/its/road/action_plan/traffic-information_en
@@ -218,7 +224,9 @@ The degree of correlation can also be described as strength of association, show
 In this chapter the provided datasets from the previously mentioned street information systems and the FCD provider will be elaborated. 
 
 \section{FCD}
-\par The provided FCD dataset, as described in chapter 1.1, consists of aggregated absolute and relative speeds for the highways and state streets, mapped on the HERE (HERE, 2020) net-work. Each of these aggregated speeds represent the mean speed over a three-minute time interval on the corresponding road section. This arrangement of speeds for each time step and space step will be called speed matrix, which will be used in the algorithmic analysis to detect jams. For visual representation the pictures on the right show the plots of some sections of these speed matrixes with the horizontal axes being the spatial extend and the vertical axes the time extend. Deep greens represent free flowing traffic with ~130 km/h, which is the norm speed in Germany (in German called “Richtgeschwindigkeit”) on highways set the legislator. The speed scale then develops linearly downwards deep red meaning congested traffic with 30 km/h or less. 
+\par As described in chapter 1.1, \acrshort{fcd} data represents the movement of vehicles and can be used to calculate vehicle speeds and trajectories. The provided dataset contains the aggregated absolute and relative speeds for the highways and state streets, calculated from \acrshort{fcd} data. The process of how these speeds can be calculated from \acrshort{fcd} data is elaborated in the thesis of Felix Rampe \textit{Traffic Speed Estimation and Prediction Using Floating Car Data} \cite{Rempe2018}. The resulting speeds are mapped onto the HERE (HERE, 2020) network, to be compliant with the geolocation system used in the CONGSTATS project.
+%TODO refernece to CONGSTATS project
+\par Each of these aggregated speeds represent the mean speed over a three minute time interval on the corresponding road section. This arrangement of speeds for each time step and space step will be called speed matrix, which will be used in the algorithmic analysis to detect jams. For visual representation the pictures on the right show the plots of some sections of these speed matrixes with the horizontal axes being the spatial extend and the vertical axes the time extend. Deep greens represent free flowing traffic with ~130 km/h, which is the norm speed in Germany (in German called “Richtgeschwindigkeit”) on highways set the legislator. The speed scale then develops linearly downwards deep red meaning congested traffic with 30 km/h or less. 
 \par The observer will clearly recognize the jams represented by the clusters of red and orange cells in the top picture, with the angled extends towards the right down edge, due to the vehicle trajectory through space and time. These cluster, also shown in the two lower pictures, which representing one or multiple jams can be densely packed or spotted into smaller clusters or, depending on the severity of a jam can be seen, by the cluster which contain more orange or yellow cells than red. 
 
 \begin{figure}[h]
@@ -539,6 +547,6 @@ Erklärung zur Master’s Thesis
 Ich versichere hiermit, die vorliegende Arbeit selbständig verfasst und keine anderen Quellen als die angegebenen Quellen und Hilfsmittel benutzt zu haben. Die Arbeit wurde noch nicht anderweitig für Prüfungszwecke vorgelegt. 
 \newline \\ \\ \\
 München, 15.12.2020: \hrulefill \newline
-\hspace*{0mm}\phantom{München, 15.12.2020: } B. Sc. Jakob Erpf
+\hspace*{0mm}\phantom{München, 11.12.2020: } B. Sc. Jakob Erpf
 
 \end{document}

@@ -1,0 +1,536 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{setspace}
+\usepackage{relsize}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[toc,page]{appendix}
+\usepackage[toc,acronym]{glossaries}
+
+\makeglossaries
+
+\newglossaryentry{formula}
+{
+        name=formula,
+        description={A mathematical expression}
+}
+
+\newacronym{fcd}{FCD}{Floating Car Data}
+\newacronym{gsm}{GSM}{Global System for Mobile Communications}
+\newacronym{umts}{UMTS}{Universal Mobile Telecommunications System}
+\newacronym{lte}{LTE}{Long Term Evolution}
+\newacronym{arbis}{ArbIS}{Arbeitstellenintegrationsystem}
+\newacronym{ari}{ARI}{Autofahrer Rundfunk Information}
+\newacronym{baysis}{BAYSIS}{Bayrische Straßeninformationssystem}
+\newacronym{fpd}{FPD}{Floating Phone Data}
+\newacronym{rtti}{RTTI}{Real Time Traffic Information}
+\newacronym{tmc}{TMC}{Traffic Messaging Channel}
+\newacronym{xfcd}{XFCD}{Extended Floating Car Data}
+\newacronym{zvm}{ZVM}{Zentralstelle Verkehrsmanagement}
+\newacronym{gps}{GPS}{Global Postioning System}
+
+\onehalfspacing
+\begin{document}
+% Title page goes first
+\title{MASTER'S THESIS\\
+[1cm]
+\smaller Analysis of correlation between traffic data depended congestion detection and incident causalities}
+\author{
+B. Sc. Jakob Erpf\\ 
+[1cm]
+\small Mentoring:\\ 
+\small M. Eng. Barbara Karl (TUM)\\ 
+\small Dr. - Ing. Matthias Spangler (TUM)\\ 
+\small Dipl. - Ing. Stefan Gürtler (S\&W)\\
+\small Dipl. - Ing. Johannes Grötsch (LBD)
+}
+\date{\today}
+\maketitle
+% Empty page for layout purpose
+\clearpage
+% Topic description is mandatory
+\renewcommand\abstractname{Topic}
+\abstract{}Date of Issue: 2020-05-04\newline
+Date of Submission:	2020-12-16\newline
+\newline
+\par The CONGSTATS service is a statistical analysis tool, developed by the Munich office of SCHLOTHAUER \& WAUER GmbH and the thesis writer for the road administration of north and south Bavaria, to request and analyze traffic data. The traffic data used in this service is based on \acrfull{fcd}, provided by the Bavarian road administration. The aim of the service is to provide statistical monitoring and report functionalities on the traffic situation on freeway and state street network, to identify congestion-prone areas.
+\par An interesting aspect of this congestion analysis is the correlation of congestion events and incidents. What are the circumstances leading to congestion in cause of an incident? What are the dependencies on an occurred incident, for example roadworks or accident? The knowledge on the impact of roadworks on the traffic flow or which accidents lead to traffic capacity reductions could improve traffic management and incident response actions. The question of how the congestions rep-resented by the \acrshort{fcd} correlate with actual traffic incidents and their probably causalities, will be evaluated in this thesis. 
+\par To answer this research question, the writer will be provided with a dataset of traffic data from the CONGSTATS service, which contains congestion and incident data, as well as the service itself. The \acrfull{zvm} provides the incident’s reports, which hold statistics on the traffic incident situation and detailed reports for the specific incidents.
+\par These two datasets then can be analyzed for possible correlations between the detected congestions in the \acrshort{fcd} model and the reported incidents from the \acrshort{zvm}. The scope of the thesis consists of the following tasks:
+\begin{itemize}
+  \item review of the available data and information
+  \item definition data characteristics and indicators
+  \item definition and implementation of a methodology for analyzing the correlation between congestion and incident
+  \item analysis of the provided datasets
+  \item interpretation of the results
+\end{itemize}
+\par The student will present intermediate results to the mentors 
+		(Barbara Karl, M.Eng.: TUM-VT; 
+		Dr.-Ing. Matthias Spangler: TUM-VT; 
+		Dipl.-Ing. Stefan Gürtler: Schlothauer \& Wauer; 
+		Dipl.-Ing. (FH) Johannes Grötsch: ZVM) 
+	in the fifth, tenth, 15th and 20th week.
+\par The student must hold a 20-minute presentation with a subsequent discussion at the most two months after the submission of the thesis. The presentation will be considered in the final grade in cases where the thesis itself cannot be clearly evaluated.
+% Germany abstract
+\renewcommand\abstractname{Kurzfassung}
+\abstract{Deutsche Fassung.}
+% Englisch abstract
+\renewcommand\abstractname{Abstract}
+\abstract{Current navigation systems often use accumulation strategies to estimate travel time with considering time delays through congestions, which are based on analyzing the history of the time delays on the considered street network. This approach can be disturbed through un-common events creating short time blockages or be bias through regular accruing and long-er-term traffic volume reductions. This thesis evaluates a new idea of predicting time delays and accident probability through analyzing the correlation of congestions and incidents which are placed in the timely and spatial vicinity of each other. To evaluate this, three real world datasets from the year 2019 will be considered. After an initial data scientific approach to analyzing a floating car dataset for congestions and locating spatial and timely adjacent incidents from the Bavarian street information systems, the thesis will evaluate if and how incidents and congestions are correlated with each other. To further give an idea of how such statistical data could be used, the writer will discuss the possibility and plausibility of using correlation statistics for congestion and/or incident prediction.}
+% Disclaimers
+\renewcommand\abstractname{Preliminary information and disclaimers}
+\abstract{
+Datennutzungserklärung\newline
+
+During the elaboration of the evaluation tool, which was not only developed for the thesis, the mentioned capabilities do not represent the final functional range of the software. Since the tool was still in early development most of the information about the functionalities and capabilities are already outdated when writing the thesis}
+
+\tableofcontents
+\thispagestyle{empty}
+
+\chapter{Introduction}
+\setcounter{page}{1}
+\par Traffic congestions are a known problem to everyone, ever attempting to kickstart the sum-mer season with a car trip on the first day of a holiday. They also impact the regular travel of commuters urban and suburban areas by blocking bottlenecks and ??. They lead to unreliable travel times, inefficient usage of resource and higher emissions, like pollutant or noise. Another common effect it a decrease in road safety, because of high driver tempers or inattentive mind, which can result higher accident counts. Therefore, it essential to reduce the risk of congestions, as well as accidents and maintain a fluent traffic flow, by managing high traffic demand accordingly. Part of this management process is the knowledge of how and when congestions or accidents can occur, to be able to initiate preliminary, preventive and relaxing measures. \\
+
+%Jam Statistics: https://www.innenministerium.bayern.de/med/aktuell/archiv2019/190222verkehrsunfall/
+The current traffic management units and systems in Bavaria, use … 
+\\
+
+\par This thesis takes another attempt to improve congestion and incident prediction by using the statistical relations of congestions and incidents to predict the chance of a consecutive event. These consecutive events can have the form of a congestion, as well as an incident, since dependent on the severity of the incident a congestion can be provoke and congestions can facilitate accidents due to the change of traffic flow. Another scenario to analyze are construction sites and maintenance which can also lead to both congestions and accidents, because of the reduction of traffic volume, changes of the road guidance or others modification to the normal traffic situation.
+\par The ability to predict a congestion through the characteristic of an accident could help to improve traffic controlling and therefore help to still ensure fluent traffic for lower emissions and static traffic safety. The same can be expected for the prediction of an accident through the characteristic of a congestions and tailoring traffic controlling actions to prevent the above mentioned. Although the scope of the thesis does not cover the specifics on a complete production system for congestion and accident detection, prediction and response, it will take the concept of this system and focus possibility of predicting such events, which then would make the development of such a system possible. Another specialization of this thesis is not just taking accident, but also roadworks, like construction sites or moving maintenance into consideration as incident for triggering congestions. 
+\par A system capable of this just mentioned functionalities would likely consist of the following components.
+
+\begin{itemize}
+  \item Data acquisition for congestion and incident detection
+  \item Data analysis for the probability of consecutive events
+  \item Traffic management or controlling response channel
+\end{itemize}
+
+\par The first component, in charge of detecting congestions as well as incident, requires input data like speed, volume, occupancy to represent the traffic situation and incident reports to define incident characteristics. The next component would then analyze the resulting dataset to find characteristic features of the congestions and incident, which will be determined in this thesis. In the case the analysis of the characteristic shows a quite possible and imminent event it would trigger the last component to initiate appropriate controlling actions and prepare incident responses.
+\par In the following chapters of this introduction section, the reader will be introduced to the concepts and systems used to cover the input and output requirements in this thesis.
+
+\section{Continuous Floating Data}
+
+\par To detect congestions, continuous data about the speed at each point of time on the road is necessary. This kind of information can be collected through a variety of different systems, to represent a real-time or at least current picture of the traffic situation. The current street net-work of Bavaria still heavily depends on stationary sensors, to assess the traffic situation. This includes inductive loops, infrared or radar detectors, which can provide traffic indicators like volume, speed, time gaps, jams, density and many others. The data collected with just stationary sensors can only describe the traffic trends restricted to its location and coverage, which requires complex simulations and modeling to aggregate data for the missing areas where there is no sufficient coverage. Adding to this is the fluctuating result set quality which depends on the input data and simulation model quality. In Germany especially highways are equipped with stationary sensor, but the lower index streets network is only covered by a fragmented net of detectors with distances of up to 100km between detectors \cite{INDRIX2015}. Fortunately, nowadays cars as well as drivers and riders are equipped with technology that allow real time, area-wide data collection. Cars can gather information from the build in sensors as well as an on-board GPS and mobile devices from drivers and riders can also be used to collect location and movement data. \cite{Randelhoff2016}
+
+\par \acrfull{fcd} is continuously collected during the usage of a car by the on-board GPS and represents the individual movements. Typical this incorporates the coordinates, timestamp, road section, course and routing data points. These are regularly sent to a central FCD unit/service via mobile radio communication (\acrshort{gsm}-, \acrshort{umts}- or \acrshort{lte}-based), to be aggregated and combined with stationary data to an area wide picture of the traffic situation. In this form they can be used for traffic analysis and management. \cite{Randelhoff2016,LAPID2020}
+
+\par A derivate of \acrshort{fcd} is \acrfull{xfcd}, which is developed by BMW. It expands the collection of datapoint of an \acrshort{fcd} with data from the vehicle sensors and systems, like breaks, rain sensors, driver assistance systems and more. These data points add a number of possible analytic opportunities to generate a more precise and details traffic picture. \cite{LAPID2020}
+
+\par In contrast to \acrshort{fcd}, \acrlong{fpd} does not need an on-board GPS or car systems to create movement data but assumes that driver’s and rider’s mobile devices will register and deregister at the radio tower along the road. \acrshort{fpd} uses this registration information to determine the radio cell the phone is currently in, how long is stayed in that cell and tracks the devices when switching to another cell or tower. It is therefore able to collect a much larger quantity of datasets but lacks the accuracy of \acrshort{fcd} which transmit the GPS location of the car itself. That been said, on roads with a high coverage of radio tower like in urban areas or on highways, \acrshort{fpd} is able to generate a comparable accuracy. Mobile service providers collect this anonymized \acrshort{fpd} and forward them to a traffic management unit, which can analyze the date for disturbances and give feedback through the traffic information channels.\cite{Randelhoff2016,LAPID2020}
+
+\par Another type of floating data type is floating car observer (FCO). FCO does not only collect its own FCD but also data about its surrounding with the build-in sensors. This includes the automatic recognition of cross or opposite traffic, traffic volume or relative speeds to other cars. This additional data not only add detail, but also allows for correctionally fusion algorithms to eliminate uncertainties or errors in the pure FCD data. \cite{Randelhoff2016}
+
+\section{Street Information Systems}
+
+\par Besides of having a real-time or current picture of the traffic situation, the concept of the the-sis also needs information about current disturbances or possible triggers of disturbances. For disturbances in the form of accidents the \acrfull{baysis}, a public available information system from the Bavarian street administration, will be used. The systems task is the acquisition, collection and analysis of street network related information, which contains infrastructure inventory and condition, traffic volumes and other key values, as well as an accident register with detailed reports. An export of this accident register with detailed report is provided by the \acrshort{zvm} for this thesis.
+
+\par Another type of disturbance to consider are roadworks, for which an export from the \acrfull{arbis}, a software tool and database used by the Bavarian infra-structure ministry, will be consulted. The system is used to collect and archive all current, planned and passed roadwork and maintenance projects on the Bavarian state street net-work. Thought the coordinated and traffic safety depended planning of road maintenance with the collected information from \acrshort{arbis}, an effective, economic and safe execution of roadworks can be achieved. Furthermore the ArbIS provides detailed reports about current projects to the Bavarian traffic information office and traffic information channels (trafficon, 2017).
+
+\section{Traffic Status Information}
+
+\par To deliver information from traffic management system to the traffic participants traffic messaging channels can be used. Two examples are \acrfull{rtti} and \acrfull{tmc}.
+
+\par The Traffic Messaging Channel (TMC) is a messenger system for congestions and other traffic incidents. The public available service published current congestion notifications in navigation system and in announcements in the local radio channels. To define where an incident is located, in the scope of the TMC the road network is split into TMC sections. These sections typical start and end with road linkups. The TMC obtains data from the police and re-ports from traffic participants. (LAPID, 2020)
+
+\par Another traffic information source is the real time traffic information system (RTTI). RTTI sup-plies traffic participants with information about current events or suggested diversions and can be compared to the “Autofahrer Rundfunk Information” (ARI), with one big difference. Through a “Geocast”, which is expansion of a multicast with a geolocation, the spatial precision of the RTTI is superior to the TMC. This geolocation can be either a geometrical address like a GSM84 coordinate or a symbolic address like an area alias. (Hinden \& Deering, 2006; Imielinski \& Navas, 1996; LAPID, 2020) \newline
+
+% TODO more infos and literature to TMC / Geocasts
+%https://ec.europa.eu/transport/themes/its/road/action_plan/traffic-information_en
+%https://www.itwissen.info/RTTI-realtime-traffic-information.html
+%https://ieeexplore.ieee.org/document/861224
+\par In the scope of this thesis just some of these introduced systems will be relevant in the rest of this thesis. 
+\begin{itemize}
+  \item FCD for the congestion detection
+  \item BAYSIS and ArbIS as incident data providers
+  \item RTTI as conceptional feedback channel
+\end{itemize}
+
+\chapter{Definitions}
+	This chapter defines all necessary terms, data objects, data formats which will be referenced to during the thesis.
+\section{Incident}
+		Incidents in the scope of this thesis, an incident can be accidents, as well as ongoing roadwork or maintenance on the Bavarian street network. These are also the events, which the concept of the thesis tries to predict through the analysis of the correlation of said incidents to jams.
+	\subsubsection{Accident}
+		An accident is an unexpected and unintentional traffic event, that typical results in damages, injuries and reduction of traffic volumes. These events can be triggered a number of different reasons, where in this thesis we a mostly interested in the trigger of slow, congested traffic or roadworks.
+	\subsubsection{Roadwork}
+		As roadwork classify all static and moving construction sites, as well as temporary blockages or disturbance due to snow clearing, road maintenance and alike. 
+% Move to glossary
+	Jams or multiple congestion in most colloquial terms are spatial and timely accumulations of traffic participants, which leads to a reduction of travel speed and therefore reduction of traffic throughput. A more detailed definition can be found in chapter 2.1.
+	The data format of the speed matrix is a two-dimensional integer matrix representing a non-Euclidean time to road link space with the corresponding mean cell speed as value. The time dimension referrers to the 3-minute time increment of the day and the space dimension to the road link of the covered route of the speed matrix.
+	The developed software package which handles the analysis of FCD data, congestion detection and incident matching is called evaluation tool.
+	
+\section{Congestion}
+\paragraph{Naming} The noun congestion does not have clear plural, which is why in the case of multiple congestion, the term jams will be used. These two terms are seen as interchangeable for their reference to a single or multiple congestion events.
+\par Jams or a single congestion in most colloquial terms are spatial and timely accumulations of traffic participants, which leads to a reduction of travel speed and therefore reduction of traffic throughput. But there is no unified definition when this reduction of speed or volume can be actually classified as a congestion. As an example the ADAC classifies highway traffic moving with mean speed lower than 20 km/h as jammed (ADAC, 2019). In Switzerland the ministry for streets has a more severe definition with a mean speed under 10 km/h (ASTRA, 2020). The Germany or Bavarian ministry for streets does not have an official definition at the time of writing, which makes it necessary to form our own definition of jams and speed thresholds, for the scope of this thesis. Because we have a good representation of the speeds occurring in jams from the FCD date, introduced in chapter 1.1, we can use this information to tailor a definition to our needs. The Figure \ref{img:speedMatrixPlot_singleCluster} on page \pageref{img:speedMatrixPlot_singleCluster} shows a section of a random speed matrix plot from the FCD dataset, containing a scattered congestion cluster. The horizontal and vertical extend represents the spatial and temporal location of each cell. The color of the cell indicated the mean absolute speed recorded in the time frame and on the link of the cell (detailed gradient is shown in the legend of \ref{img:speedMatrixPlot_singleCluster}). The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered as jammed, to incorporate the complete congestion area. Speeds above 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes a speed threshold of 40 km/h fitting for detecting congestion clusters in the scope of this thesis.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.8]{./assets/SpeedMatrixPlot_single}
+	\caption{Speed matrix plots of raw FCD data, showing a scattered cluster}
+	\label{img:speedMatrixPlot_singleCluster}
+\end{figure}
+
+What characteristics do congestions have? Causes, Effects, Indicators … 
+%https://www.astra.admin.ch/astra/de/home/themen/nationalstrassen/verkehrsfluss-stauaufkommen/definitionen.html
+%https://www.sciencedirect.com/topics/social-sciences/traffic-congestion
+%https://ops.fhwa.dot.gov/congestion_report/chapter2.htm
+%https://www.zukunft-mobilitaet.net/3344/analyse/wie-entstehen-staus-phantomstau/
+%https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse
+
+\section{Correlation}
+\label{definition_correlation}
+Correlation is an analysis that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables. In most statistics there are four common types of correlations to be found: Pearson correlation, Kendall rank correlation, Spearman correlation, and the Point-Biserial correlation (Ramzai, 2020; SPSS, 2020b, 2020a). 
+From these variants the Pearson correlation coefficient measures a linear correlation and works with the continuous variables and can be used for the analysis of metric data like, distances or durations. The data to analyzed also contains many categorical variables, which cannot be analyzed with the Pearson coefficient. The Point Biserial correlation, a special form of the Pearson correlation coefficient, is able to evaluate the association of continuous-categorical relations, but not for categorical-categorical relations. For this purpose, another type of correlation coefficient needs to be used. The Cramer’s V and Theil's U are two correlation methods capable, to process categorical variables and mainly differ in the type of measure they provide (Outside Two Standard Deviations, 2018). Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil's U, the uncertainty coefficient, on the other hand is a conditional measure and represents the “predictability” of an association (Akoglu, 2018; StackExchange, 2020). Both can be used for the analysis of correlation strength, but since the Theil's measurement of predictability provides a better interpretability it’s to be preferred in the interpretation of the results. As result we have the following correlation coefficients to be used for the mixed analysis of continuous and categorical variables.
+
+\begin{table}
+	\centering
+	\begin{tabular}[h]{l|c|r}
+					& Categorical 			& Continuous \\
+		\hline
+		Categorical & Cramer’s V Theil’s U 	& Point Biserial \\
+		\hline
+		Continuous 	& Point Biserial 		& Pearson \\
+	\end{tabular}
+	\caption{\label{tab:table-name}Correlation Coefficients Matrix}
+\end{table}
+
+The Pearson correlation coefficient is calculated as follows.
+%r=  (∑▒〖(x-m_x)(y-m_y)〗)/√(∑▒〖〖(x-m_x)〗^2 〖(y-m_y)〗^2 〗)
+%http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r
+Definition: Point Biserial is special form of Pearson
+%ρ=  (I ̅_(D=1)-I ̅_(D=0))/√(QS(I))*√(n*p*q)
+%https://de.wikipedia.org/wiki/Punktbiseriale_Korrelation
+Definition: Cramer’s V / Theil’s U
+%https://en.wikipedia.org/wiki/Cram%C3%A9r%27s_V
+%https://en.wikipedia.org/wiki/Uncertainty_coefficient
+
+A correlation coefficient can have a value in the range of -1 to +1. If one variable moves in the same direction as the other, then it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. 
+Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated.
+The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other. For interpreting this characteristic there are some common presumptions to consider.
+
+\begin{itemize}
+  \item When both variables change in the same ratio, the absolute value of the correlation coefficient is 1,0, which is called perfect correlation.
+  \item If the correlation coefficient range is above 0,75, it is called high degree of correlation.
+  \item A moderate degree of correlation lays in the range of 0,50 to 0,75.
+  \item When the correlation coefficient range is between .25 to .50, it is called low degree of correlation.
+  \item When the absolute correlation coefficient is lower than 0,25, it shows that there is no correlation, which can be called absence of correlation.
+\end{itemize}	
+	
+\chapter{Datasets}
+In this chapter the provided datasets from the previously mentioned street information systems and the FCD provider will be elaborated. 
+
+\section{FCD}
+\par The provided FCD dataset, as described in chapter 1.1, consists of aggregated absolute and relative speeds for the highways and state streets, mapped on the HERE (HERE, 2020) net-work. Each of these aggregated speeds represent the mean speed over a three-minute time interval on the corresponding road section. This arrangement of speeds for each time step and space step will be called speed matrix, which will be used in the algorithmic analysis to detect jams. For visual representation the pictures on the right show the plots of some sections of these speed matrixes with the horizontal axes being the spatial extend and the vertical axes the time extend. Deep greens represent free flowing traffic with ~130 km/h, which is the norm speed in Germany (in German called “Richtgeschwindigkeit”) on highways set the legislator. The speed scale then develops linearly downwards deep red meaning congested traffic with 30 km/h or less. 
+\par The observer will clearly recognize the jams represented by the clusters of red and orange cells in the top picture, with the angled extends towards the right down edge, due to the vehicle trajectory through space and time. These cluster, also shown in the two lower pictures, which representing one or multiple jams can be densely packed or spotted into smaller clusters or, depending on the severity of a jam can be seen, by the cluster which contain more orange or yellow cells than red. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.8]{./assets/SpeedMatrixPlot_mutiple}
+	\caption{Speed matrix plots of processed FCD data, showing different jam clusters}
+	\label{img:speedMatrixPlot_mutipleMixedClusters}
+\end{figure}
+
+\par From this visual clarity, the continuity of the data points and the precision on 3-minute intervals we can deviate that an algorithmic approach should also be able to detect such congestion events. This being said, the dataset does contain defects in the form of missing values for complete road sections, which can be easily ignored during processing. Another harder to detect and fixable defect type are visually obviously wrong speeds. Meaning sudden speed drops or jumps to block of identical speeds of an abnormal temporal and spatial extend. 
+\par Although originally an analysis of the whole year 2019 was planned, the provider was only able to deliver the FCD data for the first half in the timeframe of this thesis. Due to that the evaluation time frame is restricted to the first half of the year 2019.
+
+\section{BAYSIS}
+\par The Bavarian Street Information System (BAYSIS), as describe in chapter 1.2, collects a wide range of different information types, which also contains accidents with the corresponding police reports. Accidents have a strong traffic influence on the Bavarian street network, with more than 400.000 being recorded in the year 2019 (StMi, 2020). The provided export contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. Due to the limited availability of FCD data and potential evaluation timeframe, only the accidents in the first half of the year 2019 are relevant. In these months 5140 accidents where recorded, which equivalents an expected 50\% of the total number of accidents on the highway network. 
+\par Each accident report includes a variety of specifications, which cover environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved like nationality, age and gender. In total, one report contains 132 values, describing the accident, participant and environment. Because we do not want to form a stereotype of accident participant but rather find significant accident characteristics or environmental factors most of the descriptive values for the involved per-sons are not considered. Further we also have to neglect all values which cannot be convert-ed in a numeric and nominal scale, due the used correlation methods. Variables, which don’t have any values are also neglected. From this curtailed pool of correlate able and analyze able characteristics we want to consider all parameters that have a logical significance with causes or effects of an accident. 
+\par A diverse distribution in the values would be also preferred. Because the correlation of a non distributed variable, which for example has one values occupying a 95\% major share, is therefore based on a sample set comprised of mostly the same samples, the interpretability for a correlation to other values but the major share is very limited.
+\newline
+\par To give an overview about what results can be expected on the basis of the provided dataset and which values are worth to be further evaluated, all plausible relevant parameters of the dataset will be illustrated and shortly discussed. All diagrams are also available as larger prints in the Appendix ??. 
+%TODO Set Appendix ID 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_monthly_absolute.pdf}
+	\caption{Monthly distribution of absolute accident report counts}
+	\label{img:baysis_monthlyDist_absolute}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_monthly_percentage.pdf}
+	\caption{Monthly distributions of accident report counts in percentages to mean}
+	\label{img:baysis_monthlyDist_percentage}
+\end{figure}
+
+A look on the monthly distribution (shown in figure \ref{img:baysis_monthlyDist_absolute}) shows that there are no significant differences, besides of January. The monthly distribution expressed in percentages (see above in \ref{img:baysis_monthlyDist_percentage}) supports this deviation with a 31\% increase over the mean count of 857 accidents per month. This can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. 
+
+\paragraph{Kat}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Kat.pdf}
+	\caption{Distribution of the accident category 'Kat'}
+	\label{img:baysis_dataset_Kat}
+\end{figure}
+
+The accident categories described by the variable ‘Kat’ (shown in figure \ref{img:baysis_dataset_Kat}) presents a quite natural distribution. The categories range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that statistical deadly accidents are exponentially unlikely.
+
+\paragraph{Typ}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Typ.pdf}
+	\caption{Distribution of the accident type 'Typ'}
+	\label{img:baysis_dataset_Typ}
+\end{figure}
+
+The accident type variable named ‘Typ’ (shown in figure \ref{img:baysis_dataset_Typ}) incorporate different kind of traffic movements, from straight and driving to turning movements. Beside of an 80\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features.
+
+\paragraph{Beteil}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Beteil.pdf}
+	\caption{Distribution of the number of involves persons 'Beteil'}
+	\label{img:baysis_dataset_Beteil}
+\end{figure}
+
+The distribution of the number of involved persons (shown in figure \ref{img:baysis_dataset_Beteil}) shows that more than 96\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\% and the second biggest of one involved person for 30\% of the total count. This also means the accidents with more than three involved persons are statistically insignificant.
+
+\paragraph{UArt}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_UArt.pdf}
+	\caption{Distribution of the accident cause type}
+	\label{img:baysis_dataset_UArt}
+\end{figure}
+
+The accident cause type, described by the two aggregated ‘UArt1’ and ‘UArt2’ variables (shown in figure \ref{img:baysis_dataset_UArt}), presents two major sets of causes. One being the accidents with waiting, stopping and starting vehicles in the same lane, which describe typical collision accidents during congested traffic. The other being the accidents in the next left or right lane, which describe common lane changing collisions. Accidents with cross traffic, pedestrians or opposite traffic are relatively uncommon.
+
+\paragraph{AUrs}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.7]{./assets/baysis_dataset_AUrs.pdf}
+	\caption{Distribution of the accident cause}
+	\label{img:baysis_dataset_AUrs}
+\end{figure}
+
+The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown in figure \ref{img:baysis_dataset_AUrs}) does clearly that only the first category of “Slippery road condition due to oil” hold any significant share. Because of that any correlation to this parameter would not point to any usable statement and therefore can be neglected for the evaluation.
+
+\paragraph{AufHi}
+\begin{figure}[]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Aufhi.pdf}
+	\caption{Distribution of obstacle collision}
+	\label{img:baysis_dataset_Aufhi}
+\end{figure}
+
+The obstacle collision distribution (shown in figure \ref{img:baysis_dataset_Aufhi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,5\% of accidents without any collision, it can also be stated that in most cases a collision is part of an accident.
+
+\paragraph{Alkoh}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Alkoh.pdf}
+	\caption{Distribution of the alcohol Involvement}
+	\label{img:baysis_dataset_Alkoh}
+\end{figure}
+
+The Alcohol involvement indication parameter “Alkoh” shows that 1,9\% of accidents have one or more involved persons with measurable alcohol amounts in the blood connected with it. This
+
+\paragraph{Char}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Char.pdf}
+	\caption{Distribution of the street characteristic}
+	\label{img:baysis_dataset_Char}
+\end{figure}
+
+The variable “Char” describes the characteristic of the street where the accident happened. Since we are only considering highway, the type of “crossing” is expected to be zero. 
+
+\paragraph{Bes}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Bes.pdf}
+	\caption{Distribution of the special street characteristic}
+	\label{img:baysis_dataset_Bes}
+\end{figure}
+
+The aggregated distribution of the variables ‘Bes1, ‘Bes2’ and ‘Bes3’, which further defines the street characteristic mentioned above. Unfortn
+
+\paragraph{Lich}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Lich.pdf}
+	\caption{Distribution of the lighting situation}
+	\label{img:baysis_dataset_Lich}
+\end{figure}
+
+Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
+Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
+Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Zust}
+	\caption{Distribution of the street condition}
+	\label{img:baysis_dataset_Zust}
+\end{figure}
+
+Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
+Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
+Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Fstf.pdf}
+	\caption{Distribution of the number of closed lanes}
+	\label{img:baysis_dataset_Fstf}
+\end{figure}
+
+Straßen klasse
+
+WochenTag
+
+Feiertag
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{../Analyse/data/BAYSIS/dataset/correlation_matrix.png}
+	\caption{Correlation matrix for BAYSIS dataset, calculated with \ref{definition_correlation} and \ref{definition_correlation_script} (for larger print see Appendix ??)}
+	\label{img:correlation_matrix_dataset}
+\end{figure}
+
+The figure \ref{img:correlation_matrix_dataset} shows the correlation coefficient of each mentioned accident characteristic 
+
+For further use, we do not want to work with the CSV file format in which the dataset was provided. Because the designed analyzation and evaluation tool, utilizes a PostgreSQL database for its data storage we need to process and convert the accident reports into data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the processing and import into the database, 7971 records end up being converted and persisted, which equivalent to 76,6\% of the provided number of accidents for these months or 25,8\% of all accidents. This 23,5\% of data loss is due to the conversion of location or position data from the BAYSIS dataset to our street net-work. In this process we try to find a corresponding street network location to the legacy location of the BAYSIS dataset. If we are not able to locate the position of the BYSIS dataset on our street network we discard the record, because we can’t work with it downstream. 
+
+\section{ArbIS}
+
+The Bavarian Roadwork Information System (ArbIS), as described in chapter 1.2, is a collection service of all roadworks or maintenance planned, ongoing or finished on the Bavarian street network. With the 4500 long term and more than 40.000 short term building sites on German highways per year (LAPID, 2018; StmB, 2020), road construction make up for the majority of traffic obstructions in the summer months, when during the colder month, in which many kinds of construction projects are not possible, snow clearings or long-term constructions are the issue. That also means that the number and type of roadworks heavy varies during the course of a year (StmB, 2020). Because the limited evaluation time only the road-works till April are relevant, which arguably are the colder months and therefor contain mostly snow clearings and long-term construction obstructions, this could potentially bias the results due to the missing, but equality important short-term construction roadworks.
+\par The dataset for 2019 contains close to 650.000 datapoints, which each describe the temporal and spatial extend, road name and number of closed lanes of a roadwork fragment. This fragmentation of events makes is rather hard to statically analyze this dataset since each roadwork is spitted into any number of fragments in now recognizable pattern and are only linked by a roadwork identifier.
+\par After the selection of the relevant incidents from the first half year of 2019, 302.799 datapoints remain, which will be converted and imported like the BYSIS data, described in chapter 3.2. From these 
+
+129.874 after import
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/arbis_dataset_monthly_absolute}
+	\caption{Monthly distribution of absolute roadwork data entry counts}
+	\label{img:arbis_dataset_monthly_absolute}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{./assets/arbis_dataset_monthly_percentage}
+	\caption{Monthly distributions of roadwork data entry counts in percentages to mean}
+	\label{img:arbis_dataset_monthly_percentage}
+\end{figure}
+
+
+\chapter{Methodology}
+The central goal of the thesis it to find out if congestions found in FCD data and incident characteristics from accidents (BYSIS) and roadworks (ArbIS) do correlate with each other. Therefore, the main research question to be answered stands as followed:
+
+\begin{center}
+	\textit{Is there a correlation between FCD congestion and incident characteristics?}
+\end{center}
+
+\bigskip
+
+\par Assuming that there is a correlation of congestion and incident characteristics, the second and event more interesting research question would arise.
+
+\begin{center}
+	\textit{Can the correlation of FCD congestion and incident characteristics predict the possibilities of a consecutive events?}
+\end{center}
+
+\bigskip
+
+\par To answer these research questions, there are a series of steps needed, to get from the seperate dataset of FCD and incident report
+\section{Congestion detection}
+The \acrshort{fcd} dataset, as described in 3.1 is a nearly continuous series of datapoint which represents the mean absolute and relative speed of the street section at each 3-minute interval on a road section. 3.1 already stated that thought a manual visual analysis jams can be easily found by the human eye. But since we want to analyze multiple months and all highways in Bavaria which are hundreds of plots, a programmable and automated approach would be preferred. For this purpose and detection and shaping algorithm, bases on the concepts of the cluster algorithm DBSCAN and Convex Hull was implemented in a Java Program. This developed piece of software will be reverenced by the term “evaluation tool” in the following chapters.
+Before any  
+\subsection{Clustering (DB-SCAN)}
+The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis.
+
+The DB-SCAN algorithm is a density-based cluster algorithm with two threshold parameters. For one the minimal size of a cluster, measures by the number of cells and second the 
+
+
+DBSCAN with expansion of removing wrong and small, and combining small and near
+%https://webis.de/downloads/theses/papers/busch_2005.pdf
+%
+%https://www.kde.cs.uni-kassel.de/wp-content/uploads/ws/LLWA03/fgml/final/Kirchner.pdf
+%https://www.researchgate.net/publication/322729622_Characterizing_Diffusion_Dynamics_of_Disease_Clustering_A_Modified_Space-Time_DBSCAN_MST-DBSCAN_Algorithm
+%https://www.nature.com/articles/s41598-017-12852-z
+%http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.1629&rep=rep1&type=pdf
+%http://cucis.eecs.northwestern.edu/publications/pdf/HAL18.pdf
+\subsection{Shaping (Convex Hull)}
+%https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
+
+\section{Matching Algorithm}
+We now have a list of jams, found on the matching incidents with spatial and timely adjacent congestions
+See CONGSTATS Matching Algorithm (own implementation)
+\section{Data Generation}
+Until now all data is in the CONGSTATS system. Export to analyzable format is necessary.
+Which values where converted into numeric values and why and …
+\section{Correlation Processing}
+\label{definition_correlation_script}
+
+Explain python script for correlation analysis
+
+\chapter{Analysis}
+
+Analysis of the resulting separate datasets of congestion and incidents. What characteristic and key indicators are prominent?
+\section{Features}
+What find of values, features and so on, does the dataset contain?
+\section{Time and space dimension}
+What time frame does the dataset cover and over what spatial area.
+\section{Containing information}
+What kind of information does the dataset contain?
+\section{Integrity and short comings}
+What kind of information does the dataset contain?
+
+\chapter{Interpretation}
+
+\section{Assocations}
+
+\section{Predictions}
+Is the correlation strong enough to use it for predicting congestions and accidents?
+
+\subsection{Prediction of Accidents}
+
+\subsection{Prediction of Congestions}
+
+\chapter{Implementation}
+
+\section{Requirements}
+
+\section{Data Aviability}
+
+\chapter{Conclusion}
+
+\section{Answer of research question}
+
+\section{Usability of results and interpretation}
+
+\section{Future development and possible improvements} 
+
+%\subsubsection{... Test}
+%\paragraph{... Test}
+%\subparagraph{... Test}
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{../../../../../Documents/library}{}
+
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\printglossary[title=List of Acronyms, type=\acronymtype]
+
+\printglossary[title=List of Terms]
+
+\begin{appendices}
+\chapter{BAYSIS Dataset Figures}
+\section{Figure Name}
+Figure
+\chapter{ArbIS Dataset Figures}
+\section{Figure Name}
+Figure
+\chapter{??}
+\section{Figure Name}
+Figure
+\end{appendices}
+
+\addcontentsline{toc}{chapter}{Declaration of independence}
+
+\end{document}

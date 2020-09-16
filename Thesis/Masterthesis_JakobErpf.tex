@@ -200,9 +200,9 @@ What characteristics do congestions have? Causes, Effects, Indicators …
 Correlation is an analysis that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables. In most statistics there are four common types of correlations to be found: Pearson correlation, Kendall rank correlation, Spearman correlation, and the Point-Biserial correlation \cite{Ramzai2020,SPSS2020a,SPSS2020b}.
 \par From these variants the Pearson correlation coefficient measures a linear correlation and works with the continuous variables and can be used for the analysis of metric data like, distances or durations. The data to analyzed also contains many categorical variables, which cannot be analyzed with the Pearson coefficient. The Point Biserial correlation, a special form of the Pearson correlation coefficient, is able to evaluate the association of continuous-categorical relations, but not for categorical-categorical relations. For this purpose, another type of correlation coefficient needs to be used. The Cramer’s V and Theil's U are two correlation methods capable, to process categorical variables and mainly differ in the type of measure they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil's U, the uncertainty coefficient, on the other hand is a conditional measure and represents the “predictability” of an association \cite{Akoglu2018,StackExchange2020}. Both can be used for the analysis of correlation strength, but since the Theil's measurement of predictability provides a better interpretability it’s to be preferred in the interpretation of the results. As result we have the following correlation coefficients to be used for the mixed analysis of continuous and categorical variables.
 
-\begin{table}
+\begin{table}[ht]
 	\centering
-	\begin{tabular}[h]{l|c|r}
+	\begin{tabular}{l|c|r}
 					& Categorical 			& Continuous \\
 		\hline
 		Categorical & Cramer’s V Theil’s U 	& Point Biserial \\
@@ -212,11 +212,16 @@ Correlation is an analysis that measures the correlation coefficient, which repr
 	\caption{\label{tab:table-name}Correlation Coefficients Matrix}
 \end{table}
 
+\par In the following formula, showing the definition of each correlation coefficient, $x$ and $y$ are two vectors of length $n$. $m_x$ and $m_y$ corresponds to the means of vector $x$ and $y$, respectively.
+
+\begin{eqnarray}
+%	r =  \frac{\sum{(x-m_x)(y-m_y)}}{\sqrt{\sum{(x-m_x)^2}\sum{(y-m_y)^2}}
+\end{eqnarray}
 The Pearson correlation coefficient is calculated as follows.
-%r=  (∑▒〖(x-m_x)(y-m_y)〗)/√(∑▒〖〖(x-m_x)〗^2 〖(y-m_y)〗^2 〗)
+%
 %http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r
 Definition: Point Biserial is special form of Pearson
-%ρ=  (I ̅_(D=1)-I ̅_(D=0))/√(QS(I))*√(n*p*q)
+%\rho =  (I ̅_(D=1)-I ̅_(D=0))/√(QS(I))*√(n*p*q) \\
 %https://de.wikipedia.org/wiki/Punktbiseriale_Korrelation
 Definition: Cramer’s V / Theil’s U
 %https://en.wikipedia.org/wiki/Cram%C3%A9r%27s_V

@@ -198,37 +198,101 @@ What characteristics do congestions have? Causes, Effects, Indicators …
 
 \section{Correlation}
 \label{definition_correlation}
-Correlation is an analysis that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables. In most statistics there are four common types of correlations to be found: Pearson correlation, Kendall rank correlation, Spearman correlation, and the Point-Biserial correlation \cite{Ramzai2020,SPSS2020a,SPSS2020b}.
-\par From these variants the Pearson correlation coefficient measures a linear correlation and works with the continuous variables and can be used for the analysis of metric data like, distances or durations. The data to analyzed also contains many categorical variables, which cannot be analyzed with the Pearson coefficient. The Point Biserial correlation, a special form of the Pearson correlation coefficient, is able to evaluate the association of continuous-categorical relations, but not for categorical-categorical relations. For this purpose, another type of correlation coefficient needs to be used. The Cramer’s V and Theil's U are two correlation methods capable, to process categorical variables and mainly differ in the type of measure they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil's U, the uncertainty coefficient, on the other hand is a conditional measure and represents the “predictability” of an association \cite{Akoglu2018,StackExchange2020}. Both can be used for the analysis of correlation strength, but since the Theil's measurement of predictability provides a better interpretability it’s to be preferred in the interpretation of the results. As result we have the following correlation coefficients to be used for the mixed analysis of continuous and categorical variables.
+Correlation is an analysis procedure that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables \cite{HerzSchlicherSiegener1992}. In most statistics the following common types of can be found: Pearson's R, Kendall's Rank, Spearman or the Point-Biserial correlation \cite{Ramzai2020,SPSS2020a,SPSS2020b}. Besides of these, there are many more correlation coefficients which varying in they applicability and interpretability. For the purpose of this thesis the type of variables used in the correlation is the most limiting feature for choosing the correlation coefficient.
+ 
+Data variables can be grouped into continuous and categorical. Where continuous, also know as quantitative, includes all measurement as speed, distance or age, which can take on an unlimited number of values between the lowest and highest points of measurement \cite{McCue2007}. These can be separated into two types. 
+
+\begin{itemize}
+	\item \textbf{Interval} variables can be measured along a continuum and they have a numerical value. \cite{Laerd2020}
+    \item \textbf{Ratio} variables are interval variables, with the added condition that the values is zero if there is no measurement for this value. \cite{Laerd2020}
+\end{itemize}
+
+Categorical variables on the other hand are limited in the number of values, referring to a category, rank or choice, like a vehicle type or Yes/No answers. These categorical variables can be further separated into three groups.
+
+\begin{itemize}
+	\item \textbf{Nominal} variables have two or more categories, but with no intrinsic order. \cite{Laerd2020}
+	\item \textbf{Dichotomous} are nominal variables which have only two categories or levels. \cite{Laerd2020}
+    \item \textbf{Ordinal} are nominal variables that have two or more categories and are ordered or ranked. \cite{Laerd2020}
+\end{itemize}
+
+From the mentioned variants the Pearson correlation coefficient measures a linear correlation of continuous variables and can be used for the analysis of metric data like, distances or durations. But the provided (see \ref{dataset_baysis} and \ref{dataset_arbis}) and generated (see \ref{methodology_data_generation}) datasets not only contain continuous variables. Most of the variables describing the characteristics are categorical variables, which cannot be analyzed with Pearson's R. The Point Biserial correlation, a special form of the Pearson correlation coefficient, is able to evaluate the association of continuous-dichotomous relations. Cramer’s V and Theil’s U are capable to analyze categorical-categorical relations and mainly differ in the type of measure they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the “predictability” of an association \cite{Akoglu2018,StackExchange2020}. Both can be used for the analysis of correlation strength, but since the Theil’s measurement of predictability provides a better interpretability it’s to be preferred in the interpretation of the results. As result we have the following correlation coefficients to be used for the mixed analysis of continuous and categorical variables.
 
 \bigskip
 
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{l|c|r}
-					& Categorical 			& Continuous \\
+	\begin{tabular}{c|c|c}
+					& Categorical 				& Continuous \\
+		\\[-1em]
 		\hline
-		Categorical & Cramer’s V Theil’s U 	& Point Biserial \\
+		\\[-1em]
+		Categorical & Cramer’s V \& Theil’s U 	& Point Biserial \& ANOVA \\
+		\\[-1em]
 		\hline
-		Continuous 	& Point Biserial 		& Pearson's R \\
+		\\[-1em]
+		Continuous 	& Point Biserial \& ANOVA 	& Pearson's R \\
 	\end{tabular}
 	\caption{\label{tab:table-name}Correlation Coefficients Matrix}
 \end{table}
 
 \bigskip
 
-\par In the following formula \ref{formula_pearson}, showing the definition of the Pearson's R correlation coefficient, $x$ and $y$ are two vectors of length $n$. $m_x$ and $m_y$ corresponds to the means of vector $x$ and $y$, respectively.
+\par The correlation coefficient, shown in formula \ref{formula_correlation_basic} is defined by the fraction of the covariance (shown in formula \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (shown in formula \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992} 
+\smallskip
+\begin{equation}
+\label{formula_correlation_basic}
+	\rho = \frac{\sigma_{xy}}{\sigma_{x}\sigma_{y}}
+\end{equation}
+\begin{equation}
+\label{formula_correlation_covariant}
+	\sigma_{xy} = \sum_{ij}(x_i-\mu_X)(y_n-\mu_Y) \cdot p(x_i,y_j)
+\end{equation}
+\begin{equation}
+\label{formula_correlation_deviation}
+	\sigma_{x/y} = \sum_{i}(x_i/y_i-\mu_{x/y})^2 \cdot p_i
+\end{equation}
+%\begin{equation}
+%\label{formula_correlation}
+%	\rho =  \frac{\sum_{i}{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}\sum_{i}{(y_i-\bar{y})^2}}}
+%\end{equation}
+
+\bigskip
+
+\par In the following formulas $\bar{x}$ and $\bar{y}$ corresponds to the means of vector $x$ and $y$, respectively. \ref{formula_pearson} showing the definition of the Pearson's R correlation coefficient, which is a direct usage of the definition of formula \ref{formula_correlation_basic}. We assume that both vectors have the same length of $i$. 
+	\cite{BenestyChenHuang2009}
+	
+\smallskip
 
 \begin{equation}
-\label{formula_pearson}
-	r =  \frac{\sum^n{(x-m_x)(y-m_y)}}{\sqrt{\sum^n{(x-m_x)^2}\sum^n{(y-m_y)^2}}}
+\label{formula_pearson}	
+	r_{xy} =  \frac{\sum_{i}{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}\sum_{i}{(y_i-\bar{y})^2}}}
 \end{equation}
 
+\bigskip
 
-%http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r
-Definition: Point Biserial is special form of Pearson
-%\rho =  (I ̅_(D=1)-I ̅_(D=0))/√(QS(I))*√(n*p*q) \\
-%https://de.wikipedia.org/wiki/Punktbiseriale_Korrelation
+The Point Biserial, shown in \ref{formula_point_biserial}, can be derived from Person's R with the assumption of $y$ only taking dichotom values of 0 and 1, so that $\bar{y} = p$. The distinction of the cases 
+\begin{itemize}
+	\item $i \cdot p$ referring to $y=1$ an with $1 - p = q$ bigger than $\bar{y}$
+	\item $i \cdot q$ referring to $y=0$ an with $1 - p = -p$ smaller than $\bar{y}$
+\end{itemize}
+allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearson}. Which than can be simplified over \ref{formula_point_biserial_from_pearson_simplyfied} to \ref{formula_point_biserial}. \cite{Tate1954,CohenWest2003,Bortz2004}
+
+\smallskip
+
+\begin{equation}
+\label{formula_point_biserial_from_pearson}
+	r_{pqi} =  \frac{n \cdot p (\bar{x}_{y=1}-\bar{x}) \cdot q + n \cdot p (\bar{x}_{y=0}-\bar{x}) \cdot (-q)}{\sqrt{\sum_{i}{(x_i-\bar{x})^2} \cdot (n \cdot p \cdot q^2 + n \cdot q \cdot (-p)^2)}}
+\end{equation}
+\begin{equation}
+\label{formula_point_biserial_from_pearson_simplyfied}
+	r_{pqi} =  \frac{n \cdot p \cdot q \cdot (\bar{x}_{y=1}-\bar{x}_{y=0})}{\sqrt{\sum_{i}{(x_i-\bar{x})^2} \cdot (n \cdot p \cdot q)}}
+\end{equation}
+\begin{equation}
+\label{formula_point_biserial}
+	r_{pqi} =  \frac{\bar{x}_{y=1}-\bar{x}_{y=0}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}}} \cdot \sqrt{n \cdot p \cdot q \cdot} 
+\end{equation}
+\smallskip
+
 Definition: Cramer’s V / Theil’s U
 %https://en.wikipedia.org/wiki/Cram%C3%A9r%27s_V
 %https://en.wikipedia.org/wiki/Uncertainty_coefficient

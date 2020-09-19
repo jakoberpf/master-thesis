@@ -394,7 +394,7 @@ A diverse distribution in the values would be also preferred. Because the correl
 	\label{img:baysis_monthlyDist_percentage}
 \end{figure}
 
-A look on the monthly distribution (shown in figure \ref{img:baysis_monthlyDist_absolute}) shows that there are no significant differences, besides of January. The monthly distribution expressed in percentages (see above in \ref{img:baysis_monthlyDist_percentage}) supports this deviation with a 31\% increase over the mean count of 857 accidents per month. This can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. 
+A look on the monthly distribution of accidents recorded by BAYSIS (shown in figure \ref{img:baysis_monthlyDist_absolute}) shows that there are no significant differences in number, besides of January. The monthly distribution expressed in percentages (see above in figure \ref{img:baysis_monthlyDist_percentage}) supports this deviation with a 31\% increase over the mean count of 857 accidents per month. This can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior in higher traveling speeds.
 
 \begin{figure}[h]
 	\centering
@@ -404,7 +404,7 @@ A look on the monthly distribution (shown in figure \ref{img:baysis_monthlyDist_
 \end{figure}
 
 \paragraph{Kat}
-The accident categories described by the variable shown in figure \ref{img:baysis_dataset_Kat}, presents a quite natural distribution. The categories range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that statistical deadly accidents are exponentially unlikely.
+The accident categories described by the variable shown in figure \ref{img:baysis_dataset_Kat}, presents a quite natural distribution. The categories range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that statistical deadly accidents are exponentially unlikely. The variable consists of four values, which can be considered as ordered, and is therefore ordinal.
 
 \begin{figure}[h]
 	\centering
@@ -414,7 +414,7 @@ The accident categories described by the variable shown in figure \ref{img:baysi
 \end{figure}
 
 \paragraph{Typ}
-The accident type variable (shown in figure \ref{img:baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight and driving to turning movements. Beside of an 80\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features.
+The accident type variable (shown in figure \ref{img:baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight and driving to turning movements. Beside of an 80\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features. The variable does not show any order and is therefore of nominal type.
 
 \begin{figure}[H]
 	\centering
@@ -424,7 +424,7 @@ The accident type variable (shown in figure \ref{img:baysis_dataset_Typ}) incorp
 \end{figure}
 
 \paragraph{Beteil}
-The distribution of the number of involved persons (shown in figure \ref{img:baysis_dataset_Beteil}) shows that more than 96\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\% and the second biggest of one involved person for 30\% of the total count. This also means the accidents with more than three involved persons are statistically insignificant.
+The distribution of the number of involved persons (shown in figure \ref{img:baysis_dataset_Beteil}) shows that more than 96\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\% and the second biggest of one involved person for 30\% of the total count. This also means the accidents with more than three involved persons are statistically insignificant. Because of the increasing oder of values, the variable is of ordinal type.
 
 \begin{figure}[h]
 	\centering
@@ -434,7 +434,7 @@ The distribution of the number of involved persons (shown in figure \ref{img:bay
 \end{figure}
 
 \paragraph{UArt}
-The accident cause type, described by the two aggregated variables UArt1 and UArt2 (shown in figure \ref{img:baysis_dataset_UArt}), presents two major sets of causes. One being the accidents with waiting, stopping and starting vehicles in the same lane, which describe typical collision accidents during congested traffic. The other being the accidents in the next left or right lane, which describe common lane changing collisions. Accidents with cross traffic, pedestrians or opposite traffic are relatively uncommon.
+The accident cause type, described by the two aggregated variables UArt1 and UArt2 (shown in figure \ref{img:baysis_dataset_UArt}), presents two major sets of causes. One being the accidents with waiting, stopping and starting vehicles in the same lane, which describe typical collision accidents during congested traffic. The other being the accidents in the next left or right lane, which describe common lane changing collisions. Accidents with cross traffic, pedestrians or opposite traffic are relatively uncommon. The variable does not show any order and is therefore of nominal type.
 
 \begin{figure}[h]
 	\centering
@@ -444,7 +444,7 @@ The accident cause type, described by the two aggregated variables UArt1 and UAr
 \end{figure}
 
 \paragraph{AUrs}
-The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown in figure \ref{img:baysis_dataset_AUrs}) does clearly that only the first category of “Slippery road condition due to oil” hold any significant share. Because of that any correlation to this parameter would not point to any usable statement and therefore can be neglected for the evaluation.
+The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown in figure \ref{img:baysis_dataset_AUrs}) does clearly that only the first category of “Slippery road condition due to oil” hold any significant share. Because of that any correlation to this parameter would not point to any usable statement and therefore can be neglected for the evaluation. The variable does not show any order and is therefore of nominal type.
 
 \begin{figure}[]
 	\centering
@@ -454,7 +454,7 @@ The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown
 \end{figure}
 
 \paragraph{AufHi}
-The obstacle collision distribution (shown in figure \ref{img:baysis_dataset_Aufhi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,5\% of accidents without any collision, it can also be stated that in most cases a collision is part of an accident.
+The obstacle collision distribution (shown in figure \ref{img:baysis_dataset_Aufhi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,5\% of accidents without any collision, it can be stated that in most cases a collision is part of an accident. The counts of the remaining categories are insignificant. The variable does not show any order and is therefore of nominal type.
 
 \begin{figure}[h]
 	\centering
@@ -464,7 +464,8 @@ The obstacle collision distribution (shown in figure \ref{img:baysis_dataset_Auf
 \end{figure}
 
 \paragraph{Alkoh}
-The Alcohol involvement indication parameter (shown in figure \ref{img:baysis_dataset_Alkoh}) shows that 1,9\% of accidents have one or more involved persons with measurable alcohol amounts in the blood connected with it. This
+The Alcohol involvement indication parameter (shown in figure \ref{img:baysis_dataset_Alkoh}) shows that 1,9\% of accidents have one or more involved persons with measurable alcohol amounts in the blood connected with it. The respective 98 reports with 
+	%TODO variabel type
 
 \begin{figure}[h]
 	\centering
@@ -475,6 +476,7 @@ The Alcohol involvement indication parameter (shown in figure \ref{img:baysis_da
 
 \paragraph{Char}
 The variable distribution shown in figure \ref{img:baysis_dataset_Char} describes the characteristic of the street where the accident happened. Since we are only considering highway, the type of “crossing” is expected to be zero. 
+	%TODO variabel type
 
 \begin{figure}[h]
 	\centering
@@ -484,9 +486,9 @@ The variable distribution shown in figure \ref{img:baysis_dataset_Char} describe
 \end{figure}
 
 \paragraph{Bes}
-The aggregated distribution of the variables Bes1, Bes2 and Bes3, which further defines the street characteristic mentioned above. 
+The aggregated distribution of the variables Bes1, Bes2 and Bes3, which further defines the street characteristic mentioned above.
+	%TODO variabel type 
 
-\paragraph{Lich}
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.6]{./assets/baysis_dataset_Lich.pdf}
@@ -494,9 +496,11 @@ The aggregated distribution of the variables Bes1, Bes2 and Bes3, which further 
 	\label{img:baysis_dataset_Lich}
 \end{figure}
 
+\paragraph{Lich}
 Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
 Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
 Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
+	%TODO variabel type
 
 \paragraph{Zust}
 \begin{figure}[h]
@@ -509,6 +513,7 @@ Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
 Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
 Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
 Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
+	%TODO variabel type
 
 \paragraph{Fstf}
 \begin{figure}[H]
@@ -518,23 +523,85 @@ Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
 	\label{img:baysis_dataset_Fstf}
 \end{figure}
 
-\paragraph{Fstf}
-Straßen klasse
-
-\paragraph{Fstf}
-WochenTag
-
-\paragraph{Fstf}
-Feiertag
 
 \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_Fstf.pdf}
+	\caption{Distribution of the number of closed lanes}
+	\label{img:baysis_dataset_Fstf}
+\end{figure}
+
+\paragraph{WoTag}
+The variable of WoTag relates to the day of week, when the accident happened. 
+
+\paragraph{FeiTag}
+Form the total of ??, 157 accidents to place during a public holiday.
+	
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|c|c}
+		\textbf{Variable} 	& \textbf{Group} 	& \textbf{Type} 		\\
+		\\[-1em]
+		\hline
+		\\[-1em]
+		Kat  		& categorical 	& ordinal 	\\
+		\\[-1em]
+		\hline
+		\\[-1em]
+		Typ 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		Beteil 		& categorical 	& ordinal	\\
+		\hline
+		\\[-1em]
+		UArt 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		AUrs 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		AufHi 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		Alkoh 		& categorical 	& dichotomous	\\
+		\hline
+		\\[-1em]
+		Char 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		Bes 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		Lich 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		Zust 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		Fstf 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		Strst 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		WoTag 		& categorical 	& nominal	\\
+		\hline
+		\\[-1em]
+		FeiTag 		& categorical 	& dichotomous	\\
+	\end{tabular}
+	\caption{\label{tab:table-name}Variable types of \acrshort{baysis} dataset}
+\end{table}
+
+
+
+The figure \ref{img:correlation_matrix_dataset} shows the correlation coefficient of each mentioned accident characteristic 
+
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.2]{../Analyse/data/BAYSIS/dataset/correlation_matrix.png}
 	\caption{Correlation matrix for BAYSIS dataset, calculated with \ref{definition_correlation} and \ref{definition_correlation_script} (for larger print see Appendix ??)}
 	\label{img:correlation_matrix_dataset}
 \end{figure}
-
-The figure \ref{img:correlation_matrix_dataset} shows the correlation coefficient of each mentioned accident characteristic 
 
 For further use, we do not want to work with the \acrshort{csv} file format in which the dataset was provided. Because the designed analyzation and evaluation tool, utilizes a PostgreSQL database for its data storage we need to process and convert the accident reports into data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the processing and import into the database, 7971 records end up being converted and persisted, which equivalent to 76,6\% of the provided number of accidents for these months or 25,8\% of all accidents. This 23,5\% of data loss is due to the conversion of location or position data from the BAYSIS dataset to our street net-work. In this process we try to find a corresponding street network location to the legacy location of the BAYSIS dataset. If we are not able to locate the position of the BYSIS dataset on our street network we discard the record, because we can’t work with it downstream. 
 
@@ -675,6 +742,7 @@ Is the correlation strong enough to use it for predicting congestions and accide
 \begin{appendices}
 
 \chapter{BAYSIS Dataset Figures}
+\label{appendix_baysis}
 \tocless\section{Figure Name}
 \label{appendix_TODO}
 %TODO add all BAYSIS figures as large print

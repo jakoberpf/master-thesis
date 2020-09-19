@@ -525,7 +525,7 @@ The \acrfull{arbis}, as described in chapter \ref{dataset_arbis}, is a collectio
 
 
 \chapter{Methodology}
-The central goal of the thesis it to find out if congestions found in \acrshort{fcd} data and incident characteristics from accidents (\acrshort{baysis}) and roadworks (\acrshort{arbis}) do correlate with each other. Therefore, the main research question to be answered stands as followed:
+The central goal of the thesis it to determine if jams characteristics, detected in \acrshort{fcd} data and incident characteristics from accidents (\acrshort{baysis}) and roadworks (\acrshort{arbis}) do correlate with each other. Therefore, the main research question to be answered stands as followed:
 
 \begin{center}
 	\textit{Is there a correlation between FCD congestion and incident characteristics?}
@@ -543,7 +543,7 @@ The central goal of the thesis it to find out if congestions found in \acrshort{
 
 \par To answer these research questions, there are a series of steps needed, to get from the separate dataset of FCD and incident report
 \section{Congestion detection}
-The \acrshort{fcd} dataset, as described in \ref{dataset_fcd} is a nearly continuous series of datapoint which represents the mean absolute and relative speed of the street section at each 3-minute interval on a road section. In \ref{dataset_fcd} we also stated that thought a manual visual analysis jams can be easily identified, but because we want to process multiple months and all highways in Bavaria which are hundreds of plots, a programmable process is needed. Such processing needs to be able to find dense, timely and spatial accumulations of jammed cells and defined the dimensions, shape as well as characteristic values.
+The \acrshort{fcd} dataset, as described in \ref{dataset_fcd} is a nearly continuous series of datapoint which represents the mean absolute and relative speed of the street section at each 3-minute interval on a road section. In \ref{dataset_fcd} we also determined that thought a manual visual analysis jams can be easily identified, but because we want to process multiple months and all highways in Bavaria which are hundreds of plots, a programmable process is needed. Such processing needs to be able to find dense, timely and spatial accumulations of jammed cells and defined the dimensions, shape as well as characteristic values.
 \par For this purposes the developed \gls{evaltool} from the \gls{congstats} service is expanded with a clustering and shaping algorithm.
 
 \subsection{Clustering (DB-SCAN)}

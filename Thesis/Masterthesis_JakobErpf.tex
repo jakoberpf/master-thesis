@@ -202,13 +202,14 @@ What characteristics do congestions have? Causes, Effects, Indicators …
 
 \section{Correlation}
 \label{definition_correlation}
-Correlation is an analysis procedure that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables \cite{HerzSchlicherSiegener1992}. In most statistics the following common types of can be found: Pearson's $r$, Kendall's $\tau$, Spearman or the Point-Biserial correlation \cite{Ramzai2020,SPSS2020a,SPSS2020b}. Besides of these, there are many more correlation coefficients which varying in they applicability and interpretability. Depending on which type of data variables are to be analyzed, it it necessary to choose an applicable correlation coefficient. In this thesis the type of data variable to be examined in the correlation is the most restricting feature for choosing a suitable correlation coefficient and is the primary criterion.
+Correlation is an analysis procedure that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables \cite{HerzSchlicherSiegener1992}. In most statistics the following common types of can be found: Pearson's $r$, Kendall's $\tau$, Spearman  $\rho$ or the Point-Biserial correlation \cite{Ramzai2020,SPSS2020a,SPSS2020b}. Besides off these, there are many more correlation coefficients which varying in they applicability and interpretability. Depending on which type of data variables are to be analyzed, it it necessary to choose an applicable correlation coefficient. In this thesis the type of data variable to be examined is the most restricting feature for choosing a suitable correlation coefficient and therefore the primary criterion. 
 
 \subsection{Variable Types}
+\label{correlation_variable_types}
 Data variables can be grouped into continuous and categorical, depending what kind of observation they describe. Variables are considered to be continuous, also know as quantitative, when relating to measurement like speed, distance or age, which can take on an unlimited number of values between the lowest and highest points of measurement \cite{McCue2007}. These continuous variables can be separated into two subsets. 
 
 \begin{itemize}
-	\item \textbf{Interval} variables can be measured along a continuum and they have a numerical value. \cite{Laerd2020}
+	\item \textbf{Interval} variables can be measured along a continuum and have a numerical value. \cite{Laerd2020}
     \item \textbf{Ratio} variables are interval variables, with the added condition that the values is zero if there is no measurement for this value. \cite{Laerd2020}
 \end{itemize}
 
@@ -223,7 +224,20 @@ Categorical variables on the other hand are limited in the number of values, ref
 The datasets to be examined in this thesis include continuous variables of the type interval, as well as all three types of categorical variables (see \ref{dataset_baysis} and \ref{dataset_arbis}).
 
 \subsection{Coefficient Types}
-The Pearson correlation coefficient measures a linear correlation of continuous variables and can be used for the analysis of metric data like, distances or durations. It is therefore suitable for the examination of continuous-continuous variable relations. The provided (see \ref{dataset_baysis} and \ref{dataset_arbis}) and generated (see \ref{methodology_data_generation} !!!!!! ) datasets also include categorical variables, describing nominal, dichotomous and ordinal characteristics, which cannot be analyzed with Pearson's $r$. The Point Biserial correlation, a special form of the Pearson correlation coefficient, is able to evaluate the association of continuous-dichotomous relations. Cramer’s V and Theil’s U are capable to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of measure they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. As a result we have the following correlation coefficients to be used for the mixed analysis of continuous and categorical variables.
+\label{correlation_coefficient_types}
+Pearson $r$ desrcibes the linear correlation of continuous, non-ranked variables. It does not assume normality or a normal distributed sample set and is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance \cite{BenestyChenHuang2009, Sulthan2018}. 
+
+In the case of rank ordered continuous variables the commonly used Spearman's $\rho$ can be applied, but should be replaced by Kendall's $\tau$ because of it superiority over Spearman \cite{Newson2002}. 
+
+Because the provided (see \ref{dataset_baysis} and \ref{dataset_arbis}) and generated (see \ref{methodology_data_generation}) datasets also include categorical variables, describing nominal, dichotomous and ordinal characteristics, other correlation methods are needed. The Point Biserial correlation, a special form of the Pearson correlation coefficient, is able to evaluate the association of continuous-dichotomous relations. 
+
+
+
+Pearsons ChiSquare -> ANOVA -> Kruskal-Wallis H-test
+
+
+
+Cramer’s V and Theil’s U are capable to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. As a result we have the following correlation coefficients to be used for the mixed analysis of continuous and categorical variables.
 
 \bigskip
 
@@ -234,18 +248,21 @@ The Pearson correlation coefficient measures a linear correlation of continuous 
 		\\[-1em]
 		\hline
 		\\[-1em]
-		Categorical & Cramer’s V \& Theil’s U 	& Point Biserial \& ANOVA \\
+		Categorical & Cramer’s V  				& Point Biserial \& ANOVA \\
+					&	\& Theil’s U				& \& Pearsons $\chi^2$ \\
 		\\[-1em]
 		\hline
 		\\[-1em]
 		Continuous 	& Point Biserial \& ANOVA 	& Pearson's $r$ \\
+					& \& Pearsons $\chi^2$		& \& Spearman's $\rho$		
 	\end{tabular}
-	\caption{\label{tab:table-name}Correlation Coefficients Matrix}
+	\caption{\label{tab:table-name}Collection of Correlation Coefficients as Matrix}
 \end{table}
 
 \bigskip
 
 \subsection{Notations}
+\label{correlation_notations}
 \par The correlation coefficient, shown in the formula \ref{formula_correlation_basic} is defined by the fraction of the covariance (shown in formula \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (shown in formular \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992}
 \smallskip
 \begin{equation}

@@ -341,7 +341,10 @@ Definition: Theil’s U
 
 \bigskip
 
-These correlation coefficient can have a value in the range of -1 to +1. If one variable moves in the same direction as the other, then it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other. For interpreting this characteristic there are some common presumptions to consider.
+\subsection{Interpretation}
+\label{correlation_uncertainty}
+
+These correlation coefficients of Pearsons $r$ can have a value in the range of $-1$ to $+1$. If one variable moves in the same direction as the other, then it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
 
 \begin{itemize}
   \item When both variables change in the same ratio, the absolute value of the correlation coefficient is 1,0, which is called perfect correlation.
@@ -350,6 +353,29 @@ These correlation coefficient can have a value in the range of -1 to +1. If one 
   \item When the correlation coefficient range is between .25 to .50, it is called low degree of correlation.
   \item When the absolute correlation coefficient is lower than 0,25, it shows that there is no correlation, which can be called absence of correlation.
 \end{itemize}	
+
+
+
+
+
+\subsection{Significance vs. Uncertainty}
+\label{correlation_uncertainty}
+
+https://de.statista.com/statistik/lexikon/definition/122/signifikanz/
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3387884/
+
+https://www.ons.gov.uk/methodology/methodologytopicsandstatisticalconcepts/uncertaintyandhowwemeasureit
+
+https://www.ncbi.nlm.nih.gov/books/NBK459346/
+
+https://www.npr.org/sections/health-shots/2019/03/20/705191851/statisticians-call-to-arms-reject-significance-and-embrace-uncertainty?t=1600534742009
+
+https://www.tandfonline.com/doi/full/10.1080/00223131.2013.820155
+
+
+\subsubsection{Significance}
+\subsubsection{Uncertainty}
 	
 \chapter{Datasets}
 In this chapter the provided datasets from the previously mentioned street information systems and the FCD provider will be elaborated. 
@@ -357,7 +383,8 @@ In this chapter the provided datasets from the previously mentioned street infor
 \section{FCD}
 \label{dataset_fcd}
 As described in chapter 1.1, \acrshort{fcd} data represents the movement of vehicles and can be used to calculate vehicle speeds and trajectories. The provided dataset contains the aggregated absolute and relative speeds for the highways and state streets, calculated from \acrshort{fcd} data. The process of how these speeds can be calculated from \acrshort{fcd} data is elaborated in the thesis of Felix Rampe \textit{Traffic Speed Estimation and Prediction Using Floating Car Data} \cite{Rempe2018} and will not be further explained, since it is was not part of the project. The resulting speeds are mapped onto the HERE \cite{HERE2020} network, to be compliant with the geolocation system used in the \gls{congstats} project.
-\par Each of these aggregated speeds represent the mean speed over a three minute time interval on the corresponding road section. This arrangement of speeds for each time step and space step will be called speed matrix, which will be used in the algorithmic analysis to detect jams. For visual representation the pictures on the right show the plots of some sections of these speed matrixes with the horizontal axes being the spatial extend and the vertical axes the time extend. Deep greens represent free flowing traffic with ~130 km/h, which is the norm speed in Germany (in German called “Richtgeschwindigkeit”) on highways set the legislator. The speed scale then develops linearly downwards deep red meaning congested traffic with 30 km/h or less. 
+
+Each of these aggregated speeds represent the mean speed over a three minute time interval on the corresponding road section. This arrangement of speeds for each time step and space step will be called speed matrix, which will be used in the algorithmic analysis to detect jams. For visual representation the pictures on the right show the plots of some sections of these speed matrixes with the horizontal axes being the spatial extend and the vertical axes the time extend. Deep greens represent free flowing traffic with ~130 km/h, which is the norm speed in Germany (in German called “Richtgeschwindigkeit”) on highways set the legislator. The speed scale then develops linearly downwards deep red meaning congested traffic with 30 km/h or less. 
 
 \begin{figure}[h]
 	\centering
@@ -366,17 +393,18 @@ As described in chapter 1.1, \acrshort{fcd} data represents the movement of vehi
 	\label{img:speedMatrixPlot_mutipleMixedClusters}
 \end{figure}
 
-\par The observer will clearly recognize the jams represented by the clusters of red and orange cells in the figure \ref{img:speedMatrixPlot_mutipleMixedClusters}, with the angled extends towards the right down edge, due to the vehicle trajectory through space and time. These cluster, also shown in the two lower pictures, which representing one or multiple jams can be densely packed or spotted into smaller clusters or, depending on the severity of a jam can be seen, by the cluster which contain more orange or yellow cells than red. 
-\par From this visual clarity, the continuity of the data points and the precision on 3-minute intervals we can deviate that an algorithmic approach should also be able to detect such congestion events. This being said, the dataset does contain defects in the form of missing values for complete road sections, which can be easily ignored during processing. Another harder to detect and fixable defect type are visually obviously wrong speeds. Meaning sudden speed drops or jumps to block of identical speeds of an abnormal temporal and spatial extend. 
-\par Although originally an analysis of the whole year 2019 was planned, the provider was only able to deliver the FCD data for the first half in the timeframe of this thesis for processing and analysis. Due to that the evaluation time frame is restricted to the first half of the year 2019.
+The observer will clearly recognize the jams represented by the clusters of red and orange cells in the figure \ref{img:speedMatrixPlot_mutipleMixedClusters}, with the angled extends towards the right down edge, due to the vehicle trajectory through space and time. These cluster, also shown in the two lower pictures, which representing one or multiple jams can be densely packed or spotted into smaller clusters or, depending on the severity of a jam can be seen, by the cluster which contain more orange or yellow cells than red. 
+
+From this visual clarity, the continuity of the data points and the precision on 3-minute intervals we can deviate that an algorithmic approach should also be able to detect such congestion events. This being said, the dataset does contain defects in the form of missing values for complete road sections, which can be easily ignored during processing. Another harder to detect and fixable defect type are visually obviously wrong speeds. Meaning sudden speed drops or jumps to block of identical speeds of an abnormal temporal and spatial extend. 
+
+%Although originally an analysis of the whole year 2019 was planned, the provider was only able to deliver the FCD data for the first half in the timeframe of this thesis for processing and analysis. Due to that the evaluation time frame is restricted to the first half of the year 2019.
 
 \section{BAYSIS}
 \label{dataset_baysis}
-\par The \acrfull{baysis} as describe in chapter \ref{dataset_baysis}, collects a wide range of different information types, which also contains accidents with the corresponding police reports. Accidents have a strong traffic influence on the Bavarian street network, with more than 400.000 being recorded in the year 2019 (StMi, 2020). The provided export contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. Due to the limited availability of \acrshort{fcd} data and potential evaluation timeframe, only the accidents in the first half of the year 2019 are relevant. In these months 5140 accidents where recorded, which equivalents an expected 50\% of the total number of accidents on the highway network. \newline
+\par The \acrfull{baysis} as describe in chapter \ref{dataset_baysis}, collects a wide range of different information types, which also contains accidents with the corresponding police reports. Accidents have a strong traffic influence on the Bavarian street network, with more than 400.000 being recorded in the year 2019 (StMi, 2020). The provided export contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. Due to the limited availability of \acrshort{fcd} data and potential evaluation timeframe, only the accidents in the first half of the year 2019 are relevant. In these months 5140 accidents where recorded, which equivalents an expected 50\% of the total number of accidents on the highway network.
+Each accident report includes a variety of specifications, which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved like nationality, age and gender. In total, one report contains 132 values, describing the accident, participant and environment. Because we do not want to form a stereotype of accident participant but rather find significant accident characteristics or environmental factors most of the descriptive values for the involved persons are not considered. Further we also have to neglect all values which cannot be converted in a numeric and nominal scale, due the used correlation methods. Variables, which don’t have any values are also neglected. From this curtailed pool of correlate able and analyze able characteristics we want to consider all parameters that have a logical significance with causes or effects of an accident.
 
-Each accident report includes a variety of specifications, which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved like nationality, age and gender. In total, one report contains 132 values, describing the accident, participant and environment. Because we do not want to form a stereotype of accident participant but rather find significant accident characteristics or environmental factors most of the descriptive values for the involved persons are not considered. Further we also have to neglect all values which cannot be converted in a numeric and nominal scale, due the used correlation methods. Variables, which don’t have any values are also neglected. From this curtailed pool of correlate able and analyze able characteristics we want to consider all parameters that have a logical significance with causes or effects of an accident. \newline
-
-A diverse distribution in the values would be also preferred. Because the correlation of a non distributed variable, which for example has one values occupying a 95\% major share, is therefore based on a sample set comprised of mostly the same samples, the interpretability for a correlation to other values but the major share is very limited.
+A diverse distribution in the values would be also preferred, to reduce the risk of uncertain relation. Because the correlation of a non distributed variable, which for example has one values occupying a 95\% major share, is based on a sample set comprised of mostly the same samples, the interpretability for a correlation to other values but the major share is very limited (see \ref{correlation_uncertainty} for more detailed elaboration of this assumption).
 \newline
 \par To give an overview about what results can be expected on the basis of the provided dataset and which values are worth to be further evaluated, all plausible relevant parameters of the dataset will be illustrated and shortly discussed. All diagrams are also available as larger prints in the appendix \ref{appendix_baysis}. 
 

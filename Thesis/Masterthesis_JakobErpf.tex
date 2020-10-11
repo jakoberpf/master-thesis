@@ -736,16 +736,62 @@ First step is the detection of congestion events. The definition in \ref{definit
 For the classification of the congestion events into different types, by theirs spatial and timely extends a shaping algorithm is needed. It is supposed to convert the accumulation of cells into a simple describable shape, which can be put into groups.
 
 \subsection{Clustering}
-The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. 
+The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. E.g.  k-means (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers), spectral clustering (graph distance) \cite{Chauhan2020}.
 
-The DB-SCAN algorithm is a density-based spatial cluster algorithm which also considers noise  \cite{Chauhan2020}. The basic idea of this algorithm is to form cluster of point, which are close to many other points. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster (commonly named minPts), measures by the number of cells and the second being the maximum distance between cluster cells (commonly named eps) \cite{Scikit2020}. 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{./assets/cluster_seperate.png}
+	\caption{Example clustered by k-means algorithm \cite{Yildirim2020}}
+	\label{cluster_kmeans}
+\end{figure}
 
-With that the 
+The figure \ref{cluster_kmeans} shows three differently colored groups of points, which are clustered into three clusters, represented by the circles around the groups. It demonstrates the general principle of clustering and was done by the common k-means algorithm with the $a priori$ , which considers all points as possibly related. 
 
-Finds core samples of high density and expands clusters from them. Good for data which contains clusters of similar density.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{./assets/cluster_1.png}
+	\includegraphics[scale=0.4]{./assets/cluster_2.png}
+	\includegraphics[scale=0.4]{./assets/cluster_3.png}
+	\caption{Example clustered by density-based algorithm \cite{Yildirim2020}}
+	\label{cluster_dbscan}
+\end{figure}
+
+This works well as long as the groups don't overlay, intersect or have arbitrary shapes like in the figures \ref{cluster_dbscan}. When this is the case, the k-mean may cluster loosely related point together, which actually are more strongly related to other points.
+
+Another issue with this method is the vastly increasing runtime when processing more data. The objective function (shown in formula \ref{formula_kmeans}) of the k-mean algorithm states that $n$ distances to be calculated for $k$ points. With that the Big-O notation, describing the time complexity of an algorithm, is $O(n^2)$ for the case $k=n$ \cite{Santhanam2010}.
+
+\begin{equation}
+\label{formula_kmeans}
+	J =  \sum_{j=1}^k{\sum_{i=1}^n{\abs{x_i^j-c_j}}}
+\end{equation}
+
+\bigskip
+
+ If we a
+
+\bigskip
+
+Therefore density-based methods are better suited to identify distinctive groups/clusters in such data, by looking for a contiguous region of high point density, separated from others by contiguous regions of low point density \cite{Chauhan2020}. This does not only increase the clustering precision but also reduces the number of total calculations.
+
+\subsubsection{Concept}
+
+The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters with noise by considering the spatial density, which can also represents noise  \cite{Yildirim2020,Chauhan2020}. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $minPts$, which defines the minimum number of points of a cluster to be considered as dense. And secondly the maximum distance threshold between cluster points, $\varepsilon$. \cite{Yildirim2020,Chauhan2020} 
+
+With these thresholds the points around the current point can be classified as core point, border point or outliner.
+
+\begin{itemize}
+	\item \textbf{Core point} 
+    \item \textbf{Border point} 
+ 	\item \textbf{Outlier} 
+\end{itemize}
+
+Finds core samples of high density and expands clusters from them.
+
 
 
 DBSCAN with expansion of removing wrong and small, and combining small and near
+
+
 
 
 
@@ -757,6 +803,8 @@ DBSCAN with expansion of removing wrong and small, and combining small and near
 %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.1629&rep=rep1&type=pdf
 %http://cucis.eecs.northwestern.edu/publications/pdf/HAL18.pdf
 
+
+\subsubsection{Calibration}
 
 
 \subsection{Shaping (Convex Hull)}

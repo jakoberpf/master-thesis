@@ -713,7 +713,7 @@ The central goal of the thesis it to determine if jams characteristics, detected
 
 \bigskip
 
-\par Assuming that there is a correlation of congestion and incident characteristics, the second and event more interesting research question would arise.
+\par Assuming that there is a correlation of congestion and incident characteristics, the second and more interpretable question would arise.
 
 \begin{center}
 	\textit{Can the correlation of FCD congestion and incident characteristics predict the possibilities of a consecutive events?}
@@ -721,20 +721,33 @@ The central goal of the thesis it to determine if jams characteristics, detected
 
 \bigskip
 
-\par To answer these research questions, there are a series of steps needed, to get from the separate dataset of FCD and incident report
-\section{Congestion detection}
-The \acrshort{fcd} dataset, as described in \ref{dataset_fcd} is a nearly continuous series of datapoint which represents the mean absolute and relative speed of the street section at each 3-minute interval on a road section. In \ref{dataset_fcd} we also determined that thought a manual visual analysis jams can be easily identified, but because we want to process multiple months and all highways in Bavaria which are hundreds of plots, a programmable process is needed. Such processing needs to be able to find dense, timely and spatial accumulations of jammed cells and defined the dimensions, shape as well as characteristic values.
-\par For this purposes the developed \gls{evaltool} from the \gls{congstats} service is expanded with a clustering and shaping algorithm.
+To answer these research questions, there are a series of steps involved, from identifying congestion event in the FCD data and finding adjacent incident events to comprising a unified dataset and evaluating the results.
 
-\subsection{Clustering (DB-SCAN)}
+\bigskip
+
+The \acrshort{fcd} data, as described in \ref{dataset_fcd}, is a nearly continuous series of datapoint which represents the mean absolute and relative speed of the street section at each 3-minute interval on a road section. In \ref{dataset_fcd} we determined that thought a manual visual analysis jams can be easily identified. This manual identification needs to be automated because of the amount of data representing a complete year and all Bavarian highways. Such an automated process needs to be able to find congestion events and defined dimensions, shape as well as characteristic values. For the correlation analysis of jams to incidents, the detection of adjacent incident is needed.
+
+The \gls{evaltool} from the \gls{congstats} service, the project which inspired this thesis, was developed for exactly this purpose and will be expanded to fit the required specification.
+
+\section{Detection Algorithm}
+First step is the detection of congestion events. The definition in \ref{definition_congestion} states that a congestion is a dense, timely and spatial accumulation of jammed cells, also describable as cluster of jammed cells. Therefore a clustering algorithm would be suitable to identify congestion events.
+
+For the classification of the congestion events into different types, by theirs spatial and timely extends a shaping algorithm is needed. It is supposed to convert the accumulation of cells into a simple describable shape, which can be put into groups.
+
+\subsection{Clustering}
 The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. 
-\par The DB-SCAN algorithm is a density-based spatial cluster algorithm which also considers noise  \cite{Chauhan2020}. The basic idea of this algorithm is to form cluster of point, which are close to many other points. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster (commonly named minPts), measures by the number of cells and the second being the maximum distance between cluster cells (commonly named eps) \cite{Scikit2020}. 
-\par With that the 
+
+The DB-SCAN algorithm is a density-based spatial cluster algorithm which also considers noise  \cite{Chauhan2020}. The basic idea of this algorithm is to form cluster of point, which are close to many other points. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster (commonly named minPts), measures by the number of cells and the second being the maximum distance between cluster cells (commonly named eps) \cite{Scikit2020}. 
+
+With that the 
 
 Finds core samples of high density and expands clusters from them. Good for data which contains clusters of similar density.
 
 
 DBSCAN with expansion of removing wrong and small, and combining small and near
+
+
+
 %https://webis.de/downloads/theses/papers/busch_2005.pdf
 %
 %https://www.kde.cs.uni-kassel.de/wp-content/uploads/ws/LLWA03/fgml/final/Kirchner.pdf
@@ -742,22 +755,28 @@ DBSCAN with expansion of removing wrong and small, and combining small and near
 %https://www.nature.com/articles/s41598-017-12852-z
 %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.1629&rep=rep1&type=pdf
 %http://cucis.eecs.northwestern.edu/publications/pdf/HAL18.pdf
+
+
+
 \subsection{Shaping (Convex Hull)}
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
 
 \section{Matching Algorithm}
 We now have a list of jams, found on the matching incidents with spatial and timely adjacent congestions
 See CONGSTATS Matching Algorithm (own implementation)
-\section{Data Generation}
+
+\section{Data Processsing}
 \label{methodology_data_generation}
 Until now all data is in the CONGSTATS system. Export to analyzable format is necessary.
 Which values where converted into numeric values and why and …
+
 \section{Correlation Processing}
 \label{definition_correlation_script}
 
 Explain python script for correlation analysis
 
 \cite{Potvin2020}
+
 
 \chapter{Analysis}
 

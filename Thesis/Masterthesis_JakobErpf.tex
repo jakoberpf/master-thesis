@@ -225,21 +225,28 @@ Categorical variables on the other hand are limited in the number of values, ref
 
 The datasets to be examined in this thesis include continuous variables of the type interval, as well as all three types of categorical variables (see \ref{dataset_baysis} and \ref{dataset_arbis}).
 
-\subsection{Coefficient Types}
+\section{Coefficient Types}
 \label{correlation_coefficient_types}
-Pearson $r$ desrcibes the linear correlation of continuous, non-ranked variables. It does not assume normality or a normal distributed sample set and is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance \cite{BenestyChenHuang2009, Sulthan2018}. 
+The provided (see \ref{dataset_baysis} and \ref{dataset_arbis}) and generated (see \ref{methodology_data_generation}) datasets includes continuos, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. That makes it necessary to choose the appropriate correlation coefficient suited for the apparent variables. In the following a number of coefficients, prominent in current statistic literature will be evaluated.
+
+\subsubsection{Continuous - Continuous}
+Pearson $r$ describes the linear correlation of continuous, non-ranked variables. It does not assume normality or a normal distributed sample set and is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance \cite{BenestyChenHuang2009, Sulthan2018}. 
 
 In the case of rank ordered continuous variables the commonly used Spearman's $\rho$ can be applied, but should be replaced by Kendall's $\tau$ because of it superiority over Spearman \cite{Newson2002}. 
 
-Because the provided (see \ref{dataset_baysis} and \ref{dataset_arbis}) and generated (see \ref{methodology_data_generation}) datasets also include categorical variables, describing nominal, dichotomous and ordinal characteristics, other correlation methods are needed. The Point Biserial correlation, a special form of the Pearson correlation coefficient, is able to evaluate the association of continuous-dichotomous relations. 
+\subsubsection{Continuous - Dichotomous}
+The Point Biserial correlation, a special form of the Pearson correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
 
-
+\subsubsection{Continuous - Categorical}
 
 Pearsons ChiSquare -> ANOVA -> Kruskal-Wallis H-test
 
+\subsubsection{Categorical - Categorical}
+Cramer’s V and Theil’s U are capable to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
 
+\bigskip
 
-Cramer’s V and Theil’s U are capable to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. As a result we have the following correlation coefficients to be used for the mixed analysis of continuous and categorical variables.
+As a result we have the following correlation coefficients candidates to be used for the mixed analysis of continuous and categorical variables.
 
 \bigskip
 
@@ -256,12 +263,31 @@ Cramer’s V and Theil’s U are capable to analyze categorical-categorical rela
 		\hline
 		\\[-1em]
 		Continuous 	& Point Biserial \& ANOVA 	& Pearson's $r$ \\
-					& \& Pearsons $\chi^2$		& \& Spearman's $\rho$		
+					& \& Pearsons $\chi^2$		& \& Spearman's $\rho$ \\
+					&							& \& Kendall's $\tau$	
 	\end{tabular}
 	\caption{\label{tab:table-name}Collection of Correlation Coefficients as Matrix}
 \end{table}
 
 \bigskip
+
+\subsection{Pearson's $r$}
+
+\subsection{Spearman's $\rho$}
+
+\subsection{Kendall's $\tau$}
+
+\subsection{Point Biserial}
+
+\subsection{Pearsons $\chi^2$}
+
+\subsection{ANOVA}
+
+\subsection{Kruskal-Wallis}
+
+\subsection{Cramer’s V}
+
+\subsection{Theil’s U}
 
 \subsection{Notations}
 \label{correlation_notations}

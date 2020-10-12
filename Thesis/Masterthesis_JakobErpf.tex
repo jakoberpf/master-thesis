@@ -970,15 +970,21 @@ Is the correlation strong enough to use it for predicting congestions and accide
 
 \chapter{BAYSIS Dataset Figures}
 \label{appendix_baysis}
-\tocless\section{Figure Name}
-\label{appendix_TODO}
-%TODO add all BAYSIS figures as large print
 
 \tocless\section{}
-\label{appendix_correlation_matrix_dataset}
+\label{appendix_baysis_dataset_corr_cramers}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.24]{../Analyse/data/BAYSIS/dataset/correlation_matrix.png}
+	\includegraphics[scale=0.3]{../Analyse/data/BAYSIS/dataset/plots/baysis_dataset_corr_cramers}
+	\caption{Correlation matrix for BAYSIS dataset, calculated with \ref{definition_correlation} and \ref{definition_correlation_script}}
+	\label{img:appendix_correlation_matrix_dataset}
+\end{figure}
+
+\tocless\section{}
+\label{appendix_baysis_dataset_corr_theils}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{../Analyse/data/BAYSIS/dataset/plots/baysis_dataset_corr_theils}
 	\caption{Correlation matrix for BAYSIS dataset, calculated with \ref{definition_correlation} and \ref{definition_correlation_script}}
 	\label{img:appendix_correlation_matrix_dataset}
 \end{figure}
@@ -989,8 +995,19 @@ Is the correlation strong enough to use it for predicting congestions and accide
 \label{appendix_TODO}
 %TODO add all BAYSIS figures as large print
 
-\end{appendices}
+\chapter{Source Code}
 
+\tocless\section{CongstatsClusterAlgorithm}
+\label{appendix_TODO}
+
+\newgeometry{left=2cm,top=0.5cm,bottom=0.5cm}
+\begingroup
+%    \fontsize{4pt}{8pt}\selectfont
+		\lstinputlisting[language=java]{../Code/congestion/clustering/CongstatsClusterAlgorithm.java}
+\endgroup
+\restoregeometry
+
+\end{appendices}
 
 \pagebreak
 \addcontentsline{toc}{chapter}{Declaration of independence}

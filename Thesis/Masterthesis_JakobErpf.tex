@@ -303,25 +303,10 @@ As a result we have the following correlation coefficients candidates to be used
 
 \bigskip
 
-\subsection{Pearson's $r$}
+\subsection{Continuous - Continuous}
 
-\subsection{Spearman's $\rho$}
+\subsubsection{Pearson's $r$}
 
-\subsection{Kendall's $\tau$}
-
-\subsection{Point Biserial}
-
-\subsection{Pearsons $\chi^2$}
-
-\subsection{ANOVA}
-
-\subsection{Kruskal-Wallis}
-
-\subsection{Cramer’s V}
-
-\subsection{Theil’s U}
-
-\subsection{Notations}
 \label{correlation_notations}
 \par The correlation coefficient, shown in the formula \ref{formula_correlation_basic} is defined by the fraction of the covariance (shown in formula \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (shown in formular \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992}
 \smallskip
@@ -346,15 +331,37 @@ As a result we have the following correlation coefficients candidates to be used
 
 \par In the following notations $\bar{x}$ and $\bar{y}$ corresponds to the means of vector $x$ and $y$, respectively. Formula \ref{formula_pearson} showing the notation of the Pearson's $r$ correlation coefficient, which is a direct usage of the definition of \ref{formula_correlation_basic}. Both vectors have the same length, named $i$. 
 	\cite{BenestyChenHuang2009,Zychlinski2018}
-	
 \smallskip
-
 \begin{equation}
 \label{formula_pearson}	
 	r_{xy} =  \frac{\sum_{i}{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}\sum_{i}{(y_i-\bar{y})^2}}}
 \end{equation}
 
 \bigskip
+
+\subsubsection{Spearman's $\rho$}
+
+%
+
+\subsubsection{Kendall's $\tau$}
+
+%
+
+\subsubsection{Interpretation}
+
+These correlation coefficients of Pearsons $r$, Spearman's $\rho$ and Kendall's $\tau$ result in values of the range $-1$ to $+1$. Although the coefficient vary in their method, the interpretations are equivalent to each other. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
+
+\begin{itemize}
+  \item When both variables change in the same ratio, the absolute value of the correlation coefficient is 1,0, which is called perfect correlation.
+  \item If the correlation coefficient range is above 0,75, it is called high degree of correlation.
+  \item A moderate degree of correlation lays in the range of 0,50 to 0,75.
+  \item When the correlation coefficient range is between .25 to .50, it is called low degree of correlation.
+  \item When the absolute correlation coefficient is lower than 0,25, it shows that there is no correlation, which can be called absence of correlation.
+\end{itemize}	
+
+\subsection{Continuous - Categorical}
+
+\subsubsection{Point Biserial}
 
 The Point Biserial notation, shown in formula \ref{formula_point_biserial}, can be derived from Person's R with the assumption of $y$ only taking dichotomy values of 0 and 1, so that $\bar{y} = p$. The distinction of the cases 
 \begin{itemize}
@@ -379,6 +386,26 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 \end{equation}
 
 \bigskip
+
+\subsubsection{Pearsons $\chi^2$}
+
+%
+
+\subsubsection{ANOVA}
+
+%
+
+\subsubsection{Kruskal-Wallis}
+
+%
+
+\subsubsection{Interpretation}
+
+%
+
+\subsection{Categorical - Categorical}
+
+\subsubsection{Cramer’s V}
 
 The Cramer’s V notation, also called Cramer's phi ($\Phi_c$), is shown in formula \ref{formula_cramers_v_biased}. $k$ and $r$ are the number of columns and row, respectively. $\varphi$, the phi coefficient, defined by $\frac{{\chi^2}}{n_{ij}}$ includes $\chi^2$, which can be derived from Pearsons chi-squared test as shown in \ref{formula_cramers_v_chi}. \cite{Sheskin1997,Bergsma2013}
 \smallskip
@@ -414,42 +441,28 @@ The above notation of $\Phi_c$ can be heavily biased, when it tends to overestim
 
 \bigskip
 
+\subsubsection{Theil’s U}
+
 Definition: Theil’s U
 
-\bigskip
+\subsubsection{Interpretation}
 
-\subsection{Interpretation}
+%
+
+\section{Significance vs. Uncertainty}
 \label{correlation_uncertainty}
 
-These correlation coefficients of Pearsons $r$ can have a value in the range of $-1$ to $+1$. If one variable moves in the same direction as the other, then it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
+%https://de.statista.com/statistik/lexikon/definition/122/signifikanz/
 
-\begin{itemize}
-  \item When both variables change in the same ratio, the absolute value of the correlation coefficient is 1,0, which is called perfect correlation.
-  \item If the correlation coefficient range is above 0,75, it is called high degree of correlation.
-  \item A moderate degree of correlation lays in the range of 0,50 to 0,75.
-  \item When the correlation coefficient range is between .25 to .50, it is called low degree of correlation.
-  \item When the absolute correlation coefficient is lower than 0,25, it shows that there is no correlation, which can be called absence of correlation.
-\end{itemize}	
+%https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3387884/
 
+%https://www.ons.gov.uk/methodology/methodologytopicsandstatisticalconcepts/uncertaintyandhowwemeasureit
 
+%https://www.ncbi.nlm.nih.gov/books/NBK459346/
 
+%https://www.npr.org/sections/health-shots/2019/03/20/705191851/statisticians-call-to-arms-reject-significance-and-embrace-uncertainty?t=1600534742009
 
-
-\subsection{Significance vs. Uncertainty}
-\label{correlation_uncertainty}
-
-https://de.statista.com/statistik/lexikon/definition/122/signifikanz/
-
-https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3387884/
-
-https://www.ons.gov.uk/methodology/methodologytopicsandstatisticalconcepts/uncertaintyandhowwemeasureit
-
-https://www.ncbi.nlm.nih.gov/books/NBK459346/
-
-https://www.npr.org/sections/health-shots/2019/03/20/705191851/statisticians-call-to-arms-reject-significance-and-embrace-uncertainty?t=1600534742009
-
-https://www.tandfonline.com/doi/full/10.1080/00223131.2013.820155
-
+%https://www.tandfonline.com/doi/full/10.1080/00223131.2013.820155
 
 \subsubsection{Significance}
 \subsubsection{Uncertainty}

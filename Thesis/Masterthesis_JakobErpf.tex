@@ -267,17 +267,12 @@ The datasets to be examined in this thesis include continuous variables of the t
 
 \section{Coefficient Types}
 \label{correlation_coefficient_types}
-The provided (see \ref{dataset_baysis} and \ref{dataset_arbis}) and generated (see \ref{methodology_data_generation}) datasets includes continuos, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. That makes it necessary to choose the appropriate correlation coefficient suited for the apparent variables. In the following a number of coefficients, prominent in current statistic literature will be evaluated.
+The provided (see \ref{dataset_baysis} and \ref{dataset_arbis}) and generated (see \ref{methodology_data_generation}) datasets includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. That makes it necessary to choose the appropriate correlation coefficient suited for the apparent variables. In the following a number of coefficients, prominent in current statistic literature will be evaluated for their suitablity.
 
 \subsubsection{Continuous - Continuous}
-Pearson $r$ describes the linear correlation of continuous, non-ranked variables. It does not assume normality or a normal distributed sample set and is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance \cite{BenestyChenHuang2009, Sulthan2018}. 
+Part of these continuous variables are metric measurements in the form or distances or durations. Pearson $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \cite{BenestyChenHuang2009, Sulthan2018} 
 
-In the case of rank ordered continuous variables the commonly used Spearman's $\rho$ can be applied, but should be replaced by Kendall's $\tau$ because of it superiority over Spearman \cite{Newson2002}. 
-
-\subsubsection{Continuous - Dichotomous}
-The Point Biserial correlation, a special form of the Pearson correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
-
-\subsubsection{Continuous - Categorical}
+\subsubsection{Continuous - Categorical(Nominal)}
 
 TODO Pearsons ChiSquare expands to ANOVA and further expanded to Kruskal-Wallis H-test
 
@@ -299,8 +294,14 @@ FOR FORMAT
 
 FOR FORMAT
 
+\subsubsection{Continuous - Categorical(Dichotomous)}
+The Point Biserial correlation, a special form of the Pearson correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
+
+\subsubsection{Continuous - Categorical(Ordinal)}
+For ordinal variables, also called ranked or rank ordered, the commonly used Spearman's $\rho$ can be applied, but should be replaced by Kendall's $\tau$ because of it superiority over Spearman \cite{Newson2002}. 
+
 \subsubsection{Categorical - Categorical}
-Cramer’s V and Theil’s U are capable to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
+Both Cramer’s V and Theil’s U can be used to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
 
 \bigskip
 
@@ -322,7 +323,7 @@ As a result we have the following correlation coefficients candidates to be used
 		\hline
 		\\[-1em]
 		Continuous 	& Point Biserial \& ANOVA 	& Pearson's $r$ \\
-					& \& Pearsons $\chi^2$		& \& Spearman's $\rho$ \\
+					& \& Pearsons $\chi^2$		& \& Spearman's $\rho$\\
 					& \& Kruskal-Wallis			& \& Kendall's $\tau$	
 	\end{tabular}
 	\caption{\label{tab:table-name}Candidates of Correlation Coefficients}
@@ -388,7 +389,7 @@ These correlation coefficients of Pearsons $r$, Spearman's $\rho$ and Kendall's 
 
 \subsubsection{Point Biserial}
 
-The Point Biserial notation, shown in formula \ref{formula_point_biserial}, can be derived from Person's R with the assumption of $y$ only taking dichotomy values of 0 and 1, so that $\bar{y} = p$. The distinction of the cases 
+The Point Biserial notation, shown in formula \ref{formula_point_biserial}, can be derived from Person's $r$ with the assumption of $y$ only taking dichotomy values of 0 and 1, so that $\bar{y} = p$. The distinction of the cases 
 \begin{itemize}
 	\item $i \cdot p$ referring to $y=1$ an with $1 - p = q$ bigger than $\bar{y}$
 	\item $i \cdot q$ referring to $y=0$ an with $1 - p = -p$ smaller than $\bar{y}$
@@ -417,16 +418,20 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 %
 
 \subsubsection{ANOVA}
-
-%
+more statictical robust
+is a the parametric oneway ANOVA, which assumes normal distribution.
+% https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365#:~:text=A%20simple%20approach%20could%20be,variance%20of%20the%20continuous%20variable.&text=If%20the%20variables%20have%20no,similar%20to%20the%20original%20variance.
 
 \subsubsection{Kruskal-Wallis}
 
-%
+is non parametric and does not assume a normal distributed variabel
+% https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365#:~:text=A%20simple%20approach%20could%20be,variance%20of%20the%20continuous%20variable.&text=If%20the%20variables%20have%20no,similar%20to%20the%20original%20variance.
 
 \subsubsection{Interpretation}
 
-%
+Due to the mathematical similarity of the Point Biserial to the Pearson coefficient, the general interpretation of Pearson can be applied to Point Biserial with some slight adaptions. If the dichotomous variable is artificially binarized, i.e. there is likely continuous data underlying it, biserial correlation is a more a measurement of similarity.
+
+Interpretation of Kruskal-Wallis
 
 \subsection{Categorical - Categorical}
 

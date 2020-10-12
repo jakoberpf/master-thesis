@@ -227,12 +227,19 @@ Jams or a single congestion in most colloquial terms are spatial and timely accu
 	\label{img:speedMatrixPlot_singleCluster}
 \end{figure}
 
-What characteristics do congestions have? Causes, Effects, Indicators … 
+\bigskip
+
+More Infos about what characteristics do congestions have? Causes, Effects and Indicators...
+
 %https://www.astra.admin.ch/astra/de/home/themen/nationalstrassen/verkehrsfluss-stauaufkommen/definitionen.html
 %https://www.sciencedirect.com/topics/social-sciences/traffic-congestion
 %https://ops.fhwa.dot.gov/congestion_report/chapter2.htm
 %https://www.zukunft-mobilitaet.net/3344/analyse/wie-entstehen-staus-phantomstau/
 %https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse
+
+\bigskip
+\bigskip
+\bigskip
 
 \chapter{Correlation}
 \label{definition_correlation}
@@ -271,7 +278,25 @@ The Point Biserial correlation, a special form of the Pearson correlation coeffi
 
 \subsubsection{Continuous - Categorical}
 
-Pearsons ChiSquare -> ANOVA -> Kruskal-Wallis H-test
+TODO Pearsons ChiSquare expands to ANOVA and further expanded to Kruskal-Wallis H-test
+
+FOR FORMAT
+
+FOR FORMAT
+
+FOR FORMAT
+
+FOR FORMAT
+
+FOR FORMAT
+
+FOR FORMAT
+
+FOR FORMAT
+
+FOR FORMAT
+
+FOR FORMAT
 
 \subsubsection{Categorical - Categorical}
 Cramer’s V and Theil’s U are capable to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
@@ -290,18 +315,17 @@ As a result we have the following correlation coefficients candidates to be used
 		\hline
 		\\[-1em]
 		Categorical & Cramer’s V  				& Point Biserial \& ANOVA \\
-					&	\& Theil’s U				& \& Pearsons $\chi^2$ \\
+					& \& Theil’s U				& \& Pearsons $\chi^2$\\
+					&							& \& Kruskal-Wallis\\
 		\\[-1em]
 		\hline
 		\\[-1em]
 		Continuous 	& Point Biserial \& ANOVA 	& Pearson's $r$ \\
 					& \& Pearsons $\chi^2$		& \& Spearman's $\rho$ \\
-					&							& \& Kendall's $\tau$	
+					& \& Kruskal-Wallis			& \& Kendall's $\tau$	
 	\end{tabular}
-	\caption{\label{tab:table-name}Collection of Correlation Coefficients as Matrix}
+	\caption{\label{tab:table-name}Candidates of Correlation Coefficients}
 \end{table}
-
-\bigskip
 
 \subsection{Continuous - Continuous}
 
@@ -877,14 +901,14 @@ Entering density-based methods, which are better suited to identify distinctive,
 
 \subsubsection{Algorithm}
 
-The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise  \cite{Yildirim2020,Chauhan2020}. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $minPts$, which defines the minimum number of points of a cluster to be considered as dense. And secondly the maximum distance threshold between cluster points, $\varepsilon$. \cite{Yildirim2020,Chauhan2020} 
+The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise  \cite{Yildirim2020,Chauhan2020}. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $minPts$, which defines the minimum number of points of a cluster to be considered as dense. And secondly the maximum distance threshold between cluster points, $eps$ ($\varepsilon$). \cite{Yildirim2020,Chauhan2020} 
 
-With these thresholds the points around the current point can be classified as core point, border point or outliner.
+With these thresholds data points can be classified as core point, border point or outliner.
 
 \begin{itemize}
-	\item \textbf{Core point} 
-    \item \textbf{Border point} 
- 	\item \textbf{Outlier} 
+	\item \textbf{Core points} have at least the $minPts$ number of points around them within the radius $eps$, including itself.
+    \item \textbf{Border points} 
+ 	\item \textbf{Outliers} 
 \end{itemize}
 
 Finds core samples of high density and expands clusters from them.
@@ -903,8 +927,9 @@ DBSCAN with expansion of removing wrong and small, and combining small and near
 
 \subsubsection{Performance Tuning}
 
-\subsection{Shaping (Convex Hull)}
+\subsection{Shaping}
 
+Convex Hull
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
 
 \section{Matching Algorithm}
@@ -1018,7 +1043,7 @@ expand dbscan to 3d from 2d to include cell speed
 \newgeometry{left=2cm,top=0.5cm,bottom=0.5cm}
 \begingroup
 %    \fontsize{4pt}{8pt}\selectfont
-		\lstinputlisting[language=java]{../Code/congestion/clustering/CongstatsClusterAlgorithm.java}
+%		\lstinputlisting[language=java]{../Code/congestion/clustering/CongstatsClusterAlgorithm.java}
 \endgroup
 \restoregeometry
 

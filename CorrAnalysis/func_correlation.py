@@ -10,22 +10,22 @@ from func_utils import convert, remove_incomplete_samples, replace_nan_with_valu
     cluster_correlations, identify_nominal_columns
 
 __all__ = [
-    'associations',
-    'compute_associations',
+    'compute_correlations',
     # continuous-continuous
-    # 'pearsons_r',
-    # 'spearmans_rho',
-    # continuous-categorical(dichotomous)
-    # 'point_biserial',
-    # continuous-categorical
-    'correlation_ratio',
+    'pearsons_r',
+    # continuous-categorical(nominal)
     # 'chisuqare',
-    # 'anova',
-    # 'kruskal_wallis_h'
+    'anova',
+    'kruskal_wallis_h',
+    'correlation_ratio'
+    # continuous-categorical(dichotomous)
+    'point_biserial',
+    # continuous-categorical(ordinal)
+    'spearmans_rho',
+    'kendalls_tau',
     # categorical-categorical
     'cramers_v',
-    'theils_u',
-    'conditional_entropy'
+    'theils_u'
 ]
 
 _REPLACE = 'replace'
@@ -34,6 +34,7 @@ _DROP_SAMPLES = 'drop_samples'
 _DROP_FEATURES = 'drop_features'
 _SKIP = 'skip'
 _DEFAULT_REPLACE_VALUE = 0.0
+_NOT_IMPLEMENTED = ' is not implemented'
 
 
 def _inf_nan_str(x):
@@ -43,6 +44,209 @@ def _inf_nan_str(x):
         return 'inf'
     else:
         return ''
+
+
+def switcher_con_con(switch, x, y):
+    """
+    Parameters:
+    -----------
+    switch : the coefficient to use for calculation
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+
+    Returns:
+    --------
+    float in the range of [0,1] and the p value
+    """
+    map_con_con = {
+        'pearson': pearsons_r(x, y),
+    }
+    return map_con_con.get(switch, switch + _NOT_IMPLEMENTED)
+
+
+def pearsons_r(x, y):
+    """
+
+    Pearsons r
+
+    Parameters:
+    -----------
+    switch : the coefficient to use for calculation
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+
+    Returns:
+    --------
+    float in the range of [0,1] and the p value
+    """
+    return ss.pearsonr(x, y)
+
+
+def switcher_con_norm(switch, x, y):
+    """
+    Parameters:
+    -----------
+    switch : the coefficient to use for calculation
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+
+    Returns:
+    --------
+    float in the range of [0,1] and the p value
+    """
+    map_con_norm = {
+        'anova': anova(x, y),
+        'kruskal_wallis': kruskal_wallis_h(x, y),
+    }
+    return map_con_norm.get(switch, switch + _NOT_IMPLEMENTED)
+
+
+def anova(x, y):
+    """
+
+    one-way ANOVA
+
+    Parameters:
+    -----------
+    switch : the coefficient to use for calculation
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+
+    Returns:
+    --------
+
+    """
+    return ss.f_oneway(x, y)
+
+
+def kruskal_wallis_h(x, y):
+    """
+
+    one-way ANOVA
+
+    Parameters:
+    -----------
+    switch : the coefficient to use for calculation
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+
+    Returns:
+    --------
+
+    """
+    return ss.kruskal(x, y)
+
+
+def switcher_con_dich(switch, x, y):
+    """
+    Parameters:
+    -----------
+    switch : the coefficient to use for calculation
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    nan_strategy : string, default = 'replace'
+        How to handle missing values: can be either 'drop' to remove samples
+        with missing values, or 'replace' to replace all missing values with
+        the nan_replace_value. Missing values are None and np.nan.
+    nan_replace_value : any, default = 0.0
+        The value used to replace missing values with. Only applicable when
+        nan_strategy is set to 'replace'.
+
+    Returns:
+    --------
+    float in the range of [0,1] and the p value
+    """
+    map_con_dich = {
+        'point_biserial': point_biserial(x, y),
+        'mann_whitney': mann_whitney_u(x, y)
+    }
+    return map_con_dich.get(switch, switch + _NOT_IMPLEMENTED)
+
+
+def point_biserial(x, y):
+    return ss.pointbiserialr(x, y)
+
+
+def mann_whitney_u(x, y):
+    return ss.mannwhitneyu(x, y)
+
+
+def switcher_con_ord(switch, x, y):
+    """
+    Parameters:
+    -----------
+    switch : the coefficient to use for calculation
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    nan_strategy : string, default = 'replace'
+        How to handle missing values: can be either 'drop' to remove samples
+        with missing values, or 'replace' to replace all missing values with
+        the nan_replace_value. Missing values are None and np.nan.
+    nan_replace_value : any, default = 0.0
+        The value used to replace missing values with. Only applicable when
+        nan_strategy is set to 'replace'.
+
+    Returns:
+    --------
+    float in the range of [0,1] and the p value
+    """
+    map_con_ord = {
+        'spearman': spearmans_rho(x, y),
+        'kendall': kendalls_tau(x, y),
+    }
+    return map_con_ord.get(switch, switch + _NOT_IMPLEMENTED)
+
+
+def spearmans_rho(x, y):
+    return ss.spearmanr(x, y)
+
+
+def kendalls_tau(x, y):
+    return ss.kendalltau(x, y)
+
+
+def switcher_cat_cat(switch, x, y, bias_correction,
+                     nan_strategy=_REPLACE,
+                     nan_replace_value=_DEFAULT_REPLACE_VALUE):
+    """
+    Parameters:
+    -----------
+    switch : the coefficient to use for calculation
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+    nan_strategy : string, default = 'replace'
+        How to handle missing values: can be either 'drop' to remove samples
+        with missing values, or 'replace' to replace all missing values with
+        the nan_replace_value. Missing values are None and np.nan.
+    nan_replace_value : any, default = 0.0
+        The value used to replace missing values with. Only applicable when
+        nan_strategy is set to 'replace'.
+
+    Returns:
+    --------
+    float in the range of [0,1] and the p value
+    """
+    map_cat_cat = {
+        'cramer': cramers_v(x, y, bias_correction, nan_strategy, nan_replace_value),
+        'theil': theils_u(x, y, nan_strategy, nan_replace_value),
+    }
+    return map_cat_cat.get(switch, switch + _NOT_IMPLEMENTED)
 
 
 def cramers_v(x,
@@ -165,9 +369,9 @@ def theils_u(x,
     p_x = list(map(lambda n: n / total_occurrences, x_counter.values()))
     s_x = ss.entropy(p_x)
     if s_x == 0:
-        return 1
+        return 1, -1
     else:
-        return (s_x - s_xy) / s_x
+        return (s_x - s_xy) / s_x, -1
 
 
 def conditional_entropy(x,
@@ -279,19 +483,81 @@ def correlation_ratio(categories,
     return eta
 
 
-def _comp_assoc(dataset, nominal_columns, mark_columns, point_biserial, chisquare, anova, kruskal, theil_u, clustering,
-                bias_correction, nan_strategy, nan_replace_value):
+def compute_correlations(dataset,
+                         nominal_columns='auto',
+                         dichotomous_columns='auto',
+                         ordinal_columns=None,
+                         mark_columns=False,
+                         continuous_continuous='pearson',
+                         continuous_nominal='correlation_ratio',
+                         continuous_dichotomous='point_biserial',
+                         continuous_ordinal='spearman',
+                         categorical_categorical='cramer',
+                         clustering=False,
+                         bias_correction=True,
+                         nan_strategy=_REPLACE,
+                         nan_replace_value=_DEFAULT_REPLACE_VALUE):
     """
-    This is a helper function for compute_associations and associations
+    Calculate the correlation/strength-of-association of features in data-set
+    with both categorical and continuous features using:
+     * Pearson's R for continuous-continuous cases
+     * Correlation Ratio or Point Biserial for categorical-continuous cases
+     * Cramer's V or Theil's U for categorical-categorical cases
+
+    Parameters:
+    -----------
+    dataset : NumPy ndarray / Pandas DataFrame
+        The data-set for which the features' correlation is computed
+    nominal_columns : string / list / NumPy ndarray
+        Names of columns of the data-set which hold categorical values. Can
+        also be the string 'all' to state that all columns are categorical,
+        'auto' (default) to try to identify nominal columns, or None to state
+        none are categorical
+    mark_columns : Boolean, default = False
+        if True, output's columns' names will have a suffix of '(nom)' or
+        '(con)' based on there type (eda_tools or continuous), as provided
+        by nominal_columns
+
+    continuous_continuous : 'pearson',
+
+    continuous_nominal : 'correlation_ratio',
+
+    continuous_dichotomous : 'point_biserial',
+
+    continuous_ordinal : 'spearman',
+
+    categorical_categorical : 'cramer',
+
+    clustering : Boolean, default = False
+        If True, hierarchical clustering is applied in order to sort
+        features into meaningful groups
+    bias_correction : Boolean, default = True
+        Use bias correction for Cramer's V from Bergsma and Wicher,
+        Journal of the Korean Statistical Society 42 (2013): 323-328.
+    nan_strategy : string, default = 'replace'
+        How to handle missing values: can be either 'drop_samples' to remove
+        samples with missing values, 'drop_features' to remove features
+        (columns) with missing values, or 'replace' to replace all missing
+        values with the nan_replace_value. Missing values are None and np.nan.
+    nan_replace_value : any, default = 0.0
+        The value used to replace missing values with. Only applicable when
+        nan_strategy is set to 'replace'
+
+    Returns:
+    --------
+    A DataFrame of the correlation/strength-of-association between all features
     """
     dataset = convert(dataset, 'dataframe')
+
     if nan_strategy == _REPLACE:
         dataset.fillna(nan_replace_value, inplace=True)
     elif nan_strategy == _DROP_SAMPLES:
         dataset.dropna(axis=0, inplace=True)
     elif nan_strategy == _DROP_FEATURES:
         dataset.dropna(axis=1, inplace=True)
+
     columns = dataset.columns
+
     if nominal_columns is None:
         nominal_columns = list()
     elif nominal_columns == 'all':
@@ -299,18 +565,37 @@ def _comp_assoc(dataset, nominal_columns, mark_columns, point_biserial, chisquar
     elif nominal_columns == 'auto':
         nominal_columns = identify_nominal_columns(dataset)
 
+    if dichotomous_columns is None:
+        dichotomous_columns = list()
+    elif dichotomous_columns == 'all':
+        dichotomous_columns = columns
+    elif dichotomous_columns == 'auto':
+        dichotomous_columns = identify_dichotomous_columns(dataset)
+
+    if ordinal_columns is None:
+        ordinal_columns = list()
+    elif ordinal_columns == 'all':
+        ordinal_columns = columns
+    elif ordinal_columns == 'auto':
+        ordinal_columns = identify_ordinal_columns(dataset)
+
     corr = pd.DataFrame(index=columns, columns=columns)
+    sign = pd.DataFrame(index=columns, columns=columns)
+
     single_value_columns = []
+
     inf_nan = pd.DataFrame(data=np.zeros_like(corr),
                            columns=columns,
                            index=columns)
     for c in columns:
-        # Test if values in column contain multiple values
+        # Test if column only contains single value
         if dataset[c].unique().size == 1:
-            # Column only contains a single value, not correlation calculation necessary
+            # Column only contains a single value, prepare for no calculation to be done
             single_value_columns.append(c)
+
     for i in range(0, len(columns)):
         if columns[i] in single_value_columns:
+            # If column only contains a single value, not correlation calculation necessary
             corr.loc[:, columns[i]] = 0.0
             corr.loc[columns[i], :] = 0.0
             continue
@@ -334,6 +619,7 @@ def _comp_assoc(dataset, nominal_columns, mark_columns, point_biserial, chisquar
                                 nan_strategy=_SKIP)
                         else:
                             print(columns[i] + ' to ' + columns[j] + ' with Cramers V')
+
                             cell = cramers_v(dataset[columns[i]],
                                              dataset[columns[j]],
                                              bias_correction=bias_correction,
@@ -346,10 +632,10 @@ def _comp_assoc(dataset, nominal_columns, mark_columns, point_biserial, chisquar
                             print(columns[i] + ' to ' + columns[j] + ' with Point Biserial')
                             cell, p = ss.pointbiserialr(dataset[columns[i]],
                                                         dataset[columns[j]])
-                        elif chisquare:
-                            print(columns[i] + ' to ' + columns[j] + ' with Pearson Chi Square')
-                            cell, p = ss.chisquare(dataset[columns[i]],
-                                                   dataset[columns[j]])
+                        # elif chisquare:
+                        #     print(columns[i] + ' to ' + columns[j] + ' with Pearson Chi Square')
+                        #     cell, p = ss.chisquare(dataset[columns[i]],
+                        #                            dataset[columns[j]])
                         elif anova:
                             print(columns[i] + ' to ' + columns[j] + ' with ANOVA')
                             cell, p = ss.f_oneway(dataset[columns[i]],
@@ -374,10 +660,10 @@ def _comp_assoc(dataset, nominal_columns, mark_columns, point_biserial, chisquar
                             print(columns[i] + ' to ' + columns[j] + ' with Point Biserial')
                             cell, p = ss.pointbiserialr(dataset[columns[j]],
                                                         dataset[columns[i]])
-                        elif chisquare:
-                            print(columns[i] + ' to ' + columns[j] + ' with Pearson Chi Square')
-                            cell, p = ss.chisquare(dataset[columns[j]],
-                                                   dataset[columns[i]])
+                        # elif chisquare:
+                        #     print(columns[i] + ' to ' + columns[j] + ' with Pearson Chi Square')
+                        #     cell, p = ss.chisquare(dataset[columns[j]],
+                        #                            dataset[columns[i]])
                         elif anova:
                             print(columns[i] + ' to ' + columns[j] + ' with ANOVA')
                             cell, p = ss.f_oneway(dataset[columns[j]],
@@ -404,10 +690,14 @@ def _comp_assoc(dataset, nominal_columns, mark_columns, point_biserial, chisquar
 
                 corr.loc[columns[i], columns[j]] = ij if not np.isnan(ij) and abs(ij) < np.inf else 0.0
                 corr.loc[columns[j], columns[i]] = ji if not np.isnan(ji) and abs(ji) < np.inf else 0.0
+                sign.loc[columns[i], columns[j]] = p
+                sign.loc[columns[j], columns[i]] = p
+                p = -1
                 inf_nan.loc[columns[i], columns[j]] = _inf_nan_str(ij)
                 inf_nan.loc[columns[j], columns[i]] = _inf_nan_str(ji)
 
     corr.fillna(value=np.nan, inplace=True)
+
     if mark_columns:
         marked_columns = [
             '{} (nom)'.format(col)
@@ -418,79 +708,221 @@ def _comp_assoc(dataset, nominal_columns, mark_columns, point_biserial, chisquar
         corr.index = marked_columns
         inf_nan.columns = marked_columns
         inf_nan.index = marked_columns
+
     if clustering:
         corr, p = cluster_correlations(corr)
         columns = corr.columns
-    return corr, columns, nominal_columns, inf_nan, single_value_columns
+
+    return corr, sign, columns, nominal_columns, inf_nan, single_value_columns
 
 
-def compute_associations(dataset,
-                         nominal_columns='auto',
-                         mark_columns=False,
-                         point_biserial=False,
-                         chisquare=False,
-                         anova=False,
-                         kruskal=False,
-                         theil_u=False,
-                         clustering=False,
-                         bias_correction=True,
-                         nan_strategy=_REPLACE,
-                         nan_replace_value=_DEFAULT_REPLACE_VALUE,
-                         ):
-    """
-    Calculate the correlation/strength-of-association of features in data-set
-    with both categorical and continuous features using:
-     * Pearson's R for continuous-continuous cases
-     * Correlation Ratio or Point Biserial for categorical-continuous cases
-     * Cramer's V or Theil's U for categorical-categorical cases
-
-    It is equivalent to run `associations(data, plot=False, ...)['corr']`, only
-    it skips entirely on the drawing phase of the heat-map (See
-    https://github.com/shakedzy/dython/issues/49)
-
-    Parameters:
-    -----------
-    dataset : NumPy ndarray / Pandas DataFrame
-        The data-set for which the features' correlation is computed
-    nominal_columns : string / list / NumPy ndarray
-        Names of columns of the data-set which hold categorical values. Can
-        also be the string 'all' to state that all columns are categorical,
-        'auto' (default) to try to identify nominal columns, or None to state
-        none are categorical
-    mark_columns : Boolean, default = False
-        if True, output's columns' names will have a suffix of '(nom)' or
-        '(con)' based on there type (eda_tools or continuous), as provided
-        by nominal_columns
-    point_biserial : Boolean, default = False
-        In the case of categorical-continuos features, use Point Biserial instead
-        of Correlation Ratio
-    theil_u : Boolean, default = False
-        In the case of categorical-categorical feaures, use Theil's U instead
-        of Cramer's V
-    clustering : Boolean, default = False
-        If True, hierarchical clustering is applied in order to sort
-        features into meaningful groups
-    bias_correction : Boolean, default = True
-        Use bias correction for Cramer's V from Bergsma and Wicher,
-        Journal of the Korean Statistical Society 42 (2013): 323-328.
-    nan_strategy : string, default = 'replace'
-        How to handle missing values: can be either 'drop_samples' to remove
-        samples with missing values, 'drop_features' to remove features
-        (columns) with missing values, or 'replace' to replace all missing
-        values with the nan_replace_value. Missing values are None and np.nan.
-    nan_replace_value : any, default = 0.0
-        The value used to replace missing values with. Only applicable when
-        nan_strategy is set to 'replace'
-
-    Returns:
-    --------
-    A DataFrame of the correlation/strength-of-association between all features
-    """
-    corr, _, _, _, _ = _comp_assoc(dataset, nominal_columns, mark_columns, point_biserial, chisquare, anova, kruskal,
-                                   theil_u,
-                                   clustering,
-                                   bias_correction, nan_strategy, nan_replace_value)
-    return corr
+# def compute_correlations(dataset,
+#                          nominal_columns='auto',
+#                          mark_columns=False,
+#                          point_biserial=False,
+#                          chisquare=False,
+#                          anova=False,
+#                          kruskal=False,
+#                          theil_u=False,
+#                          clustering=False,
+#                          bias_correction=True,
+#                          nan_strategy=_REPLACE,
+#                          nan_replace_value=_DEFAULT_REPLACE_VALUE):
+#     """
+#     Calculate the correlation/strength-of-association of features in data-set
+#     with both categorical and continuous features using:
+#      * Pearson's R for continuous-continuous cases
+#      * Correlation Ratio or Point Biserial for categorical-continuous cases
+#      * Cramer's V or Theil's U for categorical-categorical cases
+#
+#     It is equivalent to run `associations(data, plot=False, ...)['corr']`, only
+#     it skips entirely on the drawing phase of the heat-map (See
+#     https://github.com/shakedzy/dython/issues/49)
+#
+#     Parameters:
+#     -----------
+#     dataset : NumPy ndarray / Pandas DataFrame
+#         The data-set for which the features' correlation is computed
+#     nominal_columns : string / list / NumPy ndarray
+#         Names of columns of the data-set which hold categorical values. Can
+#         also be the string 'all' to state that all columns are categorical,
+#         'auto' (default) to try to identify nominal columns, or None to state
+#         none are categorical
+#     mark_columns : Boolean, default = False
+#         if True, output's columns' names will have a suffix of '(nom)' or
+#         '(con)' based on there type (eda_tools or continuous), as provided
+#         by nominal_columns
+#     point_biserial : Boolean, default = False
+#         In the case of categorical-continuos features, use Point Biserial instead
+#         of Correlation Ratio
+#     theil_u : Boolean, default = False
+#         In the case of categorical-categorical feaures, use Theil's U instead
+#         of Cramer's V
+#     clustering : Boolean, default = False
+#         If True, hierarchical clustering is applied in order to sort
+#         features into meaningful groups
+#     bias_correction : Boolean, default = True
+#         Use bias correction for Cramer's V from Bergsma and Wicher,
+#         Journal of the Korean Statistical Society 42 (2013): 323-328.
+#     nan_strategy : string, default = 'replace'
+#         How to handle missing values: can be either 'drop_samples' to remove
+#         samples with missing values, 'drop_features' to remove features
+#         (columns) with missing values, or 'replace' to replace all missing
+#         values with the nan_replace_value. Missing values are None and np.nan.
+#     nan_replace_value : any, default = 0.0
+#         The value used to replace missing values with. Only applicable when
+#         nan_strategy is set to 'replace'
+#
+#     Returns:
+#     --------
+#     A DataFrame of the correlation/strength-of-association between all features
+#     """
+#     dataset = convert(dataset, 'dataframe')
+#     if nan_strategy == _REPLACE:
+#         dataset.fillna(nan_replace_value, inplace=True)
+#     elif nan_strategy == _DROP_SAMPLES:
+#         dataset.dropna(axis=0, inplace=True)
+#     elif nan_strategy == _DROP_FEATURES:
+#         dataset.dropna(axis=1, inplace=True)
+#     columns = dataset.columns
+#     if nominal_columns is None:
+#         nominal_columns = list()
+#     elif nominal_columns == 'all':
+#         nominal_columns = columns
+#     elif nominal_columns == 'auto':
+#         nominal_columns = identify_nominal_columns(dataset)
+#
+#     corr = pd.DataFrame(index=columns, columns=columns)
+#     sign = pd.DataFrame(index=columns, columns=columns)
+#     single_value_columns = []
+#     inf_nan = pd.DataFrame(data=np.zeros_like(corr),
+#                            columns=columns,
+#                            index=columns)
+#     for c in columns:
+#         # Test if values in column contain multiple values
+#         if dataset[c].unique().size == 1:
+#             # Column only contains a single value, not correlation calculation necessary
+#             single_value_columns.append(c)
+#     for i in range(0, len(columns)):
+#         if columns[i] in single_value_columns:
+#             corr.loc[:, columns[i]] = 0.0
+#             corr.loc[columns[i], :] = 0.0
+#             continue
+#         for j in range(i, len(columns)):
+#             if columns[j] in single_value_columns:
+#                 continue
+#             elif i == j:
+#                 corr.loc[columns[i], columns[j]] = 1.0
+#             else:
+#                 if columns[i] in nominal_columns:
+#                     if columns[j] in nominal_columns:
+#                         if theil_u:
+#                             print(columns[i] + ' to ' + columns[j] + ' with Theils U')
+#                             ji = theils_u(
+#                                 dataset[columns[i]],
+#                                 dataset[columns[j]],
+#                                 nan_strategy=_SKIP)
+#                             ij = theils_u(
+#                                 dataset[columns[j]],
+#                                 dataset[columns[i]],
+#                                 nan_strategy=_SKIP)
+#                         else:
+#                             print(columns[i] + ' to ' + columns[j] + ' with Cramers V')
+#
+#                             cell = cramers_v(dataset[columns[i]],
+#                                              dataset[columns[j]],
+#                                              bias_correction=bias_correction,
+#                                              nan_strategy=_SKIP)
+#                             ij = cell
+#                             ji = cell
+#                     else:
+#                         number_unique_values = np.unique(columns[i]).size
+#                         if point_biserial & number_unique_values == 2:
+#                             print(columns[i] + ' to ' + columns[j] + ' with Point Biserial')
+#                             cell, p = ss.pointbiserialr(dataset[columns[i]],
+#                                                         dataset[columns[j]])
+#                         # elif chisquare:
+#                         #     print(columns[i] + ' to ' + columns[j] + ' with Pearson Chi Square')
+#                         #     cell, p = ss.chisquare(dataset[columns[i]],
+#                         #                            dataset[columns[j]])
+#                         elif anova:
+#                             print(columns[i] + ' to ' + columns[j] + ' with ANOVA')
+#                             cell, p = ss.f_oneway(dataset[columns[i]],
+#                                                   dataset[columns[j]])
+#                             cell = round(cell)
+#                         elif kruskal:
+#                             print(columns[i] + ' to ' + columns[j] + ' with Kruskal')
+#                             cell, p = ss.kruskal(dataset[columns[j]],
+#                                                  dataset[columns[i]])
+#                             cell = round(cell)
+#                         else:
+#                             print(columns[i] + ' to ' + columns[j] + ' with Correlation Ratio')
+#                             cell = correlation_ratio(dataset[columns[i]],
+#                                                      dataset[columns[j]],
+#                                                      nan_strategy=_SKIP)
+#                         ij = cell
+#                         ji = cell
+#                 else:
+#                     if columns[j] in nominal_columns:
+#                         number_unique_values = np.unique(columns[i]).size
+#                         if point_biserial & number_unique_values == 2:
+#                             print(columns[i] + ' to ' + columns[j] + ' with Point Biserial')
+#                             cell, p = ss.pointbiserialr(dataset[columns[j]],
+#                                                         dataset[columns[i]])
+#                         # elif chisquare:
+#                         #     print(columns[i] + ' to ' + columns[j] + ' with Pearson Chi Square')
+#                         #     cell, p = ss.chisquare(dataset[columns[j]],
+#                         #                            dataset[columns[i]])
+#                         elif anova:
+#                             print(columns[i] + ' to ' + columns[j] + ' with ANOVA')
+#                             cell, p = ss.f_oneway(dataset[columns[j]],
+#                                                   dataset[columns[i]])
+#                             cell = round(cell)
+#                         elif kruskal:
+#                             print(columns[i] + ' to ' + columns[j] + ' with Kruskal')
+#                             cell, p = ss.kruskal(dataset[columns[j]],
+#                                                  dataset[columns[i]])
+#                             cell = round(cell)
+#                         else:
+#                             print(columns[i] + ' to ' + columns[j] + ' with Correlation Ratio')
+#                             cell = correlation_ratio(dataset[columns[j]],
+#                                                      dataset[columns[i]],
+#                                                      nan_strategy=_SKIP)
+#                         ij = cell
+#                         ji = cell
+#                     else:
+#                         print(columns[i] + ' to ' + columns[j] + ' with Pearson')
+#                         cell, p = ss.pearsonr(dataset[columns[i]],
+#                                               dataset[columns[j]])
+#                         ij = cell
+#                         ji = cell
+#
+#                 corr.loc[columns[i], columns[j]] = ij if not np.isnan(ij) and abs(ij) < np.inf else 0.0
+#                 corr.loc[columns[j], columns[i]] = ji if not np.isnan(ji) and abs(ji) < np.inf else 0.0
+#                 sign.loc[columns[i], columns[j]] = p
+#                 sign.loc[columns[j], columns[i]] = p
+#                 p = -1
+#                 inf_nan.loc[columns[i], columns[j]] = _inf_nan_str(ij)
+#                 inf_nan.loc[columns[j], columns[i]] = _inf_nan_str(ji)
+#
+#     corr.fillna(value=np.nan, inplace=True)
+#
+#     if mark_columns:
+#         marked_columns = [
+#             '{} (nom)'.format(col)
+#             if col in nominal_columns else '{} (con)'.format(col)
+#             for col in columns
+#         ]
+#         corr.columns = marked_columns
+#         corr.index = marked_columns
+#         inf_nan.columns = marked_columns
+#         inf_nan.index = marked_columns
+#
+#     if clustering:
+#         corr, p = cluster_correlations(corr)
+#         columns = corr.columns
+#
+#     return corr, sign, columns, nominal_columns, inf_nan, single_value_columns
 
 
 def associations(dataset,
@@ -582,11 +1014,14 @@ def associations(dataset,
     - `ax`: A Matplotlib `Axe`
 
     """
-    corr, columns, nominal_columns, inf_nan, single_value_columns = _comp_assoc(dataset, nominal_columns, mark_columns,
-                                                                                point_biserial, chisquare, anova,
-                                                                                kruskal, theil_u,
-                                                                                clustering, bias_correction,
-                                                                                nan_strategy, nan_replace_value)
+    corr, columns, nominal_columns, inf_nan, single_value_columns = compute_correlations(dataset, nominal_columns,
+                                                                                         mark_columns,
+                                                                                         point_biserial, chisquare,
+                                                                                         anova,
+                                                                                         kruskal, theil_u,
+                                                                                         clustering, bias_correction,
+                                                                                         nan_strategy,
+                                                                                         nan_replace_value)
     if ax is None:
         plt.figure(figsize=figsize)
 

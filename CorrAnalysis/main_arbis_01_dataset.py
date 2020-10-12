@@ -78,8 +78,6 @@ if __name__ == '__main__':
         plt.savefig(plot_path + 'arbis_dataset_hist_month.png')
     plt.show()
 
-
-
     # Add length of roadwork fragment in kilometers
     arbis_select_relevant['Length'] = abs((arbis_import['VonKilometer'] - arbis_import['BisKilometer']))
     # Add duration of roadwork fragment in minutes
@@ -91,14 +89,14 @@ if __name__ == '__main__':
                                        nominal_columns=['Strasse', 'Richtung', 'StreckeID', 'Month'],
                                        drop_single_label=False)
 
-    associations(arbis_encoded, point_biserial=True, kruskal=True, theil_u=False, figsize=(18, 15),
+    associations(arbis_encoded, point_biserial=True, kruskal=False, theil_u=False, figsize=(18, 15),
                  nominal_columns=['Strasse', 'Richtung', 'StreckeID', 'Month'],
                  plot=False, bias_correction=False)
     if safe_plots:
         plt.savefig(plot_path + 'arbis_dataset_corr_cramers.png')
     plt.show()
     # Calculate with Theil's U
-    associations(arbis_encoded, point_biserial=True, kruskal=True, theil_u=True, figsize=(18, 15),
+    associations(arbis_encoded, point_biserial=True, kruskal=False, theil_u=True, figsize=(18, 15),
                  nominal_columns=['Strasse', 'Richtung', 'StreckeID', 'Month'],
                  plot=False, bias_correction=False)
     if safe_plots:

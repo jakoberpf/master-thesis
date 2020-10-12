@@ -767,7 +767,60 @@ First step is the detection of congestion events. The definition in \ref{definit
 For the classification of the congestion events into different types, by theirs spatial and timely extends a shaping algorithm is needed. It is supposed to convert the accumulation of cells into a simple describable shape, which can be put into groups.
 
 \subsection{Clustering}
-The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. E.g.  k-means (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers), spectral clustering (graph distance) \cite{Chauhan2020}.
+The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. E.g. k-means or k-metoid (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers), spectral clustering (graph distance) \cite{Chauhan2020}.
+
+% https://texample.net/tikz/examples/probability-tree/
+% https://webis.de/downloads/theses/papers/busch_2005.pdf 1.6
+%\begin{tikzpicture}[grow=right, sloped]
+%\node[bag] {Cluster Algorithms}
+%    child {
+%        node[bag] {hierarchic}        
+%             child {
+%                node[end, label=right:
+%                    {single-linkage, group-average}] {}                
+%                edge from parent
+%            }         
+%            edge from parent 
+%    }
+%    child {
+%        node[bag] {iterative}        
+%            child {
+%                node[end, label=right:
+%                    {k-means, k-metoid, Kerninghan-Lin}] {}                
+%                edge from parent
+%            }         
+%            edge from parent 
+%    }
+%    child {
+%        node[bag] {density-based}        
+%            child {
+%                node[end, label=right:
+%                    {DBSCAN, MajorClust}] {}                
+%             	edge from parent
+%            }
+%            edge from parent
+%    }
+%	child {
+%        node[bag] {meta-search}        
+%                 child {
+%                node[end, label=right:
+%                    {genetic algorithms}] {}
+%                edge from parent
+%            }            
+%            edge from parent
+%    }
+%    child {
+%        node[bag] {statistical}        
+%        child {
+%                node[end, label=right:
+%                    {gaussian mixtures}] {}
+%                edge from parent
+%            }
+%            edge from parent         
+%    };
+%\end{tikzpicture}
+
+\bigskip
 
 \begin{figure}[h]
 	\centering
@@ -776,7 +829,7 @@ The term clustering is the short form of a data mining technique also called num
 	\label{cluster_kmeans}
 \end{figure}
 
-The figure \ref{cluster_kmeans} shows three differently colored groups of points, which are clustered into three clusters, represented by the circles around the groups. It demonstrates the general principle of clustering and was done by the common k-means algorithm with the $a priori$ , which considers all points as possibly related. 
+To illustrate which problems can occur when using cluster algorithms and to defined the major features to find the most suitable one, the k-means is used as base comparison or starting point. The figure \ref{cluster_kmeans} shows three differently colored groups of points, which are clustered into three clusters, represented by the circles around the groups. It demonstrates the general principle of clustering and was done by the common k-means algorithm with the $a$ $priori$ parameter of three clusters. 
 
 \begin{figure}[h]
 	\centering
@@ -787,9 +840,9 @@ The figure \ref{cluster_kmeans} shows three differently colored groups of points
 	\label{cluster_dbscan}
 \end{figure}
 
-This works well as long as the groups don't overlay, intersect or have arbitrary shapes like in the figures \ref{cluster_dbscan}. When this is the case, the k-mean may cluster loosely related point together, which actually are more strongly related to other points.
+This works well as long as the groups don't overlay, intersect or have arbitrary shapes like in the figures \ref{cluster_dbscan}. When this is the case, the k-mean may cluster loosely related point together, which actually are more strongly related to other points, because it considers every point as possible neighbor. Since jams in FCD data can overlay and have any number of shape, as suitable algorithms need to be able to handle such data.
 
-Another issue with this method is the vastly increasing runtime when processing more data. The objective function (shown in formula \ref{formula_kmeans}) of the k-mean algorithm states that $n$ distances to be calculated for $k$ points. With that the Big-O notation, describing the time complexity of an algorithm, is $O(n^2)$ for the case $k=n$ \cite{Santhanam2010}.
+Another issue with this method is the vastly increasing runtime when processing larger amounts of data. The objective function (shown in formula \ref{formula_kmeans}) of the k-mean algorithm states that $n$ distances are calculated for $k$ points \cite{Santhanam2010}. With this equation and the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \cite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \cite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^n$ calculations have to me computed over all iterations.
 
 \begin{equation}
 \label{formula_kmeans}
@@ -798,15 +851,20 @@ Another issue with this method is the vastly increasing runtime when processing 
 
 \bigskip
 
- If we a
+A Big $O$ notation of $O(n^2)$ can generally be described as inefficient, but if we would apply the worst case scenario as an example on the data of the highway A3 and a timeframe of 24 hours, which contains 836.752 data points, the runtime issue becomes quite obvious. As the equation \ref{equation_kmeans_nn} show, the total number of calculation is so astronomical high, that it would take days to run this cluster. \cite{Busch2004}
+
+\begin{equation}
+\label{equation_kmeans_nn}
+	 = 836752^{836752} = 4.8234... \cdot 10^{4955744}
+\end{equation}
 
 \bigskip
 
-Therefore density-based methods are better suited to identify distinctive groups/clusters in such data, by looking for a contiguous region of high point density, separated from others by contiguous regions of low point density \cite{Chauhan2020}. This does not only increase the clustering precision but also reduces the number of total calculations.
+Entering density-based methods, which are better suited to identify distinctive, arbitrary clusters in in large datasets, by looking for a contiguous region of high point density, separated from others by contiguous regions of low point density \cite{Chauhan2020}. 
 
-\subsubsection{Concept}
+\subsubsection{Algorithm}
 
-The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters with noise by considering the spatial density, which can also represents noise  \cite{Yildirim2020,Chauhan2020}. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $minPts$, which defines the minimum number of points of a cluster to be considered as dense. And secondly the maximum distance threshold between cluster points, $\varepsilon$. \cite{Yildirim2020,Chauhan2020} 
+The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise  \cite{Yildirim2020,Chauhan2020}. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $minPts$, which defines the minimum number of points of a cluster to be considered as dense. And secondly the maximum distance threshold between cluster points, $\varepsilon$. \cite{Yildirim2020,Chauhan2020} 
 
 With these thresholds the points around the current point can be classified as core point, border point or outliner.
 
@@ -822,23 +880,18 @@ Finds core samples of high density and expands clusters from them.
 
 DBSCAN with expansion of removing wrong and small, and combining small and near
 
-
-
-
-
-%https://webis.de/downloads/theses/papers/busch_2005.pdf
-%
 %https://www.kde.cs.uni-kassel.de/wp-content/uploads/ws/LLWA03/fgml/final/Kirchner.pdf
 %https://www.researchgate.net/publication/322729622_Characterizing_Diffusion_Dynamics_of_Disease_Clustering_A_Modified_Space-Time_DBSCAN_MST-DBSCAN_Algorithm
 %https://www.nature.com/articles/s41598-017-12852-z
 %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.1629&rep=rep1&type=pdf
 %http://cucis.eecs.northwestern.edu/publications/pdf/HAL18.pdf
 
+\subsubsection{Distance Measuring}
 
-\subsubsection{Calibration}
-
+\subsubsection{Performance Tuning}
 
 \subsection{Shaping (Convex Hull)}
+
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
 
 \section{Matching Algorithm}

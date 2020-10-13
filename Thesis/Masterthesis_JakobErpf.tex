@@ -272,13 +272,16 @@ The datasets to be examined in this thesis include continuous variables of the t
 
 \section{Coefficient Types}
 \label{correlation_coefficient_types}
-The provided (section \ref{dataset_baysis} and section \ref{dataset_arbis}) and generated (section \ref{methodology_data_generation}) datasets includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristic the appropriate correlation coefficient suited for the apparent variables needs to be chosen. The following coefficients and statistics, prominent in current statistic literature where selected due to their suitability and will be elaborated further.
+The provided datasets \acrshort{baysis}, \acrshort{arbis} (see section \ref{dataset_baysis}, \ref{dataset_arbis}) as well as the generated data  includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristic the appropriate correlation coefficient suited for the apparent variables needs to be chosen.
+
+For the following relationscoefficients and statistics, prominent in current statistic literature where selected due to their suitability and will be elaborated further.
+
 
 \subsubsection{Continuous - Continuous}
-As stated on \ref{correlation_variable_types} continuous variables are metric measurements in the form or distances or durations. Pearson $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \cite{BenestyChenHuang2009,Sulthan2018} 
+As stated in \ref{correlation_variable_types} continuous variables are metric measurements in the form or distances or durations. The most common correlation coefficient for continuous variables is Persons $r$.
 
 \subsubsection{Continuous - Categorical(Nominal)}
-This type of relation is objectively the most complex analyze and will therefore be covered by multiple statistical methods. One possible method is the analysis of variance (ANOVA), which is a parametric test comparing the means of two variables. Unfortunately it assumes normal or gaussian distributed variables, which is not give in our datasets. A non parametric variance analysis is the rather unknown Kruskal-Wallis h-test. 
+This type of relation is objectively the most complex analyze and will therefore be covered by multiple statistical methods. One possible method is the analysis of variance (ANOVA), which is a parametric test comparing the means of two variables. Unfortunately it assumes normal or gaussian distributed variables, which is not give in our datasets. A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis h-test. \cite{Leon1998}
 
 \subsubsection{Continuous - Categorical(Dichotomous)}
 The Point Biserial correlation, a special form of the Pearson correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
@@ -291,26 +294,26 @@ Both Cramer’s V and Theil’s U can be used to analyze categorical-categorical
 
 \bigskip
 
-As a result we have the following correlation coefficients candidates to be used for the mixed analysis of continuous and categorical variables.
+As a result we have the following correlation coefficients and statistical test to be used for the mixed analysis of continuous and categorical variables. 
 
 \bigskip
 
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|c|c}
-					& Categorical 				& Continuous \\
+					& Categorical 		& Continuous\\
 		\\[-1em]
 		\hline
 		\\[-1em]
-		Categorical & Cramer’s V  				& Point Biserial \& ANOVA \\
-					& \& Theil’s U				& \& Pearsons $\chi^2$\\
-					&							& \& Kruskal-Wallis\\
+		 			& Pearsons $\chi^2$ 	& Kruskal-Wallis	\\
+		Categorical	& Cramer’s V 		& Point Biserial\\
+					& Theil’s U			& Kendall's $\tau$\\
 		\\[-1em]
 		\hline
 		\\[-1em]
-		Continuous 	& Point Biserial \& ANOVA 	& Pearson's $r$ \\
-					& \& Pearsons $\chi^2$		& \& Spearman's $\rho$\\
-					& \& Kruskal-Wallis			& \& Kendall's $\tau$	
+					& Kruskal-Wallis	  			& \\
+		Continuous	& Point Biserial	& Pearson's $r$\\
+				& Kendall's $\tau$		& \\
 	\end{tabular}
 	\caption{\label{tab:table-name}Candidates of Correlation Coefficients}
 \end{table}
@@ -318,9 +321,10 @@ As a result we have the following correlation coefficients candidates to be used
 \subsection{Continuous - Continuous}
 
 \subsubsection{Pearson's $r$}
-
-\label{correlation_notations}
-\par The correlation coefficient, shown in the formula \ref{formula_correlation_basic} is defined by the fraction of the covariance (shown in formula \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (shown in formular \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992}
+\label{correlation_pearson}
+Pearson's $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \cite{BenestyChenHuang2009,Sulthan2018}
+ 
+ The correlation coefficient, shown in the formula \ref{formula_correlation_basic} is defined by the fraction of the covariance (shown in formula \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (shown in formular \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992}
 \smallskip
 \begin{equation}
 \label{formula_correlation_basic}

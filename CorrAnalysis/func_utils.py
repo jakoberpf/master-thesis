@@ -21,6 +21,15 @@ def date_parser(string_list):
     return [time.ctime(float(x)) for x in string_list]
 
 
+def _inf_nan_str(x):
+    if np.isnan(x):
+        return 'NaN'
+    elif abs(x) == np.inf:
+        return 'inf'
+    else:
+        return ''
+
+
 def identify_numeric_columns(dataset):
     """
     Given a dataset, identify numeric columns.

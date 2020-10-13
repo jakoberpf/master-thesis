@@ -267,32 +267,13 @@ The datasets to be examined in this thesis include continuous variables of the t
 
 \section{Coefficient Types}
 \label{correlation_coefficient_types}
-The provided (see \ref{dataset_baysis} and \ref{dataset_arbis}) and generated (see \ref{methodology_data_generation}) datasets includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. That makes it necessary to choose the appropriate correlation coefficient suited for the apparent variables. In the following a number of coefficients, prominent in current statistic literature will be evaluated for their suitablity.
+The provided (section \ref{dataset_baysis} and section \ref{dataset_arbis}) and generated (section \ref{methodology_data_generation}) datasets includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristic the appropriate correlation coefficient suited for the apparent variables needs to be chosen. The following coefficients and statistics, prominent in current statistic literature where selected due to their suitability and will be elaborated further.
 
 \subsubsection{Continuous - Continuous}
-Part of these continuous variables are metric measurements in the form or distances or durations. Pearson $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \cite{BenestyChenHuang2009, Sulthan2018} 
+As stated on \ref{correlation_variable_types} continuous variables are metric measurements in the form or distances or durations. Pearson $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \cite{BenestyChenHuang2009,Sulthan2018} 
 
 \subsubsection{Continuous - Categorical(Nominal)}
-
-TODO Pearsons ChiSquare expands to ANOVA and further expanded to Kruskal-Wallis H-test
-
-Normal / gaussian distribution should be analyzed with ANOVA while a non-normal / non-gaussian distribution should be analyzed with the Kruskal-Wallis. 
-
-FOR FORMAT
-
-FOR FORMAT
-
-FOR FORMAT
-
-FOR FORMAT
-
-FOR FORMAT
-
-FOR FORMAT
-
-FOR FORMAT
-
-FOR FORMAT
+This type of relation is objectively the most complex analyze and will therefore be covered by multiple statistical methods. One possible method is the analysis of variance (ANOVA), which is a parametric test comparing the means of two variables. Unfortunately it assumes normal or gaussian distributed variables, which is not give in our datasets. A non parametric variance analysis is the rather unknown Kruskal-Wallis h-test. 
 
 \subsubsection{Continuous - Categorical(Dichotomous)}
 The Point Biserial correlation, a special form of the Pearson correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
@@ -363,19 +344,11 @@ As a result we have the following correlation coefficients candidates to be used
 	r_{xy} =  \frac{\sum_{i}{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}\sum_{i}{(y_i-\bar{y})^2}}}
 \end{equation}
 
-\bigskip
 
-\subsubsection{Spearman's $\rho$}
-
-%
-
-\subsubsection{Kendall's $\tau$}
-
-%
 
 \subsubsection{Interpretation}
 
-These correlation coefficients of Pearsons $r$, Spearman's $\rho$ and Kendall's $\tau$ result in values of the range $-1$ to $+1$. Although the coefficient vary in their method, the interpretations are equivalent to each other. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
+These correlation coefficients of Pearsons $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
 
 \begin{itemize}
   \item When both variables change in the same ratio, the absolute value of the correlation coefficient is 1,0, which is called perfect correlation.
@@ -389,12 +362,13 @@ These correlation coefficients of Pearsons $r$, Spearman's $\rho$ and Kendall's 
 
 \subsubsection{Point Biserial}
 
-The Point Biserial notation, shown in formula \ref{formula_point_biserial}, can be derived from Person's $r$ with the assumption of $y$ only taking dichotomy values of 0 and 1, so that $\bar{y} = p$. The distinction of the cases 
+The Point Biserial notation, shown in formula \ref{formula_point_biserial}, can be derived from Person's $r$ with the assumption of $y$ only taking dichotomy values of 0 and 1, so that $\bar{y} = p$. The distinction of the cases
+
 \begin{itemize}
 	\item $i \cdot p$ referring to $y=1$ an with $1 - p = q$ bigger than $\bar{y}$
 	\item $i \cdot q$ referring to $y=0$ an with $1 - p = -p$ smaller than $\bar{y}$
 \end{itemize}
-allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearson}, which can be simplified to \ref{formula_point_biserial}. \cite{Tate1954,CohenWest2003,Bortz2004}
+allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearson}, which can be simplified to \ref{formula_point_biserial}. \cite{Tate1954,CohenWest2003,Bortz2004,DeJesus2019}
 
 \smallskip
 
@@ -413,6 +387,16 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 
 \bigskip
 
+\subsubsection{Spearman's $\rho$}
+
+%
+
+\subsubsection{Kendall's $\tau$}
+
+%
+
+ Although the coefficient vary in their method, the interpretations are equivalent to each other.
+
 \subsubsection{Pearsons $\chi^2$}
 
 %
@@ -427,11 +411,32 @@ is a the parametric oneway ANOVA, which assumes normal distribution.
 is non parametric and does not assume a normal distributed variabel
 % https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365#:~:text=A%20simple%20approach%20could%20be,variance%20of%20the%20continuous%20variable.&text=If%20the%20variables%20have%20no,similar%20to%20the%20original%20variance.
 
+Um zu bestimmen, ob mindestens eine der Differenzen zwischen den Medianen statistisch signifikant ist, vergleichen Sie den p-Wert mit dem Signifikanzniveau, um die Nullhypothese auszuwerten. Die Nullhypothese besagt, dass alle Mediane der Grundgesamtheiten gleich sind. In der Regel ist ein Signifikanzniveau (als α oder Alpha bezeichnet) von 0,05 gut geeignet. Ein Signifikanzniveau von 0,05 gibt ein Risiko von 5 % an, dass auf eine vorhandene Differenz geschlossen wird, während tatsächlich keine vorhanden ist.
+p-Wert ≤ α: Die Differenzen zwischen einigen der Mediane sind statistisch signifikant.
+Wenn der p-Wert kleiner oder gleich dem Signifikanzniveau ist, weisen Sie die Nullhypothese zurück und schlussfolgern, dass nicht alle Mediane der Grundgesamtheiten gleich sind. Bestimmen Sie anhand Ihres Fachwissens, ob die Differenzen praktisch signifikant sind. Weitere Informationen finden Sie unter Statistische und praktische Signifikanz.
+p-Wert > α: Die Differenzen zwischen den Medianen sind statistisch nicht signifikant.
+Wenn der p-Wert größer als das Signifikanzniveau ist, liegen keine ausreichenden Anzeichen zum Zurückweisen der Nullhypothese vor, die besagt, dass alle Mediane der Grundgesamtheiten gleich sind. Vergewissern Sie sich, dass der Test über eine ausreichende Trennschärfe verfügt, um eine praktisch signifikante Differenz zu erkennen. Weitere Informationen finden Sie unter Steigern der Trennschärfe eines Hypothesentests.
+Wenn Ihre Daten Bindungen aufweisen, zeigt Minitab einen p-Wert an, der für Bindungen korrigiert ist, sowie einen p-Wert, der nicht für Bindungen korrigiert ist. Eine Bindung liegt vor, wenn der gleiche Wert in mehreren Stichproben enthalten ist. Der korrigierte p-Wert ist normalerweise genauer als der nicht korrigierte p-Wert. Der nicht korrigierte p-Wert ist jedoch der konservativere Schätzwert, da er stets größer als der korrigierte p-Wert ist. Wenn keine Bindungen in den Daten vorliegen, sind die beiden p-Werte gleich.
+
 \subsubsection{Interpretation}
 
 Due to the mathematical similarity of the Point Biserial to the Pearson coefficient, the general interpretation of Pearson can be applied to Point Biserial with some slight adaptions. If the dichotomous variable is artificially binarized, i.e. there is likely continuous data underlying it, biserial correlation is a more a measurement of similarity.
 
 Interpretation of Kruskal-Wallis
+
+
+The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which scipy.stats.wilcoxon() uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
+
+The hypothesis being test is:
+
+Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
+Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
+If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
+
+
+
+
+
 
 \subsection{Categorical - Categorical}
 

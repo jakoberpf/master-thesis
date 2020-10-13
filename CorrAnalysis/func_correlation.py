@@ -7,22 +7,23 @@ import scipy.stats as ss
 import matplotlib.pyplot as plt
 from collections import Counter
 from func_utils import convert, remove_incomplete_samples, replace_nan_with_value, \
-    cluster_correlations, identify_nominal_columns
+    cluster_correlations, identify_nominal_columns, identify_ordinal_columns, identify_dichotomous_columns
 
 __all__ = [
     'compute_correlations',
     # continuous-continuous
-    'pearsons_r',
+    'pearsons',
     # continuous-categorical(nominal)
+    'correlation_ratio',
     # 'chisuqare',
     'anova',
-    'kruskal_wallis_h',
-    'correlation_ratio'
+    'kruskal_wallis',
     # continuous-categorical(dichotomous)
     'point_biserial',
+    'mann_whitney',
     # continuous-categorical(ordinal)
-    'spearmans_rho',
-    'kendalls_tau',
+    'spearman',
+    'kendall',
     # categorical-categorical
     'cramers_v',
     'theils_u'
@@ -35,6 +36,8 @@ _DROP_FEATURES = 'drop_features'
 _SKIP = 'skip'
 _DEFAULT_REPLACE_VALUE = 0.0
 _NOT_IMPLEMENTED = ' is not implemented'
+_ALPHA = 0.05
+_SIGN_NAN = 'NaN'
 
 
 def _inf_nan_str(x):
@@ -46,207 +49,150 @@ def _inf_nan_str(x):
         return ''
 
 
-def switcher_con_con(switch, x, y):
-    """
-    Parameters:
-    -----------
-    switch : the coefficient to use for calculation
-    x : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-
-    Returns:
-    --------
-    float in the range of [0,1] and the p value
-    """
-    map_con_con = {
-        'pearson': pearsons_r(x, y),
-    }
-    return map_con_con.get(switch, switch + _NOT_IMPLEMENTED)
+###############################
+### Continuous - Continuous ###
+###############################
 
 
-def pearsons_r(x, y):
+def pearsons(measurements_x, measurements_y):
     """
 
-    Pearsons r
+    Pearson's r TODO
 
     Parameters:
     -----------
     switch : the coefficient to use for calculation
     x : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
+        A sequence of continuous measurements
     y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
+        A sequence of continuous measurements
 
     Returns:
     --------
     float in the range of [0,1] and the p value
     """
-    return ss.pearsonr(x, y)
+    print(measurements_x.name + ' to ' + measurements_y.name + ' with Pearson')
+    coefficient, p_value = ss.pearsonr(measurements_x, measurements_y)
+    return coefficient, p_value
 
 
-def switcher_con_norm(switch, x, y):
+#########################################
+### Continuous - Categorical(Nominal) ###
+#########################################
+
+
+def correlation_ratio(measurements,
+                      categories,
+                      nan_strategy=_REPLACE,
+                      nan_replace_value=_DEFAULT_REPLACE_VALUE):
     """
+    Calculates the Correlation Ratio (sometimes marked by the greek letter Eta)
+    for categorical-continuous association.
+
+    Answers the question - given a continuous value of a measurement, is it
+    possible to know which category is it associated with?
+
+    Value is in the range [0,1], where 0 means a category cannot be determined
+    by a continuous measurement, and 1 means a category can be determined with
+    absolute certainty.
+
+    Wikipedia: https://en.wikipedia.org/wiki/Correlation_ratio
+
     Parameters:
     -----------
-    switch : the coefficient to use for calculation
-    x : list / NumPy ndarray / Pandas Series
+    measurements : list / NumPy ndarray / Pandas Series
+        A sequence of continuous measurements
+    categories : list / NumPy ndarray / Pandas Series
         A sequence of categorical measurements
-    y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
+    nan_strategy : string, default = 'replace'
+        How to handle missing values: can be either 'drop' to remove samples
+        with missing values, or 'replace' to replace all missing values with
+        the nan_replace_value. Missing values are None and np.nan.
+    nan_replace_value : any, default = 0.0
+        The value used to replace missing values with. Only applicable when
+        nan_strategy is set to 'replace'.
 
     Returns:
     --------
-    float in the range of [0,1] and the p value
+    float in the range of [0,1]
     """
-    map_con_norm = {
-        'anova': anova(x, y),
-        'kruskal_wallis': kruskal_wallis_h(x, y),
-    }
-    return map_con_norm.get(switch, switch + _NOT_IMPLEMENTED)
+    print(categories.name + ' to ' + measurements.name + ' with Correlation Ration')
+    if nan_strategy == _REPLACE:
+        categories, measurements = replace_nan_with_value(
+            categories, measurements, nan_replace_value)
+    elif nan_strategy == _DROP:
+        categories, measurements = remove_incomplete_samples(
+            categories, measurements)
+    categories = convert(categories, 'array')
+    measurements = convert(measurements, 'array')
+    fcat, _ = pd.factorize(categories)
+    cat_num = np.max(fcat) + 1
+    y_avg_array = np.zeros(cat_num)
+    n_array = np.zeros(cat_num)
+    for i in range(0, cat_num):
+        cat_measures = measurements[np.argwhere(fcat == i).flatten()]
+        n_array[i] = len(cat_measures)
+        y_avg_array[i] = np.average(cat_measures)
+    y_total_avg = np.sum(np.multiply(y_avg_array, n_array)) / np.sum(n_array)
+    numerator = np.sum(
+        np.multiply(n_array, np.power(np.subtract(y_avg_array, y_total_avg),
+                                      2)))
+    denominator = np.sum(np.power(np.subtract(measurements, y_total_avg), 2))
+    if numerator == 0:
+        eta = 0.0
+    else:
+        eta = np.sqrt(numerator / denominator)
+    return eta, _SIGN_NAN  # TODO add significance calculation
 
 
 def anova(x, y):
-    """
-
-    one-way ANOVA
-
-    Parameters:
-    -----------
-    switch : the coefficient to use for calculation
-    x : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-
-    Returns:
-    --------
-
-    """
-    return ss.f_oneway(x, y)
+    print(x + ' to ' + y + ' with ANOVA')
+    f_statistic, p_value = ss.f_oneway(x, y)
+    return f_statistic, p_value
 
 
-def kruskal_wallis_h(x, y):
-    """
-
-    one-way ANOVA
-
-    Parameters:
-    -----------
-    switch : the coefficient to use for calculation
-    x : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-
-    Returns:
-    --------
-
-    """
-    return ss.kruskal(x, y)
+def kruskal_wallis(x, y):
+    print(x + ' to ' + y + ' with Kruskal Wallis')
+    f_statistic, p_value = ss.kruskal(x, y)
+    return f_statistic, p_value
 
 
-def switcher_con_dich(switch, x, y):
-    """
-    Parameters:
-    -----------
-    switch : the coefficient to use for calculation
-    x : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    nan_strategy : string, default = 'replace'
-        How to handle missing values: can be either 'drop' to remove samples
-        with missing values, or 'replace' to replace all missing values with
-        the nan_replace_value. Missing values are None and np.nan.
-    nan_replace_value : any, default = 0.0
-        The value used to replace missing values with. Only applicable when
-        nan_strategy is set to 'replace'.
-
-    Returns:
-    --------
-    float in the range of [0,1] and the p value
-    """
-    map_con_dich = {
-        'point_biserial': point_biserial(x, y),
-        'mann_whitney': mann_whitney_u(x, y)
-    }
-    return map_con_dich.get(switch, switch + _NOT_IMPLEMENTED)
+############################################
+### Continuous - Categorical(Dichotoums) ###
+############################################
 
 
-def point_biserial(x, y):
-    return ss.pointbiserialr(x, y)
+def point_biserial(measurements, dichotomies):
+    print(measurements.name + ' to ' + dichotomies.name + ' with Point Biserial')
+    coefficient, p_value = ss.pointbiserialr(dichotomies, measurements)
+    return coefficient, p_value
 
 
-def mann_whitney_u(x, y):
-    return ss.mannwhitneyu(x, y)
+def mann_whitney(measurements_x, measurements_y):
+    print(measurements_x.name + ' to ' + measurements_y.name + ' with Mann Whitney')
+    u_statistic, p_value = ss.mannwhitneyu(measurements_x, measurements_y)
+    return u_statistic, p_value
 
 
-def switcher_con_ord(switch, x, y):
-    """
-    Parameters:
-    -----------
-    switch : the coefficient to use for calculation
-    x : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    nan_strategy : string, default = 'replace'
-        How to handle missing values: can be either 'drop' to remove samples
-        with missing values, or 'replace' to replace all missing values with
-        the nan_replace_value. Missing values are None and np.nan.
-    nan_replace_value : any, default = 0.0
-        The value used to replace missing values with. Only applicable when
-        nan_strategy is set to 'replace'.
+#########################################
+### Continuous - Categorical(Nominal) ###
+#########################################
 
-    Returns:
-    --------
-    float in the range of [0,1] and the p value
-    """
-    map_con_ord = {
-        'spearman': spearmans_rho(x, y),
-        'kendall': kendalls_tau(x, y),
-    }
-    return map_con_ord.get(switch, switch + _NOT_IMPLEMENTED)
+def spearman(measurements_x, measurements_y):
+    print(measurements_x.name + ' to ' + measurements_y.name + ' with Spearman')
+    correlation, p_value = ss.spearmanr(measurements_x, measurements_y)
+    return correlation, p_value
 
 
-def spearmans_rho(x, y):
-    return ss.spearmanr(x, y)
+def kendall(measurements_x, measurements_y):
+    print(measurements_x.name + ' to ' + measurements_y.name + ' with Kendall')
+    correlation, p_value = ss.kendalltau(measurements_x, measurements_y)
+    return correlation, p_value
 
 
-def kendalls_tau(x, y):
-    return ss.kendalltau(x, y)
-
-
-def switcher_cat_cat(switch, x, y, bias_correction,
-                     nan_strategy=_REPLACE,
-                     nan_replace_value=_DEFAULT_REPLACE_VALUE):
-    """
-    Parameters:
-    -----------
-    switch : the coefficient to use for calculation
-    x : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    nan_strategy : string, default = 'replace'
-        How to handle missing values: can be either 'drop' to remove samples
-        with missing values, or 'replace' to replace all missing values with
-        the nan_replace_value. Missing values are None and np.nan.
-    nan_replace_value : any, default = 0.0
-        The value used to replace missing values with. Only applicable when
-        nan_strategy is set to 'replace'.
-
-    Returns:
-    --------
-    float in the range of [0,1] and the p value
-    """
-    map_cat_cat = {
-        'cramer': cramers_v(x, y, bias_correction, nan_strategy, nan_replace_value),
-        'theil': theils_u(x, y, nan_strategy, nan_replace_value),
-    }
-    return map_cat_cat.get(switch, switch + _NOT_IMPLEMENTED)
+#################################
+### Categorical - Categorical ###
+#################################
 
 
 def cramers_v(x,
@@ -293,6 +239,9 @@ def cramers_v(x,
     --------
     float in the range of [0,1]
     """
+
+    print(x.name + ' to ' + y.name + ' with Cramers V')
+
     if nan_strategy == _REPLACE:
         x, y = replace_nan_with_value(x, y, nan_replace_value)
     elif nan_strategy == _DROP:
@@ -314,7 +263,7 @@ def cramers_v(x,
         else:
             return np.sqrt(phi2corr / min((kcorr - 1), (rcorr - 1)))
     else:
-        return np.sqrt(phi2 / min(k - 1, r - 1))
+        return np.sqrt(phi2 / min(k - 1, r - 1)), _SIGN_NAN
 
 
 def theils_u(x,
@@ -359,6 +308,9 @@ def theils_u(x,
     --------
     float in the range of [0,1]
     """
+
+    print(x.name + ' to ' + y.name + ' with Theils U')
+
     if nan_strategy == _REPLACE:
         x, y = replace_nan_with_value(x, y, nan_replace_value)
     elif nan_strategy == _DROP:
@@ -371,7 +323,7 @@ def theils_u(x,
     if s_x == 0:
         return 1, -1
     else:
-        return (s_x - s_xy) / s_x, -1
+        return (s_x - s_xy) / s_x, _SIGN_NAN
 
 
 def conditional_entropy(x,
@@ -420,70 +372,8 @@ def conditional_entropy(x,
     return entropy
 
 
-def correlation_ratio(categories,
-                      measurements,
-                      nan_strategy=_REPLACE,
-                      nan_replace_value=_DEFAULT_REPLACE_VALUE):
-    """
-    Calculates the Correlation Ratio (sometimes marked by the greek letter Eta)
-    for categorical-continuous association.
-
-    Answers the question - given a continuous value of a measurement, is it
-    possible to know which category is it associated with?
-
-    Value is in the range [0,1], where 0 means a category cannot be determined
-    by a continuous measurement, and 1 means a category can be determined with
-    absolute certainty.
-
-    Wikipedia: https://en.wikipedia.org/wiki/Correlation_ratio
-
-    Parameters:
-    -----------
-    categories : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-    measurements : list / NumPy ndarray / Pandas Series
-        A sequence of continuous measurements
-    nan_strategy : string, default = 'replace'
-        How to handle missing values: can be either 'drop' to remove samples
-        with missing values, or 'replace' to replace all missing values with
-        the nan_replace_value. Missing values are None and np.nan.
-    nan_replace_value : any, default = 0.0
-        The value used to replace missing values with. Only applicable when
-        nan_strategy is set to 'replace'.
-
-    Returns:
-    --------
-    float in the range of [0,1]
-    """
-    if nan_strategy == _REPLACE:
-        categories, measurements = replace_nan_with_value(
-            categories, measurements, nan_replace_value)
-    elif nan_strategy == _DROP:
-        categories, measurements = remove_incomplete_samples(
-            categories, measurements)
-    categories = convert(categories, 'array')
-    measurements = convert(measurements, 'array')
-    fcat, _ = pd.factorize(categories)
-    cat_num = np.max(fcat) + 1
-    y_avg_array = np.zeros(cat_num)
-    n_array = np.zeros(cat_num)
-    for i in range(0, cat_num):
-        cat_measures = measurements[np.argwhere(fcat == i).flatten()]
-        n_array[i] = len(cat_measures)
-        y_avg_array[i] = np.average(cat_measures)
-    y_total_avg = np.sum(np.multiply(y_avg_array, n_array)) / np.sum(n_array)
-    numerator = np.sum(
-        np.multiply(n_array, np.power(np.subtract(y_avg_array, y_total_avg),
-                                      2)))
-    denominator = np.sum(np.power(np.subtract(measurements, y_total_avg), 2))
-    if numerator == 0:
-        eta = 0.0
-    else:
-        eta = np.sqrt(numerator / denominator)
-    return eta
-
-
 def compute_correlations(dataset,
+                         encode=False,
                          nominal_columns='auto',
                          dichotomous_columns='auto',
                          ordinal_columns=None,
@@ -492,7 +382,7 @@ def compute_correlations(dataset,
                          continuous_nominal='correlation_ratio',
                          continuous_dichotomous='point_biserial',
                          continuous_ordinal='spearman',
-                         categorical_categorical='cramer',
+                         categorical_categorical='cramers_v',
                          clustering=False,
                          bias_correction=True,
                          nan_strategy=_REPLACE,
@@ -517,17 +407,16 @@ def compute_correlations(dataset,
         if True, output's columns' names will have a suffix of '(nom)' or
         '(con)' based on there type (eda_tools or continuous), as provided
         by nominal_columns
-
-    continuous_continuous : 'pearson',
-
-    continuous_nominal : 'correlation_ratio',
-
-    continuous_dichotomous : 'point_biserial',
-
-    continuous_ordinal : 'spearman',
-
-    categorical_categorical : 'cramer',
-
+    continuous_continuous : default is 'pearson', but other correlation
+        coefficients can be chosen.
+    continuous_nominal : default is 'correlation_ratio', but other correlation
+        coefficients can be chosen.
+    continuous_dichotomous : default is  'point_biserial', but other correlation
+        coefficients can be chosen.
+    continuous_ordinal : default is 'spearman', but other correlation
+        coefficients can be chosen.
+    categorical_categorical : default is 'cramer', but other correlation
+        coefficients can be chosen.
     clustering : Boolean, default = False
         If True, hierarchical clustering is applied in order to sort
         features into meaningful groups
@@ -547,7 +436,7 @@ def compute_correlations(dataset,
     --------
     A DataFrame of the correlation/strength-of-association between all features
     """
-    dataset = convert(dataset, 'dataframe')
+    dataset = convert(dataset, 'dataframe')  # TODO implement encoding
 
     if nan_strategy == _REPLACE:
         dataset.fillna(nan_replace_value, inplace=True)
@@ -570,14 +459,14 @@ def compute_correlations(dataset,
     elif dichotomous_columns == 'all':
         dichotomous_columns = columns
     elif dichotomous_columns == 'auto':
-        dichotomous_columns = identify_dichotomous_columns(dataset)
+        dichotomous_columns = identify_dichotomous_columns(dataset, nominal_columns)
 
     if ordinal_columns is None:
         ordinal_columns = list()
     elif ordinal_columns == 'all':
         ordinal_columns = columns
     elif ordinal_columns == 'auto':
-        ordinal_columns = identify_ordinal_columns(dataset)
+        ordinal_columns = identify_ordinal_columns(dataset, nominal_columns, dichotomous_columns)
 
     corr = pd.DataFrame(index=columns, columns=columns)
     sign = pd.DataFrame(index=columns, columns=columns)
@@ -594,99 +483,102 @@ def compute_correlations(dataset,
             single_value_columns.append(c)
 
     for i in range(0, len(columns)):
+
         if columns[i] in single_value_columns:
             # If column only contains a single value, not correlation calculation necessary
             corr.loc[:, columns[i]] = 0.0
             corr.loc[columns[i], :] = 0.0
             continue
+
         for j in range(i, len(columns)):
+
             if columns[j] in single_value_columns:
                 continue
-            elif i == j:
-                corr.loc[columns[i], columns[j]] = 1.0
-            else:
-                if columns[i] in nominal_columns:
-                    if columns[j] in nominal_columns:
-                        if theil_u:
-                            print(columns[i] + ' to ' + columns[j] + ' with Theils U')
-                            ji = theils_u(
-                                dataset[columns[i]],
-                                dataset[columns[j]],
-                                nan_strategy=_SKIP)
-                            ij = theils_u(
-                                dataset[columns[j]],
-                                dataset[columns[i]],
-                                nan_strategy=_SKIP)
-                        else:
-                            print(columns[i] + ' to ' + columns[j] + ' with Cramers V')
 
-                            cell = cramers_v(dataset[columns[i]],
-                                             dataset[columns[j]],
-                                             bias_correction=bias_correction,
-                                             nan_strategy=_SKIP)
+            elif i == j:
+                # Correlation to itself is always 1.0
+                corr.loc[columns[i], columns[j]] = 1.0
+
+            else:
+                # print('Processing ' + columns[i] + ' and ' + columns[j])
+                if columns[i] in nominal_columns or columns[i] in dichotomous_columns or columns[i] in ordinal_columns:
+                    # i is categorical
+                    if columns[j] in nominal_columns or columns[j] in dichotomous_columns or columns[
+                        j] in ordinal_columns:
+                        # i and j are categorical
+                        if categorical_categorical == 'theils_u':
+                            # Because Theil's U is asymmetrical, calculate both directions separately
+                            ij, p = theils_u(dataset[columns[i]], dataset[columns[j]])  # TODO handle two p values
+                            ji, p = theils_u(dataset[columns[j]], dataset[columns[i]])  # TODO handle two p values
+                        else:
+                            cell, p = cramers_v(dataset[columns[i]],
+                                                dataset[columns[j]],
+                                                bias_correction=bias_correction)
                             ij = cell
                             ji = cell
                     else:
-                        number_unique_values = np.unique(columns[i]).size
-                        if point_biserial & number_unique_values == 2:
-                            print(columns[i] + ' to ' + columns[j] + ' with Point Biserial')
-                            cell, p = ss.pointbiserialr(dataset[columns[i]],
-                                                        dataset[columns[j]])
-                        # elif chisquare:
-                        #     print(columns[i] + ' to ' + columns[j] + ' with Pearson Chi Square')
-                        #     cell, p = ss.chisquare(dataset[columns[i]],
-                        #                            dataset[columns[j]])
-                        elif anova:
-                            print(columns[i] + ' to ' + columns[j] + ' with ANOVA')
-                            cell, p = ss.f_oneway(dataset[columns[i]],
-                                                  dataset[columns[j]])
-                            cell = round(cell)
-                        elif kruskal:
-                            print(columns[i] + ' to ' + columns[j] + ' with Kruskal')
-                            cell, p = ss.kruskal(dataset[columns[j]],
-                                                 dataset[columns[i]])
-                            cell = round(cell)
+                        # i is categorical, j is continuous
+                        if columns[i] in ordinal_columns:
+                            # i is ordinal, j is continuous
+                            if continuous_ordinal == 'kendall':
+                                cell, p = kendall(dataset[columns[j]], dataset[columns[i]])
+                            else:
+                                cell, p = spearman(dataset[columns[j]], dataset[columns[i]])
+                        elif columns[i] in dichotomous_columns:
+                            # i is dichotomous, j is continuous
+                            if continuous_dichotomous == 'mann_whitney':
+                                cell, p = mann_whitney(dataset[columns[j]], dataset[columns[i]])
+                            else:
+                                cell, p = point_biserial(dataset[columns[j]], dataset[columns[i]])
                         else:
-                            print(columns[i] + ' to ' + columns[j] + ' with Correlation Ratio')
-                            cell = correlation_ratio(dataset[columns[i]],
-                                                     dataset[columns[j]],
-                                                     nan_strategy=_SKIP)
+                            # i is nominal, j is continuous
+                            if continuous_nominal == 'anova':
+                                cell, p = anova(dataset[columns[j]], dataset[columns[i]])
+                            elif continuous_nominal == 'kruskal':
+                                cell, p = kruskal_wallis(dataset[columns[j]], dataset[columns[i]])
+                            else:
+                                cell, p = correlation_ratio(dataset[columns[j]], dataset[columns[i]])
+
                         ij = cell
                         ji = cell
-                else:
-                    if columns[j] in nominal_columns:
-                        number_unique_values = np.unique(columns[i]).size
-                        if point_biserial & number_unique_values == 2:
-                            print(columns[i] + ' to ' + columns[j] + ' with Point Biserial')
-                            cell, p = ss.pointbiserialr(dataset[columns[j]],
-                                                        dataset[columns[i]])
-                        # elif chisquare:
-                        #     print(columns[i] + ' to ' + columns[j] + ' with Pearson Chi Square')
-                        #     cell, p = ss.chisquare(dataset[columns[j]],
-                        #                            dataset[columns[i]])
-                        elif anova:
-                            print(columns[i] + ' to ' + columns[j] + ' with ANOVA')
-                            cell, p = ss.f_oneway(dataset[columns[j]],
-                                                  dataset[columns[i]])
-                            cell = round(cell)
-                        elif kruskal:
-                            print(columns[i] + ' to ' + columns[j] + ' with Kruskal')
-                            cell, p = ss.kruskal(dataset[columns[j]],
-                                                 dataset[columns[i]])
-                            cell = round(cell)
+
+                elif columns[j] in nominal_columns or columns[j] in dichotomous_columns or columns[
+                    j] in ordinal_columns:
+                    # j is categorical, i is continuous
+                    if columns[j] in ordinal_columns:
+                        # j is ordinal, i is continuous
+                        if continuous_ordinal == 'kendall':
+                            cell, p = kendall(dataset[columns[i]], dataset[columns[j]])
                         else:
-                            print(columns[i] + ' to ' + columns[j] + ' with Correlation Ratio')
-                            cell = correlation_ratio(dataset[columns[j]],
-                                                     dataset[columns[i]],
-                                                     nan_strategy=_SKIP)
-                        ij = cell
-                        ji = cell
+                            cell, p = spearman(dataset[columns[i]], dataset[columns[j]])
+                    elif columns[j] in dichotomous_columns:
+                        # j is dichotomous, i is continuous
+                        if continuous_dichotomous == 'mann_whitney':
+                            cell, p = mann_whitney(dataset[columns[i]], dataset[columns[j]])
+                        else:
+                            cell, p = point_biserial(dataset[columns[i]], dataset[columns[j]])
                     else:
-                        print(columns[i] + ' to ' + columns[j] + ' with Pearson')
-                        cell, p = ss.pearsonr(dataset[columns[i]],
-                                              dataset[columns[j]])
-                        ij = cell
-                        ji = cell
+                        # j is nominal, i is continuous
+                        if continuous_nominal == 'anova':
+                            cell, p = anova(dataset[columns[i]], dataset[columns[j]])
+                        elif continuous_nominal == 'kruskal':
+                            cell, p = kruskal_wallis(dataset[columns[i]], dataset[columns[j]])
+                        else:
+                            cell, p = correlation_ratio(dataset[columns[i]], dataset[columns[j]])
+
+                    ij = cell
+                    ji = cell
+
+                else:
+                    # i and j are continuous
+                    # assert columns[i] in nominal_columns or columns[i] in dichotomous_columns or columns[
+                    # i] in ordinal_columns, False
+                    # assert columns[j] in nominal_columns or columns[j] in dichotomous_columns or columns[
+                    # j] in ordinal_columns, False
+                    cell, p = pearsons(dataset[columns[i]], dataset[columns[j]])
+
+                    ij = cell
+                    ji = cell
 
                 corr.loc[columns[i], columns[j]] = ij if not np.isnan(ij) and abs(ij) < np.inf else 0.0
                 corr.loc[columns[j], columns[i]] = ji if not np.isnan(ji) and abs(ji) < np.inf else 0.0
@@ -713,7 +605,126 @@ def compute_correlations(dataset,
         corr, p = cluster_correlations(corr)
         columns = corr.columns
 
-    return corr, sign, columns, nominal_columns, inf_nan, single_value_columns
+    return corr, sign, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns
+
+
+def plot_correlations(corr, columns,
+                      nominal_columns=None,
+                      dichotomous_columns=None,
+                      ordinal_columns=None,
+                      inf_nan=None,
+                      single_value_columns=None,
+                      save=False,
+                      filepath='plot.png',
+                      show=True,
+                      ax=None,
+                      figsize=None,
+                      annot=True,
+                      fmt='.2f',
+                      cmap=None,
+                      sv_color='silver',
+                      cbar=True
+                      ):
+    """
+
+    Parameters:
+    -----------
+
+
+    nominal_columns : string / list / NumPy ndarray
+        Names of columns of the data-set which hold categorical values.
+    mark_columns : Boolean, default = False
+        if True, output's columns' names will have a suffix of '(nom)' or
+        '(con)' based on there type (eda_tools or continuous), as provided
+        by nominal_columns
+
+    ax : matplotlib ax, default = None
+        Matplotlib Axis on which the heat-map will be plotted
+    figsize : (int,int) or None, default = None
+        A Matplotlib figure-size tuple. If `None`, falls back to Matplotlib's
+        default. Only used if `ax=None`.
+    annot : Boolean, default = True
+        Plot number annotations on the heat-map
+    fmt : string, default = '.2f'
+        String formatting of annotations
+    cmap : Matplotlib colormap or None, default = None
+        A colormap to be used for the heat-map. If None, falls back to Seaborn's
+        heat-map default
+    sv_color : string, default = 'silver'
+        A Matplotlib color. The color to be used when displaying single-value
+        features over the heat-map
+    cbar: Boolean, default = True
+        Display heat-map's color-bar
+
+    Returns:
+    --------
+    A dictionary with the following keys:
+    - `corr`: A DataFrame of the correlation/strength-of-association between
+    all features
+    - `ax`: A Matplotlib `Axe`
+
+    """
+
+    if ax is None:
+        plt.figure(figsize=figsize)
+
+    if inf_nan.any(axis=None):
+        inf_nan_mask = np.vectorize(lambda x: not bool(x))(inf_nan.values)
+        ax = sns.heatmap(inf_nan_mask,
+                         cmap=['white'],
+                         annot=inf_nan if annot else None,
+                         fmt='',
+                         center=0,
+                         square=True,
+                         ax=ax,
+                         mask=inf_nan_mask,
+                         cbar=False)
+    else:
+        inf_nan_mask = np.ones_like(corr)
+
+    if len(single_value_columns) > 0:
+        sv = pd.DataFrame(data=np.zeros_like(corr),
+                          columns=columns,
+                          index=columns)
+        for c in single_value_columns:
+            sv.loc[:, c] = ' '
+            sv.loc[c, :] = ' '
+            sv.loc[c, c] = 'SV'
+        sv_mask = np.vectorize(lambda x: not bool(x))(sv.values)
+        ax = sns.heatmap(sv_mask,
+                         cmap=[sv_color],
+                         annot=sv if annot else None,
+                         fmt='',
+                         center=0,
+                         square=True,
+                         ax=ax,
+                         mask=sv_mask,
+                         cbar=False)
+    else:
+        sv_mask = np.ones_like(corr)
+
+    mask = np.vectorize(lambda x: not bool(x))(inf_nan_mask) + np.vectorize(lambda x: not bool(x))(sv_mask)
+    ax = sns.heatmap(corr,
+                     cmap=cmap,
+                     annot=annot,
+                     fmt=fmt,
+                     center=0,
+                     vmax=1.0,
+                     vmin=-1.0 if len(columns) - len(nominal_columns) >= 2 else 0.0,
+                     square=True,
+                     mask=mask,
+                     ax=ax,
+                     cbar=cbar)
+
+    if save:
+        plt.savefig(filepath)
+
+    if show:
+        plt.show()
+    else:
+        plt.close()
+
+    return ax
 
 
 # def compute_correlations(dataset,
@@ -925,159 +936,159 @@ def compute_correlations(dataset,
 #     return corr, sign, columns, nominal_columns, inf_nan, single_value_columns
 
 
-def associations(dataset,
-                 nominal_columns='auto',
-                 mark_columns=False,
-                 point_biserial=False,
-                 chisquare=False,
-                 anova=False,
-                 kruskal=False,
-                 theil_u=False,
-                 plot=True,
-                 clustering=False,
-                 bias_correction=True,
-                 nan_strategy=_REPLACE,
-                 nan_replace_value=_DEFAULT_REPLACE_VALUE,
-                 ax=None,
-                 figsize=None,
-                 annot=True,
-                 fmt='.2f',
-                 cmap=None,
-                 sv_color='silver',
-                 cbar=True
-                 ):
-    """
-    Calculate the correlation/strength-of-association of features in data-set
-    with both categorical and continuous features using:
-     * Pearson's R for continuous-continuous cases
-     * Correlation Ratio for categorical-continuous cases
-     * Cramer's V or Theil's U for categorical-categorical cases
-
-    Parameters:
-    -----------
-    dataset : NumPy ndarray / Pandas DataFrame
-        The data-set for which the features' correlation is computed
-    nominal_columns : string / list / NumPy ndarray
-        Names of columns of the data-set which hold categorical values. Can
-        also be the string 'all' to state that all columns are categorical,
-        'auto' (default) to try to identify nominal columns, or None to state
-        none are categorical
-    mark_columns : Boolean, default = False
-        if True, output's columns' names will have a suffix of '(nom)' or
-        '(con)' based on there type (eda_tools or continuous), as provided
-        by nominal_columns
-    point_biserial : Boolean, default = False
-        In the case of categorical-continuos features, use Point Biserial instead
-        of Correlation Ratio
-    theil_u : Boolean, default = False
-        In the case of categorical-categorical feaures, use Theil's U instead
-        of Cramer's V
-    plot : Boolean, default = True
-        Plot a heat-map of the correlation matrix
-    clustering : Boolean, default = False
-        If True, hierarchical clustering is applied in order to sort
-        features into meaningful groups
-    bias_correction : Boolean, default = True
-        Use bias correction for Cramer's V from Bergsma and Wicher,
-        Journal of the Korean Statistical Society 42 (2013): 323-328.
-    nan_strategy : string, default = 'replace'
-        How to handle missing values: can be either 'drop_samples' to remove
-        samples with missing values, 'drop_features' to remove features
-        (columns) with missing values, or 'replace' to replace all missing
-        values with the nan_replace_value. Missing values are None and np.nan.
-    nan_replace_value : any, default = 0.0
-        The value used to replace missing values with. Only applicable when
-        nan_strategy is set to 'replace'
-    ax : matplotlib ax, default = None
-        Matplotlib Axis on which the heat-map will be plotted
-    figsize : (int,int) or None, default = None
-        A Matplotlib figure-size tuple. If `None`, falls back to Matplotlib's
-        default. Only used if `ax=None`.
-    annot : Boolean, default = True
-        Plot number annotations on the heat-map
-    fmt : string, default = '.2f'
-        String formatting of annotations
-    cmap : Matplotlib colormap or None, default = None
-        A colormap to be used for the heat-map. If None, falls back to Seaborn's
-        heat-map default
-    sv_color : string, default = 'silver'
-        A Matplotlib color. The color to be used when displaying single-value
-        features over the heat-map
-    cbar: Boolean, default = True
-        Display heat-map's color-bar
-
-    Returns:
-    --------
-    A dictionary with the following keys:
-    - `corr`: A DataFrame of the correlation/strength-of-association between
-    all features
-    - `ax`: A Matplotlib `Axe`
-
-    """
-    corr, columns, nominal_columns, inf_nan, single_value_columns = compute_correlations(dataset, nominal_columns,
-                                                                                         mark_columns,
-                                                                                         point_biserial, chisquare,
-                                                                                         anova,
-                                                                                         kruskal, theil_u,
-                                                                                         clustering, bias_correction,
-                                                                                         nan_strategy,
-                                                                                         nan_replace_value)
-    if ax is None:
-        plt.figure(figsize=figsize)
-
-    if inf_nan.any(axis=None):
-        inf_nan_mask = np.vectorize(lambda x: not bool(x))(inf_nan.values)
-        ax = sns.heatmap(inf_nan_mask,
-                         cmap=['white'],
-                         annot=inf_nan if annot else None,
-                         fmt='',
-                         center=0,
-                         square=True,
-                         ax=ax,
-                         mask=inf_nan_mask,
-                         cbar=False)
-    else:
-        inf_nan_mask = np.ones_like(corr)
-
-    if len(single_value_columns) > 0:
-        sv = pd.DataFrame(data=np.zeros_like(corr),
-                          columns=columns,
-                          index=columns)
-        for c in single_value_columns:
-            sv.loc[:, c] = ' '
-            sv.loc[c, :] = ' '
-            sv.loc[c, c] = 'SV'
-        sv_mask = np.vectorize(lambda x: not bool(x))(sv.values)
-        ax = sns.heatmap(sv_mask,
-                         cmap=[sv_color],
-                         annot=sv if annot else None,
-                         fmt='',
-                         center=0,
-                         square=True,
-                         ax=ax,
-                         mask=sv_mask,
-                         cbar=False)
-    else:
-        sv_mask = np.ones_like(corr)
-
-    mask = np.vectorize(lambda x: not bool(x))(inf_nan_mask) + np.vectorize(lambda x: not bool(x))(sv_mask)
-    ax = sns.heatmap(corr,
-                     cmap=cmap,
-                     annot=annot,
-                     fmt=fmt,
-                     center=0,
-                     vmax=1.0,
-                     vmin=-1.0 if len(columns) - len(nominal_columns) >= 2 else 0.0,
-                     square=True,
-                     mask=mask,
-                     ax=ax,
-                     cbar=cbar)
-
-    if plot:
-        plt.show()
-
-    return {'corr': corr,
-            'ax': ax}
+# def associations(dataset,
+#                  nominal_columns='auto',
+#                  mark_columns=False,
+#                  point_biserial=False,
+#                  chisquare=False,
+#                  anova=False,
+#                  kruskal=False,
+#                  theil_u=False,
+#                  plot=True,
+#                  clustering=False,
+#                  bias_correction=True,
+#                  nan_strategy=_REPLACE,
+#                  nan_replace_value=_DEFAULT_REPLACE_VALUE,
+#                  ax=None,
+#                  figsize=None,
+#                  annot=True,
+#                  fmt='.2f',
+#                  cmap=None,
+#                  sv_color='silver',
+#                  cbar=True
+#                  ):
+#     """
+#     Calculate the correlation/strength-of-association of features in data-set
+#     with both categorical and continuous features using:
+#      * Pearson's R for continuous-continuous cases
+#      * Correlation Ratio for categorical-continuous cases
+#      * Cramer's V or Theil's U for categorical-categorical cases
+#
+#     Parameters:
+#     -----------
+#     dataset : NumPy ndarray / Pandas DataFrame
+#         The data-set for which the features' correlation is computed
+#     nominal_columns : string / list / NumPy ndarray
+#         Names of columns of the data-set which hold categorical values. Can
+#         also be the string 'all' to state that all columns are categorical,
+#         'auto' (default) to try to identify nominal columns, or None to state
+#         none are categorical
+#     mark_columns : Boolean, default = False
+#         if True, output's columns' names will have a suffix of '(nom)' or
+#         '(con)' based on there type (eda_tools or continuous), as provided
+#         by nominal_columns
+#     point_biserial : Boolean, default = False
+#         In the case of categorical-continuos features, use Point Biserial instead
+#         of Correlation Ratio
+#     theil_u : Boolean, default = False
+#         In the case of categorical-categorical feaures, use Theil's U instead
+#         of Cramer's V
+#     plot : Boolean, default = True
+#         Plot a heat-map of the correlation matrix
+#     clustering : Boolean, default = False
+#         If True, hierarchical clustering is applied in order to sort
+#         features into meaningful groups
+#     bias_correction : Boolean, default = True
+#         Use bias correction for Cramer's V from Bergsma and Wicher,
+#         Journal of the Korean Statistical Society 42 (2013): 323-328.
+#     nan_strategy : string, default = 'replace'
+#         How to handle missing values: can be either 'drop_samples' to remove
+#         samples with missing values, 'drop_features' to remove features
+#         (columns) with missing values, or 'replace' to replace all missing
+#         values with the nan_replace_value. Missing values are None and np.nan.
+#     nan_replace_value : any, default = 0.0
+#         The value used to replace missing values with. Only applicable when
+#         nan_strategy is set to 'replace'
+#     ax : matplotlib ax, default = None
+#         Matplotlib Axis on which the heat-map will be plotted
+#     figsize : (int,int) or None, default = None
+#         A Matplotlib figure-size tuple. If `None`, falls back to Matplotlib's
+#         default. Only used if `ax=None`.
+#     annot : Boolean, default = True
+#         Plot number annotations on the heat-map
+#     fmt : string, default = '.2f'
+#         String formatting of annotations
+#     cmap : Matplotlib colormap or None, default = None
+#         A colormap to be used for the heat-map. If None, falls back to Seaborn's
+#         heat-map default
+#     sv_color : string, default = 'silver'
+#         A Matplotlib color. The color to be used when displaying single-value
+#         features over the heat-map
+#     cbar: Boolean, default = True
+#         Display heat-map's color-bar
+#
+#     Returns:
+#     --------
+#     A dictionary with the following keys:
+#     - `corr`: A DataFrame of the correlation/strength-of-association between
+#     all features
+#     - `ax`: A Matplotlib `Axe`
+#
+#     """
+#     corr, columns, nominal_columns, inf_nan, single_value_columns = compute_correlations(dataset, nominal_columns,
+#                                                                                          mark_columns,
+#                                                                                          point_biserial, chisquare,
+#                                                                                          anova,
+#                                                                                          kruskal, theil_u,
+#                                                                                          clustering, bias_correction,
+#                                                                                          nan_strategy,
+#                                                                                          nan_replace_value)
+#     if ax is None:
+#         plt.figure(figsize=figsize)
+#
+#     if inf_nan.any(axis=None):
+#         inf_nan_mask = np.vectorize(lambda x: not bool(x))(inf_nan.values)
+#         ax = sns.heatmap(inf_nan_mask,
+#                          cmap=['white'],
+#                          annot=inf_nan if annot else None,
+#                          fmt='',
+#                          center=0,
+#                          square=True,
+#                          ax=ax,
+#                          mask=inf_nan_mask,
+#                          cbar=False)
+#     else:
+#         inf_nan_mask = np.ones_like(corr)
+#
+#     if len(single_value_columns) > 0:
+#         sv = pd.DataFrame(data=np.zeros_like(corr),
+#                           columns=columns,
+#                           index=columns)
+#         for c in single_value_columns:
+#             sv.loc[:, c] = ' '
+#             sv.loc[c, :] = ' '
+#             sv.loc[c, c] = 'SV'
+#         sv_mask = np.vectorize(lambda x: not bool(x))(sv.values)
+#         ax = sns.heatmap(sv_mask,
+#                          cmap=[sv_color],
+#                          annot=sv if annot else None,
+#                          fmt='',
+#                          center=0,
+#                          square=True,
+#                          ax=ax,
+#                          mask=sv_mask,
+#                          cbar=False)
+#     else:
+#         sv_mask = np.ones_like(corr)
+#
+#     mask = np.vectorize(lambda x: not bool(x))(inf_nan_mask) + np.vectorize(lambda x: not bool(x))(sv_mask)
+#     ax = sns.heatmap(corr,
+#                      cmap=cmap,
+#                      annot=annot,
+#                      fmt=fmt,
+#                      center=0,
+#                      vmax=1.0,
+#                      vmin=-1.0 if len(columns) - len(nominal_columns) >= 2 else 0.0,
+#                      square=True,
+#                      mask=mask,
+#                      ax=ax,
+#                      cbar=cbar)
+#
+#     if plot:
+#         plt.show()
+#
+#     return {'corr': corr,
+#             'ax': ax}
 
 
 def numerical_encoding(dataset,
@@ -1091,10 +1102,8 @@ def numerical_encoding(dataset,
     numerical-only data-set using the following logic:
     * categorical with only a single value will be marked as zero (or dropped,
         if requested)
-    * categorical with two values will be replaced with the result of Pandas
+    * categorical will be replaced with the result of Pandas
         `factorize`
-    * categorical with more than two values will be replaced with the result
-        of Pandas `get_dummies`
     * numerical columns will not be modified
 
     Parameters:
@@ -1141,8 +1150,8 @@ def numerical_encoding(dataset,
         return dataset
     elif nominal_columns == 'all':
         nominal_columns = dataset.columns
-    # elif nominal_columns == 'auto':
-    #     nominal_columns = identify_nominal_columns(dataset)
+    elif nominal_columns == 'auto':
+        nominal_columns = identify_nominal_columns(dataset)
     converted_dataset = pd.DataFrame()
     binary_columns_dict = dict()
     for col in dataset.columns:
@@ -1157,13 +1166,6 @@ def numerical_encoding(dataset,
                 converted_dataset.loc[:, col] = 0
             else:
                 converted_dataset.loc[:, col], binary_columns_dict[col] = pd.factorize(dataset[col])
-            # elif len(unique_values) == 2:
-            #     # Only two values present, 
-            #     converted_dataset.loc[:, col], binary_columns_dict[col] = pd.factorize(dataset[col])
-            # else:
-            #     dummies = pd.get_dummies(dataset[col], prefix=col)
-            #     converted_dataset = pd.concat([converted_dataset, dummies],
-            #                                   axis=1)
     if drop_fact_dict:
         return converted_dataset
     else:

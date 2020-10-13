@@ -21,6 +21,28 @@ def date_parser(string_list):
     return [time.ctime(float(x)) for x in string_list]
 
 
+def identify_numeric_columns(dataset):
+    """
+    Given a dataset, identify numeric columns.
+
+    Parameters:
+    -----------
+    dataset : NumPy ndarray / Pandas DataFrame
+
+    Returns:
+    --------
+    A list of numerical columns names
+
+    Example:
+    --------
+    >> df = pd.DataFrame({'col1': ['a', 'b', 'c', 'a'], 'col2': [3, 4, 2, 1], 'col3': [1., 2., 3., 4.]})
+    >> identify_numeric_columns(df)
+    ['col2', 'col3']
+
+    """
+    return identify_columns_by_type(dataset, include=['int64', 'float64'])
+
+
 def identify_nominal_columns(dataset):
     """
     Given a dataset, identify categorical columns.
@@ -43,9 +65,9 @@ def identify_nominal_columns(dataset):
     return identify_columns_by_type(dataset, include=['object', 'category'])
 
 
-def identify_numeric_columns(dataset):
+def identify_dichotomous_columns(dataset, nominal_columns):
     """
-    Given a dataset, identify numeric columns.
+    Given a dataset, identify categorical columns.
 
     Parameters:
     -----------
@@ -53,16 +75,20 @@ def identify_numeric_columns(dataset):
 
     Returns:
     --------
-    A list of numerical columns names
+    A list of categorical columns names
 
     Example:
     --------
-    >> df = pd.DataFrame({'col1': ['a', 'b', 'c', 'a'], 'col2': [3, 4, 2, 1], 'col3': [1., 2., 3., 4.]})
-    >> identify_numeric_columns(df)
-    ['col2', 'col3']
+    >> df = pd.DataFrame({'col1': ['a', 'b', 'c', 'a'], 'col2': [3, 4, 2, 1]})
+    >> identify_nominal_columns(df)
+    ['col1']
 
     """
-    return identify_columns_by_type(dataset, include=['int64', 'float64'])
+    pass
+
+
+def identify_ordinal_columns(dataset, nominal_columns, dichotomous_columns):
+    pass
 
 
 def identify_columns_by_type(dataset, include):

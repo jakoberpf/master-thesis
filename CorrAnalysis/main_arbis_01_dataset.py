@@ -17,7 +17,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from func_correlation import associations, numerical_encoding
+from func_correlation import numerical_encoding, compute_correlations, plot_correlations
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -64,10 +64,6 @@ if __name__ == '__main__':
     # Add month of roadwork
     arbis_select_relevant['Month'] = arbis_import['Von'].dt.month_name()
 
-    # Print matrix for debugging
-    print(arbis_select_relevant.dtypes)
-    print(arbis_select_relevant)
-
     # Plot histogram of roadworks over time / months
     plt.figure(figsize=(13, 6))
     plt.hist(arbis_select_relevant['Month'], color='blue', edgecolor='black')
@@ -83,25 +79,39 @@ if __name__ == '__main__':
     # Add duration of roadwork fragment in minutes
     arbis_select_relevant['Duration'] = abs((arbis_import['Von'] - arbis_import['Bis'])).dt.total_seconds() / 60
 
+    # Print matrix for debugging
+    print(arbis_select_relevant.dtypes)
+    print(arbis_select_relevant)
+
+    nominal_columns = ['Strasse', 'StreckeID', 'Month']
+    dichotomous_columns = ['Richtung']
+    ordinal_columns = ['AnzGesperrtFs']
+
     # Plot association matrix
     # Calculate without Theil's U -> Cramer's V is chosen
-    arbis_encoded = numerical_encoding(arbis_select_relevant,
-                                       nominal_columns=['Strasse', 'Richtung', 'StreckeID', 'Month'],
-                                       drop_single_label=False)
+    arbis_encoded = numerical_encoding(arbis_select_relevant, nominal_columns, drop_single_label=False)
 
-    associations(arbis_encoded, point_biserial=True, kruskal=False, theil_u=False, figsize=(18, 15),
-                 nominal_columns=['Strasse', 'Richtung', 'StreckeID', 'Month'],
-                 plot=False, bias_correction=False)
-    if safe_plots:
-        plt.savefig(plot_path + 'arbis_dataset_corr_cramers.png')
-    plt.show()
+    corr, sign, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns = compute_correlations(
+        arbis_encoded,
+        nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
+        bias_correction=False)
+
+    plot_correlations(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
+                      single_value_columns, save=True, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
+                      show=True, figsize=(18, 15))
+
+    print(sign.to_latex())
+
+    with open(plot_path + 'arbis_dataset_sign_cramers.tex', 'w') as tf:
+        tf.write(sign.to_latex(float_format="{:0.2f}".format))
+
     # Calculate with Theil's U
-    associations(arbis_encoded, point_biserial=True, kruskal=False, theil_u=True, figsize=(18, 15),
-                 nominal_columns=['Strasse', 'Richtung', 'StreckeID', 'Month'],
-                 plot=False, bias_correction=False)
-    if safe_plots:
-        plt.savefig(plot_path + 'arbis_dataset_corr_theils.png')
-    plt.show()
+    # associations(arbis_encoded, figsize=(18, 15),
+    #              nominal_columns=['Strasse', 'Richtung', 'StreckeID', 'Month'],
+    #              plot=False, bias_correction=False)
+    # if safe_plots:
+    #     plt.savefig(plot_path + 'arbis_dataset_corr_theils.png')
+    # plt.show()
 
     plt.figure(figsize=(11, 6))
     sns.set_context('paper', font_scale=1.0)

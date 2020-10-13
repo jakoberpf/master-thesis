@@ -20,7 +20,7 @@ import unittest
 
 import pandas
 
-from func_correlation import associations, compute_correlations, kruskal_wallis_h
+from func_correlation import associations, compute_correlations, kruskal_wallis
 
 
 class MyTestCase(unittest.TestCase):
@@ -54,7 +54,7 @@ class MyTestCase(unittest.TestCase):
         x = [1, 2, 3, 4, 1, 2, 3, 4]
         y = [11, 11, 22, 22, 11, 11, 22, 22]
 
-        corr, sign = kruskal_wallis_h(x, y)
+        corr, sign = kruskal_wallis(x, y)
         print('')
         print(corr)
         print(sign)
@@ -64,7 +64,7 @@ class MyTestCase(unittest.TestCase):
         x = [1, 2, 3, 4, 1, 2, 3, 4]
         y = [11, 22, 33, 44, 11, 22, 33, 44]
 
-        corr, sign = kruskal_wallis_h(x, y)
+        corr, sign = kruskal_wallis(x, y)
         print('')
         print(corr)
         print(sign)
@@ -73,7 +73,7 @@ class MyTestCase(unittest.TestCase):
         x = [1, 2, 3, 4, 1, 2, 3, 4]
         y = [11, 22, 33, 44, 55, 66, 77, 88]
 
-        corr, sign = kruskal_wallis_h(x, y)
+        corr, sign = kruskal_wallis(x, y)
         print('')
         print(corr)
         print(sign)
@@ -82,7 +82,7 @@ class MyTestCase(unittest.TestCase):
         x = [1, 3, 5, 7, 9]
         y = [2, 4, 6, 8, 10]
 
-        corr, sign = kruskal_wallis_h(x, y)
+        corr, sign = kruskal_wallis(x, y)
         print('')
         print(corr)
         print(sign)
@@ -91,7 +91,7 @@ class MyTestCase(unittest.TestCase):
         x = [1, 1, 2, 3, 3]
         y = [11, 11, 22, 33, 33]
 
-        corr, sign = kruskal_wallis_h(x, y)
+        corr, sign = kruskal_wallis(x, y)
         print('')
         print(corr)
         print(sign)

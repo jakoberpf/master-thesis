@@ -17,7 +17,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from func_correlation import associations
 from func_utils import print_welcome, date_parser
 
 if __name__ == '__main__':

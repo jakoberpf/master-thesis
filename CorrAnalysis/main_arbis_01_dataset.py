@@ -17,13 +17,14 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from func_correlation import numerical_encoding, compute_correlations, plot_correlations
+from func_correlation import numerical_encoding, compute_correlations, plot_dataframe
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
     print_welcome()
 
-    safe_plots = True
+    save_plot = True
+    show_plot = True
 
     data_path = 'data/'
     work_path = data_path + 'ArbIS/dataset/'
@@ -71,50 +72,79 @@ if __name__ == '__main__':
     plt.title('Histogram of roadworks per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_hist_month.png')
-    plt.show()
+    if show_plot:
+        plt.show()
+
+    # Plot histogram of accidents over highway
+    plt.figure(figsize=(13, 6))
+    plt.hist(arbis_selected['Strasse'], color='blue', edgecolor='black')
+    plt.title('Histogram of roadworks per highways')
+    plt.ylabel('Count')
+    plt.xlabel('Highway')
+    if save_plot:
+        plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
+    if show_plot:
+        plt.show()
 
     # Add length of roadwork fragment in kilometers
     arbis_selected['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer']))
     # Add duration of roadwork fragment in minutes
     arbis_selected['Duration'] = abs((arbis_imported['Von'] - arbis_imported['Bis'])).dt.total_seconds() / 60
 
+    # Settings for box plots
     sns.set(font_scale=2)
     sns.set_context('paper')
     plt.figure(figsize=(11, 6))
 
     sns.boxplot(x='Strasse', y='Length', data=arbis_selected, palette='Set1')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_box_street2length.png')
+    if show_plot:
+        plt.show()
 
     sns.boxplot(x='Strasse', y='Duration', data=arbis_selected, palette='Set1')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_box_stree2duration.png')
+    if show_plot:
+        plt.show()
 
     sns.boxplot(x='AnzGesperrtFs', y='Length', data=arbis_selected, palette='Set1')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_box_agfs2length.png')
+    if show_plot:
+        plt.show()
 
     sns.boxplot(x='AnzGesperrtFs', y='Duration', data=arbis_selected, palette='Set1')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_box_agfs2duration.png')
+    if show_plot:
+        plt.show()
 
     sns.boxplot(x='Einzug', y='Length', data=arbis_selected, palette='Set1')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_box_einzug2length.png')
+    if show_plot:
+        plt.show()
 
     sns.boxplot(x='Einzug', y='Duration', data=arbis_selected, palette='Set1')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_box_einzug2duration.png')
+    if show_plot:
+        plt.show()
 
     sns.boxplot(x='Richtung', y='Length', data=arbis_selected, palette='Set1')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_box_direction2length.png')
+    if show_plot:
+        plt.show()
 
     sns.boxplot(x='Richtung', y='Duration', data=arbis_selected, palette='Set1')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_box_direction2duration.png')
+    if show_plot:
+        plt.show()
 
     # Print matrix for debugging
     print(arbis_selected.dtypes)
@@ -125,27 +155,37 @@ if __name__ == '__main__':
     dichotomous_columns = ['Richtung']
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
 
+    # defines coefficients
+    con_nominal = 'kruskal-wallis'
+    con_dichotomous = 'point_biserial'
+    con_ordinal = 'kendall'
+
     # Encode non numerical columns
     arbis_encoded = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False)
 
-    # Calculate with Cramer's V is chosen
+    corr, sign, coef, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns = \
+        compute_correlations(
+            arbis_encoded,
+            continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+            nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
+            bias_correction=False)
 
-    corr, sign, coef, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns = compute_correlations(
-        arbis_encoded,
-        nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
-        bias_correction=False)
+    plot_dataframe(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
+                   single_value_columns, save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
+                   show=show_plot, figsize=(18, 15))
 
-    plot_correlations(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-                      single_value_columns, save=True, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
-                      show=True, figsize=(18, 15))
+    # plot_dataframe(sign, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
+    #                single_value_columns, save=True, filepath=plot_path + 'arbis_dataset_sign_cramers.png',
+    #                show=True, figsize=(18, 15))
 
-    test = sign.to_latex(float_format="{:0.2f}".format)
+    with open(tex_path + 'arbis_dataset_corr_cramers.tex', 'w') as tf:
+        tf.write(corr.to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + 'arbis_dataset_sign_cramers.tex', 'w') as tf:
-        tf.write(sign.to_latex(float_format="{:0.2f}".format))
+        tf.write(sign.to_latex(float_format="{:0.6f}".format))
 
     with open(tex_path + 'arbis_dataset_coef_cramers.tex', 'w') as tf:
-        tf.write(coef.to_latex(float_format="{:0.2f}".format))
+        tf.write(coef.to_latex())
 
     # Calculate with Theil's U
     # associations(arbis_encoded, figsize=(18, 15),
@@ -154,7 +194,5 @@ if __name__ == '__main__':
     # if safe_plots:
     #     plt.savefig(plot_path + 'arbis_dataset_corr_theils.png')
     # plt.show()
-
-
 
     print('Finished ArbIS Dataset Analysis')

@@ -229,7 +229,40 @@ In the scope of this thesis only a selection of these introduced data collection
 
 \bigskip
 
-Jams or a single congestion in most colloquial terms are spatial and timely accumulations of traffic participants, which leads to a reduction of travel speed and therefore reduction of traffic throughput. But there is no unified definition when this reduction of speed or volume can be actually classified as a congestion. As an example the ADAC classifies highway traffic moving with mean speed lower than 20 km/h as jammed \cite{ADAC2019}. In Switzerland the ministry for streets has a more severe definition with a mean speed under 10 km/h \cite{ASTRA2020}. The Germany or Bavarian ministry for streets does not have an official definition at the time of writing, which makes it necessary to form our own definition of jams and speed thresholds, for the scope of this thesis. Because we have a good representation of the speeds occurring in jams from the FCD date, introduced in chapter 1.1, we can use this information to tailor a definition to our needs. 
+Jams or a single congestion in most colloquial terms are spatial and timely accumulations of traffic participants, resulting in speeds slower or sometimes much slower than free flow. In severe cases this is also often described a stop-and-go or stopped traffic. They are triggered by a reduction of traffic throughput in volume or an increase of traffic demand. Studies have shown that these triggers are usually caused by three categories of disturbances. \cite{TRB2003}
+
+\subsubsection{Traffic-Influencing Events}
+
+\begin{itemize}
+	\item Incidents: Events that disrupt the normal free flow of traffic, like vehicular crashes, breakdowns or debris. These physical obstacles block lanes or hard shoulders, forcing other road user to execute evasive maneuver and deviate from their normal path. This ultimately changes driving behavior, reduces the quality of traffic flow and traveling speed. Even when incidents are not directly on the roadway they can impact the traffic flow due to emergency responses create blockades or ineffective driving behavior of traffic participants gapping on the incident.
+	\item Roadwork: Managed and unmanaged construction sites on the roadway that result in physical changes to the highway environment. This includes a reduction of lanes, lane diversion, elimination of hard shoulders or road closures, which reduce the road capacity and reduce travel speeds.
+	\item Weather: Changes in environmental conditions like, heavy rain or snow fall can negatively impact driver behavior. The reduction of visibility will usually result in a reduction of traveling speeds and increase of headway. This reduces the overall capacity of the highway. Bright sunlight, smoke or icy road surfaces lead so similar effects.
+\end{itemize}
+
+\subsubsection{Traffic Demand}
+
+\begin{itemize}
+	\item Fluctuations in Normal Traffic:
+	\item Special Events: Commuting traffic increases demand, as do major events or public holidays
+\end{itemize}
+
+\subsubsection{Physical Highway Features}
+
+\begin{itemize}
+	\item Traffic Control Devices:
+	\item Physical Bottlenecks ("Capacity"):
+\end{itemize}
+
+\cite{FHA2011} % TODO https://ops.fhwa.dot.gov/congestion_report/chapter2.htm
+
+\bigskip
+
+% TODO https://www.zukunft-mobilitaet.net/3344/analyse/wie-entstehen-staus-phantomstau/
+There is another not listed type of cause. When drivers don't keep up smooth accelerations, but rather break suddenly or accelerate in rapidly, other vehicles need to react accordingly. This creates a chain reaction leading to reduced travel speed. These are called "phantom jams" because they do not have any specific origin and are common in high density traffic regions. \cite{ASTRA2020} 
+
+Unfortunately there is no unified definition when these reductions of speed or volume are classified as a congestion. As example the \acrshort{adac} classifies highway traffic moving with mean speed lower than 20 km/h as jammed \cite{ADAC2019}. In Switzerland the ministry for streets has a more severe definition with a mean speed under 10 km/h \cite{ASTRA2020}. The Bavarian ministry for streets does not have an official definition at the time of writing, which makes it necessary to form a specific definition of \glspl{jam} and speed thresholds, for the scope of this thesis. Because we have a good representation of the speeds occurring in jams from the FCD date, introduced in chapter 1.1, we can use this information to tailor a definition to our needs. 
+
+Figure \ref{img:speedMatrixPlot_singleCluster} shows a section of a random speed matrix plot from the FCD dataset, containing a scattered congestion cluster. The horizontal and vertical extend represents the spatial and temporal location of each cell. The color of the cell indicated the mean absolute speed recorded in the time frame and on the link of the cell (detailed gradient is shown in the legend of \ref{img:speedMatrixPlot_singleCluster}).
 
 \begin{figure}[h]
 	\centering
@@ -238,15 +271,13 @@ Jams or a single congestion in most colloquial terms are spatial and timely accu
 	\label{img:speedMatrixPlot_singleCluster}
 \end{figure}
 
-The Figure \ref{img:speedMatrixPlot_singleCluster} on page \pageref{img:speedMatrixPlot_singleCluster} shows a section of a random speed matrix plot from the FCD dataset, containing a scattered congestion cluster. The horizontal and vertical extend represents the spatial and temporal location of each cell. The color of the cell indicated the mean absolute speed recorded in the time frame and on the link of the cell (detailed gradient is shown in the legend of \ref{img:speedMatrixPlot_singleCluster}). The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered as jammed, to incorporate the complete congestion area. Speeds above 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes a speed threshold of 40 km/h fitting for detecting congestion clusters in the scope of this thesis.
+The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered as jammed, to incorporate the complete congestion area. Speeds above 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes a speed threshold of 40 km/h fitting for detecting congestion clusters in the scope of this thesis.
+ 
+From this information the following thresholds for classifying \glspl{jam} in FCD data where defined.
 
 More Infos about what characteristics do congestions have? Causes, Effects and Indicators...
 
-%https://www.astra.admin.ch/astra/de/home/themen/nationalstrassen/verkehrsfluss-stauaufkommen/definitionen.html
-%https://www.sciencedirect.com/topics/social-sciences/traffic-congestion
-%https://ops.fhwa.dot.gov/congestion_report/chapter2.htm
-%https://www.zukunft-mobilitaet.net/3344/analyse/wie-entstehen-staus-phantomstau/
-%https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse
+% https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
 \chapter{Correlation}
 \label{definition_correlation}

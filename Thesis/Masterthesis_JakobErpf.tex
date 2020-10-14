@@ -273,30 +273,25 @@ Figure \ref{img:speedMatrixPlot_singleCluster} shows a section of a random speed
 
 The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered, to incorporate the complete congestion area. Speeds above at least 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes two speed threshold for jammed and slow-moving traffic necessary adequately detecting congestion clusters. With this information and some learning during calibration of the clustering algorithm (see chapter \ref{cluster_calibration}) the following thresholds for classifying \glspl{jam} in FCD data where defined for highways.
 
-\begin{itemize}
+\begin{itemize} %TODO explain values
 	\item Speed threshold for jammed state : vcrit.highway.jammed = 30 $\frac{km}{h}$
 	\item Speed threshold for slow-moving state : vcrit.highway.slow = 60 $\frac{km}{h}$
-	\item Minimum (spatial) length of an congestion : min.length.highway = 1000 $m$
-	\item Minimum (temporal) duration of an congestion : min.duration.highway = 9 $min$
+	\item Minimum length of a congestion : min.length.highway = 1000 $m$
+	\item Minimum duration of a congestion : min.duration.highway = 9 $min$
 	\item Threshold for the spatial gap in-between congestion events during the cluster consolidation on highways [m]. spatial.gap.threshold.highway=5000
 	\item Threshold for the temporal gap in-between congestion events during the cluster consolidation on highways [min]. temporal.gap.threshold.highway=6
 	\item The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation on highway roads types when using the CONGSTATS Cluster Algo [s]. travelTime.gap.threshold.highway=360
 \end{itemize}
 
-
-
-More Infos about what characteristics do congestions have? Causes, Effects and Indicators...
-
+% TODO read and add infos
 % https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
-
+% TODO read and use a source for loss parameter
 % file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20(1).pdf
 \begin{itemize}
 	\item The cost rate for one car loosing one hour travel time [€/(Fz*h)] cost.rate.car=11
 	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
 \end{itemize}
-
-
 
 \chapter{Correlation}
 \label{definition_correlation}

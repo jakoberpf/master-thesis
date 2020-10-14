@@ -19,7 +19,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation
+from func_plot import plot_correlation, plot_statistic
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -165,49 +165,56 @@ if __name__ == '__main__':
     # Encode non numerical columns
     arbis_encoded = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False)
 
-    corr, sign, coef, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns = \
-        compute_correlations(
-            arbis_encoded,
-            continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
-            nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
-            bias_correction=False)
+    results = compute_correlations(
+        arbis_encoded,
+        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+        columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
+        bias_correction=False)
 
-    plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-                     single_value_columns, save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
+    plot_correlation(results.get('correlation'), results.get('columns'),
+                     nominal_columns, dichotomous_columns, ordinal_columns,
+                     results.get('inf_nan_corr'),
+                     results.get('columns_single_value'),
+                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
                      show=show_plot, figsize=(18, 15))
 
-    # plot_dataframe(sign, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-    #                single_value_columns, save=True, filepath=plot_path + 'arbis_dataset_sign_cramers.png',
-    #                show=True, figsize=(18, 15))
+    plot_statistic(results.get('significance'), results.get('columns'),
+                   nominal_columns, dichotomous_columns, ordinal_columns,
+                   results.get('inf_nan_corr'),
+                   results.get('columns_single_value'),
+                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_cramers.png',
+                   show=show_plot, figsize=(18, 15))
 
     with open(tex_path + 'arbis_dataset_corr_cramers.tex', 'w') as tf:
-        tf.write(corr.to_latex(float_format="{:0.2f}".format))
+        tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + 'arbis_dataset_sign_cramers.tex', 'w') as tf:
-        tf.write(sign.to_latex(float_format="{:0.6f}".format))
+        tf.write(results.get('coefficient').to_latex())
 
     with open(tex_path + 'arbis_dataset_coef_cramers.tex', 'w') as tf:
-        tf.write(coef.to_latex())
+        tf.write(results.get('coefficient').to_latex())
 
-    corr, sign, coef, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns = \
-        compute_correlations(
-            arbis_encoded,
-            categorical_categorical='theils_u',
-            continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
-            nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
-            bias_correction=False)
+    results = compute_correlations(
+        arbis_encoded,
+        categorical_categorical='theils_u',
+        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+        columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
+        bias_correction=False)
 
-    plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-                     single_value_columns, save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.png',
+    plot_correlation(results.get('correlation'), results.get('columns'),
+                     nominal_columns, dichotomous_columns, ordinal_columns,
+                     results.get('inf_nan_corr'),
+                     results.get('columns_single_value'),
+                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.png',
                      show=show_plot, figsize=(18, 15))
 
     with open(tex_path + 'arbis_dataset_corr_theils.tex', 'w') as tf:
-        tf.write(corr.to_latex(float_format="{:0.2f}".format))
+        tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + 'arbis_dataset_sign_theils.tex', 'w') as tf:
-        tf.write(sign.to_latex(float_format="{:0.6f}".format))
+        tf.write(results.get('coefficient').to_latex())
 
     with open(tex_path + 'arbis_dataset_coef_theils.tex', 'w') as tf:
-        tf.write(coef.to_latex())
+        tf.write(results.get('coefficient').to_latex())
 
     print('Finished ArbIS Dataset Analysis')

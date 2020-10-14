@@ -19,14 +19,14 @@ import pandas as pd
 import seaborn as sns
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation
+from func_plot import plot_correlation, plot_boxplot, plot_statistic
 from func_utils import print_welcome, date_parser
 
 if __name__ == '__main__':
     print_welcome()
 
-    safe_plots = True
-    show_plot = True
+    save_plot = True
+    show_plot = False
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/dataset/'
@@ -68,10 +68,12 @@ if __name__ == '__main__':
     plt.title('Histogram of accidents per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'baysis_dataset_hist_month.png')
     if show_plot:
         plt.show()
+    else:
+        plt.close()
 
     # Remove month column
     # baysis_selected.drop('Month', axis='columns', inplace=True)
@@ -82,23 +84,21 @@ if __name__ == '__main__':
     plt.title('Histogram of accidents per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    if safe_plots:
+    if save_plot:
         plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
     if show_plot:
         plt.show()
+    else:
+        plt.close()
 
-    # Settings for box plots
-    sns.set(font_scale=2)
-    sns.set_context('paper')
-    plt.figure(figsize=(11, 6))
+    # Plot boxplots for visual relation testing
+    plot_boxplot(baysis_selected, 'Strasse', 'Kat', save_plot, show_plot,
+                 plot_path + 'baysis_dataset_box_street2kat.png')
 
-    sns.boxplot(x='Strasse', y='Kat', data=baysis_selected, palette='Set1')
-    if safe_plots:
-        plt.savefig(plot_path + 'baysis_dataset_box_street2kat.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(baysis_selected, 'Strasse', 'Typ', save_plot, show_plot,
+                 plot_path + 'baysis_dataset_box_street2typ.png')
 
-    # defines column types
+    # define column types
     nominal_columns = ["Strasse", "Kat", "Typ",
                        "UArt1", "UArt2",
                        "AUrs1", "AUrs2",
@@ -115,57 +115,79 @@ if __name__ == '__main__':
     dichotomous_columns = ["Alkoh"]
     ordinal_columns = ["Betei", "Fstf"]
 
-    # Print matrix for debugging
-    print(baysis_selected.dtypes)
-    print(baysis_selected)
-
-    # Encode non numerical columns
-    baysis_encoded = numerical_encoding(baysis_selected, nominal_columns, drop_single_label=False)
-
-    # Print matrix for debugging
-    print(baysis_encoded.dtypes)
-    print(baysis_encoded)
-
     # defines coefficients
     con_nominal = 'kruskal-wallis'
     con_dichotomous = 'point_biserial'
     con_ordinal = 'kendall'
 
+    # Encode non numerical columns
+    baysis_encoded = numerical_encoding(baysis_selected, nominal_columns, drop_single_label=False)
+
     # Calculate with Cramers 's V
-    corr, sign, coef, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns = \
-        compute_correlations(
-            baysis_encoded,
-            continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
-            columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
-            bias_correction=False)
+    results = compute_correlations(
+        baysis_encoded,
+        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+        columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
+        bias_correction=False)
 
-    plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-                     single_value_columns, save=True, filepath=plot_path + 'baysis_dataset_corr_cramers.png',
-                     show=True, figsize=(18, 15))
+    # Plot correlation matrix
+    plot_correlation(results.get('correlation'), results.get('columns'),
+                     nominal_columns, dichotomous_columns, ordinal_columns,
+                     results.get('inf_nan_corr'),
+                     results.get('columns_single_value'),
+                     save=save_plot, filepath=plot_path + 'baysis_dataset_corr_cramers.png',
+                     show=show_plot, figsize=(18, 15))
 
+    # Plot statistics/significant matrix
+    plot_statistic(results.get('significance'), results.get('columns'),
+                   nominal_columns, dichotomous_columns, ordinal_columns,
+                   results.get('inf_nan_corr'),
+                   results.get('columns_single_value'),
+                   save=save_plot, filepath=plot_path + 'baysis_dataset_sign_cramers.png',
+                   show=show_plot, figsize=(18, 15))
+
+    # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + 'baysis_dataset_sign_cramers.tex', 'w') as tf:
-        tf.write(sign.to_latex(float_format="{:0.2f}".format))
+        tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + 'baysis_dataset_coef_cramers.tex', 'w') as tf:
-        tf.write(coef.to_latex(float_format="{:0.2f}".format))
+        tf.write(results.get('significance').to_latex())
+
+    with open(tex_path + 'baysis_dataset_coef_cramers.tex', 'w') as tf:
+        tf.write(results.get('coefficient').to_latex())
 
     # Calculate with Theil's U
-    corr, sign, coef, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns = \
-        compute_correlations(
-            baysis_encoded,
-            categorical_categorical='theils_u',
-            continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
-            columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
-            bias_correction=False)
+    results = compute_correlations(
+        baysis_encoded,
+        categorical_categorical='theils_u',
+        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+        columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
+        bias_correction=False)
 
-    plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-                     single_value_columns, save=True, filepath=plot_path + 'baysis_dataset_corr_theils.png',
-                     show=True, figsize=(18, 15))
+    # Plot correlation matrix
+    plot_correlation(results.get('correlation'), results.get('columns'),
+                     nominal_columns, dichotomous_columns, ordinal_columns,
+                     results.get('inf_nan_corr'),
+                     results.get('columns_single_value'),
+                     save=save_plot, filepath=plot_path + 'baysis_dataset_corr_theils.png',
+                     show=show_plot, figsize=(18, 15))
 
+    # Plot statistics/significant matrix
+    plot_statistic(results.get('significance'), results.get('columns'),
+                   nominal_columns, dichotomous_columns, ordinal_columns,
+                   results.get('inf_nan_corr'),
+                   results.get('columns_single_value'),
+                   save=save_plot, filepath=plot_path + 'baysis_dataset_sign_theils.png',
+                   show=show_plot, figsize=(18, 15))
+
+    # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + 'baysis_dataset_sign_theils.tex', 'w') as tf:
-        tf.write(sign.to_latex(float_format="{:0.2f}".format))
+        tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + 'baysis_dataset_coef_theils.tex', 'w') as tf:
-        tf.write(coef.to_latex(float_format="{:0.2f}".format))
+        tf.write(results.get('significance').to_latex())
+
+    with open(tex_path + 'baysis_dataset_coef_theils.tex', 'w') as tf:
+        tf.write(results.get('coefficient').to_latex())
 
     print('Finished BAYSIS Dataset Analysis')

@@ -19,14 +19,14 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_statistic
+from func_plot import plot_correlation, plot_statistic, plot_boxplot
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
     print_welcome()
 
     save_plot = True
-    show_plot = True
+    show_plot = False
 
     data_path = 'data/'
     work_path = data_path + 'ArbIS/dataset/'
@@ -78,6 +78,8 @@ if __name__ == '__main__':
         plt.savefig(plot_path + 'arbis_dataset_hist_month.png')
     if show_plot:
         plt.show()
+    else:
+        plt.close()
 
     # Plot histogram of accidents over highway
     plt.figure(figsize=(13, 6))
@@ -89,68 +91,37 @@ if __name__ == '__main__':
         plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
     if show_plot:
         plt.show()
+    else:
+        plt.close()
 
     # Add length of roadwork fragment in kilometers
     arbis_selected['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer']))
     # Add duration of roadwork fragment in minutes
     arbis_selected['Duration'] = abs((arbis_imported['Von'] - arbis_imported['Bis'])).dt.total_seconds() / 60
 
-    # Settings for box plots
-    sns.set(font_scale=2)
-    sns.set_context('paper')
-    plt.figure(figsize=(11, 6))
+    plot_boxplot(arbis_selected,'Strasse', 'Length', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_street2length.png')
 
-    sns.boxplot(x='Strasse', y='Length', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_street2length.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected,'Strasse', 'Duration', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_street2duration.png')
 
-    sns.boxplot(x='Strasse', y='Duration', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_stree2duration.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected,'AnzGesperrtFs', 'Length', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_agfs2length.png')
 
-    sns.boxplot(x='AnzGesperrtFs', y='Length', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_agfs2length.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected,'AnzGesperrtFs', 'Duration', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_agfs2duration.png')
 
-    sns.boxplot(x='AnzGesperrtFs', y='Duration', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_agfs2duration.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected,'Einzug', 'Length', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_einzug2length.png')
 
-    sns.boxplot(x='Einzug', y='Length', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_einzug2length.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected,'Einzug', 'Duration', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_einzug2duration.png')
 
-    sns.boxplot(x='Einzug', y='Duration', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_einzug2duration.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_direction2length.png')
 
-    sns.boxplot(x='Richtung', y='Length', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_direction2length.png')
-    if show_plot:
-        plt.show()
-
-    sns.boxplot(x='Richtung', y='Duration', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_direction2duration.png')
-    if show_plot:
-        plt.show()
-
-    # Print matrix for debugging
-    print(arbis_selected.dtypes)
-    print(arbis_selected)
+    plot_boxplot(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_direction2duration.png')
 
     # defines column types
     nominal_columns = ['Strasse', 'StreckeID', 'Month']

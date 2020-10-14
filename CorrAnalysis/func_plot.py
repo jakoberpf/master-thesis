@@ -163,7 +163,6 @@ def plot_statistic(corr, columns,
                    sv_color='silver',
                    cbar=True
                    ):
-
     if ax is None:
         # If no figure/mathplotlib is given, set new figure size
         plt.figure(figsize=figsize)
@@ -228,3 +227,18 @@ def plot_statistic(corr, columns,
         plt.close()
 
     return ax
+
+
+def plot_boxplot(data, x, y, save, show, file):
+    # Settings for box plots
+    sns.set(font_scale=2)
+    sns.set_context('paper')
+    plt.figure(figsize=(11, 6))
+    # Plot boxplot
+    sns.boxplot(x=x, y=y, data=data, palette='Set1')
+    if save:
+        plt.savefig(file)
+    if show:
+        plt.show()
+    else:
+        plt.close()

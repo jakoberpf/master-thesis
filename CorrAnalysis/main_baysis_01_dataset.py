@@ -136,7 +136,7 @@ if __name__ == '__main__':
         compute_correlations(
             baysis_encoded,
             continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
-            nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
+            columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
             bias_correction=False)
 
     plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
@@ -155,7 +155,7 @@ if __name__ == '__main__':
             baysis_encoded,
             categorical_categorical='theils_u',
             continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
-            nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
+            columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
             bias_correction=False)
 
     plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,

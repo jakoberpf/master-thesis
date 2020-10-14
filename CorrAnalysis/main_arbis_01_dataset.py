@@ -31,6 +31,7 @@ if __name__ == '__main__':
     work_path = data_path + 'ArbIS/dataset/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
+    csv_path = work_path + 'csv/'
     work_file = 'ArbIS_2019.csv'
 
     arbis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True, date_parser=date_parser)
@@ -134,7 +135,13 @@ if __name__ == '__main__':
     con_ordinal = 'kendall'
 
     # Encode non numerical columns
-    arbis_encoded = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False)
+    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False,
+                                                           drop_fact_dict=False)
+    arbis_encoded.to_csv(csv_path + 'encoded.csv', index=False)
+
+    with open(csv_path + 'encoded_dict.csv', 'w') as tf:
+        for key in arbis_encoded_dict.keys():
+            tf.write("%s, %s\n" % (key, arbis_encoded_dict[key]))
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused

@@ -148,9 +148,9 @@ During the elaboration of the evaluation tool, which was not only developed for 
 
 \chapter{Introduction}
 \setcounter{page}{1}
-Traffic \glspl{jam} are a known problem to everyone, ever attempting to kickstart the summer season with a car trip on the first day of a public holiday. When the number of road users increases or the capacity of the road way decrease du to various reasons, a demand-supply imbalance is created \cite{Tang2019}. This impacts passenger traffic as well as transportation of goods in urban, suburban areas as well as highways with blocked bottlenecks and reducing travel speeds. They lead to unreliable travel times, inefficient usage of resources, and an increase in emissions, like pollutants or noise. Another common effect it a decrease in road safety, due to high driver tempers or inattentive mind, which can result in higher accident counts \cite{Sun2016}. They also induce enormous social costs due to the time losses in \glspl{jam}, ranging in the higher billions per year. \cite{RetallackOstendorf2019,BardtFritsch2014,ADAC2019}
+Traffic \glspl{jam} are a known problem to everyone, ever attempting to kickstart the summer season with a car trip on the first day of a public holiday. When the number of road users increases or the capacity of the road way decrease du to various reasons, a demand-supply imbalance is created \cite{Tang2019}. This impacts passenger traffic as well as transportation of goods in urban, suburban areas as well as highways with blocked bottlenecks and reducing travel speeds. They lead to unreliable travel times, inefficient usage of resources, and an increase in emissions, like pollutants or noise \cite{FHA2011}. Another common effect it a decrease in road safety, due to high driver tempers or inattentive mind, which can result in higher accident counts \cite{Sun2016}. They also induce enormous social costs due to the time losses in \glspl{jam}, ranging in the higher billions per year. \cite{RetallackOstendorf2019,BardtFritsch2014,ADAC2019}
 
-It is therefore essential to reduce risks of \glspl{jam}, as well as accidents, with an increased understanding of the traffic accident causes, trigger effects of \glspl{jam} and roadworks, to maintain a fluent traffic flow and traffic safety. Tailored \acrfull{tsm} strategies, focused on automatically reaction on significant traffic event, could enable \acrfull{atdm} of high traffic demands in reduced traffic volume areas, due to said constraints \cite{Tang2019}. This would go towards reducing the economic, environmental, and social costs associated with accidents, roadworks or \glspl{jam}. Part of this \acrshort{tsm} strategies implemented in a \acrshort{atdm} system, could be a form of traffic prediction systems, with the potential to identify compromising conditions in real-time, allowing according to actions to be taken to avoid consecutive events. \cite{RetallackOstendorf2019} 
+It is therefore essential to reduce risks of \glspl{jam}, as well as accidents, with an increased understanding of the traffic accident causes, trigger effects of \glspl{jam} and roadworks, to maintain a fluent traffic flow and traffic safety. Tailored \acrfull{tsm} strategies, focused on automatically reaction on significant traffic event, could enable \acrfull{atdm} of high traffic demands in reduced traffic volume areas, due to said constraints \cite{Tang2019}. This would go towards reducing the economic, environmental, and social costs associated with accidents, roadworks or \glspl{jam}. Part of this \acrshort{tsm} strategies implemented in a \acrshort{atdm} system, could be a form of traffic incident prediction systems, with the potential to identify compromising conditions in real-time, allowing according to actions to be taken to avoid consecutive events. \cite{RetallackOstendorf2019} 
 
 \bigskip
 
@@ -163,7 +163,7 @@ A system capable of the described mentioned functionalities would likely consist
   \item Traffic management and controlling response
 \end{itemize}
 
-\The first component, in charge of detecting \glspl{jam} as well as incident, requires input data like speed, volume, occupancy to represent the traffic situation and incident reports to define incident characteristics. The next component would then analyze the resulting dataset to find characteristic features of the congestions and incident, which will be determined in this thesis. In the case the analysis of the characteristic shows a quite possible and imminent event it would trigger the last component to initiate appropriate controlling actions and prepare incident responses.
+The first component, in charge of detecting \glspl{jam} as well as incident, requires input data like speed, volume, occupancy to represent the traffic situation and incident reports to define incident characteristics. The next component would then analyze the resulting dataset to find characteristic features of the congestions and incident, which will be determined in this thesis. In the case the analysis of the characteristic shows a possible and imminent event it would trigger the last component to initiate appropriate controlling actions and prepare incident responses.
 
 In the following chapters of this introduction section, the reader will be introduced to the concepts and systems used to cover the input and output requirements in this thesis.
 
@@ -229,7 +229,7 @@ In the scope of this thesis only a selection of these introduced data collection
 
 \bigskip
 
-Jams or a single congestion in most colloquial terms are spatial and timely accumulations of traffic participants, resulting in speeds slower or sometimes much slower than free flow. In severe cases this is also often described a stop-and-go or stopped traffic. They are triggered by a reduction of traffic throughput in volume or an increase of traffic demand. Studies have shown that these triggers are usually caused by three categories of disturbances. \cite{TRB2003}
+Jams or a single congestion in layman terms are spatial and timely accumulations of traffic participants, resulting in speeds slower or sometimes much slower than free flow. In severe cases this is also often described a stop-and-go or stopped traffic. They are triggered by a reduction of traffic throughput in volume or an increase of traffic demand. Studies have shown that these triggers are usually caused by three categories of disturbances. \cite{TRB2003}
 
 \subsubsection{Traffic-Influencing Events}
 
@@ -242,7 +242,7 @@ Jams or a single congestion in most colloquial terms are spatial and timely accu
 \subsubsection{Traffic Demand}
 
 \begin{itemize}
-	\item Fluctuations in Normal Traffic:
+	\item Fluctuations in Normal Traffic: Variations in demand in day-to-day traffic volumes can overload systems with fixed capacities. This can lead to the already mentioned travel speed reductions without any event occurring.
 	\item Special Events: Commuting traffic increases demand, as do major events or public holidays
 \end{itemize}
 
@@ -260,7 +260,7 @@ Jams or a single congestion in most colloquial terms are spatial and timely accu
 % TODO https://www.zukunft-mobilitaet.net/3344/analyse/wie-entstehen-staus-phantomstau/
 There is another not listed type of cause. When drivers don't keep up smooth accelerations, but rather break suddenly or accelerate in rapidly, other vehicles need to react accordingly. This creates a chain reaction leading to reduced travel speed. These are called "phantom jams" because they do not have any specific origin and are common in high density traffic regions. \cite{ASTRA2020} 
 
-Unfortunately there is no unified definition when these reductions of speed or volume are classified as a congestion. As example the \acrshort{adac} classifies highway traffic moving with mean speed lower than 20 km/h as jammed \cite{ADAC2019}. In Switzerland the ministry for streets has a more severe definition with a mean speed under 10 km/h \cite{ASTRA2020}. The Bavarian ministry for streets does not have an official definition at the time of writing, which makes it necessary to form a specific definition of \glspl{jam} and speed thresholds, for the scope of this thesis. Because we have a good representation of the speeds occurring in jams from the FCD date, introduced in chapter 1.1, we can use this information to tailor a definition to our needs. 
+This general layman's definition of jams is essential correct, but not sufficient for the data scientific approach in this thesis. Unfortunately there is no unified definition or threshold when a reduced speed is classified as a congested or slow. As example the \acrshort{adac} classifies highway traffic moving with mean speed lower than 20 km/h as jammed \cite{ADAC2019}. In Switzerland the ministry for streets has a more severe definition with a mean speed under 10 km/h \cite{ASTRA2020}. The Bavarian ministry for streets does not have an official definition at the time of writing, which makes it necessary to form a specific definition of \glspl{jam} and speed thresholds, for the scope of this thesis. Because we have a good representation of the speeds occurring in jams from the FCD date, introduced in chapter 1.1, we can use this information to tailor a definition to our needs. 
 
 Figure \ref{img:speedMatrixPlot_singleCluster} shows a section of a random speed matrix plot from the FCD dataset, containing a scattered congestion cluster. The horizontal and vertical extend represents the spatial and temporal location of each cell. The color of the cell indicated the mean absolute speed recorded in the time frame and on the link of the cell (detailed gradient is shown in the legend of \ref{img:speedMatrixPlot_singleCluster}).
 
@@ -271,13 +271,32 @@ Figure \ref{img:speedMatrixPlot_singleCluster} shows a section of a random speed
 	\label{img:speedMatrixPlot_singleCluster}
 \end{figure}
 
-The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered as jammed, to incorporate the complete congestion area. Speeds above 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes a speed threshold of 40 km/h fitting for detecting congestion clusters in the scope of this thesis.
- 
-From this information the following thresholds for classifying \glspl{jam} in FCD data where defined.
+The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered, to incorporate the complete congestion area. Speeds above at least 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes two speed threshold for jammed and slow-moving traffic necessary adequately detecting congestion clusters. With this information and some learning during calibration of the clustering algorithm (see chapter \ref{cluster_calibration}) the following thresholds for classifying \glspl{jam} in FCD data where defined for highways.
+
+\begin{itemize}
+	\item Speed threshold for jammed state : vcrit.highway.jammed = 30 $\frac{km}{h}$
+	\item Speed threshold for slow-moving state : vcrit.highway.slow = 60 $\frac{km}{h}$
+	\item Minimum (spatial) length of an congestion : min.length.highway = 1000 $m$
+	\item Minimum (temporal) duration of an congestion : min.duration.highway = 9 $min$
+	\item Threshold for the spatial gap in-between congestion events during the cluster consolidation on highways [m]. spatial.gap.threshold.highway=5000
+	\item Threshold for the temporal gap in-between congestion events during the cluster consolidation on highways [min]. temporal.gap.threshold.highway=6
+	\item The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation on highway roads types when using the CONGSTATS Cluster Algo [s]. travelTime.gap.threshold.highway=360
+\end{itemize}
+
+
 
 More Infos about what characteristics do congestions have? Causes, Effects and Indicators...
 
 % https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
+
+
+% file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20(1).pdf
+\begin{itemize}
+	\item The cost rate for one car loosing one hour travel time [€/(Fz*h)] cost.rate.car=11
+	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
+\end{itemize}
+
+
 
 \chapter{Correlation}
 \label{definition_correlation}

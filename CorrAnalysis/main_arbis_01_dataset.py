@@ -17,7 +17,9 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from func_correlation import numerical_encoding, compute_correlations, plot_dataframe
+
+from func_correlation import numerical_encoding, compute_correlations
+from func_plot import plot_correlation
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -170,9 +172,9 @@ if __name__ == '__main__':
             nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
             bias_correction=False)
 
-    plot_dataframe(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-                   single_value_columns, save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
-                   show=show_plot, figsize=(18, 15))
+    plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
+                     single_value_columns, save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
+                     show=show_plot, figsize=(18, 15))
 
     # plot_dataframe(sign, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
     #                single_value_columns, save=True, filepath=plot_path + 'arbis_dataset_sign_cramers.png',
@@ -187,12 +189,25 @@ if __name__ == '__main__':
     with open(tex_path + 'arbis_dataset_coef_cramers.tex', 'w') as tf:
         tf.write(coef.to_latex())
 
-    # Calculate with Theil's U
-    # associations(arbis_encoded, figsize=(18, 15),
-    #              nominal_columns=['Strasse', 'Richtung', 'StreckeID', 'Month'],
-    #              plot=False, bias_correction=False)
-    # if safe_plots:
-    #     plt.savefig(plot_path + 'arbis_dataset_corr_theils.png')
-    # plt.show()
+    corr, sign, coef, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns = \
+        compute_correlations(
+            arbis_encoded,
+            categorical_categorical='theils_u',
+            continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+            nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
+            bias_correction=False)
+
+    plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
+                     single_value_columns, save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.png',
+                     show=show_plot, figsize=(18, 15))
+
+    with open(tex_path + 'arbis_dataset_corr_theils.tex', 'w') as tf:
+        tf.write(corr.to_latex(float_format="{:0.2f}".format))
+
+    with open(tex_path + 'arbis_dataset_sign_theils.tex', 'w') as tf:
+        tf.write(sign.to_latex(float_format="{:0.6f}".format))
+
+    with open(tex_path + 'arbis_dataset_coef_theils.tex', 'w') as tf:
+        tf.write(coef.to_latex())
 
     print('Finished ArbIS Dataset Analysis')

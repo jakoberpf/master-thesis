@@ -18,7 +18,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-from func_correlation import numerical_encoding, compute_correlations, plot_dataframe
+from func_correlation import numerical_encoding, compute_correlations
+from func_plot import plot_correlation
 from func_utils import print_welcome, date_parser
 
 if __name__ == '__main__':
@@ -69,6 +70,8 @@ if __name__ == '__main__':
     plt.xlabel('Month of 2019')
     if safe_plots:
         plt.savefig(plot_path + 'baysis_dataset_hist_month.png')
+    if show_plot:
+        plt.show()
 
     # Remove month column
     # baysis_selected.drop('Month', axis='columns', inplace=True)
@@ -81,6 +84,8 @@ if __name__ == '__main__':
     plt.xlabel('Highway')
     if safe_plots:
         plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
+    if show_plot:
+        plt.show()
 
     # Settings for box plots
     sns.set(font_scale=2)
@@ -90,6 +95,8 @@ if __name__ == '__main__':
     sns.boxplot(x='Strasse', y='Kat', data=baysis_selected, palette='Set1')
     if safe_plots:
         plt.savefig(plot_path + 'baysis_dataset_box_street2kat.png')
+    if show_plot:
+        plt.show()
 
     # defines column types
     nominal_columns = ["Strasse", "Kat", "Typ",
@@ -132,9 +139,9 @@ if __name__ == '__main__':
             nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
             bias_correction=False)
 
-    plot_dataframe(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-                   single_value_columns, save=True, filepath=plot_path + 'baysis_dataset_corr_cramers.png',
-                   show=True, figsize=(18, 15))
+    plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
+                     single_value_columns, save=True, filepath=plot_path + 'baysis_dataset_corr_cramers.png',
+                     show=True, figsize=(18, 15))
 
     with open(tex_path + 'baysis_dataset_sign_cramers.tex', 'w') as tf:
         tf.write(sign.to_latex(float_format="{:0.2f}".format))
@@ -151,9 +158,9 @@ if __name__ == '__main__':
             nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
             bias_correction=False)
 
-    plot_dataframe(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-                   single_value_columns, save=True, filepath=plot_path + 'baysis_dataset_corr_theils.png',
-                   show=True, figsize=(18, 15))
+    plot_correlation(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
+                     single_value_columns, save=True, filepath=plot_path + 'baysis_dataset_corr_theils.png',
+                     show=True, figsize=(18, 15))
 
     with open(tex_path + 'baysis_dataset_sign_theils.tex', 'w') as tf:
         tf.write(sign.to_latex(float_format="{:0.2f}".format))
@@ -161,4 +168,4 @@ if __name__ == '__main__':
     with open(tex_path + 'baysis_dataset_coef_theils.tex', 'w') as tf:
         tf.write(coef.to_latex(float_format="{:0.2f}".format))
 
-    print("Finished")
+    print('Finished BAYSIS Dataset Analysis')

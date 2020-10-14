@@ -83,19 +83,19 @@ def plot_correlation(corr, columns,
         # If no figure/mathplotlib is given, set new figure size
         plt.figure(figsize=figsize)
 
-    # if inf_nan.any(axis=None):
-    #     inf_nan_mask = np.vectorize(lambda x: not bool(x))(inf_nan.values)
-    #     ax = sns.heatmap(inf_nan_mask,
-    #                      cmap=['white'],
-    #                      annot=inf_nan if annot else None,
-    #                      fmt='',
-    #                      center=0,
-    #                      square=True,
-    #                      ax=ax,
-    #                      mask=inf_nan_mask,
-    #                      cbar=False)
-    # else:
-    #     inf_nan_mask = np.ones_like(corr)
+    if inf_nan.any(axis=None):
+        inf_nan_mask = np.vectorize(lambda x: not bool(x))(inf_nan.values)
+        ax = sns.heatmap(inf_nan_mask,
+                         cmap=['white'],
+                         annot=inf_nan if annot else None,
+                         fmt='',
+                         center=0,
+                         square=True,
+                         ax=ax,
+                         mask=inf_nan_mask,
+                         cbar=False)
+    else:
+        inf_nan_mask = np.ones_like(corr)
 
     if len(single_value_columns) > 0:
         # If dataframe contains single value columns
@@ -119,7 +119,9 @@ def plot_correlation(corr, columns,
     else:
         sv_mask = np.ones_like(corr)
 
+    # combine inf_nan_mask and sv_mask into one mask for all not available values
     mask = np.vectorize(lambda x: not bool(x))(inf_nan_mask) + np.vectorize(lambda x: not bool(x))(sv_mask)
+
     ax = sns.heatmap(corr,
                      cmap=cmap,
                      annot=annot,
@@ -156,7 +158,7 @@ def plot_statistic(corr, columns,
                    ax=None,
                    figsize=None,
                    annot=True,
-                   fmt='.2f',
+                   fmt='.4f',
                    cmap=None,
                    sv_color='silver',
                    cbar=True
@@ -168,6 +170,7 @@ def plot_statistic(corr, columns,
 
     if inf_nan.any(axis=None):
         inf_nan_mask = np.vectorize(lambda x: not bool(x))(inf_nan.values)
+
         ax = sns.heatmap(inf_nan_mask,
                          cmap=['white'],
                          annot=inf_nan if annot else None,
@@ -208,9 +211,9 @@ def plot_statistic(corr, columns,
                      annot=annot,
                      fmt=fmt,
                      center=0,
-                     # vmax=1.0,
-                     # # if there are only
-                     # vmin=-1.0 if len(columns) - len(nominal_columns) >= 2 else 0.0,
+                     vmax=1.0,
+                     # if there are only
+                     vmin=-1.0 if len(columns) - len(nominal_columns) >= 2 else 0.0,
                      square=True,
                      mask=mask,
                      ax=ax,

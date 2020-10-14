@@ -148,8 +148,35 @@ def anova(x, y):
 
 
 def kruskal_wallis(x, y):
+    """
+
+    Parameters:
+    -----------
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of continuous measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+
+    Returns:
+    --------
+    float : in the range of [0,1]
+    float : _SIGN_NAN as default p-value
+    str   : correlation name/identifier
+    """
     print(x.name + ' to ' + y.name + ' with Kruskal Wallis')
     f_statistic, p_value = ss.kruskal(x, y)
+
+    if p_value < _ALPHA:
+        print(
+            'ATTENTION: Kruskal-Wallis (' + p_value.__str__() + ') is smaller then alpha(' + _ALPHA.__str__() + '). ' +
+            'This means that there is a different between the ranks and further testing is necessary')
+        print(y.unique())
+        df = pd.DataFrame(columns=[x.name, y.name])
+        df[x.name] = x
+        df[y.name] = y
+        print(df)
+        statistic, p_value = ss.wilcoxon(x, y)
+
     return f_statistic, p_value, 'Kruskal-Wallis H'
 
 

@@ -170,12 +170,21 @@ def kruskal_wallis(x, y):
         print(
             'ATTENTION: Kruskal-Wallis (' + p_value.__str__() + ') is smaller then alpha(' + _ALPHA.__str__() + '). ' +
             'This means that there is a different between the ranks and further testing is necessary')
-        print(y.unique())
-        df = pd.DataFrame(columns=[x.name, y.name])
-        df[x.name] = x
-        df[y.name] = y
-        print(df)
-        statistic, p_value = ss.wilcoxon(x, y)
+
+        # uniques = y.unique()
+        # sign = pd.DataFrame(index=uniques, columns=uniques)
+        # df = pd.DataFrame(columns=[x.name, y.name])
+        # df[x.name] = x
+        # df[y.name] = y
+        #
+        # for i in range(0, len(uniques)):
+        #     for j in range(0, len(uniques)):
+        #         group = df.query(x.name + '== ' + i.__str__() + ' | ' + y.name + ' == ' + j.__str__())
+        #         print(group)
+        #         statistic_wilcoxon, p_value_wilcoxon, coef = wilcoxon(x, y)
+        #         sign.loc[uniques[i], uniques[j]] = p_value_wilcoxon
+        #
+        # print(sign)
 
     return f_statistic, p_value, 'Kruskal-Wallis H'
 

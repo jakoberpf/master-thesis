@@ -138,6 +138,7 @@ if __name__ == '__main__':
     arbis_encoded = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False)
 
     # Calculate with Cramers 's V
+    results = None  # To make sure that no old data is reused
     results = compute_correlations(
         arbis_encoded,
         continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
@@ -171,6 +172,7 @@ if __name__ == '__main__':
         tf.write(results.get('coefficient').to_latex())
 
     # Calculate with Theil's U
+    results = None  # To make sure that no old data is reused
     results = compute_correlations(
         arbis_encoded,
         categorical_categorical='theils_u',

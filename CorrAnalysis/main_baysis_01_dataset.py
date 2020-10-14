@@ -124,6 +124,7 @@ if __name__ == '__main__':
     baysis_encoded = numerical_encoding(baysis_selected, nominal_columns, drop_single_label=False)
 
     # Calculate with Cramers 's V
+    results = None  # To make sure that no old data is reused
     results = compute_correlations(
         baysis_encoded,
         continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
@@ -147,16 +148,17 @@ if __name__ == '__main__':
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
-    with open(tex_path + 'baysis_dataset_sign_cramers.tex', 'w') as tf:
+    with open(tex_path + 'baysis_dataset_corr_cramers.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
-    with open(tex_path + 'baysis_dataset_coef_cramers.tex', 'w') as tf:
+    with open(tex_path + 'baysis_dataset_sign_cramers.tex', 'w') as tf:
         tf.write(results.get('significance').to_latex())
 
     with open(tex_path + 'baysis_dataset_coef_cramers.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
 
     # Calculate with Theil's U
+    results = None  # To make sure that no old data is reused
     results = compute_correlations(
         baysis_encoded,
         categorical_categorical='theils_u',
@@ -181,10 +183,10 @@ if __name__ == '__main__':
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
-    with open(tex_path + 'baysis_dataset_sign_theils.tex', 'w') as tf:
+    with open(tex_path + 'baysis_dataset_corr_theils.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
-    with open(tex_path + 'baysis_dataset_coef_theils.tex', 'w') as tf:
+    with open(tex_path + 'baysis_dataset_sign_theils.tex', 'w') as tf:
         tf.write(results.get('significance').to_latex())
 
     with open(tex_path + 'baysis_dataset_coef_theils.tex', 'w') as tf:

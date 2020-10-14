@@ -14,9 +14,8 @@
 #  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
+import pandas as pd
 
 from func_correlation import numerical_encoding, compute_correlations
 from func_plot import plot_correlation, plot_statistic, plot_boxplot

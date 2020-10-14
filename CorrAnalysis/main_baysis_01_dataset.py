@@ -16,7 +16,6 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 
 from func_correlation import numerical_encoding, compute_correlations
 from func_plot import plot_correlation, plot_boxplot, plot_statistic

@@ -189,7 +189,7 @@ if __name__ == '__main__':
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + 'arbis_dataset_sign_cramers.tex', 'w') as tf:
-        tf.write(results.get('coefficient').to_latex())
+        tf.write(results.get('significance').to_latex())
 
     with open(tex_path + 'arbis_dataset_coef_cramers.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
@@ -208,11 +208,18 @@ if __name__ == '__main__':
                      save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.png',
                      show=show_plot, figsize=(18, 15))
 
+    plot_statistic(results.get('significance'), results.get('columns'),
+                   nominal_columns, dichotomous_columns, ordinal_columns,
+                   results.get('inf_nan_corr'),
+                   results.get('columns_single_value'),
+                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_theils.png',
+                   show=show_plot, figsize=(18, 15))
+
     with open(tex_path + 'arbis_dataset_corr_theils.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + 'arbis_dataset_sign_theils.tex', 'w') as tf:
-        tf.write(results.get('coefficient').to_latex())
+        tf.write(results.get('significance').to_latex())
 
     with open(tex_path + 'arbis_dataset_coef_theils.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())

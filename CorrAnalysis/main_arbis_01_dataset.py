@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
     # Plot histogram of roadworks over time / months
     plt.figure(figsize=(13, 6))
-    plt.hist(arbis_selected['Month'], color='blue', edgecolor='black')
+    plt.hist(arbis_selected['Month'], color='blue', edgecolor='black', label=True)
     plt.title('Histogram of roadworks per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
     # Plot histogram of accidents over highway
     plt.figure(figsize=(13, 6))
-    plt.hist(arbis_selected['Strasse'], color='blue', edgecolor='black')
+    plt.hist(arbis_selected['Strasse'], color='blue', edgecolor='black', label=True)
     plt.title('Histogram of roadworks per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')

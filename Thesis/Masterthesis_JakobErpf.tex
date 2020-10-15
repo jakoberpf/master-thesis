@@ -567,7 +567,7 @@ Definition: Theil’s U
 %
 
 \section{Significance vs. Uncertainty}
-\label{correlation_uncertainty}
+\label{correlation_significance_uncertainty}
 
 %https://de.statista.com/statistik/lexikon/definition/122/signifikanz/
 
@@ -585,13 +585,16 @@ Definition: Theil’s U
 \subsubsection{Uncertainty}
 	
 \chapter{Datasets}
-In this chapter the provided datasets from the previously mentioned street information systems and the FCD provider will be elaborated. 
+In this chapter the provided datasets from the previously mentioned street information systems and the FCD provider will be elaborated. First an overview of FCD in general and the available dataset is given. Then the incident datasets from BAYSIS and ArbIS are presented with descriptive statistic.
 
 \section{FCD}
 \label{dataset_fcd}
-As described in chapter 1.1, \acrshort{fcd} data represents the movement of vehicles and can be used to calculate vehicle speeds and trajectories. The provided dataset contains the aggregated absolute and relative speeds for the highways and state streets, calculated from \acrshort{fcd} data. The process of how these speeds can be calculated from \acrshort{fcd} data is elaborated in the thesis of Felix Rampe \textit{Traffic Speed Estimation and Prediction Using Floating Car Data} \cite{Rempe2018} and will not be further explained, since it is was not part of the project. The resulting speeds are mapped onto the HERE \cite{HERE2020} network, to be compliant with the geolocation system used in the \gls{congstats} project.
+ 
+As described in chapter 1.1, \acrshort{fcd} represents the movement of vehicles and can be used to calculate vehicle speeds and trajectories. The provided dataset contains the aggregated absolute and relative speeds for the highways and state streets, calculated from \acrshort{fcd} data. The process of speeds estimation with \acrshort{fcd} data is explained in detail by Felix Rampe in chapter 4 of his thesis \textit{Traffic Speed Estimation and Prediction Using Floating Car Data} \cite{Rempe2018}, but is outside of the scope for this thesis. The FCD is mapped mapped onto the HERE \cite{HERE2020} network, to be compliant with the geolocation system used in the project.
 
-Each of these aggregated speeds represent the mean speed over a three minute time interval on the corresponding road section. This arrangement of speeds for each time step and space step will be called speed matrix, which will be used in the algorithmic analysis to detect jams. For visual representation the pictures on the right show the plots of some sections of these speed matrixes with the horizontal axes being the spatial extend and the vertical axes the time extend. Deep greens represent free flowing traffic with ~130 km/h, which is the norm speed in Germany (in German called “Richtgeschwindigkeit”) on highways set the legislator. The speed scale then develops linearly downwards deep red meaning congested traffic with 30 km/h or less. 
+% https://athene-forschung.unibw.de/doc/127445/127445.pdf
+
+Each of these aggregated speeds represent the mean speed over a three minute time interval on the corresponding road section. This arrangement of speeds for each time step and space step is called speed matrix and is the base data for the congestion detection. Figure \ref{speedMatrixPlot_mutipleMixedClusters} shows a visual representation a speed matrixes with the horizontal axes being the spatial extend and the vertical axes the time extend. Deep greens represent free flowing traffic with ~130 km/h, which is the norm speed in Germany (in German called “Richtgeschwindigkeit”) on highways set the legislator. The speed scale then develops linearly downwards deep red indicating traffic with 30 km/h or less. 
 
 \begin{figure}[h]
 	\centering
@@ -602,18 +605,16 @@ Each of these aggregated speeds represent the mean speed over a three minute tim
 
 The observer will clearly recognize the jams represented by the clusters of red and orange cells in the figure \ref{img:speedMatrixPlot_mutipleMixedClusters}, with the angled extends towards the right down edge, due to the vehicle trajectory through space and time. These cluster, also shown in the two lower pictures, which representing one or multiple jams can be densely packed or spotted into smaller clusters or, depending on the severity of a jam can be seen, by the cluster which contain more orange or yellow cells than red. 
 
-From this visual clarity, the continuity of the data points and the precision on 3-minute intervals we can deviate that an algorithmic approach should also be able to detect such congestion events. This being said, the dataset does contain defects in the form of missing values for complete road sections, which can be easily ignored during processing. Another harder to detect and fixable defect type are visually obviously wrong speeds. Meaning sudden speed drops or jumps to block of identical speeds of an abnormal temporal and spatial extend. 
-
-%Although originally an analysis of the whole year 2019 was planned, the provider was only able to deliver the FCD data for the first half in the timeframe of this thesis for processing and analysis. Due to that the evaluation time frame is restricted to the first half of the year 2019.
+From this visual clarity, the continuity of the data points and the precision on 3-minute intervals we can deviate that an algorithmic approach should also be able to detect such congestion events. This being said, the dataset does contain defects in the form of missing values for complete road sections, which have to be ignored during processing. Another defect type are obviously wrong speed block, meaning sudden speed drops or jumps to areas of identical speeds with an abnormal temporal and spatial extend. 
 
 \section{BAYSIS}
 \label{dataset_baysis}
-\par The \acrfull{baysis} as describe in chapter \ref{dataset_baysis}, collects a wide range of different information types, which also contains accidents with the corresponding police reports. Accidents have a strong traffic influence on the Bavarian street network, with more than 400.000 being recorded in the year 2019 (StMi, 2020). The provided export contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. Due to the limited availability of \acrshort{fcd} data and potential evaluation timeframe, only the accidents in the first half of the year 2019 are relevant. In these months 5140 accidents where recorded, which equivalents an expected 50\% of the total number of accidents on the highway network.
-Each accident report includes a variety of specifications, which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved like nationality, age and gender. In total, one report contains 132 values, describing the accident, participant and environment. Because we do not want to form a stereotype of accident participant but rather find significant accident characteristics or environmental factors most of the descriptive values for the involved persons are not considered. Further we also have to neglect all values which cannot be converted in a numeric and nominal scale, due the used correlation methods. Variables, which don’t have any values are also neglected. From this curtailed pool of correlate able and analyze able characteristics we want to consider all parameters that have a logical significance with causes or effects of an accident.
 
-A diverse distribution in the values would be also preferred, to reduce the risk of uncertain relation. Because the correlation of a non distributed variable, which for example has one values occupying a 95\% major share, is based on a sample set comprised of mostly the same samples, the interpretability for a correlation to other values but the major share is very limited (see \ref{correlation_uncertainty} for more detailed elaboration of this assumption).
-\newline
-\par To give an overview about what results can be expected on the basis of the provided dataset and which values are worth to be further evaluated, all plausible relevant parameters of the dataset will be illustrated and shortly discussed. All diagrams are also available as larger prints in the appendix \ref{appendix_baysis}. 
+The \acrfull{baysis} as describe in chapter \ref{dataset_baysis}, collects a wide range of different information types, which also contains accidents with the corresponding police reports. Accidents have a strong traffic influence on the Bavarian street network, with more than 400.000 being recorded in the year 2019 (StMi, 2020). The provided export contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. 
+
+Each accident report includes a variety of specifications, which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved like nationality, age and gender. In total, one report contains 132 values, describing the accident, participant and environment. Because we do not want to form a stereotype of accident participant but rather find significant accident characteristics or environmental factors most of the descriptive values for the involved persons are not considered. Variables without any values or single values are also neglected. To meet a statistical significant result a diverse distribution in the values would be preferred, to reduce the risk of uncertain relation. Because the correlation of a non distributed variable, which for example has one values occupying a 95\% major share, is based on a sample set comprised of mostly the same samples, the interpretability for a correlation to other values but the major share is very limited (see \ref{correlation_significance_uncertainty} for more detailed elaboration of this assumption).
+
+From this curtailed pool of correlate able and analyze able characteristics all parameters that have a logical significance with causes or effects of an accident will be considered in the analysis. To give an overview about what results can be expected on the basis of the provided dataset the 15 most plausible relevant parameters of the dataset will be illustrated. The parameters are also categorized in the variable types, defined in chapter \ref{correlation_variable_types}. All diagrams are also available as larger prints in the appendix \ref{appendix_baysis} for better readability. 
 
 \begin{figure}[h]
 	\centering
@@ -629,7 +630,7 @@ A diverse distribution in the values would be also preferred, to reduce the risk
 	\label{img:baysis_monthlyDist_percentage}
 \end{figure}
 
-A look on the monthly distribution of accidents recorded by BAYSIS (shown in figure \ref{img:baysis_monthlyDist_absolute}) shows that there are no significant differences in number, besides of January. The monthly distribution expressed in percentages (see above in figure \ref{img:baysis_monthlyDist_percentage}) supports this deviation with a 31\% increase over the mean count of 857 accidents per month. This can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior in higher traveling speeds.
+A look on the monthly distribution of accidents recorded by BAYSIS (see figure \ref{img:baysis_monthlyDist_absolute}) shows that that the months of January,July and August have considerably higher number of accidents. The monthly distribution expressed in percentages (see figure \ref{img:baysis_monthlyDist_percentage}) supports this deviation with a respectively 31\%, 21\% and 15\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased demand because of public holidays is the most probable explanation.
 
 \begin{figure}[h]
 	\centering
@@ -639,7 +640,7 @@ A look on the monthly distribution of accidents recorded by BAYSIS (shown in fig
 \end{figure}
 
 \paragraph{Kat}
-The accident categories described by the variable shown in figure \ref{img:baysis_dataset_Kat}, presents a quite natural distribution. The categories range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that statistical deadly accidents are exponentially unlikely. The variable consists of four values, which can be considered as ordered, and is therefore ordinal.
+The accident categories described by the variable shown in figure \ref{img:baysis_dataset_Kat}, presents a gaussian like distribution. The categories range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that statistical deadly accidents are exponentially unlikely. The variable consists of four values, which can be considered as ordered, and is therefore ordinal.
 
 \begin{figure}[h]
 	\centering
@@ -659,7 +660,7 @@ The accident type variable (shown in figure \ref{img:baysis_dataset_Typ}) incorp
 \end{figure}
 
 \paragraph{Beteil}
-The distribution of the number of involved persons (shown in figure \ref{img:baysis_dataset_Beteil}) shows that more than 96\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\% and the second biggest of one involved person for 30\% of the total count. This also means the accidents with more than three involved persons are statistically insignificant. Because of the increasing oder of values, the variable is of ordinal type.
+The distribution of the number of involved persons (shown in figure \ref{img:baysis_dataset_Beteil}) shows that more than 96\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\% and the second biggest of one involved person for 30\% of the total count. This also means the accidents with more than three involved persons are statistically insignificant. Because of the increasing order of values, the variable is of ordinal type.
 
 \begin{figure}[h]
 	\centering
@@ -679,7 +680,7 @@ The accident cause type, described by the two aggregated variables UArt1 and UAr
 \end{figure}
 
 \paragraph{AUrs}
-The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown in figure \ref{img:baysis_dataset_AUrs}) does clearly that only the first category of “Slippery road condition due to oil” hold any significant share. Because of that any correlation to this parameter would not point to any usable statement and therefore can be neglected for the evaluation. The variable does not show any order and is therefore of nominal type.
+The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown in figure \ref{img:baysis_dataset_AUrs}) does clearly that only the first category of “Slippery road condition due to oil” hold a significant share. Because of that any correlation to this parameter would not point to any usable statement and therefore can be neglected for the evaluation.
 
 \begin{figure}[]
 	\centering
@@ -699,8 +700,7 @@ The obstacle collision distribution (shown in figure \ref{img:baysis_dataset_Auf
 \end{figure}
 
 \paragraph{Alkoh}
-The Alcohol involvement indication parameter (shown in figure \ref{img:baysis_dataset_Alkoh}) shows that 1,9\% of accidents have one or more involved persons with measurable alcohol amounts in the blood connected with it. The respective 98 reports with 
-	%TODO variabel type
+The Alcohol involvement indication parameter reveals that only 1,9\% of accidents have one or more involved persons with measurable blood alcohol. The variable only has two unique values and is therefore dichotomous.
 
 \begin{figure}[h]
 	\centering
@@ -710,19 +710,17 @@ The Alcohol involvement indication parameter (shown in figure \ref{img:baysis_da
 \end{figure}
 
 \paragraph{Char}
-The variable distribution shown in figure \ref{img:baysis_dataset_Char} describes the characteristic of the street where the accident happened. Since we are only considering highway, the type of “crossing” is expected to be zero. 
-	%TODO variabel type
+The variable distribution shown in figure \ref{img:baysis_dataset_Char} describes the characteristic of the street where the accident happened. Since we are only considering highway, the type of "Crossing", "Property" and "Roundabout" is expected to be zero. The variabel is not ordered and therefore of nominal type.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.6]{./assets/baysis_dataset_Bes.pdf}
-	\caption{Distribution of the special street characteristic}
+	\caption{Distribution of the special street characteristic 'Bes'}
 	\label{img:baysis_dataset_Bes}
 \end{figure}
 
 \paragraph{Bes}
-The aggregated distribution of the variables Bes1, Bes2 and Bes3, which further defines the street characteristic mentioned above.
-	%TODO variabel type 
+The aggregated distribution of the variables "Bes1", "Bes2" and "Bes3", which further defines the street characteristic mentioned above only has one significant share of the type "Roadwork". The variabel itself is therefore not suitable for a correlation analysis, but can be used as validation criterium for the matching of roadwork incidents.
 
 \begin{figure}[h]
 	\centering
@@ -732,12 +730,8 @@ The aggregated distribution of the variables Bes1, Bes2 and Bes3, which further 
 \end{figure}
 
 \paragraph{Lich}
-Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
-Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
-Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
-	%TODO variabel type
+The light situation parameter shown in \ref{img:baysis_dataset_Lich} does not reveal any features and describes the lighting condition when the accident happened. Because is could be ranked from best to works lighting is is of ordinal type.
 
-\paragraph{Zust}
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.6]{./assets/baysis_dataset_Zust}
@@ -745,24 +739,23 @@ Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
 	\label{img:baysis_dataset_Zust}
 \end{figure}
 
-Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
-Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
-Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
-	%TODO variabel type
+\paragraph{Zust}
+Dolorem Ipsum. 
 
-\paragraph{Fstf}
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{./assets/baysis_dataset_Fstf.pdf}
-	\caption{Distribution of the number of closed lanes}
+	\caption{Distribution of accident lanes}
 	\label{img:baysis_dataset_Fstf}
 \end{figure}
 
+\paragraph{Fstf}
+sdfgsfg
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Fstf.pdf}
-	\caption{Distribution of the number of closed lanes}
+	\includegraphics[scale=0.6]{./assets/baysis_dataset_WoTag.pdf}
+	\caption{Distribution of week day}
 	\label{img:baysis_dataset_Fstf}
 \end{figure}
 
@@ -770,7 +763,11 @@ Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum. Dolorem Ipsum.
 The variable of WoTag relates to the day of week, when the accident happened. 
 
 \paragraph{FeiTag}
-Form the total of ??, 157 accidents to place during a public holiday.
+Form the total of 10262, 157 accidents took place on a public holiday. This is not a feature itself but the a possible correlation to jams could be that they are longer because of the increased traffic demand on holidays.
+
+\bigskip
+
+As result the following categorized parameters are relevant for the correlation analysis.
 	
 \begin{table}[ht]
 	\centering
@@ -792,9 +789,6 @@ Form the total of ??, 157 accidents to place during a public holiday.
 		UArt 		& categorical 	& nominal	\\
 		\hline
 		\\[-1em]
-		AUrs 		& categorical 	& nominal	\\
-		\hline
-		\\[-1em]
 		AufHi 		& categorical 	& nominal	\\
 		\hline
 		\\[-1em]
@@ -804,13 +798,10 @@ Form the total of ??, 157 accidents to place during a public holiday.
 		Char 		& categorical 	& nominal	\\
 		\hline
 		\\[-1em]
-		Bes 		& categorical 	& nominal	\\
+		Lich 		& categorical 	& ordinal	\\
 		\hline
 		\\[-1em]
-		Lich 		& categorical 	& nominal	\\
-		\hline
-		\\[-1em]
-		Zust 		& categorical 	& nominal	\\
+		Zust 		& categorical 	& ordinal	\\
 		\hline
 		\\[-1em]
 		Fstf 		& categorical 	& nominal	\\
@@ -827,18 +818,16 @@ Form the total of ??, 157 accidents to place during a public holiday.
 	\caption{\label{tab:table-name}Variable types of \acrshort{baysis} dataset}
 \end{table}
 
-
-
 The figure \ref{img:correlation_matrix_dataset} shows the correlation coefficient of each mentioned accident characteristic 
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.2]{../CorrAnalysis/data/BAYSIS/dataset/plots/baysis_dataset_corr_theils}
 	\caption{Correlation matrix for BAYSIS dataset, calculated with \ref{definition_correlation} and \ref{definition_correlation_script} (for larger print see Appendix ??)}
 	\label{img:correlation_matrix_dataset}
 \end{figure}
 
-For further use, we do not want to work with the \acrshort{csv} file format in which the dataset was provided. Because the designed analyzation and evaluation tool, utilizes a PostgreSQL database for its data storage we need to process and convert the accident reports into data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the processing and import into the database, 7971 records end up being converted and persisted, which equivalent to 76,6\% of the provided number of accidents for these months or 25,8\% of all accidents. This 23,5\% of data loss is due to the conversion of location or position data from the BAYSIS dataset to our street net-work. In this process we try to find a corresponding street network location to the legacy location of the BAYSIS dataset. If we are not able to locate the position of the BYSIS dataset on our street network we discard the record, because we can’t work with it downstream. 
+Because the designed evaluation tool, utilizes a PostgreSQL database for its data storage, the BAYSIS data in form of \acrfull{csv} needs to processed and converted into SQL data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the processing and import into the database, 7971 records end up being converted and persisted, which equivalent to 76,6\% of the provided number of accidents for these months or 25,8\% of all accidents. This 23,5\% of data loss is due to the conversion of location data from the BAYSIS geo-system to the HERE network. In this process we try to find a corresponding street network location to the legacy location of the BAYSIS dataset. If we are not able to locate the position of the BYSIS dataset on our street network we discard the record, because we can’t work with it downstream. 
 
 \section{ArbIS}
 \label{dataset_arbis}

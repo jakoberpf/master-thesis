@@ -890,7 +890,7 @@ For the classification of the congestion events into different types, by theirs 
 
 \subsection{Clustering}
 \label{methodology_clustering}
-The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. E.g. k-means or k-metoid (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers), spectral clustering (graph distance) \cite{Chauhan2020}.
+The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. For example k-means or k-metoid (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers) or spectral clustering (graph distance), which can be sorted into the categories of partition-based, hierarchical-based and density-based clustering \cite{Chauhan2020,Yildirim2020}.
 
 % https://texample.net/tikz/examples/probability-tree/
 % https://webis.de/downloads/theses/papers/busch_2005.pdf 1.6
@@ -952,7 +952,7 @@ The term clustering is the short form of a data mining technique also called num
 	\label{cluster_kmeans}
 \end{figure}
 
-To illustrate which problems can occur when using cluster algorithms and to defined the major features to find the most suitable one, the k-means is used as base comparison or starting point. The figure \ref{cluster_kmeans} shows three differently colored groups of points, which are clustered into three clusters, represented by the circles around the groups. It demonstrates the general principle of clustering and was done by the common k-means algorithm with the $a$ $priori$ parameter of three clusters. 
+To illustrate which problems can occur when using cluster algorithms and to defined the features which makes algorithm suitable, the k-means is used as base comparison. The figure \ref{cluster_kmeans} shows three differently colored groups of points, which are clustered into three clusters, represented by the circles around the groups. It demonstrates the general principle of clustering and was done by the common k-means algorithm with the $a$ $priori$ parameter of three clusters. 
 
 \begin{figure}[h]
 	\centering
@@ -965,7 +965,7 @@ To illustrate which problems can occur when using cluster algorithms and to defi
 
 This works well as long as the groups don't overlay, intersect or have arbitrary shapes like in the figures \ref{cluster_dbscan}. When this is the case, the k-mean may cluster loosely related point together, which actually are more strongly related to other points, because it considers every point as possible neighbor. Since jams in FCD data can overlay and have any number of shape, as suitable algorithms need to be able to handle such data.
 
-Another issue with this method is the vastly increasing runtime when processing larger amounts of data. The objective function (shown in formula \ref{formula_kmeans}) of the k-mean algorithm states that $n$ distances are calculated for $k$ points \cite{Santhanam2010}. With this equation and the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \cite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \cite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^n$ calculations have to me computed over all iterations.
+Another issue with this method is the vastly increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of k-mean states that $n$ distances are calculated for $k$ points \cite{Santhanam2010}. With this equation and the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \cite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \cite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^n$ calculations have to me computed over all iterations.
 
 \begin{equation}
 \label{formula_kmeans}
@@ -987,14 +987,12 @@ Entering density-based methods, which are better suited to identify distinctive,
 
 \subsubsection{Algorithm}
 
-The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise  \cite{Yildirim2020,Chauhan2020}. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $minPts$, which defines the minimum number of points of a cluster to be considered as dense. And secondly the maximum distance threshold between cluster points, $eps$ ($\varepsilon$). \cite{Yildirim2020,Chauhan2020} 
-
-With these thresholds data points can be classified as core point, border point or outliner.
+The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise  \cite{Yildirim2020,Chauhan2020}. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $minPts$, which defines the minimum number of points to form a cluster. And secondly the maximum distance threshold between points, $eps$ ($\varepsilon$), to be considered as neighbors and be become part of a cluster. These thresholds classify a data point as core point, border point or outliner. \cite{Yildirim2020,Chauhan2020}
 
 \begin{itemize}
-	\item \textbf{Core points} have at least the $minPts$ number of points around them within the radius $eps$, including itself.
-    \item \textbf{Border points} 
- 	\item \textbf{Outliers} 
+	\item \textbf{Core points} have at least the $minPts$ points around them within the radius $eps$, including itself.
+    \item \textbf{Border points} has at least one core point within the radius $eps$, excluding itself.
+ 	\item \textbf{Outliers} or noise are neither core nor border points and has less than $minPts$ within the radius $eps$
 \end{itemize}
 
 Finds core samples of high density and expands clusters from them.

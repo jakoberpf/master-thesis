@@ -265,7 +265,7 @@ This general layman's definition of jams is essential correct, but not sufficien
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.8]{./assets/SpeedMatrixPlot_single}
-	\caption{Speed matrix plots of raw FCD data, showing a scattered cluster}
+	\caption{Speed matrix plots of FCD data, showing a scattered cluster}
 	\label{img:speedMatrixPlot_singleCluster}
 \end{figure}
 
@@ -278,18 +278,23 @@ The visual representation show that a congestion mostly contains speed of less t
 	\item Speed threshold for slow-moving state : $v_{crit,slow} = 60 \frac{km}{h}$
 \end{itemize}
 
-To exclude single cell error and exclude jams, which are too small to have any effect and origin to be considered in the analysis, there are some other threshold to define.  
+To exclude single cell errors and discard jams, which are too small to have any effect and origin to be considered in the analysis, the length and duration of a jam can be used for filtering. The two-dimensional form (see chapter \ref{dataset_fcd}) of the FCD, allows for an easy filtering of detected jams by two conditions. If $l < l_{min}$ or $t < t_{min}$ is given, $l$ being the maximum spatial extend and $t$ being the maximum temporal extend, the jams should be ignored.
 
 \begin{itemize}
 	\item Minimum length of a congestion : $l_{min} = 1000 m$
 	\item Minimum duration of a congestion : $t_{min} = 9 min$
 \end{itemize}
 
+For the detection algorithm, which is based on a clustering approach (see chapter \ref{cluster_dbscan}), additionally parameters are needed to consolidate individual but adjacent clusters into jams. 
+
+
+
+The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation on highway roads types when using the CONGSTATS Cluster Algo [s]. 
 
 \begin{itemize}
-	\item Spatial gap in-between congestion : $l_{min,gap} = 5000$ % cluster consolidation 
-	\item Temporal gap in-between congestion : $t_{min,gap} = 6 min$ % cluster consolidation 
-	\item The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation on highway roads types when using the CONGSTATS Cluster Algo [s]. travelTime.gap.threshold.highway=360
+	\item Spatial gap : $l_{min,gap} = 5000$ % cluster consolidation 
+	\item Temporal gap : $t_{min,gap} = 6 min$ % cluster consolidation 
+	\item Virtual travel-time gap $t_{min,gap}^{virtual} = 360s$
 \end{itemize}
 
 
@@ -863,29 +868,20 @@ The \acrfull{arbis}, as described in chapter \ref{dataset_arbis}, is a collectio
 
 
 \chapter{Methodology}
-The central goal of the thesis it to determine if jams characteristics, detected in \acrshort{fcd} data and incident characteristics from accidents (\acrshort{baysis}) and roadworks (\acrshort{arbis}) do correlate with each other. Therefore, the main research question to be answered stands as followed:
+\label{methodology}
+The central aim of the thesis it to determine if jams characteristics, detected in \acrshort{fcd} and incident characteristics from accidents (\acrshort{baysis}) and roadworks (\acrshort{arbis}) are statistically dependent on each other. Therefore the question to be answered stands as follows:
 
 \begin{center}
-	\textit{Is there a correlation between FCD congestion and incident characteristics?}
+	\textit{Do congestion- and incident-characteristics correlate?}
 \end{center}
 
-\bigskip
+\medskip
 
-\par Assuming that there is a correlation of congestion and incident characteristics, the second and more interpretable question would arise.
+The methodology to answer these research questions, will be elaborated in this chapter, starting with the detection of jams in the FCD. This also contains the generation of congestion characteristics and collection of adjacent incident. The \acrshort{fcd} is a continuous time series of datapoint which represents the mean absolute and relative speed of the street section at each 3-minute interval on a road section. In \ref{dataset_fcd} we determined that thought a manual visual analysis jams can be easily identified. This manual identification will be automated because of the amount of data representing a complete year and all Bavarian highways. The gathered tuples of congestion and incident are then processed and exported into a unified data-structure. 
 
-\begin{center}
-	\textit{Can the correlation of FCD congestion and incident characteristics predict the possibilities of a consecutive events?}
-\end{center}
+The \gls{evaltool} from the \gls{congstats} service, the project which inspired this thesis, was developed for this purpose and will be expanded with required features. Afterward the stored dataset of congestion and incidents events will be analyzed for correlations and other statistic indicators.
 
 \bigskip
-
-To answer these research questions, there are a series of steps involved, from identifying congestion event in the FCD data and finding adjacent incident events to comprising a unified dataset and evaluating the results.
-
-\bigskip
-
-The \acrshort{fcd} data, as described in \ref{dataset_fcd}, is a nearly continuous series of datapoint which represents the mean absolute and relative speed of the street section at each 3-minute interval on a road section. In \ref{dataset_fcd} we determined that thought a manual visual analysis jams can be easily identified. This manual identification needs to be automated because of the amount of data representing a complete year and all Bavarian highways. Such an automated process needs to be able to find congestion events and defined dimensions, shape as well as characteristic values. For the correlation analysis of jams to incidents, the detection of adjacent incident is needed.
-
-The \gls{evaltool} from the \gls{congstats} service, the project which inspired this thesis, was developed for exactly this purpose and will be expanded to fit the required specification.
 
 \section{Detection Algorithm}
 First step is the detection of congestion events. The definition in \ref{definition_congestion} states that a congestion is a dense, timely and spatial accumulation of jammed cells, also describable as cluster of jammed cells. Therefore a clustering algorithm would be suitable to identify congestion events.
@@ -893,6 +889,7 @@ First step is the detection of congestion events. The definition in \ref{definit
 For the classification of the congestion events into different types, by theirs spatial and timely extends a shaping algorithm is needed. It is supposed to convert the accumulation of cells into a simple describable shape, which can be put into groups.
 
 \subsection{Clustering}
+\label{methodology_clustering}
 The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. E.g. k-means or k-metoid (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers), spectral clustering (graph distance) \cite{Chauhan2020}.
 
 % https://texample.net/tikz/examples/probability-tree/

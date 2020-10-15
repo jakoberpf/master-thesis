@@ -22,8 +22,8 @@
 /Thesis/Masterthesis_JakobErpf_v4.docx
 /Thesis/Masterthesis_JakobErpf.pdf
 /CongEvaluation
-/CorrAnalysis/.RData
-/CorrAnalysis/.Rhistory
-/CorrAnalysis/.Rproj.user
+.Rproj.user
 /CorrAnalysis/CorrAnalysis.Rproj
-/CorrAnalysis/data/ArbIS/dataset/csv
+/CorrAnalysis/data/ArbIS/dataset/csv/encoded.csv
+/CorrAnalysis/data/ArbIS/dataset/csv/encoded_dict.csv
+/CorrAnalysis/.RData

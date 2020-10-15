@@ -65,6 +65,7 @@
         description={ \textbf{or jam} is the spatial and timely accumulations of traffic participants, which leads to a reduction of travel speed and therefore reduction of traffic throughput. Because the plural of the noun congestion is not clearly recognizable, in the context of multiple congestion, the term \glspl{jam} will be used. A more detailed definition of a congestion can be found in chapter \ref{definition_congestion}}
 }
 	
+\newacronym{adac}{ADAC}{Allgemeine Deutsche Automobil-Club e. V.}	 
 \newacronym{tsm}{TSM}{Transportation System Management}
 \newacronym{atdm}{ATDM}{Active Traffic and Demand Management}
 \newacronym{atis}{ATIS}{Advanced Traveler Information System}
@@ -147,9 +148,9 @@ During the elaboration of the evaluation tool, which was not only developed for 
 
 \chapter{Introduction}
 \setcounter{page}{1}
-Traffic \glspl{jam} are a known problem to everyone, ever attempting to kickstart the summer season with a car trip on the first day of a public holiday. When the number of road users increases or the capacity of the road way decrease du to various reasons, a demand-supply imbalance is created \cite{Tang2019}. This impacts passenger traffic as well as transportation of goods in urban, suburban areas as well as highways with blocked bottlenecks and reducing travel speeds. They lead to unreliable travel times, inefficient usage of resources, and an increase in emissions, like pollutants or noise. Another common effect it a decrease in road safety, due to high driver tempers or inattentive mind, which can result in higher accident counts \cite{Sun2016}. They also induce enormous social costs due to the time losses in \glspl{jam}, ranging in the higher billions per year. \cite{RetallackOstendorf2019,BardtFritsch2014,ADAC2019}
+Traffic \glspl{jam} are a known problem to everyone, ever attempting to kickstart the summer season with a car trip on the first day of a public holiday. When the number of road users increases or the capacity of the road way decrease du to various reasons, a demand-supply imbalance is created \cite{Tang2019}. This impacts passenger traffic as well as transportation of goods in urban, suburban areas as well as highways with blocked bottlenecks and reducing travel speeds. They lead to unreliable travel times, inefficient usage of resources, and an increase in emissions, like pollutants or noise \cite{FHA2011}. Another common effect it a decrease in road safety, due to high driver tempers or inattentive mind, which can result in higher accident counts \cite{Sun2016}. They also induce enormous social costs due to the time losses in \glspl{jam}, ranging in the higher billions per year. \cite{RetallackOstendorf2019,BardtFritsch2014,ADAC2019}
 
-It is therefore essential to reduce risks of \glspl{jam}, as well as accidents, with an increased understanding of the traffic accident causes, trigger effects of \glspl{jam} and roadworks, to maintain a fluent traffic flow and traffic safety. Tailored \acrfull{tsm} strategies, focused on automatically reaction on significant traffic event, could enable \acrfull{atdm} of high traffic demands in reduced traffic volume areas, due to said constraints \cite{Tang2019}. This would go towards reducing the economic, environmental, and social costs associated with accidents, roadworks or \glspl{jam}. Part of this \acrshort{tsm} strategies implemented in a \acrshort{atdm} system, could be a form of traffic prediction systems, with the potential to identify compromising conditions in real-time, allowing according to actions to be taken to avoid consecutive events. \cite{RetallackOstendorf2019} 
+It is therefore essential to reduce risks of \glspl{jam}, as well as accidents, with an increased understanding of the traffic accident causes, trigger effects of \glspl{jam} and roadworks, to maintain a fluent traffic flow and traffic safety. Tailored \acrfull{tsm} strategies, focused on automatically reaction on significant traffic event, could enable \acrfull{atdm} of high traffic demands in reduced traffic volume areas, due to said constraints \cite{Tang2019}. This would go towards reducing the economic, environmental, and social costs associated with accidents, roadworks or \glspl{jam}. Part of this \acrshort{tsm} strategies implemented in a \acrshort{atdm} system, could be a form of traffic incident prediction systems, with the potential to identify compromising conditions in real-time, allowing according to actions to be taken to avoid consecutive events. \cite{RetallackOstendorf2019} 
 
 \bigskip
 
@@ -162,7 +163,7 @@ A system capable of the described mentioned functionalities would likely consist
   \item Traffic management and controlling response
 \end{itemize}
 
-\The first component, in charge of detecting \glspl{jam} as well as incident, requires input data like speed, volume, occupancy to represent the traffic situation and incident reports to define incident characteristics. The next component would then analyze the resulting dataset to find characteristic features of the congestions and incident, which will be determined in this thesis. In the case the analysis of the characteristic shows a quite possible and imminent event it would trigger the last component to initiate appropriate controlling actions and prepare incident responses.
+The first component, in charge of detecting \glspl{jam} as well as incident, requires input data like speed, volume, occupancy to represent the traffic situation and incident reports to define incident characteristics. The next component would then analyze the resulting dataset to find characteristic features of the congestions and incident, which will be determined in this thesis. In the case the analysis of the characteristic shows a possible and imminent event it would trigger the last component to initiate appropriate controlling actions and prepare incident responses.
 
 In the following chapters of this introduction section, the reader will be introduced to the concepts and systems used to cover the input and output requirements in this thesis.
 
@@ -228,7 +229,36 @@ In the scope of this thesis only a selection of these introduced data collection
 
 \bigskip
 
-Jams or a single congestion in most colloquial terms are spatial and timely accumulations of traffic participants, which leads to a reduction of travel speed and therefore reduction of traffic throughput. But there is no unified definition when this reduction of speed or volume can be actually classified as a congestion. As an example the ADAC classifies highway traffic moving with mean speed lower than 20 km/h as jammed \cite{ADAC2019}. In Switzerland the ministry for streets has a more severe definition with a mean speed under 10 km/h \cite{ASTRA2020}. The Germany or Bavarian ministry for streets does not have an official definition at the time of writing, which makes it necessary to form our own definition of jams and speed thresholds, for the scope of this thesis. Because we have a good representation of the speeds occurring in jams from the FCD date, introduced in chapter 1.1, we can use this information to tailor a definition to our needs. 
+Jams or a single congestion in layman terms are spatial and timely accumulations of traffic participants, resulting in speeds slower or sometimes much slower than free flow. In severe cases this is also often described a stop-and-go or stopped traffic. They are triggered by a reduction of traffic throughput in volume or an increase of traffic demand. Studies have shown that these triggers are usually caused by four categories of disturbances. \cite{TRB2003,FHA2011}
+
+\subsubsection{Traffic-Influencing Events}
+
+\begin{itemize}
+	\item Incidents : Events that disrupt the normal free flow of traffic, like vehicular crashes, breakdowns or debris. These physical obstacles block lanes or hard shoulders, forcing other road user to execute evasive maneuver and deviate from their normal path. This ultimately changes driving behavior, reduces the quality of traffic flow and traveling speed. Even when incidents are not directly on the roadway they can impact the traffic flow due to emergency responses create blockades or ineffective driving behavior of traffic participants gapping on the incident.
+	\item Roadwork : Managed and unmanaged construction sites on the roadway that result in physical changes to the highway environment. This includes a reduction of lanes, lane diversion, elimination of hard shoulders or road closures, which reduce the road capacity and reduce travel speeds.
+	\item Weather : Changes in environmental conditions like, heavy rain or snow fall can negatively impact driver behavior. The reduction of visibility will usually result in a reduction of traveling speeds and increase of headway. This reduces the overall capacity of the highway. Bright sunlight, smoke or icy road surfaces lead so a similar effect.
+\end{itemize}
+
+\subsubsection{Traffic Demand}
+
+\begin{itemize}
+	\item Fluctuations in Normal Traffic : Variations in demand in day-to-day traffic volumes can overload systems with fixed capacities. This can result in travel speed reductions without any specifically occurring event.
+	\item Special Events : Special cases where events drastically change the demand in their vicinity and overload the system. As with incidents, off-road events can affect driving behavior due to visual distractions and change the traffic-flow. 
+\end{itemize}
+
+\subsubsection{Physical Highway Features}
+
+\begin{itemize}
+	\item Traffic Control Devices : Poorly time or defective traffic signals, ineffectively controlling the traffic flow, contribute to the creation of jams and travel time reductions.
+	\item Physical Bottlenecks or Capacity : The capacity of a road is mostly dependent on the number of lanes and shoulder, as well as the alignment (curves and grades). Physical changes on the road environment like in merging areas, tool booths or road endings reduce the capacity and therefore promote the formation of jams. The road capacity can also be influenced by the driving behavior, which heavily depend on the familiarity of the roadway to the driver. Drivers familiar with routinely congested tend to reduce their headway and therefore increase the capacity \cite{Charlton2013}.
+\end{itemize}
+
+\subsubsection{Driving-behaviour}
+As above-mentioned, driving behavior can influence the traffic flow as well as capacity and is mostly influenced by environment and the familiarity of the road. Research showed that driving on familiar road has a negative effect on safety aspects of driving behaviors, like in-attentional blindness for roadside features \cite{Charlton2013}. Another decreasing factor is the state-of-mind, better know as rage-driven or aggressive driving, resulting in rapid lane changing, cross cutting or passing on shoulders \cite{Shinar2004}. This can lead to driving behaviors where drivers don't keep up smooth accelerations, but rather break suddenly or accelerate in rapidly, other vehicles need to react accordingly. This creates a chain reaction leading to reduced travel speed. These are called "phantom jams" because they do not have any specific origin and are common in high density traffic regions, like cities and high demand highways. \cite{ASTRA2020} 
+
+\bigskip
+
+This general layman's definition of jams is essential correct, but not sufficient for the data scientific approach in this thesis. Unfortunately there is no unified definition or threshold when a reduced speed is classified as a congested or slow. As example the \acrshort{adac} classifies highway traffic moving with mean speed lower than 20 km/h as jammed \cite{ADAC2019}. In Switzerland the ministry for streets has a more severe definition with a mean speed under 10 km/h \cite{ASTRA2020}. The Bavarian ministry for streets does not have an official definition at the time of writing, which makes it necessary to form a specific definition of \glspl{jam} and speed thresholds, for the scope of this thesis. Because we have a good representation of the speeds occurring in jams from the FCD date, introduced in chapter 1.1, we can use this information to tailor a definition to our needs. 
 
 \begin{figure}[h]
 	\centering
@@ -237,15 +267,29 @@ Jams or a single congestion in most colloquial terms are spatial and timely accu
 	\label{img:speedMatrixPlot_singleCluster}
 \end{figure}
 
-The Figure \ref{img:speedMatrixPlot_singleCluster} on page \pageref{img:speedMatrixPlot_singleCluster} shows a section of a random speed matrix plot from the FCD dataset, containing a scattered congestion cluster. The horizontal and vertical extend represents the spatial and temporal location of each cell. The color of the cell indicated the mean absolute speed recorded in the time frame and on the link of the cell (detailed gradient is shown in the legend of \ref{img:speedMatrixPlot_singleCluster}). The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered as jammed, to incorporate the complete congestion area. Speeds above 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes a speed threshold of 40 km/h fitting for detecting congestion clusters in the scope of this thesis.
+Figure \ref{img:speedMatrixPlot_singleCluster} shows a section of a random speed matrix plot from the FCD dataset, containing a scattered congestion cluster. The horizontal and vertical extend represents the spatial and temporal location of each cell. The color of the cell indicated the mean absolute speed recorded in the time frame and on the link of the cell (detailed gradient is shown in the legend of \ref{img:speedMatrixPlot_singleCluster}).
 
-More Infos about what characteristics do congestions have? Causes, Effects and Indicators...
+The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered, to incorporate the complete congestion area. Speeds above at least 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes two speed threshold for jammed and slow-moving traffic necessary adequately detecting congestion clusters. With this information and some learning during calibration of the clustering algorithm (see chapter \ref{cluster_calibration}) the following thresholds for classifying \glspl{jam} in FCD data where defined for highways.
 
-%https://www.astra.admin.ch/astra/de/home/themen/nationalstrassen/verkehrsfluss-stauaufkommen/definitionen.html
-%https://www.sciencedirect.com/topics/social-sciences/traffic-congestion
-%https://ops.fhwa.dot.gov/congestion_report/chapter2.htm
-%https://www.zukunft-mobilitaet.net/3344/analyse/wie-entstehen-staus-phantomstau/
-%https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse
+\begin{itemize} %TODO explain values
+	\item Speed threshold for jammed state : vcrit.highway.jammed = 30 $\frac{km}{h}$
+	\item Speed threshold for slow-moving state : vcrit.highway.slow = 60 $\frac{km}{h}$
+	\item Minimum length of a congestion : min.length.highway = 1000 $m$
+	\item Minimum duration of a congestion : min.duration.highway = 9 $min$
+	\item Threshold for the spatial gap in-between congestion events during the cluster consolidation on highways [m]. spatial.gap.threshold.highway=5000
+	\item Threshold for the temporal gap in-between congestion events during the cluster consolidation on highways [min]. temporal.gap.threshold.highway=6
+	\item The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation on highway roads types when using the CONGSTATS Cluster Algo [s]. travelTime.gap.threshold.highway=360
+\end{itemize}
+
+% TODO read and add infos
+% https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
+
+% TODO read and use a source for loss parameter
+% file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20(1).pdf
+\begin{itemize}
+	\item The cost rate for one car loosing one hour travel time [€/(Fz*h)] cost.rate.car=11
+	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
+\end{itemize}
 
 \chapter{Correlation}
 \label{definition_correlation}
@@ -274,22 +318,22 @@ The datasets to be examined in this thesis include continuous variables of the t
 \label{correlation_coefficient_types}
 The provided datasets \acrshort{baysis}, \acrshort{arbis} (see section \ref{dataset_baysis}, \ref{dataset_arbis}) as well as the generated data  includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristic the appropriate correlation coefficient suited for the apparent variables needs to be chosen.
 
-For the following relationscoefficients and statistics, prominent in current statistic literature where selected due to their suitability and will be elaborated further.
-
+For the following correlation coefficients and statistics, prominent in current statistic literature where selected due to their suitability and will be elaborated further.
 
 \subsubsection{Continuous - Continuous}
-As stated in \ref{correlation_variable_types} continuous variables are metric measurements in the form or distances or durations. The most common correlation coefficient for continuous variables is Persons $r$.
+As stated in \ref{correlation_variable_types} continuous variables are metric measurements in the form or distances or durations. The most common correlation coefficient for continuous variables is the non-parametric Pearson's $r$.
 
 \subsubsection{Continuous - Categorical(Nominal)}
-This type of relation is objectively the most complex analyze and will therefore be covered by multiple statistical methods. One possible method is the analysis of variance (ANOVA), which is a parametric test comparing the means of two variables. Unfortunately it assumes normal or gaussian distributed variables, which is not give in our datasets. A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis h-test. \cite{Leon1998}
+This type of relation is objectively the most complex analyze and will therefore be covered by multiple statistical tests. One possible method is the analysis of variance (ANOVA), which is a parametric test comparing the means of two variables. As it is parametric it unfortunately assumes normal or gaussian distributed variables, which is not give in our datasets. A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis h-test. \cite{Leon1998}
 
 \subsubsection{Continuous - Categorical(Dichotomous)}
-The Point Biserial correlation, a special form of the Pearson correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
+The Point Biserial correlation, a special form of the Pearson's $r$ correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
 
 \subsubsection{Continuous - Categorical(Ordinal)}
 For ordinal variables, also called ranked or rank ordered, the commonly used Spearman's $\rho$ can be applied, but should be replaced by Kendall's $\tau$ because of it superiority over Spearman \cite{Newson2002}. 
 
 \subsubsection{Categorical - Categorical}
+
 Both Cramer’s V and Theil’s U can be used to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
 
 \bigskip
@@ -322,9 +366,10 @@ As a result we have the following correlation coefficients and statistical test 
 
 \subsubsection{Pearson's $r$}
 \label{correlation_pearson}
-Pearson's $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \cite{BenestyChenHuang2009,Sulthan2018}
+
+Pearson's $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set as it is non-paramteric. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \cite{BenestyChenHuang2009,Sulthan2018}
  
- The correlation coefficient, shown in the formula \ref{formula_correlation_basic} is defined by the fraction of the covariance (shown in formula \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (shown in formular \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992}
+The correlation coefficient, shown in equation \ref{formula_correlation_basic} is the foundation for deducing Pearson's $r$. It is defined by the fraction of the covariance (see equation \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (see equation \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992}
 \smallskip
 \begin{equation}
 \label{formula_correlation_basic}
@@ -345,7 +390,7 @@ Pearson's $r$ describes the linear correlation of such continuous, non-ranked va
 
 \bigskip
 
-\par In the following notations $\bar{x}$ and $\bar{y}$ corresponds to the means of vector $x$ and $y$, respectively. Formula \ref{formula_pearson} showing the notation of the Pearson's $r$ correlation coefficient, which is a direct usage of the definition of \ref{formula_correlation_basic}. Both vectors have the same length, named $i$. 
+In the following notations $\bar{x}$ and $\bar{y}$ corresponds to the means of vector $x$ and $y$, respectively. Formula \ref{formula_pearson} is showing the notation of the Pearson's $r$ correlation coefficient, which is a direct usage of the definition in \ref{formula_correlation_basic}, assuming that both vectors have the same length, named $i$. 
 	\cite{BenestyChenHuang2009,Zychlinski2018}
 \smallskip
 \begin{equation}
@@ -357,7 +402,7 @@ Pearson's $r$ describes the linear correlation of such continuous, non-ranked va
 
 \subsubsection{Interpretation}
 
-These correlation coefficients of Pearsons $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
+The correlation coefficients of Pearsons $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
 
 \begin{itemize}
   \item When both variables change in the same ratio, the absolute value of the correlation coefficient is 1,0, which is called perfect correlation.
@@ -367,7 +412,49 @@ These correlation coefficients of Pearsons $r$ can have values of the range $-1$
   \item When the absolute correlation coefficient is lower than 0,25, it shows that there is no correlation, which can be called absence of correlation.
 \end{itemize}	
 
-\subsection{Continuous - Categorical}
+
+\subsection{Continuous - Nominal}
+
+ Although the coefficient vary in their method, the interpretations are equivalent to each other.
+
+\subsubsection{Pearsons $\chi^2$}
+
+%
+
+\subsubsection{ANOVA}
+more statictical robust
+is a the parametric oneway ANOVA, which assumes normal distribution.
+% https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365#:~:text=A%20simple%20approach%20could%20be,variance%20of%20the%20continuous%20variable.&text=If%20the%20variables%20have%20no,similar%20to%20the%20original%20variance.
+
+\subsubsection{Kruskal-Wallis}
+
+is non parametric and does not assume a normal distributed variabel
+
+% https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365#:~:text=A%20simple%20approach%20could%20be,variance%20of%20the%20continuous%20variable.&text=If%20the%20variables%20have%20no,similar%20to%20the%20original%20variance.
+
+Um zu bestimmen, ob mindestens eine der Differenzen zwischen den Medianen statistisch signifikant ist, vergleichen Sie den p-Wert mit dem Signifikanzniveau, um die Nullhypothese auszuwerten. Die Nullhypothese besagt, dass alle Mediane der Grundgesamtheiten gleich sind. In der Regel ist ein Signifikanzniveau (als α oder Alpha bezeichnet) von 0,05 gut geeignet. Ein Signifikanzniveau von 0,05 gibt ein Risiko von 5 % an, dass auf eine vorhandene Differenz geschlossen wird, während tatsächlich keine vorhanden ist.
+p-Wert ≤ α: Die Differenzen zwischen einigen der Mediane sind statistisch signifikant.
+Wenn der p-Wert kleiner oder gleich dem Signifikanzniveau ist, weisen Sie die Nullhypothese zurück und schlussfolgern, dass nicht alle Mediane der Grundgesamtheiten gleich sind. Bestimmen Sie anhand Ihres Fachwissens, ob die Differenzen praktisch signifikant sind. Weitere Informationen finden Sie unter Statistische und praktische Signifikanz.
+p-Wert > α: Die Differenzen zwischen den Medianen sind statistisch nicht signifikant.
+Wenn der p-Wert größer als das Signifikanzniveau ist, liegen keine ausreichenden Anzeichen zum Zurückweisen der Nullhypothese vor, die besagt, dass alle Mediane der Grundgesamtheiten gleich sind. Vergewissern Sie sich, dass der Test über eine ausreichende Trennschärfe verfügt, um eine praktisch signifikante Differenz zu erkennen. Weitere Informationen finden Sie unter Steigern der Trennschärfe eines Hypothesentests.
+Wenn Ihre Daten Bindungen aufweisen, zeigt Minitab einen p-Wert an, der für Bindungen korrigiert ist, sowie einen p-Wert, der nicht für Bindungen korrigiert ist. Eine Bindung liegt vor, wenn der gleiche Wert in mehreren Stichproben enthalten ist. Der korrigierte p-Wert ist normalerweise genauer als der nicht korrigierte p-Wert. Der nicht korrigierte p-Wert ist jedoch der konservativere Schätzwert, da er stets größer als der korrigierte p-Wert ist. Wenn keine Bindungen in den Daten vorliegen, sind die beiden p-Werte gleich.
+
+\subsubsection{Interpretation}
+
+Due to the mathematical similarity of the Point Biserial to the Pearson coefficient, the general interpretation of Pearson can be applied to Point Biserial with some slight adaptions. If the dichotomous variable is artificially binarized, i.e. there is likely continuous data underlying it, biserial correlation is a more a measurement of similarity.
+
+Interpretation of Kruskal-Wallis
+
+
+The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which scipy.stats.wilcoxon() uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
+
+The hypothesis being test is:
+
+Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
+Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
+If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
+
+\subsection{Continuous - Dichotomous}
 
 \subsubsection{Point Biserial}
 
@@ -396,6 +483,9 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 
 \bigskip
 
+
+\subsection{Continuous - Ordinal}
+
 \subsubsection{Spearman's $\rho$}
 
 %
@@ -403,46 +493,6 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 \subsubsection{Kendall's $\tau$}
 
 %
-
- Although the coefficient vary in their method, the interpretations are equivalent to each other.
-
-\subsubsection{Pearsons $\chi^2$}
-
-%
-
-\subsubsection{ANOVA}
-more statictical robust
-is a the parametric oneway ANOVA, which assumes normal distribution.
-% https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365#:~:text=A%20simple%20approach%20could%20be,variance%20of%20the%20continuous%20variable.&text=If%20the%20variables%20have%20no,similar%20to%20the%20original%20variance.
-
-\subsubsection{Kruskal-Wallis}
-
-is non parametric and does not assume a normal distributed variabel
-% https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365#:~:text=A%20simple%20approach%20could%20be,variance%20of%20the%20continuous%20variable.&text=If%20the%20variables%20have%20no,similar%20to%20the%20original%20variance.
-
-Um zu bestimmen, ob mindestens eine der Differenzen zwischen den Medianen statistisch signifikant ist, vergleichen Sie den p-Wert mit dem Signifikanzniveau, um die Nullhypothese auszuwerten. Die Nullhypothese besagt, dass alle Mediane der Grundgesamtheiten gleich sind. In der Regel ist ein Signifikanzniveau (als α oder Alpha bezeichnet) von 0,05 gut geeignet. Ein Signifikanzniveau von 0,05 gibt ein Risiko von 5 % an, dass auf eine vorhandene Differenz geschlossen wird, während tatsächlich keine vorhanden ist.
-p-Wert ≤ α: Die Differenzen zwischen einigen der Mediane sind statistisch signifikant.
-Wenn der p-Wert kleiner oder gleich dem Signifikanzniveau ist, weisen Sie die Nullhypothese zurück und schlussfolgern, dass nicht alle Mediane der Grundgesamtheiten gleich sind. Bestimmen Sie anhand Ihres Fachwissens, ob die Differenzen praktisch signifikant sind. Weitere Informationen finden Sie unter Statistische und praktische Signifikanz.
-p-Wert > α: Die Differenzen zwischen den Medianen sind statistisch nicht signifikant.
-Wenn der p-Wert größer als das Signifikanzniveau ist, liegen keine ausreichenden Anzeichen zum Zurückweisen der Nullhypothese vor, die besagt, dass alle Mediane der Grundgesamtheiten gleich sind. Vergewissern Sie sich, dass der Test über eine ausreichende Trennschärfe verfügt, um eine praktisch signifikante Differenz zu erkennen. Weitere Informationen finden Sie unter Steigern der Trennschärfe eines Hypothesentests.
-Wenn Ihre Daten Bindungen aufweisen, zeigt Minitab einen p-Wert an, der für Bindungen korrigiert ist, sowie einen p-Wert, der nicht für Bindungen korrigiert ist. Eine Bindung liegt vor, wenn der gleiche Wert in mehreren Stichproben enthalten ist. Der korrigierte p-Wert ist normalerweise genauer als der nicht korrigierte p-Wert. Der nicht korrigierte p-Wert ist jedoch der konservativere Schätzwert, da er stets größer als der korrigierte p-Wert ist. Wenn keine Bindungen in den Daten vorliegen, sind die beiden p-Werte gleich.
-
-\subsubsection{Interpretation}
-
-Due to the mathematical similarity of the Point Biserial to the Pearson coefficient, the general interpretation of Pearson can be applied to Point Biserial with some slight adaptions. If the dichotomous variable is artificially binarized, i.e. there is likely continuous data underlying it, biserial correlation is a more a measurement of similarity.
-
-Interpretation of Kruskal-Wallis
-
-
-The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which scipy.stats.wilcoxon() uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
-
-The hypothesis being test is:
-
-Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
-Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
-If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
-
-
 
 
 

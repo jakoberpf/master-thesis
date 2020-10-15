@@ -14,22 +14,24 @@
 #  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
-from func_correlation import numerical_encoding, compute_correlations, plot_dataframe
+import pandas as pd
+
+from func_correlation import numerical_encoding, compute_correlations
+from func_plot import plot_correlation, plot_statistic, plot_boxplot
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
     print_welcome()
 
     save_plot = True
-    show_plot = True
+    show_plot = False
 
     data_path = 'data/'
     work_path = data_path + 'ArbIS/dataset/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
+    csv_path = work_path + 'csv/'
     work_file = 'ArbIS_2019.csv'
 
     arbis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True, date_parser=date_parser)
@@ -76,6 +78,8 @@ if __name__ == '__main__':
         plt.savefig(plot_path + 'arbis_dataset_hist_month.png')
     if show_plot:
         plt.show()
+    else:
+        plt.close()
 
     # Plot histogram of accidents over highway
     plt.figure(figsize=(13, 6))
@@ -87,112 +91,125 @@ if __name__ == '__main__':
         plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
     if show_plot:
         plt.show()
+    else:
+        plt.close()
 
     # Add length of roadwork fragment in kilometers
     arbis_selected['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer']))
     # Add duration of roadwork fragment in minutes
     arbis_selected['Duration'] = abs((arbis_imported['Von'] - arbis_imported['Bis'])).dt.total_seconds() / 60
 
-    # Settings for box plots
-    sns.set(font_scale=2)
-    sns.set_context('paper')
-    plt.figure(figsize=(11, 6))
+    # Plot boxplots for visual relation testing
+    plot_boxplot(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_street2length.png')
 
-    sns.boxplot(x='Strasse', y='Length', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_street2length.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_street2duration.png')
 
-    sns.boxplot(x='Strasse', y='Duration', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_stree2duration.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_agfs2length.png')
 
-    sns.boxplot(x='AnzGesperrtFs', y='Length', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_agfs2length.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_agfs2duration.png')
 
-    sns.boxplot(x='AnzGesperrtFs', y='Duration', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_agfs2duration.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_einzug2length.png')
 
-    sns.boxplot(x='Einzug', y='Length', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_einzug2length.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_einzug2duration.png')
 
-    sns.boxplot(x='Einzug', y='Duration', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_einzug2duration.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_direction2length.png')
 
-    sns.boxplot(x='Richtung', y='Length', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_direction2length.png')
-    if show_plot:
-        plt.show()
+    plot_boxplot(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
+                 plot_path + 'arbis_dataset_box_direction2duration.png')
 
-    sns.boxplot(x='Richtung', y='Duration', data=arbis_selected, palette='Set1')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_box_direction2duration.png')
-    if show_plot:
-        plt.show()
-
-    # Print matrix for debugging
-    print(arbis_selected.dtypes)
-    print(arbis_selected)
-
-    # defines column types
+    # define column types
     nominal_columns = ['Strasse', 'StreckeID', 'Month']
     dichotomous_columns = ['Richtung']
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
 
-    # defines coefficients
+    # define coefficients
     con_nominal = 'kruskal-wallis'
     con_dichotomous = 'point_biserial'
     con_ordinal = 'kendall'
 
     # Encode non numerical columns
-    arbis_encoded = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False)
+    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False,
+                                                           drop_fact_dict=False)
+    arbis_encoded.to_csv(csv_path + 'encoded.csv', index=False)
 
-    corr, sign, coef, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns = \
-        compute_correlations(
-            arbis_encoded,
-            continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
-            nominal_columns=nominal_columns, dichotomous_columns=dichotomous_columns, ordinal_columns=ordinal_columns,
-            bias_correction=False)
+    with open(csv_path + 'encoded_dict.csv', 'w') as tf:
+        for key in arbis_encoded_dict.keys():
+            tf.write("%s, %s\n" % (key, arbis_encoded_dict[key]))
 
-    plot_dataframe(corr, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-                   single_value_columns, save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
+    # Calculate with Cramers 's V
+    results = None  # To make sure that no old data is reused
+    results = compute_correlations(
+        arbis_encoded,
+        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+        columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
+        bias_correction=False)
+
+    # Plot correlation matrix
+    plot_correlation(results.get('correlation'), results.get('columns'),
+                     nominal_columns, dichotomous_columns, ordinal_columns,
+                     results.get('inf_nan_corr'),
+                     results.get('columns_single_value'),
+                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
+                     show=show_plot, figsize=(18, 15))
+
+    # Plot statistics/significant matrix
+    plot_statistic(results.get('significance'), results.get('columns'),
+                   nominal_columns, dichotomous_columns, ordinal_columns,
+                   results.get('inf_nan_corr'),
+                   results.get('columns_single_value'),
+                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_cramers.png',
                    show=show_plot, figsize=(18, 15))
 
-    # plot_dataframe(sign, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan,
-    #                single_value_columns, save=True, filepath=plot_path + 'arbis_dataset_sign_cramers.png',
-    #                show=True, figsize=(18, 15))
-
+    # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + 'arbis_dataset_corr_cramers.tex', 'w') as tf:
-        tf.write(corr.to_latex(float_format="{:0.2f}".format))
+        tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + 'arbis_dataset_sign_cramers.tex', 'w') as tf:
-        tf.write(sign.to_latex(float_format="{:0.6f}".format))
+        tf.write(results.get('significance').to_latex())
 
     with open(tex_path + 'arbis_dataset_coef_cramers.tex', 'w') as tf:
-        tf.write(coef.to_latex())
+        tf.write(results.get('coefficient').to_latex())
 
     # Calculate with Theil's U
-    # associations(arbis_encoded, figsize=(18, 15),
-    #              nominal_columns=['Strasse', 'Richtung', 'StreckeID', 'Month'],
-    #              plot=False, bias_correction=False)
-    # if safe_plots:
-    #     plt.savefig(plot_path + 'arbis_dataset_corr_theils.png')
-    # plt.show()
+    results = None  # To make sure that no old data is reused
+    results = compute_correlations(
+        arbis_encoded,
+        categorical_categorical='theils_u',
+        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+        columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
+        bias_correction=False)
+
+    # Plot correlation matrix
+    plot_correlation(results.get('correlation'), results.get('columns'),
+                     nominal_columns, dichotomous_columns, ordinal_columns,
+                     results.get('inf_nan_corr'),
+                     results.get('columns_single_value'),
+                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.png',
+                     show=show_plot, figsize=(18, 15))
+
+    # Plot statistics/significant matrix
+    plot_statistic(results.get('significance'), results.get('columns'),
+                   nominal_columns, dichotomous_columns, ordinal_columns,
+                   results.get('inf_nan_corr'),
+                   results.get('columns_single_value'),
+                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_theils.png',
+                   show=show_plot, figsize=(18, 15))
+
+    # Export correlation/statistics/coefficients into latex tables
+    with open(tex_path + 'arbis_dataset_corr_theils.tex', 'w') as tf:
+        tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
+
+    with open(tex_path + 'arbis_dataset_sign_theils.tex', 'w') as tf:
+        tf.write(results.get('significance').to_latex())
+
+    with open(tex_path + 'arbis_dataset_coef_theils.tex', 'w') as tf:
+        tf.write(results.get('coefficient').to_latex())
 
     print('Finished ArbIS Dataset Analysis')

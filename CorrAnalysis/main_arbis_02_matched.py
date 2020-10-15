@@ -16,22 +16,24 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-from func_correlation import associations
+
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
     print_welcome()
 
-    safe_plots = True
+    save_plot = True
+    show_plot = False
 
     data_path = 'data/'
     work_path = data_path + 'ArbIS/matched/'
     plot_path = work_path + 'plots/'
+    tex_path = work_path + 'latex/'
     work_file = 'ArbIS_2019.csv'
 
-    arbis_matched = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True, date_parser=date_parser)
+    arbis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True, date_parser=date_parser)
 
-    arbis = arbis_matched[
+    arbis_selected = arbis_imported[
         [
             # Congestion Data
             "TempExMax",
@@ -59,14 +61,14 @@ if __name__ == '__main__':
             "Length",
             "Duration"]].copy()
 
-    arbis["TimeLossCar"] = pd.to_numeric(arbis["TimeLossCar"])
-    arbis["TimeLossHGV"] = pd.to_numeric(arbis["TimeLossHGV"])
+    arbis_selected["TimeLossCar"] = pd.to_numeric(arbis_selected["TimeLossCar"])
+    arbis_selected["TimeLossHGV"] = pd.to_numeric(arbis_selected["TimeLossHGV"])
 
     # Print matrix for debugging
-    print(arbis.dtypes)
+    print(arbis_selected.dtypes)
 
     # Plot association matrix
-    associations(arbis, point_biserial=True, kruskal=False, theil_u=False, clustering=False,
+    associations(arbis_selected, point_biserial=True, kruskal=False, theil_u=False, clustering=False,
                  figsize=(18, 15),
                  nominal_columns=["temporalGlobalLoc",
                                   "spatialGlobalLoc",
@@ -82,7 +84,7 @@ if __name__ == '__main__':
     plt.show()
 
     # Plot association matrix
-    associations(arbis, point_biserial=True, kruskal=False, theil_u=True, clustering=False,
+    associations(arbis_selected, point_biserial=True, kruskal=False, theil_u=True, clustering=False,
                  figsize=(18, 15),
                  nominal_columns=["temporalGlobalLoc",
                                   "spatialGlobalLoc",
@@ -99,18 +101,18 @@ if __name__ == '__main__':
 
     # Plot scatter diagrams
     # Congestion -> Roadwork
-    arbis.plot.scatter(x='TempExMax', y='SpatExMax', c='AnzGesperrtFs', colormap='viridis')
+    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='AnzGesperrtFs', colormap='viridis')
     plt.show()
-    arbis.plot.scatter(x='TempExMax', y='SpatExMax', c='Einzug', colormap='viridis')
+    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Einzug', colormap='viridis')
     plt.show()
-    arbis.plot.scatter(x='TempExMax', y='SpatExMax', c='Length', colormap='viridis')
+    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Length', colormap='viridis')
     plt.show()
-    arbis.plot.scatter(x='TempExMax', y='SpatExMax', c='Duration', colormap='viridis')
+    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Duration', colormap='viridis')
     plt.show()
     # Roadwork -> Congestion
-    arbis.plot.scatter(x='Length', y='Duration', c='TempExMax', colormap='viridis')
+    arbis_selected.plot.scatter(x='Length', y='Duration', c='TempExMax', colormap='viridis')
     plt.show()
-    arbis.plot.scatter(x='Length', y='Duration', c='SpatExMax', colormap='viridis')
+    arbis_selected.plot.scatter(x='Length', y='Duration', c='SpatExMax', colormap='viridis')
     plt.show()
     # arbis.plot.scatter(x='Length', y='Duration', c='TimeLossCar', colormap='viridis')
     # plt.show()

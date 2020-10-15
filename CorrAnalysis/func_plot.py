@@ -22,23 +22,23 @@ import pandas as pd
 import seaborn as sns
 
 
-def plot_dataframe(corr, columns,
-                   nominal_columns=None,
-                   dichotomous_columns=None,
-                   ordinal_columns=None,
-                   inf_nan=None,
-                   single_value_columns=None,
-                   save=False,
-                   filepath='plot.png',
-                   show=True,
-                   ax=None,
-                   figsize=None,
-                   annot=True,
-                   fmt='.2f',
-                   cmap=None,
-                   sv_color='silver',
-                   cbar=True
-                   ):
+def plot_correlation(corr, columns,
+                     nominal_columns=None,
+                     dichotomous_columns=None,
+                     ordinal_columns=None,
+                     inf_nan=None,
+                     single_value_columns=None,
+                     save=False,
+                     filepath='plot.png',
+                     show=True,
+                     ax=None,
+                     figsize=None,
+                     annot=True,
+                     fmt='.2f',
+                     cmap=None,
+                     sv_color='silver',
+                     cbar=True
+                     ):
     """
 
     Parameters:
@@ -80,6 +80,7 @@ def plot_dataframe(corr, columns,
     """
 
     if ax is None:
+        # If no figure/mathplotlib is given, set new figure size
         plt.figure(figsize=figsize)
 
     if inf_nan.any(axis=None):
@@ -97,6 +98,92 @@ def plot_dataframe(corr, columns,
         inf_nan_mask = np.ones_like(corr)
 
     if len(single_value_columns) > 0:
+        # If dataframe contains single value columns
+        sv = pd.DataFrame(data=np.zeros_like(corr),
+                          columns=columns,
+                          index=columns)
+        for c in single_value_columns:
+            sv.loc[:, c] = ' '
+            sv.loc[c, :] = ' '
+            sv.loc[c, c] = 'SV'
+        sv_mask = np.vectorize(lambda x: not bool(x))(sv.values)
+        ax = sns.heatmap(sv_mask,
+                         cmap=[sv_color],
+                         annot=sv if annot else None,
+                         fmt='',
+                         center=0,
+                         square=True,
+                         ax=ax,
+                         mask=sv_mask,
+                         cbar=False)
+    else:
+        sv_mask = np.ones_like(corr)
+
+    # combine inf_nan_mask and sv_mask into one mask for all not available values
+    mask = np.vectorize(lambda x: not bool(x))(inf_nan_mask) + np.vectorize(lambda x: not bool(x))(sv_mask)
+
+    ax = sns.heatmap(corr,
+                     cmap=cmap,
+                     annot=annot,
+                     fmt=fmt,
+                     center=0,
+                     vmax=1.0,
+                     # if there are only
+                     vmin=-1.0 if len(columns) - len(nominal_columns) >= 2 else 0.0,
+                     square=True,
+                     mask=mask,
+                     ax=ax,
+                     cbar=cbar)
+
+    if save:
+        plt.savefig(filepath)
+
+    if show:
+        plt.show()
+    else:
+        plt.close()
+
+    return ax
+
+
+def plot_statistic(corr, columns,
+                   nominal_columns=None,
+                   dichotomous_columns=None,
+                   ordinal_columns=None,
+                   inf_nan=None,
+                   single_value_columns=None,
+                   save=False,
+                   filepath='plot.png',
+                   show=True,
+                   ax=None,
+                   figsize=None,
+                   annot=True,
+                   fmt='.4f',
+                   cmap=None,
+                   sv_color='silver',
+                   cbar=True
+                   ):
+    if ax is None:
+        # If no figure/mathplotlib is given, set new figure size
+        plt.figure(figsize=figsize)
+
+    if inf_nan.any(axis=None):
+        inf_nan_mask = np.vectorize(lambda x: not bool(x))(inf_nan.values)
+
+        ax = sns.heatmap(inf_nan_mask,
+                         cmap=['white'],
+                         annot=inf_nan if annot else None,
+                         fmt='',
+                         center=0,
+                         square=True,
+                         ax=ax,
+                         mask=inf_nan_mask,
+                         cbar=False)
+    else:
+        inf_nan_mask = np.ones_like(corr)
+
+    if len(single_value_columns) > 0:
+        # If dataframe contains single value columns
         sv = pd.DataFrame(data=np.zeros_like(corr),
                           columns=columns,
                           index=columns)
@@ -124,6 +211,7 @@ def plot_dataframe(corr, columns,
                      fmt=fmt,
                      center=0,
                      vmax=1.0,
+                     # if there are only
                      vmin=-1.0 if len(columns) - len(nominal_columns) >= 2 else 0.0,
                      square=True,
                      mask=mask,
@@ -139,3 +227,18 @@ def plot_dataframe(corr, columns,
         plt.close()
 
     return ax
+
+
+def plot_boxplot(data, x, y, save, show, file):
+    # Settings for box plots
+    sns.set(font_scale=2)
+    sns.set_context('paper')
+    plt.figure(figsize=(11, 6))
+    # Plot boxplot
+    sns.boxplot(x=x, y=y, data=data, palette='Set1')
+    if save:
+        plt.savefig(file)
+    if show:
+        plt.show()
+    else:
+        plt.close()

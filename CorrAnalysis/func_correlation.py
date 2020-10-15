@@ -37,8 +37,8 @@ _SKIP = 'skip'
 _DEFAULT_REPLACE_VALUE = 0.0
 _NOT_IMPLEMENTED = ' is not implemented'
 _ALPHA = 0.05
-_CORR_NAN = 'Nan'
-_SIGN_NAN = 'NaN'
+_CORR_NAN = np.nan
+_SIGN_NAN = np.nan
 
 
 ###############################
@@ -148,8 +148,44 @@ def anova(x, y):
 
 
 def kruskal_wallis(x, y):
+    """
+
+    Parameters:
+    -----------
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of continuous measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+
+    Returns:
+    --------
+    float : in the range of [0,1]
+    float : _SIGN_NAN as default p-value
+    str   : correlation name/identifier
+    """
     print(x.name + ' to ' + y.name + ' with Kruskal Wallis')
     f_statistic, p_value = ss.kruskal(x, y)
+
+    if p_value < _ALPHA:
+        print(
+            'ATTENTION: Kruskal-Wallis (' + p_value.__str__() + ') is smaller then alpha(' + _ALPHA.__str__() + '). ' +
+            'This means that there is a different between the ranks and further testing is necessary')
+
+        # uniques = y.unique()
+        # sign = pd.DataFrame(index=uniques, columns=uniques)
+        # df = pd.DataFrame(columns=[x.name, y.name])
+        # df[x.name] = x
+        # df[y.name] = y
+        #
+        # for i in range(0, len(uniques)):
+        #     for j in range(0, len(uniques)):
+        #         group = df.query(x.name + '== ' + i.__str__() + ' | ' + y.name + ' == ' + j.__str__())
+        #         print(group)
+        #         statistic_wilcoxon, p_value_wilcoxon, coef = wilcoxon(x, y)
+        #         sign.loc[uniques[i], uniques[j]] = p_value_wilcoxon
+        #
+        # print(sign)
+
     return f_statistic, p_value, 'Kruskal-Wallis H'
 
 
@@ -385,9 +421,9 @@ def conditional_entropy(x,
 
 def compute_correlations(dataset,
                          encode=False,
-                         nominal_columns='auto',
-                         dichotomous_columns='auto',
-                         ordinal_columns=None,
+                         columns_nominal='auto',
+                         columns_dichotomous='auto',
+                         columns_ordinal=None,
                          mark_columns=False,
                          continuous_continuous='pearson',
                          continuous_nominal='kruskal-wallis',
@@ -458,46 +494,50 @@ def compute_correlations(dataset,
 
     columns = dataset.columns
 
-    if nominal_columns is None:
-        nominal_columns = list()
-    elif nominal_columns == 'all':
-        nominal_columns = columns
-    elif nominal_columns == 'auto':
-        nominal_columns = identify_nominal_columns(dataset)
+    if columns_nominal is None:
+        columns_nominal = list()
+    elif columns_nominal == 'all':
+        columns_nominal = columns
+    elif columns_nominal == 'auto':
+        columns_nominal = identify_nominal_columns(dataset)
 
-    if dichotomous_columns is None:
-        dichotomous_columns = list()
-    elif dichotomous_columns == 'all':
-        dichotomous_columns = columns
-    elif dichotomous_columns == 'auto':
-        dichotomous_columns = identify_dichotomous_columns(dataset, nominal_columns)
+    if columns_dichotomous is None:
+        columns_dichotomous = list()
+    elif columns_dichotomous == 'all':
+        columns_dichotomous = columns
+    elif columns_dichotomous == 'auto':
+        columns_dichotomous = identify_dichotomous_columns(dataset, columns_nominal)
 
-    if ordinal_columns is None:
-        ordinal_columns = list()
-    elif ordinal_columns == 'all':
-        ordinal_columns = columns
-    elif ordinal_columns == 'auto':
-        ordinal_columns = identify_ordinal_columns(dataset, nominal_columns, dichotomous_columns)
+    if columns_ordinal is None:
+        columns_ordinal = list()
+    elif columns_ordinal == 'all':
+        columns_ordinal = columns
+    elif columns_ordinal == 'auto':
+        columns_ordinal = identify_ordinal_columns(dataset, columns_nominal, columns_dichotomous)
 
     corr = pd.DataFrame(index=columns, columns=columns)
     sign = pd.DataFrame(index=columns, columns=columns)
     coef = pd.DataFrame(index=columns, columns=columns)
 
-    single_value_columns = []
+    columns_single_value = []
 
-    inf_nan = pd.DataFrame(data=np.zeros_like(corr),
-                           columns=columns,
-                           index=columns)
+    inf_nan_corr = pd.DataFrame(data=np.zeros_like(corr),
+                                columns=columns,
+                                index=columns)
+
+    inf_nan_sign = pd.DataFrame(data=np.zeros_like(corr),
+                                columns=columns,
+                                index=columns)
 
     for c in columns:
         # Test if column only contains single value
         if dataset[c].unique().size == 1:
             # Column only contains a single value, prepare for no calculation to be done
-            single_value_columns.append(c)
+            columns_single_value.append(c)
 
     for i in range(0, len(columns)):
 
-        if columns[i] in single_value_columns:
+        if columns[i] in columns_single_value:
             # If column only contains a single value, not correlation calculation necessary
             corr.loc[:, columns[i]] = 0.0
             corr.loc[columns[i], :] = 0.0
@@ -505,19 +545,21 @@ def compute_correlations(dataset,
 
         for j in range(i, len(columns)):
 
-            if columns[j] in single_value_columns:
+            if columns[j] in columns_single_value:
                 continue
 
             elif i == j:
                 # Correlation to itself is always 1.0
                 corr.loc[columns[i], columns[j]] = 1.0
+                sign.loc[columns[i], columns[j]] = _SIGN_NAN
+                inf_nan_sign.loc[columns[i], columns[j]] = _inf_nan_str(_SIGN_NAN)
 
             else:
                 # print('Processing ' + columns[i] + ' and ' + columns[j])
-                if columns[i] in nominal_columns or columns[i] in dichotomous_columns or columns[i] in ordinal_columns:
+                if columns[i] in columns_nominal or columns[i] in columns_dichotomous or columns[i] in columns_ordinal:
                     # i is categorical
-                    if columns[j] in nominal_columns or columns[j] in dichotomous_columns or columns[
-                        j] in ordinal_columns:
+                    if columns[j] in columns_nominal or columns[j] in columns_dichotomous or columns[
+                        j] in columns_ordinal:
                         # i and j are categorical
                         if categorical_categorical == 'theils_u':
                             # Because Theil's U is asymmetrical, calculate both directions separately
@@ -530,13 +572,13 @@ def compute_correlations(dataset,
                             ji = cell
                     else:
                         # i is categorical, j is continuous
-                        if columns[i] in ordinal_columns:
+                        if columns[i] in columns_ordinal:
                             # i is ordinal, j is continuous
                             if continuous_ordinal == 'kendall':
                                 cell, p, c = kendall(dataset[columns[j]], dataset[columns[i]])
                             else:
                                 cell, p, c = spearman(dataset[columns[j]], dataset[columns[i]])
-                        elif columns[i] in dichotomous_columns:
+                        elif columns[i] in columns_dichotomous:
                             # i is dichotomous, j is continuous
                             if continuous_dichotomous == 'mann-whitney':
                                 cell, p, c = mann_whitney(dataset[columns[j]], dataset[columns[i]])
@@ -554,16 +596,16 @@ def compute_correlations(dataset,
                         ij = cell
                         ji = cell
 
-                elif columns[j] in nominal_columns or columns[j] in dichotomous_columns or columns[
-                    j] in ordinal_columns:
+                elif columns[j] in columns_nominal or columns[j] in columns_dichotomous or columns[
+                    j] in columns_ordinal:
                     # j is categorical, i is continuous
-                    if columns[j] in ordinal_columns:
+                    if columns[j] in columns_ordinal:
                         # j is ordinal, i is continuous
                         if continuous_ordinal == 'kendall':
                             cell, p, c = kendall(dataset[columns[i]], dataset[columns[j]])
                         else:
                             cell, p, c = spearman(dataset[columns[i]], dataset[columns[j]])
-                    elif columns[j] in dichotomous_columns:
+                    elif columns[j] in columns_dichotomous:
                         # j is dichotomous, i is continuous
                         if continuous_dichotomous == 'mann-whitney':
                             cell, p, c = mann_whitney(dataset[columns[i]], dataset[columns[j]])
@@ -585,42 +627,55 @@ def compute_correlations(dataset,
 
                 else:
                     # i and j are continuous
-                    assert columns[i] not in nominal_columns or columns[i] not in dichotomous_columns or columns[
-                        i] not in ordinal_columns, columns[i] + ' should not be here'
-                    assert columns[j] not in nominal_columns or columns[j] not in dichotomous_columns or columns[
-                        j] not in ordinal_columns, columns[j] + ' should not be here'
+                    assert columns[i] not in columns_nominal or columns[i] not in columns_dichotomous or columns[
+                        i] not in columns_ordinal, columns[i] + ' should not be here'
+                    assert columns[j] not in columns_nominal or columns[j] not in columns_dichotomous or columns[
+                        j] not in columns_ordinal, columns[j] + ' should not be here'
                     cell, p, c = pearsons(dataset[columns[i]], dataset[columns[j]])
 
                     ij = cell
                     ji = cell
 
-                corr.loc[columns[i], columns[j]] = ij if not np.isnan(ij) and abs(ij) < np.inf else 0.0
-                corr.loc[columns[j], columns[i]] = ji if not np.isnan(ji) and abs(ji) < np.inf else 0.0
-                sign.loc[columns[i], columns[j]] = p
-                sign.loc[columns[j], columns[i]] = p
+                corr.loc[columns[i], columns[j]] = round(ij, 2) if not np.isnan(ij) and abs(ij) < np.inf else 0.0
+                corr.loc[columns[j], columns[i]] = round(ji, 2) if not np.isnan(ji) and abs(ji) < np.inf else 0.0
+                sign.loc[columns[i], columns[j]] = round(p, 4) if not np.isnan(p) and abs(p) < np.inf else _SIGN_NAN
+                sign.loc[columns[j], columns[i]] = round(p, 4) if not np.isnan(p) and abs(p) < np.inf else _SIGN_NAN
                 coef.loc[columns[i], columns[j]] = c
                 coef.loc[columns[j], columns[i]] = c
-                inf_nan.loc[columns[i], columns[j]] = _inf_nan_str(ij)
-                inf_nan.loc[columns[j], columns[i]] = _inf_nan_str(ji)
+                inf_nan_corr.loc[columns[i], columns[j]] = _inf_nan_str(ij)
+                inf_nan_corr.loc[columns[j], columns[i]] = _inf_nan_str(ji)
+                inf_nan_sign.loc[columns[i], columns[j]] = _inf_nan_str(p)
+                inf_nan_sign.loc[columns[j], columns[i]] = _inf_nan_str(p)
 
     corr.fillna(value=np.nan, inplace=True)
+    sign.fillna(value=np.nan, inplace=True)
 
     if mark_columns:
         marked_columns = [
             '{} (nom)'.format(col)
-            if col in nominal_columns else '{} (con)'.format(col)
+            if col in columns_nominal else '{} (con)'.format(col)
             for col in columns
         ]
         corr.columns = marked_columns
         corr.index = marked_columns
-        inf_nan.columns = marked_columns
-        inf_nan.index = marked_columns
+        inf_nan_corr.columns = marked_columns
+        inf_nan_corr.index = marked_columns
 
     if clustering:
         corr, p = cluster_correlations(corr)
         columns = corr.columns
 
-    return corr, sign, coef, columns, nominal_columns, dichotomous_columns, ordinal_columns, inf_nan, single_value_columns
+    return {
+        'correlation': corr,
+        'significance': sign,
+        'coefficient': coef,
+        'columns': columns,
+        'columns_nominal': columns_nominal,
+        'columns_dichotomous': columns_dichotomous,
+        'columns_ordinal': columns_ordinal,
+        'inf_nan_corr': inf_nan_corr,
+        'inf_nan_sign': inf_nan_sign,
+        'columns_single_value': columns_single_value}
 
 
 def numerical_encoding(dataset,

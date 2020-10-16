@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
     # Plot histogram of accidents over highway
     plt.figure(figsize=(13, 6))
-    plt.hist(arbis_selected['Strasse'], color='blue', edgecolor='black', label=True)
+    n, bins, patches = plt.hist(arbis_selected['Strasse'], color='blue', edgecolor='black', label=True)
     plt.title('Histogram of roadworks per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
@@ -137,7 +137,7 @@ if __name__ == '__main__':
     # Encode non numerical columns
     arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False,
                                                            drop_fact_dict=False)
-    arbis_encoded.to_csv(csv_path + 'encoded.csv', index=False)
+    arbis_encoded.to_csv(csv_path + 'encoded.csv', index=False, sep=';')
 
     with open(csv_path + 'encoded_dict.csv', 'w') as tf:
         for key in arbis_encoded_dict.keys():

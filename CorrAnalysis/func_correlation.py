@@ -64,7 +64,7 @@ def pearsons(measurements_x, measurements_y):
     """
     print(measurements_x.name + ' to ' + measurements_y.name + ' with Pearson')
     coefficient, p_value = ss.pearsonr(measurements_x, measurements_y)
-    return coefficient, p_value, 'Pearson\'s r'
+    return coefficient, p_value, 'Pearson'
 
 
 #########################################
@@ -86,7 +86,7 @@ def kruskal_wallis(x, y):
     Returns:
     --------
     float : statistic of variations
-    float : p-value
+    float : p-value with chi squared
     str   : correlation name/identifier
     """
     f_statistic, p_value = ss.kruskal(x, y)
@@ -210,10 +210,10 @@ def point_biserial(measurements, dichotomies):
     float : p-value
     str   : correlation name/identifier
     """
-    print(measurements.name + ' to ' + dichotomies.name + ' with Point Biserial')
+    print(measurements.name + ' to ' + dichotomies.name + ' with Point Biserial and Wilcoxon (Mann Whitney)')
     correlation, p_value = ss.pointbiserialr(dichotomies, measurements)
     # statistic, p_value = wilcoxon(measurements, dichotomies)
-    return correlation, p_value, 'Point Biserial and Wilcoxon (Mann Whitney)'
+    return correlation, p_value, 'Point Biserial'
 
 
 #########################################
@@ -240,7 +240,7 @@ def kendall(measurements_x, measurements_y):
     """
     print(measurements_x.name + ' to ' + measurements_y.name + ' with Kendall')
     correlation, p_value = ss.kendalltau(measurements_x, measurements_y)
-    return correlation, p_value, 'Kendalls $tau$'
+    return correlation, p_value, 'Kendall'
 
 
 #################################
@@ -434,11 +434,7 @@ def compute_correlations(dataset,
                          columns_dichotomous='auto',
                          columns_ordinal=None,
                          mark_columns=False,
-                         continuous_continuous='pearson',
-                         continuous_nominal='kruskal-wallis',
-                         continuous_dichotomous='point-biserial',
-                         continuous_ordinal='spearman',
-                         categorical_categorical='cramers_v',
+                         theils=False,
                          clustering=False,
                          bias_correction=True,
                          nan_strategy=_REPLACE,
@@ -570,7 +566,7 @@ def compute_correlations(dataset,
                     if columns[j] in columns_nominal or columns[j] in columns_dichotomous or columns[
                         j] in columns_ordinal:
                         # i and j are categorical
-                        if categorical_categorical == 'theils_u':
+                        if theils:
                             # Because Theil's U is asymmetrical, calculate both directions separately
                             ij, p, c = theils_u(dataset[columns[i]], dataset[columns[j]])  # TODO handle two p values
                             ji, p, c = theils_u(dataset[columns[j]], dataset[columns[i]])  # TODO handle two p values
@@ -583,24 +579,13 @@ def compute_correlations(dataset,
                         # i is categorical, j is continuous
                         if columns[i] in columns_ordinal:
                             # i is ordinal, j is continuous
-                            if continuous_ordinal == 'kendall':
-                                cell, p, c = kendall(dataset[columns[j]], dataset[columns[i]])
-                            else:
-                                cell, p, c = spearman(dataset[columns[j]], dataset[columns[i]])
+                            cell, p, c = kendall(dataset[columns[j]], dataset[columns[i]])
                         elif columns[i] in columns_dichotomous:
                             # i is dichotomous, j is continuous
-                            if continuous_dichotomous == 'mann-whitney':
-                                cell, p, c = mann_whitney(dataset[columns[j]], dataset[columns[i]])
-                            else:
-                                cell, p, c = point_biserial(dataset[columns[j]], dataset[columns[i]])
+                            cell, p, c = point_biserial(dataset[columns[j]], dataset[columns[i]])
                         else:
                             # i is nominal, j is continuous
-                            if continuous_nominal == 'anova':
-                                cell, p, c = anova(dataset[columns[j]], dataset[columns[i]])
-                            elif continuous_nominal == 'kruskal-wallis':
-                                cell, p, c = kruskal_wallis(dataset[columns[j]], dataset[columns[i]])
-                            else:
-                                cell, p, c = eta(dataset[columns[j]], dataset[columns[i]])
+                            cell, p, c = eta(dataset[columns[j]], dataset[columns[i]])
 
                         ij = cell
                         ji = cell
@@ -610,26 +595,14 @@ def compute_correlations(dataset,
                     # j is categorical, i is continuous
                     if columns[j] in columns_ordinal:
                         # j is ordinal, i is continuous
-                        if continuous_ordinal == 'kendall':
-                            cell, p, c = kendall(dataset[columns[i]], dataset[columns[j]])
-                        else:
-                            cell, p, c = spearman(dataset[columns[i]], dataset[columns[j]])
+                        cell, p, c = kendall(dataset[columns[i]], dataset[columns[j]])
+
                     elif columns[j] in columns_dichotomous:
                         # j is dichotomous, i is continuous
-                        if continuous_dichotomous == 'mann-whitney':
-                            cell, p, c = mann_whitney(dataset[columns[i]], dataset[columns[j]])
-                        elif continuous_dichotomous == 'wilcoxon':
-                            cell, p, c = wilcoxon(dataset[columns[i]], dataset[columns[j]])
-                        else:
-                            cell, p, c = point_biserial(dataset[columns[i]], dataset[columns[j]])
+                        cell, p, c = point_biserial(dataset[columns[i]], dataset[columns[j]])
                     else:
                         # j is nominal, i is continuous
-                        if continuous_nominal == 'anova':
-                            cell, p, c = anova(dataset[columns[i]], dataset[columns[j]])
-                        elif continuous_nominal == 'kruskal-wallis':
-                            cell, p, c = kruskal_wallis(dataset[columns[i]], dataset[columns[j]])
-                        else:
-                            cell, p, c = eta(dataset[columns[i]], dataset[columns[j]])
+                        cell, p, c = eta(dataset[columns[i]], dataset[columns[j]])
 
                     ij = cell
                     ji = cell

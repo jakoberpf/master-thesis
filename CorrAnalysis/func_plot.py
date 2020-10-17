@@ -229,11 +229,12 @@ def plot_statistic(corr, columns,
     return ax
 
 
-def plot_boxplot(data, x, y, save, show, file):
+def plot_boxplot_logscale(data, x, y, save, show, file):
     # Settings for box plots
     sns.set(font_scale=2)
     sns.set_context('paper')
     plt.figure(figsize=(11, 6))
+    plt.yscale('log') # https://matplotlib.org/3.1.1/gallery/pyplots/pyplot_scales.html
     # Plot boxplot
     sns.boxplot(x=x, y=y, data=data, palette='Set1')
     if save:

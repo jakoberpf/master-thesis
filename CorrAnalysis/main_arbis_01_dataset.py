@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_statistic, plot_boxplot
+from func_plot import plot_correlation, plot_statistic, plot_boxplot_logscale
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -100,39 +100,34 @@ if __name__ == '__main__':
     arbis_selected['Duration'] = abs((arbis_imported['Von'] - arbis_imported['Bis'])).dt.total_seconds() / 60
 
     # Plot boxplots for visual relation testing
-    plot_boxplot(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
-                 plot_path + 'arbis_dataset_box_street2length.png')
+    plot_boxplot_logscale(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
+                          plot_path + 'arbis_dataset_box_street2length.png')
 
-    plot_boxplot(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
-                 plot_path + 'arbis_dataset_box_street2duration.png')
+    plot_boxplot_logscale(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
+                          plot_path + 'arbis_dataset_box_street2duration.png')
 
-    plot_boxplot(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
-                 plot_path + 'arbis_dataset_box_agfs2length.png')
+    plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
+                          plot_path + 'arbis_dataset_box_agfs2length.png')
 
-    plot_boxplot(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
-                 plot_path + 'arbis_dataset_box_agfs2duration.png')
+    plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
+                          plot_path + 'arbis_dataset_box_agfs2duration.png')
 
-    plot_boxplot(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
-                 plot_path + 'arbis_dataset_box_einzug2length.png')
+    plot_boxplot_logscale(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
+                          plot_path + 'arbis_dataset_box_einzug2length.png')
 
-    plot_boxplot(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
-                 plot_path + 'arbis_dataset_box_einzug2duration.png')
+    plot_boxplot_logscale(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
+                          plot_path + 'arbis_dataset_box_einzug2duration.png')
 
-    plot_boxplot(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
-                 plot_path + 'arbis_dataset_box_direction2length.png')
+    plot_boxplot_logscale(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
+                          plot_path + 'arbis_dataset_box_direction2length.png')
 
-    plot_boxplot(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
-                 plot_path + 'arbis_dataset_box_direction2duration.png')
+    plot_boxplot_logscale(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
+                          plot_path + 'arbis_dataset_box_direction2duration.png')
 
     # define column types
     nominal_columns = ['Strasse', 'StreckeID', 'Month']
     dichotomous_columns = ['Richtung']
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
-
-    # define coefficients
-    con_nominal = 'kruskal-wallis'
-    con_dichotomous = 'point_biserial'
-    con_ordinal = 'kendall'
 
     # Encode non numerical columns
     arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False,
@@ -147,7 +142,6 @@ if __name__ == '__main__':
     results = None  # To make sure that no old data is reused
     results = compute_correlations(
         arbis_encoded,
-        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
         columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
         bias_correction=False)
 
@@ -181,8 +175,7 @@ if __name__ == '__main__':
     results = None  # To make sure that no old data is reused
     results = compute_correlations(
         arbis_encoded,
-        categorical_categorical='theils_u',
-        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+        theils=True,
         columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
         bias_correction=False)
 

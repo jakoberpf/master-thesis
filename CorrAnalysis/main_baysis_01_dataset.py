@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_boxplot, plot_statistic
+from func_plot import plot_correlation, plot_boxplot_logscale, plot_statistic
 from func_utils import print_welcome, date_parser
 
 if __name__ == '__main__':
@@ -91,11 +91,11 @@ if __name__ == '__main__':
         plt.close()
 
     # Plot boxplots for visual relation testing
-    plot_boxplot(baysis_selected, 'Strasse', 'Kat', save_plot, show_plot,
-                 plot_path + 'baysis_dataset_box_street2kat.png')
+    plot_boxplot_logscale(baysis_selected, 'Strasse', 'Kat', save_plot, show_plot,
+                          plot_path + 'baysis_dataset_box_street2kat.png')
 
-    plot_boxplot(baysis_selected, 'Strasse', 'Typ', save_plot, show_plot,
-                 plot_path + 'baysis_dataset_box_street2typ.png')
+    plot_boxplot_logscale(baysis_selected, 'Strasse', 'Typ', save_plot, show_plot,
+                          plot_path + 'baysis_dataset_box_street2typ.png')
 
     # define column types
     nominal_columns = ["Strasse", "Kat", "Typ",

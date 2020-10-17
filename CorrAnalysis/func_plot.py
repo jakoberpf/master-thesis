@@ -242,3 +242,7 @@ def plot_boxplot(data, x, y, save, show, file):
         plt.show()
     else:
         plt.close()
+        
+
+def plot_scatter():
+    plt.scatter()

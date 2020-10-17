@@ -14,17 +14,14 @@ __all__ = [
     # continuous-continuous
     'pearsons',
     # continuous-categorical(nominal)
-    'correlation_ratio',
-    'anova',
-    'kruskal_wallis',
+    'kruskal_wallis',  # for significance
+    'eta',
     # continuous-categorical(dichotomous)
+    'wilcoxon',  # for significance
     'point_biserial',
-    'mann_whitney',
     # continuous-categorical(ordinal)
-    'spearman',
     'kendall',
     # categorical-categorical
-    'chi_square',
     'cramers_v',
     'theils_u'
 ]
@@ -62,7 +59,7 @@ def pearsons(measurements_x, measurements_y):
     Returns:
     --------
     float : in the range of [0,1]
-    float : p-value
+    float : p-value (2 tailed)
     str   : correlation name/identifier
     """
     print(measurements_x.name + ' to ' + measurements_y.name + ' with Pearson')
@@ -74,11 +71,36 @@ def pearsons(measurements_x, measurements_y):
 ### Continuous - Categorical(Nominal) ###
 #########################################
 
+def kruskal_wallis(x, y):
+    """
 
-def correlation_ratio(measurements,
-                      categories,
-                      nan_strategy=_REPLACE,
-                      nan_replace_value=_DEFAULT_REPLACE_VALUE):
+    Kruskal-Wallis H TODO add docstring
+
+    Parameters:
+    -----------
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of continuous measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical measurements
+
+    Returns:
+    --------
+    float : statistic of variations
+    float : p-value
+    str   : correlation name/identifier
+    """
+    f_statistic, p_value = ss.kruskal(x, y)
+    # if p_value < _ALPHA:
+    #     print(
+    #         'ATTENTION: Kruskal-Wallis (' + p_value.__str__() + ') is smaller then alpha(' + _ALPHA.__str__() + '). ' +
+    #         'This means that there is a different between the ranks and further testing is necessary')
+    return f_statistic, p_value
+
+
+def eta(measurements,
+        categories,
+        nan_strategy=_REPLACE,
+        nan_replace_value=_DEFAULT_REPLACE_VALUE):
     """
     Calculates the Correlation Ratio (sometimes marked by the greek letter Eta)
     for categorical-continuous association.
@@ -108,11 +130,11 @@ def correlation_ratio(measurements,
 
     Returns:
     --------
-    float : in the range of [0,1]
-    float : _SIGN_NAN as default p-value
+    float : correlation coefficient in the range of [0,1]
+    float : p-value, calculated with Kruskal-Wallis H
     str   : correlation name/identifier
     """
-    print(categories.name + ' to ' + measurements.name + ' with Correlation Ration')
+    print(categories.name + ' to ' + measurements.name + ' with Correlation Ration (Eta) and Kruskal-Wallis H')
     if nan_strategy == _REPLACE:
         categories, measurements = replace_nan_with_value(
             categories, measurements, nan_replace_value)
@@ -131,62 +153,15 @@ def correlation_ratio(measurements,
         y_avg_array[i] = np.average(cat_measures)
     y_total_avg = np.sum(np.multiply(y_avg_array, n_array)) / np.sum(n_array)
     numerator = np.sum(
-        np.multiply(n_array, np.power(np.subtract(y_avg_array, y_total_avg),
-                                      2)))
+        np.multiply(n_array, np.power(np.subtract(y_avg_array, y_total_avg), 2)))
     denominator = np.sum(np.power(np.subtract(measurements, y_total_avg), 2))
     if numerator == 0:
         correlation = 0.0
     else:
         correlation = np.sqrt(numerator / denominator)
-    return correlation, _SIGN_NAN, 'Correlation Ratio'  # TODO add significance calculation
 
-
-def anova(x, y):
-    print(x.name + ' to ' + y.name + ' with ANOVA')
-    f_statistic, p_value = ss.f_oneway(x, y)
-    return f_statistic, p_value, 'ANOVA'
-
-
-def kruskal_wallis(x, y):
-    """
-
-    Parameters:
-    -----------
-    x : list / NumPy ndarray / Pandas Series
-        A sequence of continuous measurements
-    y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical measurements
-
-    Returns:
-    --------
-    float : in the range of [0,1]
-    float : _SIGN_NAN as default p-value
-    str   : correlation name/identifier
-    """
-    print(x.name + ' to ' + y.name + ' with Kruskal Wallis')
-    f_statistic, p_value = ss.kruskal(x, y)
-
-    if p_value < _ALPHA:
-        print(
-            'ATTENTION: Kruskal-Wallis (' + p_value.__str__() + ') is smaller then alpha(' + _ALPHA.__str__() + '). ' +
-            'This means that there is a different between the ranks and further testing is necessary')
-
-        # uniques = y.unique()
-        # sign = pd.DataFrame(index=uniques, columns=uniques)
-        # df = pd.DataFrame(columns=[x.name, y.name])
-        # df[x.name] = x
-        # df[y.name] = y
-        #
-        # for i in range(0, len(uniques)):
-        #     for j in range(0, len(uniques)):
-        #         group = df.query(x.name + '== ' + i.__str__() + ' | ' + y.name + ' == ' + j.__str__())
-        #         print(group)
-        #         statistic_wilcoxon, p_value_wilcoxon, coef = wilcoxon(x, y)
-        #         sign.loc[uniques[i], uniques[j]] = p_value_wilcoxon
-        #
-        # print(sign)
-
-    return f_statistic, p_value, 'Kruskal-Wallis H'
+    f_statistic, p_value = kruskal_wallis(measurements, categories)
+    return correlation, p_value, 'Eta'
 
 
 ############################################
@@ -194,35 +169,75 @@ def kruskal_wallis(x, y):
 ############################################
 
 
+def wilcoxon(measurements_x, measurements_y):
+    """
+
+    Wilcoxon (Mann-Withney) test TODO add docstring
+
+    Parameters:
+    -----------
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of continuous measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical(dichotoums) measurements
+
+    Returns:
+    --------
+    float : statistic of variations
+    float : p-value
+    str   : correlation name/identifier
+    """
+    print(measurements_x.name + ' to ' + measurements_y.name + ' with Wilcoxon (Mann Whitney)')
+    statistic, p_value = ss.wilcoxon(measurements_x, measurements_y)
+    return statistic, p_value
+
+
 def point_biserial(measurements, dichotomies):
+    """
+
+    Pearson's Point Biserial TODO add docstring
+
+    Parameters:
+    -----------
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of continuous measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical(dichotoums) measurements
+
+    Returns:
+    --------
+    float : correlation coefficient in the range of [0,1]
+    float : p-value
+    str   : correlation name/identifier
+    """
     print(measurements.name + ' to ' + dichotomies.name + ' with Point Biserial')
     correlation, p_value = ss.pointbiserialr(dichotomies, measurements)
-    return correlation, p_value, 'Point Biserial'
-
-
-def mann_whitney(measurements_x, measurements_y):
-    print(measurements_x.name + ' to ' + measurements_y.name + ' with Mann Whitney')
-    u_statistic, p_value = ss.mannwhitneyu(measurements_x, measurements_y)
-    return u_statistic, p_value, 'Mann-Whitney H'
-
-
-def wilcoxon(measurements_x, measurements_y):
-    print(measurements_x.name + ' to ' + measurements_y.name + ' with Mann Whitney')
-    statistic, p_value = ss.wilcoxon(measurements_x, measurements_y)
-    return statistic, p_value, 'Wilcoxon'
+    # statistic, p_value = wilcoxon(measurements, dichotomies)
+    return correlation, p_value, 'Point Biserial and Wilcoxon (Mann Whitney)'
 
 
 #########################################
 ### Continuous - Categorical(Nominal) ###
 #########################################
 
-def spearman(measurements_x, measurements_y):
-    print(measurements_x.name + ' to ' + measurements_y.name + ' with Spearman')
-    correlation, p_value = ss.spearmanr(measurements_x, measurements_y)
-    return correlation, p_value, 'Spearmans $rho$'
-
-
 def kendall(measurements_x, measurements_y):
+    """
+
+    Kruskal-Wallis H TODO add docstring
+
+    Parameters:
+    -----------
+    x : list / NumPy ndarray / Pandas Series
+        A sequence of continuous measurements
+    y : list / NumPy ndarray / Pandas Series
+        A sequence of categorical(dichotoums) measurements
+
+    Returns:
+    --------
+    float : correlation coefficient in the range of [0,1]
+    float : p-value
+    str   : correlation name/identifier
+    """
     print(measurements_x.name + ' to ' + measurements_y.name + ' with Kendall')
     correlation, p_value = ss.kendalltau(measurements_x, measurements_y)
     return correlation, p_value, 'Kendalls $tau$'
@@ -231,12 +246,6 @@ def kendall(measurements_x, measurements_y):
 #################################
 ### Categorical - Categorical ###
 #################################
-
-def chi_square(x, y):
-    print(x.name + ' to ' + y.name + ' with Pearson ChiSquare')
-    chisq, p_value = ss.chisquare(x, y)
-    return chisq, p_value, 'ChiSquare'
-
 
 def cramers_v(x,
               y,
@@ -591,7 +600,7 @@ def compute_correlations(dataset,
                             elif continuous_nominal == 'kruskal-wallis':
                                 cell, p, c = kruskal_wallis(dataset[columns[j]], dataset[columns[i]])
                             else:
-                                cell, p, c = correlation_ratio(dataset[columns[j]], dataset[columns[i]])
+                                cell, p, c = eta(dataset[columns[j]], dataset[columns[i]])
 
                         ij = cell
                         ji = cell
@@ -620,7 +629,7 @@ def compute_correlations(dataset,
                         elif continuous_nominal == 'kruskal-wallis':
                             cell, p, c = kruskal_wallis(dataset[columns[i]], dataset[columns[j]])
                         else:
-                            cell, p, c = correlation_ratio(dataset[columns[i]], dataset[columns[j]])
+                            cell, p, c = eta(dataset[columns[i]], dataset[columns[j]])
 
                     ij = cell
                     ji = cell

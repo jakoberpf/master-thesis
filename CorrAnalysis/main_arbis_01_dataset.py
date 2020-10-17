@@ -16,6 +16,7 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 from func_correlation import numerical_encoding, compute_correlations
 from func_plot import plot_correlation, plot_statistic, plot_boxplot_logscale
@@ -57,13 +58,6 @@ if __name__ == '__main__':
     # Manual data type conversion from str to datetime64
     arbis_imported['Von'] = pd.to_datetime(arbis_imported['Von'], format='%Y-%m-%d %H:%M:%S')
     arbis_imported['Bis'] = pd.to_datetime(arbis_imported['Bis'], format='%Y-%m-%d %H:%M:%S')
-
-    # Manual data type conversion str to float64
-    # arbis_import['VonKilometer'] = arbis_import['VonKilometer'].replace(',', '.', regex=True).astype(float)
-    # arbis_import['BisKilometer'] = arbis_import['BisKilometer'].replace(',', '.', regex=True).astype(float)
-
-    # Manual data type conversion str to float64
-    # arbis_import['VonKilometer'] = arbis_import['VonKilometer'].replace(',', '.', regex=True).astype(float)
 
     # Add month of roadwork
     arbis_selected['Month'] = arbis_imported['Von'].dt.month_name()
@@ -204,5 +198,9 @@ if __name__ == '__main__':
 
     with open(tex_path + 'arbis_dataset_coef_theils.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
+
+    # sns.set_theme(style='ticks')
+    # sns.pairplot(arbis_selected, hue='Strasse')
+    # plt.show()
 
     print('Finished ArbIS Dataset Analysis')

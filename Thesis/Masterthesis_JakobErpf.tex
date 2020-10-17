@@ -292,6 +292,8 @@ If $l < l_{min}$ or $t < t_{min}$ is given, $l$ being the maximum spatial extend
 
 \chapter{Correlation}
 \label{definition_correlation}
+This chapter will explain the later used statical methods and their mathematical definitions. This is to provide an in depth understand how the results presented in later chapter are where comprised, since there are some alteration an assumptions implemented in the used correlation methods.
+
 Correlation is an analysis procedure that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables \cite{HerzSchlicherSiegener1992}. In most statistics the following common types of can be found: Pearson's $r$, Kendall's $\tau$, Spearman  $\rho$ or the Point-Biserial correlation \cite{Ramzai2020,SPSS2020a,SPSS2020b}. Besides off these, there are many more correlation coefficients which varying in they applicability and interpretability. Depending on which type of data variables are to be analyzed, it it necessary to choose an applicable correlation coefficient. The type of data variable and relation combination are the most restricting features for choosing a suitable correlation coefficient. 
 
 \section{Variable Types}
@@ -328,7 +330,7 @@ As stated in \ref{correlation_variable_types} continuous variables are metric me
 
 Pearson's $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set as it is non-paramteric. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \cite{BenestyChenHuang2009,Sulthan2018}
  
-The general correlation coefficient, shown in equation \ref{formula_correlation_basic} is the foundation for deducing Pearson's $r$. It is defined by the fraction of the covariance (see equation \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (see equation \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992}
+The general correlation coefficient, shown in equation \ref{formula_correlation_basic} is the foundation for deducing Pearson's $r$. It is defined by the fraction of the covariance (see equation \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (see equation \ref{formula_correlation_deviation}).\cite{HerzSchlicherSiegener1992}
 \smallskip
 \begin{equation}
 \label{formula_correlation_basic}
@@ -342,24 +344,27 @@ The general correlation coefficient, shown in equation \ref{formula_correlation_
 \label{formula_correlation_deviation}
 	\sigma_{x,y} = \sum_{i}(x_i,y_i-\mu_{x,y})^2 \cdot p_i
 \end{equation}
-%\begin{equation}
-%\label{formula_correlation}
-%	\rho =  \frac{\sum_{i}{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}\sum_{i}{(y_i-\bar{y})^2}}}
-%\end{equation}
 
 \bigskip
 
-Notation \ref{formula_pearson} shows the Pearson's $r$ correlation coefficient, which is a direct usage of the definition in \ref{formula_correlation_basic}, assuming that both vectors have the same length, named $i$. The symbols $\bar{x}$ and $\bar{y}$ corresponds to the means of vector $x$ and $y$, respectively. \cite{BenestyChenHuang2009,Zychlinski2018}
+The equation \ref{formula_pearson} shows Pearson's correlation coefficient $r$, which is a direct usage of the definition in \ref{formula_correlation_basic}, assuming that both data variables have the same length, named $i$. The symbols $\bar{x}$ and $\bar{y}$ correspond to the means of the data variabel $x$ and $y$, respectively. \cite{BenestyChenHuang2009,Zychlinski2018}
 \smallskip
 \begin{equation}
 \label{formula_pearson}	
 	r_{xy} =  \frac{\sum_{i}{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}\sum_{i}{(y_i-\bar{y})^2}}}
 \end{equation}
 
-Represent the ration of deviations from the means of variabel $x$ and $y$ respectively, this ration between the variabel x and y results in the interpretable value $x_{xy}$, indicating the strength of linear association.  
+\bigskip
+
+The equation can simplified to \ref{formula_pearson_simplified} with the $SS$ corresponding to the summed squares and $SP$ corresponding to summed products.
+\smallskip
+\begin{equation}
+\label{formula_pearson_simplified}
+	r =  \frac{SP_{xy}}{\sqrt{SS_x}{SS_y}}
+\end{equation}
 
 \subsubsection{Interpretation}
-Pearsons $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
+Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
 
 \begin{itemize}
   \item When both variables change in the same ratio, the absolute value of the correlation coefficient is 1,0, which is called perfect correlation.
@@ -371,7 +376,28 @@ Pearsons $r$ can have values of the range $-1$ to $+1$. If one variable moves in
 
 \subsubsection{Significance}
 
-To determine if the differences between the means, represented by the correlation coefficient $r$, are statically significant, a 2-tailed test can be applied. It calculates the $p$-value, which is compared to the significance level $\alpha$, to either accept ($p > \alpha$) or reject ($p <= \alpha$) the null hypothesis, that the means are equal to the population. Usually a value of $0.05$ is chosen for $\alpha$, which means that there is a 5\% risk of rejecting the null hypothesis even if there are differences. From this definition the following two interpretations of the correlation coefficient can be drawn. \cite{OTSD2020}
+To determine if $r$, is statically significant, a chi-square test can be applied. Equation \ref{formula_chi_squared_simplified} shows the chi-squared statistic taken from Wikipedia, cited from Karl Pearson \cite{Pearson1990}.
+
+\smallskip
+%\begin{equation}
+%\label{formula_chi_squared}	
+%	\chi^2 = \sum_{i=1}^{m}{\frac{(N_i-n_{0i})^2}{n_{0i}}}
+%\end{equation}
+\begin{equation}
+\label{formula_chi_squared_simplified}	
+	\chi^2 = \sum_{i=1}^{n}{\frac{(O_i-E_i)^2}{E_i}} == N\sum_{i=1}^{n}{\frac{(O_i/N-p_i)^2}{p_i}}
+\end{equation}
+
+\begin{itemize}
+	\setlength\itemsep{0.1em}	
+	\item[] $N$ is the total number of data samples and in our case  
+	\item[] $O_i$ is the number of data samples with type $i$
+	\item[] $E_i = N p_i$ is the expected number of data samples with type $i$
+\end{itemize}
+
+The $p$-value then can be comprised by comparing $\chi^2$ to a $\chi^2$-distribution with the degree of freedom $df$ ($df$ can be calculated in multiple ways, see ??). This can be done either by calculation or by using a conversion table.
+
+It calculates the $p$-value, which then is compared to the significance level $\alpha$, to either accept ($p > \alpha$) or reject ($p <= \alpha$) the null hypothesis, that the means are equal to the population. Usually a value of $0.05$ is chosen for $\alpha$, which means that there is a 5\% risk of rejecting the null hypothesis even if there are differences. From this definition the following two interpretations of the correlation coefficient can be drawn. \cite{OTSD2020}
 
 \begin{itemize}
 	\item $p <= \alpha$ means that the null hypothesis can be rejected and indicates that is a significant correlation between the two tested variables. It can be concluded that the increase or decrease of one variabel does significantly related to the increase or decrease of the other.
@@ -380,25 +406,27 @@ To determine if the differences between the means, represented by the correlatio
 
 \subsection{Continuous - Nominal}
 
-This type of relation is objectively the most complex to evaluate. One well known method to analyze the relation between a continuous and categorical variable, which is not ranked and has more than to values, is the analysis of variance (ANOVA). The parametric test compares the means of the continuous variable and each group of the nominal variabel, similar to Pearson's $r$. As it is parametric it unfortunately assumes normal or gaussian distributed variables, which is not give in our datasets (see chapter \ref{data}). A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis H-test \cite{Leon1998}. Both tests indicates if at least one variabel stochastically dominates another, but not in which groups or in how many groups this domination occurs \cite{OTSD2020}. They therefore do not provide a statement about the correlation strength, but the statistical significance of a possible correlation.
+This type of relation is objectively the most complex to evaluate. One well known method to analyze the relation between a continuous and categorical variable, which is not ranked and has more than to values, is the analysis of variance (ANOVA). As it is a parametric test it unfortunately assumes normal or gaussian distributed variables, which is not give in our datasets (see chapter \ref{data}). A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis H-test \cite{Leon1998}. Both tests indicates if at least one variabel stochastically dominates another, but not in which groups or in how many groups this domination occurs \cite{OTSD2020}. They therefore do not provide a statement about the correlation strength, but the statistical significance of a possible correlation.
 
 The research of a correlation coefficient for the relation of a continuous and nominal variable only provided one option, the eta ($\eta$) coefficient from Pearson. 
 
 \subsubsection{Eta ($\eta$) coefficient}
-
 % https://stackoverflow.com/questions/52083501/how-to-compute-correlation-ratio-or-eta-in-python/52084418
+The $\eta$ coefficient, also called correlation ratio measures the relationship between variables based on the sums of squares used in the ANOVA \cite{Lewis2012,Benninghaus2007}. More concrete, $\eta$ is the squared root of ratio between $SS_x$ and $SS_y$ \cite{Shaldehi2013}.
 
-\cite{Benninghaus2007}
+\smallskip
+\begin{equation}
+\label{formula_eta}	
+	\eta = \sqrt{\frac{SS_x}{SS_y}}
+\end{equation}
+
+
 
 \subsubsection{Interpretation}
 
 Interpretation of Eta
 
 only values from 0 to 1.
-
-
-\subsubsection{Significance}
-The significancy evaluation for the $\eta$ coefficient is done via the $p$-value of the Kruskal-Wallis H-test, where $\eta$ is deviated from.
 
 \subsubsection{Kruskal-Wallis}
 
@@ -411,14 +439,13 @@ Kruskal-Wallis
 	H = \frac{12}{n(n+1)}\sum_{h}{\frac{S_h^2}{n_h}}-3(n+1)
 \end{equation}
 
-The p-values of the kruskal-wallis test can be calculated with the chi-squared test ($\chi^2$) from Pearson.
 
 
-\smallskip
-\begin{equation}
-\label{formula_kruskal_wallis}	
-	\chi^2 = \sum_{j=1}^{m}{\frac{(N_j-n_{0j})^2}{n_{0j}}}
-\end{equation}
+\subsubsection{Significance}
+The significancy evaluation for the $\eta$ coefficient is done via the $p$-value of the Kruskal-Wallis H-test, where the defined $\eta$ is based on. The p-value can be calculated with the chi-squared test ($\chi^2$), defined in section \ref{correlation_pearson} with Pearson's $r$.
+
+
+
 
 
 

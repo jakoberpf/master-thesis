@@ -315,9 +315,11 @@ def cramers_v(x,
                 RuntimeWarning)
             return np.nan
         else:
-            return np.sqrt(phi2corr / min((kcorr - 1), (rcorr - 1)))
+            chi_square, p_value = ss.chisquare(x, y)
+            return np.sqrt(phi2corr / min((kcorr - 1), (rcorr - 1))), p_value, 'Cramer\'s V'
     else:
-        return np.sqrt(phi2 / min(k - 1, r - 1)), _SIGN_NAN, 'Cramer\'s V'
+        chi_square, p_value = ss.chisquare(x, y)
+        return np.sqrt(phi2 / min(k - 1, r - 1)), p_value, 'Cramer\'s V'
 
 
 def theils_u(x,
@@ -377,9 +379,10 @@ def theils_u(x,
     p_x = list(map(lambda n: n / total_occurrences, x_counter.values()))
     s_x = ss.entropy(p_x)
     if s_x == 0:
-        return 1, -1
+        return 1, 0
     else:
-        return (s_x - s_xy) / s_x, _SIGN_NAN, 'Theils\'s U'
+        chi_square, p_value = ss.chisquare(x, y)
+        return (s_x - s_xy) / s_x, p_value, 'Theils\'s U'
 
 
 def conditional_entropy(x,

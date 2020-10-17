@@ -234,7 +234,7 @@ def plot_boxplot_logscale(data, x, y, save, show, file):
     sns.set(font_scale=2)
     sns.set_context('paper')
     plt.figure(figsize=(11, 6))
-    plt.yscale('log') # https://matplotlib.org/3.1.1/gallery/pyplots/pyplot_scales.html
+    plt.yscale('log')  # https://matplotlib.org/3.1.1/gallery/pyplots/pyplot_scales.html
     # Plot boxplot
     sns.boxplot(x=x, y=y, data=data, palette='Set1')
     if save:
@@ -243,7 +243,11 @@ def plot_boxplot_logscale(data, x, y, save, show, file):
         plt.show()
     else:
         plt.close()
-        
+
 
 def plot_scatter():
     plt.scatter()
+
+
+def plot_scatter_matrix():
+    sns.pairplot()

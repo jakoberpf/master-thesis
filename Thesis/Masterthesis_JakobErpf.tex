@@ -279,45 +279,18 @@ The visual representation show that a congestion mostly contains speed of less t
 	\item Speed threshold for slow-moving state : $v_{crit,slow} = 60 \frac{km}{h}$
 \end{itemize}
 
-To exclude single cell errors and discard jams, which are too small to have any effect and origin to be considered in the analysis, the length and duration of a jam can be used for filtering. The two-dimensional form (see chapter \ref{dataset_fcd}) of the FCD, allows for an easy filtering of detected jams by two conditions. If $l < l_{min}$ or $t < t_{min}$ is given, $l$ being the maximum spatial extend and $t$ being the maximum temporal extend, the jams should be ignored.
+To exclude cell errors and discard detections, too small to have to be considered as jams, the length and duration is used for filtering. 
 
 \begin{itemize}
 	\item Minimum length of a congestion : $l_{min} = 1000 m$
 	\item Minimum duration of a congestion : $t_{min} = 9 min$
 \end{itemize}
 
-For the detection algorithm, which is based on a clustering approach (see chapter \ref{cluster_dbscan}), additionally parameters are needed to consolidate individual but adjacent clusters into jams. 
-
-
-
-The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation on highway roads types when using the CONGSTATS Cluster Algo [s]. 
-
-\begin{itemize}
-	\item Spatial gap : $l_{min,gap} = 5000$ % cluster consolidation 
-	\item Temporal gap : $t_{min,gap} = 6 min$ % cluster consolidation 
-	\item Virtual travel-time gap $t_{min,gap}^{virtual} = 360s$
-\end{itemize}
-
-
-% TODO explain values
-
-
-% TODO read and add infos
-% https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
-
-
-% TODO read and use a source for loss parameter
-% file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
-
-
-\begin{itemize}
-	\item The cost rate for one car loosing one hour travel time [€/(Fz*h)] cost.rate.car=11
-	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
-\end{itemize}
+If $l < l_{min}$ or $t < t_{min}$ is given, $l$ being the maximum spatial extend and $t$ being the maximum temporal extend, the detection should be ignored.
 
 \chapter{Correlation}
 \label{definition_correlation}
-Correlation is an analysis procedure that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables \cite{HerzSchlicherSiegener1992}. In most statistics the following common types of can be found: Pearson's $r$, Kendall's $\tau$, Spearman  $\rho$ or the Point-Biserial correlation \cite{Ramzai2020,SPSS2020a,SPSS2020b}. Besides off these, there are many more correlation coefficients which varying in they applicability and interpretability. Depending on which type of data variables are to be analyzed, it it necessary to choose an applicable correlation coefficient. In this thesis the type of data variable to be examined is the most restricting feature for choosing a suitable correlation coefficient and therefore the primary criterion. 
+Correlation is an analysis procedure that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables \cite{HerzSchlicherSiegener1992}. In most statistics the following common types of can be found: Pearson's $r$, Kendall's $\tau$, Spearman  $\rho$ or the Point-Biserial correlation \cite{Ramzai2020,SPSS2020a,SPSS2020b}. Besides off these, there are many more correlation coefficients which varying in they applicability and interpretability. Depending on which type of data variables are to be analyzed, it it necessary to choose an applicable correlation coefficient. The type of data variable and relation combination are the most restricting features for choosing a suitable correlation coefficient. 
 
 \section{Variable Types}
 \label{correlation_variable_types}
@@ -340,60 +313,20 @@ The datasets to be examined in this thesis include continuous variables of the t
 
 \section{Coefficient Types}
 \label{correlation_coefficient_types}
-The provided datasets \acrshort{baysis}, \acrshort{arbis} (see section \ref{dataset_baysis}, \ref{dataset_arbis}) as well as the generated data  includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristic the appropriate correlation coefficient suited for the apparent variables needs to be chosen.
-
-For the following correlation coefficients and statistics, prominent in current statistic literature where selected due to their suitability and will be elaborated further.
-
-\subsubsection{Continuous - Continuous}
-As stated in \ref{correlation_variable_types} continuous variables are metric measurements in the form or distances or durations. The most common correlation coefficient for continuous variables is the non-parametric Pearson's $r$.
-
-\subsubsection{Continuous - Categorical(Nominal)}
-This type of relation is objectively the most complex analyze and will therefore be covered by multiple statistical tests. One possible method is the analysis of variance (ANOVA), which is a parametric test comparing the means of two variables. As it is parametric it unfortunately assumes normal or gaussian distributed variables, which is not give in our datasets. A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis h-test. \cite{Leon1998}
-
-\subsubsection{Continuous - Categorical(Dichotomous)}
-The Point Biserial correlation, a special form of the Pearson's $r$ correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
-
-\subsubsection{Continuous - Categorical(Ordinal)}
-For ordinal variables, also called ranked or rank ordered, the commonly used Spearman's $\rho$ can be applied, but should be replaced by Kendall's $\tau$ because of it superiority over Spearman \cite{Newson2002}. 
-
-\subsubsection{Categorical - Categorical}
-
-Both Cramer’s V and Theil’s U can be used to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
-
-\bigskip
-
-As a result we have the following correlation coefficients and statistical test to be used for the mixed analysis of continuous and categorical variables. 
-
-\bigskip
-
-\begin{table}[ht]
-	\centering
-	\begin{tabular}{c|c|c}
-					& Categorical 		& Continuous\\
-		\\[-1em]
-		\hline
-		\\[-1em]
-		 			& Pearsons $\chi^2$ 	& Kruskal-Wallis	\\
-		Categorical	& Cramer’s V 		& Point Biserial\\
-					& Theil’s U			& Kendall's $\tau$\\
-		\\[-1em]
-		\hline
-		\\[-1em]
-					& Kruskal-Wallis	  			& \\
-		Continuous	& Point Biserial	& Pearson's $r$\\
-				& Kendall's $\tau$		& \\
-	\end{tabular}
-	\caption{\label{tab:table-name}Candidates of Correlation Coefficients}
-\end{table}
+The datasets from \acrshort{baysis}, \acrshort{arbis} (see section \ref{dataset_baysis}, \ref{dataset_arbis}) as well as the generated data includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristic the appropriate correlation coefficient suited for the apparent variables needs to be chosen. The following correlation coefficients and test, prominent in current statistic literature where selected due to their suitability for the apparent relation.
 
 \subsection{Continuous - Continuous}
+\label{correlation_pearson}
+
+As stated in \ref{correlation_variable_types} continuous variables are metric measurements in the form or distances or durations. The most common correlation coefficient for continuous variables is the non-parametric Pearson's $r$.
 
 \subsubsection{Pearson's $r$}
-\label{correlation_pearson}
+
+% https://statistikguru.de/spss/produkt-moment-korrelation/pearson-korrelation-in-spss.html
 
 Pearson's $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set as it is non-paramteric. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \cite{BenestyChenHuang2009,Sulthan2018}
  
-The correlation coefficient, shown in equation \ref{formula_correlation_basic} is the foundation for deducing Pearson's $r$. It is defined by the fraction of the covariance (see equation \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (see equation \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992}
+The general correlation coefficient, shown in equation \ref{formula_correlation_basic} is the foundation for deducing Pearson's $r$. It is defined by the fraction of the covariance (see equation \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (see equation \ref{formula_correlation_deviation}). \cite{HerzSchlicherSiegener1992}
 \smallskip
 \begin{equation}
 \label{formula_correlation_basic}
@@ -414,19 +347,15 @@ The correlation coefficient, shown in equation \ref{formula_correlation_basic} i
 
 \bigskip
 
-In the following notations $\bar{x}$ and $\bar{y}$ corresponds to the means of vector $x$ and $y$, respectively. Formula \ref{formula_pearson} is showing the notation of the Pearson's $r$ correlation coefficient, which is a direct usage of the definition in \ref{formula_correlation_basic}, assuming that both vectors have the same length, named $i$. 
-	\cite{BenestyChenHuang2009,Zychlinski2018}
+Notation \ref{formula_pearson} shows the Pearson's $r$ correlation coefficient, which is a direct usage of the definition in \ref{formula_correlation_basic}, assuming that both vectors have the same length, named $i$. The symbols $\bar{x}$ and $\bar{y}$ corresponds to the means of vector $x$ and $y$, respectively. \cite{BenestyChenHuang2009,Zychlinski2018}
 \smallskip
 \begin{equation}
 \label{formula_pearson}	
 	r_{xy} =  \frac{\sum_{i}{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}\sum_{i}{(y_i-\bar{y})^2}}}
 \end{equation}
 
-
-
 \subsubsection{Interpretation}
-
-The correlation coefficients of Pearsons $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
+Pearsons $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
 
 \begin{itemize}
   \item When both variables change in the same ratio, the absolute value of the correlation coefficient is 1,0, which is called perfect correlation.
@@ -436,49 +365,57 @@ The correlation coefficients of Pearsons $r$ can have values of the range $-1$ t
   \item When the absolute correlation coefficient is lower than 0,25, it shows that there is no correlation, which can be called absence of correlation.
 \end{itemize}	
 
+\subsubsection{Significance}
+
+To determine if the differences between the means, represented by the correlation coefficient $r$, are statically significant, a 2-tailed test can be applied. It calculates the $p$-value, which is compared to the significance level $\alpha$, to either accept ($p > \alpha$) or reject ($p <= \alpha$) the null hypothesis of all means are equal to the population. Usually a value of $0.05$ is chosen for $\alpha$, which means that there is a 5\% risk of rejecting the null hypothesis even if there are differences. From this definition the following two interpretations of the correlation coefficient can be drawn. \cite{OTSD2020}
+
+\begin{itemize}
+	\item $p <= \alpha$ means that the null hypothesis can be rejected and indicates that is a significant correlation between the two tested variables. It can be concluded that the increase or decrease of one variabel does significantly related to the increase or decrease of the other.
+	\item $p > \alpha$ means that there is \textbf{no} significant correlation between the two variables and no conclusion can be drawn for the correlation.
+\end{itemize}
 
 \subsection{Continuous - Nominal}
 
- Although the coefficient vary in their method, the interpretations are equivalent to each other.
+This type of relation is objectively the most complex to evaluate. One well known method to analyze the relation between a continuous and categorical variable, which is not ranked and has more than to values, is the analysis of variance (ANOVA). The parametric compares the means of two variables, similar to Pearson's $re$. As it is parametric it unfortunately assumes normal or gaussian distributed variables, which is not give in our datasets (see chapter \ref{data}). A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis H \cite{Leon1998}. It is
 
-\subsubsection{Pearsons $\chi^2$}
-
-%
-
-\subsubsection{ANOVA}
-more statictical robust
-is a the parametric oneway ANOVA, which assumes normal distribution.
-% https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365#:~:text=A%20simple%20approach%20could%20be,variance%20of%20the%20continuous%20variable.&text=If%20the%20variables%20have%20no,similar%20to%20the%20original%20variance.
+For the correlation coefficient the eta coefficient was chosen.
 
 \subsubsection{Kruskal-Wallis}
 
 is non parametric and does not assume a normal distributed variabel
 
-% https://medium.com/@outside2SDs/an-overview-of-correlation-measures-between-categorical-and-continuous-variables-4c7f85610365#:~:text=A%20simple%20approach%20could%20be,variance%20of%20the%20continuous%20variable.&text=If%20the%20variables%20have%20no,similar%20to%20the%20original%20variance.
+% https://de.wikipedia.org/wiki/Kruskal-Wallis-Test
 
-Um zu bestimmen, ob mindestens eine der Differenzen zwischen den Medianen statistisch signifikant ist, vergleichen Sie den p-Wert mit dem Signifikanzniveau, um die Nullhypothese auszuwerten. Die Nullhypothese besagt, dass alle Mediane der Grundgesamtheiten gleich sind. In der Regel ist ein Signifikanzniveau (als α oder Alpha bezeichnet) von 0,05 gut geeignet. Ein Signifikanzniveau von 0,05 gibt ein Risiko von 5 % an, dass auf eine vorhandene Differenz geschlossen wird, während tatsächlich keine vorhanden ist.
-p-Wert ≤ α: Die Differenzen zwischen einigen der Mediane sind statistisch signifikant.
-Wenn der p-Wert kleiner oder gleich dem Signifikanzniveau ist, weisen Sie die Nullhypothese zurück und schlussfolgern, dass nicht alle Mediane der Grundgesamtheiten gleich sind. Bestimmen Sie anhand Ihres Fachwissens, ob die Differenzen praktisch signifikant sind. Weitere Informationen finden Sie unter Statistische und praktische Signifikanz.
-p-Wert > α: Die Differenzen zwischen den Medianen sind statistisch nicht signifikant.
-Wenn der p-Wert größer als das Signifikanzniveau ist, liegen keine ausreichenden Anzeichen zum Zurückweisen der Nullhypothese vor, die besagt, dass alle Mediane der Grundgesamtheiten gleich sind. Vergewissern Sie sich, dass der Test über eine ausreichende Trennschärfe verfügt, um eine praktisch signifikante Differenz zu erkennen. Weitere Informationen finden Sie unter Steigern der Trennschärfe eines Hypothesentests.
-Wenn Ihre Daten Bindungen aufweisen, zeigt Minitab einen p-Wert an, der für Bindungen korrigiert ist, sowie einen p-Wert, der nicht für Bindungen korrigiert ist. Eine Bindung liegt vor, wenn der gleiche Wert in mehreren Stichproben enthalten ist. Der korrigierte p-Wert ist normalerweise genauer als der nicht korrigierte p-Wert. Der nicht korrigierte p-Wert ist jedoch der konservativere Schätzwert, da er stets größer als der korrigierte p-Wert ist. Wenn keine Bindungen in den Daten vorliegen, sind die beiden p-Werte gleich.
+
+
+\subsubsection{Eta $\eta$ coeffiecient}
+
+\cite{Benninghaus2007}
 
 \subsubsection{Interpretation}
 
-Due to the mathematical similarity of the Point Biserial to the Pearson coefficient, the general interpretation of Pearson can be applied to Point Biserial with some slight adaptions. If the dichotomous variable is artificially binarized, i.e. there is likely continuous data underlying it, biserial correlation is a more a measurement of similarity.
+
 
 Interpretation of Kruskal-Wallis
 
 
-The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which scipy.stats.wilcoxon() uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
 
-The hypothesis being test is:
+Significynzy KruskWahllis
 
-Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
-Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
-If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
+
+p-Wert ≤ α: Die Differenzen zwischen einigen der Mediane sind statistisch signifikant.
+Wenn der p-Wert kleiner oder gleich dem Signifikanzniveau ist, weisen Sie die Nullhypothese zurück und schlussfolgern, dass nicht alle Mediane der Grundgesamtheiten gleich sind. Bestimmen Sie anhand Ihres Fachwissens, ob die Differenzen praktisch signifikant sind. Weitere Informationen finden Sie unter Statistische und praktische Signifikanz.
+p-Wert > α: Die Differenzen zwischen den Medianen sind statistisch nicht signifikant.
+Wenn der p-Wert größer als das Signifikanzniveau ist, liegen keine ausreichenden Anzeichen zum Zurückweisen der Nullhypothese vor, die besagt, dass alle Mediane der Grundgesamtheiten gleich sind. Vergewissern Sie sich, dass der Test über eine ausreichende Trennschärfe verfügt, um eine praktisch signifikante Differenz zu erkennen. Weitere Informationen finden Sie unter Steigern der Trennschärfe eines Hypothesentests.
+
+Wenn Ihre Daten Bindungen aufweisen, zeigt Minitab einen p-Wert an, der für Bindungen korrigiert ist, sowie einen p-Wert, der nicht für Bindungen korrigiert ist. Eine Bindung liegt vor, wenn der gleiche Wert in mehreren Stichproben enthalten ist. Der korrigierte p-Wert ist normalerweise genauer als der nicht korrigierte p-Wert. Der nicht korrigierte p-Wert ist jedoch der konservativere Schätzwert, da er stets größer als der korrigierte p-Wert ist. Wenn keine Bindungen in den Daten vorliegen, sind die beiden p-Werte gleich.
+
+
 
 \subsection{Continuous - Dichotomous}
+
+\subsubsection{Continuous - Categorical(Dichotomous)}
+The Point Biserial correlation, a special form of the Pearson's $r$ correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
 
 \subsubsection{Point Biserial}
 
@@ -505,10 +442,26 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 	r_{pqi} =  \frac{\bar{x}_{y=1}-\bar{x}_{y=0}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}}} \cdot \sqrt{n \cdot p \cdot q \cdot} 
 \end{equation}
 
+% https://de.wikipedia.org/wiki/Wilcoxon-Mann-Whitney-Test
+The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which scipy.stats.wilcoxon() uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
+
+The hypothesis being test is:
+
+Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
+Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
+If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
+
+
+
 \bigskip
 
+\subsubsection{Interpretation}
+
+Due to the mathematical similarity of the Point Biserial to the Pearson coefficient, the general interpretation of Pearson can be applied to Point Biserial with some slight adaptions. If the dichotomous variable is artificially binarized, i.e. there is likely continuous data underlying it, biserial correlation is a more a measurement of similarity.
 
 \subsection{Continuous - Ordinal}
+
+For ordinal variables, also called ranked or rank ordered, the commonly used Spearman's $\rho$ can be applied, but should be replaced by Kendall's $\tau$ because of it superiority over Spearman \cite{Newson2002}. 
 
 \subsubsection{Spearman's $\rho$}
 
@@ -518,14 +471,22 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 
 %
 
-
-
-
 \subsection{Categorical - Categorical}
+
+The Pearson's $\chi^2$ test is can be applied to categorical data to
+
+
+Both Cramer’s V and Theil’s U can be used to analyze categorical-categorical relations for nominal and ordinal variables, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s V is a symmetric measure, providing us with a measure of association strength. Theil’s U, the uncertainty coefficient, on the other hand is a conditional measure and represents the \textit{predictability} of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s U measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
+
+\subsubsection{Pearsons $\chi^2$}
+
+% https://statistikguru.de/spss/chi-quadrat-test-unabhaengigkeit/einleitung-6.html
 
 \subsubsection{Cramer’s V}
 
-The Cramer’s V notation, also called Cramer's phi ($\Phi_c$), is shown in formula \ref{formula_cramers_v_biased}. $k$ and $r$ are the number of columns and row, respectively. $\varphi$, the phi coefficient, defined by $\frac{{\chi^2}}{n_{ij}}$ includes $\chi^2$, which can be derived from Pearsons chi-squared test as shown in \ref{formula_cramers_v_chi}. \cite{Sheskin1997,Bergsma2013}
+The Cramer’s V notation, also called Cramer's phi ($\Phi_c$), is a measurement for the relation of two nominal variables and most.
+
+is shown in formula \ref{formula_cramers_v_biased}  $k$ and $r$ are the number of columns and row, respectively. $\varphi$, the phi coefficient, defined by $\frac{{\chi^2}}{n_{ij}}$ includes $\chi^2$, which can be derived from Pearsons chi-squared test as shown in \ref{formula_cramers_v_chi}. \cite{Sheskin1997,Bergsma2013}
 \smallskip
 \begin{equation}
 \label{formula_cramers_v_biased}
@@ -563,12 +524,11 @@ The above notation of $\Phi_c$ can be heavily biased, when it tends to overestim
 
 Definition: Theil’s U
 
-\subsubsection{Interpretation}
-
-%
-
-\section{Significance vs. Uncertainty}
+\subsubsection{Significance vs. Uncertainty}
 \label{correlation_significance_uncertainty}
+
+\subsubsection{Significance}
+\subsubsection{Uncertainty}
 
 %https://de.statista.com/statistik/lexikon/definition/122/signifikanz/
 
@@ -582,10 +542,46 @@ Definition: Theil’s U
 
 %https://www.tandfonline.com/doi/full/10.1080/00223131.2013.820155
 
-\subsubsection{Significance}
-\subsubsection{Uncertainty}
+\subsubsection{Interpretation}
+
+The Interpretation of Cramers $V$ is similar to Pearson's correlation coefficient $r$. According to \cite{Cohen1988} and \cite{Ellis2010}
+
+kleiner Effekt	V = 0.1
+mittlerer Effekt	V = 0.3
+großer Effekt	V = 0.5
+
+
+
+
+\section{Correlation Matrix}
+
+As a result we have the following correlation coefficients and statistical test to be used for the mixed analysis of continuous and categorical variables. 
+
+\bigskip
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|c|c}
+					& Categorical 		& Continuous\\
+		\\[-1em]
+		\hline
+		\\[-1em]
+		 			& Pearsons $\chi^2$ 	& Kruskal-Wallis	\\
+		Categorical	& Cramer’s V 		& Point Biserial\\
+					& Theil’s U			& Kendall's $\tau$\\
+		\\[-1em]
+		\hline
+		\\[-1em]
+					& Kruskal-Wallis	  			& \\
+		Continuous	& Point Biserial	& Pearson's $r$\\
+				& Kendall's $\tau$		& \\
+	\end{tabular}
+	\caption{\label{tab:table-name}Candidates of Correlation Coefficients}
+\end{table}
+
 	
-\chapter{Datasets}
+\chapter{Data Foundation}
+\label{data}
 In this chapter the provided datasets from the previously mentioned street information systems and the FCD provider will be elaborated. First an overview of FCD in general and the available dataset is given. Then the incident datasets from BAYSIS and ArbIS are presented with descriptive statistic.
 
 \section{FCD}
@@ -833,33 +829,35 @@ Because the designed evaluation tool, utilizes a PostgreSQL database for its dat
 \section{ArbIS}
 \label{dataset_arbis}
 
-The \acrfull{arbis}, as described in chapter \ref{dataset_arbis}, is a collection service of all roadworks or maintenance planned, ongoing or finished on the Bavarian street network. With the 4500 long term and more than 40.000 short term building sites on German highways per year \cite{LAPID2018,Stmi2020}, road construction make up for the majority of traffic obstructions in the summer months, when during the colder month, in which many kinds of construction projects are not possible, snow clearings or long-term constructions are the issue. That also means that the number and type of roadworks heavy varies during the course of a year (StmB, 2020). Because the limited evaluation time only the road-works till April are relevant, which arguably are the colder months and therefor contain mostly snow clearings and long-term construction obstructions, this could potentially bias the results due to the missing, but equality important short-term construction roadworks.
-\par The dataset for 2019 contains close to 650.000 datapoints, which each describe the temporal and spatial extend, road name and number of closed lanes of a roadwork fragment. This fragmentation of events makes is rather hard to statically analyze this dataset since each roadwork is spitted into any number of fragments in now recognizable pattern and are only linked by a roadwork identifier. Therefore the analysis of the dataset in this section is rather basic.
-\par After the selection of the relevant incidents from the first half year of 2019, 302.799 datapoints remain, which will be converted and imported like the \acrshort{baysis} data, described in chapter \ref{dataset_baysis}. This processing and aggregation of fragments produce 129.874 roadwork events in the database, which monthly distribution is shown in figure \ref{img:arbis_dataset_monthly_absolute}
+The \acrfull{arbis}, as described in chapter \ref{dataset_arbis}, is a collection service of all roadworks or maintenance planned, ongoing or finished on the Bavarian street network. With the 4500 long term and more than 40.000 short term building sites on German highways per year \cite{LAPID2018,Stmi2020}, road construction makes up for the majority of traffic obstructions in the summer months, when during the colder month, in which many kinds of construction projects are not possible, snow clearings or long-term constructions are the issue. That also means that the number and type of roadworks varies during the course of a year (StmB, 2020).
 
+The dataset for 2019 contains close to 650.000 datapoints, which each describe the temporal and spatial extend, road name and number of closed lanes of a roadwork fragment. This fragmentation of events makes is rather hard to statically analyze this dataset since each roadwork is spitted into any number of fragments in now recognizable pattern and are only linked by a roadwork identifier. Therefore the analysis of the dataset in this section is rather basic. The import processing, similarly to the \acrshort{baysis} data in \ref{dataset_baysis}, and aggregation of fragments produces ??129.874?? roadwork events in the database. The monthly distribution of roadworks in the year 2019 is shown in figure \ref{img:arbis_dataset_monthly_absolute}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.6]{./assets/arbis_dataset_monthly_absolute}
+	\includegraphics[width=0.7\textwidth]{./assets/arbis_dataset_monthly_absolute}
 	\caption{Monthly distribution of absolute roadwork data entry counts}
-	\label{img:arbis_dataset_monthly_absolute}
+%	\label{img:arbis_dataset_monthly_absolute}
 \end{figure}
 
+The distribution shows that the winter months of January, February and December tend to have less roadwork that others, due to colder temperatures.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.6]{./assets/arbis_dataset_monthly_percentage}
-	\caption{Monthly distributions of roadwork data entry counts in percentages to mean}
-	\label{img:arbis_dataset_monthly_percentage}
-\end{figure}
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.7\textwidth]{./assets/arbis_dataset_monthly_percentage.pdf}
+%	\caption{Monthly distributions of roadwork data entry counts in percentages to mean}
+%	\label{img:arbis_dataset_monthly_percentage}
+%\end{figure}
+
+\subsubsection{Strasse}
+
 
 
 %\input{../CorrAnalysis/data/ArbIS/dataset/latex/arbis_dataset_sign_cramers.tex}
 
-
 \chapter{Methodology}
 \label{methodology}
-The central aim of the thesis it to determine if jams characteristics, detected in \acrshort{fcd} and incident characteristics from accidents (\acrshort{baysis}) and roadworks (\acrshort{arbis}) are statistically dependent on each other. Therefore the question to be answered stands as follows:
+The previous chapters gave an introduction into the systems, data and statistical indicators which will be used to determine if jams characteristics, detected in \acrshort{fcd} and incident characteristics from accidents (\acrshort{baysis}) and roadworks (\acrshort{arbis}) are statistically dependent on each other. The research question to be answered stands as follows:
 
 \begin{center}
 	\textit{Do congestion- and incident-characteristics correlate?}
@@ -996,6 +994,48 @@ DBSCAN with expansion of removing wrong and small, and combining small and near
 %https://www.nature.com/articles/s41598-017-12852-z
 %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.1629&rep=rep1&type=pdf
 %http://cucis.eecs.northwestern.edu/publications/pdf/HAL18.pdf
+
+
+
+
+
+
+
+\begin{itemize}
+	\item Minimum length of a congestion : $l_{min} = 1000 m$
+	\item Minimum duration of a congestion : $t_{min} = 9 min$
+\end{itemize}
+
+For the detection algorithm, which is based on a clustering approach (see chapter \ref{cluster_dbscan}), additionally parameters are needed to consolidate individual but adjacent clusters into jams. The distances inbetween 
+
+The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation on highway roads types when using the CONGSTATS Cluster Algo [s]. 
+
+\begin{itemize}
+	\item Spatial gap : $l_{min,gap} = 5000$ % cluster consolidation 
+	\item Temporal gap : $t_{min,gap} = 6 min$ % cluster consolidation 
+	\item Virtual travel-time gap $t_{min,gap}^{virtual} = 360s$
+\end{itemize}
+
+
+% TODO explain values
+
+
+% TODO read and add infos
+% https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
+
+
+% TODO read and use a source for loss parameter
+% file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
+
+
+\begin{itemize}
+	\item The cost rate for one car loosing one hour travel time [€/(Fz*h)] cost.rate.car=11
+	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
+\end{itemize}
+
+
+
+
 
 \subsubsection{Distance Measuring}
 

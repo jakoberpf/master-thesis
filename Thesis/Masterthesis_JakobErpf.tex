@@ -1,7 +1,7 @@
 \documentclass[a4paper,12pt]{report}
 \usepackage{setspace}
 \usepackage{relsize}
-\usepackage{graphicx}
+\usepackage[demo]{graphicx}
 \usepackage{pgfplots}
 \usepackage{tikz}
 \usetikzlibrary{trees}
@@ -11,6 +11,7 @@
 \usepackage{listings}
 \usepackage[toc,page]{appendix}
 \usepackage[toc,acronym]{glossaries}
+\usepackage[utf8]{inputenc}
 
 % Set the overall layout of the tree
 \tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
@@ -92,6 +93,7 @@
 \title{MASTER'S THESIS\\
 [1cm]
 \smaller Analysis of correlation between traffic data depended congestion detection and incident causalities}
+% TODO red mal mit deinen betreuern ueber den titel, ob der so passt. ich glaube depended (abhaengend) macht mehr sinn wenn es dependent (abhaengig) heisst. und wahrscheinlich correlationS 
 \author{
 B. Sc. Jakob Erpf\\ 
 [1cm]
@@ -107,8 +109,8 @@ B. Sc. Jakob Erpf\\
 \clearpage
 % Topic description is mandatory
 \renewcommand\abstractname{Topic}
-\abstract{}Date of Issue: 2020-05-04\newline
-Date of Submission:	2020-12-11\newline
+\abstract{}Date of issue: 2020-05-04\newline
+Date of submission:	2020-12-11\newline
 \newline
 \par The \gls{congstats} service is a statistical analysis tool, developed by the Munich office of SCHLOTHAUER \& WAUER GmbH and the thesis writer for the road administration of north and south Bavaria, to request and analyze traffic data. The traffic data used in this service is based on \acrfull{fcd}, provided by the Bavarian road administration. The aim of the service is to provide statistical monitoring and report functionalities on the traffic situation on freeway and state street network, to identify congestion-prone areas.
 \par An interesting aspect of this congestion analysis is the correlation of congestion events and incidents. What are the circumstances leading to congestion in cause of an incident? What are the dependencies on an occurred incident, for example roadworks or accident? The knowledge on the impact of roadworks on the traffic flow or which accidents lead to traffic capacity reductions could improve traffic management and incident response actions. The question of how the congestions rep-resented by the \acrshort{fcd} correlate with actual traffic incidents and their probably causalities, will be evaluated in this thesis. 

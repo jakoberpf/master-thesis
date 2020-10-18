@@ -5,8 +5,6 @@ spatialInternalLoc, Int64Index([2, 5, 3, 4, 1, -1], dtype='int64')
 Strasse, Index(['A 9', 'A 7', 'A 70', 'A 71', 'A 6', 'A 73', 'A 3', 'A 99', 'A 96',
        'A 995', 'A 92', 'A 72', 'A 93', 'A 95', 'A 94', 'A 980', 'A 45'],
       dtype='object')
-AnzGesperrtFs, Int64Index([1, 0, 2, 3], dtype='int64')
-Richtung, Int64Index([1, 0], dtype='int64')
 Month, Index(['January', 'February', 'March', 'April', 'May', 'June', 'July',
        'August', 'September', 'October', 'November', 'December'],
       dtype='object')

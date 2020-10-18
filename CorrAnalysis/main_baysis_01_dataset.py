@@ -71,15 +71,18 @@ if __name__ == '__main__':
 
     # Add month of roadwork
     baysis_selected['Month'] = baysis_imported['Datum'].dt.month_name()
+    months = ['January', 'February', 'March', 'April', 'May', 'June',
+             'July', 'August', 'September', 'October', 'November', 'December']
 
     # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
 
     # Plot histogram of accidents over time / months
     plt.figure(figsize=(13, 6))
-    plt.hist(baysis_selected['Month'], color='blue', edgecolor='black')
     plt.title('Histogram of accidents per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
+    sns.set_theme(style='darkgrid')
+    ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + 'baysis_dataset_hist_month.png')
     if show_plot:
@@ -92,10 +95,11 @@ if __name__ == '__main__':
 
     # Plot histogram of accidents over highway
     plt.figure(figsize=(13, 6))
-    plt.hist(baysis_selected['Strasse'], color='blue', edgecolor='black')
     plt.title('Histogram of accidents per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
+    sns.set_theme(style='darkgrid')
+    ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
     if show_plot:

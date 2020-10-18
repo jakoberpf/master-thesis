@@ -61,15 +61,18 @@ if __name__ == '__main__':
 
     # Add month of roadwork
     arbis_selected['Month'] = arbis_imported['Von'].dt.month_name()
+    months = ['January', 'February', 'March', 'April', 'May', 'June',
+             'July', 'August', 'September', 'October', 'November', 'December']
 
     # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
 
     # Plot histogram of roadworks over time / months
     plt.figure(figsize=(13, 6))
-    plt.hist(arbis_selected['Month'], color='blue', edgecolor='black', label=True)
     plt.title('Histogram of roadworks per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
+    sns.set_theme(style='darkgrid')
+    ax = sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_hist_month.png')
     if show_plot:
@@ -77,12 +80,16 @@ if __name__ == '__main__':
     else:
         plt.close()
 
+    # Remove month column
+    # arbis_selected.drop('Month', axis='columns', inplace=True)
+
     # Plot histogram of accidents over highway
     plt.figure(figsize=(13, 6))
-    n, bins, patches = plt.hist(arbis_selected['Strasse'], color='blue', edgecolor='black', label=True)
     plt.title('Histogram of roadworks per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
+    sns.set_theme(style='darkgrid')
+    ax = sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
     if show_plot:

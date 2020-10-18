@@ -72,6 +72,8 @@ if __name__ == '__main__':
     # Add month of roadwork
     baysis_selected['Month'] = baysis_imported['Datum'].dt.month_name()
 
+    # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
+
     # Plot histogram of accidents over time / months
     plt.figure(figsize=(13, 6))
     plt.hist(baysis_selected['Month'], color='blue', edgecolor='black')

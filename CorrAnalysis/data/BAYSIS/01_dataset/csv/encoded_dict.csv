@@ -1,0 +1,26 @@
+Strasse, Index(['A 3', 'A 6', 'A 7', 'A 8', 'A 9', 'A 45', 'A 70', 'A 71', 'A 72',
+       'A 73', 'A 81', 'A 92', 'A 93', 'A 94', 'A 95', 'A 96', 'A 99', 'A 952',
+       'A 980', 'A 995'],
+      dtype='object')
+Kat, Int64Index([7, 3, 2, 1], dtype='int64')
+Typ, Int64Index([6, 1, 7, 5, 3, 4, 2], dtype='int64')
+UArt1, Int64Index([3, 2, 8, 1, 0, 9, 7, 5, 4, 6], dtype='int64')
+UArt2, Float64Index([0.0, 9.0, 8.0, 3.0, 7.0, 5.0, 1.0, 2.0, 4.0, 6.0], dtype='float64')
+AUrs1, Int64Index([0, 73, 72, 81, 89, 88, 82, 85, 86, 70, 75, 77, 76, 90, 83, 87, 80,
+            84, 78],
+           dtype='int64')
+AUrs2, Int64Index([0, 73, 81, 89, 75, 80, 76, 84, 88, 83], dtype='int64')
+AufHi, Float64Index([0.0, 3.0, 5.0, 4.0, 9.0, 8.0, 1.0, 2.0, 7.0], dtype='float64')
+Char1, Float64Index([0.0, 6.0, 5.0, 4.0, 2.0, 3.0], dtype='float64')
+Char2, Float64Index([0.0, 6.0], dtype='float64')
+Bes1, Float64Index([0.0, 6.0, 1.0], dtype='float64')
+Bes2, Float64Index([0.0, 6.0], dtype='float64')
+Lich1, Float64Index([0.0, 2.0, 1.0], dtype='float64')
+Lich2, Float64Index([0.0, 4.0, 3.0], dtype='float64')
+Zust1, Float64Index([0.0, 1.0, 2.0], dtype='float64')
+Zust2, Float64Index([0.0, 2.0, 5.0], dtype='float64')
+StrklVu, Index(['A', 'G', 'B'], dtype='object')
+FeiTag, Float64Index([0.0, 1.0], dtype='float64')
+Month, Index(['April', 'October', 'March', 'November', 'February', 'September',
+       'June', 'December', 'August', 'January', 'July', 'May'],
+      dtype='object')

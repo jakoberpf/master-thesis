@@ -37,7 +37,8 @@ def plot_correlation(corr, columns,
                      fmt='.2f',
                      cmap=None,
                      sv_color='silver',
-                     cbar=True
+                     cbar=True,
+                     scale=1.0
                      ):
     """
 
@@ -82,6 +83,12 @@ def plot_correlation(corr, columns,
     if ax is None:
         # If no figure/mathplotlib is given, set new figure size
         plt.figure(figsize=figsize)
+
+    if figsize is None:
+        plt.figure(figsize=set_size(418, scale))
+
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
 
     if inf_nan.any(axis=None):
         inf_nan_mask = np.vectorize(lambda x: not bool(x))(inf_nan.values)
@@ -137,7 +144,6 @@ def plot_correlation(corr, columns,
 
     if save:
         plt.savefig(filepath)
-
     if show:
         plt.show()
     else:
@@ -161,11 +167,18 @@ def plot_statistic(corr, columns,
                    fmt='.4f',
                    cmap=None,
                    sv_color='silver',
-                   cbar=True
+                   cbar=True,
+                   scale=1.0
                    ):
     if ax is None:
         # If no figure/mathplotlib is given, set new figure size
         plt.figure(figsize=figsize)
+
+    if figsize is None:
+        plt.figure(figsize=set_size(418, scale))
+
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
 
     if inf_nan.any(axis=None):
         inf_nan_mask = np.vectorize(lambda x: not bool(x))(inf_nan.values)
@@ -220,7 +233,6 @@ def plot_statistic(corr, columns,
 
     if save:
         plt.savefig(filepath)
-
     if show:
         plt.show()
     else:
@@ -229,13 +241,14 @@ def plot_statistic(corr, columns,
     return ax
 
 
-def plot_boxplot(data, x, y, save, show, file):
+def plot_count(data, x, save, show, file, figsize=None, scale=1, order=None):
     # Settings for box plots
-    sns.set(font_scale=2, rc={'text.usetex': True})
+    if figsize == None:
+        plt.figure(figsize=set_size(418, scale))
+    sns.set(rc={'text.usetex': True})
     sns.set_context('paper')
-    plt.figure(figsize=(11, 6))
     # Plot boxplot
-    sns.boxplot(x=x, y=y, data=data, palette='Set1')
+    sns.countplot(x=x, data=data, palette='Spectral', order=order)
     if save:
         plt.savefig(file)
     if show:
@@ -244,17 +257,83 @@ def plot_boxplot(data, x, y, save, show, file):
         plt.close()
 
 
-def plot_boxplot_logscale(data, x, y, save, show, file):
+def plot_boxplot(data, x, y, save, show, file, figsize=None, scale=1):
     # Settings for box plots
-    sns.set(font_scale=2, rc={'text.usetex': True})
+    if figsize == None:
+        plt.figure(figsize=set_size(418, scale))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
     sns.set_context('paper')
-    plt.figure(figsize=(11, 6))
+    sns.boxplot(x=x, y=y, data=data, palette='Spectral')
+    if save:
+        plt.savefig(file)
+    if show:
+        plt.show()
+    else:
+        plt.close()
+
+
+def plot_boxplot_logscale(data, x, y, save, show, file, figsize=None, scale=1):
+    # Settings for box plots
+    if figsize == None:
+        plt.figure(figsize=set_size(418, scale))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
     plt.yscale('log')  # https://matplotlib.org/3.1.1/gallery/pyplots/pyplot_scales.html
-    # Plot boxplot
-    sns.boxplot(x=x, y=y, data=data, palette='Set1')
+    sns.set_context('paper')
+    sns.boxplot(x=x, y=y, data=data, palette='Spectral')
     if save:
         plt.savefig(file)
     if show:
         plt.show()
     else:
         plt.close()
+
+
+def set_size(width, fraction=1):
+    """Set figure dimensions to avoid scaling in LaTeX.
+
+    Parameters
+    ----------
+    width: float
+            Document textwidth or columnwidth in pts
+    fraction: float, optional
+            Fraction of the width which you wish the figure to occupy
+
+    Returns
+    -------
+    fig_dim: tuple
+            Dimensions of figure in inches
+    """
+    # Width of figure (in pts)
+    fig_width_pt = width * fraction
+
+    # Convert from pt to inches
+    inches_per_pt = 1 / 72.27
+
+    # Golden ratio to set aesthetic figure height
+    # https://disq.us/p/2940ij3
+    golden_ratio = (5 ** .5 - 1) / 2
+
+    # Figure width in inches
+    fig_width_in = fig_width_pt * inches_per_pt
+    # Figure height in inches
+    fig_height_in = fig_width_in * golden_ratio
+
+    fig_dim = (fig_width_in, fig_height_in)
+
+    return fig_dim
+
+
+tex_fonts = {
+    # Use LaTeX to write all text
+    "text.usetex": True,
+    "font.family": "serif",
+    # Use 10pt font in plots, to match 10pt font in document
+    "axes.labelsize": 10,
+    "font.size": 10,
+    # Make the legend/label fonts a little smaller
+    "legend.fontsize": 8,
+    "xtick.labelsize": 8,
+    "ytick.labelsize": 8
+}

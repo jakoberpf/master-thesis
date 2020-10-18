@@ -6,22 +6,18 @@
 /CorrAnalysis/.idea
 /CorrAnalysis/__pycache__
 # ignore datasets, because confidential
-/CorrAnalysis/data/ArbIS/dataset/ArbIS_2019.csv
-/CorrAnalysis/data/ArbIS/dataset/ArbIS_2019.xlsx
-/CorrAnalysis/data/ArbIS/matched/_monthly
-/CorrAnalysis/data/ArbIS/matched/ArbIS_2019.csv
-/CorrAnalysis/data/ArbIS/matched/ArbIS_2019.xlsx
-/CorrAnalysis/data/BAYSIS/dataset/BAYSIS_2019.csv
-/CorrAnalysis/data/BAYSIS/dataset/BAYSIS_2019.xlsx
-/CorrAnalysis/data/BAYSIS/matched/_monthly
-/CorrAnalysis/data/BAYSIS/matched/BAYSIS_2019.csv
-/CorrAnalysis/data/BAYSIS/matched/BAYSIS_2019.xlsx
+/CorrAnalysis/data/ArbIS/01_dataset/ArbIS_2019.csv
+/CorrAnalysis/data/ArbIS/01_dataset/ArbIS_2019.xlsx
+/CorrAnalysis/data/ArbIS/02_matched/_monthly
+/CorrAnalysis/data/ArbIS/02_matched/ArbIS_2019.csv
+/CorrAnalysis/data/ArbIS/02_matched/ArbIS_2019.xlsx
+/CorrAnalysis/data/BAYSIS/01_dataset/BAYSIS_2019.csv
+/CorrAnalysis/data/BAYSIS/01_dataset/BAYSIS_2019.xlsx
+/CorrAnalysis/data/BAYSIS/02_matched/_monthly
+/CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019.csv
+/CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019.xlsx
 # ignore old word docs
-/Thesis/Masterthesis_JakobErpf_v1.docx
-/Thesis/Masterthesis_JakobErpf_v2.docx
-/Thesis/Masterthesis_JakobErpf_v3.docx
-/Thesis/Masterthesis_JakobErpf_v4.docx
-/Thesis/Masterthesis_JakobErpf.pdf
+/Thesis/word
 # ignore evaluation code for now
 /CongEvaluation
 # ignore r project files
@@ -29,7 +25,9 @@
 /CorrAnalysis/.RData
 /CorrAnalysis/CorrAnalysis.Rproj
 # ignore generated datasets 
-/CorrAnalysis/data/ArbIS/dataset/csv/encoded.csv
-/CorrAnalysis/data/BAYSIS/dataset/csv/encoded.csv
-/CorrAnalysis/data/ArbIS/matched/csv/encoded.csv
-/CorrAnalysis/data/BAYSIS/matched/csv/encoded.csv
+/CorrAnalysis/data/ArbIS/01_dataset/csv/encoded.csv
+/CorrAnalysis/data/BAYSIS/01_dataset/csv/encoded.csv
+/CorrAnalysis/data/ArbIS/02_matched/csv/encoded.csv
+/CorrAnalysis/data/BAYSIS/02_matched/csv/encoded.csv
+# ignore pdf for now
+/Thesis/Masterthesis_JakobErpf.pdf

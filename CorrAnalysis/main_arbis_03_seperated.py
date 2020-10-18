@@ -32,7 +32,7 @@ if __name__ == '__main__':
     show_plot = False
 
     data_path = 'data/'
-    work_path = data_path + 'ArbIS/matched/'
+    work_path = data_path + 'ArbIS/03_seperated/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'

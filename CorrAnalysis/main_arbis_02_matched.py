@@ -15,11 +15,18 @@
 #  SOFTWARE.
 
 import pandas as pd
+import seaborn as sns
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 from func_correlation import numerical_encoding, compute_correlations
 from func_plot import plot_boxplot_logscale, plot_correlation, plot_statistic
 from func_utils import date_parser, print_welcome
+
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"]})
 
 if __name__ == '__main__':
     print_welcome()
@@ -28,7 +35,7 @@ if __name__ == '__main__':
     show_plot = False
 
     data_path = 'data/'
-    work_path = data_path + 'ArbIS/matched/'
+    work_path = data_path + 'ArbIS/02_matched/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
@@ -46,10 +53,6 @@ if __name__ == '__main__':
             "TempDist",
             "SpatDist",
             "Coverage",
-            "temporalGlobalLoc",
-            "spatialGlobalLoc",
-            "temporalInternalLoc",
-            "spatialInternalLoc",
             "TimeLossCar",
             "TimeLossHGV",
             # Accident Data
@@ -78,15 +81,21 @@ if __name__ == '__main__':
 
     # Add month of roadwork
     arbis_selected['Month'] = arbis_imported['Von'].dt.month_name()
+    months = ['January', 'February', 'March', 'April', 'May', 'June',
+              'July', 'August', 'September', 'October', 'November', 'December']
+
+    sns.set(font_scale=2, rc={'text.usetex': True})
 
     # Plot histogram of roadworks over time / months
     plt.figure(figsize=(13, 6))
-    plt.hist(arbis_selected['Month'], color='blue', edgecolor='black', label=True)
+    sns.set_theme(style='darkgrid')
     plt.title('Histogram of roadworks per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
+    sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
     if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_hist_month.png')
+        plt.savefig(plot_path + 'arbis_matched_hist_month.pdf')
     if show_plot:
         plt.show()
     else:
@@ -94,55 +103,96 @@ if __name__ == '__main__':
 
     # Plot histogram of accidents over highway
     plt.figure(figsize=(13, 6))
-    n, bins, patches = plt.hist(arbis_selected['Strasse'], color='blue', edgecolor='black', label=True)
+    sns.set_theme(style='darkgrid')
     plt.title('Histogram of roadworks per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
+    sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
+        plt.savefig(plot_path + 'arbis_matched_hist_highway.pdf')
     if show_plot:
         plt.show()
     else:
         plt.close()
 
     # Plot boxplots for visual relation testing
-    plot_boxplot_logscale(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_street2length.png')
+    sns.set_context('paper')
+    plt.figure(figsize=(11, 6))
+    plt.yscale('log')  # https://matplotlib.org/3.1.1/gallery/pyplots/pyplot_scales.html
+    # Plot boxplot
+    sns.boxplot(x='Strasse', y='Length', data=arbis_selected, palette='Set1')
+    if save_plot:
+        plt.savefig(plot_path + 'arbis_matched_box_street2length.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
-    plot_boxplot_logscale(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_street2duration.png')
+    # plot_boxplot_logscale(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
+    #                       plot_path + 'arbis_matched_box_street2length.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
+    #                       plot_path + 'arbis_matched_box_street2duration.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
+    #                       plot_path + 'arbis_matched_box_agfs2length.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
+    #                       plot_path + 'arbis_matched_box_agfs2duration.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
+    #                       plot_path + 'arbis_matched_box_einzug2length.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
+    #                       plot_path + 'arbis_matched_box_einzug2duration.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
+    #                       plot_path + 'arbis_matched_box_direction2length.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
+    #                       plot_path + 'arbis_matched_box_direction2duration.pdf')
 
-    plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_agfs2length.png')
-
-    plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_agfs2duration.png')
-
-    plot_boxplot_logscale(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_einzug2length.png')
-
-    plot_boxplot_logscale(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_einzug2duration.png')
-
-    plot_boxplot_logscale(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_direction2length.png')
-
-    plot_boxplot_logscale(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_direction2duration.png')
+    # Plot scatter diagrams
+    # Congestion -> Roadwork
+    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='AnzGesperrtFs', colormap='viridis')
+    if save_plot:
+        plt.savefig(plot_path + 'baysis_dataset_scatter_TempExMax_SpatExMax_AnzGesperrtFs.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Einzug', colormap='viridis')
+    plt.show()
+    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Length', colormap='viridis')
+    plt.show()
+    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Duration', colormap='viridis')
+    plt.show()
+    # Roadwork -> Congestion
+    arbis_selected.plot.scatter(x='Length', y='Duration', c='TempExMax', colormap='viridis')
+    plt.show()
+    arbis_selected.plot.scatter(x='Length', y='Duration', c='SpatExMax', colormap='viridis')
+    plt.show()
+    arbis_selected.plot.scatter(x='Length', y='Duration', c='TimeLossCar', colormap='viridis')
+    plt.show()
+    arbis_selected.plot.scatter(x='Length', y='Duration', c='TimeLossHGV', colormap='viridis')
+    plt.show()
 
     # define column types
-    nominal_columns = ["temporalGlobalLoc",
-                       "spatialGlobalLoc",
-                       "temporalInternalLoc",
-                       "spatialInternalLoc",
-                       "AnzGesperrtFs",
+    nominal_columns = ["AnzGesperrtFs",
                        "Richtung",
-                       "Strasse", 'StreckeID', 'Month']
+                       "Strasse",
+                       'StreckeID',
+                       'Month']
     dichotomous_columns = ['Richtung']
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
 
     # Encode non numerical columns
-    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False,
+    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected,
+                                                           ["Strasse",
+                                                            'StreckeID',
+                                                            'Month'],
+                                                           drop_single_label=False,
                                                            drop_fact_dict=False)
     arbis_encoded.to_csv(csv_path + 'encoded.csv', index=False, sep=';')
 
@@ -162,7 +212,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'arbis_matched_corr_cramers.png',
+                     save=save_plot, filepath=plot_path + 'arbis_matched_corr_cramers.pdf',
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
@@ -170,7 +220,7 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'arbis_matched_sign_cramers.png',
+                   save=save_plot, filepath=plot_path + 'arbis_matched_sign_cramers.pdf',
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
@@ -218,23 +268,3 @@ if __name__ == '__main__':
         tf.write(results.get('coefficient').to_latex())
 
     print('Finished ArbIS Dataset Analysis')
-
-    # Plot scatter diagrams
-    # Congestion -> Roadwork
-    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='AnzGesperrtFs', colormap='viridis')
-    plt.show()
-    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Einzug', colormap='viridis')
-    plt.show()
-    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Length', colormap='viridis')
-    plt.show()
-    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Duration', colormap='viridis')
-    plt.show()
-    # Roadwork -> Congestion
-    arbis_selected.plot.scatter(x='Length', y='Duration', c='TempExMax', colormap='viridis')
-    plt.show()
-    arbis_selected.plot.scatter(x='Length', y='Duration', c='SpatExMax', colormap='viridis')
-    plt.show()
-    # arbis.plot.scatter(x='Length', y='Duration', c='TimeLossCar', colormap='viridis')
-    # plt.show()
-    # arbis.plot.scatter(x='Length', y='Duration', c='TimeLossHGV', colormap='viridis')
-    # plt.show()

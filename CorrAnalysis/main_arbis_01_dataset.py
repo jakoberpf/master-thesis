@@ -14,13 +14,16 @@
 #  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import matplotlib
+import matplotlib.pyplot as plt
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_statistic, plot_boxplot_logscale
+from func_plot import plot_correlation, plot_statistic, plot_boxplot_logscale, plot_count, set_size
 from func_utils import date_parser, print_welcome
+
+matplotlib.rcParams['text.usetex'] = True
 
 if __name__ == '__main__':
     print_welcome()
@@ -29,7 +32,7 @@ if __name__ == '__main__':
     show_plot = False
 
     data_path = 'data/'
-    work_path = data_path + 'ArbIS/dataset/'
+    work_path = data_path + 'ArbIS/01_dataset/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
@@ -66,38 +69,45 @@ if __name__ == '__main__':
 
     # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
 
+    tex_fonts = {
+        # Use LaTeX to write all text
+        "text.usetex": True,
+        "font.family": "serif",
+        # Use 10pt font in plots, to match 10pt font in document
+        "axes.labelsize": 10,
+        "font.size": 10,
+        # Make the legend/label fonts a little smaller
+        "legend.fontsize": 8,
+        "xtick.labelsize": 8,
+        "ytick.labelsize": 8
+    }
+
     # Plot histogram of roadworks over time / months
-    plt.figure(figsize=(13, 6))
-    plt.title('Histogram of roadworks per month')
-    plt.ylabel('Count')
-    plt.xlabel('Month of 2019')
-    sns.set_theme(style='darkgrid')
+    plt.figure(figsize=set_size(418, 1.8))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title(r'Histogram of roadworks per month')
+    plt.ylabel(r'Count')
+    plt.xlabel(r'Month of 2019')
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
-    ax = sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_hist_month.pdf')
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
+    sns.set_theme(style='darkgrid')
+    sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
+    plt.savefig(plot_path + 'arbis_dataset_hist_month.pdf')
 
     # Remove month column
     # arbis_selected.drop('Month', axis='columns', inplace=True)
 
     # Plot histogram of accidents over highway
-    plt.figure(figsize=(13, 6))
+    plt.figure(figsize=set_size(418, 1.8))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
     plt.title('Histogram of roadworks per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    sns.set_theme(style='darkgrid')
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
-    ax = sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_hist_highway.pdf')
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
+    sns.set_theme(style='darkgrid')
+    sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
+    plt.savefig(plot_path + 'arbis_dataset_hist_highway.pdf')
 
     # Add length of roadwork fragment in kilometers
     arbis_selected['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer']))
@@ -106,10 +116,10 @@ if __name__ == '__main__':
 
     # Plot boxplots for visual relation testing
     plot_boxplot_logscale(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_street2length.pdf')
+                          plot_path + 'arbis_dataset_box_street2length.pdf', scale=1.8)
 
     plot_boxplot_logscale(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_street2duration.pdf')
+                          plot_path + 'arbis_dataset_box_street2duration.pdf', scale=1.8)
 
     plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
                           plot_path + 'arbis_dataset_box_agfs2length.pdf')
@@ -160,7 +170,7 @@ if __name__ == '__main__':
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.pdf',
-                     show=show_plot, figsize=(18, 15))
+                     show=show_plot, scale=1.5)
 
     # Plot statistics/significant matrix
     plot_statistic(results.get('significance'), results.get('columns'),
@@ -168,7 +178,7 @@ if __name__ == '__main__':
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
                    save=save_plot, filepath=plot_path + 'arbis_dataset_sign_cramers.pdf',
-                   show=show_plot, figsize=(18, 15))
+                   show=show_plot, scale=1.5)
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + 'arbis_dataset_corr_cramers.tex', 'w') as tf:
@@ -194,7 +204,7 @@ if __name__ == '__main__':
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.pdf',
-                     show=show_plot, figsize=(18, 15))
+                     show=show_plot, scale=1.5)
 
     # Plot statistics/significant matrix
     plot_statistic(results.get('significance'), results.get('columns'),
@@ -202,7 +212,7 @@ if __name__ == '__main__':
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
                    save=save_plot, filepath=plot_path + 'arbis_dataset_sign_theils.pdf',
-                   show=show_plot, figsize=(18, 15))
+                   show=show_plot, scale=1.5)
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + 'arbis_dataset_corr_theils.tex', 'w') as tf:

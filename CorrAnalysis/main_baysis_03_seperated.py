@@ -29,7 +29,7 @@ if __name__ == '__main__':
     show_plot = False
 
     data_path = 'data/'
-    work_path = data_path + 'BAYSIS/matched/'
+    work_path = data_path + 'BAYSIS/03_seperated/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'

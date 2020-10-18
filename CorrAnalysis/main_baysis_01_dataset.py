@@ -29,7 +29,7 @@ if __name__ == '__main__':
     show_plot = False
 
     data_path = 'data/'
-    work_path = data_path + 'BAYSIS/dataset/'
+    work_path = data_path + 'BAYSIS/01_dataset/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
@@ -76,12 +76,15 @@ if __name__ == '__main__':
 
     # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
 
-    # Plot histogram of accidents over time / months
     plt.figure(figsize=(13, 6))
+    sns.set_theme(style='darkgrid')
+    sns.set(font_scale=2, rc={'text.usetex': True})
+
+    # Plot histogram of accidents over time / months
     plt.title('Histogram of accidents per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    sns.set_theme(style='darkgrid')
+
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
     if save_plot:
@@ -95,11 +98,9 @@ if __name__ == '__main__':
     # baysis_selected.drop('Month', axis='columns', inplace=True)
 
     # Plot histogram of accidents over highway
-    plt.figure(figsize=(13, 6))
     plt.title('Histogram of accidents per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    sns.set_theme(style='darkgrid')
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
     if save_plot:

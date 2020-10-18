@@ -124,8 +124,8 @@ if __name__ == '__main__':
     ordinal_columns = ["Betei", "Fstf"]
 
     # Encode non numerical columns
-    baysis_encoded, arbis_encoded_dict = numerical_encoding(baysis_selected,
-                                                            ["Strasse", "Kat", "Typ",
+    baysis_encoded, baysis_encoded_dict = numerical_encoding(baysis_selected,
+                                                             ["Strasse", "Kat", "Typ",
                                                              "UArt1", "UArt2",
                                                              "AUrs1", "AUrs2",
                                                              "AufHi",
@@ -137,12 +137,12 @@ if __name__ == '__main__':
                                                              "Fstf"
                                                              "WoTag",
                                                              "FeiTag", 'Month'], drop_single_label=False,
-                                                            drop_fact_dict=False)
+                                                             drop_fact_dict=False)
     baysis_encoded.to_csv(csv_path + 'encoded.csv', index=False, sep=';')
 
     with open(csv_path + 'encoded_dict.csv', 'w') as tf:
-        for key in arbis_encoded_dict.keys():
-            tf.write("%s, %s\n" % (key, arbis_encoded_dict[key]))
+        for key in baysis_encoded_dict.keys():
+            tf.write("%s, %s\n" % (key, baysis_encoded_dict[key]))
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused

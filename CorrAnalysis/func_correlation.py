@@ -300,6 +300,10 @@ def cramers_v(x,
         x, y = replace_nan_with_value(x, y, nan_replace_value)
     elif nan_strategy == _DROP:
         x, y = remove_incomplete_samples(x, y)
+
+    contingency = pd.crosstab(x, y)
+    c, p, dof, expected = ss.chi2_contingency(contingency)
+
     confusion_matrix = pd.crosstab(x, y)
     chi2 = ss.chi2_contingency(confusion_matrix)[0]
     n = confusion_matrix.sum().sum()
@@ -315,11 +319,9 @@ def cramers_v(x,
                 RuntimeWarning)
             return np.nan
         else:
-            chi_square, p_value = ss.chisquare(x, y)
-            return np.sqrt(phi2corr / min((kcorr - 1), (rcorr - 1))), p_value, 'Cramer\'s V'
+            return np.sqrt(phi2corr / min((kcorr - 1), (rcorr - 1))), p, 'Cramer\'s V'
     else:
-        chi_square, p_value = ss.chisquare(x, y)
-        return np.sqrt(phi2 / min(k - 1, r - 1)), p_value, 'Cramer\'s V'
+        return np.sqrt(phi2 / min(k - 1, r - 1)), p, 'Cramer\'s V'
 
 
 def theils_u(x,
@@ -373,6 +375,10 @@ def theils_u(x,
         x, y = replace_nan_with_value(x, y, nan_replace_value)
     elif nan_strategy == _DROP:
         x, y = remove_incomplete_samples(x, y)
+
+    contingency = pd.crosstab(x, y)
+    c, p, dof, expected = ss.chi2_contingency(contingency)
+
     s_xy = conditional_entropy(x, y)
     x_counter = Counter(x)
     total_occurrences = sum(x_counter.values())
@@ -381,8 +387,7 @@ def theils_u(x,
     if s_x == 0:
         return 1, 0
     else:
-        chi_square, p_value = ss.chisquare(x, y)
-        return (s_x - s_xy) / s_x, p_value, 'Theils\'s U'
+        return (s_x - s_xy) / s_x, p, 'Theils\'s U'
 
 
 def conditional_entropy(x,

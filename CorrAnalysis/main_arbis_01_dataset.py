@@ -62,7 +62,7 @@ if __name__ == '__main__':
     # Add month of roadwork
     arbis_selected['Month'] = arbis_imported['Von'].dt.month_name()
     months = ['January', 'February', 'March', 'April', 'May', 'June',
-             'July', 'August', 'September', 'October', 'November', 'December']
+              'July', 'August', 'September', 'October', 'November', 'December']
 
     # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
 
@@ -135,7 +135,11 @@ if __name__ == '__main__':
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
 
     # Encode non numerical columns
-    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected, nominal_columns, drop_single_label=False,
+    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected,
+                                                           ['Strasse',
+                                                            'StreckeID',
+                                                            'Month'],
+                                                           drop_single_label=False,
                                                            drop_fact_dict=False)
     arbis_encoded.to_csv(csv_path + 'encoded.csv', index=False, sep=';')
 
@@ -212,7 +216,7 @@ if __name__ == '__main__':
 
     # https://seaborn.pydata.org/examples/scatterplot_matrix.html
     # sns.set_theme(style='ticks')
-    # sns.pairplot(arbis_selected, hue='Strasse')
+    # sns.pairplot(arbis_selected, hue='XXX')
     # plt.show()
 
     print('Finished ArbIS Dataset Analysis')

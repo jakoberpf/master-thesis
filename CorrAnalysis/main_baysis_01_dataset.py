@@ -67,12 +67,12 @@ if __name__ == '__main__':
                                          ].index)
 
     # Manual data type conversion from str to datetime64
-    baysis_imported['Datum'] = pd.to_datetime(baysis_imported['Datum'], format='%d.%m.%y')
+    baysis_imported['Date'] = pd.to_datetime(baysis_imported['Datum'], format='%d.%m.%y')
 
     # Add month of roadwork
-    baysis_selected['Month'] = baysis_imported['Datum'].dt.month_name()
+    baysis_selected['Month'] = baysis_imported['Date'].dt.month_name()
     months = ['January', 'February', 'March', 'April', 'May', 'June',
-             'July', 'August', 'September', 'October', 'November', 'December']
+              'July', 'August', 'September', 'October', 'November', 'December']
 
     # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
     if save_plot:
-        plt.savefig(plot_path + 'baysis_dataset_hist_month.png')
+        plt.savefig(plot_path + 'baysis_dataset_hist_month.pdf')
     if show_plot:
         plt.show()
     else:
@@ -103,18 +103,11 @@ if __name__ == '__main__':
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
+        plt.savefig(plot_path + 'baysis_dataset_hist_highway.pdf')
     if show_plot:
         plt.show()
     else:
         plt.close()
-
-    # Plot boxplots for visual relation testing
-    plot_boxplot(baysis_selected, 'Strasse', 'Kat', save_plot, show_plot,
-                          plot_path + 'baysis_dataset_box_street2kat.png')
-
-    plot_boxplot(baysis_selected, 'Strasse', 'Typ', save_plot, show_plot,
-                          plot_path + 'baysis_dataset_box_street2typ.png')
 
     # TODO add more plot variations
 
@@ -136,17 +129,17 @@ if __name__ == '__main__':
     # Encode non numerical columns
     baysis_encoded, baysis_encoded_dict = numerical_encoding(baysis_selected,
                                                              ["Strasse", "Kat", "Typ",
-                                                             "UArt1", "UArt2",
-                                                             "AUrs1", "AUrs2",
-                                                             "AufHi",
-                                                             "Char1", "Char2",
-                                                             "Bes1", "Bes2",
-                                                             "Lich1", "Lich2",
-                                                             "Zust1", "Zust2",
-                                                             "StrklVu",
-                                                             "Fstf"
-                                                             "WoTag",
-                                                             "FeiTag", 'Month'], drop_single_label=False,
+                                                              "UArt1", "UArt2",
+                                                              "AUrs1", "AUrs2",
+                                                              "AufHi",
+                                                              "Char1", "Char2",
+                                                              "Bes1", "Bes2",
+                                                              "Lich1", "Lich2",
+                                                              "Zust1", "Zust2",
+                                                              "StrklVu",
+                                                              "Fstf"
+                                                              "WoTag",
+                                                              "FeiTag", 'Month'], drop_single_label=False,
                                                              drop_fact_dict=False)
     baysis_encoded.to_csv(csv_path + 'encoded.csv', index=False, sep=';')
 
@@ -166,7 +159,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'baysis_dataset_corr_cramers.png',
+                     save=save_plot, filepath=plot_path + 'baysis_dataset_corr_cramers.pdf',
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
@@ -174,7 +167,7 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'baysis_dataset_sign_cramers.png',
+                   save=save_plot, filepath=plot_path + 'baysis_dataset_sign_cramers.pdf',
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
@@ -200,7 +193,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'baysis_dataset_corr_theils.png',
+                     save=save_plot, filepath=plot_path + 'baysis_dataset_corr_theils.pdf',
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
@@ -208,7 +201,7 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'baysis_dataset_sign_theils.png',
+                   save=save_plot, filepath=plot_path + 'baysis_dataset_sign_theils.pdf',
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables

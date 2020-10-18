@@ -75,7 +75,7 @@ if __name__ == '__main__':
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
     if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_hist_month.png')
+        plt.savefig(plot_path + 'arbis_dataset_hist_month.pdf')
     if show_plot:
         plt.show()
     else:
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_hist_highway.png')
+        plt.savefig(plot_path + 'arbis_dataset_hist_highway.pdf')
     if show_plot:
         plt.show()
     else:
@@ -106,28 +106,28 @@ if __name__ == '__main__':
 
     # Plot boxplots for visual relation testing
     plot_boxplot_logscale(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_street2length.png')
+                          plot_path + 'arbis_dataset_box_street2length.pdf')
 
     plot_boxplot_logscale(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_street2duration.png')
+                          plot_path + 'arbis_dataset_box_street2duration.pdf')
 
     plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_agfs2length.png')
+                          plot_path + 'arbis_dataset_box_agfs2length.pdf')
 
     plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_agfs2duration.png')
+                          plot_path + 'arbis_dataset_box_agfs2duration.pdf')
 
     plot_boxplot_logscale(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_einzug2length.png')
+                          plot_path + 'arbis_dataset_box_einzug2length.pdf')
 
     plot_boxplot_logscale(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_einzug2duration.png')
+                          plot_path + 'arbis_dataset_box_einzug2duration.pdf')
 
     plot_boxplot_logscale(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_direction2length.png')
+                          plot_path + 'arbis_dataset_box_direction2length.pdf')
 
     plot_boxplot_logscale(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_direction2duration.png')
+                          plot_path + 'arbis_dataset_box_direction2duration.pdf')
 
     # define column types
     nominal_columns = ['Strasse', 'StreckeID', 'Month']
@@ -155,7 +155,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.png',
+                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.pdf',
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
@@ -163,7 +163,7 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_cramers.png',
+                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_cramers.pdf',
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
@@ -189,7 +189,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.png',
+                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.pdf',
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
@@ -197,7 +197,7 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_theils.png',
+                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_theils.pdf',
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables

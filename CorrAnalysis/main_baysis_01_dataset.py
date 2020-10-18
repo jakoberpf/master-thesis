@@ -16,6 +16,7 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 from func_correlation import numerical_encoding, compute_correlations
 from func_plot import plot_correlation, plot_boxplot_logscale, plot_statistic
@@ -31,6 +32,7 @@ if __name__ == '__main__':
     work_path = data_path + 'BAYSIS/dataset/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
+    csv_path = work_path + 'csv/'
     work_file = 'BAYSIS_2019.csv'
 
     baysis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True,
@@ -44,16 +46,25 @@ if __name__ == '__main__':
          "AufHi",
          "Alkoh",
          "Char1", "Char2",
-         "Char3",  # Not relevant because empty
+         # "Char3",  # Not relevant because empty
          "Bes1", "Bes2",
-         "Bes3",  # Not relevant because empty
+         # "Bes3",  # Not relevant because empty
          "Lich1", "Lich2",
          "Zust1", "Zust2",
          "Fstf",
          "StrklVu",
-         "WoTagNr",  # Already represented by WoTag
-         # "WoTag",
+         # "WoTagNr",  # Already represented by WoTag
+         "WoTag",
          "FeiTag"]].copy()
+
+    baysis_imported.drop(baysis_imported[(baysis_imported['WoTag'] != 'Mo')
+                                         & (baysis_imported['WoTag'] != 'Di')
+                                         & (baysis_imported['WoTag'] != 'Mi')
+                                         & (baysis_imported['WoTag'] != 'Do')
+                                         & (baysis_imported['WoTag'] != 'Fr')
+                                         & (baysis_imported['WoTag'] != 'Sa')
+                                         & (baysis_imported['WoTag'] != 'So')
+                                         ].index)
 
     # Manual data type conversion from str to datetime64
     baysis_imported['Datum'] = pd.to_datetime(baysis_imported['Datum'], format='%d.%m.%y')
@@ -103,30 +114,40 @@ if __name__ == '__main__':
                        "AUrs1", "AUrs2",
                        "AufHi",
                        "Char1", "Char2",
-                       "Char3",  # Not relevant because empty
                        "Bes1", "Bes2",
-                       "Bes3",  # Not relevant because empty
                        "Lich1", "Lich2",
                        "Zust1", "Zust2",
                        "StrklVu",
-                       "WoTagNr",  # Already represented by WoTag
+                       "WoTag",
                        "FeiTag", 'Month']
     dichotomous_columns = ["Alkoh"]
     ordinal_columns = ["Betei", "Fstf"]
 
-    # defines coefficients
-    con_nominal = 'kruskal-wallis'
-    con_dichotomous = 'point_biserial'
-    con_ordinal = 'kendall'
-
     # Encode non numerical columns
-    baysis_encoded = numerical_encoding(baysis_selected, nominal_columns, drop_single_label=False)
+    baysis_encoded, arbis_encoded_dict = numerical_encoding(baysis_selected,
+                                                            ["Strasse", "Kat", "Typ",
+                                                             "UArt1", "UArt2",
+                                                             "AUrs1", "AUrs2",
+                                                             "AufHi",
+                                                             "Char1", "Char2",
+                                                             "Bes1", "Bes2",
+                                                             "Lich1", "Lich2",
+                                                             "Zust1", "Zust2",
+                                                             "StrklVu",
+                                                             "Fstf"
+                                                             "WoTag",
+                                                             "FeiTag", 'Month'], drop_single_label=False,
+                                                            drop_fact_dict=False)
+    baysis_encoded.to_csv(csv_path + 'encoded.csv', index=False, sep=';')
+
+    with open(csv_path + 'encoded_dict.csv', 'w') as tf:
+        for key in arbis_encoded_dict.keys():
+            tf.write("%s, %s\n" % (key, arbis_encoded_dict[key]))
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused
     results = compute_correlations(
         baysis_encoded,
-        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
         columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
         bias_correction=False)
 
@@ -160,8 +181,7 @@ if __name__ == '__main__':
     results = None  # To make sure that no old data is reused
     results = compute_correlations(
         baysis_encoded,
-        categorical_categorical='theils_u',
-        continuous_nominal=con_nominal, continuous_dichotomous=con_dichotomous, continuous_ordinal=con_ordinal,
+        theils=True,
         columns_nominal=nominal_columns, columns_dichotomous=dichotomous_columns, columns_ordinal=ordinal_columns,
         bias_correction=False)
 
@@ -190,5 +210,9 @@ if __name__ == '__main__':
 
     with open(tex_path + 'baysis_dataset_coef_theils.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
+
+    # sns.set_theme(style='ticks')
+    # sns.pairplot(baysis_selected, hue='Kat')
+    # plt.show()
 
     print('Finished BAYSIS Dataset Analysis')

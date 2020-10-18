@@ -16,14 +16,18 @@
 /CorrAnalysis/data/BAYSIS/matched/_monthly
 /CorrAnalysis/data/BAYSIS/matched/BAYSIS_2019.csv
 /CorrAnalysis/data/BAYSIS/matched/BAYSIS_2019.xlsx
+# ignore old word docs
 /Thesis/Masterthesis_JakobErpf_v1.docx
 /Thesis/Masterthesis_JakobErpf_v2.docx
 /Thesis/Masterthesis_JakobErpf_v3.docx
 /Thesis/Masterthesis_JakobErpf_v4.docx
 /Thesis/Masterthesis_JakobErpf.pdf
+# ignore evaluation code for now
 /CongEvaluation
+# ignore r project files
 .Rproj.user
-/CorrAnalysis/CorrAnalysis.Rproj
-/CorrAnalysis/data/ArbIS/dataset/csv/encoded.csv
-/CorrAnalysis/data/ArbIS/dataset/csv/encoded_dict.csv
 /CorrAnalysis/.RData
+/CorrAnalysis/CorrAnalysis.Rproj
+# ignore generated datasets 
+/CorrAnalysis/data/ArbIS/dataset/csv/encoded.csv
+/CorrAnalysis/data/BAYSIS/dataset/csv/encoded.csv

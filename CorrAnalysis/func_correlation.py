@@ -131,7 +131,7 @@ def eta(measurements,
     Returns:
     --------
     float : correlation coefficient in the range of [0,1]
-    float : p-value, calculated with Kruskal-Wallis H
+    float : p-value, calculated with Kruskal-Wallis H (Chi-squared)
     str   : correlation name/identifier
     """
     print(categories.name + ' to ' + measurements.name + ' with Correlation Ration (Eta) and Kruskal-Wallis H')
@@ -168,30 +168,6 @@ def eta(measurements,
 ### Continuous - Categorical(Dichotoums) ###
 ############################################
 
-
-def wilcoxon(measurements_x, measurements_y):
-    """
-
-    Wilcoxon (Mann-Withney) test TODO add docstring
-
-    Parameters:
-    -----------
-    x : list / NumPy ndarray / Pandas Series
-        A sequence of continuous measurements
-    y : list / NumPy ndarray / Pandas Series
-        A sequence of categorical(dichotoums) measurements
-
-    Returns:
-    --------
-    float : statistic of variations
-    float : p-value
-    str   : correlation name/identifier
-    """
-    print(measurements_x.name + ' to ' + measurements_y.name + ' with Wilcoxon (Mann Whitney)')
-    statistic, p_value = ss.wilcoxon(measurements_x, measurements_y)
-    return statistic, p_value
-
-
 def point_biserial(measurements, dichotomies):
     """
 
@@ -212,7 +188,6 @@ def point_biserial(measurements, dichotomies):
     """
     print(measurements.name + ' to ' + dichotomies.name + ' with Point Biserial and Wilcoxon (Mann Whitney)')
     correlation, p_value = ss.pointbiserialr(dichotomies, measurements)
-    # statistic, p_value = wilcoxon(measurements, dichotomies)
     return correlation, p_value, 'Point Biserial'
 
 
@@ -290,7 +265,7 @@ def cramers_v(x,
     Returns:
     --------
     float : in the range of [0,1]
-    float : _SIGN_NAN as default p-value
+    float : p-value, calculated with chi-squared
     str   : correlation name/identifier
     """
 
@@ -365,7 +340,7 @@ def theils_u(x,
     Returns:
     --------
     float : in the range of [0,1]
-    float : _SIGN_NAN as default p-value
+    float : p-value, calculated with chi-squared
     str   : correlation name/identifier
     """
 

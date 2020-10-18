@@ -274,7 +274,7 @@ This general layman's definition of jams is essential correct, but not sufficien
 
 Figure \ref{img:speedMatrixPlot_singleCluster} shows a section of a random speed matrix plot from the FCD dataset, containing a scattered congestion cluster. The horizontal and vertical extend represents the spatial and temporal location of each cell. The color of the cell indicated the mean absolute speed recorded in the time frame and on the link of the cell (detailed gradient is shown in the legend of \ref{img:speedMatrixPlot_singleCluster}).
 
-The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered, to incorporate the complete congestion area. Speeds above at least 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes two speed threshold for jammed and slow-moving traffic necessary adequately detecting congestion clusters. With this information and some learning during calibration of the clustering algorithm (see chapter \ref{cluster_calibration}) the following thresholds for the jammed and slow speed, classifying \glspl{jam} in FCD data where defined.
+The visual representation show that a congestion mostly contains speed of less than 30 km/h, shown in \textit{dark red}. A closer look on the cluster in the top left reveals that speed around 40-50 km/h, shown in \textit{lighter red} tones, may be also considered, to incorporate the complete congestion area. Speeds above at least 50 km/h, starting with the \textit{orange/yellow} categories, should not be included in the definition, because it would classify regular speed limits, represented by the broad vertical \textit{orange/yellow} stripe, as jammed traffic. This makes two speed threshold for jammed and slow-moving traffic necessary adequately detecting congestion clusters. With this information and some learning during calibration of the clustering algorithm (see section \ref{cluster_calibration}) the following thresholds for the jammed and slow speed, classifying \glspl{jam} in FCD data where defined.
 
 \begin{itemize}
 	\item Speed threshold for jammed state : $v_{crit,jammed} = 30 \frac{km}{h}$
@@ -364,7 +364,7 @@ The equation can simplified to \ref{formula_pearson_simplified} with the $SS$ co
 \end{equation}
 
 \subsubsection{Interpretation}
-Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the . For interpreting this characteristic there are some common assumptions to be found in literature.
+Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation can also be described as strength of association, show how strong the two variables are related with each other, represented by the absolute values of $r$. Therefore the following rules can be applied for interpretation \cite{Wolfe2017}.
 
 \begin{itemize}
   \item When both variables change in the same ratio, the absolute value of the correlation coefficient is 1,0, which is called perfect correlation.
@@ -376,7 +376,7 @@ Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves i
 
 \subsubsection{Significance}
 
-To determine if $r$, is statically significant, a chi-square test can be applied. Equation \ref{formula_chi_squared_simplified} shows the chi-squared statistic taken from Wikipedia, cited from Karl Pearson \cite{Pearson1990}.
+To determine if $r$, is statically significant, a chi-square test can be applied to find the $p$-value. Equation \ref{formula_chi_squared_simplified} shows the chi-squared statistic taken from Wikipedia, cited from Karl Pearson \cite{Pearson1990}.
 
 \smallskip
 %\begin{equation}
@@ -390,29 +390,27 @@ To determine if $r$, is statically significant, a chi-square test can be applied
 
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
-	\item[] $N$ is the total number of data samples and in our case  
+	\item[] $N$ is the total number of data samples 
 	\item[] $O_i$ is the number of data samples with type $i$
 	\item[] $E_i = N p_i$ is the expected number of data samples with type $i$
 \end{itemize}
 
-The $p$-value then can be comprised by comparing $\chi^2$ to a $\chi^2$-distribution with the degree of freedom $df$ ($df$ can be calculated in multiple ways, see ??). This can be done either by calculation or by using a conversion table.
-
-It calculates the $p$-value, which then is compared to the significance level $\alpha$, to either accept ($p > \alpha$) or reject ($p <= \alpha$) the null hypothesis, that the means are equal to the population. Usually a value of $0.05$ is chosen for $\alpha$, which means that there is a 5\% risk of rejecting the null hypothesis even if there are differences. From this definition the following two interpretations of the correlation coefficient can be drawn. \cite{OTSD2020}
+The $p$-value can be comprised by comparing $\chi^2$ to a $\chi^2$-distribution by calculation or by using a conversion table \cite{Piegorsch2002}, with the degree of freedom $df = (n_y - 1) \cdot (n_y - 1)$. The resulting  $p$-value, is compared to the significance level $\alpha$, to either accept ($p > \alpha$) or reject ($p <= \alpha$) the null hypothesis ("The means are equal to the population"). Usually a value of $0.05$ is chosen for $\alpha$, which means that there is a 5\% risk of falsely rejecting the null hypothesis. From this definition the following two interpretations of the correlation coefficient can be drawn. \cite{OTSD2020}
 
 \begin{itemize}
-	\item $p <= \alpha$ means that the null hypothesis can be rejected and indicates that is a significant correlation between the two tested variables. It can be concluded that the increase or decrease of one variabel does significantly related to the increase or decrease of the other.
-	\item $p > \alpha$ means that there is \textbf{no} significant correlation between the two variables and no conclusion can be drawn for the correlation.
+	\item $p <= \alpha$ means that the null hypothesis can be rejected and indicates that is a significant dependency between the two tested variables. It can be concluded that the increase or decrease of one variabel does significantly related to the increase or decrease of the other.
+	\item $p > \alpha$ means that there is \textbf{no} significant dependency between the two variables and no conclusion can be drawn for the correlation.
 \end{itemize}
 
 \subsection{Continuous - Nominal}
 
 This type of relation is objectively the most complex to evaluate. One well known method to analyze the relation between a continuous and categorical variable, which is not ranked and has more than to values, is the analysis of variance (ANOVA). As it is a parametric test it unfortunately assumes normal or gaussian distributed variables, which is not give in our datasets (see chapter \ref{data}). A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis H-test \cite{Leon1998}. Both tests indicates if at least one variabel stochastically dominates another, but not in which groups or in how many groups this domination occurs \cite{OTSD2020}. They therefore do not provide a statement about the correlation strength, but the statistical significance of a possible correlation.
 
-The research of a correlation coefficient for the relation of a continuous and nominal variable only provided one option, the eta ($\eta$) coefficient from Pearson. 
+The research of a correlation coefficient for the relation of a continuous and nominal variable only provided the eta ($\eta$) coefficient from Pearson \cite{Benninghaus2007}. 
 
 \subsubsection{Eta ($\eta$) coefficient}
 % https://stackoverflow.com/questions/52083501/how-to-compute-correlation-ratio-or-eta-in-python/52084418
-The $\eta$ coefficient, also called correlation ratio measures the relationship between variables based on the sums of squares used in the ANOVA \cite{Lewis2012,Benninghaus2007}. More concrete, $\eta$ is the squared root of ratio between $SS_x$ and $SS_y$ \cite{Shaldehi2013}.
+The $\eta$ coefficient, also called correlation ratio (used as $\eta^2$), measures the relationship between variables based on the sums of squares used in the ANOVA \cite{Lewis2012,Benninghaus2007}. More concrete, $\eta$ is the squared root of ratio between $SS_x$ and $SS_y$ \cite{Shaldehi2013}.
 
 \smallskip
 \begin{equation}
@@ -420,13 +418,17 @@ The $\eta$ coefficient, also called correlation ratio measures the relationship 
 	\eta = \sqrt{\frac{SS_x}{SS_y}}
 \end{equation}
 
-
-
 \subsubsection{Interpretation}
 
-Interpretation of Eta
+The coefficient can have values in the range from $0$ to $1$.
 
-only values from 0 to 1.
+Effektgröße Eta Quadrat berechnen Eta wird aus Fehlerquadratsummen berechnet. SPSS nennt Eta „partielles Eta Quadrat“ und bietet die Option, den Wert als Teil z.B. einer einfaktoriellen ANOVA, einer ANOVA mit Messwiederholung oder einer mixed-model ANOVA ausgeben zu lassen.
+ 
+ANOVA Effektstärke Eta Quadrat interpretieren
+< 0,06 – kleiner Effekt
+0,06 – 0,14 – mittelgradiger Effekt
+> 0,14 – großer Effekt
+
 
 \subsubsection{Kruskal-Wallis}
 

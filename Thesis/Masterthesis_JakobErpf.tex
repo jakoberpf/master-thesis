@@ -463,10 +463,9 @@ The interpretation of the $p$-value can be compared to the 2-tailed test, with s
 \subsection{Continuous - Dichotomous}
 
 \subsubsection{Continuous - Categorical(Dichotomous)}
-The Point Biserial correlation, a special form of the Pearson's $r$ correlation coefficient, is suited to evaluate the association of continuous-dichotomous relations. 
+The Point Biserial correlation is a special form of the Pearson's $r$ correlation coefficient and suited to evaluate the association of continuous-dichotomous relations. 
 
 \subsubsection{Point Biserial}
-
 The Point Biserial notation, shown in formula \ref{formula_point_biserial}, can be derived from Person's $r$ with the assumption of $y$ only taking dichotomy values of 0 and 1, so that $\bar{y} = p$. The distinction of the cases
 
 \begin{itemize}
@@ -491,17 +490,13 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 \end{equation}
 
 % https://de.wikipedia.org/wiki/Wilcoxon-Mann-Whitney-Test
-The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which scipy.stats.wilcoxon() uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
-
-The hypothesis being test is:
-
-Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
-Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
-If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
-
-
-
-\bigskip
+%The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which scipy.stats.wilcoxon() uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
+%
+%The hypothesis being test is:
+%
+%Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
+%Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
+%If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
 
 \subsubsection{Interpretation}
 

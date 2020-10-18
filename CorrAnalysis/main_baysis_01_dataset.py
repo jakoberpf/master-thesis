@@ -19,7 +19,7 @@ import pandas as pd
 import seaborn as sns
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_boxplot_logscale, plot_statistic
+from func_plot import plot_correlation, plot_boxplot_logscale, plot_statistic, plot_boxplot
 from func_utils import print_welcome, date_parser
 
 if __name__ == '__main__':
@@ -82,6 +82,7 @@ if __name__ == '__main__':
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
     sns.set_theme(style='darkgrid')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + 'baysis_dataset_hist_month.png')
@@ -99,6 +100,7 @@ if __name__ == '__main__':
     plt.ylabel('Count')
     plt.xlabel('Highway')
     sns.set_theme(style='darkgrid')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
@@ -108,11 +110,13 @@ if __name__ == '__main__':
         plt.close()
 
     # Plot boxplots for visual relation testing
-    plot_boxplot_logscale(baysis_selected, 'Strasse', 'Kat', save_plot, show_plot,
+    plot_boxplot(baysis_selected, 'Strasse', 'Kat', save_plot, show_plot,
                           plot_path + 'baysis_dataset_box_street2kat.png')
 
-    plot_boxplot_logscale(baysis_selected, 'Strasse', 'Typ', save_plot, show_plot,
+    plot_boxplot(baysis_selected, 'Strasse', 'Typ', save_plot, show_plot,
                           plot_path + 'baysis_dataset_box_street2typ.png')
+
+    # TODO add more plot variations
 
     # define column types
     nominal_columns = ["Strasse", "Kat", "Typ",
@@ -217,6 +221,7 @@ if __name__ == '__main__':
     with open(tex_path + 'baysis_dataset_coef_theils.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
 
+    # https://seaborn.pydata.org/examples/scatterplot_matrix.html
     # sns.set_theme(style='ticks')
     # sns.pairplot(baysis_selected, hue='Kat')
     # plt.show()

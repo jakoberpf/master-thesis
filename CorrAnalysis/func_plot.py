@@ -228,6 +228,19 @@ def plot_statistic(corr, columns,
 
     return ax
 
+def plot_boxplot(data, x, y, save, show, file):
+    # Settings for box plots
+    sns.set(font_scale=2)
+    sns.set_context('paper')
+    plt.figure(figsize=(11, 6))
+    # Plot boxplot
+    sns.boxplot(x=x, y=y, data=data, palette='Set1')
+    if save:
+        plt.savefig(file)
+    if show:
+        plt.show()
+    else:
+        plt.close()
 
 def plot_boxplot_logscale(data, x, y, save, show, file):
     # Settings for box plots
@@ -243,11 +256,3 @@ def plot_boxplot_logscale(data, x, y, save, show, file):
         plt.show()
     else:
         plt.close()
-
-
-def plot_scatter():
-    plt.scatter()
-
-
-def plot_scatter_matrix():
-    sns.pairplot()

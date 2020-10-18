@@ -72,6 +72,7 @@ if __name__ == '__main__':
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
     sns.set_theme(style='darkgrid')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + 'arbis_dataset_hist_month.png')
@@ -89,9 +90,10 @@ if __name__ == '__main__':
     plt.ylabel('Count')
     plt.xlabel('Highway')
     sns.set_theme(style='darkgrid')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'baysis_dataset_hist_highway.png')
+        plt.savefig(plot_path + 'arbis_dataset_hist_highway.png')
     if show_plot:
         plt.show()
     else:
@@ -208,6 +210,7 @@ if __name__ == '__main__':
     with open(tex_path + 'arbis_dataset_coef_theils.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
 
+    # https://seaborn.pydata.org/examples/scatterplot_matrix.html
     # sns.set_theme(style='ticks')
     # sns.pairplot(arbis_selected, hue='Strasse')
     # plt.show()

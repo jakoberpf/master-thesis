@@ -37,9 +37,9 @@ if __name__ == '__main__':
         [
             # Congestion Data
             "TempExMax",
-            # "TempExMin",
+            # "TempExMin", # Not implemented
             "SpatExMax",
-            # "SpatExMin",
+            # "SpatExMin", # Not implemented
             "TempDist",
             "SpatDist",
             "Coverage",

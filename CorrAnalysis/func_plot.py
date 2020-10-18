@@ -228,6 +228,7 @@ def plot_statistic(corr, columns,
 
     return ax
 
+
 def plot_boxplot(data, x, y, save, show, file):
     # Settings for box plots
     sns.set(font_scale=2)
@@ -241,6 +242,7 @@ def plot_boxplot(data, x, y, save, show, file):
         plt.show()
     else:
         plt.close()
+
 
 def plot_boxplot_logscale(data, x, y, save, show, file):
     # Settings for box plots

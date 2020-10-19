@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{pgfplots}
 \usepackage{tikz}
+\usetikzlibrary{calc}
 \usetikzlibrary{trees}
 \usepackage{float}
 \usepackage{commath}
@@ -1079,16 +1080,16 @@ To illustrate which problems can occur when using cluster algorithms and to defi
 
 This works well as long as the groups don't overlay, intersect or have arbitrary shapes like in the figures \ref{cluster_dbscan}. When this is the case, the k-mean may cluster loosely related point together, which actually are more strongly related to other points, because it considers every point as possible neighbor. Since jams in FCD data can overlay and have any number of shape, as suitable algorithms need to be able to handle such data.
 
-Another issue with this method is the vastly increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of k-mean states that $n$ distances are calculated for $k$ points \cite{Santhanam2010}. With this equation and the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \cite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \cite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^n$ calculations have to me computed over all iterations.
+Another issue with this method is the vastly increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of k-mean states that $n$ distances are calculated for $k$ points \cite{Santhanam2010}. With the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \cite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \cite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^n$ calculations have to me computed over all iterations.
 
 \begin{equation}
 \label{formula_kmeans}
-	J =  \sum_{j=1}^k{\sum_{i=1}^n{\abs{x_i^j-c_j}}}
+	k_{mean} =  \sum_{j=1}^k{\sum_{i=1}^n{\abs{x_i^j-c_j}}}
 \end{equation}
 
 \bigskip
 
-A Big $O$ notation of $O(n^2)$ can generally be described as inefficient, but if we would apply the worst case scenario as an example on the data of the highway A3 and a timeframe of 24 hours, which contains 836.752 data points, the runtime issue becomes quite obvious. As the equation \ref{equation_kmeans_nn} show, the total number of calculation is so astronomical high, that it would take days to run this cluster. \cite{Busch2004}
+A Big $O$ notation of $O(n^2)$ can generally be described as inefficient, but if we would apply the worst case scenario as an example on the data of the highway A3 and a timeframe of 24 hours, which contains 836.752 data points, the runtime issue becomes quite obvious. As the equation \ref{equation_kmeans_nn} show, the total number of calculation is so astronomical high, that it would take days to run this cluster, even on highly scaleable computation units. \cite{Busch2004}
 
 \begin{equation}
 \label{equation_kmeans_nn}
@@ -1101,19 +1102,29 @@ Entering density-based methods, which are better suited to identify distinctive,
 
 \subsubsection{Algorithm}
 
-The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise  \cite{Yildirim2020,Chauhan2020}. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $minPts$, which defines the minimum number of points to form a cluster. And secondly the maximum distance threshold between points, $eps$ ($\varepsilon$), to be considered as neighbors and be become part of a cluster. These thresholds classify a data point as core point, border point or outliner. \cite{Yildirim2020,Chauhan2020}
+The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $MinPts$, which defines the minimum number of points necessary to form a cluster. And secondly the maximum distance threshold between points, $eps$ ($\varepsilon$), to be considered as neighbors and become part of a cluster. These thresholds classify a data point as core point, (directly) density-reachable point or noise. \cite{Yildirim2020,Chauhan2020,Padro2017}
 
 \begin{itemize}
-	\item \textbf{Core points} have at least the $minPts$ points around them within the radius $eps$, including itself.
-    \item \textbf{Border points} has at least one core point within the radius $eps$, excluding itself.
- 	\item \textbf{Outliers} or noise are neither core nor border points and has less than $minPts$ within the radius $eps$
+	\item A \textbf{core} point $q$ has at least $MinPts$ points around them within the neighborhood $\varepsilon$, including itself.
+    \item \textbf{Directly density-reachable} border points have at least one core point within the neighborhood $\varepsilon$.
+     \item \textbf{Density-reachable} border points have at least one core point within the neighborhood $\varepsilon$ of a cain of points $p_1,p_2,...p_n$.
+ 	\item \textbf{Noise} or outliner point are neither core points nor are they density-reachable and therefore have less than $MinPts$ in their neighborhood $\varepsilon$, including itself.
 \end{itemize}
 
-Finds core samples of high density and expands clusters from them.
+The general procedure of the algorithm is as follows \cite{Zhao2018}, with the input of $n$ points, neighborhood radius $\varepsilon$ and density threshold $MinPts$:
 
-
-
-DBSCAN with expansion of removing wrong and small, and combining small and near
+\begin{itemize}
+	\item[1.] Mark all points as \textit{unvisited}
+	\item[2.] Choose point $p$ randomly from all \textit{unvisited} points.
+	\begin{itemize}
+		\item[a.] Choose point $p$ randomly from all \textit{unvisited} points and mark $p$ as \textit{visited}.
+		\item[b.] Count points in the neighborhood $\varepsilon$ to check if $p$ is core point. If $p$ is core point, create new cluster $C$ and add all directly density-reachable and \textit{unvisited} points. Otherwise mark $p$ as noise.
+		\item[c.] Choose point $p'$ randomly from all \textit{unvisited} points of $C$ and mark $p$ as \textit{visited}.
+		\item[d.] Count points in the neighborhood $\varepsilon$ to check if $p'$ is core point. If $p$ is core point add all directly density-reachable points, which do not already belong to a cluster, to $C$. Otherwise mark $p$ as noise.
+		\item[e.] Repeat c. and d. until there are no \textit{unvisited} points left in $C$.	
+	\end{itemize} 
+	\item[3.] Repeat 2. until all points are \textit{visited} 
+\end{itemize}
 
 %https://www.kde.cs.uni-kassel.de/wp-content/uploads/ws/LLWA03/fgml/final/Kirchner.pdf
 %https://www.researchgate.net/publication/322729622_Characterizing_Diffusion_Dynamics_of_Disease_Clustering_A_Modified_Space-Time_DBSCAN_MST-DBSCAN_Algorithm
@@ -1121,56 +1132,95 @@ DBSCAN with expansion of removing wrong and small, and combining small and near
 %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.1629&rep=rep1&type=pdf
 %http://cucis.eecs.northwestern.edu/publications/pdf/HAL18.pdf
 
+\subsubsection{Distance Measuring}
+The clustering algorithm is based on the density of points. This density representation is achieved via the calculation of neighborhood $\varepsilon$, typical the Euclidean distance, which is based on the pythagorean theorem (see equation \ref{formula_euclidean} \cite{Erhard2020}).
+
+\begin{equation}
+	d_{A,B} = \sqrt{(x_B-x_A)^2+(y_B-y_A)^2}
+	\label{formula_euclidean}
+\end{equation}
+
+\bigskip
+
+\begin{figure}
+	\centering
+	
+	\begin{tikzpicture}[scale=0.8]
+	
+	\draw [<->,thick] (0,7) node (yaxis) [above] {$y$}
+        |- (8,0) node (xaxis) [right] {$x$};
+
+	\coordinate[label={270:$C$}] (C) at (4,1.5);
+	\coordinate[label={150:$A$}] (A) at (70:4);
+	\coordinate[label={30:$B$}] (B) at (42:10);
+
+	\draw (C) -- (A)node[midway,below left]{$a$} -- (B)  -- cycle node[midway,below right]{$b$};
+       
+	\draw [dashed] (C) -- ($(A)!(C)!(B)$) coordinate (P) node [midway, right]{$h$};
+	
+	\draw[decorate,decoration={brace,raise=12pt,amplitude=5pt}] (A) -- (B);
+	
+	\path (B) -- (P) node[midway,above]{$x$}-- (A) node[midway,above]{$y$} ($($(A)!0.5!(B)$)!0.8cm!90:(B)$) node {$d_{A,B}$}; % You can nest calc syntax!
+	
+	\filldraw[fill=white] (C) -- ($(C)!2mm!(A)$) coordinate (U) -- ($(U)!2mm!90:(C)$) 
+      --($(C)!2mm!(B)$) --cycle;
+	
+	\draw ($(P)!2mm!(C)$) coordinate (V) -- ($(V)!2mm!90:(C)$) --($(P)!2mm!(B)$);
+
+	\end{tikzpicture}
+\end{figure}
 
 
+\bigskip
 
+A euclidean distance calculation in this form is only possible in Euclidean spaces, which is not the case with FCD. The space of the FCD is defined by a spatial and a temporal dimension, which are scaled differently as mentioned in section \ref{dataset_fcd}. This made is necessary to find a common unit for 
 
-
-
-\begin{itemize}
-	\item Minimum length of a congestion : $l_{min} = 1000 m$
-	\item Minimum duration of a congestion : $t_{min} = 9 min$
-\end{itemize}
-
-For the detection algorithm, which is based on a clustering approach (see chapter \ref{cluster_dbscan}), additionally parameters are needed to consolidate individual but adjacent clusters into jams. The distances inbetween 
-
-The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation on highway roads types when using the CONGSTATS Cluster Algo [s]. 
+The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
 
 \begin{itemize}
 	\item Spatial gap : $l_{min,gap} = 5000$ % cluster consolidation 
 	\item Temporal gap : $t_{min,gap} = 6 min$ % cluster consolidation 
 	\item Virtual travel-time gap $t_{min,gap}^{virtual} = 360s$
 \end{itemize}
-
-
-% TODO explain values
-
-
 % TODO read and add infos
 % https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
+\subsubsection{Calibration}
 
-% TODO read and use a source for loss parameter
-% file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
-
-
-%\begin{itemize}
-%	\item The cost rate for one car loosing one hour travel time [€/(Fz*h)] cost.rate.car=11
-%	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
-%\end{itemize}
-
-
-
-
-
-\subsubsection{Distance Measuring}
+%Parameter estimation:
+%The parameter estimation is a problem for every data mining task. To choose good parameters we need to understand how they are used and have at least a basic previous knowledge about the data set that will be used.
+%eps: if the eps value chosen is too small, a large part of the data will not be clustered. It will be considered outliers because don’t satisfy the number of points to create a dense region. On the other hand, if the value that was chosen is too high, clusters will merge and the majority of objects will be in the same cluster. The eps should be chosen based on the distance of the dataset (we can use a k-distance graph to find it), but in general small eps values are preferable.
+%minPoints: As a general rule, a minimum minPoints can be derived from a number of dimensions (D) in the data set, as minPoints ≥ D + 1. Larger values are usually better for data sets with noise and will form more significant clusters. The minimum value for the minPoints must be 3, but the larger the data set, the larger the minPoints value that should be chosen.
+%\cite{Padro2017}
 
 \subsubsection{Performance Tuning}
+
+%The complexity of DBSCAN Clustering Algorithm
+% 
+%
+%Best Case: If an indexing system is used to store the dataset such that neighborhood queries are executed in logarithmic time, we get O(nlogn) average runtime complexity.
+%Worst Case: Without the use of index structure or on degenerated data (e.g. all points within a distance less than ε), the worst-case run time complexity remains O(n²).
+%Average Case: Same as best/worst case depending on data and implementation of the algorithm.
+%\cite{Chauhan2020}
 
 \subsection{Shaping}
 
 Convex Hull
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+  	% doesn't work:
+  	%\draw[mark=*] convex hull[points={(0,0),(1,1),(2,2),(0,1),(2,0)}];
+
+  	%should produce something similar to the following:
+  	\draw (0,0) -- (0,1) -- (2,2) -- (2,0) -- cycle;
+  	\foreach \point in {(0,0),(1,1),(2,2),(0,1),(2,0)} {
+    	\fill[black] \point circle[radius=1pt];
+  	}
+	\end{tikzpicture}
+\end{figure}
+
 
 \section{Matching Algorithm}
 We now have a list of jams, found on the matching incidents with spatial and timely adjacent congestions
@@ -1180,6 +1230,13 @@ See CONGSTATS Matching Algorithm (own implementation)
 \label{methodology_data_generation}
 Until now all data is in the CONGSTATS system. Export to analyzable format is necessary.
 Which values where converted into numeric values and why and …
+
+% TODO read and use a source for loss parameter
+% file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
+%\begin{itemize}
+%	\item The cost rate for one car loosing one hour travel time [€/(Fz*h)] cost.rate.car=11
+%	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
+%\end{itemize}
 
 \section{Correlation Processing}
 \label{definition_correlation_script}

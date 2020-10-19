@@ -85,7 +85,8 @@ def plot_correlation(corr, columns,
         plt.figure(figsize=figsize)
 
     if figsize is None:
-        plt.figure(figsize=set_size(418, scale))
+        x, y = set_size(418, scale)
+        plt.figure(figsize=(x, x))
 
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
@@ -175,7 +176,8 @@ def plot_statistic(corr, columns,
         plt.figure(figsize=figsize)
 
     if figsize is None:
-        plt.figure(figsize=set_size(418, scale))
+        x, y = set_size(418, scale)
+        plt.figure(figsize=(x, x))
 
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
@@ -245,8 +247,8 @@ def plot_count(data, x, save, show, file, figsize=None, scale=1, order=None):
     # Settings for box plots
     if figsize == None:
         plt.figure(figsize=set_size(418, scale))
-    sns.set(rc={'text.usetex': True})
-    sns.set_context('paper')
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
     # Plot boxplot
     sns.countplot(x=x, data=data, palette='Spectral', order=order)
     if save:

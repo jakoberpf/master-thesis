@@ -883,80 +883,81 @@ Form the total of 10262, 157 accidents took place on a public holiday. This is n
 
 \bigskip
 
-As result the following categorized parameters are relevant for the correlation analysis.
+\bigskip
+
+Table \ref{tab:table_baysis_paramters} show all categorized parameters, relevant for the correlation analysis, with variabel group, type and the format of the containing data.
 	
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{c|c|c}
-		\textbf{Variable} 	& \textbf{Group} 	& \textbf{Type} 		\\
+	\begin{tabular}{c|c|c|c}
+		\textbf{Variable} 	& \textbf{Group} 	& \textbf{Type} 		& \textbf{Format} \\
 		\\[-1em]
 		\hline
 		\\[-1em]
-		Kat  		& categorical 	& ordinal 	\\
+		Kat  		& categorical 	& ordinal 	& numeric\\
 		\\[-1em]
 		\hline
 		\\[-1em]
-		Typ 		& categorical 	& nominal	\\
+		Typ 		& categorical 	& nominal	& numeric\\
 		\hline
 		\\[-1em]
-		Beteil 		& categorical 	& ordinal	\\
+		Beteil 		& categorical 	& ordinal	& numeric\\
 		\hline
 		\\[-1em]
-		UArt 		& categorical 	& nominal	\\
+		UArt 		& categorical 	& nominal	& numeric\\
 		\hline
 		\\[-1em]
-		AufHi 		& categorical 	& nominal	\\
+		AUrs 		& categorical 	& nominal	& numeric\\
 		\hline
 		\\[-1em]
-		Alkoh 		& categorical 	& dichotomous	\\
+		AufHi 		& categorical 	& nominal	& numeric\\
 		\hline
 		\\[-1em]
-		Char 		& categorical 	& nominal	\\
+		Alkoh 		& categorical 	& dichotomous	& numeric\\
 		\hline
 		\\[-1em]
-		Lich 		& categorical 	& ordinal	\\
+		Char 		& categorical 	& nominal	& numeric\\
 		\hline
 		\\[-1em]
-		Zust 		& categorical 	& ordinal	\\
+		Bes 		& categorical 	& nominal	& numeric\\
 		\hline
 		\\[-1em]
-		Fstf 		& categorical 	& nominal	\\
+		Lich 		& categorical 	& ordinal	& numeric\\
 		\hline
 		\\[-1em]
-		Strst 		& categorical 	& nominal	\\
+		Zust 		& categorical 	& ordinal	& numeric\\
 		\hline
 		\\[-1em]
-		WoTag 		& categorical 	& nominal	\\
+		Fstf 		& categorical 	& nominal	& mixed\\
 		\hline
 		\\[-1em]
-		FeiTag 		& categorical 	& dichotomous	\\
+		WoTag 		& categorical 	& nominal	& text\\
+		\hline
+		\\[-1em]
+		FeiTag 		& categorical 	& dichotomous	& numeric\\
 	\end{tabular}
-	\caption{\label{tab:table-name}Variable types of \acrshort{baysis} dataset}
+	\caption{Variable types of \acrshort{baysis} dataset}
+	\label{tab:table_baysis_paramters}
 \end{table}
 
-The figure \ref{img:correlation_matrix_dataset} shows the correlation coefficient of each mentioned accident characteristic 
+To check for dependent variables which need to be considered in a correlation analysis, the correlation matrix for all relevant parameters in the BAYSIS dataset is calculated (see figures \ref{img:appendix_correlation_matrix_dataset_cramers} and \ref{img:appendix_correlation_matrix_dataset_theils}). Chramer's $V$ reveals several strong relationships, which are 'Typ'-'UArt1'. 'AUrs1'-'Zust1', 'AUrs1'-'Zust2' and some trivial relations of 'Char1'-'Char2', 'Bes1'-'Bes2', 'Lich1'-'Lich2'. That means that relations found in the later analysis, which contain the parameters 'Typ', 'UArt1, 'AUrs1, 'Zust1' and 'Zust2' might be in result of another depended variabel and should be checked for independence.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.2]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_corr_theils}
-	\caption{Correlation matrix for BAYSIS dataset, calculated with \ref{definition_correlation} and \ref{definition_correlation_script} (for larger print see Appendix ??)}
-	\label{img:correlation_matrix_dataset}
-\end{figure}
+\bigskip
 
-Because the designed evaluation tool, utilizes a PostgreSQL database for its data storage, the BAYSIS data in form of \acrfull{csv} needs to processed and converted into SQL data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the processing and import into the database, 7971 records end up being converted and persisted, which equivalent to 76,6\% of the provided number of accidents for these months or 25,8\% of all accidents. This 23,5\% of data loss is due to the conversion of location data from the BAYSIS geo-system to the HERE network. In this process we try to find a corresponding street network location to the legacy location of the BAYSIS dataset. If we are not able to locate the position of the BYSIS dataset on our street network we discard the record, because we can’t work with it downstream. 
+The designed evaluation tool, utilizes a PostgreSQL database for its data storage. Therefore the BAYSIS data in form of \acrfull{csv} needs to processed and converted into SQL data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the necessary processing and import into the database, 7971 records end up being converted and persisted, which equivalent to 77,6\% of the total number of accidents. This 22,4\% of data loss is due to the conversion of from the BAYSIS geo-system to the HERE network, which tries to find a corresponding street network location to the legacy location of the BAYSIS dataset. If it is not able to locate the position of the BYSIS dataset on our street network, the record is discarded.
 
 \section{ArbIS}
 \label{dataset_arbis}
 
 The \acrfull{arbis}, as described in chapter \ref{dataset_arbis}, is a collection service of all roadworks or maintenance planned, ongoing or finished on the Bavarian street network. With the 4500 long term and more than 40.000 short term building sites on German highways per year \cite{LAPID2018,Stmi2020}, road construction makes up for the majority of traffic obstructions in the summer months, when during the colder month, in which many kinds of construction projects are not possible, snow clearings or long-term constructions are the issue. That also means that the number and type of roadworks varies during the course of a year (StmB, 2020).
 
-The dataset for 2019 contains close to 650.000 datapoints, which each describe the temporal and spatial extend, road name and number of closed lanes of a roadwork fragment. This fragmentation of events makes is rather hard to statically analyze this dataset since each roadwork is spitted into any number of fragments in now recognizable pattern and are only linked by a roadwork identifier. Therefore the analysis of the dataset in this section is rather basic. The import processing, similarly to the \acrshort{baysis} data in \ref{dataset_baysis}, and aggregation of fragments produces ??129.874?? roadwork events in the database. The monthly distribution of roadworks in the year 2019 is shown in figure \ref{img:arbis_dataset_monthly_absolute}.
+The dataset for 2019 contains close to 650.000 datapoints, which each describe the temporal and spatial extend, road name and number of closed lanes of a roadwork fragment. This fragmentation of events makes is rather hard to statically analyze this dataset since each roadwork is spitted into any number of fragments in now recognizable pattern and are only linked by a roadwork identifier. Therefore the analysis of the dataset in this section is rather basic. The import processing, similarly to the \acrshort{baysis} data in \ref{dataset_baysis}, and aggregation of fragments produces 282.839 roadwork events in the database. The monthly distribution of roadworks in the year 2019 is shown in figure \ref{img:arbis_dataset_monthly_absolute}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.7\textwidth]{./assets/arbis_dataset_monthly_absolute}
+	\includegraphics[width=0.7\textwidth]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_hist_month}
 	\caption{Monthly distribution of absolute roadwork data entry counts}
-%	\label{img:arbis_dataset_monthly_absolute}
+	\label{img:arbis_dataset_monthly_absolute}
 \end{figure}
 
 The distribution shows that the winter months of January, February and December tend to have less roadwork that others, due to colder temperatures.

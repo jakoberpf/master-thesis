@@ -20,7 +20,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_statistic, plot_boxplot_logscale, plot_count, set_size
+from func_plot import plot_correlation, plot_statistic, plot_boxplot_logscale, plot_count, set_size, tex_fonts
 from func_utils import date_parser, print_welcome
 
 matplotlib.rcParams['text.usetex'] = True
@@ -69,30 +69,21 @@ if __name__ == '__main__':
 
     # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
 
-    tex_fonts = {
-        # Use LaTeX to write all text
-        "text.usetex": True,
-        "font.family": "serif",
-        # Use 10pt font in plots, to match 10pt font in document
-        "axes.labelsize": 10,
-        "font.size": 10,
-        # Make the legend/label fonts a little smaller
-        "legend.fontsize": 8,
-        "xtick.labelsize": 8,
-        "ytick.labelsize": 8
-    }
-
     # Plot histogram of roadworks over time / months
     plt.figure(figsize=set_size(418, 1.8))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title(r'Histogram of roadworks per month')
-    plt.ylabel(r'Count')
-    plt.xlabel(r'Month of 2019')
+    plt.title(r'Histogram of total roadworks per month')
+    plt.ylabel('Count')
+    plt.xlabel('Month of 2019')
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
-    sns.set_theme(style='darkgrid')
     sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
-    plt.savefig(plot_path + 'arbis_dataset_hist_month.pdf')
+    if save_plot:
+        plt.savefig(plot_path + 'arbis_dataset_hist_month.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
     # Remove month column
     # arbis_selected.drop('Month', axis='columns', inplace=True)
@@ -101,13 +92,65 @@ if __name__ == '__main__':
     plt.figure(figsize=set_size(418, 1.8))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title('Histogram of roadworks per highways')
+    plt.title('Histogram of total roadworks per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
-    sns.set_theme(style='darkgrid')
     sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
-    plt.savefig(plot_path + 'arbis_dataset_hist_highway.pdf')
+    if save_plot:
+        plt.savefig(plot_path + 'arbis_dataset_hist_highway.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot distribution of AnzGesperrtFs
+    plt.figure(figsize=set_size(418))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Distribution of AnzGesperrtFs')
+    plt.ylabel('Count')
+    plt.xlabel('AnzGesperrtFs')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
+    sns.countplot(x='AnzGesperrtFs', data=arbis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + 'arbis_dataset_dist_AnzGesperrtFs.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot distribution of Einzug
+    plt.figure(figsize=set_size(418))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Distribution of Einzug')
+    plt.ylabel('Count')
+    plt.xlabel('Einzug')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
+    sns.countplot(x='Einzug', data=arbis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + 'arbis_dataset_dist_Einzug.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot distribution of Richtung
+    plt.figure(figsize=set_size(418, 0.8))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Distribution of Richtung')
+    plt.ylabel('Count')
+    plt.xlabel('Richtung')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
+    sns.countplot(x='Richtung', data=arbis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + 'arbis_dataset_dist_Richtung.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
     # Add length of roadwork fragment in kilometers
     arbis_selected['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer']))
@@ -170,7 +213,7 @@ if __name__ == '__main__':
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.pdf',
-                     show=show_plot, scale=1.5)
+                     show=show_plot, scale=2.0)
 
     # Plot statistics/significant matrix
     plot_statistic(results.get('significance'), results.get('columns'),
@@ -178,7 +221,7 @@ if __name__ == '__main__':
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
                    save=save_plot, filepath=plot_path + 'arbis_dataset_sign_cramers.pdf',
-                   show=show_plot, scale=1.5)
+                   show=show_plot, scale=2.0)
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + 'arbis_dataset_corr_cramers.tex', 'w') as tf:
@@ -204,7 +247,7 @@ if __name__ == '__main__':
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.pdf',
-                     show=show_plot, scale=1.5)
+                     show=show_plot, scale=2.0)
 
     # Plot statistics/significant matrix
     plot_statistic(results.get('significance'), results.get('columns'),
@@ -212,7 +255,7 @@ if __name__ == '__main__':
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
                    save=save_plot, filepath=plot_path + 'arbis_dataset_sign_theils.pdf',
-                   show=show_plot, scale=1.5)
+                   show=show_plot, scale=2.0)
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + 'arbis_dataset_corr_theils.tex', 'w') as tf:

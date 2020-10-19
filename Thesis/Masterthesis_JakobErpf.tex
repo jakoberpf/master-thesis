@@ -578,8 +578,7 @@ Kendall's $\tau$ can be interpreated like Pearson's $r$ in section \ref{correlat
 \end{itemize}
 
 \subsubsection{Significance}
-
-% TODO significance
+The significancy evaluation of Kendall's $\tau$ coefficient is done via the 2-tailed $p$-value, elaborated in section \ref{correlation_pearson}.
 
 \subsection{Categorical - Categorical}
 The Pearson's $\chi^2$ test from section \ref{correlation_pearson} can also be applied to categorical data for independence statistics. Two correlation coefficients using $\chi^2$ are Cramer’s $V$ and Theil’s $U$. Both can be used to analyze categorical-categorical relations, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s $V$ is a symmetric measure, providing us with a measure of association strength. Theil’s $U$, the uncertainty coefficient, on the other hand is a conditional measure and represents the predictability of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s $U$ measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
@@ -622,8 +621,9 @@ The above notation of $\Phi_c$ can be heavily biased, trending to overestimate t
 
 \subsubsection{Theil’s U}
 
-Definition: Theil’s U
+TODO Theil’s U definition explanation
 
+% TODO Theil’s U definition explanation
 % https://rstudio-pubs-static.s3.amazonaws.com/558925_38b86f0530c9480fad4d029a4e4aea68.html
 % https://www.statisticshowto.com/uncertainty-coefficient/
 % https://www.statisticshowto.com/u-statistic-theils/
@@ -661,21 +661,18 @@ The Interpretation of Cramers $V$ and Theil's $U$ is similar to Pearson's correl
 \subsubsection{Significance vs. Uncertainty}
 \label{correlation_significance_uncertainty}
 
+TODO: define the usage of significance vs uncertainty for Cramer's V and Theil's U
+% TODO define the usage of significance vs uncertainty for Cramer's V and Theil's U
 %https://de.statista.com/statistik/lexikon/definition/122/signifikanz/
-
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3387884/
-
 %https://www.ons.gov.uk/methodology/methodologytopicsandstatisticalconcepts/uncertaintyandhowwemeasureit
-
 %https://www.ncbi.nlm.nih.gov/books/NBK459346/
-
 %https://www.npr.org/sections/health-shots/2019/03/20/705191851/statisticians-call-to-arms-reject-significance-and-embrace-uncertainty?t=1600534742009
-
 %https://www.tandfonline.com/doi/full/10.1080/00223131.2013.820155
 
 \section{Correlation Matrix}
 
-As a result we have the following correlation coefficients and statistical test to be used for the mixed analysis of continuous and categorical variables. 
+As a result we have the following correlation coefficients and statistical test to be used for the mixed analysis of continuous and categorical variables. These will be implemented into a processing script in section \ref{methodology_??}.
 
 \bigskip
 

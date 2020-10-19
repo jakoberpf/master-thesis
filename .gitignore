@@ -31,3 +31,14 @@
 /CorrAnalysis/data/BAYSIS/02_matched/csv/encoded.csv
 # ignore pdf for now
 /Thesis/Masterthesis_JakobErpf.pdf
+# ignore unkown latex compiler files
+/Thesis/Masterthesis_JakobErpf.acn
+/Thesis/Masterthesis_JakobErpf.aux
+/Thesis/Masterthesis_JakobErpf.fdb_latexmk
+/Thesis/Masterthesis_JakobErpf.fls
+/Thesis/Masterthesis_JakobErpf.glo
+/Thesis/Masterthesis_JakobErpf.ist
+/Thesis/Masterthesis_JakobErpf.lof
+/Thesis/Masterthesis_JakobErpf.log
+/Thesis/Masterthesis_JakobErpf.lot
+/Thesis/Masterthesis_JakobErpf.toc

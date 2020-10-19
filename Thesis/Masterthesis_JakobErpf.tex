@@ -338,7 +338,9 @@ The datasets to be examined in this thesis include continuous variables of the t
 
 \section{Coefficient Types}
 \label{correlation_coefficient_types}
-The datasets from \acrshort{baysis}, \acrshort{arbis} (see section \ref{dataset_baysis}, \ref{dataset_arbis}) as well as the generated data includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristic the appropriate correlation coefficient suited for the apparent variables needs to be chosen. The following correlation coefficients and test, prominent in current statistic literature where selected due to their suitability for the apparent relation.
+The datasets from \acrshort{baysis}, \acrshort{arbis} (see section \ref{dataset_baysis}, \ref{dataset_arbis}) as well as the generated data includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristic the appropriate correlation coefficient suited for the apparent variables needs to be chosen. This task in itself is quite complex due to the number of coefficients to evaluate, amount of literature, numerous assumptions and the many disagreements in the field of statistics. From a comprehensive literature review the following correlation coefficients and tests, prominent in current studies and papers where selected, in dependency of their suitability for the apparent relation.
+
+For a flattened introduction into correlation statistic, the article from Jun Ye \cite{Yun2020} is highly recommended. % https://junye0798.com/post/everythin-you-need-to-know-about-correlation/
 
 \subsection{Continuous - Continuous}
 \label{correlation_pearson}
@@ -392,28 +394,27 @@ The equation can simplified to \ref{formula_pearson_simplified} with the $SS$ co
 	r =  \frac{SP_{xy}}{\sqrt{SS_x}{SS_y}}
 \end{equation}
 
-\subsubsection{Interpretation}
-Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. The degree of correlation,  also be described as strength of association, shows how strong the two variables are related with each other, represented by the absolute values of $r$, also called effect size. 
+\subsubsection{Interpretation of $r$}
+Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. 
 
-% TODO Effect size
-%Furthermore, effect sizes fall into two categories: d and r. The d group encompasses measures of effect size in terms of mean difference and standardized mean difference. Cohen (1988) defined the values of effect sizes for this group as small d = .20, medium d = .50, and large d = .80.
-%David Walker is an Assistant Professor of Educational Research and Assessment, Northern Illinois University, ETRA Department, 208 Gabel, DeKalb, IL 60115, 815-753-7886. E-mail him at: dawalker@niu.edu.
-%The r group can be considered as based on the correlation between treatment and result (Levin, 1994). For this group, “Effect size is generally reported as some proportion of the total variance accounted for by a given effect” (Stewart, 2000, p. 687). Cohen (1988) suggested that values of .01, .06, and .14 serve as indicators of small, medium, and large effect sizes for this group. However, it is at the discretion of the researcher to note the context in which small, medium, and large effects are being defined when using d and r related indices.
+\subsubsection{Interpretation of $|r|$}
+The degree of correlation, also be described as strength of association, is also called effect size and shows how strong the two variables are related with each other. It is defined by the absolute values of $r$ (or any other correlation coefficient), mathematical written as $|r|$. According to Cohen \cite{Cohen1988} the effect size of each correlation coefficient falls into one of two categorizes $D$ and $R$. $D$ corresponds to coefficients utilizing the mean difference and standardized mean difference. He defined the values of $D$ coefficients as small $D$ = .20, medium $D$ = .50, and large $D$ = .80 \cite{Piegorsch2002}. The group of $R$ coefficients includes measures based on variance \cite{Walker2005}. Cohen propose vastly different values of .01, .06, and .14 serve as indicators of small, medium, and large effect sizes for the $R$ group \cite{Cohen1988}. However, if these values fit the purpose of the analysis, depends on the underlying data and is at discretion of the researcher.
+
 % http://www.leeds.ac.uk/educol/documents/00002182.htm
 % https://www.psychometrica.de/effect_size.html
 % https://www.cedu.niu.edu/~walker/personal/Walker%20Kendall's%20Tau.pdf
 
-The following rules can be applied for interpretation of the effect size of $r$ \cite{Wolfe2017}, keeping in mind that other sources defined them less restrictive \cite{Regber2016}.
+According to Cohen recommendations for mean-based coefficents \cite{Cohen1988,Piegorsch2002,Walker2005} and with consideration of the guidelines of Wolfe \cite{Wolfe2017} and Regber \cite{Regber2016} following rules are defined for the interpretation of the effect size of $r$.
 
 \begin{itemize}
   \item When both variables change in the same ratio, the absolute value is 1.0, which is called perfect correlation.
-  \item If the range is above .75, it is called high degree of correlation.
-  \item A moderate degree of correlation lays in the range of .50 to .75.
-  \item When range is between .25 to .50, it is called low degree of correlation.
-  \item When it is lower than .25, it shows that there is no correlation, which can be called absence of correlation.
+  \item If the range is above .80, it is called high degree of correlation.
+  \item A moderate degree of correlation lays in the range of .50 to .80.
+  \item When range is between .30 to .50, it is called low degree of correlation.
+  \item When it is lower than .30, it shows that there is no correlation, which can be called absence of correlation.
 \end{itemize}	
 
-\subsubsection{Significance}
+\subsubsection{Significance of $r$}
 To determine if $r$, is statically significant, a chi-square test can be applied to find the $p$-value, testing the probability of independence. Equation \ref{formula_chi_squared_simplified} shows the chi-squared statistic taken from Wikipedia, cited from Karl Pearson \cite{Pearson1990}.
 
 \smallskip
@@ -467,8 +468,8 @@ As the data doesn't fit the parametric requirements of ANOVA, the non-parametric
 	H = \frac{12}{n(n+1)}\sum_{h}{\frac{S_h^2}{n_h}}-3(n+1)
 \end{equation}
 
-\subsubsection{Interpretation}
-The coefficient can have values in the range from $0$ to $1$. The strength of the correlation can be interpreted form $\eta$ as follows \cite{Regber2016}.
+\subsubsection{Interpretation of $\eta$}
+The coefficient can have values in the range from $0$ to $1$. The effect size of $\eta$, which can be categorized in the $R$ group, can be interpreted as follows \cite{Regber2016,Cohen1988}.
 
 \begin{itemize}
 	\item $\eta <= .06$ : The correlation strength is weak
@@ -476,10 +477,10 @@ The coefficient can have values in the range from $0$ to $1$. The strength of th
 	\item $\eta >= .14$ : There is a strong correlation
 \end{itemize}
 
- For the Kruskal-Wallis applies the following. The higher value of $H$, the higher the variance between the variables, which must be tested for significance.
+For the Kruskal-Wallis H-test applies the following. The higher value of $H$, the higher the variance between the variables. The significance of $H$ must be tested with $\chi^2$.
 
-\subsubsection{Significance}
-The significancy evaluation for the $\eta$ coefficient is done via the $p$-value of the Kruskal-Wallis H-test, which is calculated with the chi-squared test ($\chi^2$), defined in section \ref{correlation_pearson}. The usage of the $p$-value equals the rules defined in section \ref{correlation_pearson} \cite{Filipiak2013}. 
+\subsubsection{Significance of $\eta$}
+The significancy evaluation for the $\eta$ coefficient is done via the $p$-value of the Kruskal-Wallis H-test, which is calculated with the chi-squared test ($\chi^2$), defined in sub section \textit{Significance of $r$} in \ref{correlation_pearson} \cite{Filipiak2013}.
 
 \subsection{Continuous - Dichotomous}
 The Point Biserial correlation is a special form of the Pearson's $r$ correlation coefficient and suited to evaluate the association of continuous-dichotomous relations. 
@@ -497,7 +498,7 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 
 \begin{equation}
 \label{formula_point_biserial_from_pearson}
-	r_{pqi} =  \frac{n \cdot p (\bar{x}_{y=1}-\bar{x}) \cdot q + n \cdot p (\bar{x}_{y=0}-\bar{x}) \cdot (-q)}{\sqrt{\sum_{i}{(x_i-\bar{x})^2} \cdot (n \cdot p \cdot q^2 + n \cdot q \cdot (-p)^2)}}
+	r_{pq} =  \frac{n \cdot p (\bar{x}_{y=1}-\bar{x}) \cdot q + n \cdot p (\bar{x}_{y=0}-\bar{x}) \cdot (-q)}{\sqrt{\sum_{i}{(x_i-\bar{x})^2} \cdot (n \cdot p \cdot q^2 + n \cdot q \cdot (-p)^2)}}
 \end{equation}
 %\begin{equation}
 %\label{formula_point_biserial_from_pearson_simplyfied}
@@ -505,7 +506,7 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 %\end{equation}
 \begin{equation}
 \label{formula_point_biserial}
-	r_{pqi} =  \frac{\bar{x}_{y=1}-\bar{x}_{y=0}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}}} \cdot \sqrt{n \cdot p \cdot q \cdot} 
+	r_{pq} =  \frac{\bar{x}_{y=1}-\bar{x}_{y=0}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}}} \cdot \sqrt{n \cdot p \cdot q \cdot} 
 \end{equation}
 
 \smallskip
@@ -522,23 +523,23 @@ It must be pointed out that if the dichotomous variable is artificially binarize
 %Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
 %If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
 
-\subsubsection{Interpretation}
-Due to the mathematical similarity of the Point Biserial to the Pearson's $r$, the general interpretation of Pearson can be applied to Point Biserial with some slight adaptions. According to Cohen \cite{Cohen1988} the following can be used as guidelines for the effect size $r_{pqi}$ \cite{Leblanc2017}.
+\subsubsection{Interpretation of $r_{pq}$}
+Due to the mathematical similarity of the Point Biserial to the Pearson's $r$, the general interpretation of Pearson's $r$ can be applied to Point Biserial with some adjustments. According to Cohen \cite{Cohen1988} the following can be used as guidelines for the effect size $r_{pq}$ \cite{Leblanc2017}.
 
 \begin{itemize}
-	\item $r_{pqi} <= \pm \: .10$ : The correlation strength is weak
-	\item $\: .30 < r_{pqi} < \: .50$ : A moderate strength of correlation
-	\item $r_{pqi} >= \: .50$ : There is a strong correlation
+	\item $r_{pq} <= \pm \: .10$ : The correlation strength is weak
+	\item $\: .30 < r_{pq} < \: .50$ : A moderate strength of correlation
+	\item $r_{pq} >= \: .50$ : There is a strong correlation
 \end{itemize}
 
-\subsubsection{Significance}
-The significancy evaluation of the Point Biserial coefficient is done via the 2-tailed $p$-value, elaborated in section \ref{correlation_pearson}.
+\subsubsection{Significance of $r_{pq}$}
+The significancy evaluation of the Point Biserial coefficient is done via the 2-tailed $p$-value, a doubled chi-square test (see sub section \textit{Significance of $r$} in \ref{correlation_pearson}).
 
 \subsection{Continuous - Ordinal}
 For ordinal variables, also called ranked or rank ordered, the commonly used Spearman's $\rho$ can be applied, but should be replaced by Kendall's $\tau$ because of it superiority over Spearman \cite{Newson2002}. 
 
 \subsubsection{Kendall's $\tau$}
-Kendalls $\tau$ evaluates the order of rank pairs, instead of the squared rank difference, which make is more robust against outliners. Because we can assume that the data has ties implemented, the $\tau$ with ties must be used. The general definition is shown in equation \ref{formula_kendalls_r}, with $P$ referring to the \textit{proversion} and $I$ to the \textit{inversion}. With the assumption that the continuous measurement $x$ is or can be ordered, the ordinal/ranked variable $y$ will be wrongly ordered. After forming all possible rank pairs between $x$ and $y$, $P$ and $I$ can be deduced and $\tau$ can be calculated. \cite{Reiter2015}
+Kendalls $\tau$ evaluates the order of rank pairs, instead of the squared rank difference, which make is more robust against outliners. Because we can assume that the data has ties implemented, the $\tau$ with ties must be used. The general definition is shown in equation \ref{formula_kendalls_r}, with $P$ referring to the \textit{proversion} and $I$ to the \textit{inversion}. With the assumption that the continuous measurement $x$ is or can be ordered, the ordinal/ranked variable $y$ will be wrongly ordered. After forming all possible rank pairs between $x$ and $y$, $P$ and $I$ can be deduced and $\tau$ can be calculated. \cite{Reiter2015,Bossart2017}
 
 \begin{itemize}	
 	\item[] \textbf{Proversion} ($+$) is the number if pairs, where $x < y$ 
@@ -566,20 +567,21 @@ Kendalls $\tau$ evaluates the order of rank pairs, instead of the squared rank d
 	\item[] $P | I$ are the pro- and inversion of pairs
 	\item[] $T_x | T_y$ are the ties in $x$ and $y$
 	\item[] $n | m$ are the number of rank bindings in $x$ and $y$
-	\item[] $t_{x_i} | t_{x_i}$ are the lenght of rank bindings in $x$ and $y$
+	\item[] $t_{x_i} | t_{x_i}$ are the length of rank bindings in $x$ and $y$
 \end{itemize}
 
 \bigskip
 
-Thought transformation we can simplify the general definition to equation \ref{formula_kendalls_r}.
+Thought transformation we can simplify the general definition to equation \ref{formula_kendalls_r} \cite{Reiter2015}.
 
 \begin{equation}
 \label{formula_kendalls_r}
 	\tau = \frac{P-I}{\sqrt{(P+I+T_x) \cdot (P+I+T_y)}}
 \end{equation}
 
-\subsubsection{Interpretation}
-Kendall's $\tau$ can be interpreated like Pearson's $r$ in section \ref{correlation_pearson} with a less restrictive set of guidelines \cite{Regber2016}.
+\subsubsection{Interpretation of $\tau$}
+% https://www.reddit.com/r/AskStatistics/comments/44ypc4/kendall_taus_effect_size_question/
+Strictly speaking, Kendall's $\tau$ is not a measure of effect size, like Pearson's $r$, but tends to be of similar magnitude. Because of this similarity the general interpretation defined in the sub section \textit{Interpretation of effect size $|r|$} in \ref{correlation_pearson} can be applied. To adapt the guidelines to the lesser sensitivity of $\tau$, they are scaled downwards \cite{Regber2016}.
 
 \begin{itemize}
 	\item $\tau <= \pm \: .10$ : The correlation strength is weak
@@ -588,7 +590,7 @@ Kendall's $\tau$ can be interpreated like Pearson's $r$ in section \ref{correlat
 \end{itemize}
 
 \subsubsection{Significance}
-The significancy evaluation of Kendall's $\tau$ coefficient is done via the 2-tailed $p$-value, elaborated in section \ref{correlation_pearson}.
+The significancy evaluation of Kendall's $\tau$ coefficient is done via the 2-tailed $p$-value, elaborated in sub section \textit{Significance of $r$} in \ref{correlation_pearson}.
 
 \subsection{Categorical - Categorical}
 The Pearson's $\chi^2$ test from section \ref{correlation_pearson} can also be applied to categorical data for independence statistics. Two correlation coefficients using $\chi^2$ are Cramer’s $V$ and Theil’s $U$. Both can be used to analyze categorical-categorical relations, but differ in the type of result they provide \cite{OutsideTwoStandardDeviations2018}. Cramer’s $V$ is a symmetric measure, providing us with a measure of association strength. Theil’s $U$, the uncertainty coefficient, on the other hand is a conditional measure and represents the predictability of an association \cite{Akoglu2018,StackExchange2020}. Because the Theil’s $U$ measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
@@ -630,13 +632,8 @@ The above notation of $\Phi_c$ can be heavily biased, trending to overestimate t
 \bigskip
 
 \subsubsection{Theil’s U}
-
-TODO Theil’s U definition explanation
-
-% TODO Theil’s U definition explanation
 % https://rstudio-pubs-static.s3.amazonaws.com/558925_38b86f0530c9480fad4d029a4e4aea68.html
-% https://www.statisticshowto.com/uncertainty-coefficient/
-% https://www.statisticshowto.com/u-statistic-theils/
+The uncertainty coefficient, also called entropy coefficient, is a measurement for the association between two nominal variables and in comparison to Cramers V, provides a much better predictability statement. It is based on the of concept of comparing the entropies of variables to determine a degree of association \cite{Hoang2019}. The entropy of a distribution (see equation \ref{formula_theils_hx}) and the conditional entropy (see equation \ref{formula_theils_hxy}) are used to calculate the uncertainty coefficient $U(X)$ \cite{Glen2017,Glen2018}, which tells us: given Y, what can fraction can be predicted for X \cite{Hoang2019}.
 
 \smallskip
 \begin{equation}
@@ -659,8 +656,7 @@ TODO Theil’s U definition explanation
 %\end{equation}
 
 \subsubsection{Interpretation}
-
-The Interpretation of Cramers $V$ and Theil's $U$ is similar to Pearson's correlation coefficient $r$, with a adapted scale of effect size according to \cite{Cohen1988} and \cite{Ellis2010}
+The Interpretation of Cramers $V$ and Theil's $U$ is similar to Pearson's correlation coefficient $r$, witha reduced range of $0$ to $1$ and a adapted scale of effect size according to \cite{Cohen1988} and \cite{Ellis2010}
 
 \begin{itemize}
 	\item $V|U <= \pm \: .10$ : The correlation strength is weak

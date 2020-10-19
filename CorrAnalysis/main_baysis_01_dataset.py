@@ -19,7 +19,7 @@ import pandas as pd
 import seaborn as sns
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_boxplot_logscale, plot_statistic, plot_boxplot
+from func_plot import plot_correlation, plot_boxplot_logscale, plot_statistic, plot_boxplot, tex_fonts, set_size
 from func_utils import print_welcome, date_parser
 
 if __name__ == '__main__':
@@ -76,15 +76,13 @@ if __name__ == '__main__':
 
     # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
 
-    plt.figure(figsize=(13, 6))
-    sns.set_theme(style='darkgrid')
-    sns.set(font_scale=2, rc={'text.usetex': True})
-
     # Plot histogram of accidents over time / months
+    plt.figure(figsize=set_size(418, 1.8))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
     plt.title('Histogram of accidents per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
     if save_plot:
@@ -98,9 +96,12 @@ if __name__ == '__main__':
     # baysis_selected.drop('Month', axis='columns', inplace=True)
 
     # Plot histogram of accidents over highway
-    plt.title('Histogram of accidents per highways')
-    plt.ylabel('Count')
-    plt.xlabel('Highway')
+    plt.figure(figsize=set_size(418, 1.8))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title(r'Histogram of accidents per highways')
+    plt.ylabel(r'Count')
+    plt.xlabel(r'Highway')
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
     if save_plot:
@@ -109,6 +110,39 @@ if __name__ == '__main__':
         plt.show()
     else:
         plt.close()
+
+    # Plot distribution of Kat
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title(r'Distribution of Kat')
+    plt.ylabel(r'Count')
+    plt.xlabel(r'Kat')
+    # https://seaborn.pydata.org/generated/seaborn.countplot.html
+    ax = sns.countplot(x='Kat', data=baysis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + 'baysis_dataset_dist_Kat.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+       # "Typ", "Betei",
+       #  "UArt1", "UArt2",
+       #  "AUrs1", "AUrs2",
+       #  "AufHi",
+       #  "Alkoh",
+       #  "Char1", "Char2",
+       #  # "Char3",  # Not relevant because empty
+       #  "Bes1", "Bes2",
+       #  # "Bes3",  # Not relevant because empty
+       #  "Lich1", "Lich2",
+       #  "Zust1", "Zust2",
+       #  "Fstf",
+       #  "StrklVu",
+       #  # "WoTagNr",  # Already represented by WoTag
+       #  "WoTag",
+       #  "FeiTag"
 
     # TODO add more plot variations
 
@@ -161,7 +195,7 @@ if __name__ == '__main__':
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + 'baysis_dataset_corr_cramers.pdf',
-                     show=show_plot, figsize=(18, 15))
+                     show=show_plot, scale=4.0)
 
     # Plot statistics/significant matrix
     plot_statistic(results.get('significance'), results.get('columns'),
@@ -169,7 +203,7 @@ if __name__ == '__main__':
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
                    save=save_plot, filepath=plot_path + 'baysis_dataset_sign_cramers.pdf',
-                   show=show_plot, figsize=(18, 15))
+                   show=show_plot, scale=4.0)
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + 'baysis_dataset_corr_cramers.tex', 'w') as tf:
@@ -195,7 +229,7 @@ if __name__ == '__main__':
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + 'baysis_dataset_corr_theils.pdf',
-                     show=show_plot, figsize=(18, 15))
+                     show=show_plot, scale=4.0)
 
     # Plot statistics/significant matrix
     plot_statistic(results.get('significance'), results.get('columns'),
@@ -203,7 +237,7 @@ if __name__ == '__main__':
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
                    save=save_plot, filepath=plot_path + 'baysis_dataset_sign_theils.pdf',
-                   show=show_plot, figsize=(18, 15))
+                   show=show_plot, scale=4.0)
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + 'baysis_dataset_corr_theils.tex', 'w') as tf:

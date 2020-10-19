@@ -1,5 +1,6 @@
 \documentclass[a4paper,12pt]{report}
 \usepackage{setspace}
+\usepackage{rotating}
 \usepackage{relsize}
 \usepackage{graphicx}
 \usepackage{pgfplots}
@@ -1245,12 +1246,9 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \chapter{BAYSIS Dataset Figures}
 \label{appendix_baysis}
 
-
-
-
-\tocless\section{}
-\newgeometry{left=1cm,right=1cm}
-\begin{figure}[H]
+%\tocless\section{}
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.4]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_corr_cramers}
 	\caption{Correlation matrix for BAYSIS dataset, with Cramer's $V$}
@@ -1258,10 +1256,10 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \end{figure}
 \restoregeometry
 
-\tocless\section{}
-\newgeometry{left=1cm,right=1cm}
+%\tocless\section{}
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
 \label{appendix_baysis_dataset_corr_theils}
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.4]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_corr_theils}
 	\caption{Correlation matrix for BAYSIS dataset, with Theil's $U$}
@@ -1269,11 +1267,70 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \end{figure}
 \restoregeometry
 
+\newgeometry{left=1cm,right=1cm,top=1cm}
+\begin{sidewaystable} % <-- HERE
+\tiny
+\setlength{\tabcolsep}{4pt}
+\centering
+\include{../CorrAnalysis/data/BAYSIS/01_dataset/latex/baysis_dataset_corr_cramers}
+\caption{Correlation matrix for BAYSIS dataset, with Cramer's $V$}
+\end{sidewaystable} % <-- HERE
+
+\begin{sidewaystable} % <-- HERE
+\tiny
+\setlength{\tabcolsep}{4pt}
+\centering
+\include{../CorrAnalysis/data/BAYSIS/01_dataset/latex/baysis_dataset_corr_theils}
+\caption{Correlation matrix for BAYSIS dataset, with Theil's $U$}
+\end{sidewaystable} % <-- HERE
+
+\begin{sidewaystable} % <-- HERE
+\tiny
+\setlength{\tabcolsep}{4pt}
+\centering
+\include{../CorrAnalysis/data/BAYSIS/01_dataset/latex/baysis_dataset_sign_cramers}
+\caption{Significancy matrix for BAYSIS dataset}
+\end{sidewaystable} % <-- HERE
+\restoregeometry
+
 
 \chapter{ArbIS Dataset Figures}
 \tocless\section{Figure Name}
 \label{appendix_TODO}
-%TODO add all BAYSIS figures as large print
+
+%\tocless\section{}
+\newgeometry{left=1cm,right=1cm,top=1cm}
+\label{appendix_baysis_dataset_corr_theils}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.8]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_theils}
+	\caption{Correlation matrix for ArbIS dataset, with Theil's $U$}
+	\label{img:appendix_correlation_matrix_dataset_theils}
+\end{figure}
+\restoregeometry
+
+\newgeometry{left=1cm,right=1cm,top=1cm}
+\begin{table}
+\setlength{\tabcolsep}{4pt}
+\centering
+\include{../CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_corr_cramers}
+\caption{Correlation matrix for ArbIS dataset, with Cramer's $V$}
+\end{table} % <-- HERE
+
+\begin{table}
+\setlength{\tabcolsep}{4pt}
+\centering
+\include{../CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_corr_theils}
+\caption{Correlation matrix for ArbIS dataset, with Theil's $U$}
+\end{table} % <-- HERE
+
+\begin{table}
+\setlength{\tabcolsep}{4pt}
+\centering
+\include{../CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_sign_cramers}
+\caption{Significancy matrix for ArbIS dataset}
+\end{table} % <-- HERE
+\restoregeometry
 
 \chapter{Source Code}
 

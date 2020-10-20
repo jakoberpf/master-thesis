@@ -34,7 +34,7 @@ if __name__ == '__main__':
     generate_report = False
 
     data_path = 'data/'
-    work_path = data_path + 'BAYSIS/02_matched/'
+    work_path = data_path + 'BAYSIS/03_selected/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'

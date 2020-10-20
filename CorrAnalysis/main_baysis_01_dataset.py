@@ -15,7 +15,9 @@
 #  SOFTWARE.
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+from pandas_profiling import ProfileReport
 import seaborn as sns
 
 from func_correlation import numerical_encoding, compute_correlations
@@ -61,15 +63,6 @@ if __name__ == '__main__':
          "WoTag",
          "FeiTag"]].copy()
 
-    # baysis_imported.drop(baysis_imported[(baysis_imported['WoTag'] != 'Mo')
-    #                                      & (baysis_imported['WoTag'] != 'Di')
-    #                                      & (baysis_imported['WoTag'] != 'Mi')
-    #                                      & (baysis_imported['WoTag'] != 'Do')
-    #                                      & (baysis_imported['WoTag'] != 'Fr')
-    #                                      & (baysis_imported['WoTag'] != 'Sa')
-    #                                      & (baysis_imported['WoTag'] != 'So')
-    #                                      ].index)~
-
     # Manual data type conversion from str to datetime64
     baysis_imported['Date'] = pd.to_datetime(baysis_imported['Datum'], format='%d.%m.%y')
 
@@ -77,6 +70,16 @@ if __name__ == '__main__':
     baysis_selected['Month'] = baysis_imported['Date'].dt.month_name()
     months = ['January', 'February', 'March', 'April', 'May', 'June',
               'July', 'August', 'September', 'October', 'November', 'December']
+
+    days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
+    baysis_selected['WoTag'].loc[np.invert(baysis_selected['WoTag'].isin(days))] = np.nan
+
+    ##################
+    ### Report ###
+    ##################
+
+    report = ProfileReport(baysis_selected, title='BAYSIS Original Dataset Report')
+    report.to_file(work_path + file_prefix + '_report.html')
 
     ##################
     ### Histograms ###
@@ -119,7 +122,7 @@ if __name__ == '__main__':
     ### Counts ###
     ##############
 
-        # Plot Counts of Typ
+    # Plot Counts of Typ
     atr = 'Typ'
     plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
@@ -241,8 +244,7 @@ if __name__ == '__main__':
     plt.title('Counts of ' + atr)
     plt.ylabel('Count')
     plt.xlabel(atr)
-    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
-    plt.xticks(range(0, 7), ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral', order=['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
     if show_plot:

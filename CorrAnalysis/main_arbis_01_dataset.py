@@ -14,16 +14,15 @@
 #  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import matplotlib
-import matplotlib.pyplot as plt
+from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_statistic, plot_boxplot_logscale, plot_count, set_size, tex_fonts
+from func_plot import plot_correlation, plot_statistic, set_size, tex_fonts, \
+    plot_arbis_dist
 from func_utils import date_parser, print_welcome
-
-matplotlib.rcParams['text.usetex'] = True
 
 if __name__ == '__main__':
     print_welcome()
@@ -36,7 +35,11 @@ if __name__ == '__main__':
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
+
     work_file = 'ArbIS_2019.csv'
+
+    file_prefix = 'arbis_dataset'
+    file_plot_type = '.pdf'
 
     arbis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True, date_parser=date_parser)
 
@@ -62,12 +65,26 @@ if __name__ == '__main__':
     arbis_imported['Von'] = pd.to_datetime(arbis_imported['Von'], format='%Y-%m-%d %H:%M:%S')
     arbis_imported['Bis'] = pd.to_datetime(arbis_imported['Bis'], format='%Y-%m-%d %H:%M:%S')
 
+    # Add length of roadwork fragment in kilometers
+    arbis_selected['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer']))
+    # Add duration of roadwork fragment in minutes
+    arbis_selected['Duration'] = abs((arbis_imported['Von'] - arbis_imported['Bis'])).dt.total_seconds() / 60
+
     # Add month of roadwork
     arbis_selected['Month'] = arbis_imported['Von'].dt.month_name()
     months = ['January', 'February', 'March', 'April', 'May', 'June',
               'July', 'August', 'September', 'October', 'November', 'December']
 
-    # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
+    ##################
+    ### Report ###
+    ##################
+
+    report = ProfileReport(arbis_selected, title='ArbIS Original Dataset Report')
+    report.to_file(work_path + file_prefix + '_report.html')
+
+    ##################
+    ### Histograms ###
+    ##################
 
     # Plot histogram of roadworks over time / months
     plt.figure(figsize=set_size(418, 1.8))
@@ -76,10 +93,9 @@ if __name__ == '__main__':
     plt.title(r'Histogram of total roadworks per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
     if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_hist_month.pdf')
+        plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
     if show_plot:
         plt.show()
     else:
@@ -95,14 +111,27 @@ if __name__ == '__main__':
     plt.title('Histogram of total roadworks per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_hist_highway.pdf')
+        plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
     if show_plot:
         plt.show()
     else:
         plt.close()
+
+    #####################
+    ### Distributions ###
+    #####################
+
+    plot_arbis_dist([
+        'Length',
+        # 'Duration'
+    ],
+        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+
+    ##############
+    ### Counts ###
+    ##############
 
     # Plot distribution of AnzGesperrtFs
     plt.figure(figsize=set_size(418))
@@ -111,10 +140,9 @@ if __name__ == '__main__':
     plt.title('Distribution of AnzGesperrtFs')
     plt.ylabel('Count')
     plt.xlabel('AnzGesperrtFs')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='AnzGesperrtFs', data=arbis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_dist_AnzGesperrtFs.pdf')
+        plt.savefig(plot_path + file_prefix + '_dist_AnzGesperrtFs.pdf')
     if show_plot:
         plt.show()
     else:
@@ -127,10 +155,9 @@ if __name__ == '__main__':
     plt.title('Distribution of Einzug')
     plt.ylabel('Count')
     plt.xlabel('Einzug')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='Einzug', data=arbis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_dist_Einzug.pdf')
+        plt.savefig(plot_path + file_prefix + '_dist_Einzug.pdf')
     if show_plot:
         plt.show()
     else:
@@ -143,44 +170,50 @@ if __name__ == '__main__':
     plt.title('Distribution of Richtung')
     plt.ylabel('Count')
     plt.xlabel('Richtung')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='Richtung', data=arbis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'arbis_dataset_dist_Richtung.pdf')
+        plt.savefig(plot_path + file_prefix + '_dist_Richtung.pdf')
     if show_plot:
         plt.show()
     else:
         plt.close()
 
-    # Add length of roadwork fragment in kilometers
-    arbis_selected['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer']))
-    # Add duration of roadwork fragment in minutes
-    arbis_selected['Duration'] = abs((arbis_imported['Von'] - arbis_imported['Bis'])).dt.total_seconds() / 60
+    ###############
+    ### Scatter ###
+    ###############
+
+    ###########
+    ### Box ###
+    ###########
 
     # Plot boxplots for visual relation testing
-    plot_boxplot_logscale(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_street2length.pdf', scale=1.8)
+    # plot_boxplot_logscale(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
+    #                       plot_path + file_prefix + '_box_street2length.pdf', scale=1.8)
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
+    #                       plot_path + file_prefix + '_box_street2duration.pdf', scale=1.8)
+    #
+    # plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
+    #                       plot_path + file_prefix + '_box_agfs2length.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
+    #                       plot_path + file_prefix + '_box_agfs2duration.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
+    #                       plot_path + file_prefix + '_box_einzug2length.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
+    #                       plot_path + file_prefix + '_box_einzug2duration.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
+    #                       plot_path + file_prefix + '_box_direction2length.pdf')
+    #
+    # plot_boxplot_logscale(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
+    #                       plot_path + file_prefix + '_box_direction2duration.pdf')
 
-    plot_boxplot_logscale(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_street2duration.pdf', scale=1.8)
-
-    plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_agfs2length.pdf')
-
-    plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_agfs2duration.pdf')
-
-    plot_boxplot_logscale(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_einzug2length.pdf')
-
-    plot_boxplot_logscale(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_einzug2duration.pdf')
-
-    plot_boxplot_logscale(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_direction2length.pdf')
-
-    plot_boxplot_logscale(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
-                          plot_path + 'arbis_dataset_box_direction2duration.pdf')
+    ###################
+    ### Correlation ###
+    ###################
 
     # define column types
     nominal_columns = ['Strasse', 'StreckeID', 'Month']
@@ -212,7 +245,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_cramers.pdf',
+                     save=save_plot, filepath=plot_path + file_prefix + '_corr_cramers.pdf',
                      show=show_plot, scale=2.0)
 
     # Plot statistics/significant matrix
@@ -220,17 +253,17 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_cramers.pdf',
+                   save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
                    show=show_plot, scale=2.0)
 
     # Export correlation/statistics/coefficients into latex tables
-    with open(tex_path + 'arbis_dataset_corr_cramers.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
-    with open(tex_path + 'arbis_dataset_sign_cramers.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_sign_cramers.tex', 'w') as tf:
         tf.write(results.get('significance').to_latex())
 
-    with open(tex_path + 'arbis_dataset_coef_cramers.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_coef_cramers.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
 
     # Calculate with Theil's U
@@ -246,7 +279,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'arbis_dataset_corr_theils.pdf',
+                     save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.pdf',
                      show=show_plot, scale=2.0)
 
     # Plot statistics/significant matrix
@@ -254,22 +287,17 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'arbis_dataset_sign_theils.pdf',
+                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
                    show=show_plot, scale=2.0)
 
     # Export correlation/statistics/coefficients into latex tables
-    with open(tex_path + 'arbis_dataset_corr_theils.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
-    with open(tex_path + 'arbis_dataset_sign_theils.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_sign_theils.tex', 'w') as tf:
         tf.write(results.get('significance').to_latex())
 
-    with open(tex_path + 'arbis_dataset_coef_theils.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_coef_theils.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
-
-    # https://seaborn.pydata.org/examples/scatterplot_matrix.html
-    # sns.set_theme(style='ticks')
-    # sns.pairplot(arbis_selected, hue='XXX')
-    # plt.show()
 
     print('Finished ArbIS Dataset Analysis')

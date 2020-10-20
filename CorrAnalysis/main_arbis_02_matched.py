@@ -84,13 +84,13 @@ if __name__ == '__main__':
     arbis_selected["TimeLossHGV"] = arbis_selected["TimeLossHGV"].astype('int64')
 
     # Add month of roadwork
-    arbis_selected['Month'] = arbis_imported['Von'].dt.month_name()
+    arbis_selected['Month'] = arbis_imported['Von'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    ##################
+    ##############
     ### Report ###
-    ##################
+    ##############
 
     if generate_report:
         report = ProfileReport(arbis_selected, title='ArbIS Matched Dataset Report')
@@ -100,14 +100,29 @@ if __name__ == '__main__':
     ### Congestion ###
     ##################
 
-    plot_congestion_dist([
-        "TempExMax",
-        "SpatExMax",
-        "TempDist",
-        "SpatDist",
-        "Coverage",
-        "TimeLossCar",
-        "TimeLossHGV"],
+    plot_congestion_dist(
+        ["TempExMax",
+         "SpatExMax",
+         "TempDist",
+         "SpatDist",
+         "Coverage",
+         "TimeLossCar",
+         "TimeLossHGV"],
+        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+
+    plot_congestion_scatter(
+        ["TempExMax"],
+        ["SpatExMax"],
+        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+
+    plot_congestion_scatter(
+        ["TempDist"],
+        ["SpatDist"],
+        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+
+    plot_congestion_scatter(
+        ["TimeLossCar"],
+        ["TimeLossHGV"],
         arbis_selected, plot_path, file_prefix, save_plot, show_plot)
 
     ##################
@@ -118,13 +133,14 @@ if __name__ == '__main__':
     plt.figure(figsize=set_size(418, 1.8))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title(r'Histogram of roadwork per month, with at least one adjacent congestion')
+    plt.title('Histogram of roadwork per month, with at least one adjacent congestion')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -140,10 +156,11 @@ if __name__ == '__main__':
     plt.title('Histogram of roadwork per highway, with at least one adjacent congestion')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -169,10 +186,11 @@ if __name__ == '__main__':
     plt.title('Distribution of AnzGesperrtFs')
     plt.ylabel('Count')
     plt.xlabel('AnzGesperrtFs')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='AnzGesperrtFs', data=arbis_selected, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_dist_AnzGesperrtFs.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -185,10 +203,11 @@ if __name__ == '__main__':
     plt.title('Distribution of Einzug')
     plt.ylabel('Count')
     plt.xlabel('Einzug')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='Einzug', data=arbis_selected, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_dist_Einzug.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -201,10 +220,11 @@ if __name__ == '__main__':
     plt.title('Distribution of Richtung')
     plt.ylabel('Count')
     plt.xlabel('Richtung')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     sns.countplot(x='Richtung', data=arbis_selected, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_dist_Richtung.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -214,35 +234,59 @@ if __name__ == '__main__':
     ### Scatter ###
     ###############
 
-    plot_arbis_scatter(
-        ['Length',
-         'Duration'],
-        ['Strasse',
-         'AnzGesperrtFs',
-         'Einzug',
-         'Richtung',
-         'Month'],
-        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
-
-    # Plot scatter diagrams
     # Congestion -> Roadwork
-    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='AnzGesperrtFs', colormap='viridis')
-    plt.close()
-    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Einzug', colormap='viridis')
-    plt.show()
-    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Length', colormap='viridis')
-    plt.show()
-    arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='Duration', colormap='viridis')
-    plt.show()
+    for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
+        plt.figure(figsize=set_size(418, 0.8))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        plt.xlabel(atr)
+        arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
+
+    # Congestion -> Roadwork
+    for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
+        plt.figure(figsize=set_size(418, 0.8))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        plt.xlabel(atr)
+        arbis_selected.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
+
     # Roadwork -> Congestion
-    arbis_selected.plot.scatter(x='Length', y='Duration', c='TempExMax', colormap='viridis')
-    plt.show()
-    arbis_selected.plot.scatter(x='Length', y='Duration', c='SpatExMax', colormap='viridis')
-    plt.show()
-    arbis_selected.plot.scatter(x='Length', y='Duration', c='TimeLossCar', colormap='viridis')
-    plt.show()
-    arbis_selected.plot.scatter(x='Length', y='Duration', c='TimeLossHGV', colormap='viridis')
-    plt.show()
+    for atr in ['TempExMax', 'SpatExMax', 'TimeLossCar', 'TimeLossHGV']:
+        plt.figure(figsize=set_size(418, 0.8))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        plt.xlabel(atr)
+        arbis_selected.plot.scatter(x='Length', y='Duration', c=atr, colormap='viridis')
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
 
     ###########
     ### Box ###

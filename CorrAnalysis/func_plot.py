@@ -268,7 +268,7 @@ def plot_congestion_dist(columns, dataframe, path, prefix, save, show):
         elif atr is 'spatialInternalLoc':
             plt.xlabel('Internal relative spatial location')
         elif atr is 'Coverage':
-            plt.xlabel('Percentage of jammed cells in covering rectangle [%]')
+            plt.xlabel('Ratio of jammed cells in covering rectangle [\%]')
         elif atr is 'TimeLossCar':
             plt.xlabel('Time loss per Cars [s]')
         elif atr is 'TimeLossHGV':
@@ -292,9 +292,9 @@ def plot_congestion_scatter(x, y, dataframe, path, prefix, save, show):
             plt.style.use('seaborn')
             plt.rcParams.update(tex_fonts)
             plt.title('Scatterplot of ' + atr_x + ' and ' + atr_y)
+            ax = sns.scatterplot(x=atr_x, y=atr_y, data=dataframe, palette='Spectral')
             plt.ylabel(atr_x)
             plt.xlabel(atr_y)
-            ax = sns.scatterplot(x=atr_x, y=atr_y, data=dataframe, palette='Spectral')
             if save:
                 plt.savefig(path + prefix + '_congestion_scatter_' + atr_x + '_' + atr_y + '.pdf')
                 if not show:
@@ -312,8 +312,8 @@ def plot_baysis_dist(columns, dataframe, path, prefix, save, show):
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
         plt.ylabel('Count')
-        plt.xlabel(atr)
         ax = sns.displot(x=atr, data=dataframe, palette='Spectral')
+        plt.xlabel(atr)
         if save:
             plt.savefig(path + prefix + '_dist_' + atr + '.pdf')
             if not show:
@@ -331,8 +331,8 @@ def plot_arbis_dist(columns, dataframe, path, prefix, save, show):
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
         plt.ylabel('Count')
-        plt.xlabel(atr)
         ax = sns.displot(x=atr, data=dataframe, palette='Spectral')
+        plt.xlabel(atr)
         if save:
             plt.savefig(path + prefix + '_dist_' + atr + '.pdf')
             if not show:

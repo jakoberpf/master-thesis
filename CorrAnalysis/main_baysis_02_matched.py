@@ -30,7 +30,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = True
+    generate_report = False
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/02_matched/'
@@ -353,9 +353,7 @@ if __name__ == '__main__':
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
         baysis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
-        plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
             if not show_plot:
@@ -371,9 +369,7 @@ if __name__ == '__main__':
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
         baysis_matched.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
-        plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
             if not show_plot:

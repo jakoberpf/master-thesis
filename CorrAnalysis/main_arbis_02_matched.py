@@ -239,10 +239,8 @@ if __name__ == '__main__':
         plt.figure(figsize=set_size(418, 0.8))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
+        plt.title('Scatterplot of ' + atr)
         arbis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
-        plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
             if not show_plot:
@@ -257,10 +255,8 @@ if __name__ == '__main__':
         plt.figure(figsize=set_size(418, 0.8))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
+        plt.title('Scatterplot of ' + atr)
         arbis_matched.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
-        plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
             if not show_plot:
@@ -275,10 +271,8 @@ if __name__ == '__main__':
         plt.figure(figsize=set_size(418, 0.8))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
+        plt.title('Scatterplot of ' + atr)
         arbis_matched.plot.scatter(x='Length', y='Duration', c=atr, colormap='viridis')
-        plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
             if not show_plot:

@@ -127,7 +127,8 @@ if __name__ == '__main__':
     ### Selection ###
     #################
 
-    baysis_selected = baysis_matched.loc[(baysis_matched["spatialGlobalLoc"] == 0)]
+    baysis_selected = baysis_matched.loc[
+        (baysis_matched["spatialGlobalLoc"] == 0) & (baysis_matched["temporalGlobalLoc"] == 3)]
 
     ##############
     ### Report ###
@@ -198,7 +199,6 @@ if __name__ == '__main__':
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.ylabel('Count')
-    plt.xlabel('Month of 2019')
     ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
@@ -218,8 +218,6 @@ if __name__ == '__main__':
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.ylabel('Count')
-    plt.xlabel('Highway')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
@@ -252,21 +250,21 @@ if __name__ == '__main__':
             plt.close()
 
     # Plot Counts of WoTag
-    # atr = 'WoTag'
-    # plt.figure(figsize=set_size(418, 1.0))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of ' + atr)
-    # plt.ylabel('Count')
-    # plt.xlabel(atr)
-    # ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
-    # plt.xticks(range(0, 7), ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
+    atr = 'WoTag'
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+    plt.xticks(range(0, 7), ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
     # Plot Counts of UArt
     atr = 'UArt'
@@ -280,6 +278,8 @@ if __name__ == '__main__':
     plt.xlabel(atr)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -297,6 +297,8 @@ if __name__ == '__main__':
     plt.xlabel(atr)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -314,6 +316,8 @@ if __name__ == '__main__':
     plt.xlabel(atr)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -331,6 +335,8 @@ if __name__ == '__main__':
     plt.xlabel(atr)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -348,6 +354,8 @@ if __name__ == '__main__':
     plt.xlabel(atr)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -365,6 +373,8 @@ if __name__ == '__main__':
     plt.xlabel(atr)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -404,6 +414,8 @@ if __name__ == '__main__':
         plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
         if show_plot:
             plt.show()
         else:
@@ -420,6 +432,8 @@ if __name__ == '__main__':
         plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
         if show_plot:
             plt.show()
         else:

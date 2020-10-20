@@ -243,20 +243,114 @@ def plot_statistic(corr, columns,
     return ax
 
 
-def plot_count(data, x, save, show, file, figsize=None, scale=1, order=None):
-    # Settings for box plots
-    if figsize == None:
-        plt.figure(figsize=set_size(418, scale))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    # Plot boxplot
-    sns.countplot(x=x, data=data, palette='Spectral', order=order)
-    if save:
-        plt.savefig(file)
-    if show:
-        plt.show()
-    else:
-        plt.close()
+def plot_congestion_dist(columns, dataframe, path, prefix, save, show):
+    for atr in columns:
+        plt.figure(figsize=set_size(418))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        sns.displot(x=atr, data=dataframe, palette='Spectral')
+        if atr is 'TempExMax':
+            plt.xlabel('Maximum temporal extend [min]')
+        elif atr is 'SpatExMax':
+            plt.xlabel('Maximum spatial extend [m]')
+        elif atr is 'TempDist':
+            plt.xlabel('Minimum temporal distance to incident [min]')
+        elif atr is 'SpatDist':
+            plt.xlabel('Minimum spatial distance to incident [m]')
+        elif atr is 'temporalGlobalLoc':
+            plt.xlabel('Relative temporal location')
+        elif atr is 'spatialGlobalLoc':
+            plt.xlabel('Relative spatial location')
+        elif atr is 'temporalInternalLoc':
+            plt.xlabel('Internal relative temporal location')
+        elif atr is 'spatialInternalLoc':
+            plt.xlabel('Internal relative spatial location')
+        elif atr is 'Coverage':
+            plt.xlabel('')
+        elif atr is 'TimeLossCar':
+            plt.xlabel('TimeLossCar')
+        elif atr is 'TimeLossHGV':
+            plt.xlabel('TimeLossHGV')
+        else:
+            plt.xlabel(atr)
+        if save:
+            plt.savefig(path + prefix + '_congestion_dist_' + atr + '.pdf')
+        if show:
+            plt.show()
+        else:
+            plt.close()
+
+
+def plot_baysis_dist(columns, dataframe, path, prefix, save, show):
+    for atr in columns:
+        plt.figure(figsize=set_size(418, 1.0))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        plt.xlabel(atr)
+        ax = sns.displot(x=atr, data=dataframe, palette='Spectral')
+        if save:
+            plt.savefig(path + prefix + '_dist_' + atr + '.pdf')
+        if show:
+            plt.show()
+        else:
+            plt.close()
+
+
+def plot_arbis_dist(columns, dataframe, path, prefix, save, show):
+    for atr in columns:
+        plt.figure(figsize=set_size(418, 1.0))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        plt.xlabel(atr)
+        ax = sns.displot(x=atr, data=dataframe, palette='Spectral')
+        if save:
+            plt.savefig(path + prefix + '_dist_' + atr + '.pdf')
+        if show:
+            plt.show()
+        else:
+            plt.close()
+
+
+def plot_baysis_scatter(measurement, categories, dataframe, path, prefix, save, show):
+    for atr_m in measurement:
+        for atr_c in categories:
+            plt.figure(figsize=set_size(418, 1.0))
+            plt.style.use('seaborn')
+            plt.rcParams.update(tex_fonts)
+            plt.title('Scatterplot of ' + atr_m + ' and ' + atr_c)
+            plt.ylabel(atr_m)
+            plt.xlabel(atr_c)
+            ax = sns.stripplot(x=atr_c, y=atr_m, data=dataframe, palette='Spectral')
+            if save:
+                plt.savefig(path + prefix + '_scatter_' + atr_m + '_' + atr_c + '.pdf')
+            if show:
+                plt.show()
+            else:
+                plt.close()
+
+
+def plot_arbis_scatter(measurement, categories, dataframe, path, prefix, save, show):
+    for atr_m in measurement:
+        for atr_c in categories:
+            plt.figure(figsize=set_size(418, 1.0))
+            plt.style.use('seaborn')
+            plt.rcParams.update(tex_fonts)
+            plt.title('Scatterplot of ' + atr_m + ' and ' + atr_c)
+            plt.ylabel(atr_m)
+            plt.xlabel(atr_c)
+            ax = sns.scatterplot(x=atr_c, y=atr_m, data=dataframe, palette='Spectral')
+            if save:
+                plt.savefig(path + prefix + '_scatter_' + atr_m + '_' + atr_c + '.pdf')
+            if show:
+                plt.show()
+            else:
+                plt.close()
 
 
 def plot_boxplot(data, x, y, save, show, file, figsize=None, scale=1):
@@ -265,7 +359,6 @@ def plot_boxplot(data, x, y, save, show, file, figsize=None, scale=1):
         plt.figure(figsize=set_size(418, scale))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    sns.set_context('paper')
     sns.boxplot(x=x, y=y, data=data, palette='Spectral')
     if save:
         plt.savefig(file)
@@ -281,8 +374,7 @@ def plot_boxplot_logscale(data, x, y, save, show, file, figsize=None, scale=1):
         plt.figure(figsize=set_size(418, scale))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.yscale('log')  # https://matplotlib.org/3.1.1/gallery/pyplots/pyplot_scales.html
-    sns.set_context('paper')
+    plt.yscale('log')
     sns.boxplot(x=x, y=y, data=data, palette='Spectral')
     if save:
         plt.savefig(file)

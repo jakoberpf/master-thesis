@@ -138,10 +138,10 @@ if __name__ == '__main__':
     # Plot histogram of accidents over time / months
     plt.figure(figsize=(13, 6))
     plt.title('Histogram of accidents per month, with at least one adjacent congestion')
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    sns.set_theme(style='darkgrid')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Month', data=baysis_matched, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
@@ -158,10 +158,10 @@ if __name__ == '__main__':
     # Plot histogram of accidents over highway
     plt.figure(figsize=(13, 6))
     plt.title('Histogram of accidents per highways, with at least one adjacent congestion')
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    sns.set_theme(style='darkgrid')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Strasse', data=baysis_matched, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')

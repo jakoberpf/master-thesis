@@ -343,42 +343,6 @@ def plot_arbis_dist(columns, dataframe, path, prefix, save, show):
             plt.close()
 
 
-# def plot_baysis_scatter(measurement, categories, dataframe, path, prefix, save, show):
-#     for atr_m in measurement:
-#         for atr_c in categories:
-#             plt.figure(figsize=set_size(418, 1.0))
-#             plt.style.use('seaborn')
-#             plt.rcParams.update(tex_fonts)
-#             plt.title('Scatterplot of ' + atr_m + ' and ' + atr_c)
-#             plt.ylabel(atr_m)
-#             plt.xlabel(atr_c)
-#             ax = sns.stripplot(x=atr_c, y=atr_m, data=dataframe, palette='Spectral')
-#             if save:
-#                 plt.savefig(path + prefix + '_scatter_' + atr_m + '_' + atr_c + '.pdf')
-#             if show:
-#                 plt.show()
-#             else:
-#                 plt.close()
-#
-#
-# def plot_arbis_scatter(measurement, categories, dataframe, path, prefix, save, show):
-#     for atr_m in measurement:
-#         for atr_c in categories:
-#             plt.figure(figsize=set_size(418, 1.0))
-#             plt.style.use('seaborn')
-#             plt.rcParams.update(tex_fonts)
-#             plt.title('Scatterplot of ' + atr_m + ' and ' + atr_c)
-#             plt.ylabel(atr_m)
-#             plt.xlabel(atr_c)
-#             ax = sns.scatterplot(x=atr_c, y=atr_m, data=dataframe, palette='Spectral')
-#             if save:
-#                 plt.savefig(path + prefix + '_scatter_' + atr_m + '_' + atr_c + '.pdf')
-#             if show:
-#                 plt.show()
-#             else:
-#                 plt.close()
-
-
 def plot_boxplot(data, x, y, save, show, file, figsize=None, scale=1):
     # Settings for box plots
     if figsize == None:

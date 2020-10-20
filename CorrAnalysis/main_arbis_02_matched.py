@@ -210,29 +210,9 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    # plot_boxplot_logscale(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
-    #                       plot_path + filename_pre + '_box_street2length.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
-    #                       plot_path + filename_pre + '_box_street2duration.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
-    #                       plot_path + filename_pre + '_box_agfs2length.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
-    #                       plot_path + filename_pre + '_box_agfs2duration.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
-    #                       plot_path + filename_pre + '_box_einzug2length.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
-    #                       plot_path + filename_pre + '_box_einzug2duration.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
-    #                       plot_path + filename_pre + '_box_direction2length.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
-    #                       plot_path + filename_pre + '_box_direction2duration.pdf')
+    ###############
+    ### Scatter ###
+    ###############
 
     # Plot scatter diagrams
     # Congestion -> Roadwork
@@ -253,6 +233,10 @@ if __name__ == '__main__':
     plt.show()
     arbis_selected.plot.scatter(x='Length', y='Duration', c='TimeLossHGV', colormap='viridis')
     plt.show()
+
+    ###########
+    ### Box ###
+    ###########
 
     ###################
     ### Correlation ###

@@ -19,7 +19,7 @@ import pandas as pd
 import seaborn as sns
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_boxplot_logscale, plot_statistic, plot_boxplot, tex_fonts, set_size
+from func_plot import plot_correlation, plot_statistic, tex_fonts, set_size
 from func_utils import print_welcome, date_parser
 
 if __name__ == '__main__':
@@ -33,7 +33,11 @@ if __name__ == '__main__':
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
+
     work_file = 'BAYSIS_2019.csv'
+
+    file_prefix = 'baysis_dataset'
+    file_plot_type = '.pdf'
 
     baysis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True,
                                   date_parser=date_parser)
@@ -57,14 +61,14 @@ if __name__ == '__main__':
          "WoTag",
          "FeiTag"]].copy()
 
-    baysis_imported.drop(baysis_imported[(baysis_imported['WoTag'] != 'Mo')
-                                         & (baysis_imported['WoTag'] != 'Di')
-                                         & (baysis_imported['WoTag'] != 'Mi')
-                                         & (baysis_imported['WoTag'] != 'Do')
-                                         & (baysis_imported['WoTag'] != 'Fr')
-                                         & (baysis_imported['WoTag'] != 'Sa')
-                                         & (baysis_imported['WoTag'] != 'So')
-                                         ].index)
+    # baysis_imported.drop(baysis_imported[(baysis_imported['WoTag'] != 'Mo')
+    #                                      & (baysis_imported['WoTag'] != 'Di')
+    #                                      & (baysis_imported['WoTag'] != 'Mi')
+    #                                      & (baysis_imported['WoTag'] != 'Do')
+    #                                      & (baysis_imported['WoTag'] != 'Fr')
+    #                                      & (baysis_imported['WoTag'] != 'Sa')
+    #                                      & (baysis_imported['WoTag'] != 'So')
+    #                                      ].index)~
 
     # Manual data type conversion from str to datetime64
     baysis_imported['Date'] = pd.to_datetime(baysis_imported['Datum'], format='%d.%m.%y')
@@ -74,7 +78,9 @@ if __name__ == '__main__':
     months = ['January', 'February', 'March', 'April', 'May', 'June',
               'July', 'August', 'September', 'October', 'November', 'December']
 
-    # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
+    ##################
+    ### Histograms ###
+    ##################
 
     # Plot histogram of accidents over time / months
     plt.figure(figsize=set_size(418, 1.8))
@@ -83,10 +89,9 @@ if __name__ == '__main__':
     plt.title('Histogram of accidents per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
     if save_plot:
-        plt.savefig(plot_path + 'baysis_dataset_hist_month.pdf')
+        plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
     if show_plot:
         plt.show()
     else:
@@ -99,52 +104,273 @@ if __name__ == '__main__':
     plt.figure(figsize=set_size(418, 1.8))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title(r'Histogram of accidents per highways')
-    plt.ylabel(r'Count')
-    plt.xlabel(r'Highway')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
+    plt.title('Histogram of accidents per highways')
+    plt.ylabel('Count')
+    plt.xlabel('Highway')
     ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'baysis_dataset_hist_highway.pdf')
+        plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
     if show_plot:
         plt.show()
     else:
         plt.close()
 
-    # Plot distribution of Kat
+    ##############
+    ### Counts ###
+    ##############
+
+        # Plot Counts of Typ
+    atr = 'Typ'
     plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title(r'Distribution of Kat')
-    plt.ylabel(r'Count')
-    plt.xlabel(r'Kat')
-    # https://seaborn.pydata.org/generated/seaborn.countplot.html
-    ax = sns.countplot(x='Kat', data=baysis_selected, palette='Spectral')
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'baysis_dataset_dist_Kat.pdf')
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
     if show_plot:
         plt.show()
     else:
         plt.close()
 
-       # "Typ", "Betei",
-       #  "UArt1", "UArt2",
-       #  "AUrs1", "AUrs2",
-       #  "AufHi",
-       #  "Alkoh",
-       #  "Char1", "Char2",
-       #  # "Char3",  # Not relevant because empty
-       #  "Bes1", "Bes2",
-       #  # "Bes3",  # Not relevant because empty
-       #  "Lich1", "Lich2",
-       #  "Zust1", "Zust2",
-       #  "Fstf",
-       #  "StrklVu",
-       #  # "WoTagNr",  # Already represented by WoTag
-       #  "WoTag",
-       #  "FeiTag"
+    # Plot Counts of Kat
+    atr = 'Kat'
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
-    # TODO add more plot variations
+    # Plot Counts of Betei
+    atr = 'Betei'
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of AufHi
+    atr = 'AufHi'
+    # baysis_selected[atr].astype('int64')
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of Alkoh
+    atr = 'Alkoh'
+    # baysis_selected.astype({atr: 'int32'})
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of Fstf
+    atr = 'Fstf'
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of StrklVu
+    atr = 'StrklVu'
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of WoTag
+    atr = 'WoTag'
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+    plt.xticks(range(0, 7), ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of FeiTag
+    atr = 'FeiTag'
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral', )
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of UArt
+    atr = 'UArt'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of AUrs
+    atr = 'AUrs'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of Char
+    atr = 'Char'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of Bes
+    atr = 'Bes'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of Lich
+    atr = 'Lich'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of Zust
+    atr = 'Zust'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    ###################
+    ### Correlation ###
+    ###################
 
     # define column types
     nominal_columns = ["Strasse", "Kat", "Typ",
@@ -194,7 +420,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'baysis_dataset_corr_cramers.pdf',
+                     save=save_plot, filepath=plot_path + file_prefix + '_corr_cramers.pdf',
                      show=show_plot, scale=4.0)
 
     # Plot statistics/significant matrix
@@ -202,17 +428,17 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'baysis_dataset_sign_cramers.pdf',
+                   save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
                    show=show_plot, scale=4.0)
 
     # Export correlation/statistics/coefficients into latex tables
-    with open(tex_path + 'baysis_dataset_corr_cramers.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
-    with open(tex_path + 'baysis_dataset_sign_cramers.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_sign_cramers.tex', 'w') as tf:
         tf.write(results.get('significance').to_latex())
 
-    with open(tex_path + 'baysis_dataset_coef_cramers.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_coef_cramers.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
 
     # Calculate with Theil's U
@@ -228,7 +454,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'baysis_dataset_corr_theils.pdf',
+                     save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.pdf',
                      show=show_plot, scale=4.0)
 
     # Plot statistics/significant matrix
@@ -236,22 +462,17 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'baysis_dataset_sign_theils.pdf',
+                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
                    show=show_plot, scale=4.0)
 
     # Export correlation/statistics/coefficients into latex tables
-    with open(tex_path + 'baysis_dataset_corr_theils.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
-    with open(tex_path + 'baysis_dataset_sign_theils.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_sign_theils.tex', 'w') as tf:
         tf.write(results.get('significance').to_latex())
 
-    with open(tex_path + 'baysis_dataset_coef_theils.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_coef_theils.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
-
-    # https://seaborn.pydata.org/examples/scatterplot_matrix.html
-    # sns.set_theme(style='ticks')
-    # sns.pairplot(baysis_selected, hue='Kat')
-    # plt.show()
 
     print('Finished BAYSIS Dataset Analysis')

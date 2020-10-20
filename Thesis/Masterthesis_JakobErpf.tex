@@ -1146,14 +1146,7 @@ The general procedure of the algorithm is as follows \cite{Zhao2018}, with the i
 \subsubsection{Distance Measuring}
 The algorithm is based on the density of points. This density representation is achieved via checking the neighborhood $\varepsilon$ against calculation of distance from point $A$ to $B$, typical the Euclidean distance, which is based on the pythagorean theorem (see equation \ref{formula_euclidean} \cite{Erhard2020}).
 
-\begin{equation}
-	d_{A,B} = \sqrt{a^2 + b^2} = \sqrt{(x_B-x_A)^2+(y_B-y_A)^2}
-	\label{formula_euclidean}
-\end{equation}
-
-\bigskip
-
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	
 	\begin{tikzpicture}[scale=1.0]
@@ -1188,6 +1181,13 @@ The algorithm is based on the density of points. This density representation is 
 
 	\end{tikzpicture}
 \end{figure}
+
+\medskip
+
+\begin{equation}
+	d_{A,B} = \sqrt{a^2 + b^2} = \sqrt{(x_B-x_A)^2+(y_B-y_A)^2}
+	\label{formula_euclidean}
+\end{equation}
 
 \medskip
 
@@ -1230,7 +1230,7 @@ Leaving out the runtime implication pf the distnace mesaurer the DBSCAN
 
 Convex Hull
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
   	% doesn't work:

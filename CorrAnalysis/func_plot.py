@@ -268,11 +268,11 @@ def plot_congestion_dist(columns, dataframe, path, prefix, save, show):
         elif atr is 'spatialInternalLoc':
             plt.xlabel('Internal relative spatial location')
         elif atr is 'Coverage':
-            plt.xlabel('')
+            plt.xlabel('Percentage of jammed cells in congestion rectangle')
         elif atr is 'TimeLossCar':
-            plt.xlabel('TimeLossCar')
+            plt.xlabel('Social costs for Cars')
         elif atr is 'TimeLossHGV':
-            plt.xlabel('TimeLossHGV')
+            plt.xlabel('Social costs for Cars')
         else:
             plt.xlabel(atr)
         if save:

@@ -314,7 +314,9 @@ If $l < l_{min}$ or $t < t_{min}$ is given, $l$ being the maximum spatial extend
 
 \chapter{Correlation}
 \label{definition_correlation}
-This chapter will explain the later used statical methods and their mathematical definitions. This is to provide an in depth understand how the results presented in later chapter are where comprised, since there are some alteration an assumptions implemented in the used correlation methods.
+This chapter will explain the later used statical methods and their mathematical definitions. This is to provide an in depth understand how the results presented in later chapter are where comprised. This also helps to clarify which methods and assumptions implemented to handle a mixed data-based analysis.
+
+\bigskip
 
 Correlation is an analysis procedure that measures the correlation coefficient, which represents the degree of linear, bivariant, monotonic or other kind of relation, which could also be described as the degree of association between two variables \cite{HerzSchlicherSiegener1992}. In most statistics the following common types of can be found: Pearson's $r$, Kendall's $\tau$, Spearman  $\rho$ or the Point-Biserial correlation \cite{Ramzai2020,SPSS2020a,SPSS2020b}. Besides off these, there are many more correlation coefficients which varying in they applicability and interpretability. Depending on which type of data variables are to be analyzed, it it necessary to choose an applicable correlation coefficient. The type of data variable and relation combination are the most restricting features for choosing a suitable correlation coefficient. 
 
@@ -765,6 +767,15 @@ A look on the monthly distribution of accidents recorded by BAYSIS (see figure \
 \paragraph{Kat}
 The accident categories, described by the variable shown in figure \ref{img:baysis_dataset_Kat},  range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that statistical deadly accidents are exponentially unlikely. The variable consists of four values, which can be considered as ordered, and is therefore ordinal.
 
+\begin{itemize}
+	\setlength\itemsep{0.05em}
+	\item 0 = Kleinunfall
+	\item 1 = Unfall mit Getöteten
+	\item 2 = Unfall mit Schwerverletzten
+	\item 3 = Unfall mit Leichtverletzten
+	\item 7 = Unfall mit Sachschaden
+\end{itemize}
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.6]{./assets/baysis_dataset_Typ.pdf}
@@ -1080,7 +1091,7 @@ To illustrate which problems can occur when using cluster algorithms and to defi
 
 This works well as long as the groups don't overlay, intersect or have arbitrary shapes like in the figures \ref{cluster_dbscan}. When this is the case, the k-mean may cluster loosely related point together, which actually are more strongly related to other points, because it considers every point as possible neighbor. Since jams in FCD data can overlay and have any number of shape, as suitable algorithms need to be able to handle such data.
 
-Another issue with this method is the vastly increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of k-mean states that $n$ distances are calculated for $k$ points \cite{Santhanam2010}. With the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \cite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \cite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^n$ calculations have to me computed over all iterations.
+Another issue with many clustering alorithms is the increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of the examplatory k-mean states that $n$ distances are calculated for $k$ points \cite{Santhanam2010}. With the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \cite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \cite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^2$ calculations have to be computed over all iterations.
 
 \begin{equation}
 \label{formula_kmeans}
@@ -1089,16 +1100,16 @@ Another issue with this method is the vastly increasing runtime when processing 
 
 \bigskip
 
-A Big $O$ notation of $O(n^2)$ can generally be described as inefficient, but if we would apply the worst case scenario as an example on the data of the highway A3 and a timeframe of 24 hours, which contains 836.752 data points, the runtime issue becomes quite obvious. As the equation \ref{equation_kmeans_nn} show, the total number of calculation is so astronomical high, that it would take days to run this cluster, even on highly scaleable computation units. \cite{Busch2004}
+A Big $O$ notation of $O(n^2)$ can generally be described as inefficient, but if we would apply the worst case scenario as an example on the data of the highway A3 and a timeframe of 24 hours, which contains 836.752 data points, the runtime issue becomes quite obvious. As the equation \ref{equation_kmeans_nn} show, the total number of calculation is so quite high, resulting in a considerable runtime. \cite{Busch2004}
 
 \begin{equation}
 \label{equation_kmeans_nn}
-	 = 836752^{836752} = 4.8234... \cdot 10^{4955744}
+	 = 836752 \cdot 836752 = 700.153.909.504 = 7 \cdot 10^{11}
 \end{equation}
 
 \bigskip
 
-Entering density-based methods, which are better suited to identify distinctive, arbitrary clusters in in large datasets, by looking for a contiguous region of high point density, separated from others by contiguous regions of low point density \cite{Chauhan2020}. 
+Entering density-based methods, which are better suited to identify distinctive, arbitrary clusters in, by looking for a contiguous region of high point density, separated from others by contiguous regions of low point density \cite{Chauhan2020}. These do not necessarily have less runtime, but better cluster representation.
 
 \subsubsection{Algorithm}
 
@@ -1114,16 +1125,16 @@ The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}pat
 The general procedure of the algorithm is as follows \cite{Zhao2018}, with the input of $n$ points, neighborhood radius $\varepsilon$ and density threshold $MinPts$:
 
 \begin{itemize}
-	\item[1.] Mark all points as \textit{unvisited}
-	\item[2.] Choose point $p$ randomly from all \textit{unvisited} points.
+	\item[\textbf{1.}] Mark all points as \textit{unvisited}
+	\item[\textbf{2.}] Choose point $p$ randomly from all \textit{unvisited} points.
 	\begin{itemize}
-		\item[a.] Choose point $p$ randomly from all \textit{unvisited} points and mark $p$ as \textit{visited}.
-		\item[b.] Count points in the neighborhood $\varepsilon$ to check if $p$ is core point. If $p$ is core point, create new cluster $C$ and add all directly density-reachable and \textit{unvisited} points. Otherwise mark $p$ as noise.
-		\item[c.] Choose point $p'$ randomly from all \textit{unvisited} points of $C$ and mark $p$ as \textit{visited}.
-		\item[d.] Count points in the neighborhood $\varepsilon$ to check if $p'$ is core point. If $p$ is core point add all directly density-reachable points, which do not already belong to a cluster, to $C$. Otherwise mark $p$ as noise.
-		\item[e.] Repeat c. and d. until there are no \textit{unvisited} points left in $C$.	
+		\item[\textbf{a.}] Choose point $p$ randomly from all \textit{unvisited} points and mark $p$ as \textit{visited}.
+		\item[\textbf{b.}] Count points in the neighborhood $\varepsilon$ to check if $p$ is core point. If $p$ is core point, create new cluster $C$ and add all directly density-reachable and \textit{unvisited} points. Otherwise mark $p$ as noise.
+		\item[\textbf{c.}] Choose point $p'$ randomly from all \textit{unvisited} points of $C$ and mark $p$ as \textit{visited}.
+		\item[\textbf{d.}] Count points in the neighborhood $\varepsilon$ to check if $p'$ is core point. If $p$ is core point add all directly density-reachable points, which do not already belong to a cluster, to $C$. Otherwise mark $p$ as noise.
+		\item[\textbf{e.}] Repeat \textbf{c} and \textbf{d} until there are no \textit{unvisited} points left in $C$.	
 	\end{itemize} 
-	\item[3.] Repeat 2. until all points are \textit{visited} 
+	\item[\textbf{3.}] Repeat \textbf{2} until all points are \textit{visited} 
 \end{itemize}
 
 %https://www.kde.cs.uni-kassel.de/wp-content/uploads/ws/LLWA03/fgml/final/Kirchner.pdf
@@ -1133,10 +1144,10 @@ The general procedure of the algorithm is as follows \cite{Zhao2018}, with the i
 %http://cucis.eecs.northwestern.edu/publications/pdf/HAL18.pdf
 
 \subsubsection{Distance Measuring}
-The clustering algorithm is based on the density of points. This density representation is achieved via the calculation of neighborhood $\varepsilon$, typical the Euclidean distance, which is based on the pythagorean theorem (see equation \ref{formula_euclidean} \cite{Erhard2020}).
+The algorithm is based on the density of points. This density representation is achieved via checking the neighborhood $\varepsilon$ against calculation of distance from point $A$ to $B$, typical the Euclidean distance, which is based on the pythagorean theorem (see equation \ref{formula_euclidean} \cite{Erhard2020}).
 
 \begin{equation}
-	d_{A,B} = \sqrt{(x_B-x_A)^2+(y_B-y_A)^2}
+	d_{A,B} = \sqrt{a^2 + b^2} = \sqrt{(x_B-x_A)^2+(y_B-y_A)^2}
 	\label{formula_euclidean}
 \end{equation}
 
@@ -1145,14 +1156,22 @@ The clustering algorithm is based on the density of points. This density represe
 \begin{figure}
 	\centering
 	
-	\begin{tikzpicture}[scale=0.8]
+	\begin{tikzpicture}[scale=1.0]
 	
-	\draw [<->,thick] (0,7) node (yaxis) [above] {$y$}
+	\draw [<->,thick] (0,6) node (yaxis) [above] {$y$}
         |- (8,0) node (xaxis) [right] {$x$};
+        
+    \foreach \x in {1,...,7}
+    	\draw (\x,1pt) -- (\x,-3pt)
+		node[anchor=north] {\x};
+		
+	\foreach \y in {1,...,5}
+    	\draw (1pt,\y) -- (-3pt,\y) 
+     	node[anchor=east] {\y}; 
 
-	\coordinate[label={270:$C$}] (C) at (4,1.5);
-	\coordinate[label={150:$A$}] (A) at (70:4);
-	\coordinate[label={30:$B$}] (B) at (42:10);
+	\coordinate[label={270:$$}] (C) at (7,1.5);
+	\coordinate[label={180:$A$}] (A) at (1.5,1.5);
+	\coordinate[label={30:$B$}] (B) at (7,5);
 
 	\draw (C) -- (A)node[midway,below left]{$a$} -- (B)  -- cycle node[midway,below right]{$b$};
        
@@ -1160,7 +1179,7 @@ The clustering algorithm is based on the density of points. This density represe
 	
 	\draw[decorate,decoration={brace,raise=12pt,amplitude=5pt}] (A) -- (B);
 	
-	\path (B) -- (P) node[midway,above]{$x$}-- (A) node[midway,above]{$y$} ($($(A)!0.5!(B)$)!0.8cm!90:(B)$) node {$d_{A,B}$}; % You can nest calc syntax!
+	\path (B) -- (P) node[midway,above]{$$}-- (A) node[midway,above]{$$} ($($(A)!0.5!(B)$)!0.9cm!90:(B)$) node {$d_{A,B}$}; % You can nest calc syntax!
 	
 	\filldraw[fill=white] (C) -- ($(C)!2mm!(A)$) coordinate (U) -- ($(U)!2mm!90:(C)$) 
       --($(C)!2mm!(B)$) --cycle;
@@ -1170,10 +1189,13 @@ The clustering algorithm is based on the density of points. This density represe
 	\end{tikzpicture}
 \end{figure}
 
+\medskip
 
-\bigskip
+As shown above, the euclidean distance calculation assumes a Euclidean spaces, meaning equal scaling of both axis, which is not the case with FCD. The space of the FCD is defined by a spatial and a temporal dimension, which are scaled differently as mentioned in section \ref{dataset_fcd}. This 2-dimensional space can be visualized like:
 
-A euclidean distance calculation in this form is only possible in Euclidean spaces, which is not the case with FCD. The space of the FCD is defined by a spatial and a temporal dimension, which are scaled differently as mentioned in section \ref{dataset_fcd}. This made is necessary to find a common unit for 
+TODO figure of non euqcledien 
+
+
 
 The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
 
@@ -1194,7 +1216,7 @@ The threshold for the virtual travel time gap in-between congestion events durin
 %\cite{Padro2017}
 
 \subsubsection{Performance Tuning}
-
+Leaving out the runtime implication pf the distnace mesaurer the DBSCAN 
 %The complexity of DBSCAN Clustering Algorithm
 % 
 %
@@ -1212,7 +1234,7 @@ Convex Hull
 	\begin{tikzpicture}
   	% doesn't work:
   	%\draw[mark=*] convex hull[points={(0,0),(1,1),(2,2),(0,1),(2,0)}];
-
+     	
   	%should produce something similar to the following:
   	\draw (0,0) -- (0,1) -- (2,2) -- (2,0) -- cycle;
   	\foreach \point in {(0,0),(1,1),(2,2),(0,1),(2,0)} {

@@ -30,6 +30,8 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
+    generate_report = False
+
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/01_dataset/'
     plot_path = work_path + 'plots/'
@@ -68,9 +70,10 @@ if __name__ == '__main__':
 
     # Add month of roadwork
     baysis_selected['Month'] = baysis_imported['Date'].dt.month_name()
-    months = ['January', 'February', 'March', 'April', 'May', 'June',
-              'July', 'August', 'September', 'October', 'November', 'December']
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
+    # Removing errors in WoTag
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
     baysis_selected['WoTag'].loc[np.invert(baysis_selected['WoTag'].isin(days))] = np.nan
 
@@ -78,8 +81,9 @@ if __name__ == '__main__':
     ### Report ###
     ##################
 
-    report = ProfileReport(baysis_selected, title='BAYSIS Original Dataset Report')
-    report.to_file(work_path + file_prefix + '_report.html')
+    if generate_report:
+        report = ProfileReport(baysis_selected, title='BAYSIS Original Dataset Report')
+        report.to_file(work_path + file_prefix + '_report.html')
 
     ##################
     ### Histograms ###

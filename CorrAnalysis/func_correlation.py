@@ -17,7 +17,6 @@ __all__ = [
     'kruskal_wallis',  # for significance
     'eta',
     # continuous-categorical(dichotomous)
-    'wilcoxon',  # for significance
     'point_biserial',
     # continuous-categorical(ordinal)
     'kendall',

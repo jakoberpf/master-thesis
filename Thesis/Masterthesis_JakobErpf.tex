@@ -768,7 +768,7 @@ A look on the monthly distribution of accidents recorded by BAYSIS (see figure \
 The accident categories, described by the variable shown in figure \ref{img:baysis_dataset_Kat},  range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that statistical deadly accidents are exponentially unlikely. The variable consists of four values, which can be considered as ordered, and is therefore ordinal.
 
 \begin{itemize}
-	\setlength\itemsep{0.05em}
+	\setlength\itemsep{0em}
 	\item 0 = Kleinunfall
 	\item 1 = Unfall mit Getöteten
 	\item 2 = Unfall mit Schwerverletzten
@@ -1193,7 +1193,7 @@ The algorithm is based on the density of points. This density representation is 
 
 As shown above, the euclidean distance calculation assumes a Euclidean spaces, meaning equal scaling of both axis, which is not the case with FCD. The space of the FCD is defined by a spatial and a temporal dimension, which are scaled differently as mentioned in section \ref{dataset_fcd}. This 2-dimensional space can be visualized like:
 
-TODO figure of non euqcledien 
+TODO figure of FCD, non euclidean space 
 
 
 
@@ -1226,6 +1226,7 @@ Leaving out the runtime implication pf the distnace mesaurer the DBSCAN
 %\cite{Chauhan2020}
 
 \subsection{Shaping}
+\label{methodology_shaping}
 
 Convex Hull
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
@@ -1245,11 +1246,12 @@ Convex Hull
 
 
 \section{Matching Algorithm}
+\label{methodology_matching}
 We now have a list of jams, found on the matching incidents with spatial and timely adjacent congestions
 See CONGSTATS Matching Algorithm (own implementation)
 
-\section{Data Processsing}
-\label{methodology_data_generation}
+\section{Data Processing}
+\label{methodology_data_processing}
 Until now all data is in the CONGSTATS system. Export to analyzable format is necessary.
 Which values where converted into numeric values and why and …
 
@@ -1260,13 +1262,50 @@ Which values where converted into numeric values and why and …
 %	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
 %\end{itemize}
 
+The congestion object is expanded with...
+
+The temporal reference of if the incident to the congestion (\textbf{temporalGlobalLoc}). The incident...
+\begin{itemize}
+	\setlength\itemsep{0em}
+	\item[1] = is before
+	\item[2] = is after
+	\item[3] = is during
+	\item[4] = is overlapping before
+	\item[5] = is overlapping after
+\end{itemize}
+
+The spatial reference of if the incident to the congestion (\textbf{spatialGlobalLoc}). The incident...
+\begin{itemize}
+	\setlength\itemsep{0em}
+	\item[0] = is before or after
+	\item[1] = is during
+\end{itemize}
+
+The temporal reference of if the incident is during the congestion (\textbf{temporalInternalLoc}). The incident is within...
+\begin{itemize}
+	\setlength\itemsep{0em}
+	\item[1] = 10\,\% to Beginning
+	\item[2] = 10\,\% - 30\,\% to Beginning
+	\item[3] = 30\,\% - 70\,\% (Middle)
+	\item[4] = 30\,\% - 10\,\% to Ending
+	\item[5] = 10\,\% to Ending
+\end{itemize}
+
+The spatial reference of if the incident is during the congestion (\textbf{spatialInternalLoc}). The incident is within...
+\begin{itemize}
+	\setlength\itemsep{0em}
+	\item[1] = 10\,\% to Beginning
+	\item[2] = 10\,\% - 30\,\% to Beginning
+	\item[3] = 30\,\% - 70\,\% (Middle)
+	\item[4] = 30\,\% - 10\,\% to Ending
+	\item[5] = 10\,\% to Ending
+\end{itemize}
+    
+    
 \section{Correlation Processing}
-\label{definition_correlation_script}
+\label{definition_correlation_processing}
 
-Explain python script for correlation analysis
-
-\cite{Potvin2020}
-
+Explain python script for correlation analysis, based on \cite{Potvin2020}
 
 \chapter{Analysis}
 

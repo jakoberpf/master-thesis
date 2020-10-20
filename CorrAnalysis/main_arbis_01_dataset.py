@@ -73,7 +73,7 @@ if __name__ == '__main__':
     arbis_selected['Duration'] = abs((arbis_imported['Von'] - arbis_imported['Bis'])).dt.total_seconds() / 60
 
     # Add month of roadwork
-    arbis_selected['Month'] = arbis_imported['Von'].dt.month_name()
+    arbis_selected['Month'] = arbis_imported['Von'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 

@@ -69,7 +69,7 @@ if __name__ == '__main__':
     baysis_imported['Date'] = pd.to_datetime(baysis_imported['Datum'], format='%d.%m.%y')
 
     # Add month of roadwork
-    baysis_selected['Month'] = baysis_imported['Date'].dt.month_name()
+    baysis_selected['Month'] = baysis_imported['Date'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 

@@ -21,7 +21,7 @@ from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
 from func_plot import plot_correlation, plot_statistic, set_size, tex_fonts, \
-    plot_congestion_dist, plot_arbis_dist, plot_arbis_scatter
+    plot_congestion_dist, plot_arbis_dist, plot_congestion_scatter
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':

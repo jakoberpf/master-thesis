@@ -30,6 +30,8 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
+    generate_report = False
+
     data_path = 'data/'
     work_path = data_path + 'ArbIS/01_dataset/'
     plot_path = work_path + 'plots/'
@@ -72,15 +74,16 @@ if __name__ == '__main__':
 
     # Add month of roadwork
     arbis_selected['Month'] = arbis_imported['Von'].dt.month_name()
-    months = ['January', 'February', 'March', 'April', 'May', 'June',
-              'July', 'August', 'September', 'October', 'November', 'December']
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
     ##################
     ### Report ###
     ##################
 
-    report = ProfileReport(arbis_selected, title='ArbIS Original Dataset Report')
-    report.to_file(work_path + file_prefix + '_report.html')
+    if generate_report:
+        report = ProfileReport(arbis_selected, title='ArbIS Original Dataset Report')
+        report.to_file(work_path + file_prefix + '_report.html')
 
     ##################
     ### Histograms ###

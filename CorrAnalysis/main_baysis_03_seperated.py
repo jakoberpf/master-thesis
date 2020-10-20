@@ -47,7 +47,7 @@ if __name__ == '__main__':
     baysis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True,
                                   date_parser=date_parser)
 
-    baysis_selected = baysis_imported[
+    baysis_matched = baysis_imported[
         [
             # Congestion Data
             "TempExMax",
@@ -57,9 +57,33 @@ if __name__ == '__main__':
             "TempDist",
             "SpatDist",
             "Coverage",
+            #  * The temporal reference of if the incident to the congestion. The incident...
+            #  * [-1] = Not Set
+            #  * [1] = is before
+            #  * [2] = is after
+            #  * [3] = is during
+            #  * [4] = is overlapping before
+            #  * [5] = is overlapping after
             "temporalGlobalLoc",
+            #  * The spatial reference of if the incident to the congestion. The incident...
+            #  * [0] = is before or after
+            #  * [1] = is during
             "spatialGlobalLoc",
+            #  * The temporal reference of if the incident is during the congestion. The incident is within...
+            #  * [-1] = Not Set in case not during or overlapping
+            #  * [1] = 10% to Beginning
+            #  * [2] = 10% - 30% to Beginning
+            #  * [3] = 30% - 70% (Middle)
+            #  * [4] = 30% - 10% to Ending
+            #  * [5] = 10% to Ending
             "temporalInternalLoc",
+            #  * The spatial reference of if the incident is during the congestion. The incident is within...
+            #  * [-1] = Not Set in case not during or overlapping
+            #  * [1] = 10% to Beginning
+            #  * [2] = 10% - 30% to Beginning
+            #  * [3] = 30% - 70% (Middle)
+            #  * [4] = 30% - 10% to Ending
+            #  * [5] = 10% to Ending
             "spatialInternalLoc",
             "TimeLossCar",
             "TimeLossHGV",
@@ -86,13 +110,13 @@ if __name__ == '__main__':
     baysis_imported['Date'] = pd.to_datetime(baysis_imported['Date'], format='%Y-%m-%d')
 
     # Manual data type conversion from str to int64
-    baysis_selected["TimeLossCar"] = pd.to_numeric(baysis_selected["TimeLossCar"])
-    baysis_selected["TimeLossHGV"] = pd.to_numeric(baysis_selected["TimeLossHGV"])
-    baysis_selected["TimeLossCar"] = baysis_selected["TimeLossCar"].astype('int64')
-    baysis_selected["TimeLossHGV"] = baysis_selected["TimeLossHGV"].astype('int64')
+    baysis_matched["TimeLossCar"] = pd.to_numeric(baysis_matched["TimeLossCar"])
+    baysis_matched["TimeLossHGV"] = pd.to_numeric(baysis_matched["TimeLossHGV"])
+    baysis_matched["TimeLossCar"] = baysis_matched["TimeLossCar"].astype('int64')
+    baysis_matched["TimeLossHGV"] = baysis_matched["TimeLossHGV"].astype('int64')
 
     # Add month of roadwork
-    baysis_selected['Month'] = baysis_imported['Date'].dt.strftime('%b')
+    baysis_matched['Month'] = baysis_imported['Date'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
@@ -104,7 +128,7 @@ if __name__ == '__main__':
     ##################
 
     if generate_report:
-        report = ProfileReport(baysis_selected, title='ArbIS Matched Dataset Report')
+        report = ProfileReport(baysis_matched, title='ArbIS Matched Dataset Report')
         report.to_file(work_path + file_prefix + '_report.html')
 
     ##################
@@ -119,22 +143,44 @@ if __name__ == '__main__':
         "Coverage",
         "TimeLossCar",
         "TimeLossHGV"],
-        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
         ["TempExMax"],
         ["SpatExMax"],
-        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
         ["TempDist"],
         ["SpatDist"],
-        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
         ["TimeLossCar"],
         ["TimeLossHGV"],
-        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+
+    locators = ["temporalGlobalLoc",
+                "spatialGlobalLoc",
+                "temporalInternalLoc",
+                "spatialInternalLoc"]
+
+    for atr in locators:
+        plt.figure(figsize=set_size(418, 0.8))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        baysis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        plt.xlabel(atr)
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
 
     ##################
     ### Histograms ###
@@ -147,7 +193,7 @@ if __name__ == '__main__':
     plt.xlabel('Month of 2019')
     sns.set_theme(style='darkgrid')
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
-    ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
+    ax = sns.countplot(x='Month', data=baysis_matched, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
         if not show_plot:
@@ -167,7 +213,7 @@ if __name__ == '__main__':
     plt.xlabel('Highway')
     sns.set_theme(style='darkgrid')
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
-    ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
+    ax = sns.countplot(x='Strasse', data=baysis_matched, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
         if not show_plot:
@@ -188,7 +234,7 @@ if __name__ == '__main__':
         plt.title('Counts of ' + atr)
         plt.ylabel('Count')
         plt.xlabel(atr)
-        sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+        sns.countplot(x=atr, data=baysis_matched, palette='Spectral')
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
             if not show_plot:
@@ -217,7 +263,7 @@ if __name__ == '__main__':
 
     # Plot Counts of UArt
     atr = 'UArt'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
     plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
@@ -234,7 +280,7 @@ if __name__ == '__main__':
 
     # Plot Counts of AUrs
     atr = 'AUrs'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
     plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
@@ -251,7 +297,7 @@ if __name__ == '__main__':
 
     # Plot Counts of Char
     atr = 'Char'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
     plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
@@ -268,7 +314,7 @@ if __name__ == '__main__':
 
     # Plot Counts of Bes
     atr = 'Bes'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
     plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
@@ -285,7 +331,7 @@ if __name__ == '__main__':
 
     # Plot Counts of Lich
     atr = 'Lich'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
     plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
@@ -302,7 +348,7 @@ if __name__ == '__main__':
 
     # Plot Counts of Zust
     atr = 'Zust'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
     plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
@@ -347,7 +393,7 @@ if __name__ == '__main__':
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
         plt.ylabel('Count')
-        baysis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        baysis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
         plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
@@ -363,7 +409,7 @@ if __name__ == '__main__':
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
         plt.ylabel('Count')
-        baysis_selected.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
+        baysis_matched.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
         plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
@@ -396,7 +442,7 @@ if __name__ == '__main__':
     ordinal_columns = ["Betei", "Fstf", "FeiTag"]
 
     # Encode non numerical columns
-    baysis_encoded, baysis_encoded_dict = numerical_encoding(baysis_selected,
+    baysis_encoded, baysis_encoded_dict = numerical_encoding(baysis_matched,
                                                              ["Strasse",
                                                               "Fstf",
                                                               'Month'],

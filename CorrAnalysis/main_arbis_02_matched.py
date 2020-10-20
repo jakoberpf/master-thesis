@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     arbis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True, date_parser=date_parser)
 
-    arbis_selected = arbis_imported[
+    arbis_matched = arbis_imported[
         [
             # Congestion Data
             "TempExMax",
@@ -78,13 +78,13 @@ if __name__ == '__main__':
     arbis_imported['Bis'] = pd.to_datetime(arbis_imported['Bis'], format='%Y-%m-%d %H:%M:%S')
 
     # Manual data type conversion from str to int64
-    arbis_selected["TimeLossCar"] = pd.to_numeric(arbis_selected["TimeLossCar"])
-    arbis_selected["TimeLossHGV"] = pd.to_numeric(arbis_selected["TimeLossHGV"])
-    arbis_selected["TimeLossCar"] = arbis_selected["TimeLossCar"].astype('int64')
-    arbis_selected["TimeLossHGV"] = arbis_selected["TimeLossHGV"].astype('int64')
+    arbis_matched["TimeLossCar"] = pd.to_numeric(arbis_matched["TimeLossCar"])
+    arbis_matched["TimeLossHGV"] = pd.to_numeric(arbis_matched["TimeLossHGV"])
+    arbis_matched["TimeLossCar"] = arbis_matched["TimeLossCar"].astype('int64')
+    arbis_matched["TimeLossHGV"] = arbis_matched["TimeLossHGV"].astype('int64')
 
     # Add month of roadwork
-    arbis_selected['Month'] = arbis_imported['Von'].dt.strftime('%b')
+    arbis_matched['Month'] = arbis_imported['Von'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     ##############
 
     if generate_report:
-        report = ProfileReport(arbis_selected, title='ArbIS Matched Dataset Report')
+        report = ProfileReport(arbis_matched, title='ArbIS Matched Dataset Report')
         report.to_file(work_path + file_prefix + '_report.html')
 
     ##################
@@ -108,22 +108,22 @@ if __name__ == '__main__':
          "Coverage",
          "TimeLossCar",
          "TimeLossHGV"],
-        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
         ["TempExMax"],
         ["SpatExMax"],
-        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
         ["TempDist"],
         ["SpatDist"],
-        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
         ["TimeLossCar"],
         ["TimeLossHGV"],
-        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     ##################
     ### Histograms ###
@@ -136,7 +136,7 @@ if __name__ == '__main__':
     plt.title('Histogram of roadwork per month, with at least one adjacent congestion')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
+    sns.countplot(x='Month', data=arbis_matched, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
         if not show_plot:
@@ -156,7 +156,7 @@ if __name__ == '__main__':
     plt.title('Histogram of roadwork per highway, with at least one adjacent congestion')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
+    sns.countplot(x='Strasse', data=arbis_matched, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
         if not show_plot:
@@ -173,7 +173,7 @@ if __name__ == '__main__':
     plot_arbis_dist([
         'Length',
         'Duration'],
-        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     ##############
     ### Counts ###
@@ -186,7 +186,7 @@ if __name__ == '__main__':
     plt.title('Distribution of AnzGesperrtFs')
     plt.ylabel('Count')
     plt.xlabel('AnzGesperrtFs')
-    sns.countplot(x='AnzGesperrtFs', data=arbis_selected, palette='Spectral')
+    sns.countplot(x='AnzGesperrtFs', data=arbis_matched, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_dist_AnzGesperrtFs.pdf')
         if not show_plot:
@@ -203,7 +203,7 @@ if __name__ == '__main__':
     plt.title('Distribution of Einzug')
     plt.ylabel('Count')
     plt.xlabel('Einzug')
-    sns.countplot(x='Einzug', data=arbis_selected, palette='Spectral')
+    sns.countplot(x='Einzug', data=arbis_matched, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_dist_Einzug.pdf')
         if not show_plot:
@@ -220,7 +220,7 @@ if __name__ == '__main__':
     plt.title('Distribution of Richtung')
     plt.ylabel('Count')
     plt.xlabel('Richtung')
-    sns.countplot(x='Richtung', data=arbis_selected, palette='Spectral')
+    sns.countplot(x='Richtung', data=arbis_matched, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_dist_Richtung.pdf')
         if not show_plot:
@@ -241,7 +241,7 @@ if __name__ == '__main__':
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
         plt.ylabel('Count')
-        arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        arbis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
         plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
@@ -259,7 +259,7 @@ if __name__ == '__main__':
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
         plt.ylabel('Count')
-        arbis_selected.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
+        arbis_matched.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
         plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
@@ -277,7 +277,7 @@ if __name__ == '__main__':
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
         plt.ylabel('Count')
-        arbis_selected.plot.scatter(x='Length', y='Duration', c=atr, colormap='viridis')
+        arbis_matched.plot.scatter(x='Length', y='Duration', c=atr, colormap='viridis')
         plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
@@ -304,7 +304,7 @@ if __name__ == '__main__':
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
 
     # Encode non numerical columns
-    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected,
+    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_matched,
                                                            ["Strasse",
                                                             'StreckeID',
                                                             'Month'],

@@ -29,6 +29,7 @@
 /CorrAnalysis/data/BAYSIS/01_dataset/csv/encoded.csv
 /CorrAnalysis/data/ArbIS/02_matched/csv/encoded.csv
 /CorrAnalysis/data/BAYSIS/02_matched/csv/encoded.csv
+/CorrAnalysis/data/BAYSIS/03_selected/csv/encoded.csv
 # ignore pdf for now
 /Thesis/Masterthesis_JakobErpf.pdf
 # ignore unkown latex compiler files

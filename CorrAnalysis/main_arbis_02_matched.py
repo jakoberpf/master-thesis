@@ -21,7 +21,7 @@ from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
 from func_plot import plot_correlation, plot_statistic, set_size, tex_fonts, \
-    plot_congestion_dist, plot_arbis_dist
+    plot_congestion_dist, plot_arbis_dist, plot_arbis_scatter
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -85,8 +85,8 @@ if __name__ == '__main__':
 
     # Add month of roadwork
     arbis_selected['Month'] = arbis_imported['Von'].dt.month_name()
-    months = ['January', 'February', 'March', 'April', 'May', 'June',
-              'July', 'August', 'September', 'October', 'November', 'December']
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
     ##################
     ### Report ###
@@ -214,6 +214,16 @@ if __name__ == '__main__':
     ### Scatter ###
     ###############
 
+    plot_arbis_scatter(
+        ['Length',
+         'Duration'],
+        ['Strasse',
+         'AnzGesperrtFs',
+         'Einzug',
+         'Richtung',
+         'Month'],
+        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+
     # Plot scatter diagrams
     # Congestion -> Roadwork
     arbis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c='AnzGesperrtFs', colormap='viridis')
@@ -243,9 +253,7 @@ if __name__ == '__main__':
     ###################
 
     # define column types
-    nominal_columns = ["AnzGesperrtFs",
-                       "Richtung",
-                       "Strasse",
+    nominal_columns = ['Strasse',
                        'StreckeID',
                        'Month']
     dichotomous_columns = ['Richtung']

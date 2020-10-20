@@ -21,6 +21,6 @@ Zust1, Float64Index([0.0, 1.0, 2.0], dtype='float64')
 Zust2, Float64Index([0.0, 2.0, 5.0], dtype='float64')
 StrklVu, Index(['A', 'G', 'B'], dtype='object')
 FeiTag, Float64Index([0.0, 1.0], dtype='float64')
-Month, Index(['April', 'October', 'March', 'November', 'February', 'September',
-       'June', 'December', 'August', 'January', 'July', 'May'],
+Month, Index(['Apr', 'Oct', 'Mar', 'Nov', 'Feb', 'Sep', 'Jun', 'Dec', 'Aug', 'Jan',
+       'Jul', 'May'],
       dtype='object')

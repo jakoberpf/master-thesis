@@ -15,11 +15,14 @@
 #  SOFTWARE.
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
+from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_boxplot_logscale, plot_correlation, plot_statistic, plot_boxplot
+from func_plot import plot_boxplot_logscale, plot_correlation, plot_statistic, plot_boxplot, set_size, tex_fonts, \
+    plot_congestion_dist, plot_congestion_scatter
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -28,12 +31,18 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
+    generate_report = False
+
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/02_matched/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
+
     work_file = 'BAYSIS_2019.csv'
+
+    file_prefix = 'baysis_matched'
+    file_plot_type = '.pdf'
 
     baysis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True,
                                   date_parser=date_parser)
@@ -65,7 +74,7 @@ if __name__ == '__main__':
             "Zust1", "Zust2",
             "Fstf",
             "StrklVu",
-            "WoTagNr",  # Already represented by WoTag
+            # "WoTagNr",  # Already represented by WoTag
             "WoTag",
             "FeiTag"]].copy()
 
@@ -75,13 +84,58 @@ if __name__ == '__main__':
     # Manual data type conversion from str to int64
     baysis_selected["TimeLossCar"] = pd.to_numeric(baysis_selected["TimeLossCar"])
     baysis_selected["TimeLossHGV"] = pd.to_numeric(baysis_selected["TimeLossHGV"])
+    baysis_selected["TimeLossCar"] = baysis_selected["TimeLossCar"].astype('int64')
+    baysis_selected["TimeLossHGV"] = baysis_selected["TimeLossHGV"].astype('int64')
 
     # Add month of roadwork
-    baysis_selected['Month'] = baysis_imported['Date'].dt.month_name()
-    months = ['January', 'February', 'March', 'April', 'May', 'June',
-              'July', 'August', 'September', 'October', 'November', 'December']
+    baysis_selected['Month'] = baysis_imported['Date'].dt.strftime('%b')
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    # TODO https://stackoverflow.com/questions/33179122/seaborn-countplot-with-frequencies
+    # Correcting the column WoTag
+    days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
+    baysis_selected['WoTag'].loc[np.invert(baysis_selected['WoTag'].isin(days))] = np.nan
+
+    ##################
+    ### Report ###
+    ##################
+
+    if generate_report:
+        report = ProfileReport(baysis_selected, title='ArbIS Matched Dataset Report')
+        report.to_file(work_path + file_prefix + '_report.html')
+
+    ##################
+    ### Congestion ###
+    ##################
+
+    plot_congestion_dist([
+        "TempExMax",
+        "SpatExMax",
+        "TempDist",
+        "SpatDist",
+        "Coverage",
+        "TimeLossCar",
+        "TimeLossHGV"],
+        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+
+    plot_congestion_scatter(
+        ["TempExMax"],
+        ["SpatExMax"],
+        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+
+    plot_congestion_scatter(
+        ["TempDist"],
+        ["SpatDist"],
+        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+
+    plot_congestion_scatter(
+        ["TimeLossCar"],
+        ["TimeLossHGV"],
+        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+
+    ##################
+    ### Histograms ###
+    ##################
 
     # Plot histogram of accidents over time / months
     plt.figure(figsize=(13, 6))
@@ -92,7 +146,9 @@ if __name__ == '__main__':
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
     if save_plot:
-        plt.savefig(plot_path + 'baysis_matched_hist_month.pdf')
+        plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
@@ -110,50 +166,216 @@ if __name__ == '__main__':
     # https://seaborn.pydata.org/generated/seaborn.countplot.html
     ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + 'baysis_matched_hist_highway.pdf')
+        plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
+        if not show_plot:
+            plt.close()
     if show_plot:
         plt.show()
     else:
         plt.close()
 
-    # plot_boxplot_logscale(baysis_selected, 'Strasse', 'Length', save_plot, show_plot,
-    #                       plot_path + 'arbis_matched_box_street2length.pdf')
+    ##############
+    ### Counts ###
+    ##############
 
-    sns.set(font_scale=2, rc={'text.usetex': True})
-    sns.set_context('paper')
-    plt.figure(figsize=(11, 6))
-    plt.yscale('log')  # https://matplotlib.org/3.1.1/gallery/pyplots/pyplot_scales.html
-    # Plot boxplot
-    sns.boxplot(x='TempExMax', data=baysis_selected, palette='Set1')
-    plt.savefig(plot_path + 'baysis_matched_box_TempExMax.pdf')
+    for atr in ['Typ', 'Kat', 'Betei', 'AufHi', 'Alkoh', 'Fstf', 'StrklVu', 'FeiTag']:
+        plt.figure(figsize=set_size(418, 1.0))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Counts of ' + atr)
+        plt.ylabel('Count')
+        plt.xlabel(atr)
+        sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
 
-
-    # baysis_selected.boxplot(column='TempExMax', grid=False)
+    # Plot Counts of WoTag
+    # atr = 'WoTag'
+    # plt.figure(figsize=set_size(418, 1.0))
+    # plt.style.use('seaborn')
+    # plt.rcParams.update(tex_fonts)
+    # plt.title('Counts of ' + atr)
+    # plt.ylabel('Count')
+    # plt.xlabel(atr)
+    # ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
+    # plt.xticks(range(0, 7), ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
     # if save_plot:
-    #     plt.savefig(plot_path + 'baysis_matched_box_TempExMax.pdf')
+    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
     # if show_plot:
     #     plt.show()
     # else:
     #     plt.close()
-    baysis_selected.boxplot(column='SpatExMax', grid=False)
+
+    # Plot Counts of UArt
+    atr = 'UArt'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
     if save_plot:
-        plt.savefig(plot_path + 'baysis_matched_box_SpatExMax.pdf')
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
     if show_plot:
         plt.show()
     else:
         plt.close()
 
-    # Plot boxplots for visual relation testing
-    plot_boxplot(baysis_selected, 'Strasse', 'Kat', save_plot, show_plot,
-                 plot_path + 'baysis_matched_box_street2kat.pdf')
+    # Plot Counts of AUrs
+    atr = 'AUrs'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
-    plot_boxplot(baysis_selected, 'Strasse', 'Typ', save_plot, show_plot,
-                 plot_path + 'baysis_matched_box_street2typ.pdf')
+    # Plot Counts of Char
+    atr = 'Char'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
-    sns.boxplot(x='AUrs1', y='SpatExMax', data=baysis_selected, palette='Set1')
-    plt.show()
+    # Plot Counts of Bes
+    atr = 'Bes'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
-    # TODO add more plot variations
+    # Plot Counts of Lich
+    atr = 'Lich'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of Zust
+    atr = 'Zust'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    plt.figure(figsize=set_size(418, 1.0))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    ###############
+    ### Scatter ###
+    ###############
+
+    attributes = [
+        # "Strasse", # TODO fix handling of non number sequences in scatter plots
+        "Kat", "Typ", "Betei",
+        "UArt1", "UArt2",
+        "AUrs1", "AUrs2",
+        "AufHi",
+        "Alkoh",
+        "Char1", "Char2",
+        # "Char3",  # Not relevant because empty
+        "Bes1", "Bes2",
+        # "Bes3",  # Not relevant because empty
+        "Lich1", "Lich2",
+        "Zust1", "Zust2",
+        # "Fstf", # TODO fix handling of non number sequences in scatter plots
+        # "StrklVu",  # TODO fix handling of non number sequences in scatter plots
+        # "WoTagNr",  # Already represented by WoTag
+        "WoTag",
+        "FeiTag"]
+
+    # Congestion -> Accident
+    for atr in attributes:
+        plt.figure(figsize=set_size(418, 0.8))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        baysis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        plt.xlabel(atr)
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
+
+    # Congestion -> Accident
+    for atr in attributes:
+        plt.figure(figsize=set_size(418, 0.8))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        baysis_selected.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
+        plt.xlabel(atr)
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
+
+    ###########
+    ### Box ###
+    ###########
+
+    ###################
+    ### Correlation ###
+    ###################
 
     # define column types
     nominal_columns = ["Strasse", "Kat", "Typ",
@@ -197,7 +419,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'baysis_matched_corr_cramers.pdf',
+                     save=save_plot, filepath=plot_path + file_prefix + '_corr_cramers.pdf',
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
@@ -205,17 +427,17 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'baysis_matched_sign_cramers.pdf',
+                   save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
-    with open(tex_path + 'baysis_matched_corr_cramers.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
-    with open(tex_path + 'baysis_matched_sign_cramers.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_sign_cramers.tex', 'w') as tf:
         tf.write(results.get('significance').to_latex())
 
-    with open(tex_path + 'baysis_matched_coef_cramers.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_coef_cramers.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
 
     # Calculate with Theil's U
@@ -231,7 +453,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + 'baysis_matched_corr_theils.pdf',
+                     save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.pdf',
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
@@ -239,22 +461,26 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + 'baysis_matched_sign_theils.pdf',
+                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
-    with open(tex_path + 'baysis_matched_corr_theils.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
-    with open(tex_path + 'baysis_matched_sign_theils.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_sign_theils.tex', 'w') as tf:
         tf.write(results.get('significance').to_latex())
 
-    with open(tex_path + 'baysis_matched_coef_theils.tex', 'w') as tf:
+    with open(tex_path + file_prefix + '_coef_theils.tex', 'w') as tf:
         tf.write(results.get('coefficient').to_latex())
+
+    ######################
+    ### Scatter Matrix ###
+    ######################
 
     # https://seaborn.pydata.org/examples/scatterplot_matrix.html
     # sns.set_theme(style='ticks')
     # sns.pairplot(baysis_selected, hue='Kat')
     # plt.show()
 
-    print('Finished BAYSIS Dataset Analysis')
+    print('Finished BAYSIS Matched Analysis')

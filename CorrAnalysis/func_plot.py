@@ -147,6 +147,8 @@ def plot_correlation(corr, columns,
         plt.savefig(filepath)
     if show:
         plt.show()
+        if not show:
+            plt.close()
     else:
         plt.close()
 
@@ -235,6 +237,8 @@ def plot_statistic(corr, columns,
 
     if save:
         plt.savefig(filepath)
+        if not show:
+            plt.close()
     if show:
         plt.show()
     else:
@@ -352,6 +356,8 @@ def plot_boxplot(data, x, y, save, show, file, figsize=None, scale=1):
     sns.boxplot(x=x, y=y, data=data, palette='Spectral')
     if save:
         plt.savefig(file)
+        if not show:
+            plt.close()
     if show:
         plt.show()
     else:
@@ -368,6 +374,8 @@ def plot_boxplot_logscale(data, x, y, save, show, file, figsize=None, scale=1):
     sns.boxplot(x=x, y=y, data=data, palette='Spectral')
     if save:
         plt.savefig(file)
+        if not show:
+            plt.close()
     if show:
         plt.show()
     else:

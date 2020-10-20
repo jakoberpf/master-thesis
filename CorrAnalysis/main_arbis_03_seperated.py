@@ -54,9 +54,33 @@ if __name__ == '__main__':
             # "SpatExMin", # Not implemented
             "TempDist",
             "SpatDist",
+            #  * The temporal reference of if the incident to the congestion. The incident...
+            #  * [-1] = Not Set
+            #  * [1] = is before
+            #  * [2] = is after
+            #  * [3] = is during
+            #  * [4] = is overlapping before
+            #  * [5] = is overlapping after
             "temporalGlobalLoc",
+            #  * The spatial reference of if the incident to the congestion. The incident...
+            #  * [0] = is before or after
+            #  * [1] = is during
             "spatialGlobalLoc",
+            #  * The temporal reference of if the incident is during the congestion. The incident is within...
+            #  * [-1] = Not Set in case not during or overlapping
+            #  * [1] = 10% to Beginning
+            #  * [2] = 10% - 30% to Beginning
+            #  * [3] = 30% - 70% (Middle)
+            #  * [4] = 30% - 10% to Ending
+            #  * [5] = 10% to Ending
             "temporalInternalLoc",
+            #  * The spatial reference of if the incident is during the congestion. The incident is within...
+            #  * [-1] = Not Set in case not during or overlapping
+            #  * [1] = 10% to Beginning
+            #  * [2] = 10% - 30% to Beginning
+            #  * [3] = 30% - 70% (Middle)
+            #  * [4] = 30% - 10% to Ending
+            #  * [5] = 10% to Ending
             "spatialInternalLoc",
             "Coverage",
             "TimeLossCar",
@@ -128,6 +152,28 @@ if __name__ == '__main__':
         ["TimeLossCar"],
         ["TimeLossHGV"],
         arbis_matched, plot_path, file_prefix, save_plot, show_plot)
+
+    locators = ["temporalGlobalLoc",
+                "spatialGlobalLoc",
+                "temporalInternalLoc",
+                "spatialInternalLoc"]
+
+    for atr in locators:
+        plt.figure(figsize=set_size(418, 0.8))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        plt.ylabel('Count')
+        arbis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        plt.xlabel(atr)
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
 
     ##################
     ### Histograms ###
@@ -243,10 +289,8 @@ if __name__ == '__main__':
         plt.figure(figsize=set_size(418, 0.8))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
+        plt.title('Scatterplot of ' + atr)
         arbis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
-        plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
             if not show_plot:
@@ -261,10 +305,8 @@ if __name__ == '__main__':
         plt.figure(figsize=set_size(418, 0.8))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
+        plt.title('Scatterplot of ' + atr)
         arbis_matched.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
-        plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
             if not show_plot:
@@ -279,10 +321,8 @@ if __name__ == '__main__':
         plt.figure(figsize=set_size(418, 0.8))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
+        plt.title('Scatterplot of ' + atr)
         arbis_matched.plot.scatter(x='Length', y='Duration', c=atr, colormap='viridis')
-        plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
             if not show_plot:

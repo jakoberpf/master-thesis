@@ -441,11 +441,13 @@ if __name__ == '__main__':
             tf.write("%s, %s\n" % (key, baysis_encoded_dict[key]))
 
     baysis_encoded = baysis_encoded.rename(columns={"TempMax": "TMax",
-                                   "TempAvg": "TAvg",
-                                   "SpatMax": "SMax",
-                                   "SpatAvg": "SAvg",
-                                   "TempDist": "TDist",
-                                   "SpatDist": "SDist"})
+                                                    "TempAvg": "TAvg",
+                                                    "SpatMax": "SMax",
+                                                    "SpatAvg": "SAvg",
+                                                    "Coverage": "Cov",
+                                                    "TempDist": "TDist",
+                                                    "SpatDist": "SDist",
+                                                    'Strasse': "Str"})
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused

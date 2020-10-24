@@ -130,8 +130,10 @@ if __name__ == '__main__':
     ### Counts ###
     ##############
 
+    scale = 1.0
+
     for atr in ['Typ', 'Kat', 'Betei', 'AufHi', 'Alkoh', 'Fstf', 'StrklVu', 'FeiTag']:
-        plt.figure(figsize=set_size(418, 1.0))
+        plt.figure(figsize=set_size(418, scale))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
         plt.title('Counts of ' + atr)
@@ -149,7 +151,7 @@ if __name__ == '__main__':
 
     # Plot Counts of WoTag
     atr = 'WoTag'
-    plt.figure(figsize=set_size(418, 1.0))
+    plt.figure(figsize=set_size(418, scale))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Counts of ' + atr)
@@ -167,7 +169,7 @@ if __name__ == '__main__':
     # Plot Counts of UArt
     atr = 'UArt'
     concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    plt.figure(figsize=set_size(418, 1.0))
+    plt.figure(figsize=set_size(418, scale))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Counts of UArt')
@@ -184,7 +186,7 @@ if __name__ == '__main__':
     # Plot Counts of AUrs
     atr = 'AUrs'
     concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    plt.figure(figsize=set_size(418, 1.0))
+    plt.figure(figsize=set_size(418, scale))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Counts of UArt')
@@ -201,7 +203,7 @@ if __name__ == '__main__':
     # Plot Counts of Char
     atr = 'Char'
     concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    plt.figure(figsize=set_size(418, 1.0))
+    plt.figure(figsize=set_size(418, scale))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Counts of UArt')
@@ -218,7 +220,7 @@ if __name__ == '__main__':
     # Plot Counts of Bes
     atr = 'Bes'
     concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    plt.figure(figsize=set_size(418, 1.0))
+    plt.figure(figsize=set_size(418, scale))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Counts of UArt')
@@ -235,7 +237,7 @@ if __name__ == '__main__':
     # Plot Counts of Lich
     atr = 'Lich'
     concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    plt.figure(figsize=set_size(418, 1.0))
+    plt.figure(figsize=set_size(418, scale))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Counts of UArt')
@@ -252,7 +254,7 @@ if __name__ == '__main__':
     # Plot Counts of Zust
     atr = 'Zust'
     concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    plt.figure(figsize=set_size(418, 1.0))
+    plt.figure(figsize=set_size(418, scale))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Counts of UArt')

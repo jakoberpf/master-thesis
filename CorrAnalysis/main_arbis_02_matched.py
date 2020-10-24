@@ -48,15 +48,15 @@ if __name__ == '__main__':
     arbis_matched = arbis_imported[
         [
             # Congestion Data
-            "TempExMax",
-            # "TempExMin", # Not implemented
-            "SpatExMax",
-            # "SpatExMin", # Not implemented
+            "TempMax",
+            "TempAvg",
+            "SpatMax",
+            "SpatAvg",
             "TempDist",
             "SpatDist",
             "Coverage",
-            "TimeLossCar",
-            "TimeLossHGV",
+            "TLCar",
+            "TLHGV",
             # Accident Data
             # "Von", "Bis", # Not correlate able
             "Strasse",
@@ -78,10 +78,10 @@ if __name__ == '__main__':
     arbis_imported['Bis'] = pd.to_datetime(arbis_imported['Bis'], format='%Y-%m-%d %H:%M:%S')
 
     # Manual data type conversion from str to int64
-    arbis_matched["TimeLossCar"] = pd.to_numeric(arbis_matched["TimeLossCar"])
-    arbis_matched["TimeLossHGV"] = pd.to_numeric(arbis_matched["TimeLossHGV"])
-    arbis_matched["TimeLossCar"] = arbis_matched["TimeLossCar"].astype('int64')
-    arbis_matched["TimeLossHGV"] = arbis_matched["TimeLossHGV"].astype('int64')
+    arbis_matched["TLCar"] = pd.to_numeric(arbis_matched["TLCar"])
+    arbis_matched["TLHGV"] = pd.to_numeric(arbis_matched["TLHGV"])
+    arbis_matched["TLCar"] = arbis_matched["TLCar"].astype('int64')
+    arbis_matched["TLHGV"] = arbis_matched["TLHGV"].astype('int64')
 
     # Add month of roadwork
     arbis_matched['Month'] = arbis_imported['Von'].dt.strftime('%b')
@@ -101,18 +101,25 @@ if __name__ == '__main__':
     ##################
 
     plot_congestion_dist(
-        ["TempExMax",
-         "SpatExMax",
+        ["TempMax",
+         "TempAvg",
+         "SpatMax",
+         "SpatAvg",
          "TempDist",
          "SpatDist",
          "Coverage",
-         "TimeLossCar",
-         "TimeLossHGV"],
+         "TLCar",
+         "TLHGV"],
         arbis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
-        ["TempExMax"],
-        ["SpatExMax"],
+        ["TempMax"],
+        ["SpatMax"],
+        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
+
+    plot_congestion_scatter(
+        ["TempAvg"],
+        ["SpatAvg"],
         arbis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
@@ -121,8 +128,8 @@ if __name__ == '__main__':
         arbis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
-        ["TimeLossCar"],
-        ["TimeLossHGV"],
+        ["TLCar"],
+        ["TLHGV"],
         arbis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     ##################
@@ -240,7 +247,23 @@ if __name__ == '__main__':
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
         plt.title('Scatterplot of ' + atr)
-        arbis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        arbis_matched.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
+
+    # Congestion -> Roadwork
+    for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
+        plt.figure(figsize=set_size(418, 0.8))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Scatterplot of ' + atr)
+        arbis_matched.plot.scatter(x='TempAvg', y='SpatAvg', c=atr, colormap='viridis')
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
             if not show_plot:
@@ -267,7 +290,7 @@ if __name__ == '__main__':
             plt.close()
 
     # Roadwork -> Congestion
-    for atr in ['TempExMax', 'SpatExMax', 'TimeLossCar', 'TimeLossHGV']:
+    for atr in ['TempMax', 'SpatMax', 'TempAvg', 'SpatAvg', 'TLCar', 'TLHGV']:
         plt.figure(figsize=set_size(418, 0.8))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)

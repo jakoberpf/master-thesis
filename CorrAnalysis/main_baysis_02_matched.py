@@ -31,7 +31,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = True
+    generate_report = False
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/02_matched/'
@@ -440,7 +440,12 @@ if __name__ == '__main__':
         for key in baysis_encoded_dict.keys():
             tf.write("%s, %s\n" % (key, baysis_encoded_dict[key]))
 
-    print(baysis_encoded.dtypes)
+    baysis_encoded.rename(columns={"TempMax": "TMax",
+                                   "TempAvg": "TAvg",
+                                   "SpatMax": "SMax",
+                                   "SpatAvg": "SAvg",
+                                   "TempDist": "TDist",
+                                   "SpatDist": "SDist"})
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused

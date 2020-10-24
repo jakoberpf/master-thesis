@@ -15,13 +15,12 @@
 #  SOFTWARE.
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import seaborn as sns
 from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_boxplot_logscale, plot_correlation, plot_statistic, plot_boxplot, set_size, tex_fonts, \
+from func_plot import plot_correlation, plot_statistic, set_size, tex_fonts, \
     plot_congestion_dist, plot_congestion_scatter
 from func_utils import date_parser, print_welcome
 
@@ -31,10 +30,10 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = False
+    generate_report = True
 
     data_path = 'data/'
-    work_path = data_path + 'BAYSIS/03_selected/'
+    work_path = data_path + 'BAYSIS/03_selected_01_outsideOfJam/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
@@ -129,14 +128,6 @@ if __name__ == '__main__':
 
     baysis_selected = baysis_matched.loc[
         (baysis_matched["spatialGlobalLoc"] == 0) & (baysis_matched["temporalGlobalLoc"] == 3)]
-
-    ##############
-    ### Report ###
-    ##############
-
-    if generate_report:
-        report = ProfileReport(baysis_selected, title='ArbIS Selected Dataset Report')
-        report.to_file(work_path + file_prefix + '_report.html')
 
     ##################
     ### Congestion ###
@@ -444,7 +435,7 @@ if __name__ == '__main__':
     ###########
 
     ###################
-    ### Correlation ###
+    ### Encoding ###
     ###################
 
     # define column types
@@ -475,7 +466,17 @@ if __name__ == '__main__':
         for key in baysis_encoded_dict.keys():
             tf.write("%s, %s\n" % (key, baysis_encoded_dict[key]))
 
-    print(baysis_encoded.dtypes)
+    ##############
+    ### Report ###
+    ##############
+
+    if generate_report:
+        report = ProfileReport(baysis_encoded, title='BAYSIS Selected Dataset Report')
+        report.to_file(work_path + file_prefix + '_report.html')
+
+    ###################
+    ### Correlation ###
+    ###################
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused

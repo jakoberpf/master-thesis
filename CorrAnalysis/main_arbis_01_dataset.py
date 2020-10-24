@@ -59,8 +59,8 @@ if __name__ == '__main__':
             # 'BisKilometerBlock', # Not correlate able
             # 'VonStation', 'BisStation', # Not correlate able
             # 'VonAbschnitt', 'BisAbschnitt', # Not correlate able
-            # 'SperrungID', 'StreckeID' # Not correlate able
-            # 'StreckeID'
+            # 'SperrungID', # Not correlate able
+            # 'StreckeID' # Not correlate able
         ]].copy()
 
     # Manual data type conversion from str to datetime64

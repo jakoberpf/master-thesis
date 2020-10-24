@@ -742,7 +742,6 @@ From this curtailed pool of correlate able and analyze able characteristics all 
 
 \begin{figure}[H]
 	\centering
-%	\includegraphics[scale=0.8]{./assets/baysis_dataset_monthly_absolute.pdf}
 	\includegraphics[scale=0.5]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_hist_month}
 	\caption{Monthly distribution of accident report counts}
 	\label{img:baysis_monthlyDist_absolute}
@@ -755,143 +754,221 @@ From this curtailed pool of correlate able and analyze able characteristics all 
 %	\label{img:baysis_monthlyDist_percentage}
 %\end{figure}
 
-A look on the monthly distribution of accidents recorded by BAYSIS (see figure \ref{img:baysis_monthlyDist_absolute}) shows that that the months of January,July and August have considerably higher number of accidents. The monthly distribution expressed in percentages (see figure \ref{img:baysis_monthlyDist_percentage}) supports this deviation with a respectively 31\%, 21\% and 15\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased demand because of public holidays is the most probable explanation.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Kat.pdf}
-	\caption{Distribution of the accident category 'Kat'}
-	\label{img:baysis_dataset_Kat}
-\end{figure}
+A look on the monthly distribution of accidents recorded by BAYSIS (see figure \ref{img:baysis_monthlyDist_absolute}) shows that that the months of January, July and August have considerably higher number of accidents. The monthly distribution expressed in percentages (see figure \ref{img:baysis_monthlyDist_percentage}) supports this deviation with a respectively 31\%, 21\% and 15\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased demand because of public holidays is the most probable explanation.
 
 \paragraph{Kat}
-The accident categories, described by the variable shown in figure \ref{img:baysis_dataset_Kat},  range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that statistical deadly accidents are exponentially unlikely. The variable consists of four values, which can be considered as ordered, and is therefore ordinal.
+The accident categories, described by the variable shown in figure \ref{img:appendix_baysis_dataset_Kat},  range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that deadly accidents are statistical exponentially unlikely. The variable consists of four values, which can be considered as ordered, and is therefore ordinal.
 
-\begin{itemize}
-	\setlength\itemsep{0em}
-	\item 0 = Kleinunfall
-	\item 1 = Unfall mit Getöteten
-	\item 2 = Unfall mit Schwerverletzten
-	\item 3 = Unfall mit Leichtverletzten
-	\item 7 = Unfall mit Sachschaden
-\end{itemize}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Typ.pdf}
-	\caption{Distribution of the accident type 'Typ'}
-	\label{img:baysis_dataset_Typ}
-\end{figure}
+%\begin{itemize}
+%	\setlength\itemsep{0em}
+%	\item 0 = Minor Accident
+%	\item 1 = Accident with deaths
+%	\item 2 = Accident with heavily injured
+%	\item 3 = Accident with lightly injured
+%	\item 7 = Accident with property damage
+%\end{itemize}
 
 \paragraph{Typ}
-The accident type variable (shown in figure \ref{img:baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight and driving to turning movements. Beside of an 80\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features. The variable does not show any order and is therefore of nominal type.
+The accident type variable (shown in figure \ref{img:appendix_baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight and driving to turning movements. Beside of an 80\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features. The variable does not show any order and is therefore of nominal type.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Beteil.pdf}
-	\caption{Distribution of the number of involves persons 'Beteil'}
-	\label{img:baysis_dataset_Beteil}
-\end{figure}
+%\begin{itemize}
+%	\setlength\itemsep{0em}
+%	\item 1 = Driving accident
+%	\item 2 = Turning accident
+%	\item 3 = Merging / Crossing accident
+%	\item 4 = Crossing over accident
+%	\item 5 = Accident in standing traffic
+%	\item 6 = Accident in straight traffic
+%	\item 7 = Other
+%\end{itemize}
 
 \paragraph{Beteil}
-The distribution of the number of involved persons (shown in figure \ref{img:baysis_dataset_Beteil}) shows that more than 96\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\% and the second biggest of one involved person for 30\% of the total count. This also means the accidents with more than three involved persons are statistically insignificant. Because of the increasing order of values, the variable is of ordinal type.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_UArt.pdf}
-	\caption{Distribution of the accident cause type 'UArt'}
-	\label{img:baysis_dataset_UArt}
-\end{figure}
+The distribution of the number of involved persons (shown in figure \ref{img:appendix_baysis_dataset_Beteil}) shows that more than 96\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\% and the second biggest of one involved person for 30\% of the total count. This also means the accidents with more than three involved persons are statistically insignificant. Because of the increasing order of values, the variable is of ordinal type.
 
 \paragraph{UArt}
-The accident cause type, described by the two aggregated variables UArt1 and UArt2 (shown in figure \ref{img:baysis_dataset_UArt}), presents two major sets of causes. One being the accidents with waiting, stopping and starting vehicles in the same lane, which describe typical collision accidents during congested traffic. The other being the accidents in the next left or right lane, which describe common lane changing collisions. Accidents with cross traffic, pedestrians or opposite traffic are relatively uncommon. The variable does not show any order and is therefore of nominal type.
+The accident cause type, described by the two aggregated variables UArt1 and UArt2 (shown in figure \ref{img:appendix_baysis_dataset_UArt}), presents two major sets of causes. One being the accidents with waiting, stopping and starting vehicles in the same lane, which describe typical collision accidents during congested traffic. The other being the accidents in the next left or right lane, which describe common lane changing collisions. Accidents with cross traffic, pedestrians or opposite traffic are relatively uncommon. The variable does not show any order and is therefore of nominal type.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{./assets/baysis_dataset_AUrs.pdf}
-	\caption{Distribution of the accident cause 'AUrs'}
-	\label{img:baysis_dataset_AUrs}
-\end{figure}
-
+%\begin{itemize}
+%	\setlength\itemsep{0em}
+%	\item 1 = Collision with starting, standing or stopping vehicle
+%	\item 2 = Collision with ahead and waiting vehicle
+%	\item 3 = Collision with vehicle on separate lane in same direction
+%	\item 4 = Collision with vehicle going in opposite direction
+%	\item 5 = Collision with turning or crossing vehicle
+%	\item 6 = Collision between vehicle and pedestrian
+%	\item 7 = Collision with obstacle
+%	\item 8 = Deviation to the right
+%	\item 9 = Deviation to the left
+%	\item 0 = Other
+%\end{itemize}
 \paragraph{AUrs}
-The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown in figure \ref{img:baysis_dataset_AUrs}) does clearly that only the first category of “Slippery road condition due to oil” hold a significant share. Because of that any correlation to this parameter would not point to any usable statement and therefore can be neglected for the evaluation.
+The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown in figure \ref{img:appendix_baysis_dataset_AUrs}) does clearly that only the first category of “Slippery road condition due to oil” hold a significant share. Because of that any correlation to this parameter would not point to any usable statement and therefore can be neglected for the evaluation.
 
-\begin{figure}[]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Aufhi.pdf}
-	\caption{Distribution of obstacle collision 'AufHi'}
-	\label{img:baysis_dataset_Aufhi}
-\end{figure}
+%\begin{itemize}
+%Slippery street due to oil
+%Slippery street due to dirt
+%Slippery street due to snow or ice
+%Slippery strett due to rain
+%Slippery strett due to other objects
+%Cart rut due to rain, snow or ice
+%Other condition of road
+%Un regular condition of traffic signs 
+%Bad lighting of street
+%Bad safty on train crossing
+%Visibility issues due to fog
+%Visibility issues due to rain or hail
+%Visibility issues due to sun or glare
+%Crosswind
+%Visibility issues due to storm 
+%Unsafe roadwork
+%Wild animals
+%Other animals
+%Other obstacles
+%Other causes
+%NaN
+%70
+%71
+%72
+%73
+%74
+%75
+%76
+%77
+%78
+%79
+%80
+%81
+%82
+%83
+%84
+%85
+%86
+%87
+%88
+%89
+%-1
+%	\setlength\itemsep{0em}
+%\end{itemize}
 
 \paragraph{AufHi}
-The obstacle collision distribution (shown in figure \ref{img:baysis_dataset_Aufhi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,5\% of accidents without any collision, it can be stated that in most cases a collision is part of an accident. The counts of the remaining categories are insignificant. The variable does not show any order and is therefore of nominal type.
+The obstacle collision distribution (shown in figure \ref{img:appendix_baysis_dataset_Aufhi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,5\% of accidents without any collision, it can be stated that in most cases a collision is part of an accident. The counts of the remaining categories are insignificant. The variable does not show any order and is therefore of nominal type.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Alkoh.pdf}
-	\caption{Distribution of the alcohol Involvement 'Alkoh'}
-	\label{img:baysis_dataset_Alkoh}
-\end{figure}
+%\begin{itemize}
+%Single tree
+%Tree line or allee
+%Tree group or forest
+%Busches
+%Pillar
+%Abutment
+%Guardrail
+%Other object
+%No collision
+%\end{itemize}
 
 \paragraph{Alkoh}
-The Alcohol involvement indication parameter reveals that only 1,9\% of accidents have one or more involved persons with measurable blood alcohol. The variable only has two unique values and is therefore dichotomous.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Char.pdf}
-	\caption{Distribution of the street characteristic 'Char'}
-	\label{img:baysis_dataset_Char}
-\end{figure}
+The Alcohol involvement indication parameter only contains two variables of $1 = yes$ or $unknown$. It reveals that only 1,9\% of accidents have one or more involved persons with measurable blood alcohol. The variable only has two unique values and is therefore dichotomous.
 
 \paragraph{Char}
-The variable distribution shown in figure \ref{img:baysis_dataset_Char} describes the characteristic of the street where the accident happened. Since we are only considering highway, the type of "Crossing", "Property" and "Roundabout" is expected to be zero. The variabel is not ordered and therefore of nominal type.
+The variable distribution shown in figure \ref{img:appendix_baysis_dataset_Char} describes the characteristic of the street where the accident happened. Since we are only considering highway, the type of "Crossing", "Property" and "Roundabout" is expected to be zero. The variabel is not ordered and therefore of nominal type.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Bes.pdf}
-	\caption{Distribution of the special street characteristic 'Bes'}
-	\label{img:baysis_dataset_Bes}
-\end{figure}
+%\begin{itemize}
+%	\setlength\itemsep{0em}
+%/**
+%     * [34,35,36] Characteristic of the accident location
+%     * <p>
+%     * 1 = Kreuzung
+%     * 2 = Einmündung / Anschluß
+%     * 3 = Grundstücksein- oder ausfahrt
+%     * 4 = Steigung
+%     * 5 = Gefälle
+%     * 6 = Kurve
+%     * 7 = Kreisverkehr
+%     */
+%Crossing
+%Entry / Exit
+%Property c
+%Steigung
+%Gefälle
+%Curve
+%Roundabout
+%\end{itemize}    
 
 \paragraph{Bes}
 The aggregated distribution of the variables "Bes1", "Bes2" and "Bes3", which further defines the street characteristic mentioned above only has one significant share of the type "Roadwork". The variabel itself is therefore not suitable for a correlation analysis, but can be used as validation criterium for the matching of roadwork incidents.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Lich.pdf}
-	\caption{Distribution of the lighting situation}
-	\label{img:baysis_dataset_Lich}
-\end{figure}
+%\begin{itemize}
+%	   /**
+%     * [37,38,39] Special characteristic if the accident location/environment
+%     */
+%Confusing
+%Level crossing
+%Pedestrian crossing
+%Pedestrian passage
+%Busstop
+%Roadwork
+%Calm traffic area
+%RAV on street
+%RAV seperate
+%RAV obligatory
+%1
+%2
+%3
+%4
+%5
+%6
+%7
+%8
+%9
+%0
+%\end{itemize}
+
+
+
+%    /**
+%     * [41,42] Lighting at the time and on location
+%     * <p>
+%     * 0 = Tageslicht
+%     * 1 = Dämmerung
+%     * 2 = Dunkelheit
+%     * 3 = Straßenbeleuchtung in Betrieb
+%     * 4 = Straßenbeleuchtung außer Betrieb
+%     */
+%     Daylight
+%Noon
+%Darkness
+%Street lighting working
+%Street lighting not working
 
 \paragraph{Lich}
-The light situation parameter shown in \ref{img:baysis_dataset_Lich} does not reveal any features and describes the lighting condition when the accident happened. Because is could be ranked from best to works lighting is is of ordinal type.
+The light situation parameter shown in \ref{img:appendix_baysis_dataset_Lich} does not reveal any features and describes the lighting condition when the accident happened. Because is could be ranked from best to works lighting is is of ordinal type.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Zust}
-	\caption{Distribution of the street condition}
-	\label{img:baysis_dataset_Zust}
-\end{figure}
+
 
 \paragraph{Zust}
-Dolorem Ipsum. 
+%    /**
+%     * [43,44] The condition of the street
+%     * <p>
+%     * 0 = Trocken
+%     * 1 = Nass/Feucht
+%     * 2 = Winterglatt
+%     * 3 = Schlüpfrichtkeit (Öl, Dung, Laub usw.)
+%     */ 
+%     Dry
+%Wet
+%Ice
+%Slippery
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_Fstf.pdf}
-	\caption{Distribution of accident lanes}
-	\label{img:baysis_dataset_Fstf}
-\end{figure}
+
 
 \paragraph{Fstf}
-sdfgsfg
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.6]{./assets/baysis_dataset_WoTag.pdf}
-	\caption{Distribution of week day}
-	\label{img:baysis_dataset_Fstf}
-\end{figure}
+    /**
+     * [116] The lane where the accident happened
+     * <p>
+     * [1,2,3,...] = first, second, ... lane from the right
+     * [S] = Beteiligter benutzte zum Unfallzeitpunkt die zum befahren freigegebene Standspur
+     * [E] = Beteiligter benutzte zum Unfallzeitpunkt berechtigt die Einbahnstraße entgegengesetzt
+     */
+    
 
 \paragraph{WoTag}
 The variable of WoTag relates to the day of week, when the accident happened. 

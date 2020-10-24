@@ -356,7 +356,7 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.png',
+                     save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.pdf',
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
@@ -364,7 +364,7 @@ if __name__ == '__main__':
                    nominal_columns, dichotomous_columns, ordinal_columns,
                    results.get('inf_nan_corr'),
                    results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.png',
+                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
                    show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables

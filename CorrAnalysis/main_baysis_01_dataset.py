@@ -75,7 +75,10 @@ if __name__ == '__main__':
 
     # Removing errors in WoTag
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
-    baysis_selected['WoTag'].loc[np.invert(baysis_selected['WoTag'].isin(days))] = np.nan
+    baysis_selected['WoTag'].loc[np.invert(baysis_selected['WoTag'].isin(days))] = ''
+
+    # aufHi = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    # baysis_selected["AufHi"] = baysis_selected.loc[baysis_selected['AufHi'].isin(aufHi)].astype('int64')
 
     ##################
     ### Report ###

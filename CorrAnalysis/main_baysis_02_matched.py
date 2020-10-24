@@ -17,6 +17,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import numpy as np
 from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
@@ -30,7 +31,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = False
+    generate_report = True
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/02_matched/'
@@ -49,15 +50,15 @@ if __name__ == '__main__':
     baysis_matched = baysis_imported[
         [
             # Congestion Data
-            "TempExMax",
-            # "TempExMin", # Not implemented
-            "SpatExMax",
-            # "SpatExMin", # Not implemented
+            "TempMax",
+            "TempAvg",
+            "SpatMax",
+            "SpatAvg",
             "TempDist",
             "SpatDist",
             "Coverage",
-            "TimeLossCar",
-            "TimeLossHGV",
+            "TLCar",
+            "TLHGV",
             # Accident Data
             "Strasse",
             "Kat", "Typ", "Betei",
@@ -81,10 +82,10 @@ if __name__ == '__main__':
     baysis_imported['Date'] = pd.to_datetime(baysis_imported['Date'], format='%Y-%m-%d')
 
     # Manual data type conversion from str to int64
-    baysis_matched["TimeLossCar"] = pd.to_numeric(baysis_matched["TimeLossCar"])
-    baysis_matched["TimeLossHGV"] = pd.to_numeric(baysis_matched["TimeLossHGV"])
-    baysis_matched["TimeLossCar"] = baysis_matched["TimeLossCar"].astype('int64')
-    baysis_matched["TimeLossHGV"] = baysis_matched["TimeLossHGV"].astype('int64')
+    baysis_matched["TLCar"] = pd.to_numeric(baysis_matched["TLCar"])
+    baysis_matched["TLHGV"] = pd.to_numeric(baysis_matched["TLHGV"])
+    baysis_matched["TLCar"] = baysis_matched["TLCar"].astype('int64')
+    baysis_matched["TLHGV"] = baysis_matched["TLHGV"].astype('int64')
 
     # Add month of roadwork
     baysis_matched['Month'] = baysis_imported['Date'].dt.strftime('%b')
@@ -92,7 +93,8 @@ if __name__ == '__main__':
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
     # Correcting the column WoTag
-    # days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
+    days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
+    baysis_matched['WoTag'].loc[np.invert(baysis_matched['WoTag'].isin(days))] = ''
 
     ##################
     ### Report ###
@@ -106,19 +108,26 @@ if __name__ == '__main__':
     ### Congestion ###
     ##################
 
-    plot_congestion_dist([
-        "TempExMax",
-        "SpatExMax",
-        "TempDist",
-        "SpatDist",
-        "Coverage",
-        "TimeLossCar",
-        "TimeLossHGV"],
+    plot_congestion_dist(
+        ["TempMax",
+         "TempAvg",
+         "SpatMax",
+         "SpatAvg",
+         "TempDist",
+         "SpatDist",
+         "Coverage",
+         "TLCar",
+         "TLHGV"],
         baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
-        ["TempExMax"],
-        ["SpatExMax"],
+        ["TempMax"],
+        ["SpatMax"],
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+
+    plot_congestion_scatter(
+        ["TempAvg"],
+        ["SpatAvg"],
         baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
@@ -127,8 +136,8 @@ if __name__ == '__main__':
         baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
-        ["TimeLossCar"],
-        ["TimeLossHGV"],
+        ["TLCar"],
+        ["TLHGV"],
         baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     ##################
@@ -202,7 +211,7 @@ if __name__ == '__main__':
     plt.ylabel('Count')
     plt.xlabel(atr)
     ax = sns.countplot(x=atr, data=baysis_matched, palette='Spectral')
-    plt.xticks(range(0, 7), ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
+    # plt.xticks(range(0, 7), ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
     if show_plot:
@@ -353,7 +362,22 @@ if __name__ == '__main__':
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
-        baysis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        baysis_matched.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
+
+    for atr in attributes:
+        plt.figure(figsize=set_size(418, 0.8))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Distribution of ' + atr)
+        baysis_matched.plot.scatter(x='TempAvg', y='SpatAvg', c=atr, colormap='viridis')
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
             if not show_plot:

@@ -121,6 +121,8 @@ if __name__ == '__main__':
 
     # Correcting the column WoTag
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
+    baysis_matched['WoTag'].loc[np.invert(baysis_matched['WoTag'].isin(days))] = np.nan
+
 
     #################
     ### Selection ###

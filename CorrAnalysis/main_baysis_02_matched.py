@@ -440,7 +440,7 @@ if __name__ == '__main__':
         for key in baysis_encoded_dict.keys():
             tf.write("%s, %s\n" % (key, baysis_encoded_dict[key]))
 
-    baysis_encoded.rename(columns={"TempMax": "TMax",
+    baysis_encoded = baysis_encoded.rename(columns={"TempMax": "TMax",
                                    "TempAvg": "TAvg",
                                    "SpatMax": "SMax",
                                    "SpatAvg": "SAvg",

@@ -738,13 +738,13 @@ The \acrfull{baysis} as describe in chapter \ref{dataset_baysis}, collects a wid
 
 Each accident report includes a variety of specifications, which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved like nationality, age and gender. In total, one report contains 132 values, describing the accident, participant and environment. Because we do not want to form a stereotype of accident participant but rather find significant accident characteristics or environmental factors most of the descriptive values for the involved persons are not considered. Variables without any values or single values are also neglected. To meet a statistical significant result a diverse distribution in the values would be preferred, to reduce the risk of uncertain relation. Because the correlation of a non distributed variable, which for example has one values occupying a 95\% major share, is based on a sample set comprised of mostly the same samples, the interpretability for a correlation to other values but the major share is very limited (see \ref{correlation_significance_uncertainty} for more detailed elaboration of this assumption).
 
-From this curtailed pool of correlate able and analyze able characteristics all parameters that have a logical significance with causes or effects of an accident will be considered in the analysis. To give an overview about what results can be expected on the basis of the provided dataset the 15 most plausible relevant parameters of the dataset will be illustrated. The parameters are also categorized in the variable types, defined in chapter \ref{correlation_variable_types}. All mentioned diagrams are available as larger prints in the appendix \ref{appendix_baysis} for better readability. 
+From this curtailed pool of correlate able and analyze able characteristics all parameters that have a logical significance with causes or effects of an accident will be considered in the analysis. To give an overview about what results can be expected on the basis of the provided dataset the 15 most plausible relevant parameters of the dataset will be elaborated and illustrated. The parameters are also categorized in the variable types, defined in chapter \ref{correlation_variable_types}. The referred diagrams are available as larger prints in the appendix \ref{appendix_baysis} for better readability. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_hist_month}
 	\caption{Monthly distribution of accident report counts}
-	\label{img:baysis_monthlyDist_absolute}
+	\label{img:baysis_dataset_dist_month_absolute}
 \end{figure}
 
 %\begin{figure}[h]
@@ -754,10 +754,19 @@ From this curtailed pool of correlate able and analyze able characteristics all 
 %	\label{img:baysis_monthlyDist_percentage}
 %\end{figure}
 
-A look on the monthly distribution of accidents recorded by BAYSIS (see figure \ref{img:baysis_monthlyDist_absolute}) shows that that the months of January, July and August have considerably higher number of accidents. The monthly distribution expressed in percentages (see figure \ref{img:baysis_monthlyDist_percentage}) supports this deviation with a respectively 31\%, 21\% and 15\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased demand because of public holidays is the most probable explanation.
+A look on the monthly distribution of accidents recorded by BAYSIS (see figure \ref{img:baysis_dataset_dist_month_absolute}) shows that that the months of January, July and August have considerably higher number of accidents, with respectively 31\,\%, 21\,\% and 15\,\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased traffic volume because of public holidays is the most probable explanation for the higher number of accidents.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_hist_highway}
+	\caption{Distribution of accident report counts, by road}
+	\label{img:baysis_dataset_dist_highway}
+\end{figure}
+
+Another 
 
 \paragraph{Kat}
-The accident categories, described by the variable shown in figure \ref{img:appendix_baysis_dataset_Kat},  range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The distribution also fits the exponentially trend line, which allows the statement that deadly accidents are statistical exponentially unlikely. The variable consists of four values, which can be considered as ordered, and is therefore ordinal.
+The accident category, described by the variable 'Kat' (shown in figure \ref{img:appendix_baysis_dataset_Kat}), range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The variable consists of four values, which can be ordered, and is therefore ordinal.
 
 %\begin{itemize}
 %	\setlength\itemsep{0em}

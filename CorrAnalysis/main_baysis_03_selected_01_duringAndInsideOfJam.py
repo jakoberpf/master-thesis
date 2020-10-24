@@ -33,7 +33,7 @@ if __name__ == '__main__':
     generate_report = True
 
     data_path = 'data/'
-    work_path = data_path + 'BAYSIS/03_selected_01_outsideOfJam/'
+    work_path = data_path + 'BAYSIS/03_selected_01_duringAndInsideOfJam/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'

@@ -92,7 +92,7 @@ if __name__ == '__main__':
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    # Correcting the column WoTag
+    # Removing errors in WoTag
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
     baysis_matched['WoTag'].loc[np.invert(baysis_matched['WoTag'].isin(days))] = ''
 

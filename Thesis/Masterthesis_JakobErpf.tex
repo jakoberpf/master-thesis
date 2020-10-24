@@ -763,11 +763,10 @@ A look on the monthly distribution of accidents recorded by BAYSIS (see figure \
 	\label{img:baysis_dataset_dist_highway}
 \end{figure}
 
-Another 
+Another valuable distribution is the number of accidents per road (see figure \ref{img:baysis_dataset_dist_highway}). The roads of "A3", "A9" and "A8" have relative high count of accidents. In contrast the roads of "A71" and downwards have only an accidents and therefore have a high uncertainty associated with them. 
 
 \paragraph{Kat}
-The accident category, described by the variable 'Kat' (shown in figure \ref{img:appendix_baysis_dataset_Kat}), range from just accident with damaged property to deathly accidents, with the number of deadly accidents having the lowest count. The variable consists of four values, which can be ordered, and is therefore ordinal.
-
+The accident category (shown in figure \ref{img:appendix_baysis_dataset_Kat}), describes the which damages or injuries can be associated with the accident. It ranges from accident with just  damaged property, lightly and heavily injured to deathly accidents. The distribution develops from lowest to highs counts, in order of gravity of the category. The variable consists of four values, which can be ordered, and is therefore ordinal.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
 %	\item 0 = Minor Accident
@@ -776,10 +775,22 @@ The accident category, described by the variable 'Kat' (shown in figure \ref{img
 %	\item 3 = Accident with lightly injured
 %	\item 7 = Accident with property damage
 %\end{itemize}
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+ 		0 & Minor Accident  \\
+ 		1 & Accident with deaths  \\ 
+ 		2 & Accident with heavily injured  \\
+ 		3 & Accident with lightly injured  \\
+ 		4 & Accident with property damage  \\
+	\end{tabular}
+	\caption{Identifier and description of 'Kat'}
+	\label{table:1}
+\end{table}
 
 \paragraph{Typ}
-The accident type variable (shown in figure \ref{img:appendix_baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight and driving to turning movements. Beside of an 80\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features. The variable does not show any order and is therefore of nominal type.
-
+The accident type variable (shown in figure \ref{img:appendix_baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight driving to turning movements or merging. It describes during which kind of movement the accident happened. Beside of an 80\,\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features. The variable does not show any order and is therefore of nominal type.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
 %	\item 1 = Driving accident
@@ -790,9 +801,26 @@ The accident type variable (shown in figure \ref{img:appendix_baysis_dataset_Typ
 %	\item 6 = Accident in straight traffic
 %	\item 7 = Other
 %\end{itemize}
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+ 		1 & Driving accident  \\ 
+ 		2 & Turning accident  \\
+ 		3 & Merging / Crossing accident  \\
+ 		4 & Crossing over accident  \\
+ 		5 & Accident in standing traffic  \\
+ 		6 & Accident in straight traffic  \\
+ 		7 & Other  \\
+	\end{tabular}
+	\caption{Identifier and description of 'Typ'}
+	\label{table:1}
+\end{table}
 
 \paragraph{Beteil}
-The distribution of the number of involved persons (shown in figure \ref{img:appendix_baysis_dataset_Beteil}) shows that more than 96\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\% and the second biggest of one involved person for 30\% of the total count. This also means the accidents with more than three involved persons are statistically insignificant. Because of the increasing order of values, the variable is of ordinal type.
+The distribution of the number of involved persons (shown in figure \ref{img:appendix_baysis_dataset_Beteil}) shows that more than 96\,\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\,\% and the second biggest of one involved person for 30\,\% of the total count. Because of the increasing order of values, the variable is of ordinal type.
+
+% TODO fix plot: restrict number of Betei to max 7
 
 \paragraph{UArt}
 The accident cause type, described by the two aggregated variables UArt1 and UArt2 (shown in figure \ref{img:appendix_baysis_dataset_UArt}), presents two major sets of causes. One being the accidents with waiting, stopping and starting vehicles in the same lane, which describe typical collision accidents during congested traffic. The other being the accidents in the next left or right lane, which describe common lane changing collisions. Accidents with cross traffic, pedestrians or opposite traffic are relatively uncommon. The variable does not show any order and is therefore of nominal type.
@@ -810,6 +838,7 @@ The accident cause type, described by the two aggregated variables UArt1 and UAr
 %	\item 9 = Deviation to the left
 %	\item 0 = Other
 %\end{itemize}
+
 \paragraph{AUrs}
 The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown in figure \ref{img:appendix_baysis_dataset_AUrs}) does clearly that only the first category of “Slippery road condition due to oil” hold a significant share. Because of that any correlation to this parameter would not point to any usable statement and therefore can be neglected for the evaluation.
 

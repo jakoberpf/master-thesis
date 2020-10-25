@@ -30,7 +30,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = True
+    generate_report = False
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/01_dataset/'
@@ -109,7 +109,7 @@ if __name__ == '__main__':
     plt.title('Histogram of accidents per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral', order = baysis_selected['Strasse']
+    ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral', order=baysis_selected['Strasse']
                        .value_counts().index)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
@@ -123,9 +123,31 @@ if __name__ == '__main__':
     ##############
 
     scale = 1.0
+    (width, height) = set_size(418, scale)
+    fig, axs = plt.subplots(3, 2, figsize=(width, 3 * height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    fig.suptitle('Distributions of ...')
+    sns.countplot(ax=axs[0, 0], x='Typ', data=baysis_selected, palette='Spectral')
+    sns.countplot(ax=axs[0, 1], x='Kat', data=baysis_selected, palette='Spectral')
+    sns.countplot(ax=axs[1, 0], x='Betei', data=baysis_selected, palette='Spectral')
+    sns.countplot(ax=axs[1, 1], x='AufHi', data=baysis_selected, palette='Spectral')
+    sns.countplot(ax=axs[2, 0], x='Alkoh', data=baysis_selected, palette='Spectral')
+    sns.countplot(ax=axs[2, 1], x='Fstf', data=baysis_selected, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_multiple.pdf')
+        if not show_plot:
+            plt.close()
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    scale = 1.0
+    (width, height) = set_size(418, scale)
 
     for atr in ['Typ', 'Kat', 'Betei', 'AufHi', 'Alkoh', 'Fstf', 'StrklVu', 'FeiTag']:
-        plt.figure(figsize=set_size(418, scale))
+        plt.figure(figsize=(width, height/2))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
         plt.title('Counts of ' + atr)

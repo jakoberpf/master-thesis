@@ -1448,6 +1448,12 @@ The algorithm is based on the density of points. This density representation is 
         |- (8,0) node (xaxis) [right] {$x$};
         
     \foreach \x in {1,...,7}
+    	\draw[black!30] (\x,0) -- (\x,6);
+    	
+   	\foreach \y in {1,...,5}
+    	\draw[black!30] (0,\y) -- (8,\y); 
+        
+    \foreach \x in {1,...,7}
     	\draw (\x,1pt) -- (\x,-3pt)
 		node[anchor=north] {\x};
 		
@@ -1455,9 +1461,9 @@ The algorithm is based on the density of points. This density representation is 
     	\draw (1pt,\y) -- (-3pt,\y) 
      	node[anchor=east] {\y}; 
 
-	\coordinate[label={270:$$}] (C) at (7,1.5);
+	\coordinate[label={270:$$}] (C) at (6.5,1.5);
 	\coordinate[label={180:$A$}] (A) at (1.5,1.5);
-	\coordinate[label={30:$B$}] (B) at (7,5);
+	\coordinate[label={30:$B$}] (B) at (6.5,4.5);
 
 	\draw (C) -- (A)node[midway,below left]{$a$} -- (B)  -- cycle node[midway,below right]{$b$};
        
@@ -1486,11 +1492,31 @@ The algorithm is based on the density of points. This density representation is 
 
 As shown above, the euclidean distance calculation assumes a Euclidean spaces, meaning equal scaling of both axis, which is not the case with FCD. The space of the FCD is defined by a spatial and a temporal dimension, which are scaled differently as mentioned in section \ref{dataset_fcd}. This 2-dimensional space can be visualized like:
 
-\bigskip
-\textbf{TODO figure of FCD, non euclidean space}
+\begin{figure}[h]
+	\centering
+	
+	\begin{tikzpicture}[scale=1.0]
+	
+	\draw [<->,thick] (0,5) node (yaxis) [above] {$y$}
+        |- (10,0) node (xaxis) [right] {$x$};
+    % X Axis lines  
+    \foreach \x in {1,...,9}
+    	\draw (\x,1pt) -- (\x,-3pt)
+		node[anchor=north] {\x};
+    \foreach \x in {0.7,2.5,4,7,9.3}
+    	\draw[black!30] (\x,0.1) -- (\x,4.9);
+    % Y Axis lines	
+	\foreach \y in {1,...,4}
+    	\draw (1pt,\y) -- (-3pt,\y) 
+     	node[anchor=east] {\y}; 
+    \foreach \y in {1,...,4}
+    	\draw[black!30] (0.1,\y) -- (9.9,\y); 
+	\end{tikzpicture}
+\end{figure}
+
 \bigskip
 
-The vertical axis shows the temporal dimension an is regular scales in 3 minute steps. The horizontal axis represents the spatial extend is scaled in one cell per step. These cell represent the space of one section of the road, m
+The vertical axis shows the temporal dimension is regular scales in 3 minute steps. The horizontal axis represents the spatial extend is scaled in one cell per step. These cell represent the space of one section of the road, which can have different lengths and make a direct application of the Euclidian distance invalid. 
 
 The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
 
@@ -1511,10 +1537,8 @@ The threshold for the virtual travel time gap in-between congestion events durin
 %\cite{Padro2017}
 
 \subsubsection{Performance Tuning}
-Leaving out the runtime implication pf the distnace mesaurer the DBSCAN 
+Leaving out the runtime implication pf the distance measurer the DBSCAN 
 %The complexity of DBSCAN Clustering Algorithm
-% 
-%
 %Best Case: If an indexing system is used to store the dataset such that neighborhood queries are executed in logarithmic time, we get O(nlogn) average runtime complexity.
 %Worst Case: Without the use of index structure or on degenerated data (e.g. all points within a distance less than ε), the worst-case run time complexity remains O(n²).
 %Average Case: Same as best/worst case depending on data and implementation of the algorithm.
@@ -1560,14 +1584,26 @@ Which values where converted into numeric values and why and …
 The congestion object is expanded with...
 
 The temporal reference of if the incident to the congestion (\textbf{temporalGlobalLoc}). The incident...
-\begin{itemize}
-	\setlength\itemsep{0em}
-	\item[1] = is before
-	\item[2] = is after
-	\item[3] = is during
-	\item[4] = is overlapping before
-	\item[5] = is overlapping after
-\end{itemize}
+%\begin{itemize}
+%	\setlength\itemsep{0em}
+%	\item[1] = is before
+%	\item[2] = is after
+%	\item[3] = is during
+%	\item[4] = is overlapping before
+%	\item[5] = is overlapping after
+%\end{itemize}
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+		1 & is before \\ 
+ 		2 & is after \\ 
+ 		3 & is during \\
+ 		4 & is overlapping before \\
+ 		5 & is overlapping after \\
+	\end{tabular}
+	\caption{Identifier and description of temporal global location reference}
+\end{table}
 
 The spatial reference of if the incident to the congestion (\textbf{spatialGlobalLoc}). The incident...
 \begin{itemize}

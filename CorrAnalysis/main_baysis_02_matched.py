@@ -31,7 +31,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = False
+    generate_report = True
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/02_matched/'
@@ -94,15 +94,28 @@ if __name__ == '__main__':
 
     # Removing errors in WoTag
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
-    baysis_matched['WoTag'].loc[np.invert(baysis_matched['WoTag'].isin(days))] = ''
+    baysis_matched['WoTag'].loc[np.invert(baysis_matched['WoTag'].isin(days))] = -1
 
-    ##################
-    ### Report ###
-    ##################
+    # Removing whitespaces
+    baysis_matched['Strasse'] = baysis_matched['Strasse'].str.replace(' ', '')
 
-    if generate_report:
-        report = ProfileReport(baysis_matched, title='ArbIS Matched Dataset Report')
-        report.to_file(work_path + file_prefix + '_report.html')
+    # Removing -1/missing values
+    # p_missing = ["Strasse",
+    #              "Kat", "Typ", "Betei",
+    #              "UArt1", "UArt2",
+    #              "AUrs1", "AUrs2",
+    #              "AufHi",
+    #              "Alkoh",
+    #              "Char1", "Char2",
+    #              "Bes1", "Bes2",
+    #              "Lich1", "Lich2",
+    #              "Zust1", "Zust2",
+    #              "Fstf",
+    #              "StrklVu",
+    #              "WoTag",
+    #              "FeiTag"]
+    # for atr in p_missing:
+    #     baysis_matched.loc[baysis_matched[atr] == -1] = ''
 
     ##################
     ### Congestion ###
@@ -345,14 +358,11 @@ if __name__ == '__main__':
         "AufHi",
         "Alkoh",
         "Char1", "Char2",
-        # "Char3",  # Not relevant because empty
         "Bes1", "Bes2",
-        # "Bes3",  # Not relevant because empty
         "Lich1", "Lich2",
         "Zust1", "Zust2",
         # "Fstf", # TODO fix handling of non number sequences in scatter plots
         # "StrklVu", # TODO fix handling of non number sequences in scatter plots
-        # "WoTagNr",  # Already represented by WoTag
         # "WoTag", # TODO fix handling of non number sequences in scatter plots
         "FeiTag"]
 
@@ -406,6 +416,14 @@ if __name__ == '__main__':
     ###########
     ### Box ###
     ###########
+
+    ##################
+    ### Report ###
+    ##################
+
+    if generate_report:
+        report = ProfileReport(baysis_matched, title='BAYSIS Matched Dataset Report')
+        report.to_file(work_path + file_prefix + '_report.html')
 
     ###################
     ### Correlation ###

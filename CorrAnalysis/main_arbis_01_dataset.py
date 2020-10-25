@@ -68,7 +68,7 @@ if __name__ == '__main__':
     arbis_imported['Bis'] = pd.to_datetime(arbis_imported['Bis'], format='%Y-%m-%d %H:%M:%S')
 
     # Add length of roadwork fragment in kilometers
-    arbis_selected['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer']))
+    arbis_selected['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer'])) * 1000
     # Add duration of roadwork fragment in minutes
     arbis_selected['Duration'] = abs((arbis_imported['Von'] - arbis_imported['Bis'])).dt.total_seconds() / 60
 
@@ -76,6 +76,9 @@ if __name__ == '__main__':
     arbis_selected['Month'] = arbis_imported['Von'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+    # Removing whitespaces
+    arbis_selected['Strasse'] = arbis_selected['Strasse'].str.replace(' ', '')
 
     ##################
     ### Report ###
@@ -90,7 +93,7 @@ if __name__ == '__main__':
     ##################
 
     # Plot histogram of roadworks over time / months
-    plt.figure(figsize=set_size(418, 1.8))
+    plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title(r'Histogram of total roadworks per month')
@@ -108,13 +111,14 @@ if __name__ == '__main__':
     # arbis_selected.drop('Month', axis='columns', inplace=True)
 
     # Plot histogram of accidents over highway
-    plt.figure(figsize=set_size(418, 1.8))
+    plt.figure(figsize=set_size(418, 1.2))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Histogram of total roadworks per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
+    sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral', order=arbis_selected['Strasse']
+                  .value_counts().index)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
     if show_plot:
@@ -126,11 +130,10 @@ if __name__ == '__main__':
     ### Distributions ###
     #####################
 
-    plot_arbis_dist([
-        'Length',
-        # 'Duration'
-    ],
-        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
+    # plot_arbis_dist([
+    #     'Length',
+    #     'Duration'
+    # ], arbis_selected, plot_path, file_prefix, save_plot, show_plot)
 
     ##############
     ### Counts ###
@@ -188,31 +191,6 @@ if __name__ == '__main__':
     ###########
     ### Box ###
     ###########
-
-    # Plot boxplots for visual relation testing
-    # plot_boxplot_logscale(arbis_selected, 'Strasse', 'Length', save_plot, show_plot,
-    #                       plot_path + file_prefix + '_box_street2length.pdf', scale=1.8)
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Strasse', 'Duration', save_plot, show_plot,
-    #                       plot_path + file_prefix + '_box_street2duration.pdf', scale=1.8)
-    #
-    # plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Length', save_plot, show_plot,
-    #                       plot_path + file_prefix + '_box_agfs2length.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'AnzGesperrtFs', 'Duration', save_plot, show_plot,
-    #                       plot_path + file_prefix + '_box_agfs2duration.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Einzug', 'Length', save_plot, show_plot,
-    #                       plot_path + file_prefix + '_box_einzug2length.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Einzug', 'Duration', save_plot, show_plot,
-    #                       plot_path + file_prefix + '_box_einzug2duration.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Richtung', 'Length', save_plot, show_plot,
-    #                       plot_path + file_prefix + '_box_direction2length.pdf')
-    #
-    # plot_boxplot_logscale(arbis_selected, 'Richtung', 'Duration', save_plot, show_plot,
-    #                       plot_path + file_prefix + '_box_direction2duration.pdf')
 
     ###################
     ### Correlation ###

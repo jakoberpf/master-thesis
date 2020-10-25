@@ -1,20 +1,37 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,headsepline,footsepline,fontsize=11pt,BCOR=12mm,DIV=12]{report}
+
+%\documentclass[headsepline,footsepline,footinclude=false,fontsize=11pt,
+%paper=a4,listof=totoc,bibliography=totoc,BCOR=12mm,DIV=12]{scrbook} % two-sided
+
+%\documentclass[headsepline,footsepline,footinclude=false,oneside,fontsize=11pt,
+%paper=a4,listof=totoc,bibliography=totoc]{scrbook} % one-sided
+
+% https://github.com/fwalch/tum-thesis-latex
+% https://www.ma.tum.de/_Resources/Persistent/8/0/a/1/80a10d99c1334d649cfcb0f8bf41ea059c92d177/Bachelorarbeit_Vorlage.tex
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
 \usepackage{setspace}
 \usepackage{rotating}
 \usepackage{relsize}
-\usepackage{graphicx}
+  
+\usepackage{graphicx,tabularx}
 \usepackage{pgfplots}
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usetikzlibrary{trees}
+
 \usepackage{float}
 \usepackage{commath}
 \usepackage{geometry}
 \usepackage{listings}
 \usepackage{booktabs}
+
 \usepackage[toc,page]{appendix}
 \usepackage[toc,acronym]{glossaries}
-\usepackage[utf8]{inputenc}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{trees}
+
 
 % Set the overall layout of the tree
 \tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
@@ -43,8 +60,42 @@
   language=Java					   % set langauges
 }
 
+% Define TUM corporate design colors
+% Taken from http://portal.mytum.de/corporatedesign/index_print/vorlagen/index_farben
+\definecolor{TUMBlue}{HTML}{0065BD}
+\definecolor{TUMSecondaryBlue}{HTML}{005293}
+\definecolor{TUMSecondaryBlue2}{HTML}{003359}
+\definecolor{TUMBlack}{HTML}{000000}
+\definecolor{TUMWhite}{HTML}{FFFFFF}
+\definecolor{TUMDarkGray}{HTML}{333333}
+\definecolor{TUMGray}{HTML}{808080}
+\definecolor{TUMLightGray}{HTML}{CCCCC6}
+\definecolor{TUMAccentGray}{HTML}{DAD7CB}
+\definecolor{TUMAccentOrange}{HTML}{E37222}
+\definecolor{TUMAccentGreen}{HTML}{A2AD00}
+\definecolor{TUMAccentLightBlue}{HTML}{98C6EA}
+\definecolor{TUMAccentBlue}{HTML}{64A0C8}
+
+% Settings for pgfplots
+\pgfplotsset{compat=newest}
+\pgfplotsset{
+  % For available color names, see http://www.latextemplates.com/svgnames-colors
+  cycle list={TUMBlue\\TUMAccentOrange\\TUMAccentGreen\\TUMSecondaryBlue2\\TUMDarkGray\\},
+}
+
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+\newcommand*{\getUniversity}{Technische Universität München}
+\newcommand*{\getFaculty}{Department of Informatics}
+\newcommand*{\getTitle}{Thesis title}
+\newcommand*{\getTitleGer}{Titel der Abschlussarbeit}
+\newcommand*{\getAuthor}{Jakob Erpf}
+\newcommand*{\getDoctype}{Thesis type (Bachelor's Thesis in Informatics, Master's Thesis in Informatics: Games Engineering, \ldots)}
+\newcommand*{\getSupervisor}{Supervisor}
+\newcommand*{\getAdvisor}{Advisor}
+\newcommand*{\getSubmissionDate}{Submission date}
+\newcommand*{\getSubmissionLocation}{Munich}
 
 \makeglossaries
 
@@ -98,9 +149,17 @@
 
 %\pagenumbering{roman}
 % Title page goes first
-\title{MASTER'S THESIS\\
+\title{
+\parbox{3cm}{\resizebox*{90pt}{!}{\includegraphics{assets/lehrstuhl_logo.png}}}
+Technische Universität München
+\parbox{3cm}{\resizebox*{90pt}{!}{\includegraphics{assets/tum_logo.png}}}
+\\
+[0.3cm]
+\smaller Fakultät für Bau, Geo und Umwelt\\
+[2cm]
+MASTER'S THESIS\\
 [1cm]
-\smaller Analysis of correlations between traffic data depended congestion detection and incident causalities}
+\smaller The search for correlations between traffic data depended congestion detection and incident causalities}
 % TODO red mal mit deinen Betreuern über den Titel, ob der so passt. ich glaube depended (abhängend) macht mehr sinn wenn es dependent (abhängig) heisst 
 \author{
 B. Sc. Jakob Erpf\\ 
@@ -111,7 +170,7 @@ B. Sc. Jakob Erpf\\
 \small Dipl. - Ing. Stefan Gürtler (S\&W)\\
 \small Dipl. - Ing. Johannes Grötsch (LBD)
 }
-\date{\today}
+\date{November ??, 2020}
 \maketitle
 
 % Empty page for layout purpose
@@ -119,9 +178,12 @@ B. Sc. Jakob Erpf\\
 
 % Topic description is mandatory
 \renewcommand\abstractname{Topic}
-\abstract{}Date of issue: 2020-05-04\newline
-Date of submission:	2020-12-11\newline
-\newline
+\abstract{}
+%\addchap*{Topic}\par Date of issue: 2020-05-04  
+\par Date of submission:	2020-12-11
+
+\medskip
+
 The \gls{congstats} service is a statistical analysis tool, developed by the Munich office of SCHLOTHAUER \& WAUER GmbH and the thesis writer for the road administration of north and south Bavaria, to request and analyze traffic data. The traffic data used in this service is based on \acrfull{fcd}, provided by the Bavarian road administration. The aim of the service is to provide statistical monitoring and report functionalities on the traffic situation on freeway and state street network, to identify congestion-prone areas.
 
 An interesting aspect of this congestion analysis is the correlation of congestion events and incidents. What are the circumstances leading to congestion in cause of an incident? What are the dependencies on an occurred incident, for example roadworks or accidents? The knowledge on the impact of roadworks on the traffic flow or which accidents lead to traffic capacity reductions could improve traffic management and incident response actions. The question of how the congestions represented by the \acrshort{fcd} correlate with actual traffic incidents and their causalities, will be evaluated in this thesis. 
@@ -150,16 +212,24 @@ The student must hold a 20-minute presentation with a subsequent discussion at t
 % Disclaimers
 \renewcommand\abstractname{Preliminary information and disclaimers}
 \abstract{
+%\addchap*{Kurzfassung}
 %TODO Datennutzungserklärung
 }
 
+
 % Germany abstract
 \renewcommand\abstractname{Kurzfassung}
-\abstract{Deutsche Fassung des 'Abstracts'}
+\abstract{
+%\addchap*{Kurzfassung}
+Deutsche Fassung des 'Abstracts'
+}
 
 % Englisch abstract
 \renewcommand\abstractname{Abstract}
-\abstract{Current navigation systems often use accumulation strategies to estimate travel time while considering time delays through congestions, which are based on analyzing the history of the time delays on the considered street network. This approach can be disturbed through uncommon events creating short time blockages or be biased through regular accruing, long-term traffic volume reductions. This thesis evaluates a new idea of predicting time delays and accident probability through analyzing the correlation of congestions and incidents which are placed in timely and spatial vicinity of each other. To evaluate this, three real world datasets from the year 2019 will be considered. After an algorithmic approach to analyzing a derivative of a floating car dataset for congestions and locating spatial and timely adjacent incidents from the Bavarian street information systems, the thesis will evaluate if and how these incidents and \glspl{jam} are correlated with each other. To further give an idea of how such statistical data could be used, the thesis will elaborate on the possibility and plausibility of using correlation statistics for \gls{jam} and/or incident prediction.}
+\abstract{
+%\addchap*{Kurzfassung}
+Current navigation systems often use accumulation strategies to estimate travel time while considering time delays through congestions, which are based on analyzing the history of the time delays on the considered street network. This approach can be disturbed through uncommon events creating short time blockages or be biased through regular accruing, long-term traffic volume reductions. This thesis evaluates a new idea of predicting time delays and accident probability through analyzing the correlation of congestions and incidents which are placed in timely and spatial vicinity of each other. To evaluate this, three real world datasets from the year 2019 will be considered. After an algorithmic approach to analyzing a derivative of a floating car dataset for congestions and locating spatial and timely adjacent incidents from the Bavarian street information systems, the thesis will evaluate if and how these incidents and \glspl{jam} are correlated with each other. To further give an idea of how such statistical data could be used, the thesis will elaborate on the possibility and plausibility of using correlation statistics for \gls{jam} and/or incident prediction.
+}
 
 %\setcounter{secnumdepth}{3}
 %\setcounter{tocdepth}{3}\

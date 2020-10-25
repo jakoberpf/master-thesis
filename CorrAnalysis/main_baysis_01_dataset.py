@@ -30,7 +30,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = False
+    generate_report = True
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/01_dataset/'
@@ -77,24 +77,15 @@ if __name__ == '__main__':
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
     baysis_selected['WoTag'].loc[np.invert(baysis_selected['WoTag'].isin(days))] = ''
 
-    # TODO fix
-    # aufHi = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    # baysis_selected["AufHi"] = baysis_selected.loc[baysis_selected['AufHi'].isin(aufHi)].astype('int64')
-
-    ##################
-    ### Report ###
-    ##################
-
-    if generate_report:
-        report = ProfileReport(baysis_selected, title='BAYSIS Original Dataset Report')
-        report.to_file(work_path + file_prefix + '_report.html')
+    # Removing whitespaces
+    baysis_selected['Strasse'] = baysis_selected['Strasse'].str.replace(' ', '')
 
     ##################
     ### Histograms ###
     ##################
 
     # Plot histogram of accidents over time / months
-    plt.figure(figsize=set_size(418, 1.8))
+    plt.figure(figsize=set_size(418, 1.0))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Histogram of accidents per month')
@@ -112,13 +103,14 @@ if __name__ == '__main__':
     # baysis_selected.drop('Month', axis='columns', inplace=True)
 
     # Plot histogram of accidents over highway
-    plt.figure(figsize=set_size(418, 1.8))
+    plt.figure(figsize=set_size(418, 1.2))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Histogram of accidents per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
+    ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral', order = baysis_selected['Strasse']
+                       .value_counts().index)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
     if show_plot:
@@ -267,6 +259,14 @@ if __name__ == '__main__':
         plt.show()
     else:
         plt.close()
+
+    ##################
+    ### Report ###
+    ##################
+
+    if generate_report:
+        report = ProfileReport(baysis_selected, title='BAYSIS Original Dataset Report')
+        report.to_file(work_path + file_prefix + '_report.html')
 
     ###################
     ### Correlation ###

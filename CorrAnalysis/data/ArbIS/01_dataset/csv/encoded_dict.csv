@@ -1,6 +1,5 @@
-Strasse, Index(['A 7', 'A 3', 'A 9', 'A 8', 'A 92', 'A 94', 'A 93', 'A 73', 'A 99',
-       'A 70', 'A 6', 'A 96', 'A 71', 'A 95', 'A 72', 'A 995', 'A 952',
-       'A 980', 'A 81', 'A 45'],
+Strasse, Index(['A7', 'A3', 'A9', 'A8', 'A92', 'A94', 'A93', 'A73', 'A99', 'A70', 'A6',
+       'A96', 'A71', 'A95', 'A72', 'A995', 'A952', 'A980', 'A81', 'A45'],
       dtype='object')
 Month, Index(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
        'Nov', 'Dec'],

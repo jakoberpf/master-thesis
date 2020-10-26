@@ -67,9 +67,9 @@ if __name__ == '__main__':
             "TempGL",
             # The spatial reference of if the incident to the congestion. The incident...
             # [-1] = Not Set in case of congestion with no distance
-            # [1] = is before or after
+            # [1] = is before
             # [2] = is during or overlapping
-            # [3] = is during
+            # [3] = is after
             "SpatGL",
             # The temporal reference of if the incident is during the congestion. The incident is within...
             # [-1] = Not Set in case not during or overlapping

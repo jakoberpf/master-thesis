@@ -1643,7 +1643,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 \paragraph{Time dimension} Traveling just in the time dimension is not actual possible, hence the term artificial travel time. But assuming that both point $A$ and $B$ are at the same link step, the virtual travel time is calculated by:
 
 \begin{equation}
-	t_{x,A,B}^{virtual} = (x_B - x_A) \cdot ( x_{interval} + 1 )
+	t_{x,A,B}^{art} = (x_B - x_A) \cdot ( x_{interval} + 1 )
 	\label{equation_t_v_time}
 \end{equation}
 
@@ -1653,10 +1653,10 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $x_{interval}$ is the time interval or step duration
 \end{itemize}
 
-\paragraph{Space dimension} Traveling just trough space is also not actual possible, but in the artificial travel time. Under the assumption that point $A$ and point $B$ are in the time step, the virtual travel time is calculated by:  
+\paragraph{Space dimension} Traveling just through space is also not actual possible, but in the artificial travel time. Under the assumption that point $A$ and point $B$ are in the time step, the virtual travel time is calculated by:  
 
 \begin{equation}
-	t_{y,A,B}^{virtual} = (\frac{y_{A}^{length}}{2}  \cdot z_{A}^{speed}) + (\frac{y_{B}^{length}}{2} \cdot z_{B}^{speed}) + \sum_{i}^{y_A + 1,...,y_B - 1} (y_{i}^{length} \cdot z_{i}^{speed})
+	t_{y,A,B}^{art} = (\frac{y_{A}^{length}}{2}  \cdot z_{A}^{speed}) + (\frac{y_{B}^{length}}{2} \cdot z_{B}^{speed}) + \sum_{i}^{y_A + 1,...,y_B - 1} (y_{i}^{length} \cdot z_{i}^{speed})
 \end{equation}
 
 \begin{itemize}
@@ -1666,28 +1666,33 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $z_{speed}$ is the speed in the cell
 \end{itemize}
 
-\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the calculation of the virtual travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary.
+\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the calculation of the virtual travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary. This achieved by using the aimed gap threshold to form a calibrator values, which scales the axis appropriately.
 
 \begin{equation}
-	t_{x,y,A,B}^{virtual} = \sqrt{(t_{x,A,B}^{virtual})^2 + (t_{y,A,B}^{virtual} \cdot c)^2}
+	t_{x,y,A,B}^{art} = \sqrt{(t_{x,A,B}^{art})^2 + (t_{y,A,B}^{art} \cdot c)^2}
 \end{equation}
 \begin{equation}
 	v_{A,B}^{mean} = \sum_{ij}^{xy_A + 1,...,xy_B - 1} z_{ij}^{speed}
+\end{equation}
+\begin{equation}
+	c = \frac{g_{timegap} \cdot v_{freeflow}}{g_{spacegap}}
 \end{equation}
 
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
 	\item[] $xy_A | xy_B$ is the $xy$ index of point $A | B$
 	\item[] $z_{speed}$ is the speed in the cell
+	\item[] $v^{mean}$ is mean speed in the area between $A$ and $B$
 	\item[] $c$ is the time-space calibrator
+	\item[] $g_{timegap}$ is the the aimed time gap
+	\item[] $g_{spacegap}$ is the the aimed space gap
+	\item[] $v_{freeflow}$ is the assumed free flowing speed (typically 130\,[km/h])
 \end{itemize}
 
-% TODO read and add infos
-% https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
+% TODO read and add infos: https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
 \subsubsection{Calibration}
-
-this.horizontalCalibrator = ((temporalGapThreshold * 60) * (130 / 3.6)) / spatialGapThreshold;
+Parameter calibration is a vital task when implementing algorithms. For the DBSCAN the neighborhood $\varepsilon$ and $minPoints$ 
 
 %Parameter estimation:
 %The parameter estimation is a problem for every data mining task. To choose good parameters we need to understand how they are used and have at least a basic previous knowledge about the data set that will be used.
@@ -1697,8 +1702,8 @@ this.horizontalCalibrator = ((temporalGapThreshold * 60) * (130 / 3.6)) / spatia
 
 The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
 \begin{itemize}
-	\item Spatial gap : $l_{min,gap} = 5000$ % cluster consolidation 
-	\item Temporal gap : $t_{min,gap} = 6 min$ % cluster consolidation 
+	\item Spatial gap : $l_{min,gap} = 5000 [m]$ % cluster consolidation 
+	\item Temporal gap : $t_{min,gap} = 6 [min]$ % cluster consolidation 
 	\item Virtual travel-time gap $t_{min,gap}^{virtual} = 360s$
 \end{itemize}
 
@@ -1732,6 +1737,9 @@ Convex Hull
 
 \section{Matching Algorithm}
 \label{methodology_matching}
+The matching precess for finding adjacent incidents around jams is rather simple. When iterating over all jams, all incident, which are located on the same road and are on the sam day as the jam will be evaluated.
+
+
 We now have a list of jams, found on the matching incidents with spatial and timely adjacent congestions
 See CONGSTATS Matching Algorithm (own implementation)
 
@@ -2343,17 +2351,18 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \end{sidewaystable}
 \restoregeometry
 
+% -------------------------------
+% ------- Source Code Appendix --------
+% -------------------------------
 \chapter{Source Code}
 
+% ------- Congstats CLusterer --------
 \tocless\section{CongstatsClusterAlgorithm}
 \label{appendix_TODO}
-
-\newgeometry{left=2cm,top=0.5cm,bottom=0.5cm}
 \begingroup
-    \fontsize{4pt}{8pt}\selectfont
+    \fontsize{2pt}{6pt}\selectfont
 		\lstinputlisting[language=java]{../CongEvaluation/congestion/clustering/CongstatsClusterAlgorithm.java}
 \endgroup
-\restoregeometry
 
 \end{appendices}
 

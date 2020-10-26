@@ -157,7 +157,7 @@ if __name__ == '__main__':
 
     baysis_selected = baysis_matched.loc[
         (baysis_matched["SpatGL"] == 1) |
-        (baysis_matched["SpatIL"] == 1)
+        (baysis_matched["SpatIL"] == 1) |
         (baysis_matched["SpatIL"] == 2)]
 
     ##################

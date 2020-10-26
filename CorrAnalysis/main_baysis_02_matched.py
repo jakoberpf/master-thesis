@@ -198,8 +198,33 @@ if __name__ == '__main__':
     ### Counts ###
     ##############
 
+    scale = 1.0
+    (width, height) = set_size(418, scale)
+    fig, axs = plt.subplots(4, 2, figsize=(width, 3 * height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    sns.countplot(ax=axs[0, 0], x='Typ', data=baysis_matched, palette='Spectral')
+    sns.countplot(ax=axs[0, 1], x='Kat', data=baysis_matched, palette='Spectral')
+    sns.countplot(ax=axs[1, 0], x='Betei', data=baysis_matched, palette='Spectral')
+    sns.countplot(ax=axs[1, 1], x='AufHi', data=baysis_matched, palette='Spectral')
+    sns.countplot(ax=axs[2, 0], x='Alkoh', data=baysis_matched, palette='Spectral')
+    sns.countplot(ax=axs[2, 1], x='Fstf', data=baysis_matched, palette='Spectral')
+    sns.countplot(ax=axs[3, 0], x='FeiTag', data=baysis_matched, palette='Spectral')
+    sns.countplot(ax=axs[3, 1], x='WoTag', data=baysis_matched, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
+        if not show_plot:
+            plt.close()
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    scale = 1.0
+    (width, height) = set_size(418, scale)
+
     for atr in ['Typ', 'Kat', 'Betei', 'AufHi', 'Alkoh', 'Fstf', 'StrklVu', 'FeiTag']:
-        plt.figure(figsize=set_size(418, 1.0))
+        plt.figure(figsize=(width, height/2))
         plt.style.use('seaborn')
         plt.rcParams.update(tex_fonts)
         plt.title('Counts of ' + atr)

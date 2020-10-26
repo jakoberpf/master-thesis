@@ -733,7 +733,7 @@ The uncertainty coefficient, also called entropy coefficient, is a measurement f
 %\end{equation}
 
 \subsubsection{Interpretation}
-For the Interpretation of Cramers $V$ a adaption to the scale of Pearson's $r$ is necessary, but at the same time is quite controversial. Some studies convert $V$ to the effect size $w$ for an equal measurement to $r$ ($r$ is representable over different sudies), when $V$ is already a measure of effect size by itself. \ref{Baguley2016}
+For the Interpretation of Cramers $V$ a adaption to Pearson's $r$ is necessary, but at the same time quite controversial. Some studies convert $V$ to the effect size $w$ for an equal measurement to $r$ ($r$ is representable over different sudies), when $V$ is already a measure of effect size by itself. \cite{Baguley2016}
 %https://www.researchgate.net/post/Whats_the_reason_for_deriving_Cohens_w_from_Cramers_V_if_the_latter_is_already_a_measure_of_effect_size
 % https://www.researchgate.net/post/How_can_I_intepret_the_effect_sizes_of_Cramers_V_when_DF_3
 
@@ -743,7 +743,9 @@ For the Interpretation of Cramers $V$ a adaption to the scale of Pearson's $r$ i
 	w = V \cdot \sqrt{min(i_{max}-1,j_{max}-1)}
 \end{equation}
 
-As shown in equation \ref{formula_cohens_w} \ref{Baguley2016}, the conversion from $V$ to $w$ is similar to the reduction of $\phi$ in the definition of $V$ (see equation \ref{formula_cramers_v_corrected}). This advocates the opinion that the conversion to $w$ is necessary within a single study and a adaption of scale is sufficient \ref{Baguley2016}. With the reduced range of $0$ to $1$, the adapted scale of effect size according to Ellis, will be used for interpreting $\eta$ \cite{Ellis2010,Cohen1988}.
+\medskip
+
+As shown in equation \ref{formula_cohens_w} \cite{Baguley2016}, the conversion from $V$ to $w$ is similar to the reduction of $\phi$ in the definition of $V$ (see equation \ref{formula_cramers_v_corrected}). This advocates the opinion that the conversion to $w$ is necessary within a single study and a adaption of scale is sufficient \cite{Baguley2016}. For this thesis the decision was made to used an adapted scale of effect size according to Ellis for interpreting $\eta$ in the range of $0$ to $1$ \cite{Cohen1988,Ellis2010,Hemmerich2019}.
 
 \begin{itemize}
 	\item $V <= \: .10$ : The correlation strength is weak
@@ -751,11 +753,11 @@ As shown in equation \ref{formula_cohens_w} \ref{Baguley2016}, the conversion fr
 	\item $V >= \: .50$ : There is a strong correlation
 \end{itemize}
 
-The Interpretation of Theil's $U$ follows complete other rules, than the guielines mentioned before.
+The values of Theil's $U$ shows the predictability of the association, where the following rules for interpretation. \cite{TheilsInt01,TheilsInt02,TheilsInt03}
 
 \begin{itemize}
 	\item $U < \: 1$ : The forecasting is better than guessing.
-	\item $U = \: 1$ : The forecasting is about as good as guessing.
+	\item $U \sim \: 1$ : The forecasting is about as good as guessing.
 	\item $U > \: 1$ : The forecasting is worse than guessing.
 \end{itemize}
 

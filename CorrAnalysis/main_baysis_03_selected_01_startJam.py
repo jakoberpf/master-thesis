@@ -34,7 +34,7 @@ if __name__ == '__main__':
     generate_report = True
 
     data_path = 'data/'
-    work_path = data_path + 'BAYSIS/03_selected_01_duringAndInsideOfJam/'
+    work_path = data_path + 'BAYSIS/03_selected_01_startJam/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
@@ -156,7 +156,9 @@ if __name__ == '__main__':
     #################
 
     baysis_selected = baysis_matched.loc[
-        (baysis_matched["spatialGlobalLoc"] == 0) & (baysis_matched["temporalGlobalLoc"] == 3)]
+        (baysis_matched["SpatGL"] == 1) |
+        (baysis_matched["SpatIL"] == 1)
+        (baysis_matched["SpatIL"] == 2)]
 
     ##################
     ### Congestion ###

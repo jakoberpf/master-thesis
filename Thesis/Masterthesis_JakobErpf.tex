@@ -1465,28 +1465,28 @@ The algorithm is based on the density of points. This density representation is 
 \begin{figure}[h]
 	\centering
 	
-	\begin{tikzpicture}[scale=1.0]
+	\begin{tikzpicture}[scale=0.8]
 	
-	\draw [<->,thick] (0,6) node (yaxis) [above] {$y$}
-        |- (8,0) node (xaxis) [right] {$x$};
+	\draw [<->,thick] (0,5) node (yaxis) [above] {$y$}
+        |- (10,0) node (xaxis) [right] {$x$};
         
-    \foreach \x in {1,...,7}
-    	\draw[black!30] (\x,0) -- (\x,6);
+    \foreach \x in {1,...,9}
+    	\draw[black!30] (\x,0) -- (\x,5);
     	
-   	\foreach \y in {1,...,5}
-    	\draw[black!30] (0,\y) -- (8,\y); 
+   	\foreach \y in {1,...,4}
+    	\draw[black!30] (0,\y) -- (10,\y); 
         
-    \foreach \x in {1,...,7}
+    \foreach \x in {1,...,9}
     	\draw (\x,1pt) -- (\x,-3pt)
 		node[anchor=north] {\x};
 		
-	\foreach \y in {1,...,5}
+	\foreach \y in {1,...,4}
     	\draw (1pt,\y) -- (-3pt,\y) 
      	node[anchor=east] {\y}; 
 
-	\coordinate[label={270:$$}] (C) at (6.5,1.5);
-	\coordinate[label={180:$A$}] (A) at (1.5,1.5);
-	\coordinate[label={30:$B$}] (B) at (6.5,4.5);
+	\coordinate[label={270:$$}] (C) at (8,1);
+	\coordinate[label={180:$A$}] (A) at (2,1);
+	\coordinate[label={30:$B$}] (B) at (8,4);
 
 	\draw (C) -- (A)node[midway,below left]{$a$} -- (B)  -- cycle node[midway,below right]{$b$};
        
@@ -1494,7 +1494,7 @@ The algorithm is based on the density of points. This density representation is 
 	
 	\draw[decorate,decoration={brace,raise=12pt,amplitude=5pt}] (A) -- (B);
 	
-	\path (B) -- (P) node[midway,above]{$$}-- (A) node[midway,above]{$$} ($($(A)!0.5!(B)$)!0.9cm!90:(B)$) node {$d_{A,B}$}; % You can nest calc syntax!
+	\path (B) -- (P) node[midway,above]{$$}-- (A) node[midway,above]{$$} ($($(A)!0.5!(B)$)!1.2cm!90:(B)$) node {$d_{A,B}$}; % You can nest calc syntax!
 	
 	\filldraw[fill=white] (C) -- ($(C)!2mm!(A)$) coordinate (U) -- ($(U)!2mm!90:(C)$) 
       --($(C)!2mm!(B)$) --cycle;
@@ -1503,8 +1503,6 @@ The algorithm is based on the density of points. This density representation is 
 
 	\end{tikzpicture}
 \end{figure}
-
-\medskip
 
 \begin{equation}
 	d_{A,B} = \sqrt{a^2 + b^2} = \sqrt{(x_B-x_A)^2+(y_B-y_A)^2}
@@ -1518,14 +1516,21 @@ As shown above, the euclidean distance calculation assumes a Euclidean spaces, m
 \begin{figure}[h]
 	\centering
 	
-	\begin{tikzpicture}[scale=1.0]
+	\begin{tikzpicture}[scale=0.8]
 	
 	\draw [<->,thick] (0,5) node (yaxis) [above] {$y$}
         |- (10,0) node (xaxis) [right] {$x$};
     % X Axis lines  
-    \foreach \x in {1,...,9}
-    	\draw[red] (\x,1pt) -- (\x,-3pt)
-		node[anchor=north] {\x};
+    \draw[red] (0.7,1pt) -- (0.7,-3pt)
+	node[anchor=north] {1};    
+    \draw[red] (2.5,1pt) -- (2.5,-3pt)
+	node[anchor=north] {2};
+	\draw[red] (4,1pt) -- (4,-3pt)
+	node[anchor=north] {3};
+	\draw[red] (7,1pt) -- (7,-3pt)
+	node[anchor=north] {4};
+	\draw[red] (9.3,1pt) -- (9.3,-3pt)
+	node[anchor=north] {5};
     \foreach \x in {0.7,2.5,4,7,9.3}
     	\draw[black!30] (\x,0.1) -- (\x,4.9);
     % Y Axis lines	
@@ -1534,6 +1539,24 @@ As shown above, the euclidean distance calculation assumes a Euclidean spaces, m
      	node[anchor=east] {\y}; 
     \foreach \y in {1,...,4}
     	\draw[black!30] (0.1,\y) -- (9.9,\y); 
+    	
+    \coordinate[label={270:$$}] (C) at (7,1);
+	\coordinate[label={180:$A$}] (A) at (0.7,1);
+	\coordinate[label={30:$B$}] (B) at (7,4);
+
+	\draw (C) -- (A)node[midway,below left]{$a$} -- (B)  -- cycle node[midway,below right]{$b$};
+       
+	\draw [dashed] (C) -- ($(A)!(C)!(B)$) coordinate (P) node [midway, right]{$h$};
+	
+	\draw[decorate,decoration={brace,raise=12pt,amplitude=5pt}] (A) -- (B);
+	
+	\path (B) -- (P) node[midway,above]{$$}-- (A) node[midway,above]{$$} ($($(A)!0.5!(B)$)!1.2cm!90:(B)$) node {$d_{A,B}$}; % You can nest calc syntax!
+	
+	\filldraw[fill=white] (C) -- ($(C)!2mm!(A)$) coordinate (U) -- ($(U)!2mm!90:(C)$) 
+      --($(C)!2mm!(B)$) --cycle;
+	
+	\draw ($(P)!2mm!(C)$) coordinate (V) -- ($(V)!2mm!90:(C)$) --($(P)!2mm!(B)$);
+	
 	\end{tikzpicture}
 \end{figure}
 

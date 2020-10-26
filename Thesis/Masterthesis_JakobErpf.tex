@@ -1571,7 +1571,7 @@ As shown above, the euclidean distance calculation assumes a Euclidean spaces, m
 
 \bigskip
 
-This makes a direct application of the Euclidian distance invalid to calculate the distance from point $A$ to point $B$. But then how can distances be represented in this 2D-space with different units? The solution developed for this application is to expand the 2D-representation of time and space into a 3D-representation of time, space and the absolute speed (traveling speed is part of \acrshort{fcd}, see section \ref{dataset_fcd}). Because speed $[km/h]$ consist of both time $[min]$ and space $[m]$ is allows for the introduction of the common unit travel time, which can be comprise from these three parameters. At this point it has to be noted, the implemented definition does not represent actual travel time, but server the need of being common unit. To separate both terms the term artificial travel time will be used instead of travel time.
+This makes a direct application of the Euclidian distance invalid to calculate the distance from point $A$ to point $B$. But then how can distances be represented in this 2D-space with different units? The solution developed for this application is to expand the 2D-representation of time and space into a 3D-representation of time, space and speed (absolute mean traveling speed is part of \acrshort{fcd}, see section \ref{dataset_fcd}). Because speed $[km/h]$ consist of both time $[min]$ and space $[m]$ is allows for the introduction of the common unit travel time, which can be comprise from these three parameters traveling speed, time duration and link lenght. At this point it has to be noted, the implemented definition does not represent actual travel time but server the need of being common unit and rough representation. To separate both terms the term artificial travel time will be used instead of travel time.
 
 \begin{figure}[h]
 	\centering	
@@ -1591,7 +1591,7 @@ This makes a direct application of the Euclidian distance invalid to calculate t
 			ytick={1,...,9},
 			ztick={1,...,9},
 			xlabel={$time$},
-			ylabel={$space$},
+			ylabel={$link$},
 			zlabel={$speed$},
 			point meta={x+y+z+3},
 			colormap={summap}{
@@ -1640,26 +1640,37 @@ This makes a direct application of the Euclidian distance invalid to calculate t
 
 Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv y=[y_1,...,y_n]$ and $speed$ $\equiv z=[z_1,...,z_n]$ the mathematical definition of calculation for the distance from point $A$ to point $B$ is as follows.
 
-\paragraph{Time dimension} Traveling just in the time dimension is not actual possible, hence the term artificial travel time. But assuming that both point A and B are at the same space step, then virtual travel time is calculated by:
+\paragraph{Time dimension} Traveling just in the time dimension is not actual possible, hence the term artificial travel time. But assuming that both point $A$ and $B$ are at the same link step, the virtual travel time is calculated by:
 
 \begin{equation}
-	t_{min,gap}^{virtual} = n_{time steps} \cdot stepDuration
+	t_x^{virtual} = (B_x - A_x) \cdot ( x_{interval} + 1 )
+	\label{equation_t_v_time}
 \end{equation}
 
-\paragraph{Space dimension}
-
-\paragraph{Diagonal / space dimension}
-The diagonal distance is by far the most complex 
-
-
-
-
-The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
 \begin{itemize}
-	\item Spatial gap : $l_{min,gap} = 5000$ % cluster consolidation 
-	\item Temporal gap : $t_{min,gap} = 6 min$ % cluster consolidation 
-	\item Virtual travel-time gap $t_{min,gap}^{virtual} = 360s$
+	\setlength\itemsep{0.1em}	
+	\item[] $A_x | B_x$ is the $x$ index of point $A | B$
+	\item[] $x_{interval}$ is the time interval or step duration
 \end{itemize}
+
+\paragraph{Space dimension} Traveling just trough space is also not actual possible, but in the artificial travel time. Under the assumption that point $A$ and point $B$ are in the time step, the virtual travel time is calculated by:  
+
+\begin{equation}
+	t_y^{virtual} = (\frac{y_{A_y}^{length}}{2}  \cdot z_{A_y}^{speed}) + (\frac{y_{B_y}^{length}}{2} \cdot z_{B_y}^{speed}) + \sum_{i}^{A_y + 1,...,B_y - 1} (y_{i}^{length} \cdot z_{i}^{speed})
+\end{equation}
+
+\begin{itemize}
+	\setlength\itemsep{0.1em}	
+	\item[] $A_y | B_y$ is the $y$ index of point $A | B$
+	\item[] $y_{length}$ is the length of the link
+	\item[] $z_{speed}$ is the speed in the cell
+\end{itemize}
+
+\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is more complex in concept and calculation. 
+
+
+this.horizontalCalibrator = ((temporalGapThreshold * 60) * (130 / 3.6)) / spatialGapThreshold;
+
 % TODO read and add infos
 % https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
@@ -1670,6 +1681,13 @@ The threshold for the virtual travel time gap in-between congestion events durin
 %eps: if the eps value chosen is too small, a large part of the data will not be clustered. It will be considered outliers because don’t satisfy the number of points to create a dense region. On the other hand, if the value that was chosen is too high, clusters will merge and the majority of objects will be in the same cluster. The eps should be chosen based on the distance of the dataset (we can use a k-distance graph to find it), but in general small eps values are preferable.
 %minPoints: As a general rule, a minimum minPoints can be derived from a number of dimensions (D) in the data set, as minPoints ≥ D + 1. Larger values are usually better for data sets with noise and will form more significant clusters. The minimum value for the minPoints must be 3, but the larger the data set, the larger the minPoints value that should be chosen.
 %\cite{Padro2017}
+
+The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
+\begin{itemize}
+	\item Spatial gap : $l_{min,gap} = 5000$ % cluster consolidation 
+	\item Temporal gap : $t_{min,gap} = 6 min$ % cluster consolidation 
+	\item Virtual travel-time gap $t_{min,gap}^{virtual} = 360s$
+\end{itemize}
 
 \subsubsection{Performance Tuning}
 Leaving out the runtime implication pf the distance measurer the DBSCAN 

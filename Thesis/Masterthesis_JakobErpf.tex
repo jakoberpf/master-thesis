@@ -1643,38 +1643,51 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 \paragraph{Time dimension} Traveling just in the time dimension is not actual possible, hence the term artificial travel time. But assuming that both point $A$ and $B$ are at the same link step, the virtual travel time is calculated by:
 
 \begin{equation}
-	t_x^{virtual} = (B_x - A_x) \cdot ( x_{interval} + 1 )
+	t_{x,A,B}^{virtual} = (x_B - x_A) \cdot ( x_{interval} + 1 )
 	\label{equation_t_v_time}
 \end{equation}
 
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
-	\item[] $A_x | B_x$ is the $x$ index of point $A | B$
+	\item[] $x_A | x_B$ is the $x$ index of point $A | B$
 	\item[] $x_{interval}$ is the time interval or step duration
 \end{itemize}
 
 \paragraph{Space dimension} Traveling just trough space is also not actual possible, but in the artificial travel time. Under the assumption that point $A$ and point $B$ are in the time step, the virtual travel time is calculated by:  
 
 \begin{equation}
-	t_y^{virtual} = (\frac{y_{A_y}^{length}}{2}  \cdot z_{A_y}^{speed}) + (\frac{y_{B_y}^{length}}{2} \cdot z_{B_y}^{speed}) + \sum_{i}^{A_y + 1,...,B_y - 1} (y_{i}^{length} \cdot z_{i}^{speed})
+	t_{y,A,B}^{virtual} = (\frac{y_{A}^{length}}{2}  \cdot z_{A}^{speed}) + (\frac{y_{B}^{length}}{2} \cdot z_{B}^{speed}) + \sum_{i}^{y_A + 1,...,y_B - 1} (y_{i}^{length} \cdot z_{i}^{speed})
 \end{equation}
 
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
-	\item[] $A_y | B_y$ is the $y$ index of point $A | B$
+	\item[] $y_A | y_B$ is the $y$ index of point $A | B$
 	\item[] $y_{length}$ is the length of the link
 	\item[] $z_{speed}$ is the speed in the cell
 \end{itemize}
 
-\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is more complex in concept and calculation. 
+\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the calculation of the virtual travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary.
 
+\begin{equation}
+	t_{x,y,A,B}^{virtual} = \sqrt{(t_{x,A,B}^{virtual})^2 + (t_{y,A,B}^{virtual} \cdot c)^2}
+\end{equation}
+\begin{equation}
+	v_{A,B}^{mean} = \sum_{ij}^{xy_A + 1,...,xy_B - 1} z_{ij}^{speed}
+\end{equation}
 
-this.horizontalCalibrator = ((temporalGapThreshold * 60) * (130 / 3.6)) / spatialGapThreshold;
+\begin{itemize}
+	\setlength\itemsep{0.1em}	
+	\item[] $xy_A | xy_B$ is the $xy$ index of point $A | B$
+	\item[] $z_{speed}$ is the speed in the cell
+	\item[] $c$ is the time-space calibrator
+\end{itemize}
 
 % TODO read and add infos
 % https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
 \subsubsection{Calibration}
+
+this.horizontalCalibrator = ((temporalGapThreshold * 60) * (130 / 3.6)) / spatialGapThreshold;
 
 %Parameter estimation:
 %The parameter estimation is a problem for every data mining task. To choose good parameters we need to understand how they are used and have at least a basic previous knowledge about the data set that will be used.
@@ -1737,53 +1750,58 @@ Which values where converted into numeric values and why and …
 The congestion object is expanded with...
 
 The temporal reference of if the incident to the congestion (\textbf{temporalGlobalLoc}). The incident...
-%\begin{itemize}
-%	\setlength\itemsep{0em}
-%	\item[1] = is before
-%	\item[2] = is after
-%	\item[3] = is during
-%	\item[4] = is overlapping before
-%	\item[5] = is overlapping after
-%\end{itemize}
 \noindent
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{c|l}  
 		1 & is before \\ 
- 		2 & is after \\ 
+ 		2 & is overlapping before \\ 
  		3 & is during \\
- 		4 & is overlapping before \\
- 		5 & is overlapping after \\
+ 		4 & is overlapping after \\
+ 		5 & is after \\
 	\end{tabular}
 	\caption{Identifier and description of temporal global location reference}
 \end{table}
 
 The spatial reference of if the incident to the congestion (\textbf{spatialGlobalLoc}). The incident...
-\begin{itemize}
-	\setlength\itemsep{0em}
-	\item[0] = is before or after
-	\item[1] = is during
-\end{itemize}
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+		1 & is before \\ 
+ 		2 & is during or overlapping \\ 
+ 		3 & is after \\ 
+	\end{tabular}
+	\caption{Identifier and description of spatial global location reference}
+\end{table}
 
 The temporal reference of if the incident is during the congestion (\textbf{temporalInternalLoc}). The incident is within...
-\begin{itemize}
-	\setlength\itemsep{0em}
-	\item[1] = 10\,\% to Beginning
-	\item[2] = 10\,\% - 30\,\% to Beginning
-	\item[3] = 30\,\% - 70\,\% (Middle)
-	\item[4] = 30\,\% - 10\,\% to Ending
-	\item[5] = 10\,\% to Ending
-\end{itemize}
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+		1 & 10\,\% to Beginning \\
+ 		2 & 10\,\% - 30\,\% to Beginning \\
+ 		3 & 30\,\% - 70\,\% (Middle) \\
+ 		4 & 30\,\% - 10\,\% to Ending \\
+ 		5 & 10\,\% to Ending \\
+	\end{tabular}
+	\caption{Identifier and description of temporal internal location reference}
+\end{table}
 
 The spatial reference of if the incident is during the congestion (\textbf{spatialInternalLoc}). The incident is within...
-\begin{itemize}
-	\setlength\itemsep{0em}
-	\item[1] = 10\,\% to Beginning
-	\item[2] = 10\,\% - 30\,\% to Beginning
-	\item[3] = 30\,\% - 70\,\% (Middle)
-	\item[4] = 30\,\% - 10\,\% to Ending
-	\item[5] = 10\,\% to Ending
-\end{itemize}
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+		1 & 10\,\% to Beginning \\
+ 		2 & 10\,\% - 30\,\% to Beginning \\
+ 		3 & 30\,\% - 70\,\% (Middle) \\
+ 		4 & 30\,\% - 10\,\% to Ending \\
+ 		5 & 10\,\% to Ending \\
+	\end{tabular}
+	\caption{Identifier and description of spatial internal location reference}
+\end{table}
     
     
 \section{Correlation Processing}
@@ -2332,8 +2350,8 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 
 \newgeometry{left=2cm,top=0.5cm,bottom=0.5cm}
 \begingroup
-%    \fontsize{4pt}{8pt}\selectfont
-%		\lstinputlisting[language=java]{../Code/congestion/clustering/CongstatsClusterAlgorithm.java}
+    \fontsize{4pt}{8pt}\selectfont
+		\lstinputlisting[language=java]{../CongEvaluation/congestion/clustering/CongstatsClusterAlgorithm.java}
 \endgroup
 \restoregeometry
 

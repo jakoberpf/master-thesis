@@ -17,6 +17,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import numpy as np
 from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
@@ -49,43 +50,45 @@ if __name__ == '__main__':
     baysis_matched = baysis_imported[
         [
             # Congestion Data
-            "TempExMax",
-            # "TempExMin", # Not implemented
-            "SpatExMax",
-            # "SpatExMin", # Not implemented
+            "TempMax",
+            "TempAvg",
+            "SpatMax",
+            "SpatAvg",
             "TempDist",
             "SpatDist",
             "Coverage",
-            #  * The temporal reference of if the incident to the congestion. The incident...
-            #  * [-1] = Not Set
-            #  * [1] = is before
-            #  * [2] = is after
-            #  * [3] = is during
-            #  * [4] = is overlapping before
-            #  * [5] = is overlapping after
-            "temporalGlobalLoc",
-            #  * The spatial reference of if the incident to the congestion. The incident...
-            #  * [0] = is before or after
-            #  * [1] = is during
-            "spatialGlobalLoc",
-            #  * The temporal reference of if the incident is during the congestion. The incident is within...
-            #  * [-1] = Not Set in case not during or overlapping
-            #  * [1] = 10% to Beginning
-            #  * [2] = 10% - 30% to Beginning
-            #  * [3] = 30% - 70% (Middle)
-            #  * [4] = 30% - 10% to Ending
-            #  * [5] = 10% to Ending
-            "temporalInternalLoc",
-            #  * The spatial reference of if the incident is during the congestion. The incident is within...
-            #  * [-1] = Not Set in case not during or overlapping
-            #  * [1] = 10% to Beginning
-            #  * [2] = 10% - 30% to Beginning
-            #  * [3] = 30% - 70% (Middle)
-            #  * [4] = 30% - 10% to Ending
-            #  * [5] = 10% to Ending
-            "spatialInternalLoc",
-            "TimeLossCar",
-            "TimeLossHGV",
+            # The temporal reference of if the incident to the congestion. The incident...
+            # [-1] = Not Set
+            # [1] = is before
+            # [2] = is overlapping before
+            # [3] = is during
+            # [4] = is overlapping after
+            # [5] = is after
+            "TempGL",
+            # The spatial reference of if the incident to the congestion. The incident...
+            # [-1] = Not Set in case of congestion with no distance
+            # [1] = is before or after
+            # [2] = is during or overlapping
+            # [3] = is during
+            "SpatGL",
+            # The temporal reference of if the incident is during the congestion. The incident is within...
+            # [-1] = Not Set in case not during or overlapping
+            # [1] = 10% to Beginning
+            # [2] = 10% - 30% to Beginning
+            # [3] = 30% - 70% (Middle)
+            # [4] = 30% - 10% to Ending
+            # [5] = 10% to Ending
+            "TempIL",
+            # The spatial reference of if the incident is during the congestion. The incident is within...
+            # [-1] = Not Set in case not during or overlapping
+            # [1] = 10% to Beginning
+            # [2] = 10% - 30% to Beginning
+            # [3] = 30% - 70% (Middle)
+            # [4] = 30% - 10% to Ending
+            # [5] = 10% to Ending
+            "SpatIL",
+            "TLCar",
+            "TLHGV",
             # Accident Data
             "Strasse",
             "Kat", "Typ", "Betei",
@@ -109,20 +112,44 @@ if __name__ == '__main__':
     baysis_imported['Date'] = pd.to_datetime(baysis_imported['Date'], format='%Y-%m-%d')
 
     # Manual data type conversion from str to int64
-    baysis_matched["TimeLossCar"] = pd.to_numeric(baysis_matched["TimeLossCar"])
-    baysis_matched["TimeLossHGV"] = pd.to_numeric(baysis_matched["TimeLossHGV"])
-    baysis_matched["TimeLossCar"] = baysis_matched["TimeLossCar"].astype('int64')
-    baysis_matched["TimeLossHGV"] = baysis_matched["TimeLossHGV"].astype('int64')
+    baysis_matched["TLCar"] = pd.to_numeric(baysis_matched["TLCar"])
+    baysis_matched["TLHGV"] = pd.to_numeric(baysis_matched["TLHGV"])
+    baysis_matched["TLCar"] = baysis_matched["TLCar"].astype('int64')
+    baysis_matched["TLHGV"] = baysis_matched["TLHGV"].astype('int64')
 
     # Add month of roadwork
     baysis_matched['Month'] = baysis_imported['Date'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    # Correcting the column WoTag
+    # Removing errors in WoTag
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
-    baysis_matched['WoTag'].loc[np.invert(baysis_matched['WoTag'].isin(days))] = np.nan
+    baysis_matched['WoTag'].loc[np.invert(baysis_matched['WoTag'].isin(days))] = ''
 
+    # Removing whitespaces
+    baysis_matched['Strasse'] = baysis_matched['Strasse'].str.replace(' ', '')
+
+    # Removing -1/missing values
+    p_missing = ["TempGL",
+                 "SpatGL",
+                 "TempIL",
+                 "SpatIL",
+                 "Strasse",
+                 "Kat", "Typ", "Betei",
+                 "UArt1", "UArt2",
+                 "AUrs1", "AUrs2",
+                 "AufHi",
+                 "Alkoh",
+                 "Char1", "Char2",
+                 "Bes1", "Bes2",
+                 "Lich1", "Lich2",
+                 "Zust1", "Zust2",
+                 "Fstf",
+                 "StrklVu",
+                 "WoTag",
+                 "FeiTag"]
+    for atr in p_missing:
+        baysis_matched.loc[baysis_matched[atr] == -1] = ''
 
     #################
     ### Selection ###
@@ -135,35 +162,42 @@ if __name__ == '__main__':
     ### Congestion ###
     ##################
 
-    plot_congestion_dist([
-        "TempExMax",
-        "SpatExMax",
-        "TempDist",
-        "SpatDist",
-        "Coverage",
-        "TimeLossCar",
-        "TimeLossHGV"],
-        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+    plot_congestion_dist(
+        ["TempMax",
+         "TempAvg",
+         "SpatMax",
+         "SpatAvg",
+         "TempDist",
+         "SpatDist",
+         "Coverage",
+         "TLCar",
+         "TLHGV"],
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
-        ["TempExMax"],
-        ["SpatExMax"],
-        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+        ["TempMax"],
+        ["SpatMax"],
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+
+    plot_congestion_scatter(
+        ["TempAvg"],
+        ["SpatAvg"],
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
         ["TempDist"],
         ["SpatDist"],
-        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
     plot_congestion_scatter(
-        ["TimeLossCar"],
-        ["TimeLossHGV"],
-        baysis_selected, plot_path, file_prefix, save_plot, show_plot)
+        ["TLCar"],
+        ["TLHGV"],
+        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
-    locators = ["temporalGlobalLoc",
-                "spatialGlobalLoc",
-                "temporalInternalLoc",
-                "spatialInternalLoc"]
+    locators = ["TempGL",
+                "SpatGL",
+                "TempIL",
+                "SpatIL"]
 
     for atr in locators:
         plt.figure(figsize=set_size(418, 0.8))
@@ -171,7 +205,7 @@ if __name__ == '__main__':
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
         plt.ylabel('Count')
-        baysis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        baysis_selected.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
         plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
@@ -385,14 +419,11 @@ if __name__ == '__main__':
         "AufHi",
         "Alkoh",
         "Char1", "Char2",
-        # "Char3",  # Not relevant because empty
         "Bes1", "Bes2",
-        # "Bes3",  # Not relevant because empty
         "Lich1", "Lich2",
         "Zust1", "Zust2",
         # "Fstf", # TODO fix handling of non number sequences in scatter plots
         # "StrklVu",  # TODO fix handling of non number sequences in scatter plots
-        # "WoTagNr",  # Already represented by WoTag
         "WoTag",
         "FeiTag"]
 

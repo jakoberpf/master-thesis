@@ -50,9 +50,9 @@ if __name__ == '__main__':
         [
             # Congestion Data
             "TempExMax",
-            # "TempExMin", # Not implemented
+            # "TempAvg", # Not implemented
             "SpatExMax",
-            # "SpatExMin", # Not implemented
+            # "SpatAvg", # Not implemented
             "TempDist",
             "SpatDist",
             "Coverage",
@@ -65,8 +65,10 @@ if __name__ == '__main__':
             #  * [5] = is overlapping after
             "temporalGlobalLoc",
             #  * The spatial reference of if the incident to the congestion. The incident...
-            #  * [0] = is before or after
-            #  * [1] = is during
+            #  * [-1] = Not set in case of congestion with no distance
+            #  * [1] = is before
+            #  * [2] = is during or overlapping
+            #  * [3] = is after
             "spatialGlobalLoc",
             #  * The temporal reference of if the incident is during the congestion. The incident is within...
             #  * [-1] = Not Set in case not during or overlapping
@@ -121,6 +123,7 @@ if __name__ == '__main__':
 
     # Correcting the column WoTag
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
+    baysis_matched['WoTag'].loc[np.invert(baysis_matched['WoTag'].isin(days))] = np.nan
 
     #################
     ### Selection ###

@@ -1465,7 +1465,7 @@ The algorithm is based on the density of points. This density representation is 
 \begin{figure}[h]
 	\centering
 	
-	\begin{tikzpicture}[scale=0.8]
+	\begin{tikzpicture}[scale=0.7]
 	
 	\draw [<->,thick] (0,5) node (yaxis) [above] {$y$}
         |- (10,0) node (xaxis) [right] {$x$};
@@ -1490,7 +1490,7 @@ The algorithm is based on the density of points. This density representation is 
 
 	\draw (C) -- (A)node[midway,below left]{$a$} -- (B)  -- cycle node[midway,below right]{$b$};
        
-	\draw [dashed] (C) -- ($(A)!(C)!(B)$) coordinate (P) node [midway, right]{$h$};
+	\draw [dashed] (C) -- ($(A)!(C)!(B)$) coordinate (P) node [midway, left]{$h$};
 	
 	\draw[decorate,decoration={brace,raise=12pt,amplitude=5pt}] (A) -- (B);
 	
@@ -1502,6 +1502,7 @@ The algorithm is based on the density of points. This density representation is 
 	\draw ($(P)!2mm!(C)$) coordinate (V) -- ($(V)!2mm!90:(C)$) --($(P)!2mm!(B)$);
 
 	\end{tikzpicture}
+	\caption{Euclidian distance in 2-dimensional euclidian space}
 \end{figure}
 
 \begin{equation}
@@ -1511,42 +1512,51 @@ The algorithm is based on the density of points. This density representation is 
 
 \medskip
 
-As shown above, the euclidean distance calculation assumes a Euclidean spaces, meaning equal scaling of both axis, which is not the case with FCD. The space of the FCD is defined by a spatial and a temporal dimension, which are scaled differently as mentioned in section \ref{dataset_fcd}. This 2-dimensional space can be visualized like:
+As shown above, the euclidean distance calculation assumes a Euclidean spaces, meaning equal scaling of both axis, which is not the case with FCD. The 2D-space of the FCD is defined by a spatial and a temporal dimension, which are scaled differently as mentioned in section \ref{dataset_fcd}. The vertical axis shows the temporal dimension is regular scales in 3 minute intervals. The horizontal axis is the spatial extend, scaled in one cell per step, representing the length of one section of the road, which can be different. This can be visualized like:
 
 \begin{figure}[h]
 	\centering
 	
-	\begin{tikzpicture}[scale=0.8]
+	\begin{tikzpicture}[scale=0.7]
 	
 	\draw [<->,thick] (0,5) node (yaxis) [above] {$y$}
         |- (10,0) node (xaxis) [right] {$x$};
     % X Axis lines  
     \draw[red] (0.7,1pt) -- (0.7,-3pt)
-	node[anchor=north] {1};    
+	node[anchor=north] {70}; 
+    \draw[red] (1.5,1pt) -- (1.5,-3pt)
+	node[anchor=north] {110};   
     \draw[red] (2.5,1pt) -- (2.5,-3pt)
-	node[anchor=north] {2};
+	node[anchor=north] {250};
 	\draw[red] (4,1pt) -- (4,-3pt)
-	node[anchor=north] {3};
+	node[anchor=north] {400};
 	\draw[red] (7,1pt) -- (7,-3pt)
-	node[anchor=north] {4};
+	node[anchor=north] {700};
+	\draw[red] (8.3,1pt) -- (8.3,-3pt)
+	node[anchor=north] {830};
 	\draw[red] (9.3,1pt) -- (9.3,-3pt)
-	node[anchor=north] {5};
-    \foreach \x in {0.7,2.5,4,7,9.3}
+	node[anchor=north] {930};
+    \foreach \x in {0.7,1.5,2.5,4,7,8.3,9.3}
     	\draw[black!30] (\x,0.1) -- (\x,4.9);
     % Y Axis lines	
-	\foreach \y in {1,...,4}
-    	\draw (1pt,\y) -- (-3pt,\y) 
-     	node[anchor=east] {\y}; 
+	\draw[red] (1pt,1) -- (-3pt,1) 
+     	node[anchor=east] {3}; 
+    \draw[red] (1pt,2) -- (-3pt,2) 
+     	node[anchor=east] {6}; 
+    \draw[red] (1pt,3) -- (-3pt,3) 
+     	node[anchor=east] {9}; 
+    \draw[red] (1pt,4) -- (-3pt,4) 
+     	node[anchor=east] {12}; 
     \foreach \y in {1,...,4}
     	\draw[black!30] (0.1,\y) -- (9.9,\y); 
     	
     \coordinate[label={270:$$}] (C) at (7,1);
-	\coordinate[label={180:$A$}] (A) at (0.7,1);
+	\coordinate[label={180:$A$}] (A) at (1.5,1);
 	\coordinate[label={30:$B$}] (B) at (7,4);
 
 	\draw (C) -- (A)node[midway,below left]{$a$} -- (B)  -- cycle node[midway,below right]{$b$};
        
-	\draw [dashed] (C) -- ($(A)!(C)!(B)$) coordinate (P) node [midway, right]{$h$};
+	\draw [dashed] (C) -- ($(A)!(C)!(B)$) coordinate (P) node [midway, left]{$h$};
 	
 	\draw[decorate,decoration={brace,raise=12pt,amplitude=5pt}] (A) -- (B);
 	
@@ -1558,14 +1568,76 @@ As shown above, the euclidean distance calculation assumes a Euclidean spaces, m
 	\draw ($(P)!2mm!(C)$) coordinate (V) -- ($(V)!2mm!90:(C)$) --($(P)!2mm!(B)$);
 	
 	\end{tikzpicture}
+	\caption{Euclidian distance in 2-dimensional non-euclidian space}
 \end{figure}
 
 \bigskip
 
-The vertical axis shows the temporal dimension is regular scales in 3 minute steps. The horizontal axis represents the spatial extend is scaled in one cell per step. These cell represent the space of one section of the road, which can have different lengths and make a direct application of the Euclidian distance invalid. 
+This makes a direct application of the Euclidian distance invalid to calculate the distance from point $A$ to point $B$. But then how can distances be represented in this 2D-space with different units? The solution developed for this application is to expand the 2D-representation of time and space into a 3D-representation of time, space and the absolute speed (traveling speed is part of \acrshort{fcd}, see section \ref{dataset_fcd}). Because speed $[km/h]$ consist of both time $[min]$ and space $[m]$ is allows for the introduction of the common unit travel time, which can be comprise from these three parameters. At this point it has to be noted, the implemented definition does not represent actual travel time, but server the need of being common unit. To separate both terms the term artificial travel time will be used instead of travel time.
+
+\begin{figure}[h]
+	\centering
+	
+	\begin{tikzpicture}
+	
+	\begin{axis}[
+		view={120}{40},
+		width=220pt,
+		height=220pt,
+		grid=major,
+		z buffer=sort,
+		xmin=1,xmax=9,
+		ymin=1,ymax=9,
+		zmin=1,zmax=9,
+		enlargelimits=upper,
+		xtick={1,...,9},
+		ytick={1,...,9},
+		ztick={1,...,9},
+		xlabel={$time$},
+		ylabel={$space$},
+		zlabel={$speed$},
+		point meta={x+y+z+3},
+		colormap={summap}{
+			color=(black); color=(blue); 
+			color=(black); color=(white) 
+			color=(orange) color=(violet) 
+			color=(red)
+		},
+		scatter/use mapped color={
+			draw=mapped color,fill=mapped color!70},
+		]
+		% `pgfplots_scatter4.dat' contains a large sequence of
+		% the form
+		% l_0   l_1     l_2     
+		% 1     6       -1      
+		% -1    -1      -1      
+		% 0     -1      -1      
+		% -1    0       -1      
+		% -1    -1      0       
+		% 1     -1      -1      
+		% 0     0       -1      
+		% 0     -1      0       
+		%\addplot3[only marks,scatter,mark=cube*,mark size=7] 
+	 	%table {plotdata/pgfplots_scatterdata4.dat};
+		%\addplot3[mesh,domain=1:9] {exp(-x^2-y^2)};
+	\end{axis}
+\end{tikzpicture}
+
+\end{figure}
+
+Assuming an 3D-space of $time$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv y=[y_1,...,y_n]$ and $speed$ $\equiv z=[z_1,...,z_n]$ the mathematical definition of calculation for the distance from point $A$ to point $B$ is as follows.
+
+\paragraph{Time dimension} Traveling just in the time dimension is not actual possible, hence the term artificial travel time. But assuming that both point A and B are at the same space step.
+
+\paragraph{Space dimension}
+
+\paragraph{Diagonal / space dimension}
+The diagonal distance is by far the most complex 
+
+
+
 
 The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
-
 \begin{itemize}
 	\item Spatial gap : $l_{min,gap} = 5000$ % cluster consolidation 
 	\item Temporal gap : $t_{min,gap} = 6 min$ % cluster consolidation 

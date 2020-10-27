@@ -155,15 +155,13 @@ if __name__ == '__main__':
     ### Selection ###
     #################
 
-    baysis_selected = baysis_matched
+    baysis_selected = baysis_matched.loc[
+        (baysis_matched["SpatGL"].isin([1, 2]))
+    ]
 
-    # baysis_selected = baysis_matched.loc[
-    #     (baysis_matched["SpatGL"].isin([1, 2]))
-    # ]
-
-    # baysis_selected = baysis_selected.loc[
-    #     (baysis_matched["SpatIL"].isin([1, 2]))
-    # ]
+    baysis_selected = baysis_selected.loc[
+        (baysis_matched["SpatIL"].isin([1, 2]))
+    ]
 
     ##################
     ### Congestion ###

@@ -130,35 +130,40 @@ if __name__ == '__main__':
     baysis_matched['Strasse'] = baysis_matched['Strasse'].str.replace(' ', '')
 
     # Removing -1/missing values
-    p_missing = ["TempGL",
-                 "SpatGL",
-                 "TempIL",
-                 "SpatIL",
-                 "Strasse",
-                 "Kat", "Typ", "Betei",
-                 "UArt1", "UArt2",
-                 "AUrs1", "AUrs2",
-                 "AufHi",
-                 "Alkoh",
-                 "Char1", "Char2",
-                 "Bes1", "Bes2",
-                 "Lich1", "Lich2",
-                 "Zust1", "Zust2",
-                 "Fstf",
-                 "StrklVu",
-                 "WoTag",
-                 "FeiTag"]
-    for atr in p_missing:
-        baysis_matched.loc[baysis_matched[atr] == -1] = ''
+    # p_missing = ["TempGL",
+    #              "SpatGL",
+    #              "TempIL",
+    #              "SpatIL",
+    #              "Strasse",
+    #              "Kat", "Typ", "Betei",
+    #              "UArt1", "UArt2",
+    #              "AUrs1", "AUrs2",
+    #              "AufHi",
+    #              "Alkoh",
+    #              "Char1", "Char2",
+    #              "Bes1", "Bes2",
+    #              "Lich1", "Lich2",
+    #              "Zust1", "Zust2",
+    #              "Fstf",
+    #              "StrklVu",
+    #              "WoTag",
+    #              "FeiTag"]
+    # for atr in p_missing:
+    #     baysis_matched.loc[baysis_matched[atr] == -1] = ''
 
     #################
     ### Selection ###
     #################
 
-    baysis_selected = baysis_matched.loc[
-        (baysis_matched["SpatGL"] == 1) |
-        (baysis_matched["SpatIL"] == 1) |
-        (baysis_matched["SpatIL"] == 2)]
+    baysis_selected = baysis_matched
+
+    # baysis_selected = baysis_matched.loc[
+    #     (baysis_matched["SpatGL"].isin([1, 2]))
+    # ]
+
+    # baysis_selected = baysis_selected.loc[
+    #     (baysis_matched["SpatIL"].isin([1, 2]))
+    # ]
 
     ##################
     ### Congestion ###
@@ -426,7 +431,7 @@ if __name__ == '__main__':
         "Zust1", "Zust2",
         # "Fstf", # TODO fix handling of non number sequences in scatter plots
         # "StrklVu",  # TODO fix handling of non number sequences in scatter plots
-        "WoTag",
+        # "WoTag", # TODO fix handling of non number sequences in scatter plots
         "FeiTag"]
 
     # Congestion -> Accident
@@ -436,7 +441,7 @@ if __name__ == '__main__':
         plt.rcParams.update(tex_fonts)
         plt.title('Distribution of ' + atr)
         plt.ylabel('Count')
-        baysis_selected.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
+        baysis_selected.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
         plt.xlabel(atr)
         if save_plot:
             plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')

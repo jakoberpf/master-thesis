@@ -34,7 +34,7 @@ if __name__ == '__main__':
     generate_report = False
 
     data_path = 'data/'
-    work_path = data_path + 'BAYSIS/03_selected_01_duringJam/'
+    work_path = data_path + 'BAYSIS/03_selected_02_duringJam/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
@@ -156,15 +156,11 @@ if __name__ == '__main__':
     #################
 
     baysis_selected = baysis_matched.loc[
-        (baysis_matched["TempGL"].isin([1, 2, 3]))
+        (baysis_matched["TempGL"].isin([3]))
     ]
 
     baysis_selected = baysis_selected.loc[
-        (baysis_matched["TempIL"].isin([-1, 1, 2]))
-    ]
-
-    baysis_selected = baysis_selected.loc[
-        (baysis_matched["SpatGL"].isin([1, 2]))
+        (baysis_matched["SpatGL"].isin([2]))
     ]
 
     ##################

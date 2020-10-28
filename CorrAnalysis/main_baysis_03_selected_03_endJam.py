@@ -31,17 +31,17 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = True
+    generate_report = False
 
     data_path = 'data/'
-    work_path = data_path + 'BAYSIS/03_selected_01_startJam/'
+    work_path = data_path + 'BAYSIS/03_selected_01_endJam/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
 
     work_file = 'BAYSIS_2019.csv'
 
-    file_prefix = 'baysis_matched'
+    file_prefix = 'baysis_selected'
     file_plot_type = '.pdf'
 
     baysis_imported = pd.read_csv(data_path + 'BAYSIS/02_matched/' + work_file, sep=';', decimal=',', parse_dates=True,
@@ -155,15 +155,17 @@ if __name__ == '__main__':
     ### Selection ###
     #################
 
-    baysis_selected = baysis_matched
+    baysis_selected = baysis_matched.loc[
+        (baysis_matched["TempGL"].isin([1, 2, 3]))
+    ]
 
-    # baysis_selected = baysis_matched.loc[
-    #     (baysis_matched["SpatGL"].isin([1, 2]))
-    # ]
+    baysis_selected = baysis_selected.loc[
+        (baysis_matched["TempIL"].isin([-1, 1, 2]))
+    ]
 
-    # baysis_selected = baysis_selected.loc[
-    #     (baysis_matched["SpatIL"].isin([1, 2]))
-    # ]
+    baysis_selected = baysis_selected.loc[
+        (baysis_matched["SpatGL"].isin([1, 2]))
+    ]
 
     ##################
     ### Congestion ###
@@ -474,6 +476,14 @@ if __name__ == '__main__':
     ### Box ###
     ###########
 
+    ##############
+    ### Report ###
+    ##############
+
+    if generate_report:
+        report = ProfileReport(baysis_selected, title='BAYSIS Selected Dataset Report')
+        report.to_file(work_path + file_prefix + '_report.html')
+
     ###################
     ### Encoding ###
     ###################
@@ -506,17 +516,23 @@ if __name__ == '__main__':
         for key in baysis_encoded_dict.keys():
             tf.write("%s, %s\n" % (key, baysis_encoded_dict[key]))
 
-    ##############
-    ### Report ###
-    ##############
-
-    if generate_report:
-        report = ProfileReport(baysis_encoded, title='BAYSIS Selected Dataset Report')
-        report.to_file(work_path + file_prefix + '_report.html')
-
     ###################
     ### Correlation ###
     ###################
+
+    baysis_encoded = baysis_encoded.rename(columns={"TempMax": "TMax",
+                                                    "TempAvg": "TAvg",
+                                                    "SpatMax": "SMax",
+                                                    "SpatAvg": "SAvg",
+                                                    "Coverage": "Cov",
+                                                    "TempDist": "TDist",
+                                                    "SpatDist": "SDist",
+                                                    'Strasse': "Str"})
+
+    baysis_encoded = baysis_encoded.drop(columns=["TempGL",
+                                                  "SpatGL",
+                                                  "TempIL",
+                                                  "SpatIL"])
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused
@@ -549,7 +565,7 @@ if __name__ == '__main__':
         tf.write(results.get('significance').to_latex())
 
     with open(tex_path + file_prefix + '_coef_cramers.tex', 'w') as tf:
-        tf.write(results.get('coefficient').to_latex())
+        tf.write(results.get('coefficient').to_latex(escape=False))
 
     # Calculate with Theil's U
     results = None  # To make sure that no old data is reused
@@ -583,7 +599,7 @@ if __name__ == '__main__':
         tf.write(results.get('significance').to_latex())
 
     with open(tex_path + file_prefix + '_coef_theils.tex', 'w') as tf:
-        tf.write(results.get('coefficient').to_latex())
+        tf.write(results.get('coefficient').to_latex(escape=False))
 
     ######################
     ### Scatter Matrix ###
@@ -594,4 +610,4 @@ if __name__ == '__main__':
     # sns.pairplot(baysis_selected, hue='Kat')
     # plt.show()
 
-    print('Finished BAYSIS Matched Analysis')
+    print('Finished BAYSIS Selected Analysis')

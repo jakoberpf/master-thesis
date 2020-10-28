@@ -1755,6 +1755,7 @@ Which values where converted into numeric values and why and …
 %	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
 %\end{itemize}
 
+\paragraph{Congestion}
 The congestion object is expanded with...
 
 The temporal reference of if the incident to the congestion (\textbf{temporalGlobalLoc}). The incident...
@@ -1811,7 +1812,13 @@ The spatial reference of if the incident is during the congestion (\textbf{spati
 	\caption{Identifier and description of spatial internal location reference}
 \end{table}
     
-    
+The incident object is expanded with... BAYSIS and 
+
+\paragraph{BAYSIS}
+
+\paragraph{ArbIS}
+
+ 
 \section{Correlation Processing}
 \label{definition_correlation_processing}
 
@@ -1973,103 +1980,103 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \label{appendix_baysis_dataset}
 
 % ------- BAYSIS Matched - Figures --------
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Kat}
-	\caption{Distribution of the accident category 'Kat'}
-	\label{img:appendix_baysis_matched_Kat}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Typ}
-	\caption{Distribution of the accident type 'Typ'}
-	\label{img:appendix_baysis_matched_Typ}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Betei}
-	\caption{Distribution of the number of involves persons 'Betei'}
-	\label{img:appendix_baysis_matched_Beteil}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_UArt}
-	\caption{Distribution of the accident cause type 'UArt'}
-	\label{img:appendix_baysis_matched_UArt}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_AUrs}
-	\caption{Distribution of the accident cause 'AUrs'}
-	\label{img:appendix_baysis_matched_AUrs}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Aufhi}
-	\caption{Distribution of obstacle collision 'AufHi'}
-	\label{img:appendix_baysis_matched_Aufhi}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Alkoh}
-	\caption{Distribution of the alcohol Involvement 'Alkoh'}
-	\label{img:appendix_baysis_matched_Alkoh}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Char}
-	\caption{Distribution of the street characteristic 'Char'}
-	\label{img:appendix_baysis_matched_Char}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Bes}
-	\caption{Distribution of the special street characteristic 'Bes'}
-	\label{img:appendix_baysis_matched_Bes}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Lich}
-	\caption{Distribution of the lighting situation 'Lich'}
-	\label{img:appendix_baysis_matched_Lich}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Zust}
-	\caption{Distribution of the street condition}
-	\label{img:appendix_baysis_matched_Zust 'Zust'}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Fstf}
-	\caption{Distribution of the accident lanes}
-	\label{img:appendix_baysis_matched_Fstf 'Fstf'}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_WoTag}
-	\caption{Distribution of the week day}
-	\label{img:appendix_baysis_matched_WoTag 'WoTag'}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Kat}
-	\caption{Distribution of the accident category 'Kat'}
-	\label{img:appendix_baysis_matched_Kat}
-\end{figure}
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Kat}
+%	\caption{Distribution of the accident category 'Kat'}
+%	\label{img:appendix_baysis_matched_Kat}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Typ}
+%	\caption{Distribution of the accident type 'Typ'}
+%	\label{img:appendix_baysis_matched_Typ}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Betei}
+%	\caption{Distribution of the number of involves persons 'Betei'}
+%	\label{img:appendix_baysis_matched_Beteil}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_UArt}
+%	\caption{Distribution of the accident cause type 'UArt'}
+%	\label{img:appendix_baysis_matched_UArt}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_AUrs}
+%	\caption{Distribution of the accident cause 'AUrs'}
+%	\label{img:appendix_baysis_matched_AUrs}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Aufhi}
+%	\caption{Distribution of obstacle collision 'AufHi'}
+%	\label{img:appendix_baysis_matched_Aufhi}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Alkoh}
+%	\caption{Distribution of the alcohol Involvement 'Alkoh'}
+%	\label{img:appendix_baysis_matched_Alkoh}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Char}
+%	\caption{Distribution of the street characteristic 'Char'}
+%	\label{img:appendix_baysis_matched_Char}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Bes}
+%	\caption{Distribution of the special street characteristic 'Bes'}
+%	\label{img:appendix_baysis_matched_Bes}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Lich}
+%	\caption{Distribution of the lighting situation 'Lich'}
+%	\label{img:appendix_baysis_matched_Lich}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Zust}
+%	\caption{Distribution of the street condition}
+%	\label{img:appendix_baysis_matched_Zust 'Zust'}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Fstf}
+%	\caption{Distribution of the accident lanes}
+%	\label{img:appendix_baysis_matched_Fstf 'Fstf'}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_WoTag}
+%	\caption{Distribution of the week day}
+%	\label{img:appendix_baysis_matched_WoTag 'WoTag'}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=1]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_Kat}
+%	\caption{Distribution of the accident category 'Kat'}
+%	\label{img:appendix_baysis_matched_Kat}
+%\end{figure}
 
 % ------- BAYSIS Matched - Matrix --------
 \newgeometry{left=1cm,right=1cm}
@@ -2121,57 +2128,66 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 	\end{sidewaystable}
 \restoregeometry
 
-%% ------- BAYSIS Selected --------
-%\tocless\section{BAYSIS Matched Data}
-%\label{appendix_baysis_dataset}
-%
-%Explanation...
-%
-%\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
-%	\caption{Correlation matrix for BAYSIS matched data, with Cramer's $V$}
-%	\label{img:appendix_correlation_matrix_dataset_cramers}
-%\end{figure}
-%\restoregeometry
-%
-%\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
-%\label{appendix_baysis_dataset_corr_theils}
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_theils}
-%	\caption{Correlation matrix for BAYSIS matched data, with Theil's $U$}
-%	\label{img:appendix_correlation_matrix_dataset_theils}
-%\end{figure}
-%\restoregeometry
-%
-%% ------- BAYSIS Matched - Tabellen --------
-%\newgeometry{left=1cm,right=1cm,top=1cm}
-%\begin{sidewaystable} % <-- HERE
-%\tiny
-%\setlength{\tabcolsep}{4pt}
-%\centering
-%\include{../CorrAnalysis/data/BAYSIS/02_matched/latex/baysis_matched_corr_cramers}
-%\caption{Correlation matrix for BAYSIS matched data, with Cramer's $V$}
-%\end{sidewaystable} % <-- HERE
-%
-%\begin{sidewaystable} % <-- HERE
-%\tiny
-%\setlength{\tabcolsep}{4pt}
-%\centering
-%\include{../CorrAnalysis/data/BAYSIS/02_matched/latex/baysis_matched_corr_theils}
-%\caption{Correlation matrix for BAYSIS matched data, with Theil's $U$}
-%\end{sidewaystable} % <-- HERE
-%
-%\begin{sidewaystable} % <-- HERE
-%\tiny
-%\setlength{\tabcolsep}{4pt}
-%\centering
-%\include{../CorrAnalysis/data/BAYSIS/02_matched/latex/baysis_matched_sign_cramers}
-%\caption{Significancy matrix for BAYSIS matched data}
-%\end{sidewaystable} % <-- HERE
-%\restoregeometry
+% ------- BAYSIS Selected --------
+\tocless\section{BAYSIS Selected Data - Jam Initiator}
+\label{appendix_baysis_dataset}
+
+Explanation...
+
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_matched_corr_cramers}
+	\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Cramer's $V$}
+	\label{img:appendix_correlation_matrix_dataset_cramers}
+\end{figure}
+\restoregeometry
+
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
+\label{appendix_baysis_dataset_corr_theils}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_matched_corr_theils}
+	\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Theil's $U$}
+	\label{img:appendix_correlation_matrix_dataset_theils}
+\end{figure}
+\restoregeometry
+
+% ------- BAYSIS Matched - Tabellen --------
+\newgeometry{left=1cm,right=1cm,top=1cm}
+\begin{sidewaystable} % <-- HERE
+\tiny
+\setlength{\tabcolsep}{2pt}
+\centering
+\include{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/latex/baysis_matched_corr_cramers}
+\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Cramer's $V$}
+\end{sidewaystable} % <-- HERE
+
+\begin{sidewaystable} % <-- HERE
+\tiny
+\setlength{\tabcolsep}{2pt}
+\centering
+\include{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/latex/baysis_matched_corr_theils}
+\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Theil's $U$}
+\end{sidewaystable} % <-- HERE
+
+\begin{sidewaystable} % <-- HERE
+\tiny
+\setlength{\tabcolsep}{2pt}
+\centering
+\include{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/latex/baysis_matched_sign_cramers}
+\caption{Significancy matrix for BAYSIS selected data (Jam Initiator)}
+\end{sidewaystable} % <-- HERE
+\restoregeometry
+
+\begin{sidewaystable} % <-- HERE
+\tiny
+\setlength{\tabcolsep}{2pt}
+\centering
+\include{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/latex/baysis_matched_coef_theils}
+\caption{Significancy matrix for BAYSIS selected data (Jam Initiator)}
+\end{sidewaystable} % <-- HERE
+\restoregeometry
 
 % -------------------------------
 % ------- ArbIS Appendix --------

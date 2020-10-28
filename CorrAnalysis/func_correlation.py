@@ -63,7 +63,7 @@ def pearsons(measurements_x, measurements_y):
     """
     print(measurements_x.name + ' to ' + measurements_y.name + ' with Pearson')
     coefficient, p_value = ss.pearsonr(measurements_x, measurements_y)
-    return coefficient, p_value, 'Pearson'
+    return coefficient, p_value, r'$r$'
 
 
 #########################################
@@ -160,7 +160,7 @@ def eta(measurements,
         correlation = np.sqrt(numerator / denominator)
 
     f_statistic, p_value = kruskal_wallis(measurements, categories)
-    return correlation, p_value, 'Eta'
+    return correlation, p_value, r'$\eta$'
 
 
 ############################################
@@ -187,7 +187,7 @@ def point_biserial(measurements, dichotomies):
     """
     print(measurements.name + ' to ' + dichotomies.name + ' with Point Biserial and Wilcoxon (Mann Whitney)')
     correlation, p_value = ss.pointbiserialr(dichotomies, measurements)
-    return correlation, p_value, 'Point Biserial'
+    return correlation, p_value, r'$r_{pq}$'
 
 
 #########################################
@@ -214,7 +214,7 @@ def kendall(measurements_x, measurements_y):
     """
     print(measurements_x.name + ' to ' + measurements_y.name + ' with Kendall')
     correlation, p_value = ss.kendalltau(measurements_x, measurements_y)
-    return correlation, p_value, 'Kendall'
+    return correlation, p_value, r'$\tau$'
 
 
 #################################
@@ -295,7 +295,7 @@ def cramers_v(x,
         else:
             return np.sqrt(phi2corr / min((kcorr - 1), (rcorr - 1))), p, 'Cramer\'s V'
     else:
-        return np.sqrt(phi2 / min(k - 1, r - 1)), p, 'Cramer\'s V'
+        return np.sqrt(phi2 / min(k - 1, r - 1)), p, r'$V$'
 
 
 def theils_u(x,
@@ -361,7 +361,7 @@ def theils_u(x,
     if s_x == 0:
         return 1, 0
     else:
-        return (s_x - s_xy) / s_x, p, 'Theils\'s U'
+        return (s_x - s_xy) / s_x, p, r'$U$'
 
 
 def conditional_entropy(x,

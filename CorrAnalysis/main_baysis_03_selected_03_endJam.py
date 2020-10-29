@@ -156,15 +156,15 @@ if __name__ == '__main__':
     #################
 
     baysis_selected = baysis_matched.loc[
-        (baysis_matched["TempGL"].isin([4, 5]))
+        (baysis_matched["TempGL"].isin([3, 4, 5]))
     ]
 
     baysis_selected = baysis_selected.loc[
-        (baysis_matched["TempIL"].isin([-1, 1, 2]))
+        (baysis_matched["TempIL"].isin([-1, 4, 5]))
     ]
 
     baysis_selected = baysis_selected.loc[
-        (baysis_matched["SpatGL"].isin([1, 2]))
+        (baysis_matched["SpatGL"].isin([2, 3]))
     ]
 
     ##################

@@ -322,7 +322,7 @@ In the scope of this thesis only a selection of these introduced data collection
 
 \paragraph{Naming} The noun congestion does not have clear plural, which is why in the case of multiple congestion, the term jams will be used. These two terms are seen as interchangeable for their reference to a single or multiple congestion events.
 
-\subsection{Descriptive}
+\subsection{Descriptive Definition}
 
 Jams or a single congestion in layman terms are spatial and timely accumulations of traffic participants, resulting in speeds slower or sometimes much slower than free flow. In severe cases this is also often described a stop-and-go or stopped traffic. They are triggered by a reduction of traffic throughput in volume or an increase of traffic demand. Studies have shown that these triggers are usually caused by four categories of disturbances. \cite{TRB2003,FHA2011}
 
@@ -355,7 +355,7 @@ As above-mentioned, driving behavior can influence the traffic flow as well as c
 
 This general layman's definition of jams is essential correct, but not sufficient for the data scientific approach in this thesis. The Bavarian ministry for streets does not have an official definition at the time of writing and there is no unified definition or thresholds when reduced speed or time delays can classify data as a congested or slow. This makes it necessary to form a specific definition of \glspl{jam} and their speed/space/time thresholds, for the scope of this thesis. For instance the \acrshort{adac} classifies highway traffic moving with mean speed lower than 20 km/h as jammed \cite{ADAC2019}. In Switzerland the ministry for streets has a more severe definition with a mean speed under 10 km/h \cite{ASTRA2020}. A definition just this available literature does not consider the data is would be applied on. Therefore the representation of the speeds occurring in jams from the FCD dataset, introduced in chapter \ref{dataset_fcd}, should be adducted to further tailor a definition to our needs. 
 
-\subsection{Data scientific}
+\subsection{Data Scientific Definition}
 
 \begin{figure}[h]
 	\centering
@@ -382,7 +382,7 @@ To exclude cell errors and discard detections, too small to have to be considere
 
 If $l < l_{min}$ or $t < t_{min}$ is given, $l$ being the maximum spatial extend and $t$ being the maximum temporal extend, the detection should be ignored.
 
-\chapter{Correlation}
+\chapter{Applied Statistic Methods}
 \label{definition_correlation}
 This chapter will explain the later used statical methods and their mathematical definitions. This is to provide an in depth understanding how the results, presented in later chapters are comprised. This also clarify which methods and assumptions implemented to handle a mixed data-based analysis.
 
@@ -1309,7 +1309,7 @@ Table \ref{table:table_arbis_paramters} show all categorized parameters, relevan
 	\label{table:table_arbis_paramters}
 \end{table}
 
-\chapter{Methodology}
+\chapter{Methodology of processing}
 \label{methodology}
 The previous chapters gave an introduction into the systems, data and statistical indicators which will be used to determine if jams characteristics, detected in \acrshort{fcd} and incident characteristics from accidents (\acrshort{baysis}) and roadworks (\acrshort{arbis}) are statistically dependent on each other. The research question to be answered stands as follows:
 
@@ -1330,7 +1330,7 @@ First step is the detection of congestion events. The definition in \ref{definit
 
 For the classification of the congestion events into different types, by theirs spatial and timely extends a shaping algorithm is needed. It is supposed to convert the accumulation of cells into a simple describable shape, which can be put into groups.
 
-\subsection{Clustering}
+\subsection{Clustering of Floating-Car-Data}
 \label{methodology_clustering}
 The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. For example k-means or k-metoid (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers) or spectral clustering (graph distance), which can be sorted into the categories of partition-based, hierarchical-based and density-based clustering \cite{Chauhan2020,Yildirim2020}.
 
@@ -1427,7 +1427,7 @@ A Big $O$ notation of $O(n^2)$ can generally be described as inefficient, but if
 
 Entering density-based methods, which are better suited to identify distinctive, arbitrary clusters in, by looking for a contiguous region of high point density, separated from others by contiguous regions of low point density \cite{Chauhan2020}. These do not necessarily have less runtime, but better cluster representation.
 
-\subsubsection{Algorithm}
+\subsubsection{Density Clustering Algorithm}
 
 The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $MinPts$, which defines the minimum number of points necessary to form a cluster. And secondly the maximum distance threshold between points, $eps$ ($\varepsilon$), to be considered as neighbors and become part of a cluster. These thresholds classify a data point as core point, (directly) density-reachable point or noise. \cite{Yildirim2020,Chauhan2020,Padro2017}
 
@@ -1459,7 +1459,7 @@ The general procedure of the algorithm is as follows \cite{Zhao2018}, with the i
 %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.1629&rep=rep1&type=pdf
 %http://cucis.eecs.northwestern.edu/publications/pdf/HAL18.pdf
 
-\subsubsection{Distance Measuring}
+\subsubsection{Artificial Distance Measuring}
 The algorithm is based on the density of points. This density representation is achieved via checking the neighborhood $\varepsilon$ against calculation of distance from point $A$ to $B$, typical the Euclidean distance, which is based on the pythagorean theorem (see equation \ref{formula_euclidean} \cite{Erhard2020}).
 
 \begin{figure}[h]
@@ -1643,7 +1643,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 \paragraph{Time dimension} Traveling just in the time dimension is not actual possible, hence the term artificial travel time. But assuming that both point $A$ and $B$ are at the same link step, the virtual travel time is calculated by:
 
 \begin{equation}
-	t_{x,A,B}^{art} = (x_B - x_A) \cdot ( x_{interval} + 1 )
+	t_{x,A,B}^{artificial} = (x_B - x_A) \cdot ( x_{interval} + 1 )
 	\label{equation_t_v_time}
 \end{equation}
 
@@ -1656,7 +1656,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 \paragraph{Space dimension} Traveling just through space is also not actual possible, but in the artificial travel time. Under the assumption that point $A$ and point $B$ are in the time step, the virtual travel time is calculated by:  
 
 \begin{equation}
-	t_{y,A,B}^{art} = (\frac{y_{A}^{length}}{2}  \cdot z_{A}^{speed}) + (\frac{y_{B}^{length}}{2} \cdot z_{B}^{speed}) + \sum_{i}^{y_A + 1,...,y_B - 1} (y_{i}^{length} \cdot z_{i}^{speed})
+	t_{y,A,B}^{artificial} = (\frac{y_{A}^{length}}{2}  \cdot z_{A}^{speed}) + (\frac{y_{B}^{length}}{2} \cdot z_{B}^{speed}) + \sum_{i}^{y_A + 1,...,y_B - 1} (y_{i}^{length} \cdot z_{i}^{speed})
 \end{equation}
 
 \begin{itemize}
@@ -1669,7 +1669,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 \paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the calculation of the virtual travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary. This achieved by using the aimed gap threshold to form a calibrator values, which scales the axis appropriately.
 
 \begin{equation}
-	t_{x,y,A,B}^{art} = \sqrt{(t_{x,A,B}^{art})^2 + (t_{y,A,B}^{art} \cdot c)^2}
+	t_{x,y,A,B}^{artificial} = \sqrt{(t_{x,A,B}^{art})^2 + (t_{y,A,B}^{art} \cdot c)^2}
 \end{equation}
 \begin{equation}
 	v_{A,B}^{mean} = \sum_{ij}^{xy_A + 1,...,xy_B - 1} z_{ij}^{speed}
@@ -1691,29 +1691,29 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 
 % TODO read and add infos: https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
-\subsubsection{Calibration}
-Parameter calibration is a vital task when implementing algorithms. For the DBSCAN the neighborhood $\varepsilon$ and $minPoints$ 
+\subsubsection{Performance Tuning}
+Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing system to store the clustering data in a space representation, like a 2D-tree. This reduces the number of point to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just the ones with a distance lower than $\varepsilon$ \cite{Chauhan2020}. 
 
-%Parameter estimation:
-%The parameter estimation is a problem for every data mining task. To choose good parameters we need to understand how they are used and have at least a basic previous knowledge about the data set that will be used.
+For this purpose the
+
+% https://de.wikipedia.org/wiki/K-d-Baum
+% https://github.com/jmhodges/kdtree2/blob/master/doc/kdtree2.tex
+% https://lionel.kr.hsnr.de/~dalitz/data/publications/sr09-kdtree-layout.pdf
+
+\subsubsection{Calibration}
+Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters for calibration. To define an initial estimated value for these parameters previous knowledge of how the algorithm performs with different setting and understanding of the inner workings of the algorithm is used.
+
 %eps: if the eps value chosen is too small, a large part of the data will not be clustered. It will be considered outliers because don’t satisfy the number of points to create a dense region. On the other hand, if the value that was chosen is too high, clusters will merge and the majority of objects will be in the same cluster. The eps should be chosen based on the distance of the dataset (we can use a k-distance graph to find it), but in general small eps values are preferable.
-%minPoints: As a general rule, a minimum minPoints can be derived from a number of dimensions (D) in the data set, as minPoints ≥ D + 1. Larger values are usually better for data sets with noise and will form more significant clusters. The minimum value for the minPoints must be 3, but the larger the data set, the larger the minPoints value that should be chosen.
-%\cite{Padro2017}
 
 The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
 \begin{itemize}
 	\item Spatial gap : $l_{min,gap} = 5000 [m]$ % cluster consolidation 
 	\item Temporal gap : $t_{min,gap} = 6 [min]$ % cluster consolidation 
-	\item Virtual travel-time gap $t_{min,gap}^{virtual} = 360s$
+	\item Virtual travel-time gap $t_{min,gap}^{artificial} = 360s$
 \end{itemize}
 
-\subsubsection{Performance Tuning}
-Leaving out the runtime implication pf the distance measurer the DBSCAN 
-%The complexity of DBSCAN Clustering Algorithm
-%Best Case: If an indexing system is used to store the dataset such that neighborhood queries are executed in logarithmic time, we get O(nlogn) average runtime complexity.
-%Worst Case: Without the use of index structure or on degenerated data (e.g. all points within a distance less than ε), the worst-case run time complexity remains O(n²).
-%Average Case: Same as best/worst case depending on data and implementation of the algorithm.
-%\cite{Chauhan2020}
+%minPoints: As a general rule, a minimum minPoints can be derived from a number of dimensions (D) in the data set, as minPoints ≥ D + 1. Larger values are usually better for data sets with noise and will form more significant clusters. The minimum value for the minPoints must be 3, but the larger the data set, the larger the minPoints value that should be chosen.
+%\cite{Padro2017}
 
 \subsection{Shaping}
 \label{methodology_shaping}
@@ -1824,44 +1824,91 @@ The incident object is expanded with... BAYSIS and
 
 Explain python script for correlation analysis, based on \cite{Potvin2020}
 
-\chapter{Analysis}
+
+
+
+
+
+
+
+
+\chapter{Analysis of processing results}
+
+\section{Congestion Detection and Matching}
+
+\paragraph{Integrity and short comings}
+
+What kind of information does the dataset contain?
+
+Die Cluster treffen ganz gut zu, nur in Bereichen mit sehr gezogenen und separierten cluster bekommen wir Probleme
+
+Die örtliche Lage der incidents is ziemlich genau, da diese gerade im Vergleich mit dem jams git zutreffen also an beginnenden oder endenden Linien liegen
+
+The incident matching is very basic, but sufficient. But i only purpose is to find incident, which are adjacent and cloud be import for the analysis and have some kind of association.
+
+\section{Dataset Export}
+
+\subsection{BAYSIS}
+
+\subsubsection{Jam initiator}
+
+
+
+\subsubsection{Jam Effektor}
+
+
+
+\subsubsection{Jam Follower}
+
+
+
+\subsection{ArbIS}
 
 Analysis of the resulting separate datasets of congestion and incidents. What characteristic and key indicators are prominent?
 
-
-
-
-
-\section{Features}
 What find of values, features and so on, does the dataset contain?
-\section{Time and space dimension}
+
 What time frame does the dataset cover and over what spatial area.
-\section{Containing information}
-What kind of information does the dataset contain?
-\section{Integrity and short comings}
+
 What kind of information does the dataset contain?
 
 
-Die clsuert treffen ganz gut zu, nur in beraichen mit sehr gezogenen und separierten cluster bekommen wir problememe
 
-Die örtliche lage der incidents is ziemlich genua, da diese gerade im verlgeich mit dem jams git zutreffen also an beginnenden oder endenden lienien liegen
 
-\chapter{Interpretation}
 
-\section{Assocations}
+
+
+
+
+
+
+
+\chapter{Interpretation of analysis}
+
+\section{Association}
 
 \section{Predictions}
 Is the correlation strong enough to use it for predicting congestions and accidents?
 
+This is a very controversial topic. The predicability value of a association ...
+
 \subsection{Prediction of Accidents}
+Don't event think about it
 
 \subsection{Prediction of Congestions}
+Don't event think about it
 
 \chapter{Implementation}
+In the beginnig of the thesis the concept of using 
 
-\section{Requirements}
+\subsection{Requirements}
 
-\section{Data Aviability}
+
+
+\subsection{Data Avability}
+
+
+
 
 \chapter{Conclusion}
 

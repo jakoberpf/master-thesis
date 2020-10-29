@@ -46,7 +46,7 @@ if __name__ == '__main__':
     baysis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True,
                                   date_parser=date_parser)
 
-    baysis_selected = baysis_imported[
+    baysis_original = baysis_imported[
         ["Strasse",
          "Kat", "Typ", "Betei",
          "UArt1", "UArt2",
@@ -69,16 +69,16 @@ if __name__ == '__main__':
     baysis_imported['Date'] = pd.to_datetime(baysis_imported['Datum'], format='%d.%m.%y')
 
     # Add month of roadwork
-    baysis_selected['Month'] = baysis_imported['Date'].dt.strftime('%b')
+    baysis_original['Month'] = baysis_imported['Date'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
     # Removing errors in WoTag
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
-    baysis_selected['WoTag'].loc[np.invert(baysis_selected['WoTag'].isin(days))] = ''
+    baysis_original['WoTag'].loc[np.invert(baysis_original['WoTag'].isin(days))] = ''
 
     # Removing whitespaces
-    baysis_selected['Strasse'] = baysis_selected['Strasse'].str.replace(' ', '')
+    baysis_original['Strasse'] = baysis_original['Strasse'].str.replace(' ', '')
 
     ##################
     ### Histograms ###
@@ -91,7 +91,7 @@ if __name__ == '__main__':
     plt.title('Histogram of accidents per month')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
+    ax = sns.countplot(x='Month', data=baysis_original, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
     if show_plot:
@@ -109,7 +109,7 @@ if __name__ == '__main__':
     plt.title('Histogram of accidents per highways')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral', order=baysis_selected['Strasse']
+    ax = sns.countplot(x='Strasse', data=baysis_original, palette='Spectral', order=baysis_original['Strasse']
                        .value_counts().index)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
@@ -125,19 +125,31 @@ if __name__ == '__main__':
     scale = 1.0
     (width, height) = set_size(418, scale)
 
-    fig, axs = plt.subplots(4, 2, figsize=(width, 3 * height))
+    fig, axs = plt.subplots(2, 2, figsize=(width, 2 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0, 0], x='Typ', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[0, 1], x='Kat', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[1, 0], x='Betei', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[1, 1], x='AufHi', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[2, 0], x='Alkoh', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[2, 1], x='Fstf', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[3, 0], x='FeiTag', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[3, 1], x='WoTag', data=baysis_selected, palette='Spectral')
+    sns.countplot(ax=axs[0, 0], x='Typ', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[0, 1], x='Kat', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[1, 0], x='Betei', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[1, 1], x='AufHi', data=baysis_original, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
+        if not show_plot:
+            plt.close()
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    fig, axs = plt.subplots(2, 2, figsize=(width, 2 * height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    sns.countplot(ax=axs[0, 0], x='Typ', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[0, 1], x='Kat', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[1, 0], x='Betei', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[1, 1], x='AufHi', data=baysis_original, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_multiple02.pdf')
         if not show_plot:
             plt.close()
     if show_plot:
@@ -182,29 +194,41 @@ if __name__ == '__main__':
     # else:
     #     plt.close()
 
-    fig, axs = plt.subplots(3, 2, figsize=(width, 3 * height))
+    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     atr = 'UArt'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0, 0], x=atr, data=concat, palette='Spectral')
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
     atr = 'AUrs'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0, 1], x=atr, data=concat, palette='Spectral')
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
     atr = 'Char'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[1, 0], x=atr, data=concat, palette='Spectral')
-    atr = 'Bes'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[1, 1], x=atr, data=concat, palette='Spectral')
-    atr = 'Lich'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[2, 0], x=atr, data=concat, palette='Spectral')
-    atr = 'Zust'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[2, 1], x=atr, data=concat, palette='Spectral')
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple02.pdf')
+        plt.savefig(plot_path + file_prefix + '_count_multiple03.pdf')
+        if not show_plot:
+            plt.close()
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    atr = 'Bes'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
+    atr = 'Lich'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
+    atr = 'Zust'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_multiple04.pdf')
         if not show_plot:
             plt.close()
     if show_plot:
@@ -319,7 +343,7 @@ if __name__ == '__main__':
     ##################
 
     if generate_report:
-        report = ProfileReport(baysis_selected, title='BAYSIS Original Dataset Report')
+        report = ProfileReport(baysis_original, title='BAYSIS Original Dataset Report')
         report.to_file(work_path + file_prefix + '_report.html')
 
     ###################
@@ -341,7 +365,7 @@ if __name__ == '__main__':
     ordinal_columns = ["Betei", "Fstf"]
 
     # Encode non numerical columns
-    baysis_encoded, baysis_encoded_dict = numerical_encoding(baysis_selected,
+    baysis_encoded, baysis_encoded_dict = numerical_encoding(baysis_original,
                                                              ["Strasse", "Kat", "Typ",
                                                               "UArt1", "UArt2",
                                                               "AUrs1", "AUrs2",

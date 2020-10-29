@@ -2,7 +2,7 @@ library(psych)
 library(readr)
 library(xtable)
 
-path = "data/BAYSIS/02_matched/"
+path = "data/BAYSIS/03_selected_03_endJam/"
 encoded <- read_delim(paste(path,"csv/encoded.csv",sep = ""), ";", escape_double = FALSE, trim_ws = TRUE)
 
 options(xtable.floating = FALSE)

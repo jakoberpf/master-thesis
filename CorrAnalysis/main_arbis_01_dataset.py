@@ -29,7 +29,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = True
+    generate_report = False
 
     data_path = 'data/'
     work_path = data_path + 'ArbIS/01_dataset/'

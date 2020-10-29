@@ -30,7 +30,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = True
+    generate_report = False
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/01_dataset/'
@@ -125,13 +125,12 @@ if __name__ == '__main__':
     scale = 1.0
     (width, height) = set_size(418, scale)
 
-    fig, axs = plt.subplots(2, 2, figsize=(width, 2 * height))
+    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0, 0], x='Typ', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[0, 1], x='Kat', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[1, 0], x='Betei', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[1, 1], x='AufHi', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[0], x='Typ', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[1], x='Kat', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[2], x='Betei', data=baysis_original, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
         if not show_plot:
@@ -141,13 +140,12 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    fig, axs = plt.subplots(2, 2, figsize=(width, 2 * height))
+    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0, 0], x='Alkoh', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[0, 1], x='Fstf', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[1, 0], x='FeiTag', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[1, 1], x='WoTag', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[0], x='AufHi', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[1], x='Fstf', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[2], x='WoTag', data=baysis_original, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_multiple02.pdf')
         if not show_plot:
@@ -194,7 +192,7 @@ if __name__ == '__main__':
     # else:
     #     plt.close()
 
-    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
+    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     atr = 'UArt'
@@ -215,7 +213,7 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
+    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     atr = 'Bes'

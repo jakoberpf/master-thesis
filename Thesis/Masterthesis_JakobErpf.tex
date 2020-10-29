@@ -1827,6 +1827,11 @@ Explain python script for correlation analysis, based on \cite{Potvin2020}
 \chapter{Analysis}
 
 Analysis of the resulting separate datasets of congestion and incidents. What characteristic and key indicators are prominent?
+
+
+
+
+
 \section{Features}
 What find of values, features and so on, does the dataset contain?
 \section{Time and space dimension}
@@ -1938,15 +1943,6 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \end{figure}
 \restoregeometry
 
-\newgeometry{left=1.5cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_sign_cramers}
-	\caption{Significancy matrix for BAYSIS dataset}
-	\label{img:appendix_correlation_matrix_dataset_theils}
-\end{figure}
-\restoregeometry
-
 % ------- BAYSIS Dataset - Tabellen --------
 
 \newgeometry{left=1cm,right=1cm,top=1cm}
@@ -2029,6 +2025,7 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 	\label{table:appendix_correlation_matrix_matched_cramers}
 \end{sidewaystable}
 
+\newgeometry{left=1cm,right=1cm,bottom=2cm}
 \begin{sidewaystable}
 	\tiny
 	\setlength{\tabcolsep}{2pt}
@@ -2038,6 +2035,7 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 	\label{table:appendix_correlation_matrix_matched_theils}
 \end{sidewaystable}
 
+\newgeometry{left=1cm,right=1cm,bottom=2cm}
 \begin{sidewaystable}
 	\fontsize{3}{5}\selectfont
 	\setlength{\tabcolsep}{2pt}
@@ -2048,6 +2046,7 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 	\end{sidewaystable}
 \restoregeometry
 
+\newgeometry{left=1cm,right=1cm,bottom=2cm}
 \begin{sidewaystable}
 	\fontsize{3}{5}\selectfont
 	\setlength{\tabcolsep}{2pt}
@@ -2066,27 +2065,27 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 
 Explanation...
 
-\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
+\newgeometry{left=1cm,right=1cm}
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_corr_cramers}
+	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_corr_cramers}
 	\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Cramer's $V$}
 	\label{img:appendix_correlation_matrix_selected_startJam_cramers}
 \end{figure}
 \restoregeometry
 
-\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
+\newgeometry{left=1cm,right=1cm}
 \label{appendix_baysis_dataset_corr_theils}
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_corr_theils}
+	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_corr_theils}
 	\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Theil's $U$}
 	\label{img:appendix_correlation_matrix_selected_startJam_theils}
 \end{figure}
 \restoregeometry
 
 % ------- BAYSIS Selected - Tabellen --------
-\newgeometry{left=1cm,right=1cm,top=1cm}
+\newgeometry{left=1cm,right=1cm,bottom=2cm}
 \begin{sidewaystable}
 	\tiny
 	\setlength{\tabcolsep}{2pt}
@@ -2096,7 +2095,7 @@ Explanation...
 	\label{table:appendix_correlation_matrix_selected_startJam_cramers}
 \end{sidewaystable}
 
-\newgeometry{left=1cm,right=1cm,top=1cm}
+\newgeometry{left=1cm,right=1cm,bottom=2cm}
 \begin{sidewaystable}
 	\tiny
 	\setlength{\tabcolsep}{2pt}
@@ -2106,7 +2105,7 @@ Explanation...
 	\label{table:appendix_correlation_matrix_selected_startJam_cramers}
 \end{sidewaystable}
 
-\newgeometry{left=1cm,right=1cm,top=1cm}
+\newgeometry{left=1cm,right=1cm,bottom=2cm}
 \begin{sidewaystable}
 	\tiny
 	\setlength{\tabcolsep}{2pt}
@@ -2117,7 +2116,7 @@ Explanation...
 \end{sidewaystable}
 \restoregeometry
 
-\newgeometry{left=1cm,right=1cm,top=1cm}
+\newgeometry{left=1cm,right=1cm,bottom=2cm}
 \begin{sidewaystable}
 	\tiny
 	\setlength{\tabcolsep}{2pt}
@@ -2129,12 +2128,74 @@ Explanation...
 \restoregeometry
 
 % -----------------------------------------------
-% ------- BAYSIS Selected - Jam Source -------
+% ------- BAYSIS Selected - Jam Effektor -------
 % -----------------------------------------------
-\tocless\section{BAYSIS Selected Data - Jam Source}
+\tocless\section{BAYSIS Selected Data - Jam Effektor}
 \label{appendix_baysis_selected_duringJam}
 
 Explanation...
+
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_cramers}
+	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Cramer's $V$}
+	\label{img:appendix_correlation_matrix_selected_startJam_cramers}
+\end{figure}
+\restoregeometry
+
+\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
+\label{appendix_baysis_dataset_corr_theils}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_theils}
+	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Theil's $U$}
+	\label{img:appendix_correlation_matrix_selected_startJam_theils}
+\end{figure}
+\restoregeometry
+
+% ------- BAYSIS Selected - Tabellen --------
+\newgeometry{left=1cm,right=1cm,top=1cm}
+\begin{sidewaystable}
+	\tiny
+	\setlength{\tabcolsep}{2pt}
+	\centering
+	\include{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/latex/baysis_selected_corr_cramers}
+	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Cramer's $V$}
+	\label{table:appendix_correlation_matrix_selected_startJam_cramers}
+\end{sidewaystable}
+
+\newgeometry{left=1cm,right=1cm,top=1cm}
+\begin{sidewaystable}
+	\tiny
+	\setlength{\tabcolsep}{2pt}
+	\centering
+	\include{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/latex/baysis_selected_corr_theils}
+	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Theil's $U$}
+	\label{table:appendix_correlation_matrix_selected_startJam_cramers}
+\end{sidewaystable}
+
+\newgeometry{left=1cm,right=1cm,top=1cm}
+\begin{sidewaystable}
+	\tiny
+	\setlength{\tabcolsep}{2pt}
+	\centering
+	\include{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/latex/baysis_selected_sign_cramers}
+	\caption{Significancy matrix for BAYSIS selected data (Jam Effektor)}
+	\label{table:appendix_significancy_matrix_selected_startJam}
+\end{sidewaystable}
+\restoregeometry
+
+\newgeometry{left=1cm,right=1cm,top=1cm}
+\begin{sidewaystable}
+	\tiny
+	\setlength{\tabcolsep}{2pt}
+	\centering
+	\include{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/latex/baysis_selected_coef_theils}
+	\caption{Coefficient matrix for BAYSIS selected data (Jam Effektor)}
+		\label{table:appendix_coefficient_matrix_selected_startJam}
+\end{sidewaystable}
+\restoregeometry
 
 % -----------------------------------------------
 % ------- BAYSIS Selected - Jam Follower -------

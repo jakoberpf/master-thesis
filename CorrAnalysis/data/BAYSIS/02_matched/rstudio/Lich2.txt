@@ -1,0 +1,58 @@
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded$Lich2 by encoded$TempDist
+Kruskal-Wallis chi-squared = 51.5, df = 24, p-value = 0.0009087
+
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded$Lich2 by encoded$Coverage
+Kruskal-Wallis chi-squared = 140.55, df = 95, p-value = 0.001669
+
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  encoded$TempDist and encoded$Lich2 
+
+  -1      3   
+3 0.60    -   
+4 5.3e-07 0.12
+
+P value adjustment method: holm 
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  encoded$Coverage and encoded$Lich2 
+
+  -1      3   
+3 0.97    -   
+4 5.4e-09 0.20
+
+P value adjustment method: holm 
+
+ Descriptive statistics by group 
+group: -1
+   vars    n mean   sd median trimmed  mad min max range skew kurtosis   se
+X1    1 1506 5.12 6.64      1    3.89 1.48   0  24    24 1.21     0.45 0.17
+------------------------------------------------------------------------------------------------------------------------------------------------ 
+group: 3
+   vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
+X1    1 16 3.62 4.21      2    3.21 2.97   0  13    13 0.63    -0.91 1.05
+------------------------------------------------------------------------------------------------------------------------------------------------ 
+group: 4
+   vars   n mean  sd median trimmed mad min max range skew kurtosis   se
+X1    1 345 7.45 7.7      6    6.51 8.9   0  24    24  0.7    -0.75 0.41
+
+ Descriptive statistics by group 
+group: -1
+   vars    n  mean    sd median trimmed   mad min max range skew kurtosis   se
+X1    1 1506 42.08 20.84     39   40.75 22.24   2 100    98 0.53    -0.28 0.54
+------------------------------------------------------------------------------------------------------------------------------------------------ 
+group: 3
+   vars  n  mean    sd median trimmed   mad min max range skew kurtosis   se
+X1    1 16 41.06 14.67     37   40.29 11.12  18  75    57 0.64    -0.42 3.67
+------------------------------------------------------------------------------------------------------------------------------------------------ 
+group: 4
+   vars   n mean    sd median trimmed  mad min max range skew kurtosis   se
+X1    1 345 50.3 22.96     48   49.54 25.2   3 100    97 0.26    -0.74 1.24

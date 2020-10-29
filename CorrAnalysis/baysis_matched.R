@@ -113,6 +113,7 @@ pairwise.wilcox.test(encoded$TLHGV,encoded$AUrs1, paired = FALSE, p.adjust = "ho
 
 describeBy(encoded$SpatAvg,encoded$AUrs1)
 describeBy(encoded$TempDist,encoded$AUrs1)
+describeBy(encoded$SpatDist,encoded$AUrs1)
 describeBy(encoded$Coverage,encoded$AUrs1)
 describeBy(encoded$TLHGV,encoded$AUrs1)
 

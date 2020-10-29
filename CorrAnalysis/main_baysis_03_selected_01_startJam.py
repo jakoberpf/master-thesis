@@ -489,7 +489,7 @@ if __name__ == '__main__':
     ###################
 
     # define column types
-    nominal_columns = ["Strasse", "Kat", "Typ",
+    nominal_columns = ["Str", "Kat", "Typ",
                        "UArt1", "UArt2",
                        "AUrs1", "AUrs2",
                        "AufHi",

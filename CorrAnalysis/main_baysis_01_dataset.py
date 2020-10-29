@@ -144,10 +144,10 @@ if __name__ == '__main__':
     fig, axs = plt.subplots(2, 2, figsize=(width, 2 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0, 0], x='Typ', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[0, 1], x='Kat', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[1, 0], x='Betei', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[1, 1], x='AufHi', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[0, 0], x='Alkoh', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[0, 1], x='Fstf', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[1, 0], x='FeiTag', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[1, 1], x='WoTag', data=baysis_original, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_multiple02.pdf')
         if not show_plot:

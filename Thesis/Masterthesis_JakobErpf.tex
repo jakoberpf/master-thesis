@@ -1723,7 +1723,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 % TODO read and add infos: https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
 \subsubsection{Performance Tuning}
-Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing system to store the clustering data in a space representation, like a 2D-Tree. This reduces the number of point to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just adjacent points \cite{Chauhan2020}. Initially $kd$-Tree was implemented, which stores data points as leafs in a tree, where the nodes divide the space consecutively in the $x$ and $y$ dimension \cite{Hucker2020,Dalitz2009}. This improved the runtime performance, but also added complexity, which endorsed the use of a natively implemented data structure, like the TreeMap. The TreeMap strictly is no a 2D-Tree, but can has an average complexity of $O(nlog_n)$ and be used 2D-Tree by filtering with two parameters. \cite{Baeldung2020_1,Baeldung2020_2}
+Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing system to store the clustering data in a space representation, like a 2D-Tree. This reduces the number of point to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just adjacent points \cite{Chauhan2020}. Initially $kd$-Tree was implemented, which stores data points as leafs in a tree, where the nodes divide the space consecutively in the $x$ and $y$ dimension \cite{Hucker2020,Dalitz2009}. This improved the runtime performance, but also added complexity, which endorsed the use of a natively implemented data structure, like the TreeMap. The TreeMap strictly is no a 2D-Tree, but has an average complexity of $O(nlog_n)$ and be used as a 2D-Tree by filtering with two parameters. \cite{Baeldung2020_1,Baeldung2020_2}
 
 % https://de.wikipedia.org/wiki/K-d-Baum
 % https://github.com/jmhodges/kdtree2/blob/master/doc/kdtree2.tex
@@ -1852,7 +1852,7 @@ The incident object is expanded with... BAYSIS and
 
 Explain python script for correlation analysis, based on \cite{Potvin2020}
 
-
+CLEANING CLEANING CLEANING
 
 
 
@@ -1876,9 +1876,30 @@ The incident matching is very basic, but sufficient. But i only purpose is to fi
 
 \section{Correlation Processing}
 
-\subsection{BAYSIS}
+\subsection{BAYSIS - Matched}
 
 List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
+
+% ------- BAYSIS Matched - Matrix --------
+
+\newgeometry{left=1.5cm,right=1cm}
+\pagestyle{empty}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
+	\caption{Correlation matrix for BAYSIS matched data, with Cramer's $V$}
+	\label{img:appendix_correlation_matrix_matched_cramers}
+\end{figure}
+\restoregeometry
+\pagestyle{headings}
+%\label{appendix_baysis_dataset_corr_theils}
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_theils}
+%	\caption{Correlation matrix for BAYSIS matched data, with Theil's $U$}
+%	\label{img:appendix_correlation_matrix_matched_theils}
+%\end{figure}
+%\restoregeometry
 
 \noindent
 \begin{table}[h!]
@@ -1889,7 +1910,7 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 		\hline
 		\\[-1em]
 		Strasse & TMax, TAvg, SMax, sAvg, TDist, SDist, Cov & \\ 
- 		Kat & TMax, TAvg, SMax & \\ 
+ 		Kat & TMax, TAvg, SAvg, TDist & \\ 
  		Typ & TDist, Cov & \\
  		%Betei & & \\
  		UArt1 & SAvg, TDist, Cov & \\
@@ -1901,9 +1922,9 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
  		%Char1 & & \\
  		%Char2 & & \\
  		%Bes1 & & \\
- 		Lich1 & TDist, Cov & \\
- 		Lich2 & TDist, Cov & \\
- 		Zust1 & TDist, Cov & \\
+ 		Lich1 & Cov & \\
+ 		Lich2 & Cov & \\
+ 		Zust1 & Cov & \\
  		%Zust2 & & \\
  		%Fstf & & \\
  		WoTag & Cov & \\
@@ -1937,21 +1958,20 @@ Are these correlations significant or not ? --> Wilcoxon Test
 
 \paragraph{Month}
 
-\subsubsection{Jam initiator}
+\subsection{BAYSIS - Selected as Jam initiator}
 
 List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 
 \noindent
-\begin{table}[h!]
+\begin{table}[h]
 	\centering
 	\begin{tabular}{c|l|l}  
-		Category & Strong & Moderate \\
-		\\[-1em]
-		\hline
-		\\[-1em]
-		Strasse & TMax, TAvg, SMax, SAvg, Cov, TLcar & \\ 
+		\toprule
+		\textbf{Category} & \textbf{Strong} & \textbf{Moderate} \\
+		\midrule
+		Strasse & TMax, TAvg, SMax, SAvg, Cov, TLCar & \\ 
  		Kat & TMax, TAvg, SMax, SAvg & \\ 
- 		Typ & TDist, Cov & \\
+ 		Typ & SAvg, TDist, Cov & \\
  		%Betei & & \\
  		UArt1 & TMax, TAvg, SMax, SAvg, TDist, Cov, TLCar & \\
  		%UArt2 &  & \\
@@ -1969,42 +1989,54 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
  		%Fstf & & \\
  		%WoTag & & \\
  		%FeiTag & & \\
- 		Month & Cov & \\
+ 		Month & SMax, Cov, TLHGV & \\
+ 		\bottomrule
 	\end{tabular}
 	\caption{List of incident variables and their strong/moderated correlated jam variabel from the BAYSIS selected data (Jam Initiator)}
 \end{table}
 
 Are these correlations significant or not ? --> Wilcoxon Test
 
-\paragraph{Strasse}
+\centerline{\textbf{Strasse}}
 
-\paragraph{Kat}
+\centerline{\textbf{Kat}}
 
-data:  Kat by TempMax
+\paragraph{TempMax}
 
-Kruskal-Wallis chi-squared = 196.02, df = 131, p-value = 0.0002032
+Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 
-  1       2       3      
-2 0.00013 -       -      
-3 7.4e-08 0.00065 -      
-7 4.7e-09 7.3e-09 6.2e-06
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c|c|c}
+		\toprule  
+  		& 1 & 2 & 3 \\ 
+  		\midrule    
+		2 & 0.00013 & -       & -   \\   
+		\midrule
+		3 & 7.4e-08 & 0.00065 & -     \\ 
+		\midrule
+		7 & 4.7e-09 & 7.3e-09 & 6.2e-06 \\
+ 		\bottomrule
+	\end{tabular}
+	\caption{Pairwise comparisons of the groups of \textit{Kat} by the measurement \textit{TempMax} using Wilcoxon rank sum test with continuity correction}
+\end{table}
 
-group: 1
-   vars  n   mean     sd median trimmed    mad min max range skew kurtosis    se
-X1    1 29 290.07 190.59    255  274.08 155.67  27 864   837 1.05        1 35.39
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 2
-   vars   n   mean     sd median trimmed   mad min max range skew kurtosis   se
-X1    1 144 156.23 119.44    120  138.85 84.51   9 657   648 1.61     2.98 9.95
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 3
-   vars   n   mean     sd median trimmed   mad min  max range skew kurtosis   se
-X1    1 423 121.05 105.34     99  103.94 53.37   9 1116  1107 3.96    25.43 5.12
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 7
-   vars   n   mean     sd median trimmed   mad min  max range skew kurtosis   se
-X1    1 181 103.13 143.89     75   78.25 48.93   9 1341  1332 5.97     43.7 10.7
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c|c}
+		\toprule  
+		Group & Description & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+		\midrule
+		1 & Accident with deaths & 29 & 290.07 & 190.59 & 255 & 27 & 864 & 837 \\ 
+ 		2 & Accident with heavily injured & 144 & 156.23 & 119.44 & 120 & 9 & 657 & 648 \\
+ 		3 & Accident with lightly injured & 423 & 121.05 & 105.34 & 99 & 9 & 1116 & 1107 \\
+ 		4 & Accident with property damage & 181 & 103.13 & 143.89 & 75 & 9 & 1332 & 1332 \\ 
+ 		\bottomrule
+	\end{tabular}
+	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempMax}}
+\end{table}
 
+\paragraph{TempAvg}
 data:  Kat by TempAvg
 
 Kruskal-Wallis chi-squared = 222.52, df = 175, p-value = 0.008756
@@ -2045,23 +2077,18 @@ Kruskal-Wallis chi-squared = 39.181, df = 24, p-value = 0.02614
 group: 1
    vars   n mean   sd median trimmed  mad min max range skew kurtosis   se
 X1    1 181 11.4 6.38     10   11.02 7.41   1  24    23 0.44    -0.98 0.47
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 3
    vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
 X1    1 24 7.67 6.06      7     6.9 5.19   1  22    21 1.14     0.28 1.24
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 4
    vars n mean   sd median trimmed  mad min max range skew kurtosis   se
 X1    1 4   14 3.92   13.5      14 3.71  10  19     9 0.22    -2.05 1.96
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 5
    vars n mean   sd median trimmed  mad min max range skew kurtosis  se
 X1    1 2  4.5 3.54    4.5     4.5 3.71   2   7     5    0    -2.75 2.5
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 6
    vars   n mean   sd median trimmed  mad min max range skew kurtosis   se
 X1    1 496  9.2 5.88      8     8.6 4.45   0  24    24 0.84    -0.04 0.26
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 7
    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
 X1    1 70 12.27 7.09     11   12.09 8.15   0  24    24 0.26     -1.2 0.85
@@ -2086,39 +2113,30 @@ Kruskal-Wallis chi-squared = 184.29, df = 131, p-value = 0.001496
 group: 0
    vars  n   mean     sd median trimmed   mad min max range skew kurtosis    se
 X1    1 24 140.75 100.75    114     129 57.82  30 375   345 1.16        0 20.57
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 1
    vars  n   mean     sd median trimmed    mad min max range skew kurtosis    se
 X1    1 31 198.58 166.25    126  173.64 111.19  39 612   573 1.12     0.03 29.86
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 2
    vars   n   mean     sd median trimmed   mad min max range skew kurtosis   se
 X1    1 345 134.87 108.69    105  116.33 57.82   9 864   855 2.49     9.12 5.85
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 3
    vars   n   mean     sd median trimmed   mad min  max range skew kurtosis    se
 X1    1 144 111.79 123.13     81   89.97 53.37   9 1116  1107 4.48    29.82 10.26
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 4
    vars n mean     sd median trimmed    mad min max range skew kurtosis    se
 X1    1 4  186 145.68  175.5     186 162.34  39 354   315 0.09    -2.24 72.84
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 5
    vars  n  mean     sd median trimmed   mad min  max range skew kurtosis    se
 X1    1 15 179.6 324.31     99  102.92 17.79  15 1341  1326 3.03     7.98 83.74
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 6
    vars n mean    sd median trimmed    mad min max range  skew kurtosis    se
 X1    1 4  171 98.62  178.5     171 113.42  66 261   195 -0.05    -2.37 49.31
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 7
    vars  n  mean    sd median trimmed   mad min max range skew kurtosis    se
 X1    1 23 87.91 93.15     48   71.53 44.48  12 384   372 1.57     2.07 19.42
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 8
    vars   n   mean     sd median trimmed   mad min max range skew kurtosis    se
 X1    1 107 118.46 117.62     87      97 57.82  18 813   795 3.25     13.7 11.37
------------------------------------------------------------------------------------------------------------------------------------------------- 
 group: 9
    vars  n   mean     sd median trimmed  mad min  max range skew kurtosis    se
 X1    1 80 122.47 143.91   91.5   98.58 55.6  12 1152  1140 5.14    31.86 16.09
@@ -2468,27 +2486,6 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 	\label{img:appendix_baysis_dataset_04}
 \end{figure}
 
-% TODO add others
-
-% ------- BAYSIS Dataset - Matrix --------
-\newgeometry{left=1.5cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_corr_cramers}
-	\caption{Correlation matrix for BAYSIS dataset, with Cramer's $V$}
-	\label{img:appendix_correlation_matrix_dataset_cramers}
-\end{figure}
-\restoregeometry
-
-\newgeometry{left=1.5cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_corr_theils}
-	\caption{Correlation matrix for BAYSIS dataset, with Theil's $U$}
-	\label{img:appendix_correlation_matrix_dataset_theils}
-\end{figure}
-\restoregeometry
-
 % ------- BAYSIS Dataset - Tabellen --------
 
 \newgeometry{left=1cm,right=1cm,top=1cm}
@@ -2564,24 +2561,6 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 	\caption{Distribution of the accident category '', ...}
 	\label{img:appendix_baysis_matched_04}
 \end{figure}
-
-% ------- BAYSIS Matched - Matrix --------
-\newgeometry{left=1cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
-	\caption{Correlation matrix for BAYSIS matched data, with Cramer's $V$}
-	\label{img:appendix_correlation_matrix_matched_cramers}
-\end{figure}
-
-\label{appendix_baysis_dataset_corr_theils}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_theils}
-	\caption{Correlation matrix for BAYSIS matched data, with Theil's $U$}
-	\label{img:appendix_correlation_matrix_matched_theils}
-\end{figure}
-\restoregeometry
 
 % ------- BAYSIS Matched - Tabellen --------
 \newgeometry{left=1cm,right=1cm,bottom=2cm}
@@ -2822,7 +2801,7 @@ Explanation...
 	\centering
 	\includegraphics[scale=0.7, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_cramers}
 	\caption{Correlation matrix for ArbIS dataset, with Cramers's $V$}
-	\label{img:appendix_correlation_matrix_dataset_theils}
+	\label{img:appendix_arbis_correlation_matrix_dataset_theils}
 \end{figure}
 \restoregeometry
 
@@ -2831,7 +2810,7 @@ Explanation...
 	\centering
 	\includegraphics[scale=0.7, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_theils}
 	\caption{Correlation matrix for ArbIS dataset, with Theil's $U$}
-	\label{img:appendix_correlation_matrix_dataset_theils}
+	\label{img:appendix_arbis_correlation_matrix_dataset_theils}
 \end{figure}
 \restoregeometry
 
@@ -2882,7 +2861,7 @@ Explanation...
 	\centering
 	\includegraphics[scale=0.4, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_corr_cramers}
 	\caption{Correlation matrix for ArbIS matched data, with Cramer's $V$}
-	\label{img:appendix_correlation_matrix_matched_cramers}
+	\label{img:appendix_arbis_correlation_matrix_matched_cramers}
 \end{figure}
 \restoregeometry
 
@@ -2891,7 +2870,7 @@ Explanation...
 	\centering
 	\includegraphics[scale=0.4, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_corr_theils}
 	\caption{Correlation matrix for ArbIS matched data, with Theil's $U$}
-	\label{img:appendix_correlation_matrix_matched_theils}
+	\label{img:appendix_arbis_correlation_matrix_matched_theils}
 \end{figure}
 \restoregeometry
 

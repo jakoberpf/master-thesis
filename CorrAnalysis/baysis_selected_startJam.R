@@ -68,6 +68,10 @@ sink()
 
 sink(paste(path,"rstudio/Typ.txt",sep = ""))
 
+##### TempMax #####
+kruskal.test(encoded$Typ~encoded$TempMax)
+pairwise.wilcox.test(encoded$TempMax,encoded$Typ, paired = FALSE, p.adjust = "holm")
+describeBy(encoded$TempMax,encoded$Typ)
 ##### TempDist #####
 kruskal.test(encoded$Typ~encoded$TempDist)
 pairwise.wilcox.test(encoded$TempDist,encoded$Typ, paired = FALSE, p.adjust = "holm")
@@ -167,10 +171,6 @@ describeBy(encoded$TempMax,encoded$AUrs2)
 kruskal.test(encoded$AUrs2~encoded$TempAvg)
 pairwise.wilcox.test(encoded$TempAvg,encoded$AUrs2, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TempAvg,encoded$AUrs2)
-##### SpatAvg #####
-kruskal.test(encoded$AUrs2~encoded$SpatAvg)
-pairwise.wilcox.test(encoded$SpatAvg,encoded$AUrs2, paired = FALSE, p.adjust = "holm")
-describeBy(encoded$SpatAvg,encoded$AUrs2)
 ##### TempDist #####
 kruskal.test(encoded$AUrs2~encoded$TempDist)
 pairwise.wilcox.test(encoded$TempDist,encoded$AUrs2, paired = FALSE, p.adjust = "holm")
@@ -278,9 +278,17 @@ sink()
 
 sink(paste(path,"rstudio/Month.txt",sep = ""))
 
+##### SpatMax #####
+kruskal.test(encoded$Month~encoded$SpatMax)
+pairwise.wilcox.test(encoded$SpatMax,encoded$Month, paired = FALSE, p.adjust = "holm")
+describeBy(encoded$SpatMax,encoded$Month)
 ##### Coverage #####
 kruskal.test(encoded$Month~encoded$Coverage)
 pairwise.wilcox.test(encoded$Coverage,encoded$Month, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$Coverage,encoded$Month)
+##### TLHGV #####
+kruskal.test(encoded$Month~encoded$TLHGV)
+pairwise.wilcox.test(encoded$TLHGV,encoded$Month, paired = FALSE, p.adjust = "holm")
+describeBy(encoded$TLHGV,encoded$Month)
 
 sink()

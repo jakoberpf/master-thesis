@@ -31,7 +31,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = False
+    generate_report = True
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/02_matched/'
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
 
-    work_file = 'BAYSIS_2019.csv'
+    work_file = 'BAYSIS_2019_cleaned.csv'
 
     file_prefix = 'baysis_matched'
     file_plot_type = '.pdf'
@@ -67,19 +67,17 @@ if __name__ == '__main__':
             "AufHi",
             "Alkoh",
             "Char1", "Char2",
-            # "Char3",  # Not relevant because empty
             "Bes1", "Bes2",
-            # "Bes3",  # Not relevant because empty
             "Lich1", "Lich2",
             "Zust1", "Zust2",
             "Fstf",
-            # "StrklVu", # Irrelevant
             # "WoTagNr",  # Already represented by WoTag
             "WoTag",
             "FeiTag"]].copy()
 
     # Manual data type conversion from str to datetime64
-    baysis_imported['Date'] = pd.to_datetime(baysis_imported['Date'], format='%Y-%m-%d')
+    # baysis_imported['Date'] = pd.to_datetime(baysis_imported['Date'], format='%Y-%m-%d')
+    baysis_imported['Date'] = pd.to_datetime(baysis_imported['Date'], format='%d.%m.%y')
 
     # Manual data type conversion from str to int64
     baysis_matched["TLCar"] = pd.to_numeric(baysis_matched["TLCar"])
@@ -98,24 +96,6 @@ if __name__ == '__main__':
 
     # Removing whitespaces
     baysis_matched['Strasse'] = baysis_matched['Strasse'].str.replace(' ', '')
-
-    # Removing -1/missing values
-    # p_missing = ["Strasse",
-    #              "Kat", "Typ", "Betei",
-    #              "UArt1", "UArt2",
-    #              "AUrs1", "AUrs2",
-    #              "AufHi",
-    #              "Alkoh",
-    #              "Char1", "Char2",
-    #              "Bes1", "Bes2",
-    #              "Lich1", "Lich2",
-    #              "Zust1", "Zust2",
-    #              "Fstf",
-    #              "StrklVu",
-    #              "WoTag",
-    #              "FeiTag"]
-    # for atr in p_missing:
-    #     baysis_matched.loc[baysis_matched[atr] == -1] = ''
 
     ##################
     ### Congestion ###
@@ -231,43 +211,6 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    # scale = 1.0
-    # (width, height) = set_size(418, scale)
-
-    # for atr in ['Typ', 'Kat', 'Betei', 'AufHi', 'Alkoh', 'Fstf', 'StrklVu', 'FeiTag']:
-    #     plt.figure(figsize=(width, height/2))
-    #     plt.style.use('seaborn')
-    #     plt.rcParams.update(tex_fonts)
-    #     plt.title('Counts of ' + atr)
-    #     plt.ylabel('Count')
-    #     plt.xlabel(atr)
-    #     sns.countplot(x=atr, data=baysis_matched, palette='Spectral')
-    #     if save_plot:
-    #         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    #         if not show_plot:
-    #             plt.close()
-    #     if show_plot:
-    #         plt.show()
-    #     else:
-    #         plt.close()
-
-    # # Plot Counts of WoTag
-    # atr = 'WoTag'
-    # plt.figure(figsize=set_size(418, 1.0))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of ' + atr)
-    # plt.ylabel('Count')
-    # plt.xlabel(atr)
-    # ax = sns.countplot(x=atr, data=baysis_matched, palette='Spectral')
-    # # plt.xticks(range(0, 7), ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    
     fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
@@ -310,186 +253,9 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    # # Plot Counts of UArt
-    # atr = 'UArt'
-    # concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, 1.0))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    #     if not show_plot:
-    #         plt.close()
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot Counts of AUrs
-    # atr = 'AUrs'
-    # concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, 1.0))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    #     if not show_plot:
-    #         plt.close()
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot Counts of Char
-    # atr = 'Char'
-    # concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, 1.0))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    #     if not show_plot:
-    #         plt.close()
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot Counts of Bes
-    # atr = 'Bes'
-    # concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, 1.0))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    #     if not show_plot:
-    #         plt.close()
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot Counts of Lich
-    # atr = 'Lich'
-    # concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, 1.0))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    #     if not show_plot:
-    #         plt.close()
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot Counts of Zust
-    # atr = 'Zust'
-    # concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, 1.0))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    #     if not show_plot:
-    #         plt.close()
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-
     ###############
     ### Scatter ###
     ###############
-
-    attributes = [
-        # "Strasse", # TODO fix handling of non number sequences in scatter plots
-        "Kat", "Typ", "Betei",
-        "UArt1", "UArt2",
-        "AUrs1", "AUrs2",
-        "AufHi",
-        "Alkoh",
-        "Char1", "Char2",
-        "Bes1", "Bes2",
-        "Lich1", "Lich2",
-        "Zust1", "Zust2",
-        # "Fstf", # TODO fix handling of non number sequences in scatter plots
-        # "StrklVu", # TODO fix handling of non number sequences in scatter plots
-        # "WoTag", # TODO fix handling of non number sequences in scatter plots
-        "FeiTag"]
-
-    # Congestion -> Accident
-    for atr in attributes:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        baysis_matched.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
-    for atr in attributes:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        baysis_matched.plot.scatter(x='TempAvg', y='SpatAvg', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
-    # Congestion -> Accident
-    for atr in attributes:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        baysis_matched.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
 
     ###########
     ### Box ###

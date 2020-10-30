@@ -5,6 +5,13 @@ data:  encoded$Kat by encoded$TempMax
 Kruskal-Wallis chi-squared = 196.02, df = 131, p-value = 0.0002032
 
 
+	Asymptotic Wilcoxon rank sum test
+
+data:  encoded$TempMax and encoded$Kat
+W = 603729, p-value < 2.2e-16
+alternative hypothesis: true mu is not equal to 0
+
+
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$TempMax and encoded$Kat 
@@ -37,6 +44,13 @@ X1    1 181 103.13 143.89     75   78.25 48.93   9 1341  1332 5.97     43.7 10.7
 
 data:  encoded$Kat by encoded$TempAvg
 Kruskal-Wallis chi-squared = 222.52, df = 175, p-value = 0.008756
+
+
+	Asymptotic Wilcoxon rank sum test
+
+data:  encoded$TempAvg and encoded$Kat
+W = 601195, p-value < 2.2e-16
+alternative hypothesis: true mu is not equal to 0
 
 
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
@@ -73,6 +87,13 @@ data:  encoded$Kat by encoded$SpatMax
 Kruskal-Wallis chi-squared = 732.27, df = 720, p-value = 0.3673
 
 
+	Asymptotic Wilcoxon rank sum test
+
+data:  encoded$SpatMax and encoded$Kat
+W = 603729, p-value < 2.2e-16
+alternative hypothesis: true mu is not equal to 0
+
+
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$SpatMax and encoded$Kat 
@@ -105,6 +126,13 @@ X1    1 181 7357.77 6400.86   5582 6223.92 4431.49 1084 38262 37178 2.02     5.0
 
 data:  encoded$Kat by encoded$SpatAvg
 Kruskal-Wallis chi-squared = 738.37, df = 727, p-value = 0.3767
+
+
+	Asymptotic Wilcoxon rank sum test
+
+data:  encoded$SpatAvg and encoded$Kat
+W = 603729, p-value < 2.2e-16
+alternative hypothesis: true mu is not equal to 0
 
 
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 

@@ -1,9 +1,11 @@
 library(psych)
 library(readr)
 library(xtable)
+library(exactRankTests)
 
 path = "data/BAYSIS/03_selected_01_startJam/"
 encoded <- read_delim(paste(path,"csv/encoded.csv",sep = ""), ";", escape_double = FALSE, trim_ws = TRUE)
+spec()
 
 options(xtable.floating = FALSE)
 options(xtable.timestamp = "")
@@ -13,6 +15,7 @@ sink(paste(path,"rstudio/Strasse.txt",sep = ""))
 ##### TempMax #####
 kruskal.test(encoded$Strasse~encoded$TempMax)
 pairwise.wilcox.test(encoded$TempMax,encoded$Strasse, paired = FALSE, p.adjust = "holm")
+warnings()
 describeBy(encoded$TempMax,encoded$Strasse)
 ##### TempAvg #####
 kruskal.test(encoded$Strasse~encoded$TempAvg)
@@ -68,13 +71,13 @@ sink()
 
 sink(paste(path,"rstudio/Typ.txt",sep = ""))
 
+##### TempDist #####
 kruskal.test(encoded$Typ~encoded$TempDist)
-kruskal.test(encoded$Typ~encoded$Coverage)
-
 pairwise.wilcox.test(encoded$TempDist,encoded$Typ, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$Coverage,encoded$Typ, paired = FALSE, p.adjust = "holm")
-
 describeBy(encoded$TempDist,encoded$Typ)
+##### Coverage #####
+kruskal.test(encoded$Typ~encoded$Coverage)
+pairwise.wilcox.test(encoded$Coverage,encoded$Typ, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$Coverage,encoded$Typ)
 
 sink()
@@ -85,28 +88,33 @@ sink()
 
 sink(paste(path,"rstudio/UArt1.txt",sep = ""))
 
+##### TempMax #####
 kruskal.test(encoded$UArt1~encoded$TempMax)
-kruskal.test(encoded$UArt1~encoded$TempAvg)
-kruskal.test(encoded$UArt1~encoded$SpatMax)
-kruskal.test(encoded$UArt1~encoded$SpatAvg)
-kruskal.test(encoded$UArt1~encoded$TempDist)
-kruskal.test(encoded$UArt1~encoded$Coverage)
-kruskal.test(encoded$UArt1~encoded$TLCar)
-
 pairwise.wilcox.test(encoded$TempMax,encoded$UArt1, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TempAvg,encoded$UArt1, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatMax,encoded$UArt1, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatAvg,encoded$UArt1, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TempDist,encoded$UArt1, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$Coverage,encoded$UArt1, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TLCar,encoded$UArt1, paired = FALSE, p.adjust = "holm")
-
 describeBy(encoded$TempMax,encoded$UArt1)
+##### TempAvg #####
+kruskal.test(encoded$UArt1~encoded$TempAvg)
+pairwise.wilcox.test(encoded$TempAvg,encoded$UArt1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TempAvg,encoded$UArt1)
+##### SpatMax #####
+kruskal.test(encoded$UArt1~encoded$SpatMax)
+pairwise.wilcox.test(encoded$SpatMax,encoded$UArt1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$SpatMax,encoded$UArt1)
+##### SpatAvg #####
+kruskal.test(encoded$UArt1~encoded$SpatAvg)
+pairwise.wilcox.test(encoded$SpatAvg,encoded$UArt1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$SpatAvg,encoded$UArt1)
+##### TempDist #####
+kruskal.test(encoded$UArt1~encoded$TempDist)
+pairwise.wilcox.test(encoded$TempDist,encoded$UArt1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TempDist,encoded$UArt1)
+##### Coverage #####
+kruskal.test(encoded$UArt1~encoded$Coverage)
+pairwise.wilcox.test(encoded$Coverage,encoded$UArt1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$Coverage,encoded$UArt1)
+##### TLCar #####
+kruskal.test(encoded$UArt1~encoded$TLCar)
+pairwise.wilcox.test(encoded$TLCar,encoded$UArt1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TLCar,encoded$UArt1)
 
 sink()

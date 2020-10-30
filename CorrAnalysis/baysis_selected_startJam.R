@@ -10,25 +10,29 @@ options(xtable.timestamp = "")
 
 sink(paste(path,"rstudio/Strasse.txt",sep = ""))
 
+##### TempMax #####
 kruskal.test(encoded$Strasse~encoded$TempMax)
-kruskal.test(encoded$Strasse~encoded$TempAvg)
-kruskal.test(encoded$Strasse~encoded$SpatMax)
-kruskal.test(encoded$Strasse~encoded$SpatAvg)
-kruskal.test(encoded$Strasse~encoded$Coverage)
-kruskal.test(encoded$Strasse~encoded$TLCar)
-
 pairwise.wilcox.test(encoded$TempMax,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TempAvg,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatMax,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatAvg,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$Coverage,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TLCar,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-
 describeBy(encoded$TempMax,encoded$Strasse)
+##### TempAvg #####
+kruskal.test(encoded$Strasse~encoded$TempAvg)
+pairwise.wilcox.test(encoded$TempAvg,encoded$Strasse, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TempAvg,encoded$Strasse)
+##### SpatMax #####
+kruskal.test(encoded$Strasse~encoded$SpatMax)
+pairwise.wilcox.test(encoded$SpatMax,encoded$Strasse, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$SpatMax,encoded$Strasse)
+##### SpatAvg #####
+kruskal.test(encoded$Strasse~encoded$SpatAvg)
+pairwise.wilcox.test(encoded$SpatAvg,encoded$Strasse, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$SpatAvg,encoded$Strasse)
+##### Coverage #####
+kruskal.test(encoded$Strasse~encoded$Coverage)
+pairwise.wilcox.test(encoded$Coverage,encoded$Strasse, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$Coverage,encoded$Strasse)
+##### TLCar #####
+kruskal.test(encoded$Strasse~encoded$TLCar)
+pairwise.wilcox.test(encoded$TLCar,encoded$Strasse, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TLCar,encoded$Strasse)
 
 sink()
@@ -39,19 +43,21 @@ sink()
 
 sink(paste(path,"rstudio/Kat.txt",sep = ""))
 
+##### TempMax #####
 kruskal.test(encoded$Kat~encoded$TempMax)
-kruskal.test(encoded$Kat~encoded$TempAvg)
-kruskal.test(encoded$Kat~encoded$SpatMax)
-kruskal.test(encoded$Kat~encoded$SpatAvg)
-
 pairwise.wilcox.test(encoded$TempMax,encoded$Kat, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TempAvg,encoded$Kat, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatMax,encoded$Kat, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatAvg,encoded$Kat, paired = FALSE, p.adjust = "holm")
-
 describeBy(encoded$TempMax,encoded$Kat)
+##### TempAvg #####
+kruskal.test(encoded$Kat~encoded$TempAvg)
+pairwise.wilcox.test(encoded$TempAvg,encoded$Kat, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TempAvg,encoded$Kat)
+##### SpatMax #####
+kruskal.test(encoded$Kat~encoded$SpatMax)
+pairwise.wilcox.test(encoded$SpatMax,encoded$Kat, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$SpatMax,encoded$Kat)
+##### SpatAvg #####
+kruskal.test(encoded$Kat~encoded$SpatAvg)
+pairwise.wilcox.test(encoded$SpatAvg,encoded$Kat, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$SpatAvg,encoded$Kat)
 
 sink()

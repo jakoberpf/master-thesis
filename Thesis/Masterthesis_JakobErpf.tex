@@ -176,44 +176,44 @@ B. Sc. Jakob Erpf\\
 \small Dipl. - Ing. Stefan Gürtler (S\&W)\\
 \small Dipl. - Ing. Johannes Grötsch (LBD)
 }
-\date{November ??, 2020}
+\date{December 16, 2020}
 \maketitle
 
 % Empty page for layout purpose
 \clearpage
 
-% Topic description is mandatory
-\renewcommand\abstractname{Topic}
-\abstract{}
-%\addchap*{Topic}\par Date of issue: 2020-05-04  
-\par Date of submission:	2020-12-11
-
-\medskip
-
-The \gls{congstats} service is a statistical analysis tool, developed by the Munich office of SCHLOTHAUER \& WAUER GmbH and the thesis writer for the road administration of north and south Bavaria, to request and analyze traffic data. The traffic data used in this service is based on \acrfull{fcd}, provided by the Bavarian road administration. The aim of the service is to provide statistical monitoring and report functionalities on the traffic situation on freeway and state street network, to identify congestion-prone areas.
-
-An interesting aspect of this congestion analysis is the correlation of congestion events and incidents. What are the circumstances leading to congestion in cause of an incident? What are the dependencies on an occurred incident, for example roadworks or accidents? The knowledge on the impact of roadworks on the traffic flow or which accidents lead to traffic capacity reductions could improve traffic management and incident response actions. The question of how the congestions represented by the \acrshort{fcd} correlate with actual traffic incidents and their causalities, will be evaluated in this thesis. 
-
-To answer this research question, the writer is provided with datasets containing \acrshort{fcd} and traffic incident data. The \acrfull{zvm} provides the incident’s reports, which hold statistics on the traffic incident situation and detailed reports for the specific incidents.
-
-These datasets then are processed and analyzed for possible correlations between detected congestions in the \acrshort{fcd} and the reported incidents from the \acrshort{zvm}. Therefore scope of the thesis consists of the following tasks:
-
-\begin{itemize}
-  \item review of the available data and information
-  \item definition data characteristics and indicators
-  \item definition and implementation of a methodology for detecting jams in \acrshort{fcd}
-  \item definition and implementation of a methodology for analyzing the correlation between congestion and incident events
-  \item interpretation of the results
-\end{itemize}
-
-The student will present intermediate results to the mentors 
-		(Barbara Karl, M.Eng.: TUM-VT; 
-		Dr.-Ing. Matthias Spangler: TUM-VT; 
-		Dipl.-Ing. Stefan Gürtler: Schlothauer \& Wauer; 
-		Dipl.-Ing. (FH) Johannes Grötsch: ZVM) 
-	in the fifth, tenth, 15th and 20th week.
-
-The student must hold a 20-minute presentation with a subsequent discussion at the most two months after the submission of the thesis. The presentation will be considered in the final grade in cases where the thesis itself cannot be clearly evaluated.
+%% Topic description is mandatory
+%\renewcommand\abstractname{Topic}
+%\abstract{}
+%%\addchap*{Topic}%\par Date of issue: 2020-05-04  
+%\par Date of submission:	2020-12-11
+%
+%\medskip
+%
+%The \gls{congstats} service is a statistical analysis tool, developed by the Munich office of SCHLOTHAUER \& WAUER GmbH and the thesis writer for the road administration of north and south Bavaria, to request and analyze traffic data. The traffic data used in this service is based on \acrfull{fcd}, provided by the Bavarian road administration. The aim of the service is to provide statistical monitoring and report functionalities on the traffic situation on freeway and state street network, to identify congestion-prone areas.
+%
+%An interesting aspect of this congestion analysis is the correlation of congestion events and incidents. What are the circumstances leading to congestion in cause of an incident? What are the dependencies on an occurred incident, for example roadworks or accidents? The knowledge on the impact of roadworks on the traffic flow or which accidents lead to traffic capacity reductions could improve traffic management and incident response actions. The question of how the congestions represented by the \acrshort{fcd} correlate with actual traffic incidents and their causalities, will be evaluated in this thesis. 
+%
+%To answer this research question, the writer is provided with datasets containing \acrshort{fcd} and traffic incident data. The \acrfull{zvm} provides the incident’s reports, which hold statistics on the traffic incident situation and detailed reports for the specific incidents.
+%
+%These datasets then are processed and analyzed for possible correlations between detected congestions in the \acrshort{fcd} and the reported incidents from the \acrshort{zvm}. Therefore scope of the thesis consists of the following tasks:
+%
+%\begin{itemize}
+%\item review of the available data and information
+%\item definition data characteristics and indicators
+%\item definition and implementation of a methodology for detecting jams in \acrshort{fcd}
+%\item definition and implementation of a methodology for analyzing the correlation between congestion and incident events
+%\item interpretation of the results
+%\end{itemize}
+%
+%The student will present intermediate results to the mentors 
+%(Barbara Karl, M.Eng.: TUM-VT; 
+%Dr.-Ing. Matthias Spangler: TUM-VT; 
+%Dipl.-Ing. Stefan Gürtler: Schlothauer \& Wauer; 
+%Dipl.-Ing. (FH) Johannes Grötsch: ZVM) 
+%in the fifth, tenth, 15th and 20th week.
+%
+%The student must hold a 20-minute presentation with a subsequent discussion at the most two months after the submission of the thesis. The presentation will be considered in the final grade in cases where the thesis itself cannot be clearly evaluated.
 
 % Disclaimers
 \renewcommand\abstractname{Preliminary information and disclaimers}
@@ -221,7 +221,6 @@ The student must hold a 20-minute presentation with a subsequent discussion at t
 %\addchap*{Kurzfassung}
 %TODO Datennutzungserklärung
 }
-
 
 % Germany abstract
 \renewcommand\abstractname{Kurzfassung}
@@ -234,7 +233,7 @@ Deutsche Fassung des 'Abstracts'
 \renewcommand\abstractname{Abstract}
 \abstract{
 %\addchap*{Kurzfassung}
-Current navigation systems often use accumulation strategies to estimate travel time while considering time delays through congestions, which are based on analyzing the history of the time delays on the considered street network. This approach can be disturbed through uncommon events creating short time blockages or be biased through regular accruing, long-term traffic volume reductions. This thesis evaluates a new idea of predicting time delays and accident probability through analyzing the correlation of congestions and incidents which are placed in timely and spatial vicinity of each other. To evaluate this, three real world datasets from the year 2019 will be considered. After an algorithmic approach to analyzing a derivative of a floating car dataset for congestions and locating spatial and timely adjacent incidents from the Bavarian street information systems, the thesis will evaluate if and how these incidents and \glspl{jam} are correlated with each other. To further give an idea of how such statistical data could be used, the thesis will elaborate on the possibility and plausibility of using correlation statistics for \gls{jam} and/or incident prediction.
+Current navigation systems often use accumulation strategies to estimate travel time while considering time delays through congestions, which are based on analyzing the history of the time delays on the considered street network. This approach can be disturbed through uncommon events creating short time blockages or be biased through regular accruing, long-term traffic volume reductions. This thesis evaluates a new idea of predicting time delays and accident probability through analyzing the correlation of congestions and incidents which are placed in timely and spatial vicinity of each other. To evaluate this, three real world datasets from the year 2019 will be considered. After an algorithmic approach to analyzing a derivative of a floating car dataset for congestions and locating spatial and timely adjacent incidents from the Bavarian street information systems, the thesis will evaluate if and how these incidents and \glspl{jam} are correlated with each other. 
 }
 
 %\setcounter{secnumdepth}{3}

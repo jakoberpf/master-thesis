@@ -1,11 +1,9 @@
 library(psych)
 library(readr)
 library(xtable)
-library(exactRankTests)
 
 path = "data/BAYSIS/03_selected_01_startJam/"
 encoded <- read_delim(paste(path,"csv/encoded.csv",sep = ""), ";", escape_double = FALSE, trim_ws = TRUE)
-spec()
 
 options(xtable.floating = FALSE)
 options(xtable.timestamp = "")
@@ -124,31 +122,31 @@ sink()
 
 sink(paste(path,"rstudio/AUrs1.txt",sep = ""))
 
-##### TLCar #####
+##### TempMax #####
 kruskal.test(encoded$AUrs1~encoded$TempMax)
 pairwise.wilcox.test(encoded$TempMax,encoded$AUrs1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TempMax,encoded$AUrs1)
-##### TLCar #####
+##### TempAvg #####
 kruskal.test(encoded$AUrs1~encoded$TempAvg)
 pairwise.wilcox.test(encoded$TempAvg,encoded$AUrs1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TempAvg,encoded$AUrs1)
-##### TLCar #####
+##### SpatMax #####
 kruskal.test(encoded$AUrs1~encoded$SpatMax)
 pairwise.wilcox.test(encoded$SpatMax,encoded$AUrs1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$SpatMax,encoded$AUrs1)
-##### TLCar #####
+##### SpatAvg #####
 kruskal.test(encoded$AUrs1~encoded$SpatAvg)
 pairwise.wilcox.test(encoded$SpatAvg,encoded$AUrs1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$SpatAvg,encoded$AUrs1)
-##### TLCar #####
+##### TempDist #####
 kruskal.test(encoded$AUrs1~encoded$TempDist)
 pairwise.wilcox.test(encoded$TempDist,encoded$AUrs1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TempDist,encoded$AUrs1)
-##### TLCar #####
+##### Coverage #####
 kruskal.test(encoded$AUrs1~encoded$Coverage)
 pairwise.wilcox.test(encoded$Coverage,encoded$AUrs1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$Coverage,encoded$AUrs1)
-##### TLCar #####
+##### TLHGV #####
 kruskal.test(encoded$AUrs1~encoded$TLHGV)
 pairwise.wilcox.test(encoded$TLHGV,encoded$AUrs1, paired = FALSE, p.adjust = "holm")
 describeBy(encoded$TLHGV,encoded$AUrs1)

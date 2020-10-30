@@ -32,6 +32,12 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{trees}
 
+\usepackage{scrlayer-scrpage}
+\automark{chapter}
+\clearpairofpagestyles
+\setkomafont{pagehead}{}
+\ohead{\headmark}
+\cfoot*{\pagemark}
 
 % Set the overall layout of the tree
 \tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]

@@ -1692,13 +1692,10 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 % TODO read and add infos: https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
 \subsubsection{Performance Tuning}
-Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing system to store the clustering data in a space representation, like a 2D-tree. This reduces the number of point to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just the ones with a distance lower than $\varepsilon$ \cite{Chauhan2020}. 
-
-For this purpose the
+Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing system to store the clustering data in a space representation, like a 2D-Tree. This reduces the number of point to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just adjacent points \cite{Chauhan2020}. Initially $kd$-Tree was implemented, which stores data points as leafs in a tree, where the nodes divide the space consecutively in the $x$ and $y$ dimension \cite{Hucker2020,Dalitz2009}. This improved the runtime performance, but also added complexity, which endorsed the use of a natively implemented data structure, like the TreeMap. The TreeMap strictly is no a 2D-Tree, but can has an average complexity of $O(nlog_n)$ and be used 2D-Tree by filtering with two parameters. \cite{Baeldung2020_1,Baeldung2020_2}
 
 % https://de.wikipedia.org/wiki/K-d-Baum
 % https://github.com/jmhodges/kdtree2/blob/master/doc/kdtree2.tex
-% https://lionel.kr.hsnr.de/~dalitz/data/publications/sr09-kdtree-layout.pdf
 
 \subsubsection{Calibration}
 Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters for calibration. To define an initial estimated value for these parameters previous knowledge of how the algorithm performs with different setting and understanding of the inner workings of the algorithm is used.
@@ -1863,28 +1860,51 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 		Strasse & TMax, TAvg, SMax, sAvg, TDist, SDist, Cov & \\ 
  		Kat & TMax, TAvg, SMax & \\ 
  		Typ & TDist, Cov & \\
- 		Betei & & \\
+ 		%Betei & & \\
  		UArt1 & SAvg, TDist, Cov & \\
- 		UArt2 & & \\
+ 		%UArt2 & & \\
  		AUrs1 & SAvg, TDist, SDist, Cov, TLHGV & \\
- 		AUrs2 & & \\
+ 		%AUrs2 & & \\
  		AufHi & TMax, TAvg, TDist, Cov & \\
- 		Alkoh & & \\
- 		Char1 & & \\
- 		Char2 & & \\
- 		Bes1 & & \\
+ 		%Alkoh & & \\
+ 		%Char1 & & \\
+ 		%Char2 & & \\
+ 		%Bes1 & & \\
  		Lich1 & TDist, Cov & \\
  		Lich2 & TDist, Cov & \\
  		Zust1 & TDist, Cov & \\
- 		Zust2 & & \\
- 		Fstf & & \\
+ 		%Zust2 & & \\
+ 		%Fstf & & \\
  		WoTag & Cov & \\
- 		FeiTag & & \\
+ 		%FeiTag & & \\
  		Month & Cov & \\
 	\end{tabular}
 	\caption{List of incident variables and their strong/moderated correlated jam variabel from the BAYSIS matched data}
 \end{table}
 
+Are these correlations significant or not ? --> Wilcoxon Test
+
+\paragraph{Strasse}
+
+\paragraph{Kat}
+
+\paragraph{Typ}
+
+\paragraph{UArt1}
+
+\paragraph{AUrs1}
+
+\paragraph{AufHi}
+
+\paragraph{Lich1}
+
+\paragraph{Lich2}
+
+\paragraph{Zust1}
+
+\paragraph{WoTag}
+
+\paragraph{Month}
 
 \subsubsection{Jam initiator}
 
@@ -1901,27 +1921,53 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 		Strasse & TMax, TAvg, SMax, SAvg, Cov, TLcar & \\ 
  		Kat & TMax, TAvg, SMax, SAvg & \\ 
  		Typ & TDist, Cov & \\
- 		Betei & & \\
+ 		%Betei & & \\
  		UArt1 & TMax, TAvg, SMax, SAvg, TDist, Cov, TLCar & \\
- 		UArt2 &  & \\
+ 		%UArt2 &  & \\
  		AUrs1 & TMax, TAvg, SMax, SAvg, TDist, Cov, TLHGV & \\
  		AUrs2 & TMax, TAvg, SAvg, TDist & \\
  		AufHi & TMax, TAvg, TDist, Cov & \\
- 		Alkoh & & \\
+ 		%Alkoh & & \\
  		Char1 & TDist & \\
- 		Char2 & & \\
- 		Bes1 & & \\
+ 		%Char2 & & \\
+ 		%Bes1 & & \\
  		Lich1 & TDist & \\
  		Lich2 & TDist & \\
  		Zust1 & Cov & \\
  		Zust2 & TAvg, SAvg & \\
- 		Fstf & & \\
- 		WoTag & & \\
- 		FeiTag & & \\
+ 		%Fstf & & \\
+ 		%WoTag & & \\
+ 		%FeiTag & & \\
  		Month & Cov & \\
 	\end{tabular}
 	\caption{List of incident variables and their strong/moderated correlated jam variabel from the BAYSIS selected data (Jam Initiator)}
 \end{table}
+
+Are these correlations significant or not ? --> Wilcoxon Test
+
+\paragraph{Strasse}
+
+\paragraph{Kat}
+
+\paragraph{Typ}
+
+\paragraph{UArt1}
+
+\paragraph{AUrs1}
+
+\paragraph{AUrs2}
+
+\paragraph{AufHi}
+
+\paragraph{Lich1}
+
+\paragraph{Lich2}
+
+\paragraph{Zust1}
+
+\paragraph{Zust2}
+
+\paragraph{Month}
 
 \subsubsection{Jam Effektor}
 
@@ -1937,28 +1983,44 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 		\\[-1em]
 		Strasse & TMax, TAvg, SMax, SAvg, Cov, TLHGV & \\ 
  		Kat & TMax, TAvg, SAvg & \\ 
- 		Typ & & \\
- 		Betei & & \\
+ 		%Typ & & \\
+ 		%Betei & & \\
  		UArt1 & SAvg & \\
  		UArt2 & SMax & \\
- 		AUrs1 & & \\
- 		AUrs2 & & \\
+ 		%AUrs1 & & \\
+ 		%AUrs2 & & \\
  		AufHi & TMax, TAvg & \\
- 		Alkoh & & \\
- 		Char1 & & \\
- 		Char2 & & \\
- 		Bes1 & & \\
- 		Lich1 & & \\
- 		Lich2 & & \\
- 		Zust1 & & \\
- 		Zust2 & & \\
- 		Fstf & & \\
+ 		%Alkoh & & \\
+ 		%Char1 & & \\
+ 		%Char2 & & \\
+ 		%Bes1 & & \\
+ 		%Lich1 & & \\
+ 		%Lich2 & & \\
+ 		%Zust1 & & \\
+ 		%Zust2 & & \\
+ 		%Fstf & & \\
  		WoTag & TAvg, SMax, Cov, TLHGV & \\
- 		FeiTag & & \\
+ 		%FeiTag & & \\
  		Month & TMax, TAvg, SMax, SAvg, Cov, TLHGV & \\
 	\end{tabular}
 	\caption{List of incident variables and their strong/moderated correlated jam variabel from the BAYSIS selected data (Jam Effektor)}
 \end{table}
+
+Are these correlations significant or not ? --> Wilcoxon Test
+
+\paragraph{Strasse}
+
+\paragraph{Kat}
+
+\paragraph{UArt1}
+
+\paragraph{UArt2}
+
+\paragraph{AufHi}
+
+\paragraph{WoTag}
+
+\paragraph{Month}
 
 \subsubsection{Jam Follower}
 
@@ -1974,30 +2036,49 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 		\\[-1em]
 		Strasse & TMax, TAvg, SMax, SAvg, TDist, SDist, Cov, TLHGV & \\ 
  		Kat & TMax, SAvg & \\ 
- 		Typ & & \\
- 		Betei & & \\
+ 		%Typ & & \\
+ 		%Betei & & \\
  		UArt1 & TAvg, SAvg, TDist, Cov, TLHVG & \\
  		UArt2 & TDist & \\
  		AUrs1 & TDist, SDist, Cov, TLHGV & \\
- 		AUrs2 & & \\
+ 		%AUrs2 & & \\
  		AufHi & TMax, TAvg, Cov & \\
- 		Alkoh & & \\
- 		Char1 & & \\
- 		Char2 & & \\
- 		Bes1 & & \\
- 		Bes2 & & \\
+ 		%Alkoh & & \\
+ 		%Char1 & & \\
+ 		%Char2 & & \\
+ 		%Bes1 & & \\
+ 		%Bes2 & & \\
  		Lich1 & Cov & \\
- 		Lich2 & & \\
- 		Zust1 & & \\
- 		Zust2 & & \\
- 		Fstf & & \\
+ 		%Lich2 & & \\
+ 		%Zust1 & & \\
+ 		%Zust2 & & \\
+ 		%Fstf & & \\
  		WoTag & TAvg, SMax, SAvg, TDist, Cov, TLHGV & \\
- 		FeiTag & & \\
+ 		%FeiTag & & \\
  		Month & TMax, TAvg, SMax, Cov, TLHGV & \\
 	\end{tabular}
 	\caption{List of incident variables and their strong/moderated correlated jam variabel from the BAYSIS selected data (Jam Follower)}
 \end{table}
 
+Are these correlations significant or not ? --> Wilcoxon Test
+
+\paragraph{Strasse}
+
+\paragraph{Kat}
+
+\paragraph{UArt1}
+
+\paragraph{UArt2}
+
+\paragraph{AUrs1}
+
+\paragraph{AufHi}
+
+\paragraph{Lich1}
+
+\paragraph{WoTag}
+
+\paragraph{Month}
 
 \subsection{ArbIS}
 
@@ -2009,13 +2090,26 @@ What time frame does the dataset cover and over what spatial area.
 
 What kind of information does the dataset contain?
 
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l|l}  
+		Category & Strong & Moderate \\
+		\\[-1em]
+		\hline
+		\\[-1em]
+		Strasse & TMax, TAvg, SMax, SAvg, TDist, SDist, Cov, TLCar, TLHGV & \\ 
+ 		%AnzGesperrtFs & & \\ 
+ 		%Einzug & & \\
+ 		%Richtung & & \\
+ 		%Length & & \\
+ 		%Duration & & \\
+ 		Month & TAvg, SMax, SAvg, TDist, SDist, Cov, TLCar & \\
+	\end{tabular}
+	\caption{List of incident variables and their strong/moderated correlated jam variabel from the ArbIS matched data}
+\end{table}
 
-
-
-
-
-
-
+Are these correlations significant or not ? --> Wilcoxon Test
 
 
 
@@ -2196,7 +2290,6 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \label{appendix_baysis_dataset}
 
 % ------- BAYSIS Matched - Figures --------
-
 \begin{figure}[h]
 	\centering
 	\includegraphics{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_multiple01}
@@ -2226,8 +2319,6 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \end{figure}
 
 % ------- BAYSIS Matched - Matrix --------
-\pagestyle{empty}
-
 \newgeometry{left=1cm,right=1cm}
 \begin{figure}[h]
 	\centering
@@ -2289,13 +2380,41 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \restoregeometry
 
 % -----------------------------------------------
-% ------- BAYSIS Selected - Jam Initiator -------
+% ------- BAYSIS Selected01 - Jam Initiator -------
 % -----------------------------------------------
 \tocless\section{BAYSIS Selected Data - Jam Initiator}
 \label{appendix_baysis_selected_startJam}
 
-Explanation...
+% ------- BAYSIS Selected01 - Figures --------
+\begin{figure}[h]
+	\centering
+	\includegraphics{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple01}
+	\caption{Distribution of the accident category '', ...}
+	\label{img:appendix_baysis_selected_01_01}
+\end{figure}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple02}
+	\caption{Distribution of the accident category '', ..}
+	\label{img:appendix_baysis_selected_01_02}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple03}
+	\caption{Distribution of the accident category '', ..}
+	\label{img:appendix_baysis_selected_01_03}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple04}
+	\caption{Distribution of the accident category '', ...}
+	\label{img:appendix_baysis_selected_01_04}
+\end{figure}
+
+% ------- BAYSIS Selected01 - Matrix --------
 \newgeometry{left=1cm,right=1cm}
 \begin{figure}[h]
 	\centering
@@ -2315,7 +2434,7 @@ Explanation...
 \end{figure}
 \restoregeometry
 
-% ------- BAYSIS Selected - Tabellen --------
+% ------- BAYSIS Selected01 - Tabellen --------
 \newgeometry{left=1cm,right=1cm,bottom=2cm}
 \begin{sidewaystable}
 	\tiny
@@ -2366,20 +2485,20 @@ Explanation...
 
 Explanation...
 
-\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
+\newgeometry{left=1cm,right=1cm}
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.52, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_cramers}
+	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_cramers}
 	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Cramer's $V$}
 	\label{img:appendix_correlation_matrix_selected_startJam_cramers}
 \end{figure}
 \restoregeometry
 
-\newgeometry{left=1cm,right=1cm,top=1cm,bottom=2cm}
+\newgeometry{left=1cm,right=1cm,}
 \label{appendix_baysis_dataset_corr_theils}
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.52, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_theils}
+	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_theils}
 	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Theil's $U$}
 	\label{img:appendix_correlation_matrix_selected_startJam_theils}
 \end{figure}
@@ -2451,43 +2570,53 @@ Explanation...
 % ------- ArbIS Dataset - Figures --------
 
 % ------- ArbIS Dataset - Matrix --------
-\newgeometry{left=1cm,right=1cm,top=1cm}
+\newgeometry{left=1cm,right=1cm}
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.8]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_cramers}
+	\includegraphics[scale=0.7, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_cramers}
 	\caption{Correlation matrix for ArbIS dataset, with Cramers's $V$}
 	\label{img:appendix_correlation_matrix_dataset_theils}
 \end{figure}
+\restoregeometry
+
+\newgeometry{left=1cm,right=1cm}
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.8]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_theils}
+	\includegraphics[scale=0.7, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_theils}
 	\caption{Correlation matrix for ArbIS dataset, with Theil's $U$}
 	\label{img:appendix_correlation_matrix_dataset_theils}
 \end{figure}
 \restoregeometry
 
 % ------- ArbIS Dataset - Tables --------
-\newgeometry{left=1cm,right=1cm,top=1cm}
+\newgeometry{left=1cm,right=1cm}
 \begin{table}
 \setlength{\tabcolsep}{4pt}
 \centering
 \include{../CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_corr_cramers}
 \caption{Correlation matrix for ArbIS dataset, with Cramer's $V$}
-\end{table} % <-- HERE
+\end{table}
 
 \begin{table}
 \setlength{\tabcolsep}{4pt}
 \centering
 \include{../CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_corr_theils}
 \caption{Correlation matrix for ArbIS dataset, with Theil's $U$}
-\end{table} % <-- HERE
+\end{table}
 
 \begin{table}
 \setlength{\tabcolsep}{4pt}
 \centering
 \include{../CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_sign_cramers}
 \caption{Significancy matrix for ArbIS dataset}
-\end{table} % <-- HERE
+\end{table}
+
+\begin{table}
+\setlength{\tabcolsep}{4pt}
+\centering
+\include{../CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_coef_cramers}
+\caption{Coefficient matrix for ArbIS dataset}
+\end{table}
 \restoregeometry
 
 % -------------------------------
@@ -2496,18 +2625,30 @@ Explanation...
 \tocless\section{ArbIS Matched Data}
 \label{appendix_ArbIS_matched}
 
-% ------- ArbIS Dataset - Matrix --------
-\newgeometry{left=1cm,right=1cm,top=1cm}
-\label{appendix_baysis_dataset_corr_theils}
+% ------- ArbIS Matched - Figures --------
+
+
+
+% ------- ArbIS Matched - Matrix --------
+\newgeometry{left=1cm,right=1cm}
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.4]{../CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_corr_theils}
+	\includegraphics[scale=0.4, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_corr_cramers}
+	\caption{Correlation matrix for ArbIS matched data, with Cramer's $V$}
+	\label{img:appendix_correlation_matrix_matched_cramers}
+\end{figure}
+\restoregeometry
+
+\newgeometry{left=1cm,right=1cm}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_corr_theils}
 	\caption{Correlation matrix for ArbIS matched data, with Theil's $U$}
 	\label{img:appendix_correlation_matrix_matched_theils}
 \end{figure}
 \restoregeometry
 
-% ------- ArbIS Dataset - Tables --------
+% ------- ArbIS Matched - Tables --------
 \newgeometry{left=1cm,right=1cm,top=1cm}
 \begin{sidewaystable}
 \tiny
@@ -2532,6 +2673,14 @@ Explanation...
 \include{../CorrAnalysis/data/ArbIS/02_matched/latex/arbis_matched_sign_cramers}
 \caption{Significancy matrix for ArbIS matched data}
 \end{sidewaystable}
+
+\begin{sidewaystable}
+\tiny
+\setlength{\tabcolsep}{4pt}
+\centering
+\include{../CorrAnalysis/data/ArbIS/02_matched/latex/arbis_matched_coef_cramers}
+\caption{Coefficient matrix for ArbIS matched data}
+\end{sidewaystable}
 \restoregeometry
 
 % -------------------------------------
@@ -2542,11 +2691,11 @@ Explanation...
 % -------------------------------------
 % ------- Cluster Algo ---------
 \tocless\section{CongstatsClusterAlgorithm}
-\label{appendix_TODO}
-\begingroup
-    \fontsize{2pt}{6pt}\selectfont
-		\lstinputlisting[language=java]{../CongEvaluation/congestion/clustering/CongstatsClusterAlgorithm.java}
-\endgroup
+%\label{appendix_TODO}
+%\begingroup
+%    \fontsize{2pt}{6pt}\selectfont
+%		\lstinputlisting[language=java]{../CongEvaluation/congestion/clustering/CongstatsClusterAlgorithm.java}
+%\endgroup
 
 % ------------------------------
 % ------- Shaping Algo ---------

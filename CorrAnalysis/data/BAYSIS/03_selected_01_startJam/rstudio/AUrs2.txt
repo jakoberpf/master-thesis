@@ -5,69 +5,9 @@ data:  encoded$AUrs2 by encoded$TempMax
 Kruskal-Wallis chi-squared = 105.63, df = 131, p-value = 0.9495
 
 
-	Kruskal-Wallis rank sum test
-
-data:  encoded$AUrs2 by encoded$TempAvg
-Kruskal-Wallis chi-squared = 180.61, df = 175, p-value = 0.3698
-
-
-	Kruskal-Wallis rank sum test
-
-data:  encoded$AUrs2 by encoded$SpatAvg
-Kruskal-Wallis chi-squared = 604.05, df = 727, p-value = 0.9997
-
-
-	Kruskal-Wallis rank sum test
-
-data:  encoded$AUrs2 by encoded$TempDist
-Kruskal-Wallis chi-squared = 34.628, df = 24, p-value = 0.07411
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$TempMax and encoded$AUrs2 
-
-   0 73 75 80 81 84
-73 1 -  -  -  -  - 
-75 1 1  -  -  -  - 
-80 1 1  1  -  -  - 
-81 1 1  1  1  -  - 
-84 1 1  1  1  1  - 
-89 1 1  1  1  1  1 
-
-P value adjustment method: holm 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$TempAvg and encoded$AUrs2 
-
-   0 73 75 80 81 84
-73 1 -  -  -  -  - 
-75 1 1  -  -  -  - 
-80 1 1  1  -  -  - 
-81 1 1  1  1  -  - 
-84 1 1  1  1  1  - 
-89 1 1  1  1  1  1 
-
-P value adjustment method: holm 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$SpatAvg and encoded$AUrs2 
-
-   0 73 75 80 81 84
-73 1 -  -  -  -  - 
-75 1 1  -  -  -  - 
-80 1 1  1  -  -  - 
-81 1 1  1  1  -  - 
-84 1 1  1  1  1  - 
-89 1 1  1  1  1  1 
-
-P value adjustment method: holm 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$TempDist and encoded$AUrs2 
 
    0 73 75 80 81 84
 73 1 -  -  -  -  - 
@@ -108,6 +48,26 @@ group: 89
    vars n mean sd median trimmed mad min max range skew kurtosis se
 X1    1 1   36 NA     36      36   0  36  36     0   NA       NA NA
 
+	Kruskal-Wallis rank sum test
+
+data:  encoded$AUrs2 by encoded$TempAvg
+Kruskal-Wallis chi-squared = 180.61, df = 175, p-value = 0.3698
+
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  encoded$TempAvg and encoded$AUrs2 
+
+   0 73 75 80 81 84
+73 1 -  -  -  -  - 
+75 1 1  -  -  -  - 
+80 1 1  1  -  -  - 
+81 1 1  1  1  -  - 
+84 1 1  1  1  1  - 
+89 1 1  1  1  1  1 
+
+P value adjustment method: holm 
+
  Descriptive statistics by group 
 group: 0
    vars   n  mean    sd median trimmed   mad min max range skew kurtosis   se
@@ -137,6 +97,26 @@ group: 89
    vars n mean sd median trimmed mad min max range skew kurtosis se
 X1    1 1   11 NA     11      11   0  11  11     0   NA       NA NA
 
+	Kruskal-Wallis rank sum test
+
+data:  encoded$AUrs2 by encoded$SpatAvg
+Kruskal-Wallis chi-squared = 604.05, df = 727, p-value = 0.9997
+
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  encoded$SpatAvg and encoded$AUrs2 
+
+   0 73 75 80 81 84
+73 1 -  -  -  -  - 
+75 1 1  -  -  -  - 
+80 1 1  1  -  -  - 
+81 1 1  1  1  -  - 
+84 1 1  1  1  1  - 
+89 1 1  1  1  1  1 
+
+P value adjustment method: holm 
+
  Descriptive statistics by group 
 group: 0
    vars   n    mean      sd median trimmed     mad min   max range skew kurtosis    se
@@ -165,6 +145,26 @@ X1    1 1 1168 NA   1168    1168   0 1168 1168     0   NA       NA NA
 group: 89
    vars n mean sd median trimmed mad  min  max range skew kurtosis se
 X1    1 1 1514 NA   1514    1514   0 1514 1514     0   NA       NA NA
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded$AUrs2 by encoded$TempDist
+Kruskal-Wallis chi-squared = 34.628, df = 24, p-value = 0.07411
+
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  encoded$TempDist and encoded$AUrs2 
+
+   0 73 75 80 81 84
+73 1 -  -  -  -  - 
+75 1 1  -  -  -  - 
+80 1 1  1  -  -  - 
+81 1 1  1  1  -  - 
+84 1 1  1  1  1  - 
+89 1 1  1  1  1  1 
+
+P value adjustment method: holm 
 
  Descriptive statistics by group 
 group: 0

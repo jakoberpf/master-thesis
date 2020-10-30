@@ -5,13 +5,6 @@ data:  encoded$Typ by encoded$TempDist
 Kruskal-Wallis chi-squared = 39.181, df = 24, p-value = 0.02614
 
 
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$TempDist and encoded$Typ
-W = 459564, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$TempDist and encoded$Typ 
@@ -54,13 +47,6 @@ X1    1 70 12.27 7.09     11   12.09 8.15   0  24    24 0.26     -1.2 0.85
 
 data:  encoded$Typ by encoded$Coverage
 Kruskal-Wallis chi-squared = 87.648, df = 93, p-value = 0.6372
-
-
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$Coverage and encoded$Typ
-W = 602456, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
 
 
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 

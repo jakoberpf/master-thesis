@@ -5,13 +5,6 @@ data:  encoded$Strasse by encoded$TempMax
 Kruskal-Wallis chi-squared = 151.97, df = 131, p-value = 0.1015
 
 
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$TempMax and encoded$Strasse
-W = 603459, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$TempMax and encoded$Strasse 
@@ -99,13 +92,6 @@ X1    1 3  103 52.85     96     103 62.27  54 159   105 0.13    -2.33 30.51
 
 data:  encoded$Strasse by encoded$TempAvg
 Kruskal-Wallis chi-squared = 173.3, df = 175, p-value = 0.5221
-
-
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$TempAvg and encoded$Strasse
-W = 601130, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
 
 
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
@@ -197,13 +183,6 @@ data:  encoded$Strasse by encoded$SpatMax
 Kruskal-Wallis chi-squared = 752.87, df = 720, p-value = 0.1919
 
 
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$SpatMax and encoded$Strasse
-W = 603729, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$SpatMax and encoded$Strasse 
@@ -291,13 +270,6 @@ X1    1 3 3693 3286.4   1864    3693 201.63 1728 7487  5759 0.38    -2.33 1897.4
 
 data:  encoded$Strasse by encoded$SpatAvg
 Kruskal-Wallis chi-squared = 753.78, df = 727, p-value = 0.2385
-
-
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$SpatAvg and encoded$Strasse
-W = 603729, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
 
 
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
@@ -389,13 +361,6 @@ data:  encoded$Strasse by encoded$Coverage
 Kruskal-Wallis chi-squared = 112, df = 93, p-value = 0.08749
 
 
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$Coverage and encoded$Strasse
-W = 603038, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$Coverage and encoded$Strasse 
@@ -483,13 +448,6 @@ X1    1 3 69.33 37.17     80   69.33 29.65  28 100    72 -0.26    -2.33 21.46
 
 data:  encoded$Strasse by encoded$TLCar
 Kruskal-Wallis chi-squared = 547.62, df = 529, p-value = 0.2788
-
-
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$TLCar and encoded$Strasse
-W = 603729, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
 
 
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 

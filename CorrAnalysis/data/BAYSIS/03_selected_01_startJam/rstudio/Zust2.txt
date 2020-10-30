@@ -5,27 +5,12 @@ data:  encoded$Zust2 by encoded$TempAvg
 Kruskal-Wallis chi-squared = 364.94, df = 175, p-value = 1.858e-15
 
 
-	Kruskal-Wallis rank sum test
-
-data:  encoded$Zust2 by encoded$SpatAvg
-Kruskal-Wallis chi-squared = 636.17, df = 727, p-value = 0.9933
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$TempAvg and encoded$Zust2 
 
   -1   
 2 0.038
-
-P value adjustment method: holm 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$SpatAvg and encoded$Zust2 
-
-  -1   
-2 0.018
 
 P value adjustment method: holm 
 
@@ -37,6 +22,21 @@ X1    1 770 66.75 64.06     52   56.26 31.13   4 920   916 5.04    47.48 2.31
 group: 2
    vars n   mean     sd median trimmed    mad min max range skew kurtosis    se
 X1    1 7 182.14 172.87    113  182.14 100.82  15 426   411 0.57    -1.67 65.34
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded$Zust2 by encoded$SpatAvg
+Kruskal-Wallis chi-squared = 636.17, df = 727, p-value = 0.9933
+
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  encoded$SpatAvg and encoded$Zust2 
+
+  -1   
+2 0.018
+
+P value adjustment method: holm 
 
  Descriptive statistics by group 
 group: -1

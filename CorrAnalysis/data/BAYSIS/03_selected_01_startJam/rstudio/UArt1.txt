@@ -5,13 +5,6 @@ data:  encoded$UArt1 by encoded$TempMax
 Kruskal-Wallis chi-squared = 184.29, df = 131, p-value = 0.001496
 
 
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$TempMax and encoded$UArt1
-W = 603569, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$TempMax and encoded$UArt1 
@@ -74,13 +67,6 @@ X1    1 80 122.47 143.91   91.5   98.58 55.6  12 1152  1140 5.14    31.86 16.09
 
 data:  encoded$UArt1 by encoded$TempAvg
 Kruskal-Wallis chi-squared = 182.51, df = 175, p-value = 0.3331
-
-
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$TempAvg and encoded$UArt1
-W = 599690, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
 
 
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
@@ -147,13 +133,6 @@ data:  encoded$UArt1 by encoded$SpatMax
 Kruskal-Wallis chi-squared = 735.57, df = 720, p-value = 0.3355
 
 
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$SpatMax and encoded$UArt1
-W = 603729, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$SpatMax and encoded$UArt1 
@@ -216,13 +195,6 @@ X1    1 80 7472.18 5470.13 6283.5 6592.69 4461.88 1000 26130 25130 1.54      2.5
 
 data:  encoded$UArt1 by encoded$SpatAvg
 Kruskal-Wallis chi-squared = 741.73, df = 727, p-value = 0.3442
-
-
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$SpatAvg and encoded$UArt1
-W = 603729, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
 
 
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
@@ -289,13 +261,6 @@ data:  encoded$UArt1 by encoded$TempDist
 Kruskal-Wallis chi-squared = 43.627, df = 24, p-value = 0.008429
 
 
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$TempDist and encoded$UArt1
-W = 492463, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$TempDist and encoded$UArt1 
@@ -360,13 +325,6 @@ data:  encoded$UArt1 by encoded$Coverage
 Kruskal-Wallis chi-squared = 119.45, df = 93, p-value = 0.0337
 
 
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$Coverage and encoded$UArt1
-W = 602513, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$Coverage and encoded$UArt1 
@@ -429,13 +387,6 @@ X1    1 80 56.73 21.86     54   56.03 25.2  18 100    82 0.25     -1.1 2.44
 
 data:  encoded$UArt1 by encoded$TLCar
 Kruskal-Wallis chi-squared = 525, df = 529, p-value = 0.5409
-
-
-	Asymptotic Wilcoxon rank sum test
-
-data:  encoded$TLCar and encoded$UArt1
-W = 603729, p-value < 2.2e-16
-alternative hypothesis: true mu is not equal to 0
 
 
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 

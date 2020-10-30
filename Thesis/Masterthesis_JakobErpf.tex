@@ -1255,9 +1255,31 @@ Form the total of 10262, 157 accidents took place on a public holiday. This is n
 	\label{tab:table_baysis_paramters}
 \end{table}
 
-Table \ref{tab:table_baysis_paramters} show all categorized parameters, relevant for the correlation analysis, with variabel group, type and the format of the containing data. To check for dependent variables which need to be considered in a correlation analysis, the correlation matrix for all relevant parameters in the BAYSIS dataset is calculated (see figures/tables \ref{img:appendix_correlation_matrix_dataset_cramers}/\ref{table:appendix_correlation_matrix_dataset_cramers} for Cramer's $V$ and \ref{img:appendix_correlation_matrix_dataset_theils}/\ref{table:appendix_correlation_matrix_dataset_theils} for Theil's $U$). Cramer's $V$ reveals several strong relationships, which are 'Typ'-'UArt1'. 'AUrs1'-'Zust1', 'AUrs1'-'Zust2' and some  trivial relations of 'Char1'-'Char2', 'Bes1'-'Bes2', 'Lich1'-'Lich2'. The results of Theil's $U$ confirms the relationships identified by Cramer's $V$ with a moderate effect size and show the association of 'Aufhi'-'UArt' with a strong effect size. That means that relations found in the later analysis, which contain the parameters 'Typ', 'UArt1, 'AUrs1, 'Zust1' and 'Zust2' might be in result of another depended variabel and should be checked for independence.
+Table \ref{tab:table_baysis_paramters} show all categorized parameters, relevant for the correlation analysis, with variabel group, type and the format of the containing data. To check for dependent variables which need to be considered in a correlation analysis, the correlation matrix for all relevant parameters in the BAYSIS dataset is calculated (see figures/tables \ref{img:correlation_matrix_dataset_cramers}/\ref{table:appendix_correlation_matrix_dataset_cramers} for Cramer's $V$ and \ref{img:appendix_correlation_matrix_dataset_theils}/\ref{table:appendix_correlation_matrix_dataset_theils} for Theil's $U$). Cramer's $V$ reveals several strong relationships, which are 'Typ'-'UArt1'. 'AUrs1'-'Zust1', 'AUrs1'-'Zust2' and some  trivial relations of 'Char1'-'Char2', 'Bes1'-'Bes2', 'Lich1'-'Lich2'. The results of Theil's $U$ confirms the relationships identified by Cramer's $V$ with a moderate effect size and show the association of 'Aufhi'-'UArt' with a strong effect size. 
 
-\bigskip
+% TODO check p-value and 
+
+That means that relations found in the later analysis, which contain the parameters 'Typ', 'UArt1, 'AUrs1, 'Zust1' and 'Zust2' might be in result of another depended variabel and should be checked for independence.
+
+% ------- BAYSIS Dataset - Matrix --------
+\newgeometry{left=1.5cm,right=1cm}
+\pagestyle{empty}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4, trim=4cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_corr_cramers}
+	\caption{Correlation matrix for BAYSIS dataset, with Cramer's $V$}
+	\label{img:correlation_matrix_dataset_cramers}
+\end{figure}
+\restoregeometry
+\pagestyle{headings}
+%\newgeometry{left=1.5cm,right=1cm}
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=0.4, trim=2cm 6cm 0cm 6cm]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_corr_theils}
+%	\caption{Correlation matrix for BAYSIS dataset, with Theil's $U$}
+%	\label{img:appendix_correlation_matrix_dataset_theils}
+%\end{figure}
+%\restoregeometry
 
 The designed evaluation tool, utilizes a PostgreSQL database for its data storage. Therefore the BAYSIS data in form of \acrfull{csv} needs to processed and converted into SQL data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the necessary processing and import into the database, 7971 re cords end up being converted and persisted, which equivalent to 77,6\% of the total number of accidents. This 22,4\% of data loss is due to the conversion of from the BAYSIS geo-system to the HERE network, which tries to find a corresponding street network location to the legacy location of the BAYSIS dataset. If it is not able to locate the position of the BYSIS dataset on our street network, the record is discarded.
 

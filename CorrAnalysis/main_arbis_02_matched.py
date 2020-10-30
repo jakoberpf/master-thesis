@@ -378,10 +378,10 @@ if __name__ == '__main__':
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + file_prefix + '_sign_cramers.tex', 'w') as tf:
-        tf.write(results.get('significance').to_latex())
+        tf.write(results.get('significance').to_latex(float_format="{:0.3f}".format))
 
     with open(tex_path + file_prefix + '_coef_cramers.tex', 'w') as tf:
-        tf.write(results.get('coefficient').to_latex())
+        tf.write(results.get('coefficient').to_latex(escape=False))
 
     # Calculate with Theil's U
     results = None  # To make sure that no old data is reused
@@ -412,9 +412,9 @@ if __name__ == '__main__':
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + file_prefix + '_sign_theils.tex', 'w') as tf:
-        tf.write(results.get('significance').to_latex())
+        tf.write(results.get('significance').to_latex(float_format="{:0.3f}".format))
 
     with open(tex_path + file_prefix + '_coef_theils.tex', 'w') as tf:
-        tf.write(results.get('coefficient').to_latex())
+        tf.write(results.get('coefficient').to_latex(escape=False))
 
     print('Finished ArbIS Dataset Analysis')

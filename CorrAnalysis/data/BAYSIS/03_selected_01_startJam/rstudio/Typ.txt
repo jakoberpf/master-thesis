@@ -5,12 +5,6 @@ data:  encoded$Typ by encoded$TempDist
 Kruskal-Wallis chi-squared = 39.181, df = 24, p-value = 0.02614
 
 
-	Kruskal-Wallis rank sum test
-
-data:  encoded$Typ by encoded$Coverage
-Kruskal-Wallis chi-squared = 87.648, df = 93, p-value = 0.6372
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$TempDist and encoded$Typ 
@@ -21,19 +15,6 @@ data:  encoded$TempDist and encoded$Typ
 5 0.9596 1.0000 0.9596 -      -     
 6 0.0011 0.9596 0.5057 1.0000 -     
 7 1.0000 0.0397 1.0000 0.9596 0.0075
-
-P value adjustment method: holm 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$Coverage and encoded$Typ 
-
-  1     3     4     5     6    
-3 0.016 -     -     -     -    
-4 1.000 0.103 -     -     -    
-5 1.000 1.000 1.000 -     -    
-6 0.097 0.179 0.312 1.000 -    
-7 1.000 0.094 1.000 1.000 1.000
 
 P value adjustment method: holm 
 
@@ -61,6 +42,25 @@ X1    1 496  9.2 5.88      8     8.6 4.45   0  24    24 0.84    -0.04 0.26
 group: 7
    vars  n  mean   sd median trimmed  mad min max range skew kurtosis   se
 X1    1 70 12.27 7.09     11   12.09 8.15   0  24    24 0.26     -1.2 0.85
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded$Typ by encoded$Coverage
+Kruskal-Wallis chi-squared = 87.648, df = 93, p-value = 0.6372
+
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  encoded$Coverage and encoded$Typ 
+
+  1     3     4     5     6    
+3 0.016 -     -     -     -    
+4 1.000 0.103 -     -     -    
+5 1.000 1.000 1.000 -     -    
+6 0.097 0.179 0.312 1.000 -    
+7 1.000 0.094 1.000 1.000 1.000
+
+P value adjustment method: holm 
 
  Descriptive statistics by group 
 group: 1

@@ -116,14 +116,6 @@ if __name__ == '__main__':
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    ##############
-    ### Report ###
-    ##############
-
-    if generate_report:
-        report = ProfileReport(arbis_matched, title='ArbIS Matched Dataset Report')
-        report.to_file(work_path + file_prefix + '_report.html')
-
     ##################
     ### Congestion ###
     ##################
@@ -336,13 +328,20 @@ if __name__ == '__main__':
     ### Box ###
     ###########
 
+    ##############
+    ### Report ###
+    ##############
+
+    if generate_report:
+        report = ProfileReport(arbis_matched, title='ArbIS Matched Dataset Report')
+        report.to_file(work_path + file_prefix + '_report.html')
+
     ###################
     ### Correlation ###
     ###################
 
     # define column types
     nominal_columns = ['Strasse',
-                       'StreckeID',
                        'Month']
     dichotomous_columns = ['Richtung']
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
@@ -350,7 +349,6 @@ if __name__ == '__main__':
     # Encode non numerical columns
     arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_matched,
                                                            ["Strasse",
-                                                            'StreckeID',
                                                             'Month'],
                                                            drop_single_label=False,
                                                            drop_fact_dict=False)

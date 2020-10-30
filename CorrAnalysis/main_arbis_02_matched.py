@@ -88,14 +88,6 @@ if __name__ == '__main__':
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    ##############
-    ### Report ###
-    ##############
-
-    if generate_report:
-        report = ProfileReport(arbis_matched, title='ArbIS Matched Dataset Report')
-        report.to_file(work_path + file_prefix + '_report.html')
-
     ##################
     ### Congestion ###
     ##################
@@ -258,73 +250,81 @@ if __name__ == '__main__':
     ### Scatter ###
     ###############
 
-    # Congestion -> Roadwork
-    for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Scatterplot of ' + atr)
-        arbis_matched.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
-    # Congestion -> Roadwork
-    for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Scatterplot of ' + atr)
-        arbis_matched.plot.scatter(x='TempAvg', y='SpatAvg', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
-    # Congestion -> Roadwork
-    for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Scatterplot of ' + atr)
-        arbis_matched.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
-    # Roadwork -> Congestion
-    for atr in ['TempMax', 'SpatMax', 'TempAvg', 'SpatAvg', 'TLCar', 'TLHGV']:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Scatterplot of ' + atr)
-        arbis_matched.plot.scatter(x='Length', y='Duration', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
+    # # Congestion -> Roadwork
+    # for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
+    #     plt.figure(figsize=set_size(418, 0.8))
+    #     plt.style.use('seaborn')
+    #     plt.rcParams.update(tex_fonts)
+    #     plt.title('Scatterplot of ' + atr)
+    #     arbis_matched.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
+    #     if save_plot:
+    #         plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
+    #         if not show_plot:
+    #             plt.close()
+    #     if show_plot:
+    #         plt.show()
+    #     else:
+    #         plt.close()
+    #
+    # # Congestion -> Roadwork
+    # for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
+    #     plt.figure(figsize=set_size(418, 0.8))
+    #     plt.style.use('seaborn')
+    #     plt.rcParams.update(tex_fonts)
+    #     plt.title('Scatterplot of ' + atr)
+    #     arbis_matched.plot.scatter(x='TempAvg', y='SpatAvg', c=atr, colormap='viridis')
+    #     if save_plot:
+    #         plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
+    #         if not show_plot:
+    #             plt.close()
+    #     if show_plot:
+    #         plt.show()
+    #     else:
+    #         plt.close()
+    #
+    # # Congestion -> Roadwork
+    # for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
+    #     plt.figure(figsize=set_size(418, 0.8))
+    #     plt.style.use('seaborn')
+    #     plt.rcParams.update(tex_fonts)
+    #     plt.title('Scatterplot of ' + atr)
+    #     arbis_matched.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
+    #     if save_plot:
+    #         plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
+    #         if not show_plot:
+    #             plt.close()
+    #     if show_plot:
+    #         plt.show()
+    #     else:
+    #         plt.close()
+    #
+    # # Roadwork -> Congestion
+    # for atr in ['TempMax', 'SpatMax', 'TempAvg', 'SpatAvg', 'TLCar', 'TLHGV']:
+    #     plt.figure(figsize=set_size(418, 0.8))
+    #     plt.style.use('seaborn')
+    #     plt.rcParams.update(tex_fonts)
+    #     plt.title('Scatterplot of ' + atr)
+    #     arbis_matched.plot.scatter(x='Length', y='Duration', c=atr, colormap='viridis')
+    #     if save_plot:
+    #         plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
+    #         if not show_plot:
+    #             plt.close()
+    #     if show_plot:
+    #         plt.show()
+    #     else:
+    #         plt.close()
 
     ###########
     ### Box ###
     ###########
+
+    ##############
+    ### Report ###
+    ##############
+
+    if generate_report:
+        report = ProfileReport(arbis_matched, title='ArbIS Matched Dataset Report')
+        report.to_file(work_path + file_prefix + '_report.html')
 
     ###################
     ### Correlation ###
@@ -332,7 +332,6 @@ if __name__ == '__main__':
 
     # define column types
     nominal_columns = ['Strasse',
-                       'StreckeID',
                        'Month']
     dichotomous_columns = ['Richtung']
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
@@ -340,7 +339,6 @@ if __name__ == '__main__':
     # Encode non numerical columns
     arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_matched,
                                                            ["Strasse",
-                                                            'StreckeID',
                                                             'Month'],
                                                            drop_single_label=False,
                                                            drop_fact_dict=False)

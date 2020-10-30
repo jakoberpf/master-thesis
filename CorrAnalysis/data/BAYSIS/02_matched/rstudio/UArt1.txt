@@ -5,18 +5,6 @@ data:  encoded$UArt1 by encoded$SpatAvg
 Kruskal-Wallis chi-squared = 1541.3, df = 1497, p-value = 0.2081
 
 
-	Kruskal-Wallis rank sum test
-
-data:  encoded$UArt1 by encoded$TempDist
-Kruskal-Wallis chi-squared = 58.116, df = 24, p-value = 0.0001173
-
-
-	Kruskal-Wallis rank sum test
-
-data:  encoded$UArt1 by encoded$Coverage
-Kruskal-Wallis chi-squared = 152.54, df = 95, p-value = 0.0001658
-
-
 	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
 
 data:  encoded$SpatAvg and encoded$UArt1 
@@ -31,40 +19,6 @@ data:  encoded$SpatAvg and encoded$UArt1
 7 0.07508 0.00074 0.00327 0.49354 0.76736 1.00000 1.00000 -       -      
 8 1.00000 0.05379 0.63701 1.00000 1.00000 0.83787 1.00000 0.11238 -      
 9 1.00000 0.00185 0.00706 1.00000 1.00000 1.00000 1.00000 0.77058 1.00000
-
-P value adjustment method: holm 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$TempDist and encoded$UArt1 
-
-  0       1       2       3       4       5       6       7       8      
-1 1.00000 -       -       -       -       -       -       -       -      
-2 1.00000 1.00000 -       -       -       -       -       -       -      
-3 1.00000 1.00000 1.00000 -       -       -       -       -       -      
-4 0.52870 0.26714 0.29890 0.15778 -       -       -       -       -      
-5 0.04771 0.12137 0.00011 0.00451 0.00966 -       -       -       -      
-6 0.36725 0.24081 0.24081 0.14382 1.00000 0.00966 -       -       -      
-7 0.00115 0.00013 8.6e-06 1.2e-06 1.00000 8.7e-09 1.00000 -       -      
-8 0.01097 0.00012 3.8e-09 6.9e-11 1.00000 6.2e-12 1.00000 0.32474 -      
-9 0.00564 3.8e-05 3.1e-09 3.8e-11 1.00000 2.4e-12 1.00000 0.44984 1.00000
-
-P value adjustment method: holm 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$Coverage and encoded$UArt1 
-
-  0       1       2       3       4       5       6       7       8      
-1 1.00000 -       -       -       -       -       -       -       -      
-2 1.00000 1.00000 -       -       -       -       -       -       -      
-3 1.00000 1.00000 1.00000 -       -       -       -       -       -      
-4 1.00000 1.00000 1.00000 1.00000 -       -       -       -       -      
-5 0.67751 0.15185 0.00085 0.03063 0.67751 -       -       -       -      
-6 1.00000 1.00000 1.00000 1.00000 1.00000 1.00000 -       -       -      
-7 0.22816 0.28913 0.10242 0.03665 1.00000 0.00071 1.00000 -       -      
-8 0.00697 0.00603 2.8e-06 2.1e-07 1.00000 3.4e-09 1.00000 1.00000 -      
-9 0.04816 0.07481 0.00121 0.00012 1.00000 2.8e-07 1.00000 1.00000 1.00000
 
 P value adjustment method: holm 
 
@@ -109,6 +63,29 @@ group: 9
    vars   n    mean      sd median trimmed     mad min   max range skew kurtosis    se
 X1    1 125 3511.16 2433.92   2874 3117.84 1844.35 652 14198 13546 1.73      3.6 217.7
 
+	Kruskal-Wallis rank sum test
+
+data:  encoded$UArt1 by encoded$TempDist
+Kruskal-Wallis chi-squared = 58.116, df = 24, p-value = 0.0001173
+
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  encoded$TempDist and encoded$UArt1 
+
+  0       1       2       3       4       5       6       7       8      
+1 1.00000 -       -       -       -       -       -       -       -      
+2 1.00000 1.00000 -       -       -       -       -       -       -      
+3 1.00000 1.00000 1.00000 -       -       -       -       -       -      
+4 0.52870 0.26714 0.29890 0.15778 -       -       -       -       -      
+5 0.04771 0.12137 0.00011 0.00451 0.00966 -       -       -       -      
+6 0.36725 0.24081 0.24081 0.14382 1.00000 0.00966 -       -       -      
+7 0.00115 0.00013 8.6e-06 1.2e-06 1.00000 8.7e-09 1.00000 -       -      
+8 0.01097 0.00012 3.8e-09 6.9e-11 1.00000 6.2e-12 1.00000 0.32474 -      
+9 0.00564 3.8e-05 3.1e-09 3.8e-11 1.00000 2.4e-12 1.00000 0.44984 1.00000
+
+P value adjustment method: holm 
+
  Descriptive statistics by group 
 group: 0
    vars  n mean   sd median trimmed mad min max range skew kurtosis   se
@@ -149,6 +126,29 @@ X1    1 165 8.79 7.55      8    8.21 10.38   0  24    24 0.41    -1.04 0.59
 group: 9
    vars   n mean   sd median trimmed  mad min max range skew kurtosis   se
 X1    1 125 9.02 7.02      9    8.54 7.41   0  24    24 0.36    -0.83 0.63
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded$UArt1 by encoded$Coverage
+Kruskal-Wallis chi-squared = 152.54, df = 95, p-value = 0.0001658
+
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  encoded$Coverage and encoded$UArt1 
+
+  0       1       2       3       4       5       6       7       8      
+1 1.00000 -       -       -       -       -       -       -       -      
+2 1.00000 1.00000 -       -       -       -       -       -       -      
+3 1.00000 1.00000 1.00000 -       -       -       -       -       -      
+4 1.00000 1.00000 1.00000 1.00000 -       -       -       -       -      
+5 0.67751 0.15185 0.00085 0.03063 0.67751 -       -       -       -      
+6 1.00000 1.00000 1.00000 1.00000 1.00000 1.00000 -       -       -      
+7 0.22816 0.28913 0.10242 0.03665 1.00000 0.00071 1.00000 -       -      
+8 0.00697 0.00603 2.8e-06 2.1e-07 1.00000 3.4e-09 1.00000 1.00000 -      
+9 0.04816 0.07481 0.00121 0.00012 1.00000 2.8e-07 1.00000 1.00000 1.00000
+
+P value adjustment method: holm 
 
  Descriptive statistics by group 
 group: 0

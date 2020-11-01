@@ -1087,16 +1087,16 @@ The aggregated distribution of the variables "Bes1", "Bes2" and "Bes3", which fu
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{c|l}  
-		1 & Confusing
-		2 & Level crossing
-		3 & Pedestrian crossing
-		4 & Pedestrian passage
-		5 & Busstop
-		6 & Roadwork
-		7 & Calm traffic area
-		8 & RAV on street
-		9 & RAV separate
-		0 & RAV obligatory
+		1 & Confusing \\ 
+		2 & Level crossing \\
+		3 & Pedestrian crossing \\
+		4 & Pedestrian passage \\
+		5 & Busstop \\
+		6 & Roadwork \\
+		7 & Calm traffic area \\
+		8 & RAV on street \\
+		9 & RAV separate \\
+		0 & RAV obligatory \\
 	\end{tabular}
 	\caption{Identifier and description of 'Bes'}
 	\label{table:baysis_dataset_Bes}
@@ -1106,33 +1106,25 @@ The aggregated distribution of the variables "Bes1", "Bes2" and "Bes3", which fu
 The light situation parameter (shown in \ref{img:appendix_baysis_dataset_Lich}) does not reveal any features and describes the lighting condition when the accident happened. Because it can be ranked from best to worst lighting is is of ordinal type.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
-%	\item 70 = Slippery street due to oil
+%	\item 0 = Daylight
+%    \item 1 = Noon
+%    \item 2 = Darkness
+%    \item 3 = Street lighting working
+%    \item 4 = Street lighting not working
 %\end{itemize}
-%     * [41,42] Lighting at the time and on location
-%     * <p>
-%     * 0 = Tageslicht
-%     * 1 = Dämmerung
-%     * 2 = Dunkelheit
-%     * 3 = Straßenbeleuchtung in Betrieb
-%     * 4 = Straßenbeleuchtung außer Betrieb
-%     */
-%     Daylight
-%Noon
-%Darkness
-%Street lighting working
-%Street lighting not working
-%\noindent
-%\begin{table}[h!]
-%	\centering
-%	\begin{tabular}{c|l}  
-%		0 & Dry \\ 
-% 		1 & Wet \\ 
-% 		2 & Ice \\
-% 		3 & Slippery (oil, dirt, ...)  \\
-%	\end{tabular}
-%	\caption{Identifier and description of 'Zust'}
-%	\label{table:baysis_dataset_Zust}
-%\end{table}
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+	0 & Daylight \\
+    1 & Noon \\
+    2 & Darkness \\
+    3 & Street lighting working \\
+    4 & Street lighting not working \\
+	\end{tabular}
+	\caption{Identifier and description of 'Zust'}
+	\label{table:baysis_dataset_Zust}
+\end{table}
 
 \paragraph{Zust}
 The road condition parameter (shown in \ref{img:appendix_baysis_dataset_Zust}) describes in which condition the road was at time of the accident in the for of wet, dry, iced or slippery.
@@ -1160,10 +1152,9 @@ The road condition parameter (shown in \ref{img:appendix_baysis_dataset_Zust}) d
 The variabel references the lane on which the accident happened. It names the number of lane from the right, the hard-shoulder or the wrong usage of a one-way street. It does not show an order of lanes, but not with the two other types of hard-shoulder and one-way street. It is therefore considered as nominal.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
-%	\item 0 = Dry
-%	\item 1 = Wet
-%	\item 2 = Ice
-%	\item 3 = Slippery (oil, dirt, ...) 
+%		\item 1,2, ... = first, second, ... lane from the right 
+% 		\item S = accident happened on the hard-shoulder
+% 		\item E = accident happened during the wrong way usage of a one-ay street
 %\end{itemize}
 \noindent
 \begin{table}[h!]

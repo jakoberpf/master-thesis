@@ -1706,7 +1706,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	v_{A,B}^{mean} = \sum_{ij}^{xy_A + 1,...,xy_B - 1} z_{ij}^{speed}
 \end{equation}
 \begin{equation}
-	c = \frac{g_{timegap} \cdot v_{freeflow}}{g_{spacegap}}
+	c = \frac{t_{min,gap} \cdot v_{freeflow}}{l_{min,gap}}
 \end{equation}
 
 \begin{itemize}
@@ -1715,8 +1715,8 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $z_{speed}$ is the speed in the cell
 	\item[] $v^{mean}$ is mean speed in the area between $A$ and $B$
 	\item[] $c$ is the time-space calibrator
-	\item[] $g_{timegap}$ is the the aimed time gap
-	\item[] $g_{spacegap}$ is the the aimed space gap
+	\item[] $t_{min,gap}$ is the the aimed time gap
+	\item[] $l_{min,gap}$ is the the aimed space gap
 	\item[] $v_{freeflow}$ is the assumed free flowing speed (typically 130\,[km/h])
 \end{itemize}
 
@@ -1735,9 +1735,9 @@ Parameter calibration and estimation is a vital task when implementing algorithm
 
 The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
 \begin{itemize}
-	\item Spatial gap : $l_{min,gap} = 5000 [m]$ % cluster consolidation 
-	\item Temporal gap : $t_{min,gap} = 6 [min]$ % cluster consolidation 
-	\item Virtual travel-time gap $t_{min,gap}^{artificial} = 360s$
+	\item Spatial gap : $l_{min,gap} = 5000 \, [m]$ % cluster consolidation 
+	\item Temporal gap : $t_{min,gap} = 6 \, [min]$ % cluster consolidation 
+	\item Virtual travel-time gap $t_{min,gap}^{artificial} = 360 \, s$
 \end{itemize}
 
 %minPoints: As a general rule, a minimum minPoints can be derived from a number of dimensions (D) in the data set, as minPoints ≥ D + 1. Larger values are usually better for data sets with noise and will form more significant clusters. The minimum value for the minPoints must be 3, but the larger the data set, the larger the minPoints value that should be chosen.
@@ -1938,6 +1938,32 @@ Are these correlations significant or not ? --> Wilcoxon Test
 
 \paragraph{Strasse}
 
+\begin{table}[h]
+	\centering
+\begin{tabular}{rrrrrrrrrrrrrrrrr}
+  \hline
+ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\ 
+  \hline
+1 & 0.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+  2 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+  3 & 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+  4 & 0.00 & 1.00 & 0.22 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+  5 & 0.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+  6 & 0.00 & 1.00 & 0.31 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+  7 & 1.00 & 1.00 & 1.00 & 1.00 & 0.44 & 1.00 & 0.59 &  &  &  &  &  &  &  &  &  \\ 
+  8 & 0.00 & 1.00 & 0.16 & 1.00 & 1.00 & 1.00 & 1.00 & 0.22 &  &  &  &  &  &  &  &  \\ 
+  9 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+  10 & 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+  11 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+  12 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+  13 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+  14 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+  15 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+  16 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
 \paragraph{Kat}
 
 \paragraph{Typ}
@@ -1997,7 +2023,9 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 
 Are these correlations significant or not ? --> Wilcoxon Test
 
+\large
 \centerline{\textbf{Strasse}}
+\normalsize
 
 \centerline{\textbf{Kat}}
 
@@ -2379,23 +2407,36 @@ Kruskal-Wallis chi-squared = 972.26, df = 207, p-value < 2.2e-16
 \paragraph{Month}
 
 
+
 \chapter{Interpretation of analysis}
 
+
+
 \section{Association}
+
+
 
 \section{Predictions}
 Is the correlation strong enough to use it for predicting congestions and accidents?
 
 This is a very controversial topic. The predicability value of a association ...
 
+
+
 \subsection{Prediction of Accidents}
 Don't event think about it
+
+
 
 \subsection{Prediction of Congestions}
 Don't event think about it
 
+
+
 \chapter{Implementation}
-In the beginnig of the thesis the concept of using 
+In the beginning of the thesis the concept of using 
+
+
 
 \subsection{Requirements}
 
@@ -2408,11 +2449,19 @@ In the beginnig of the thesis the concept of using
 
 \chapter{Conclusion}
 
+
+
 \section{Answer of research question}
+
+
 
 \section{Usability of results and interpretation}
 
+
+
 \section{Future development and possible improvements} 
+
+
 
 \subsubsection{intraclass correlation coefficient (ICC)}
 Usage of ICC instead of Eta and Kruskal-Wallis H.
@@ -2425,10 +2474,6 @@ The improved DBSCAN algorithm based on cell-like P systems with promoters and in
 
 \subsubsection{Clustering in 3D (including cell speed)}
 Expand DBSCAN to three dimension from space and time (2D) to include cell speed into clustering algorithm.
-
-%\subsubsection{... Test}
-%\paragraph{... Test}
-%\subparagraph{... Test}
 
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliographystyle{apalike}
@@ -2447,17 +2492,20 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \begin{appendices}
 
 % -------------------------------
+% -------------------------------
 % ------- BAYSIS Appendix -------
 % -------------------------------
-
-% ------- BAYSIS Dataset --------
-\chapter{BAYSIS Dataset Figures}
+% -------------------------------
+\chapter{BAYSIS Figures and Tables}
 \label{appendix_baysis}
 
-% ------- BAYSIS Dataset - Figures --------
+% --------------------------------
+% ------- BAYSIS Dataset ---------
+% --------------------------------
 \tocless\section{BAYSIS Data Foundation}
 \label{appendix_baysis_dataset}
 
+% ------- BAYSIS Dataset - Figures --------
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple01}
@@ -2487,7 +2535,6 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \end{figure}
 
 % ------- BAYSIS Dataset - Tabellen --------
-
 \newgeometry{left=1cm,right=1cm,top=1cm}
 \begin{sidewaystable}
 \tiny
@@ -2561,7 +2608,6 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 	\caption{Distribution of the accident category '', ...}
 	\label{img:appendix_baysis_matched_04}
 \end{figure}
-
 % ------- BAYSIS Matched - Tabellen --------
 \newgeometry{left=1cm,right=1cm,bottom=2cm}
 \begin{sidewaystable}
@@ -2605,9 +2651,9 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 	\end{sidewaystable}
 \restoregeometry
 
-% -----------------------------------------------
+% -------------------------------------------------
 % ------- BAYSIS Selected01 - Jam Initiator -------
-% -----------------------------------------------
+% -------------------------------------------------
 \tocless\section{BAYSIS Selected Data - Jam Initiator}
 \label{appendix_baysis_selected_startJam}
 
@@ -2704,7 +2750,7 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \restoregeometry
 
 % -----------------------------------------------
-% ------- BAYSIS Selected - Jam Effektor -------
+% ------- BAYSIS Selected - Jam Effektor --------
 % -----------------------------------------------
 \tocless\section{BAYSIS Selected Data - Jam Effektor}
 \label{appendix_baysis_selected_duringJam}
@@ -2774,7 +2820,7 @@ Explanation...
 \restoregeometry
 
 % -----------------------------------------------
-% ------- BAYSIS Selected - Jam Follower -------
+% ------- BAYSIS Selected - Jam Follower --------
 % -----------------------------------------------
 \tocless\section{BAYSIS Selected Data - Jam Follower}
 \label{appendix_baysis_selected_endJam}
@@ -2782,18 +2828,19 @@ Explanation...
 Explanation...
 
 % -------------------------------
+% -------------------------------
 % ------- ArbIS Appendix --------
 % -------------------------------
-\chapter{ArbIS Dataset Figures}
-
+% -------------------------------
+\chapter{ArbIS Figures and Tables}
+\label{appendix_arbis}
 % -------------------------------
 % ------- ArbIS Dataset ---------
 % -------------------------------
 \tocless\section{ArbIS Data Foundation}
 \label{appendix_arbis_dataset}
-
-
 % ------- ArbIS Dataset - Figures --------
+
 
 % ------- ArbIS Dataset - Matrix --------
 \newgeometry{left=1cm,right=1cm}
@@ -2801,7 +2848,7 @@ Explanation...
 	\centering
 	\includegraphics[scale=0.7, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_cramers}
 	\caption{Correlation matrix for ArbIS dataset, with Cramers's $V$}
-	\label{img:appendix_arbis_correlation_matrix_dataset_theils}
+	\label{img:appendix_arbis_correlation_matrix_dataset_cramers}
 \end{figure}
 \restoregeometry
 
@@ -2904,10 +2951,7 @@ Explanation...
 \tiny
 \setlength{\tabcolsep}{4pt}
 \centering
-\include{../CorrAnalysis/data/ArbIS/02_matched/latex/arbis_matched_coef_cramers}
-\caption{Coefficient matrix for ArbIS matched data}
-\end{sidewaystable}
-\restoregeometry
+\include{../
 
 % -------------------------------------
 % ------- Source Code Appendix --------

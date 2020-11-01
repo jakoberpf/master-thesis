@@ -976,7 +976,6 @@ The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown
 %	\item 88 = Other obstacles
 %	\item 89 = Other causes
 %\end{itemize}
-
 \noindent
 \begingroup
 	\centering
@@ -1010,114 +1009,98 @@ The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown
 The obstacle collision distribution (shown in figure \ref{img:appendix_baysis_dataset_Aufhi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,5\% of accidents without any collision, it can be stated that in most cases a collision is part of an accident. The counts of the remaining categories are insignificant. The variable does not show any order and is therefore of nominal type.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
-%	\item 70 = Slippery street due to oil
+%	\item 0 = Single tree
+%	\item 1 = Pillar
+%	\item 2 = Abutment
+%	\item 3 = Guardrail
+%	\item 4 = Other object
+%	\item 5 = No collision
+%	\item 7 = Tree line or allee
+%	\item 8 = Tree group or forest
+%	\item 9 = Busches
 %\end{itemize}
-%\begin{itemize}
-%Single tree
-%Tree line or allee
-%Tree group or forest
-%Busches
-%Pillar
-%Abutment
-%Guardrail
-%Other object
-%No collision
-%\end{itemize}
-%\noindent
-%\begin{table}[h!]
-%	\centering
-%	\begin{tabular}{c|l}  
-%		0 & Dry \\ 
-% 		1 & Wet \\ 
-% 		2 & Ice \\
-% 		3 & Slippery (oil, dirt, ...)  \\
-%	\end{tabular}
-%	\caption{Identifier and description of 'Zust'}
-%	\label{table:baysis_dataset_Zust}
-%\end{table}
-
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+		0 & Single tree \\
+		1 & Pillar \\
+		2 & Abutment \\
+		3 & Guardrail \\
+		4 & Other object \\
+		5 & No collision \\
+		7 & Tree line or alley \\
+		8 & Tree group or forest \\
+		9 & Busches \\
+	\end{tabular}
+	\caption{Identifier and description of 'AufHi'}
+	\label{table:baysis_dataset_AufHi}
+\end{table}
 
 \paragraph{Alkoh}
 The Alcohol involvement indication parameter only contains one variables of $1$ ($yes$), whereas an empty variabel referred to $no$ or $unknown$. It reveals that only 1,9\% of accidents have one or more involved persons with measurable blood alcohol. The variable only has two unique values and is therefore dichotomous.
 
 \paragraph{Char}
 The variable distribution shown in figure \ref{img:appendix_baysis_dataset_Char} describes the characteristic of the street where the accident happened. Since we are only considering highway, the type of "Crossing", "Property" and "Roundabout" is expected to be zero. The variabel is not ordered and therefore of nominal type.
-
 %\begin{itemize}
 %	\setlength\itemsep{0em}
-%	\item 70 = Slippery street due to oil
-%\end{itemize}
-%     * [34,35,36] Characteristic of the accident location
-%     * <p>
-%     * 1 = Kreuzung
-%     * 2 = Einmündung / Anschluß
-%     * 3 = Grundstücksein- oder ausfahrt
-%     * 4 = Steigung
-%     * 5 = Gefälle
-%     * 6 = Kurve
-%     * 7 = Kreisverkehr
-%     */
-%Crossing
-%Entry / Exit
-%Property c
-%Steigung
-%Gefälle
-%Curve
-%Roundabout
+%	\item 1 = Crossing
+%    \item 2 = Entry / Exit
+%    \item 3 = Property c
+%    \item 4 = Steigung
+%    \item 5 = Gefälle
+%    \item 6 = Curve
+%    \item 7 = Roundabout
 %\end{itemize}    
-%\noindent
-%\begin{table}[h!]
-%	\centering
-%	\begin{tabular}{c|l}  
-%		0 & Dry \\ 
-% 		1 & Wet \\ 
-% 		2 & Ice \\
-% 		3 & Slippery (oil, dirt, ...)  \\
-%	\end{tabular}
-%	\caption{Identifier and description of 'Zust'}
-%	\label{table:baysis_dataset_Zust}
-%\end{table}
-
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+		1 & Crossing \\
+	    2 & Entry / Exit \\
+	    3 & Property access \\
+	    4 & Steigung \\ % TODO english
+	    5 & Gefälle \\ % TODO english
+	    6 & Curve \\
+	    7 & Roundabout \\
+	\end{tabular}
+	\caption{Identifier and description of 'Char'}
+	\label{table:baysis_dataset_Char}
+\end{table}
 
 \paragraph{Bes}
 The aggregated distribution of the variables "Bes1", "Bes2" and "Bes3", which further defines the street characteristic mentioned above only has one significant share of the type "Roadwork". The variabel itself is therefore not suitable for a correlation analysis, but can be used as validation criterium for the matching of roadwork incidents.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
-%	\item 70 = Slippery street due to oil
-%\end{itemize}%Confusing
-%Level crossing
-%Pedestrian crossing
-%Pedestrian passage
-%Busstop
-%Roadwork
-%Calm traffic area
-%RAV on street
-%RAV seperate
-%RAV obligatory
-%1
-%2
-%3
-%4
-%5
-%6
-%7
-%8
-%9
-%0
+%	\item 1 = Confusing
+%	\item 2 = Level crossing
+%	\item 3 = Pedestrian crossing
+%	\item 4 = Pedestrian passage
+%	\item 5 = Busstop
+%	\item 6 = Roadwork
+%	\item 7 = Calm traffic area
+%	\item 8 = RAV on street
+%	\item 9 = RAV separate
+%	\item 0 = RAV obligatory
 %\end{itemize}
-%\noindent
-%\begin{table}[h!]
-%	\centering
-%	\begin{tabular}{c|l}  
-%		0 & Dry \\ 
-% 		1 & Wet \\ 
-% 		2 & Ice \\
-% 		3 & Slippery (oil, dirt, ...)  \\
-%	\end{tabular}
-%	\caption{Identifier and description of 'Zust'}
-%	\label{table:baysis_dataset_Zust}
-%\end{table}
-
+\noindent
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|l}  
+		1 & Confusing
+		2 & Level crossing
+		3 & Pedestrian crossing
+		4 & Pedestrian passage
+		5 & Busstop
+		6 & Roadwork
+		7 & Calm traffic area
+		8 & RAV on street
+		9 & RAV separate
+		0 & RAV obligatory
+	\end{tabular}
+	\caption{Identifier and description of 'Bes'}
+	\label{table:baysis_dataset_Bes}
+\end{table}
 
 \paragraph{Lich}
 The light situation parameter (shown in \ref{img:appendix_baysis_dataset_Lich}) does not reveal any features and describes the lighting condition when the accident happened. Because it can be ranked from best to worst lighting is is of ordinal type.

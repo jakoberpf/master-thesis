@@ -15,6 +15,7 @@
 /CorrAnalysis/data/BAYSIS/01_dataset/BAYSIS_2019.xlsx
 /CorrAnalysis/data/BAYSIS/02_matched/_monthly
 /CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019.csv
+/CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019_cleaned.csv
 /CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019.xlsx
 /CorrAnalysis/data/BAYSIS/03_selected_01_startJam/csv/encoded.csv
 /CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/csv/encoded.csv
@@ -47,4 +48,3 @@
 /Thesis/Masterthesis_JakobErpf.lot
 /Thesis/Masterthesis_JakobErpf.toc
 /Thesis/Masterthesis_JakobErpf.synctex.gz
-/CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019_cleaned.csv

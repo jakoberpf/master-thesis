@@ -1,29 +1,28 @@
+[1] "############ Coverage ############"
 
 	Kruskal-Wallis rank sum test
 
-data:  encoded$Lich1 by encoded$Coverage
+data:  encoded[[main]] by encoded[[param]]
 Kruskal-Wallis chi-squared = 139.81, df = 95, p-value = 0.001908
 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$Coverage and encoded$Lich1 
-
-  0       1    
-1 0.189   -    
-2 9.5e-10 0.048
-
-P value adjustment method: holm 
-
- Descriptive statistics by group 
-group: 0
-   vars    n  mean    sd median trimmed   mad min max range skew kurtosis   se
-X1    1 1506 42.08 20.84     39   40.75 22.24   2 100    98 0.53    -0.28 0.54
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 1
-   vars  n  mean    sd median trimmed  mad min max range skew kurtosis  se
-X1    1 98 45.34 22.73     43   43.83 25.2  10 100    90 0.46    -0.34 2.3
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 2
-   vars   n  mean    sd median trimmed  mad min max range skew kurtosis   se
-X1    1 263 51.58 22.52     48    50.9 25.2   3 100    97 0.25    -0.83 1.39
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rrr}
+  \hline
+ & 0 & 1 \\ 
+  \hline
+1 & 0.19 &  \\ 
+  2 & 0.00 & 0.05 \\ 
+   \hline
+\end{tabular}
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rrrrrrrrrrrrrr}
+  \hline
+ & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+  \hline
+X1 & 1.00 & 1506.00 & 42.08 & 20.84 & 39.00 & 40.75 & 22.24 & 2.00 & 100.00 & 98.00 & 0.53 & -0.28 & 0.54 \\ 
+  X11 & 1.00 & 98.00 & 45.34 & 22.73 & 43.00 & 43.83 & 25.20 & 10.00 & 100.00 & 90.00 & 0.46 & -0.34 & 2.30 \\ 
+  X12 & 1.00 & 263.00 & 51.58 & 22.52 & 48.00 & 50.90 & 25.20 & 3.00 & 100.00 & 97.00 & 0.25 & -0.83 & 1.39 \\ 
+   \hline
+\end{tabular}

@@ -1,29 +1,28 @@
+[1] "############ Coverage ############"
 
 	Kruskal-Wallis rank sum test
 
-data:  encoded$Lich2 by encoded$Coverage
+data:  encoded[[main]] by encoded[[param]]
 Kruskal-Wallis chi-squared = 140.55, df = 95, p-value = 0.001669
 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$Coverage and encoded$Lich2 
-
-  0       3   
-3 0.97    -   
-4 5.4e-09 0.20
-
-P value adjustment method: holm 
-
- Descriptive statistics by group 
-group: 0
-   vars    n  mean    sd median trimmed   mad min max range skew kurtosis   se
-X1    1 1506 42.08 20.84     39   40.75 22.24   2 100    98 0.53    -0.28 0.54
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 3
-   vars  n  mean    sd median trimmed   mad min max range skew kurtosis   se
-X1    1 16 41.06 14.67     37   40.29 11.12  18  75    57 0.64    -0.42 3.67
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 4
-   vars   n mean    sd median trimmed  mad min max range skew kurtosis   se
-X1    1 345 50.3 22.96     48   49.54 25.2   3 100    97 0.26    -0.74 1.24
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rrr}
+  \hline
+ & 0 & 3 \\ 
+  \hline
+3 & 0.97 &  \\ 
+  4 & 0.00 & 0.20 \\ 
+   \hline
+\end{tabular}
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rrrrrrrrrrrrrr}
+  \hline
+ & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+  \hline
+X1 & 1.00 & 1506.00 & 42.08 & 20.84 & 39.00 & 40.75 & 22.24 & 2.00 & 100.00 & 98.00 & 0.53 & -0.28 & 0.54 \\ 
+  X11 & 1.00 & 16.00 & 41.06 & 14.67 & 37.00 & 40.29 & 11.12 & 18.00 & 75.00 & 57.00 & 0.64 & -0.42 & 3.67 \\ 
+  X12 & 1.00 & 345.00 & 50.30 & 22.96 & 48.00 & 49.54 & 25.20 & 3.00 & 100.00 & 97.00 & 0.26 & -0.74 & 1.24 \\ 
+   \hline
+\end{tabular}

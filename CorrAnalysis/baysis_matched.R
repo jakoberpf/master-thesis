@@ -49,7 +49,7 @@ runAnalysis(paste(path,"rstudio/Kat.txt",sep = ""), "Kat", list)
 ##### Typ #####
 ###############
 
-list <- c("SpatAvg","TempDist","Coverage")
+list <- c("TempDist","Coverage")
 runAnalysis(paste(path,"rstudio/Typ.txt",sep = ""), "Typ", list)
 
 #################

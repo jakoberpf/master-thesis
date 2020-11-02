@@ -1332,12 +1332,13 @@ The \gls{evaltool} from the \gls{congstats} service, the project which inspired 
 \bigskip
 
 \section{Detection Algorithm}
+\label{methodology_detection}
 First step is the detection of congestion events. The definition in \ref{definition_congestion} states that a congestion is a dense, timely and spatial accumulation of jammed cells, also describable as cluster of jammed cells. Therefore a clustering algorithm would be suitable to identify congestion events.
 
 For the classification of the congestion events into different types, by theirs spatial and timely extends a shaping algorithm is needed. It is supposed to convert the accumulation of cells into a simple describable shape, which can be put into groups.
 
 \subsection{Clustering of Floating-Car-Data}
-\label{methodology_clustering}
+\label{methodology_detection_clustering}
 The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \cite{Busch2004}. For example k-means or k-metoid (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers) or spectral clustering (graph distance), which can be sorted into the categories of partition-based, hierarchical-based and density-based clustering \cite{Chauhan2020,Yildirim2020}.
 
 % https://texample.net/tikz/examples/probability-tree/
@@ -1434,7 +1435,6 @@ A Big $O$ notation of $O(n^2)$ can generally be described as inefficient, but if
 Entering density-based methods, which are better suited to identify distinctive, arbitrary clusters in, by looking for a contiguous region of high point density, separated from others by contiguous regions of low point density \cite{Chauhan2020}. These do not necessarily have less runtime, but better cluster representation.
 
 \subsubsection{Density Clustering Algorithm}
-
 The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $MinPts$, which defines the minimum number of points necessary to form a cluster. And secondly the maximum distance threshold between points, $eps$ ($\varepsilon$), to be considered as neighbors and become part of a cluster. These thresholds classify a data point as core point, (directly) density-reachable point or noise. \cite{Yildirim2020,Chauhan2020,Padro2017}
 
 \begin{itemize}
@@ -1672,7 +1672,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $z_{speed}$ is the speed in the cell
 \end{itemize}
 
-\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the calculation of the virtual travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary. This achieved by using the aimed gap threshold to form a calibrator values, which scales the axis appropriately.
+\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the calculation of the virtual travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary. This achieved by using the aimed gap threshold to form a calibrator value, which scales the axis appropriately (see source code ??). 
 
 \begin{equation}
 	t_{x,y,A,B}^{artificial} = \sqrt{(t_{x,A,B}^{art})^2 + (t_{y,A,B}^{art} \cdot c)^2}
@@ -1698,7 +1698,9 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 % TODO read and add infos: https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \cite{Hatbauer2011}
 
 \subsubsection{Performance Tuning}
-Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing system to store the clustering data in a space representation, like a 2D-Tree. This reduces the number of point to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just adjacent points \cite{Chauhan2020}. Initially $kd$-Tree was implemented, which stores data points as leafs in a tree, where the nodes divide the space consecutively in the $x$ and $y$ dimension \cite{Hucker2020,Dalitz2009}. This improved the runtime performance, but also added complexity, which endorsed the use of a natively implemented data structure, like the TreeMap. The TreeMap strictly is no a 2D-Tree, but has an average complexity of $O(nlog_n)$ and be used as a 2D-Tree by filtering with two parameters. \cite{Baeldung2020_1,Baeldung2020_2}
+Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing system to store the clustering data in a space representation, like a 2D-Tree. This reduces the number of point to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just adjacent points \cite{Chauhan2020}. For initially testing a $kd$-Tree was implemented, which stores data points as leafs in a tree, where the nodes divide the space consecutively in the $x$ and $y$ dimension \cite{Hucker2020,Dalitz2009}. This improved the runtime performance, but also added complexity, which endorsed the use of a natively implemented data structure, like the TreeMap. The TreeMap strictly speaking is no a 2D-Tree, but has an average complexity of $O(nlog_n)$ and be used as a 2D-Tree by filtering with two parameters (see source code ??). \cite{Baeldung2020_1,Baeldung2020_2}
+
+To further accelerate the algorithm, is is implemented with support of parallel computation or threading, which allows the executing Java VM to used multiple CPU cores and run multiple processes in parallel.
 
 % https://de.wikipedia.org/wiki/K-d-Baum
 % https://github.com/jmhodges/kdtree2/blob/master/doc/kdtree2.tex
@@ -1706,7 +1708,7 @@ Leaving out the runtime implication of the distance measurer, the complexity of 
 \subsubsection{Calibration}
 Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters for calibration. To define an initial estimated value for these parameters previous knowledge of how the algorithm performs with different setting and understanding of the inner workings of the algorithm is used.
 
-%eps: if the eps value chosen is too small, a large part of the data will not be clustered. It will be considered outliers because don’t satisfy the number of points to create a dense region. On the other hand, if the value that was chosen is too high, clusters will merge and the majority of objects will be in the same cluster. The eps should be chosen based on the distance of the dataset (we can use a k-distance graph to find it), but in general small eps values are preferable.
+%eps: if the eps value chosen is too small, a large part of the data will not be clustered. It will be considered outliers because don’t satisfy the number of points to create a dense region. On the other hand, if the value that was chosen is too high, clusters will merge and the majority of objects will be in the same cluster. The eps should be chosen based on the distance of the dataset (we can use a k-distance graph to find it), but in general small eps values are preferable. \cite{Padro2017}
 
 The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
 \begin{itemize}
@@ -1719,7 +1721,7 @@ The threshold for the virtual travel time gap in-between congestion events durin
 %\cite{Padro2017}
 
 \subsection{Shaping}
-\label{methodology_shaping}
+\label{methodology_detection_shaping}
 
 Convex Hull
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
@@ -1737,6 +1739,9 @@ Convex Hull
 	\end{tikzpicture}
 \end{figure}
 
+\bigskip
+
+The DBSCAN cluster algorithm,  distance measuring and Convex Hull shapring explained above are implemented in the evaluation tool (see source doe ??).
 
 \section{Matching Algorithm}
 \label{methodology_matching}
@@ -1851,30 +1856,23 @@ The incident matching is very basic, but sufficient. But i only purpose is to fi
 
 \section{Correlation Processing}
 
+The resulting datasets created by the evaluation tool (see section \ref{methodology_clustering} \ref{} and \ref{}), task to detection and cluster jams and find adjacent incidents, are then processed by the correlation tool. The correlation tool cre
+ a  matrix table with the correlation coefficients.  This table is visual presented in figure \ref{img:correlation_matrix_matched_cramers} showing the the correlation of each parameters for matched dataset.
+
 \subsection{BAYSIS - Matched}
 
 List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 
-% ------- BAYSIS Matched - Matrix --------
-
 \newgeometry{left=1.5cm,right=1cm}
-\pagestyle{empty}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
-	\caption{Correlation matrix for BAYSIS matched data, with Cramer's $V$ TODO make description more congkrete}
-	\label{img:appendix_correlation_matrix_matched_cramers}
-\end{figure}
+	\pagestyle{empty}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
+		\caption{Correlation matrix for BAYSIS matched data, with Cramer's $V$ TODO make description more concrete}
+		\label{img:correlation_matrix_matched_cramers}
+	\end{figure}
 \restoregeometry
 \pagestyle{headings}
-%\label{appendix_baysis_dataset_corr_theils}
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_theils}
-%	\caption{Correlation matrix for BAYSIS matched data, with Theil's $U$}
-%	\label{img:appendix_correlation_matrix_matched_theils}
-%\end{figure}
-%\restoregeometry
 
 \noindent
 \begin{table}[h!]

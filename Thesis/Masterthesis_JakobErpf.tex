@@ -1706,7 +1706,7 @@ Leaving out the runtime implication of the distance measurer, the complexity of 
 To further accelerate the algorithm, is is implemented with support of parallel computation or threading, which allows the executing Java VM to used multiple CPU cores and run multiple processes in parallel.
 
 \subsubsection{Calibration}
-Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters for calibration. If $\varepsilon$ is too small, part of the data will not be clustered, since the distance too many points is below the threshold. These points are therefore considered as outliner/noise and reduce the actual size of the cluster or make the cluster neglect able because $minPoints$ will not be reached to create a dense region. On the other side, if the value is chosen too high, a high number of point will be considered as one cluster, when they should be multiple separate clusters. The $minPoints$ threshold should generally satisfy $minPoints > D + 1$ and should be high enough for our implementation to neglect small and arbitrary jams. \cite{Padro2017}. For the implemented variation of distance measuring the aimed time gap $t_{min,gap}$ and aimed space gap $l_{min,gap}$ threshold also need to be set. This is necessary to scale the axis so that they represent the aimed thresholds through neighborhood $\varepsilon$. The following values are the result of iterative testing, to find the most representable cluster consolidation results. 
+Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters as adjustments. If $\varepsilon$ is too small, part of the data will not be clustered, since the distance too many points is below the threshold. These points are therefore considered as outliner/noise and reduce the actual size of the cluster or make the cluster neglect able because $minPoints$ will not be reached to create a dense region. On the other side, if the value is chosen too high, a high number of point will be considered as one cluster, when they should be multiple separate clusters. The $minPoints$ threshold should generally satisfy $minPoints > D + 1$ and should be high enough for our implementation to neglect small and arbitrary jams. \cite{Padro2017}. For the implemented variation of distance measuring the aimed time gap $t_{min,gap}$ and aimed space gap $l_{min,gap}$ threshold also need to be set. This is necessary to scale the axis so that they represent the aimed thresholds through neighborhood $\varepsilon$. The following values are the result of iterative testing, to find the most representable cluster consolidation results. 
 
 \begin{itemize}
 	\item Aimed spatial gap : $l_{min,gap} = 5000 \, [m]$
@@ -1714,9 +1714,19 @@ Parameter calibration and estimation is a vital task when implementing algorithm
 	\item Virtual travel-time gap $\varepsilon = t_{min,gap}^{artificial} = 360 \, s$
 \end{itemize}
 
+\subsection{Pre and Post Data Revision}
+Datasets are rarely flawless and as mentioned in section \ref{dataset_fcd}, the FCD dataset has some defects. To reduce these defects before the clustering, the are some rules implemented to detect flawed data points. This includes the removal of static speed blocks. When the speed is consistent in a a continuous time and space extent, we assume that the data block is flawed because of implausibility.
+
+Another revision is the consideration of just jams above a certain duration and length. This is implemented after the clustering, and removes all jams/clusters, which are below the thresholds of:
+\begin{itemize}
+	\item Minimum spatial length of an congestion event = 1000 [m]
+	\item Minimum temporal duration of an congestion event = 9 [min]
+\end{itemize}
+
 \subsection{Shaping}
 \label{methodology_detection_shaping}
 For a better representation of the congestion shape, the geometric 
+
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
 \begin{figure}[h]
 	\centering
@@ -1734,20 +1744,31 @@ For a better representation of the congestion shape, the geometric
 
 \bigskip
 
-The DBSCAN cluster algorithm,  distance measuring and Convex Hull shaping explained above are implemented in the evaluation tool (see source doe ??).
+% TODO expand
 
 \section{Matching Algorithm}
 \label{methodology_matching}
-The matching precess for finding adjacent incidents around jams is rather simple. When iterating over all jams, all incident, which are located on the same road and are on the sam day as the jam will be evaluated.
+The matching process for finding adjacent incidents around jams is rather simple. When iterating over all jams, the incidents located on the same road and on the sam day be evaluated for the temporal and spatial distance to the outer line of the the congestion.
 
+(see source code ??)
+
+\begin{itemize}
+	\item The spatial distance an adjacent incident can have after a congestion
+incident.matching.spacialThreshold=2000
+	\item The timely distance an adjacent incident can have before a congestion
+incident.matching.timelyThresholdBefore=25
+\end{itemize}
 
 We now have a list of jams, found on the matching incidents with spatial and timely adjacent congestions
-See CONGSTATS Matching Algorithm (own implementation)
 
 \section{Data Processing}
 \label{methodology_data_processing}
 Until now all data is in the CONGSTATS system. Export to analyzable format is necessary.
 Which values where converted into numeric values and why and …
+
+
+
+\subsubsection{Congestion}
 
 % TODO read and use a source for loss parameter
 % file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
@@ -1756,7 +1777,7 @@ Which values where converted into numeric values and why and …
 %	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
 %\end{itemize}
 
-\paragraph{Congestion}
+
 The congestion object is expanded with...
 
 The temporal reference of if the incident to the congestion (\textbf{temporalGlobalLoc}). The incident...
@@ -1815,9 +1836,9 @@ The spatial reference of if the incident is during the congestion (\textbf{spati
     
 The incident object is expanded with... BAYSIS and 
 
-\paragraph{BAYSIS}
+\subsubsection{BAYSIS}
 
-\paragraph{ArbIS}
+\subsubsection{ArbIS}
 
  
 \section{Correlation Processing}

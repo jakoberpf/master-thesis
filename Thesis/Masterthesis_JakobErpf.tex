@@ -1700,21 +1700,23 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 \subsubsection{Performance Tuning}
 Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing system to store the clustering data in a space representation, like a 2D-Tree. This reduces the number of point to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just adjacent points \cite{Chauhan2020}. For initially testing a $kd$-Tree was implemented, which stores data points as leafs in a tree, where the nodes divide the space consecutively in the $x$ and $y$ dimension \cite{Hucker2020,Dalitz2009}. This improved the runtime performance, but also added complexity, which endorsed the use of a natively implemented data structure, like the TreeMap. The TreeMap strictly speaking is no a 2D-Tree, but has an average complexity of $O(nlog_n)$ and be used as a 2D-Tree by filtering with two parameters (see source code ??). \cite{Baeldung2020_1,Baeldung2020_2}
 
-To further accelerate the algorithm, is is implemented with support of parallel computation or threading, which allows the executing Java VM to used multiple CPU cores and run multiple processes in parallel.
-
 % https://de.wikipedia.org/wiki/K-d-Baum
 % https://github.com/jmhodges/kdtree2/blob/master/doc/kdtree2.tex
 
-\subsubsection{Calibration}
-Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters for calibration. To define an initial estimated value for these parameters previous knowledge of how the algorithm performs with different setting and understanding of the inner workings of the algorithm is used.
+To further accelerate the algorithm, is is implemented with support of parallel computation or threading, which allows the executing Java VM to used multiple CPU cores and run multiple processes in parallel.
 
-%eps: if the eps value chosen is too small, a large part of the data will not be clustered. It will be considered outliers because don’t satisfy the number of points to create a dense region. On the other hand, if the value that was chosen is too high, clusters will merge and the majority of objects will be in the same cluster. The eps should be chosen based on the distance of the dataset (we can use a k-distance graph to find it), but in general small eps values are preferable. \cite{Padro2017}
+\subsubsection{Calibration}
+Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters for calibration. 
+%To define an initial estimated value for these parameters previous knowledge of how the algorithm performs with different setting and understanding of the inner workings of the algorithm is used. 
+If $\varepsilon$ is too small, part of the data will not be clustered, since the distance too many points is below the threshold. These points are therefore considered as outliner/noise and reduce the actual size of the cluster or make the cluster neglect able because $minPoints$ will not be reached to create a dense region. On the other side, if the value is chosen to high, a high number of point will be considered as one cluster, when they should be multiple separate clusters
+
+%. On the other hand, if the value that was chosen is too high, clusters will merge and the majority of objects will be in the same cluster. The eps should be chosen based on the distance of the dataset (we can use a k-distance graph to find it), but in general small eps values are preferable. \cite{Padro2017}
 
 The threshold for the virtual travel time gap in-between congestion events during the cluster consolidation. 
 \begin{itemize}
 	\item Spatial gap : $l_{min,gap} = 5000 \, [m]$ % cluster consolidation 
 	\item Temporal gap : $t_{min,gap} = 6 \, [min]$ % cluster consolidation 
-	\item Virtual travel-time gap $t_{min,gap}^{artificial} = 360 \, s$
+	\item Virtual travel-time gap $\varepsilon = t_{min,gap}^{artificial} = 360 \, s$
 \end{itemize}
 
 %minPoints: As a general rule, a minimum minPoints can be derived from a number of dimensions (D) in the data set, as minPoints ≥ D + 1. Larger values are usually better for data sets with noise and will form more significant clusters. The minimum value for the minPoints must be 3, but the larger the data set, the larger the minPoints value that should be chosen.
@@ -1741,7 +1743,7 @@ Convex Hull
 
 \bigskip
 
-The DBSCAN cluster algorithm,  distance measuring and Convex Hull shapring explained above are implemented in the evaluation tool (see source doe ??).
+The DBSCAN cluster algorithm,  distance measuring and Convex Hull shaping explained above are implemented in the evaluation tool (see source doe ??).
 
 \section{Matching Algorithm}
 \label{methodology_matching}

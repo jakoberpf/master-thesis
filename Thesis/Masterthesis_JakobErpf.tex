@@ -1706,7 +1706,7 @@ Leaving out the runtime implication of the distance measurer, the complexity of 
 To further accelerate the algorithm, is is implemented with support of parallel computation or threading, which allows the executing Java VM to used multiple CPU cores and run multiple processes in parallel.
 
 \subsubsection{Calibration}
-Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters as adjustments. If $\varepsilon$ is too small, part of the data will not be clustered, since the distance too many points is below the threshold. These points are therefore considered as outliner/noise and reduce the actual size of the cluster or make the cluster neglect able because $minPoints$ will not be reached to create a dense region. On the other side, if the value is chosen too high, a high number of point will be considered as one cluster, when they should be multiple separate clusters. The $minPoints$ threshold should generally satisfy $minPoints > D + 1$ and should be high enough for our implementation to neglect small and arbitrary jams. \cite{Padro2017}. For the implemented variation of distance measuring the aimed time gap $t_{min,gap}$ and aimed space gap $l_{min,gap}$ threshold also need to be set. This is necessary to scale the axis so that they represent the aimed thresholds through neighborhood $\varepsilon$. The following values are the result of iterative testing, to find the most representable cluster consolidation results. 
+Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters as adjustments. If $\varepsilon$ is too small, part of the data will not be clustered, since the distances to many points is below the threshold. These points are therefore considered as outliner/noise and reduce the actual size of the cluster or make the cluster neglect able because $minPoints$ will not be reached to create a dense region. On the other side, if the value is chosen too high, a high number of point will be considered as one cluster, when they should be multiple separate clusters. The $minPoints$ threshold should generally satisfy $minPoints > D + 1$ and should be high enough for our implementation to neglect small and arbitrary jams. \cite{Padro2017}. For the implemented variation of distance measuring the aimed time gap $t_{min,gap}$ and aimed space gap $l_{min,gap}$ threshold also need to be set. This is necessary to scale the axis so that they represent the aimed thresholds through neighborhood $\varepsilon$. The following values are the result of iterative testing, to find the most representable cluster consolidation results. 
 
 \begin{itemize}
 	\item Aimed spatial gap : $l_{min,gap} = 5000 \, [m]$
@@ -1715,9 +1715,10 @@ Parameter calibration and estimation is a vital task when implementing algorithm
 \end{itemize}
 
 \subsection{Pre and Post Data Revision}
-Datasets are rarely flawless and as mentioned in section \ref{dataset_fcd}, the FCD dataset has some defects. To reduce these defects before the clustering, the are some rules implemented to detect flawed data points. This includes the removal of static speed blocks. When the speed is consistent in a a continuous time and space extent, we assume that the data block is flawed because of implausibility.
+Datasets are rarely flawless and as mentioned in section \ref{dataset_fcd}, the provided FCD dataset has some defects. To reduce these defects before the clustering, static speed blocks are removed as pre-processing measure. When the speed is consistent in a a continuous time and space extent, we assume that the data block is flawed because of the implausible consistent speeds. (see source code ??) 
 
-Another revision is the consideration of just jams above a certain duration and length. This is implemented after the clustering, and removes all jams/clusters, which are below the thresholds of:
+As post processing, clusters which are too short in duration and length are removed. We assume that below a threshold a cluster can not be considered as a jam, and should be neglected. The following values for the minimal duration and length of a congestion where used. (see source code ??)
+
 \begin{itemize}
 	\item Minimum spatial length of an congestion event = 1000 [m]
 	\item Minimum temporal duration of an congestion event = 9 [min]
@@ -1725,16 +1726,12 @@ Another revision is the consideration of just jams above a certain duration and 
 
 \subsection{Shaping}
 \label{methodology_detection_shaping}
-For a better representation of the congestion shape, the geometric 
+For a shape representation of the congestion the geometric method of convex hull was implemented. This shape was initially intended to be the base for the classification of congestion event into different type of jams alongside the paper \textit{Automated Classification of Different Congestion Types} \cite{Kessler2020}. Unfortunately this classification processing was not finished in time for this thesis, but the implementation found use in the visual representation of jams and characteristics calculation.
 
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
-  	% doesn't work:
-  	%\draw[mark=*] convex hull[points={(0,0),(1,1),(2,2),(0,1),(2,0)}];
-     	
-  	%should produce something similar to the following:
   	\draw (0,0) -- (0,1) -- (2,2) -- (2,0) -- cycle;
   	\foreach \point in {(0,0),(1,1),(2,2),(0,1),(2,0)} {
     	\fill[black] \point circle[radius=1pt];
@@ -1748,27 +1745,46 @@ For a better representation of the congestion shape, the geometric
 
 \section{Matching Algorithm}
 \label{methodology_matching}
-The matching process for finding adjacent incidents around jams is rather simple. When iterating over all jams, the incidents located on the same road and on the sam day be evaluated for the temporal and spatial distance to the outer line of the the congestion.
-
-(see source code ??)
-
+The matching process for finding adjacent incidents around jams is rather simple. When iterating over all jams, the incidents located on the same road and on the sam day are evaluated for the temporal and spatial distance to the outer line of the the congestion. When the distance fall in the range of the threshold they are considered as adjacent (see source code ??). T
 \begin{itemize}
-	\item The spatial distance an adjacent incident can have after a congestion
-incident.matching.spacialThreshold=2000
-	\item The timely distance an adjacent incident can have before a congestion
-incident.matching.timelyThresholdBefore=25
+	\item The spatial distance an adjacent incident = 2000 [m]
+	\item The temporal distance an adjacent incident = 25 [min]
 \end{itemize}
-
-We now have a list of jams, found on the matching incidents with spatial and timely adjacent congestions
 
 \section{Data Processing}
 \label{methodology_data_processing}
-Until now all data is in the CONGSTATS system. Export to analyzable format is necessary.
-Which values where converted into numeric values and why and …
-
-
+As result of the previous detection a matching algorithms we now have a list of jams with spatial and timely adjacent incidents. For further analysis the congestion and incident objects will be expanded with additionally features and exported in to a local data format.
 
 \subsubsection{Congestion}
+For the analysis we are interested in the length and duration of the congestions. The length and duration of congestions, defined by the boundary rectangle can be heavy bias. It is also a very rough representation of the extends, and is therefore considered to be the maximum length and maximum duration. To have another representation of the time and space extends, an average duration and length is calculated, using the shape computed by the convex hull algorithm.
+
+For the analysis of social impact the congestion object is expanded with a time loss estimation, differentiated for passenger cars and heavy goods vehicles (HGV). This part was not implemented by the writer, but from the mentor Stefan Gürtler (S\&W). 
+
+%  Fahrzeug-Abstand über 2 Sekunden-Regel
+%  ΔlKfz =2*v/3600 [km]
+%  v in [km/h]!
+%
+%  Streckenlänge, welche von 100 Fahrzeuge eingenommen wird:
+%  L100Kfz=nPkw*( lPkw+ ΔlKfz) + nLkw*( llkw+ ΔlKfz)
+%  Mit
+%  nPkw=(1-SV)*100
+%  nLkw=SV*100
+%  Alle Längen in [km]
+%
+%  Dichte auf Kante:
+%  k= 100 Kfz / L100Kfz = 1 / ((1-SV)*( lPkw+ ΔlKfz) + SV *( llkw+ ΔlKfz)) [Fz/km]
+%
+%  Anzahl Fahrzeuge auf Kante:
+%  nKfz = lKante * k
+%  nPkw = (1-SV) * nKfz
+%  nLkw = SV * nKfz
+%  lKante in [km]
+%
+%  Reisezeitverlust auf Kante:
+%  ΔttKante = nKfz * nLanes * lKante * ( vFree - vKante ) [h]
+%  v in [km/h]!
+
+
 
 % TODO read and use a source for loss parameter
 % file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
@@ -1833,6 +1849,10 @@ The spatial reference of if the incident is during the congestion (\textbf{spati
 	\end{tabular}
 	\caption{Identifier and description of spatial internal location reference}
 \end{table}
+    
+As a result the congestion has the following attributes.
+
+...
     
 The incident object is expanded with... BAYSIS and 
 

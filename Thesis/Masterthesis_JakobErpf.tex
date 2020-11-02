@@ -1862,7 +1862,7 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
-	\caption{Correlation matrix for BAYSIS matched data, with Cramer's $V$}
+	\caption{Correlation matrix for BAYSIS matched data, with Cramer's $V$ TODO make description more congkrete}
 	\label{img:appendix_correlation_matrix_matched_cramers}
 \end{figure}
 \restoregeometry
@@ -1917,7 +1917,7 @@ Where are the significant correlations? --> Pairwise Test
 \centerline{\textbf{Strasse}}
 \normalsize
 
-\paragraph{Maximal temporal Expansion:}
+\paragraph{Maximal temporal Extent:}
 
 Kruskal-Wallis chi-squared = 324.16, df = 210, p-value = 6.956e-07
 
@@ -1947,6 +1947,7 @@ Kruskal-Wallis chi-squared = 324.16, df = 210, p-value = 6.956e-07
 		A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 		  \hline
 	\end{tabular}
+	\caption{Wilcoxon Pairwise t test for \textit{Streets} by \textit{TempMax}}
 \end{table}
 
 \begin{table}[h]
@@ -1978,7 +1979,8 @@ Kruskal-Wallis chi-squared = 324.16, df = 210, p-value = 6.956e-07
 	\caption{Group description of Streets by TempMax}
 \end{table}
 
-\paragraph{Average temporal Expansion:}
+\paragraph{Average temporal Extent:}
+Kruskal-Wallis rank sum test chi-squared = 324.97, df = 245, p-value = 0.000466
 
 \begin{table}[h]
 	\tiny
@@ -2037,7 +2039,7 @@ Kruskal-Wallis chi-squared = 324.16, df = 210, p-value = 6.956e-07
 	\caption{Group description of Streets by TempAvg}
 \end{table}
 
-\paragraph{Maximal spatial Expansion:}
+\paragraph{Maximal spatial Extent:}
 Kruskal-Wallis rank sum test chi-squared = 1804.8, df = 1516, p-value = 3.594e-07
 
 \begin{table}[h]
@@ -2048,11 +2050,11 @@ Kruskal-Wallis rank sum test chi-squared = 1804.8, df = 1516, p-value = 3.594e-0
 		\toprule
 		& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
 		\midrule
-		A6 & 0.11 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-		A9 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A6 	& 0.11 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A9 	& 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
 		A70 & 0.00 & 0.83 & 0.54 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
 		A96 & 0.00 & 1.00 & 0.22 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-		A7 & 0.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A7 	& 0.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
 		A73 & 0.00 & 0.00 & 0.00 & 1.00 & 1.00 & 0.59 &  &  &  &  &  &  &  &  &  &  \\ 
 		A99 & 1.00 & 1.00 & 1.00 & 0.80 & 0.43 & 1.00 & 0.00 &  &  &  &  &  &  &  &  &  \\ 
 		A92 & 0.00 & 0.00 & 0.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 &  &  &  &  &  &  &  &  \\ 
@@ -2064,7 +2066,7 @@ Kruskal-Wallis rank sum test chi-squared = 1804.8, df = 1516, p-value = 3.594e-0
 		A71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
 		A45 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
 		A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-		  \hline
+		\bottomrule
 	\end{tabular}
 \end{table}
 
@@ -2097,54 +2099,59 @@ Kruskal-Wallis rank sum test chi-squared = 1804.8, df = 1516, p-value = 3.594e-0
 	\caption{Group description of Streets by SpatMax}
 \end{table}
 
-\paragraph{Average spatial Expansion:}
+\paragraph{Average spatial Extent:}
 Kruskal-Wallis rank sum test chi-squared = 1658.6, df = 1497, p-value = 0.002086
 
-\begin{tabular}{rrrrrrrrrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\ 
-  \hline
-1 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-  2 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-  3 & 0.03 & 0.83 & 0.71 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-  4 & 0.01 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-  5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
-  6 & 0.00 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 &  &  &  &  &  &  &  &  &  &  \\ 
-  7 & 0.00 & 1.00 & 0.06 & 1.00 & 1.00 & 1.00 & 0.51 &  &  &  &  &  &  &  &  &  \\ 
-  8 & 0.00 & 0.61 & 0.03 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
-  9 & 0.02 & 0.46 & 0.16 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-  10 & 0.00 & 0.07 & 0.01 & 1.00 & 0.36 & 0.31 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-  11 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-  12 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
-  13 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-  14 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
-  15 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
-  16 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-   \hline
-\end{tabular}
+\begin{table}[h]
+	\tiny
+	\setlength{\tabcolsep}{4pt}
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrrrrr}
+		\toprule
+	 	& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
+		\midrule
+		A6 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A9 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A70 & 0.03 & 0.83 & 0.71 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A96 & 0.01 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A7 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A73 & 0.00 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A99 & 0.00 & 1.00 & 0.06 & 1.00 & 1.00 & 1.00 & 0.51 &  &  &  &  &  &  &  &  &  \\ 
+	  	A92 & 0.00 & 0.61 & 0.03 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+	  	A93 & 0.02 & 0.46 & 0.16 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+	  	A94 & 0.00 & 0.07 & 0.01 & 1.00 & 0.36 & 0.31 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+	  	A72 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+	  	A995 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+	  	A95 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+	  	A71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+	  	A45 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+	  	A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+	   	\hline
+	\end{tabular}
+\end{table}
 
 \begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 574.00 & 4624.11 & 2781.72 & 4035.50 & 4313.99 & 2697.59 & 135.00 & 17805.00 & 17670.00 & 1.08 & 1.36 & 116.11 \\ 
-  X11 & 1.00 & 127.00 & 4361.50 & 3042.71 & 3235.00 & 3936.18 & 2051.92 & 458.00 & 16851.00 & 16393.00 & 1.39 & 1.91 & 270.00 \\ 
-  X12 & 1.00 & 466.00 & 4187.15 & 2569.83 & 3700.50 & 3905.46 & 2456.67 & 393.00 & 15132.00 & 14739.00 & 1.04 & 1.11 & 119.05 \\ 
-  X13 & 1.00 & 31.00 & 3010.45 & 2067.63 & 1974.00 & 2667.00 & 1082.30 & 1008.00 & 9937.00 & 8929.00 & 1.60 & 2.40 & 371.36 \\ 
-  X14 & 1.00 & 156.00 & 3664.63 & 2172.78 & 3292.50 & 3390.91 & 1879.94 & 387.00 & 10182.00 & 9795.00 & 1.14 & 0.99 & 173.96 \\ 
-  X15 & 1.00 & 130.00 & 4141.68 & 3026.58 & 3537.50 & 3667.79 & 2297.29 & 643.00 & 16571.00 & 15928.00 & 1.69 & 3.58 & 265.45 \\ 
-  X16 & 1.00 & 129.00 & 2683.97 & 1981.91 & 2232.00 & 2363.50 & 1329.89 & 544.00 & 11832.00 & 11288.00 & 2.25 & 6.21 & 174.50 \\ 
-  X17 & 1.00 & 116.00 & 3240.97 & 1878.87 & 2978.00 & 3042.26 & 1991.13 & 583.00 & 8426.00 & 7843.00 & 0.81 & 0.06 & 174.45 \\ 
-  X18 & 1.00 & 66.00 & 2926.15 & 1521.59 & 2931.50 & 2824.15 & 1436.64 & 455.00 & 8970.00 & 8515.00 & 1.00 & 2.04 & 187.29 \\ 
-  X19 & 1.00 & 21.00 & 2525.43 & 1443.21 & 2338.00 & 2351.59 & 1452.95 & 664.00 & 6779.00 & 6115.00 & 1.17 & 1.17 & 314.93 \\ 
-  X110 & 1.00 & 37.00 & 2691.68 & 2023.38 & 2307.00 & 2417.71 & 1366.96 & 358.00 & 10393.00 & 10035.00 & 1.73 & 3.67 & 332.64 \\ 
-  X111 & 1.00 & 1.00 & 1478.00 &  & 1478.00 & 1478.00 & 0.00 & 1478.00 & 1478.00 & 0.00 &  &  &  \\ 
-  X112 & 1.00 & 2.00 & 1527.00 & 277.19 & 1527.00 & 1527.00 & 290.59 & 1331.00 & 1723.00 & 392.00 & 0.00 & -2.75 & 196.00 \\ 
-  X113 & 1.00 & 4.00 & 2006.75 & 500.22 & 1956.50 & 2006.75 & 556.72 & 1569.00 & 2545.00 & 976.00 & 0.06 & -2.36 & 250.11 \\ 
-  X114 & 1.00 & 3.00 & 2778.33 & 2037.57 & 1981.00 & 2778.33 & 1068.95 & 1260.00 & 5094.00 & 3834.00 & 0.33 & -2.33 & 1176.39 \\ 
-  X115 & 1.00 & 3.00 & 2662.00 & 2951.43 & 1391.00 & 2662.00 & 1233.52 & 559.00 & 6036.00 & 5477.00 & 0.35 & -2.33 & 1704.01 \\ 
-  X116 & 1.00 & 1.00 & 1653.00 &  & 1653.00 & 1653.00 & 0.00 & 1653.00 & 1653.00 & 0.00 &  &  &  \\ 
-   \hline
+  	\hline
+ 	& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+  	\hline
+	A3 & 1.00 & 574.00 & 4624.11 & 2781.72 & 4035.50 & 4313.99 & 2697.59 & 135.00 & 17805.00 & 17670.00 & 1.08 & 1.36 & 116.11 \\ 
+  	A6 & 1.00 & 127.00 & 4361.50 & 3042.71 & 3235.00 & 3936.18 & 2051.92 & 458.00 & 16851.00 & 16393.00 & 1.39 & 1.91 & 270.00 \\ 
+  	A9 & 1.00 & 466.00 & 4187.15 & 2569.83 & 3700.50 & 3905.46 & 2456.67 & 393.00 & 15132.00 & 14739.00 & 1.04 & 1.11 & 119.05 \\ 
+  	A70 & 1.00 & 31.00 & 3010.45 & 2067.63 & 1974.00 & 2667.00 & 1082.30 & 1008.00 & 9937.00 & 8929.00 & 1.60 & 2.40 & 371.36 \\ 
+  	A96 & 1.00 & 156.00 & 3664.63 & 2172.78 & 3292.50 & 3390.91 & 1879.94 & 387.00 & 10182.00 & 9795.00 & 1.14 & 0.99 & 173.96 \\ 
+  	A7 & 1.00 & 130.00 & 4141.68 & 3026.58 & 3537.50 & 3667.79 & 2297.29 & 643.00 & 16571.00 & 15928.00 & 1.69 & 3.58 & 265.45 \\ 
+  	A73 & 1.00 & 129.00 & 2683.97 & 1981.91 & 2232.00 & 2363.50 & 1329.89 & 544.00 & 11832.00 & 11288.00 & 2.25 & 6.21 & 174.50 \\ 
+  	A99 & 1.00 & 116.00 & 3240.97 & 1878.87 & 2978.00 & 3042.26 & 1991.13 & 583.00 & 8426.00 & 7843.00 & 0.81 & 0.06 & 174.45 \\ 
+  	A92 & 1.00 & 66.00 & 2926.15 & 1521.59 & 2931.50 & 2824.15 & 1436.64 & 455.00 & 8970.00 & 8515.00 & 1.00 & 2.04 & 187.29 \\ 
+  	A93 & 1.00 & 21.00 & 2525.43 & 1443.21 & 2338.00 & 2351.59 & 1452.95 & 664.00 & 6779.00 & 6115.00 & 1.17 & 1.17 & 314.93 \\ 
+  	A94 & 1.00 & 37.00 & 2691.68 & 2023.38 & 2307.00 & 2417.71 & 1366.96 & 358.00 & 10393.00 & 10035.00 & 1.73 & 3.67 & 332.64 \\ 
+  	A72 & 1.00 & 1.00 & 1478.00 &  & 1478.00 & 1478.00 & 0.00 & 1478.00 & 1478.00 & 0.00 &  &  &  \\ 
+  	A995 & 1.00 & 2.00 & 1527.00 & 277.19 & 1527.00 & 1527.00 & 290.59 & 1331.00 & 1723.00 & 392.00 & 0.00 & -2.75 & 196.00 \\ 
+  	A95 & 1.00 & 4.00 & 2006.75 & 500.22 & 1956.50 & 2006.75 & 556.72 & 1569.00 & 2545.00 & 976.00 & 0.06 & -2.36 & 250.11 \\ 
+  	A71 & 1.00 & 3.00 & 2778.33 & 2037.57 & 1981.00 & 2778.33 & 1068.95 & 1260.00 & 5094.00 & 3834.00 & 0.33 & -2.33 & 1176.39 \\ 
+  	A45 & 1.00 & 3.00 & 2662.00 & 2951.43 & 1391.00 & 2662.00 & 1233.52 & 559.00 & 6036.00 & 5477.00 & 0.35 & -2.33 & 1704.01 \\ 
+  	A980 & 1.00 & 1.00 & 1653.00 &  & 1653.00 & 1653.00 & 0.00 & 1653.00 & 1653.00 & 0.00 &  &  &  \\ 
+   	\hline
 \end{tabular}
 
 \paragraph{Temoral Distance:}
@@ -2157,9 +2164,9 @@ Kruskal-Wallis rank sum test chi-squared = 235.74, df = 219, p-value = 0.2084
 Kruskal-Wallis rank sum test chi-squared = 149.32, df = 95, p-value = 0.000317
 
 \begin{tabular}{rrrrrrrrrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 \\ 
-  \hline
+  	\hline
+	& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
+  	\hline
 1 & 0.01 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
   2 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
   3 & 0.74 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
@@ -2180,27 +2187,27 @@ Kruskal-Wallis rank sum test chi-squared = 149.32, df = 95, p-value = 0.000317
 \end{tabular}
 
 \begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 574.00 & 37.59 & 19.51 & 35.00 & 36.25 & 20.76 & 2.00 & 100.00 & 98.00 & 0.63 & 0.07 & 0.81 \\ 
-  X11 & 1.00 & 127.00 & 46.99 & 24.06 & 44.00 & 45.56 & 26.69 & 9.00 & 100.00 & 91.00 & 0.44 & -0.62 & 2.14 \\ 
-  X12 & 1.00 & 466.00 & 43.93 & 18.49 & 41.00 & 42.62 & 17.79 & 6.00 & 100.00 & 94.00 & 0.64 & 0.08 & 0.86 \\ 
-  X13 & 1.00 & 31.00 & 50.29 & 25.00 & 44.00 & 50.28 & 32.62 & 9.00 & 92.00 & 83.00 & 0.08 & -1.33 & 4.49 \\ 
-  X14 & 1.00 & 156.00 & 51.62 & 21.68 & 54.00 & 51.94 & 25.20 & 2.00 & 100.00 & 98.00 & -0.10 & -0.87 & 1.74 \\ 
-  X15 & 1.00 & 130.00 & 53.46 & 24.19 & 54.00 & 53.09 & 26.69 & 6.00 & 100.00 & 94.00 & 0.10 & -0.98 & 2.12 \\ 
-  X16 & 1.00 & 129.00 & 46.49 & 22.88 & 42.00 & 45.08 & 25.20 & 7.00 & 100.00 & 93.00 & 0.47 & -0.45 & 2.01 \\ 
-  X17 & 1.00 & 116.00 & 33.21 & 18.03 & 31.00 & 32.00 & 19.27 & 5.00 & 85.00 & 80.00 & 0.50 & -0.55 & 1.67 \\ 
-  X18 & 1.00 & 66.00 & 53.15 & 21.80 & 52.50 & 52.54 & 23.72 & 14.00 & 98.00 & 84.00 & 0.20 & -0.85 & 2.68 \\ 
-  X19 & 1.00 & 21.00 & 40.81 & 17.72 & 37.00 & 40.65 & 13.34 & 13.00 & 70.00 & 57.00 & 0.33 & -0.98 & 3.87 \\ 
-  X110 & 1.00 & 37.00 & 47.76 & 23.69 & 44.00 & 47.26 & 28.17 & 11.00 & 88.00 & 77.00 & 0.21 & -1.39 & 3.90 \\ 
-  X111 & 1.00 & 1.00 & 34.00 &  & 34.00 & 34.00 & 0.00 & 34.00 & 34.00 & 0.00 &  &  &  \\ 
-  X112 & 1.00 & 2.00 & 79.00 & 2.83 & 79.00 & 79.00 & 2.97 & 77.00 & 81.00 & 4.00 & 0.00 & -2.75 & 2.00 \\ 
-  X113 & 1.00 & 4.00 & 40.50 & 12.48 & 38.00 & 40.50 & 10.38 & 29.00 & 57.00 & 28.00 & 0.33 & -2.02 & 6.24 \\ 
-  X114 & 1.00 & 3.00 & 57.67 & 29.37 & 71.00 & 57.67 & 10.38 & 24.00 & 78.00 & 54.00 & -0.36 & -2.33 & 16.95 \\ 
-  X115 & 1.00 & 3.00 & 69.33 & 37.17 & 80.00 & 69.33 & 29.65 & 28.00 & 100.00 & 72.00 & -0.26 & -2.33 & 21.46 \\ 
-  X116 & 1.00 & 1.00 & 80.00 &  & 80.00 & 80.00 & 0.00 & 80.00 & 80.00 & 0.00 &  &  &  \\ 
-   \hline
+  	\hline
+ 	& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+  	\hline
+	X1 & 1.00 & 574.00 & 37.59 & 19.51 & 35.00 & 36.25 & 20.76 & 2.00 & 100.00 & 98.00 & 0.63 & 0.07 & 0.81 \\ 
+  	X11 & 1.00 & 127.00 & 46.99 & 24.06 & 44.00 & 45.56 & 26.69 & 9.00 & 100.00 & 91.00 & 0.44 & -0.62 & 2.14 \\ 
+  	X12 & 1.00 & 466.00 & 43.93 & 18.49 & 41.00 & 42.62 & 17.79 & 6.00 & 100.00 & 94.00 & 0.64 & 0.08 & 0.86 \\ 
+  	X13 & 1.00 & 31.00 & 50.29 & 25.00 & 44.00 & 50.28 & 32.62 & 9.00 & 92.00 & 83.00 & 0.08 & -1.33 & 4.49 \\ 
+  	X14 & 1.00 & 156.00 & 51.62 & 21.68 & 54.00 & 51.94 & 25.20 & 2.00 & 100.00 & 98.00 & -0.10 & -0.87 & 1.74 \\ 
+  	X15 & 1.00 & 130.00 & 53.46 & 24.19 & 54.00 & 53.09 & 26.69 & 6.00 & 100.00 & 94.00 & 0.10 & -0.98 & 2.12 \\ 
+  	X16 & 1.00 & 129.00 & 46.49 & 22.88 & 42.00 & 45.08 & 25.20 & 7.00 & 100.00 & 93.00 & 0.47 & -0.45 & 2.01 \\ 
+  	X17 & 1.00 & 116.00 & 33.21 & 18.03 & 31.00 & 32.00 & 19.27 & 5.00 & 85.00 & 80.00 & 0.50 & -0.55 & 1.67 \\ 
+  	X18 & 1.00 & 66.00 & 53.15 & 21.80 & 52.50 & 52.54 & 23.72 & 14.00 & 98.00 & 84.00 & 0.20 & -0.85 & 2.68 \\ 
+  	X19 & 1.00 & 21.00 & 40.81 & 17.72 & 37.00 & 40.65 & 13.34 & 13.00 & 70.00 & 57.00 & 0.33 & -0.98 & 3.87 \\ 
+  	X110 & 1.00 & 37.00 & 47.76 & 23.69 & 44.00 & 47.26 & 28.17 & 11.00 & 88.00 & 77.00 & 0.21 & -1.39 & 3.90 \\ 
+  	X111 & 1.00 & 1.00 & 34.00 &  & 34.00 & 34.00 & 0.00 & 34.00 & 34.00 & 0.00 &  &  &  \\ 
+  	X112 & 1.00 & 2.00 & 79.00 & 2.83 & 79.00 & 79.00 & 2.97 & 77.00 & 81.00 & 4.00 & 0.00 & -2.75 & 2.00 \\ 
+  	X113 & 1.00 & 4.00 & 40.50 & 12.48 & 38.00 & 40.50 & 10.38 & 29.00 & 57.00 & 28.00 & 0.33 & -2.02 & 6.24 \\ 
+  	X114 & 1.00 & 3.00 & 57.67 & 29.37 & 71.00 & 57.67 & 10.38 & 24.00 & 78.00 & 54.00 & -0.36 & -2.33 & 16.95 \\ 
+  	X115 & 1.00 & 3.00 & 69.33 & 37.17 & 80.00 & 69.33 & 29.65 & 28.00 & 100.00 & 72.00 & -0.26 & -2.33 & 21.46 \\ 
+  	X116 & 1.00 & 1.00 & 80.00 &  & 80.00 & 80.00 & 0.00 & 80.00 & 80.00 & 0.00 &  &  &  \\ 
+  	\hline
 \end{tabular}
 
 
@@ -2208,22 +2215,9 @@ X1 & 1.00 & 574.00 & 37.59 & 19.51 & 35.00 & 36.25 & 20.76 & 2.00 & 100.00 & 98.
 \centerline{\textbf{Kat}}
 \normalsize
 
-\paragraph{}
+\paragraph{Maximal temporal Extent:}
+Kruskal-Wallis rank sum test chi-squared = 263.93, df = 210, p-value = 0.00682
 
-
-\large
-\centerline{\textbf{Typ}}
-\normalsize
-
-\paragraph{Maximal temporal Expansion:}
-
-Kruskal-Wallis rank sum test
-
-data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 263.93, df = 210, p-value = 0.00682
-
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
 \begin{tabular}{rrrr}
   \hline
  & 1 & 2 & 3 \\ 
@@ -2245,7 +2239,7 @@ X1 & 1.00 & 36.00 & 317.67 & 215.10 & 279.00 & 294.40 & 146.78 & 27.00 & 987.00 
    \hline
 \end{tabular}
 
-\paragraph{Average temporal Expansion:}
+\paragraph{Average temporal Extent:}
 Kruskal-Wallis rank sum test chi-squared = 324.3, df = 245, p-value = 0.0005099
 
 \begin{tabular}{rrrr}
@@ -2269,7 +2263,7 @@ X1 & 1.00 & 36.00 & 156.06 & 104.55 & 143.00 & 144.90 & 91.18 & 20.00 & 502.00 &
    \hline
 \end{tabular}
 
-\paragraph{Average spatial Expansion:}
+\paragraph{Average spatial Extent:}
 Kruskal-Wallis rank sum test chi-squared = 1492, df = 1497, p-value = 0.5316
 
 \paragraph{Temoral Distance:}
@@ -2296,56 +2290,145 @@ X1 & 1.00 & 36.00 & 10.39 & 7.36 & 10.00 & 10.27 & 7.41 & 0.00 & 22.00 & 22.00 &
    \hline
 \end{tabular}
 
+\large
+\centerline{\textbf{Typ}}
+\normalsize
 
+\paragraph{Temporal Distance}
+Kruskal-Wallis rank sum test chi-squared = 53.142, df = 24, p-value = 0.000554
+
+\begin{tabular}{rrrrrr}
+  \hline
+ & 1 & 3 & 4 & 5 & 6 \\ 
+  \hline
+3 & 0.00 &  &  &  &  \\ 
+  4 & 0.56 & 0.01 &  &  &  \\ 
+  5 & 0.56 & 0.58 & 0.23 &  &  \\ 
+  6 & 0.00 & 0.00 & 0.05 & 1.00 &  \\ 
+  7 & 1.00 & 0.00 & 0.56 & 0.56 & 0.00 \\ 
+   \hline
+\end{tabular}
+
+\begin{tabular}{rrrrrrrrrrrrrr}
+  \hline
+ & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+  \hline
+X1 & 1.00 & 301.00 & 8.31 & 7.40 & 7.00 & 7.62 & 10.38 & 0.00 & 24.00 & 24.00 & 0.50 & -0.92 & 0.43 \\ 
+  X11 & 1.00 & 120.00 & 2.91 & 5.46 & 0.00 & 1.55 & 0.00 & 0.00 & 22.00 & 22.00 & 1.96 & 2.93 & 0.50 \\ 
+  X12 & 1.00 & 4.00 & 14.00 & 3.92 & 13.50 & 14.00 & 3.71 & 10.00 & 19.00 & 9.00 & 0.22 & -2.05 & 1.96 \\ 
+  X13 & 1.00 & 11.00 & 4.36 & 5.89 & 2.00 & 3.44 & 2.97 & 0.00 & 17.00 & 17.00 & 1.00 & -0.50 & 1.77 \\ 
+  X14 & 1.00 & 1313.00 & 4.85 & 6.49 & 1.00 & 3.59 & 1.48 & 0.00 & 24.00 & 24.00 & 1.31 & 0.79 & 0.18 \\ 
+  X15 & 1.00 & 118.00 & 8.63 & 8.15 & 7.00 & 7.93 & 10.38 & 0.00 & 24.00 & 24.00 & 0.48 & -1.11 & 0.75 \\ 
+   \hline
+\end{tabular}
+
+\paragraph{Coverage}
+Kruskal-Wallis rank sum test chi-squared = 99.367, df = 95, p-value = 0.3593
 
 \large
 \centerline{\textbf{UArt1}}
 \normalsize
 
-\paragraph{Temoral Distance:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 
 \large
 \centerline{\textbf{AUrs1}}
 \normalsize
 
-\paragraph{}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{AufHi}}
 \normalsize
 
-\paragraph{}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Lich1}}
 \normalsize
 
-\paragraph{}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Lich2}}
 \normalsize
 
-\paragraph{}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Zust1}}
 \normalsize
 
-\paragraph{}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{WoTag}}
 \normalsize
 
-\paragraph{}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Month}}
 \normalsize
 
-\paragraph{}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \subsection{BAYSIS - Selected as Jam Initiator}
 
@@ -2390,12 +2473,21 @@ Are these correlations significant or not ? --> Wilcoxon Test
 \centerline{\textbf{Strasse}}
 \normalsize
 
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
 \large
 \centerline{\textbf{Kat}}
 \normalsize
 
-\paragraph{TempMax}
-
+\paragraph{Maximal temporal Extent:}
 Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 
 \begin{table}[h]
@@ -2429,147 +2521,154 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempMax}}
 \end{table}
 
-\paragraph{TempAvg}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Typ}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{UArt1}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{AUrs1}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{AUrs2}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{AufHi}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Lich1}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Lich2}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Zust1}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Zust2}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \large
 \centerline{\textbf{Month}}
 \normalsize
 
-\paragraph{TempMax}
-\paragraph{TempAvg}
-\paragraph{SpatMax}
-\paragraph{SpatAvg}
-\paragraph{TempDist}
-\paragraph{SpatDist}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{TLCar}
-\paragraph{TLHGV}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \subsection{BAYSIS - Selected as Jam Effektor}
 
@@ -2610,19 +2709,145 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 
 Are these correlations significant or not ? --> Wilcoxon Test
 
-\paragraph{Strasse}
+\large
+\centerline{\textbf{Strasse}}
+\normalsize
 
-\paragraph{Kat}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
-\paragraph{UArt1}
+\large
+\centerline{\textbf{Kat}}
+\normalsize
 
-\paragraph{UArt2}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
-\paragraph{AufHi}
+\large
+\centerline{\textbf{UArt1}}
+\normalsize
 
-\paragraph{WoTag}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
-\paragraph{Month}
+\large
+\centerline{\textbf{UArt2}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{AufHi}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Lich1}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Lich2}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Zust1}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Zust2}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Month}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \subsection{BAYSIS - Selected as Jam Follower}
 
@@ -2664,23 +2889,145 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 
 Are these correlations significant or not ? --> Wilcoxon Test
 
-\paragraph{Strasse}
+\large
+\centerline{\textbf{Strasse}}
+\normalsize
 
-\paragraph{Kat}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
-\paragraph{UArt1}
+\large
+\centerline{\textbf{Kat}}
+\normalsize
 
-\paragraph{UArt2}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
-\paragraph{AUrs1}
+\large
+\centerline{\textbf{UArt1}}
+\normalsize
 
-\paragraph{AufHi}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
-\paragraph{Lich1}
+\large
+\centerline{\textbf{UArt2}}
+\normalsize
 
-\paragraph{WoTag}
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
-\paragraph{Month}
+\large
+\centerline{\textbf{AufHi}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Lich1}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Lich2}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Zust1}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Zust2}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
+
+\large
+\centerline{\textbf{Month}}
+\normalsize
+
+\paragraph{Maximal temporal Extent:}
+\paragraph{Average temporal Extent:}
+\paragraph{Maximal spatial Extent:}
+\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Car}
+\paragraph{Time-loss HGV}
 
 \subsection{ArbIS}
 

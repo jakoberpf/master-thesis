@@ -1,16 +1,17 @@
 \chapter{Analysis of processing results}
 \label{analysis_processing}
 
-The results of the clustering where visually reviews to verify the clustering algorithm works properly. Thought iterative adjustments of the input parameters the clustering and matching algorithm where calibrated to a sufficient level. The clustering with the density based implementation does a good job of combining adjacent cluster.
+The results of the clustering and matching algorithm where visually reviewed to verify the performance. Thought iterative adjustments of the input parameters the clustering and matching algorithm where calibrated to a sufficient representation level (see final input parameters in \autoref{methodology_detection} and \autoref{methodology_matching}).
 
-\todo{Add Figures of clustering as proof}
-
-The incident matching is very basic, but sufficient. But i only purpose is to find incident, which are adjacent and cloud be import for the analysis and have some kind of association.
+\todo{Add Figures of clustering as proof} 
 
 \section{Correlation Processing}
 
 The resulting datasets created by the evaluation tool (see section \autoref{methodology_detection} \ref{methodology_matching} and \ref{methodology_data_processing}), task to detection and cluster jams and find adjacent incidents, are then processed by the correlation tool. The correlation tool creates a matrix table with the correlation coefficients.  This table is visual presented in figure \ref{img:correlation_matrix_matched_cramers} showing the the correlation of each parameters for matched dataset.
 
+% -----------------------------------
+% -------- BAYSIS - Matched ---------
+% -----------------------------------
 \subsection{BAYSIS - Matched}
 
 List of strong correlations (.14 for $\eta$ and 0.5 for $r$ ...):
@@ -524,6 +525,9 @@ X1 & 1.00 & 301.00 & 8.31 & 7.40 & 7.00 & 7.62 & 10.38 & 0.00 & 24.00 & 24.00 & 
 \paragraph{Coverage}
 Kruskal-Wallis rank sum test chi-squared = 99.367, df = 95, p-value = 0.3593
 
+% -----------------------
+% -------- UArt ---------
+% -----------------------
 \large
 \centerline{\textbf{UArt1}}
 \normalsize
@@ -532,6 +536,9 @@ Kruskal-Wallis rank sum test chi-squared = 99.367, df = 95, p-value = 0.3593
 \paragraph{Temporal Distance:}
 \paragraph{Coverage:}
 
+% -----------------------
+% -------- AUrs ---------
+% -----------------------
 \large
 \centerline{\textbf{AUrs1}}
 \normalsize
@@ -542,6 +549,9 @@ Kruskal-Wallis rank sum test chi-squared = 99.367, df = 95, p-value = 0.3593
 \paragraph{Coverage:}
 \paragraph{Time-loss HGV:}
 
+% ------------------------
+% -------- AufHi ---------
+% ------------------------
 \large
 \centerline{\textbf{AufHi}}
 \normalsize
@@ -551,36 +561,54 @@ Kruskal-Wallis rank sum test chi-squared = 99.367, df = 95, p-value = 0.3593
 \paragraph{Temporal Distance:}
 \paragraph{Coverage:}
 
+% ------------------------
+% -------- Lich1 ---------
+% ------------------------
 \large
 \centerline{\textbf{Lich1}}
 \normalsize
 
 \paragraph{Coverage:}
 
+% ------------------------
+% -------- Lich2 ---------
+% ------------------------
 \large
 \centerline{\textbf{Lich2}}
 \normalsize
 
 \paragraph{Coverage:}
 
+% -----------------------
+% -------- Zust ---------
+% -----------------------
 \large
 \centerline{\textbf{Zust1}}
 \normalsize
 
 \paragraph{Coverage:}
 
+% ------------------------
+% -------- WoTag ---------
+% ------------------------
 \large
 \centerline{\textbf{WoTag}}
 \normalsize
 
 \paragraph{Coverage:}
 
+% ------------------------
+% -------- Month ---------
+% ------------------------
 \large
 \centerline{\textbf{Month}}
 \normalsize
 
 \paragraph{Coverage:}
 
+% -----------------------------------------------------
+% -------- BAYSIS - Selected as Jam Initiator ---------
+% -----------------------------------------------------
 \subsection{BAYSIS - Selected as Jam Initiator}
 
 List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
@@ -620,6 +648,9 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 
 Are these correlations significant or not ? --> Wilcoxon Test
 
+% --------------------------
+% -------- Strasse ---------
+% --------------------------
 \large
 \centerline{\textbf{Strasse}}
 \normalsize
@@ -631,6 +662,9 @@ Are these correlations significant or not ? --> Wilcoxon Test
 \paragraph{Coverage}
 \paragraph{Time-loss Car}
 
+% ----------------------
+% -------- Kat ---------
+% ----------------------
 \large
 \centerline{\textbf{Kat}}
 \normalsize
@@ -673,20 +707,20 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 \paragraph{Maximal spatial Extent:}
 \paragraph{Average spatial Extent:}
 
+% ----------------------
+% -------- Typ ---------
+% ----------------------
 \large
 \centerline{\textbf{Typ}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
-\paragraph{Average temporal Extent:}
-\paragraph{Maximal spatial Extent:}
 \paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
-\paragraph{Coverage}
-\paragraph{Time-loss Car}
-\paragraph{Time-loss HGV}
+\paragraph{Temporal Distance:}
+\paragraph{Coverage:}
 
+% ------------------------
+% -------- UArt1 ---------
+% ------------------------
 \large
 \centerline{\textbf{UArt1}}
 \normalsize
@@ -696,11 +730,12 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 \paragraph{Maximal spatial Extent:}
 \paragraph{Average spatial Extent:}
 \paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
 \paragraph{Coverage}
 \paragraph{Time-loss Car}
-\paragraph{Time-loss HGV}
 
+% ------------------------
+% -------- AUrs1 ---------
+% ------------------------
 \large
 \centerline{\textbf{AUrs1}}
 \normalsize
@@ -710,110 +745,93 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 \paragraph{Maximal spatial Extent:}
 \paragraph{Average spatial Extent:}
 \paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{Time-loss Car}
 \paragraph{Time-loss HGV}
 
+% ------------------------
+% -------- AUrs2 ---------
+% ------------------------
 \large
 \centerline{\textbf{AUrs2}}
 \normalsize
 
 \paragraph{Maximal temporal Extent:}
 \paragraph{Average temporal Extent:}
-\paragraph{Maximal spatial Extent:}
 \paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
-\paragraph{Coverage}
-\paragraph{Time-loss Car}
-\paragraph{Time-loss HGV}
 
+% ------------------------
+% -------- AufHi ---------
+% ------------------------
 \large
 \centerline{\textbf{AufHi}}
 \normalsize
 
 \paragraph{Maximal temporal Extent:}
 \paragraph{Average temporal Extent:}
-\paragraph{Maximal spatial Extent:}
-\paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
-\paragraph{Coverage}
-\paragraph{Time-loss Car}
-\paragraph{Time-loss HGV}
+\paragraph{Temporal Distance:}
+\paragraph{Coverage:}
 
+% ------------------------
+% -------- Char1 ---------
+% ------------------------
+\large
+\centerline{\textbf{Char1}}
+\normalsize
+
+\paragraph{Temporal Distance:}
+
+% ------------------------
+% -------- Lich1 ---------
+% ------------------------
 \large
 \centerline{\textbf{Lich1}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
-\paragraph{Average temporal Extent:}
-\paragraph{Maximal spatial Extent:}
-\paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
-\paragraph{Coverage}
-\paragraph{Time-loss Car}
-\paragraph{Time-loss HGV}
+\paragraph{Temporal Distance:}
 
+% ------------------------
+% -------- Lich2 ---------
+% ------------------------
 \large
 \centerline{\textbf{Lich2}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
-\paragraph{Average temporal Extent:}
-\paragraph{Maximal spatial Extent:}
-\paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
-\paragraph{Coverage}
-\paragraph{Time-loss Car}
-\paragraph{Time-loss HGV}
+\paragraph{Temporal Distance:}
 
+% ------------------------
+% -------- Zust1 ---------
+% ------------------------
 \large
 \centerline{\textbf{Zust1}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
-\paragraph{Average temporal Extent:}
-\paragraph{Maximal spatial Extent:}
-\paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
 \paragraph{Coverage}
-\paragraph{Time-loss Car}
-\paragraph{Time-loss HGV}
 
+% ------------------------
+% -------- Zust2 ---------
+% ------------------------
 \large
 \centerline{\textbf{Zust2}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
 \paragraph{Average temporal Extent:}
-\paragraph{Maximal spatial Extent:}
 \paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
-\paragraph{Coverage}
-\paragraph{Time-loss Car}
-\paragraph{Time-loss HGV}
 
+% ------------------------
+% -------- Month ---------
+% ------------------------
 \large
 \centerline{\textbf{Month}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
-\paragraph{Average temporal Extent:}
 \paragraph{Maximal spatial Extent:}
-\paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance}
-\paragraph{Spatial Distance}
-\paragraph{Coverage}
-\paragraph{Time-loss Car}
-\paragraph{Time-loss HGV}
+\paragraph{Coverage:}
+\paragraph{Time-loss HGV:}
 
-\subsection{BAYSIS - Selected as Jam Effektor}
+% ----------------------------------------------------
+% -------- BAYSIS - Selected as Jam Effector ---------
+% ----------------------------------------------------
+\subsection{BAYSIS - Selected as Jam Effector}
 
 List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 
@@ -992,6 +1010,9 @@ Are these correlations significant or not ? --> Wilcoxon Test
 \paragraph{Time-loss Car}
 \paragraph{Time-loss HGV}
 
+% ----------------------------------------------------
+% -------- BAYSIS - Selected as Jam Follower ---------
+% ----------------------------------------------------
 \subsection{BAYSIS - Selected as Jam Follower}
 
 List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
@@ -1027,7 +1048,7 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
  		%FeiTag & & \\
  		Month & TMax, TAvg, SMax, Cov, TLHGV & \\
 	\end{tabular}
-	\caption{List of incident variables and their strong/moderated correlated jam variabel from the BAYSIS selected data (Jam Follower)}
+	\caption{List of incident variables and their strong/moderated correlated jam variable from the BAYSIS selected data (Jam Follower)}
 \end{table}
 
 Are these correlations significant or not ? --> Wilcoxon Test

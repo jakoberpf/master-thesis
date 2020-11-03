@@ -31,7 +31,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = True
+    generate_report = False
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/02_matched/'
@@ -67,7 +67,6 @@ if __name__ == '__main__':
             "AufHi",
             "Alkoh",
             "Char1", "Char2",
-            "Bes1", "Bes2",
             "Lich1", "Lich2",
             "Zust1", "Zust2",
             "Fstf",
@@ -232,18 +231,15 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
+    fig, axs = plt.subplots(2, 1, figsize=(width, 3 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    atr = 'Bes'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
     atr = 'Lich'
     concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
+    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
     atr = 'Zust'
     concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
+    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_multiple04.pdf')
         if not show_plot:
@@ -279,7 +275,6 @@ if __name__ == '__main__':
                        'AUrs1', 'AUrs2',
                        'AufHi',
                        'Char1', 'Char2',
-                       'Bes1', 'Bes2',
                        'Lich1', 'Lich2',
                        'Zust1', 'Zust2',
                        'WoTag',

@@ -97,7 +97,6 @@ if __name__ == '__main__':
             "AufHi",
             "Alkoh",
             "Char1", "Char2",
-            "Bes1", "Bes2",
             "Lich1", "Lich2",
             "Zust1", "Zust2",
             "Fstf",

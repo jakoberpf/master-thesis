@@ -494,8 +494,9 @@ A analysis based on all matched could be heavily biased, because all kind of rel
 	\item[] \textbf{Jam Follower} are matches, where the incidents happen after the congestion
 \end{itemize}
 
+\todo{Visual representation of the three categories}
+
 To be able to run the categorization after the runtime intensive detection and matching processing, four additional congestion parameters are introduced. They describe the relative location of the incident to the congestion event. The temporal reference of the incident to the congestion is described by the parameter \textbf{temporalGlobalLocation}, based on the temporal distance. 
-\noindent
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -506,10 +507,10 @@ To be able to run the categorization after the runtime intensive detection and m
  		5 & is after \\
 	\end{tabular}
 	\caption{Encoding and description of temporal global location reference}
+	\vspace{-4mm}
 \end{table}
 
 The spatial reference of if the incident to the congestion is described by the parameter \textbf{spatialGlobalLocation}, based on the spatial distance.
-\noindent
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -518,10 +519,10 @@ The spatial reference of if the incident to the congestion is described by the p
  		3 & is after \\ 
 	\end{tabular}
 	\caption{Encoding and description of spatial global location reference}
+	\vspace{-4mm}
 \end{table}
 
 In the case that the incident happened temporal  during the congestion. The (\textbf{temporalInternalLocation} parameter is set. It describes in more detail where the incident is located during the congestion.
-\noindent
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -532,10 +533,10 @@ In the case that the incident happened temporal  during the congestion. The (\te
  		5 & 10\,\% to Ending \\
 	\end{tabular}
 	\caption{Encoding and description of temporal internal location reference}
+	\vspace{-4mm}
 \end{table}
 
 In the case that the incident happened spatial during the congestion. The \textbf{spatialInternalLocation} parameter is set. It describes in more detail where the incident is located during the congestion.
-\noindent
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -546,10 +547,10 @@ In the case that the incident happened spatial during the congestion. The \textb
  		5 & 10\,\% to Ending \\
 	\end{tabular}
 	\caption{Encoding and description of spatial internal location reference}
+	\vspace{-4mm}
 \end{table}
     
 As a result the congestion has the following attributes.
-\noindent
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|c|l} 
@@ -640,6 +641,9 @@ The incident object is expanded with... BAYSIS and
 
 \todo{How does the correlation processing work?}
 
+\subsubsection{Significancy Evaluation}
+
+\todo{How does the correlation processing work?}
 
 % \begin{minipage}{\linewidth}
 % \begin{lstlisting}[style=js, caption={Beispiellisting}, label=lst:sample] 

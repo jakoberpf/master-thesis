@@ -40,60 +40,109 @@ From this curtailed pool of correlate able and analyze able characteristics all 
 	\label{img:baysis_dataset_dist_month}
 \end{figure}
 
-A look on the monthly distribution of accidents recorded by BAYSIS (see figure \autoref{img:baysis_dataset_dist_month}) shows that that the months of January, July and August have considerably higher number of accidents, with respectively 31\,\%, 21\,\% and 15\,\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased traffic volume because of public holidays is the most probable explanation for the higher number of accidents. Another valuable distribution is the number of accidents per road (see figure \autoref{img:baysis_dataset_dist_highway}). The roads A3, A9 and A8 have relative high count of accidents. In contrast the road A71 and downwards have only an accidents and therefore have a high uncertainty associated with them. 
+A look on the monthly distribution of accidents recorded by BAYSIS (see figure \autoref{img:baysis_dataset_dist_month}) shows that that the months of January, July and August have considerably higher number of accidents, with respectively 31\,\%, 21\,\% and 15\,\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased traffic volume because of public holidays is the most probable explanation for the higher number of accidents. 
+
+\clearpage
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.8]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_hist_highway}
+	\includegraphics[scale=0.75]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_hist_highway}
 	\caption{Distribution of accident counts, by road}
 	\label{img:baysis_dataset_dist_highway}
 \end{figure}
 
-\paragraph{Kat}
-The accident category (shown in figure \autoref{img:baysis_dataset_kat_typ_betei} and table \autoref{table:baysis_dataset_Kat}), describes the which damages or injuries can be associated with the accident. It ranges from accident with just  damaged property, lightly and heavily injured to deathly accidents. The distribution develops from lowest to highs counts, in order of gravity of the category. The variable consists of four values, which can be ordered, and is therefore ordinal.
-\noindent
-\begin{table}[ht]
-	\centering
-	\begin{tabular}{c|l}  
- 		0 & Minor Accident  \\
- 		1 & Accident with deaths  \\ 
- 		2 & Accident with heavily injured  \\
- 		3 & Accident with lightly injured  \\
- 		7 & Accident with property damage  \\
-	\end{tabular}
-	\caption{Identifier and description of 'Kat'}
-	\label{table:baysis_dataset_Kat}
-\end{table}
+Another valuable distribution is the number of accidents per road (see figure \autoref{img:baysis_dataset_dist_highway}). The roads A3, A9 and A8 have relative high count of accidents. In contrast the road A71 and downwards have only an accidents and therefore have a high uncertainty associated with them. 
 
-\paragraph{Typ}
-The accident type variable (shown in figure \autoref{img:baysis_dataset_kat_typ_betei} and table \autoref{table:baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight driving to turning movements or merging. It describes during which kind of movement the accident happened. Beside of an 80\,\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features. The variable does not show any order and is therefore of nominal type.
-\noindent
-\begin{table}[ht]
-	\centering
-	\begin{tabular}{c|l}  
- 		1 & Driving accident  \\ 
- 		2 & Turning accident  \\
- 		3 & Merging / Crossing accident  \\
- 		4 & Crossing over accident  \\
- 		5 & Accident in standing traffic  \\
- 		6 & Accident in straight traffic  \\
- 		7 & Other  \\
-	\end{tabular}
-	\caption{Identifier and description of 'Typ'}
-	\label{table:baysis_dataset_Typ}
-\end{table}
-
-\paragraph{Betei}
-The distribution of the number of involved persons (shown in figure \autoref{img:baysis_dataset_kat_typ_betei}) shows that more than 96\,\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\,\% and the second biggest of one involved person for 30\,\% of the total count. Because of the increasing order of values, the variable is of ordinal type.
-
-\pagestyle{empty}
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[scale=0.7, trim=0cm 1.5cm 0cm 1cm]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple01}
-	\caption{Distribution of the accident category Kat, Typ and Betei}
-	\label{img:baysis_dataset_kat_typ_betei}
+	\begin{minipage}[t]{.4\textwidth} 
+		\centering 	
+		\begin{tabular}{c|l}  
+			0 & Minor Accident  \\
+			1 & Accident with deaths  \\ 
+			2 & Accident with heavily injured  \\
+			3 & Accident with lightly injured  \\
+			7 & Accident with property damage  \\
+	   	\end{tabular}
+	\end{minipage}
+	\begin{minipage}[t]{.5\textwidth} 
+		\centering
+		\vspace{0pt}
+		\includegraphics[scale=1.0]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_Kat}
+	\end{minipage} 
+	\caption{Index and description of \textit{Kat}}
+	\label{table:baysis_dataset_Kat}
+	\label{img:baysis_dataset_Kat}
+\end{figure} 
+
+\paragraph{Kat}
+The accident category (shown in figure \autoref{img:baysis_dataset_Kat} and table \autoref{table:baysis_dataset_Kat}), describes the which damages or injuries can be associated with the accident. It ranges from accident with just  damaged property, lightly and heavily injured to deathly accidents. The distribution develops from lowest to highs counts, in order of gravity of the category. The variable consists of four values, which can be ordered, and is therefore ordinal.
+% \noindent
+% \begin{table}[ht]
+% 	\centering
+% 	\begin{tabular}{c|l}  
+%  		0 & Minor Accident  \\
+%  		1 & Accident with deaths  \\ 
+%  		2 & Accident with heavily injured  \\
+%  		3 & Accident with lightly injured  \\
+%  		7 & Accident with property damage  \\
+% 	\end{tabular}
+% 	\caption{Identifier and description of 'Kat'}
+% 	\label{table:baysis_dataset_Kat}
+% \end{table}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{minipage}[t]{.4\textwidth} 
+		\centering 	
+		\begin{tabular}{c|l}  
+			1 & Driving accident  \\ 
+			2 & Turning accident  \\
+			3 & Merging / Crossing accident  \\
+			4 & Crossing over accident  \\
+			5 & Accident in standing traffic  \\
+			6 & Accident in straight traffic  \\
+			7 & Other  \\
+	   	\end{tabular}
+	\end{minipage}
+	\begin{minipage}[t]{.5\textwidth} 
+		\centering
+		\vspace*{-0.5\baselineskip}
+		\includegraphics[scale=1.0]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_Typ}
+	\end{minipage} 
+	\caption{Index and description of \textbf{Typ}}
+	\label{table:baysis_dataset_Typ}
+	\label{img:baysis_dataset_Typ}
+\end{figure} 
+\paragraph{Typ}
+The accident type variable (shown in figure \autoref{img:baysis_dataset_Typ} and table \autoref{table:baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight driving to turning movements or merging. It describes during which kind of movement the accident happened. Beside of an 80\,\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features. The variable does not show any order and is therefore of nominal type.
+% \noindent
+% \begin{table}[ht]
+% 	\centering
+% 	\begin{tabular}{c|l}  
+%  		1 & Driving accident  \\ 
+%  		2 & Turning accident  \\
+%  		3 & Merging / Crossing accident  \\
+%  		4 & Crossing over accident  \\
+%  		5 & Accident in standing traffic  \\
+%  		6 & Accident in straight traffic  \\
+%  		7 & Other  \\
+% 	\end{tabular}
+% 	\caption{Identifier and description of 'Typ'}
+% 	\label{table:baysis_dataset_Typ}
+% \end{table}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=1.0]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_Betei}
+	\caption{Distribution of the accident category \textbf{Betei}}
+	\label{img:baysis_dataset_betei}
 \end{figure}
-\pagestyle{headings}
+\paragraph{Betei}
+The distribution of the number of involved persons (shown in figure \autoref{img:baysis_dataset_betei}) shows that more than 96\,\% of accidents have three or less involved persons. The major share of two involved persons makes up for 56\,\% and the second biggest of one involved person for 30\,\% of the total count. Because of the increasing order of values, the variable is of ordinal type.
+
+
+
 
 \paragraph{UArt}
 The accident cause type, described by the two aggregated variables UArt1 and UArt2 (shown in figure \autoref{img:baysis_dataset_UArt_AUrs_AufHi} and table \autoref{table:baysis_dataset_UArt}), presents two major sets of causes. One being the accidents with waiting, stopping and starting vehicles in the same lane, which describe typical collision accidents during congested traffic. The other being the accidents in the next left or right lane, which describe common lane changing collisions. Accidents with cross traffic, pedestrians or opposite traffic are relatively uncommon. The variable does not show any order and is therefore of nominal type.
@@ -167,14 +216,14 @@ The obstacle collision distribution (shown in figure \autoref{img:baysis_dataset
 	\label{table:baysis_dataset_AufHi}
 \end{table}
 
-\pagestyle{empty}
+\clearpage
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[scale=0.7, trim=0cm 1.5cm 0cm 1cm]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple02}
 	\caption{Distribution of the accident category UArt, AUrs and AufHi}
 	\label{img:baysis_dataset_UArt_AUrs_AufHi}
 \end{figure}
-\pagestyle{headings}
+\clearpage
 
 \paragraph{Alkoh}
 The Alcohol involvement indication parameter only contains one variables of $1$ ($yes$), whereas an empty variable referred to $no$ or $unknown$. It reveals that only 1,9\% of accidents have one or more involved persons with measurable blood alcohol. The variable only has two unique values and is therefore dichotomous.
@@ -234,14 +283,14 @@ The light situation parameter (shown in \autoref{img:baysis_dataset_Char_Bes_Lic
 	\label{table:baysis_dataset_Zust}
 \end{table} 
 
-\pagestyle{empty}
+\clearpage
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[scale=0.7, trim=0cm 1.5cm 0cm 1cm]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple03}
 	\caption{Distribution of the accident category Char, Bes and Lich}
 	\label{img:baysis_dataset_Char_Bes_Lich}
 \end{figure}
-\pagestyle{headings}
+\clearpage
 
 \paragraph{Zust}
 The road condition parameter (shown in \autoref{img:baysis_dataset_Zust_Fstf_WoTag}) describes in which condition the road was at time of the accident in the for of wet, dry, iced or slippery.
@@ -278,14 +327,14 @@ The variable of WoTag relates to the day of week, when the accident happened (sh
 \paragraph{FeiTag}
 Form the total of 10262, 157 accidents took place on a public holiday. This is not a feature itself but the a possible correlation to jams could be that they are longer because of the increased traffic demand on holidays.
 
-\pagestyle{empty}
+\clearpage
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[scale=0.7, trim=0cm 1.5cm 0cm 1cm]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple04}
+	\includegraphics[scale=0.7, trim=0cm 1.5cm 0cm 1cm]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple04}
 	\caption{Distribution of the accident category Zust, Fstf and WoTag}
 	\label{img:baysis_dataset_Zust_Fstf_WoTag}
 \end{figure}
-\pagestyle{headings}
+\clearpage
 	
 \bigskip
 	

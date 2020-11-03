@@ -83,8 +83,11 @@ if __name__ == '__main__':
     ### Histograms ###
     ##################
 
+    scale = 1.0
+    (width, height) = set_size(418, scale)
+
     # Plot histogram of roadworks over time / months
-    plt.figure(figsize=set_size(418, 1.0))
+    plt.figure(figsize=(width, height * 0.9))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title(r'Histogram of total roadworks per month')
@@ -102,7 +105,7 @@ if __name__ == '__main__':
     # arbis_selected.drop('Month', axis='columns', inplace=True)
 
     # Plot histogram of accidents over highway
-    plt.figure(figsize=set_size(418, 1.2))
+    plt.figure(figsize=(width * 1.2, height * 0.9))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Histogram of total roadworks per highways')
@@ -117,71 +120,70 @@ if __name__ == '__main__':
     else:
         plt.close()
 
+    # plt.figure(figsize=(width, height))
+    # plt.style.use('seaborn')
+    # plt.rcParams.update(tex_fonts)
+    # plt.title('Histogram of roadwork length')
+    # plt.xlabel('Highway')
+    # sns.histplot(x='Length', data=arbis_original, palette='Spectral')
+    # if save_plot:
+    #     plt.savefig(plot_path + file_prefix + '_hist_length.pdf')
+    # if show_plot:
+    #     plt.show()
+    # else:
+    #     plt.close()
+    #
+    # plt.figure(figsize=(width, height))
+    # plt.style.use('seaborn')
+    # plt.rcParams.update(tex_fonts)
+    # plt.title('Histogram of roadwork duration')
+    # plt.xlabel('Highway')
+    # sns.histplot(x='Duration', data=arbis_original, palette='Spectral')
+    # if save_plot:
+    #     plt.savefig(plot_path + file_prefix + '_hist_duration.pdf')
+    # if show_plot:
+    #     plt.show()
+    # else:
+    #     plt.close()
+
     ##############
     ### Counts ###
     ##############
 
+    # Single plots
+
     scale = 1.0
     (width, height) = set_size(418, scale)
-    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
+
+    # Plot distribution of AnzGesperrtFs
+    plt.figure(figsize=(width, height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0], x='AnzGesperrtFs', data=arbis_original, palette='Spectral')
-    sns.countplot(ax=axs[1], x='Einzug', data=arbis_original, palette='Spectral')
-    sns.countplot(ax=axs[2], x='Richtung', data=arbis_original, palette='Spectral')
+    plt.title('Distribution of AnzGesperrtFs')
+    plt.ylabel('Count')
+    plt.xlabel('AnzGesperrtFs')
+    sns.countplot(x='AnzGesperrtFs', data=arbis_original, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
-        if not show_plot:
-            plt.close()
+        plt.savefig(plot_path + file_prefix + '_count_AnzGesperrtFs.pdf')
     if show_plot:
         plt.show()
     else:
         plt.close()
 
-    # # Plot distribution of AnzGesperrtFs
-    # plt.figure(figsize=set_size(418))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Distribution of AnzGesperrtFs')
-    # plt.ylabel('Count')
-    # plt.xlabel('AnzGesperrtFs')
-    # sns.countplot(x='AnzGesperrtFs', data=arbis_selected, palette='Spectral')
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_dist_AnzGesperrtFs.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot distribution of Einzug
-    # plt.figure(figsize=set_size(418))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Distribution of Einzug')
-    # plt.ylabel('Count')
-    # plt.xlabel('Einzug')
-    # sns.countplot(x='Einzug', data=arbis_selected, palette='Spectral')
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_dist_Einzug.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot distribution of Richtung
-    # plt.figure(figsize=set_size(418, 0.8))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Distribution of Richtung')
-    # plt.ylabel('Count')
-    # plt.xlabel('Richtung')
-    # sns.countplot(x='Richtung', data=arbis_selected, palette='Spectral')
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_dist_Richtung.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
+    # Plot distribution of Einzug
+    plt.figure(figsize=(width, height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Distribution of Einzug')
+    plt.ylabel('Count')
+    plt.xlabel('Einzug')
+    sns.countplot(x='Einzug', data=arbis_original, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_Einzug.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
     ###############
     ### Scatter ###

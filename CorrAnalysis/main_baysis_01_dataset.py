@@ -84,8 +84,11 @@ if __name__ == '__main__':
     ### Histograms ###
     ##################
 
+    scale = 1.0
+    (width, height) = set_size(418, scale)
+
     # Plot histogram of accidents over time / months
-    plt.figure(figsize=set_size(418, 1.0))
+    plt.figure(figsize=(width, height * 0.8))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Histogram of accidents per month')
@@ -103,7 +106,7 @@ if __name__ == '__main__':
     # baysis_selected.drop('Month', axis='columns', inplace=True)
 
     # Plot histogram of accidents over highway
-    plt.figure(figsize=set_size(418, 1.2))
+    plt.figure(figsize=(width * 1.2, height * 0.8))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Histogram of accidents per highways')
@@ -122,15 +125,20 @@ if __name__ == '__main__':
     ### Counts ###
     ##############
 
+    # Multi plots
+
     scale = 1.0
     (width, height) = set_size(418, scale)
 
-    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
+    fig, axs = plt.subplots(4, 1, figsize=(width, 3.5 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0], x='Typ', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[1], x='Kat', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[0], x='Kat', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[1], x='Typ', data=baysis_original, palette='Spectral')
     sns.countplot(ax=axs[2], x='Betei', data=baysis_original, palette='Spectral')
+    atr = 'UArt'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[3], x=atr, data=concat, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
         if not show_plot:
@@ -140,12 +148,19 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
+    fig, axs = plt.subplots(4, 1, figsize=(width, 3.5  * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0], x='AufHi', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[1], x='Fstf', data=baysis_original, palette='Spectral')
-    sns.countplot(ax=axs[2], x='WoTag', data=baysis_original, palette='Spectral')
+    atr = 'AUrs'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
+    sns.countplot(ax=axs[1], x='AufHi', data=baysis_original, palette='Spectral')
+    atr = 'Char'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
+    atr = 'Bes'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[3], x=atr, data=concat, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_multiple02.pdf')
         if not show_plot:
@@ -155,55 +170,18 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    # scale = 1.0
-    # (width, height) = set_size(418, scale)
-
-    # for atr in ['Typ', 'Kat', 'Betei', 'AufHi', 'Alkoh', 'Fstf', 'FeiTag']:
-    #     plt.figure(figsize=(width, height/2))
-    #     plt.style.use('seaborn')
-    #     plt.rcParams.update(tex_fonts)
-    #     plt.title('Counts of ' + atr)
-    #     plt.ylabel('Count')
-    #     plt.xlabel(atr)
-    #     sns.countplot(x=atr, data=baysis_selected, palette='Spectral')
-    #     if save_plot:
-    #         plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    #         if not show_plot:
-    #             plt.close()
-    #     if show_plot:
-    #         plt.show()
-    #     else:
-    #         plt.close()
-
-    # # Plot Counts of WoTag
-    # atr = 'WoTag'
-    # plt.figure(figsize=set_size(418, scale))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of ' + atr)
-    # plt.ylabel('Count')
-    # plt.xlabel(atr)
-    # ax = sns.countplot(x=atr, data=baysis_selected, palette='Spectral',
-    #                    order=['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-
-    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
+    fig, axs = plt.subplots(4, 1, figsize=(width, 3.5 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    atr = 'UArt'
+    atr = 'Lich'
     concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
     sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
-    atr = 'AUrs'
+    atr = 'Zust'
     concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
     sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
-    atr = 'Char'
-    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
+    sns.countplot(ax=axs[2], x='Fstf', data=baysis_original, palette='Spectral')
+    sns.countplot(ax=axs[3], x='WoTag', data=baysis_original, palette='Spectral',
+                  order=['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_count_multiple03.pdf')
         if not show_plot:
@@ -213,82 +191,100 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
+    # Single plots
+
+    scale = 1.0
+    (width, height) = set_size(418, scale)
+
+    for atr in ['Typ', 'Kat', 'Betei', 'AufHi', 'Fstf', 'FeiTag']:
+        plt.figure(figsize=(width, height))
+        plt.style.use('seaborn')
+        plt.rcParams.update(tex_fonts)
+        plt.title('Counts of ' + atr)
+        plt.ylabel('Count')
+        plt.xlabel(atr)
+        sns.countplot(x=atr, data=baysis_original, palette='Spectral')
+        if save_plot:
+            plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+            if not show_plot:
+                plt.close()
+        if show_plot:
+            plt.show()
+        else:
+            plt.close()
+
+    # Plot Counts of WoTag
+    atr = 'WoTag'
+    plt.figure(figsize=(width, height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    atr = 'Bes'
-    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
-    atr = 'Lich'
-    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
-    atr = 'Zust'
-    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
+    plt.title('Counts of ' + atr)
+    plt.ylabel('Count')
+    plt.xlabel(atr)
+    ax = sns.countplot(x=atr, data=baysis_original, palette='Spectral',
+                       order=['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
     if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple04.pdf')
-        if not show_plot:
-            plt.close()
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
     if show_plot:
         plt.show()
     else:
         plt.close()
 
-    # # Plot Counts of UArt
-    # atr = 'UArt'
-    # concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, scale))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot Counts of AUrs
-    # atr = 'AUrs'
-    # concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, scale))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot Counts of Char
-    # atr = 'Char'
-    # concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, scale))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
+    # Plot Counts of UArt
+    atr = 'UArt'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    plt.figure(figsize=(width, height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of UArt')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of AUrs
+    atr = 'AUrs'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    plt.figure(figsize=(width, height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of AUrs')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of Char
+    atr = 'Char'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    plt.figure(figsize=(width, height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of Char')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
     # # Plot Counts of Bes
     # atr = 'Bes'
-    # concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, scale))
+    # concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    # plt.figure(figsize=(width, height))
     # plt.style.use('seaborn')
     # plt.rcParams.update(tex_fonts)
     # plt.title('Counts of UArt')
@@ -301,40 +297,40 @@ if __name__ == '__main__':
     #     plt.show()
     # else:
     #     plt.close()
-    #
-    # # Plot Counts of Lich
-    # atr = 'Lich'
-    # concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, scale))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # # Plot Counts of Zust
-    # atr = 'Zust'
-    # concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    # plt.figure(figsize=set_size(418, scale))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Counts of UArt')
-    # plt.ylabel('Count')
-    # ax = sns.countplot(x=atr, data=concat, palette='Spectral')
-    # plt.xlabel(atr)
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
+
+    # Plot Counts of Lich
+    atr = 'Lich'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    plt.figure(figsize=(width, height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of Lich')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    # Plot Counts of Zust
+    atr = 'Zust'
+    concat = pd.concat([baysis_original[atr + '1'], baysis_original[atr + '2']], keys=[atr])
+    plt.figure(figsize=(width, height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    plt.title('Counts of Zust')
+    plt.ylabel('Count')
+    ax = sns.countplot(x=atr, data=concat, palette='Spectral')
+    plt.xlabel(atr)
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_' + atr + '.pdf')
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
     ##################
     ### Report ###
@@ -344,9 +340,9 @@ if __name__ == '__main__':
         report = ProfileReport(baysis_original, title='BAYSIS Original Dataset Report')
         report.to_file(work_path + file_prefix + '_report.html')
 
-    ###################
-    ### Correlation ###
-    ###################
+    ################
+    ### Encoding ###
+    ################
 
     # define column types
     nominal_columns = ["Strasse", "Kat", "Typ",
@@ -354,7 +350,6 @@ if __name__ == '__main__':
                        "AUrs1", "AUrs2",
                        "AufHi",
                        "Char1", "Char2",
-                       "Bes1", "Bes2",
                        "Lich1", "Lich2",
                        "Zust1", "Zust2",
                        "WoTag",
@@ -369,7 +364,6 @@ if __name__ == '__main__':
                                                               "AUrs1", "AUrs2",
                                                               "AufHi",
                                                               "Char1", "Char2",
-                                                              "Bes1", "Bes2",
                                                               "Lich1", "Lich2",
                                                               "Zust1", "Zust2",
                                                               "Fstf"
@@ -381,6 +375,12 @@ if __name__ == '__main__':
     with open(csv_path + 'encoded_dict.csv', 'w') as tf:
         for key in baysis_encoded_dict.keys():
             tf.write("%s, %s\n" % (key, baysis_encoded_dict[key]))
+
+    ###################
+    ### Correlation ###
+    ###################
+
+    baysis_encoded = baysis_encoded.drop(columns=["Bes1", "Bes2"])
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused

@@ -53,67 +53,64 @@ A look on the monthly distribution of accidents recorded by BAYSIS (see figure \
 
 Another valuable distribution is the number of accidents per road (see figure \autoref{img:baysis_dataset_dist_highway}). The roads A3, A9 and A8 have relative high count of accidents. In contrast the road A71 and downwards have only an accidents and therefore have a high uncertainty associated with them. 
 
-\begin{figure}[!ht]
-	\centering
-	\begin{minipage}[t]{.4\textwidth} 
-		\centering 	
-		\begin{tabular}{c|l}  
-			0 & Minor Accident  \\
-			1 & Accident with deaths  \\ 
-			2 & Accident with heavily injured  \\
-			3 & Accident with lightly injured  \\
-			7 & Accident with property damage  \\
-	   	\end{tabular}
-	\end{minipage}
-	\begin{minipage}[t]{.5\textwidth} 
-		\centering
-		\vspace{0pt}
-		\includegraphics[scale=1.0]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_Kat}
-	\end{minipage} 
-	\caption{Index and description of \textit{Kat}}
-	\label{table:baysis_dataset_Kat}
-	\label{img:baysis_dataset_Kat}
-\end{figure} 
+\begin{figure}[ht]
+    \centering
+	\includegraphics[scale=1.0]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_Kat}
+	\qquad
+	\small
+    \begin{tabular}[b]{c|l}
+      Code 	& Description \\
+	  0 	& Minor Accident  \\
+	  1 	& Accident with deaths  \\ 
+	  2 	& Accident with heavily injured  \\
+	  3 	& Accident with lightly injured  \\
+	  7 	& Accident with property damage  \\
+	\end{tabular}
+    \captionlistentry[table]{Distribution and encoding of accident variable \textbf{Kat}}
+    \captionsetup{labelformat=andtable}
+	\caption{Distribution and encoding of accident variable \textbf{Kat}}
+	% \label{table:baysis_dataset_Kat}
+	% \label{img:baysis_dataset_Kat}
+  \end{figure}
 
 \paragraph{Kat}
-The accident category (shown in figure \autoref{img:baysis_dataset_Kat} and table \autoref{table:baysis_dataset_Kat}), describes the which damages or injuries can be associated with the accident. It ranges from accident with just  damaged property, lightly and heavily injured to deathly accidents. The distribution develops from lowest to highs counts, in order of gravity of the category. The variable consists of four values, which can be ordered, and is therefore ordinal.
-% \noindent
-% \begin{table}[ht]
-% 	\centering
-% 	\begin{tabular}{c|l}  
-%  		0 & Minor Accident  \\
-%  		1 & Accident with deaths  \\ 
-%  		2 & Accident with heavily injured  \\
-%  		3 & Accident with lightly injured  \\
-%  		7 & Accident with property damage  \\
-% 	\end{tabular}
-% 	\caption{Identifier and description of 'Kat'}
-% 	\label{table:baysis_dataset_Kat}
-% \end{table}
-
-\begin{figure}[!ht]
+The accident category (shown in figure \autoref{} and table \autoref{table:baysis_dataset_Kat}), describes the which damages or injuries can be associated with the accident. It ranges from accident with just  damaged property, lightly and heavily injured to deathly accidents. The distribution develops from lowest to highs counts, in order of gravity of the category. The variable consists of four values, which can be ordered, and is therefore ordinal.
+\noindent
+\begin{table}[ht]
 	\centering
-	\begin{minipage}[t]{.4\textwidth} 
-		\centering 	
-		\begin{tabular}{c|l}  
-			1 & Driving accident  \\ 
-			2 & Turning accident  \\
-			3 & Merging / Crossing accident  \\
-			4 & Crossing over accident  \\
-			5 & Accident in standing traffic  \\
-			6 & Accident in straight traffic  \\
-			7 & Other  \\
-	   	\end{tabular}
-	\end{minipage}
-	\begin{minipage}[t]{.5\textwidth} 
-		\centering
-		\vspace*{-0.5\baselineskip}
-		\includegraphics[scale=1.0]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_Typ}
-	\end{minipage} 
-	\caption{Index and description of \textbf{Typ}}
-	\label{table:baysis_dataset_Typ}
-	\label{img:baysis_dataset_Typ}
-\end{figure} 
+	\begin{tabular}{c|l}  
+ 		0 & Minor Accident  \\
+ 		1 & Accident with deaths  \\ 
+ 		2 & Accident with heavily injured  \\
+ 		3 & Accident with lightly injured  \\
+ 		7 & Accident with property damage  \\
+	\end{tabular}
+	\caption{Identifier and description of 'Kat'}
+	\label{table:baysis_dataset_Kat}
+\end{table}
+
+\begin{figure}[ht]
+    \centering
+	\includegraphics[scale=1.0]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_Typ}
+	\qquad
+	\small
+    \begin{tabular}[b]{c|l}
+      Code & Description \\
+	  1 & Driving accident  \\ 
+	  2 & Turning accident  \\
+	  3 & Merging / Crossing accident  \\
+	  4 & Crossing over accident  \\
+	  5 & Accident in standing traffic  \\
+	  6 & Accident in straight traffic  \\
+	  7 & Other  \\
+	\end{tabular}
+    \captionlistentry[table]{Distribution and encoding of accident variable \textbf{Typ}}
+    \captionsetup{labelformat=andtable}
+	\caption{Distribution and encoding of accident variable \textbf{Typ}}
+	% \label{table:baysis_dataset_Typ}
+	% \label{img:baysis_dataset_Typ}
+\end{figure}
+
 \paragraph{Typ}
 The accident type variable (shown in figure \autoref{img:baysis_dataset_Typ} and table \autoref{table:baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight driving to turning movements or merging. It describes during which kind of movement the accident happened. Beside of an 80\,\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features. The variable does not show any order and is therefore of nominal type.
 % \noindent
@@ -143,27 +140,53 @@ The distribution of the number of involved persons (shown in figure \autoref{img
 
 
 
-
+\begin{figure}[ht]
+    \centering
+	%\rule{6.4cm}{3.6cm}
+	\includegraphics[scale=1.0]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_UArt}
+    \qquad
+	\begin{tabular}[b]{c|l}
+		\toprule
+		Code & Description \\
+		\midrule
+			1 & Collision with starting, standing or stopping vehicle  \\ 
+			2 & Collision with ahead and waiting vehicle  \\
+			3 & Collision with vehicle on separate lane in same direction  \\
+			4 & Collision with vehicle going in opposite direction  \\
+			5 & Collision with turning or crossing vehicle  \\
+			6 & Collision between vehicle and pedestrian  \\
+			7 & Collision with obstacle  \\
+			8 & Deviation to the right  \\
+			9 & Deviation to the left  \\
+			0 & Other  \\
+		\bottomrule
+	\end{tabular}
+    \captionlistentry[table]{Distribution and encoding of accident variable \textbf{UArt}}
+    \captionsetup{labelformat=andtable}
+	\caption{Distribution and encoding of accident variable \textbf{UArt}}
+	% \label{table:baysis_dataset_UArt}
+	% \label{img:baysis_dataset_UArt}
+\end{figure}
 \paragraph{UArt}
 The accident cause type, described by the two aggregated variables UArt1 and UArt2 (shown in figure \autoref{img:baysis_dataset_UArt_AUrs_AufHi} and table \autoref{table:baysis_dataset_UArt}), presents two major sets of causes. One being the accidents with waiting, stopping and starting vehicles in the same lane, which describe typical collision accidents during congested traffic. The other being the accidents in the next left or right lane, which describe common lane changing collisions. Accidents with cross traffic, pedestrians or opposite traffic are relatively uncommon. The variable does not show any order and is therefore of nominal type.
-\noindent
-\begin{table}[ht]
-	\centering
-	\begin{tabular}{c|l}  
- 		1 & Collision with starting, standing or stopping vehicle  \\ 
- 		2 & Collision with ahead and waiting vehicle  \\
- 		3 & Collision with vehicle on separate lane in same direction  \\
- 		4 & Collision with vehicle going in opposite direction  \\
- 		5 & Collision with turning or crossing vehicle  \\
- 		6 & Collision between vehicle and pedestrian  \\
- 		7 & Collision with obstacle  \\
- 		8 & Deviation to the right  \\
- 		9 & Deviation to the left  \\
- 		0 & Other  \\
-	\end{tabular}
-	\caption{Identifier and description of 'UArt'}
-	\label{table:baysis_dataset_UArt}
-\end{table}
+% \noindent
+% \begin{table}[ht]
+% 	\centering
+% 	\begin{tabular}{c|l}  
+%  		1 & Collision with starting, standing or stopping vehicle  \\ 
+%  		2 & Collision with ahead and waiting vehicle  \\
+%  		3 & Collision with vehicle on separate lane in same direction  \\
+%  		4 & Collision with vehicle going in opposite direction  \\
+%  		5 & Collision with turning or crossing vehicle  \\
+%  		6 & Collision between vehicle and pedestrian  \\
+%  		7 & Collision with obstacle  \\
+%  		8 & Deviation to the right  \\
+%  		9 & Deviation to the left  \\
+%  		0 & Other  \\
+% 	\end{tabular}
+% 	\caption{Identifier and description of 'UArt'}
+% 	\label{table:baysis_dataset_UArt}
+% \end{table}
 
 \paragraph{AUrs}
 The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown in figure \autoref{img:baysis_dataset_UArt_AUrs_AufHi} and table \autoref{table:baysis_dataset_AUrs}) shows that only the first category of “Slippery road condition due to oil” hold a significant share. Because of that any correlation to this parameter needs to interpreted with caution, die the the high uncertainty. The variable is of nominal type.

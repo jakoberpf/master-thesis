@@ -4,7 +4,9 @@
 
 % Table captions
 \usepackage{caption} 
+%\usepackage[font=small,labelfont=bf,tableposition=top]{caption}
 %\captionsetup[table]{belowskip=12pt,aboveskip=4pt}
+\DeclareCaptionLabelFormat{andtable}{#1~#2  \&  \tablename~\thetable}
 \usepackage{diagbox}
 
 % Rotate tables

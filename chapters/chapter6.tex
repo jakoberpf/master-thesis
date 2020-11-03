@@ -1,4 +1,3 @@
-
 \chapter{Analysis of processing results}
 \label{analysis_processing}
 
@@ -16,7 +15,7 @@ The incident matching is very basic, but sufficient. But i only purpose is to fi
 
 \section{Correlation Processing}
 
-The resulting datasets created by the evaluation tool (see section \ref{methodology_clustering} \ref{} and \ref{}), task to detection and cluster jams and find adjacent incidents, are then processed by the correlation tool. The correlation tool cre
+The resulting datasets created by the evaluation tool (see section \ref{methodology_detection} \ref{} and \ref{}), task to detection and cluster jams and find adjacent incidents, are then processed by the correlation tool. The correlation tool cre
  a  matrix table with the correlation coefficients.  This table is visual presented in figure \ref{img:correlation_matrix_matched_cramers} showing the the correlation of each parameters for matched dataset.
 
 \subsection{BAYSIS - Matched}
@@ -86,7 +85,7 @@ Kruskal-Wallis chi-squared = 324.16, df = 210, p-value = 6.956e-07
 	\begin{tabular}{rrrrrrrrrrrrrrrrr}
 		\toprule
 		& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
-		\hline
+		\midrule
 		A6 & 0.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
 		A9 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
 		A70 & 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
@@ -103,9 +102,9 @@ Kruskal-Wallis chi-squared = 324.16, df = 210, p-value = 6.956e-07
 		A71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
 		A45 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
 		A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-		  \hline
+		\bottomrule
 	\end{tabular}
-	\caption{Wilcoxon Pairwise t test for \textit{Street} by \textit{TempMax}}
+	\caption{Wilcoxon Pairwise t-test for \textit{Street} by \textit{TempMax}}
 \end{table}
 
 \begin{table}[ht]
@@ -164,8 +163,9 @@ Kruskal-Wallis rank sum test chi-squared = 324.97, df = 245, p-value = 0.000466
 		A71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
 		A45 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
 		A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
-		  \hline
+		\bottomrule
 	\end{tabular}
+	\caption{Wilcoxon Pairwise t-test for \textit{Street} by \textit{TempMax}}
 \end{table}
 
 \begin{table}[ht]
@@ -411,10 +411,10 @@ Kruskal-Wallis rank sum test chi-squared = 263.93, df = 210, p-value = 0.00682
 		\hline
 	 	& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
 	  	\hline
-		X1 & 1.00 & 36.00 & 317.67 & 215.10 & 279.00 & 294.40 & 146.78 & 27.00 & 987.00 & 960.00 & 1.17 & 1.44 & 35.85 \\ 
-	  	X11 & 1.00 & 217.00 & 191.03 & 167.18 & 135.00 & 163.32 & 93.40 & 9.00 & 1257.00 & 1248.00 & 2.27 & 8.04 & 11.35 \\ 
-	  	X12 & 1.00 & 890.00 & 159.09 & 148.46 & 114.00 & 131.28 & 77.84 & 9.00 & 1323.00 & 1314.00 & 2.67 & 10.35 & 4.98 \\ 
-	  	X13 & 1.00 & 724.00 & 182.68 & 195.84 & 117.00 & 144.27 & 108.97 & 9.00 & 1341.00 & 1332.00 & 2.53 & 8.49 & 7.28 \\ 
+		1 & 1.00 & 36.00 & 317.67 & 215.10 & 279.00 & 294.40 & 146.78 & 27.00 & 987.00 & 960.00 & 1.17 & 1.44 & 35.85 \\ 
+	  	2 & 1.00 & 217.00 & 191.03 & 167.18 & 135.00 & 163.32 & 93.40 & 9.00 & 1257.00 & 1248.00 & 2.27 & 8.04 & 11.35 \\ 
+	  	3 & 1.00 & 890.00 & 159.09 & 148.46 & 114.00 & 131.28 & 77.84 & 9.00 & 1323.00 & 1314.00 & 2.67 & 10.35 & 4.98 \\ 
+	  	4 & 1.00 & 724.00 & 182.68 & 195.84 & 117.00 & 144.27 & 108.97 & 9.00 & 1341.00 & 1332.00 & 2.53 & 8.49 & 7.28 \\ 
 	   	\hline
 	\end{tabular}
 	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempMax}}

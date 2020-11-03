@@ -1,0 +1,45 @@
+\usepackage[toc,acronym]{glossaries}
+
+\newacronym{adac}{ADAC}{Allgemeine Deutsche Automobil-Club e. V.}	 
+\newacronym{tsm}{TSM}{Transportation System Management}
+\newacronym{atdm}{ATDM}{Active Traffic and Demand Management}
+\newacronym{atis}{ATIS}{Advanced Traveler Information System}
+\newacronym{fcd}{FCD}{Floating Car Data}
+\newacronym{fco}{FCO}{Floating Car Observer}
+\newacronym{csv}{CSV}{Comma-seperated Values}
+\newacronym{gsm}{GSM}{Global System for Mobile Communications}
+\newacronym{umts}{UMTS}{Universal Mobile Telecommunications System}
+\newacronym{lte}{LTE}{Long Term Evolution}
+\newacronym{arbis}{ArbIS}{Arbeitstellenintegrationsystem}
+\newacronym{ari}{ARI}{Autofahrer Rundfunk Information}
+\newacronym{baysis}{BAYSIS}{Bayerische Straßeninformationssystem}
+\newacronym{fpd}{FPD}{Floating Phone Data}
+\newacronym{rtti}{RTTI}{Real Time Traffic Information}
+\newacronym{tmc}{TMC}{Traffic Messaging Channel}
+\newacronym{xfcd}{XFCD}{Extended Floating Car Data}
+\newacronym{zvm}{ZVM}{Zentralstelle Verkehrsmanagement}
+\newacronym{gps}{GPS}{Global Postioning System}
+
+\makeglossaries
+
+\newglossaryentry{congstats}
+{
+        name=CONGSTATS,
+        description={is a software product, part of a development contract in which the thesis was conceptualized. Its goal is to supply a statistical analysis tool for engineers examine traffic data}
+}
+\newglossaryentry{evaltool}
+{
+        name=evaluation tool,
+        description={is part of the CONGSTATS service and was adapted and expanded for the usage in this thesis. It handles the analysis of processed \acrshort{fcd} data, congestion detection, incident matching and exports the analysis data}
+}
+\newglossaryentry{speedmatrix}
+{
+        name=Speed Matrix,
+        description={is the data format of the processed \acrshort{fcd} data is a two-dimensional integer matrix representing a non-Euclidean time to road link space with the corresponding mean cell speed as value. The time dimension referrers to the 3-minute time increment of the day and the space dimension to the road link of the covered route of the speed matrix.}
+}
+\newglossaryentry{jam}
+{
+        name=congestion,
+        plural=jams,
+        description={ \textbf{or jam} is the spatial and timely accumulations of traffic participants, which leads to a reduction of travel speed and therefore reduction of traffic throughput. Because the plural of the noun congestion is not clearly recognizable, in the context of multiple congestion, the term \glspl{jam} will be used. A more detailed definition of a congestion can be found in chapter \ref{definition_congestion}}
+}

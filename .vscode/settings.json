@@ -5,5 +5,13 @@
     "editor.wordWrap": "on",
     "editor.wordWrapColumn": 80,
     "editor.wrappingIndent": "same",
-    "cSpell.enabled": true
+    "cSpell.enabled": true,
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ]
 }

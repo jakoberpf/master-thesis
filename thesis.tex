@@ -14,7 +14,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
 \usepackage{url}
 \usepackage[autostyle=true,german=quotes]{csquotes}
 \usepackage{pdfpages}
@@ -88,7 +88,6 @@
 % ------------------
 % |    Chapters    |
 % ------------------
-\mainmatter
 \setcounter{page}{1}
 \input{chapters/chapter1}
 \input{chapters/chapter2}
@@ -96,15 +95,14 @@
 \input{chapters/chapter4}
 \input{chapters/chapter5}
 \input{chapters/chapter6}
+\input{chapters/chapter7}
+\input{chapters/chapter8}
+\input{chapters/chapter9}
 
 % -----------------
 % |    Indexes    |
 % -----------------
-\frontmatter
-\pagenumbering{arabic}
-\addcontentsline{toc}{chapter}{List of Figures}
 \listoffigures
-\addcontentsline{toc}{chapter}{List of Tables}
 \listoftables
 %\lstlistoflistings 
 \printglossary[title=List of Acronyms, type=\acronymtype]
@@ -113,8 +111,7 @@
 % ----------------------
 % |    Bibliography    |
 % ----------------------
-\printbibliography
-% \printbibheading[title=Literatur]
+\printbibliography[title=Bibliography]
 % \printbibliography[heading=subbibliography, type=online, title={Online}]
 % \printbibliography[heading=subbibliography, type=book, title={Literatur}]
 % \printbibliography[heading=subbibliography,title={Der ganze Rest},nottype=online,notkeyword=Norm,notkeyword=sekundaer]
@@ -122,7 +119,6 @@
 % ------------------
 % |    Appendix    |
 % ------------------
-\appendix
 \cleardoubleoddpage
 \input{chapters/appendix}
 

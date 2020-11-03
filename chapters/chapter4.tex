@@ -197,7 +197,7 @@ The summarized distribution of the parameters “AUrs1” and “AUrs2” (shown
 \endgroup
 
 \paragraph{AufHi}
-The obstacle collision distribution (shown in figure \ref{img:appendix_baysis_dataset_Aufhi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,5\% of accidents without any collision, it can be stated that in most cases a collision is part of an accident. The counts of the remaining categories are insignificant. The variable does not show any order and is therefore of nominal type.
+The obstacle collision distribution (shown in figure \ref{img:appendix_baysis_dataset_Aufhi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,5\,\% of accidents without any collision, it can be stated that in most cases a collision is part of an accident. The counts of the remaining categories are insignificant. The variable does not show any order and is therefore of nominal type.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
 %	\item 0 = Single tree
@@ -206,7 +206,7 @@ The obstacle collision distribution (shown in figure \ref{img:appendix_baysis_da
 %	\item 3 = Guardrail
 %	\item 4 = Other object
 %	\item 5 = No collision
-%	\item 7 = Tree line or allee
+%	\item 7 = Tree line or alley
 %	\item 8 = Tree group or forest
 %	\item 9 = Busches
 %\end{itemize}
@@ -238,8 +238,8 @@ The variable distribution shown in figure \ref{img:appendix_baysis_dataset_Char}
 %	\item 1 = Crossing
 %    \item 2 = Entry / Exit
 %    \item 3 = Property c
-%    \item 4 = Steigung
-%    \item 5 = Gefälle
+%    \item 4 = Incline
+%    \item 5 = Decline
 %    \item 6 = Curve
 %    \item 7 = Roundabout
 %\end{itemize}    
@@ -250,8 +250,8 @@ The variable distribution shown in figure \ref{img:appendix_baysis_dataset_Char}
 		1 & Crossing \\
 	    2 & Entry / Exit \\
 	    3 & Property access \\
-	    4 & Steigung \\ % TODO english
-	    5 & Gefälle \\ % TODO english
+	    4 & Incline \\
+	    5 & Decline \\
 	    6 & Curve \\
 	    7 & Roundabout \\
 	\end{tabular}
@@ -260,14 +260,14 @@ The variable distribution shown in figure \ref{img:appendix_baysis_dataset_Char}
 \end{table}
 
 \paragraph{Bes}
-The aggregated distribution of the variables "Bes1", "Bes2" and "Bes3", which further defines the street characteristic mentioned above only has one significant share of the type "Roadwork". The variabel itself is therefore not suitable for a correlation analysis, but can be used as validation criterium for the matching of roadwork incidents.
+The aggregated distribution of the variables "Bes1", "Bes2" and "Bes3", which further defines the street characteristic mentioned above only has one significant share of the type "Roadwork". The variable itself is therefore not suitable for a correlation analysis, but can be used as validation criterium for the matching of roadwork incidents.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
 %	\item 1 = Confusing
 %	\item 2 = Level crossing
 %	\item 3 = Pedestrian crossing
 %	\item 4 = Pedestrian passage
-%	\item 5 = Busstop
+%	\item 5 = Bus-stop
 %	\item 6 = Roadwork
 %	\item 7 = Calm traffic area
 %	\item 8 = RAV on street
@@ -282,7 +282,7 @@ The aggregated distribution of the variables "Bes1", "Bes2" and "Bes3", which fu
 		2 & Level crossing \\
 		3 & Pedestrian crossing \\
 		4 & Pedestrian passage \\
-		5 & Busstop \\
+		5 & Bus-stop \\
 		6 & Roadwork \\
 		7 & Calm traffic area \\
 		8 & RAV on street \\
@@ -340,7 +340,7 @@ The road condition parameter (shown in \ref{img:appendix_baysis_dataset_Zust}) d
 \end{table}
 
 \paragraph{Fstf}
-The variabel references the lane on which the accident happened. It names the number of lane from the right, the hard-shoulder or the wrong usage of a one-way street. It does not show an order of lanes, but not with the two other types of hard-shoulder and one-way street. It is therefore considered as nominal.
+The variable references the lane on which the accident happened. It names the number of lane from the right, the hard-shoulder or the wrong usage of a one-way street. It does not show an order of lanes, but not with the two other types of hard-shoulder and one-way street. It is therefore considered as nominal.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
 %		\item 1,2, ... = first, second, ... lane from the right 
@@ -370,61 +370,46 @@ Form the total of 10262, 157 accidents took place on a public holiday. This is n
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|c|c|c}
-		\textbf{Variable} 	& \textbf{Group} 	& \textbf{Type} 		& \textbf{Format} \\
-		\\[-1em]
-		\hline
-		\\[-1em]
+		\textbf{Variable} 	& \textbf{Group} 	& \textbf{Type} & \textbf{Format} \\
+		\toprule
 		Kat  		& categorical 	& ordinal 	& numeric\\
-		\\[-1em]
-		\hline
-		\\[-1em]
+		\midrule
 		Typ 		& categorical 	& nominal	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		Beteil 		& categorical 	& ordinal	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		UArt 		& categorical 	& nominal	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		AUrs 		& categorical 	& nominal	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		AufHi 		& categorical 	& nominal	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		Alkoh 		& categorical 	& dichotomous	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		Char 		& categorical 	& nominal	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		Bes 		& categorical 	& nominal	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		Lich 		& categorical 	& ordinal	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		Zust 		& categorical 	& ordinal	& numeric\\
-		\hline
-		\\[-1em]
+		\midrule
 		Fstf 		& categorical 	& nominal	& mixed\\
-		\hline
-		\\[-1em]
+		\midrule
 		WoTag 		& categorical 	& nominal	& text\\
-		\hline
-		\\[-1em]
+		\midrule
 		FeiTag 		& categorical 	& dichotomous	& numeric\\
+		\bottomrule
 	\end{tabular}
 	\caption{Variable types of \acrshort{baysis} dataset}
 	\label{tab:table_baysis_paramters}
 \end{table}
 
-Table \ref{tab:table_baysis_paramters} show all categorized parameters, relevant for the correlation analysis, with variabel group, type and the format of the containing data. To check for dependent variables which need to be considered in a correlation analysis, the correlation matrix for all relevant parameters in the BAYSIS dataset is calculated (see figures/tables \ref{img:correlation_matrix_dataset_cramers}/\ref{table:appendix_correlation_matrix_dataset_cramers} for Cramer's $V$ and \ref{img:appendix_correlation_matrix_dataset_theils}/\ref{table:appendix_correlation_matrix_dataset_theils} for Theil's $U$). Cramer's $V$ reveals several strong relationships, which are 'Typ'-'UArt1'. 'AUrs1'-'Zust1', 'AUrs1'-'Zust2' and some  trivial relations of 'Char1'-'Char2', 'Bes1'-'Bes2', 'Lich1'-'Lich2'. The results of Theil's $U$ confirms the relationships identified by Cramer's $V$ with a moderate effect size and show the association of 'Aufhi'-'UArt' with a strong effect size. 
+Table \ref{tab:table_baysis_paramters} show all categorized parameters, relevant for the correlation analysis, with variable group, type and the format of the containing data. To check for dependent variables which need to be considered in a correlation analysis, the correlation matrix for all relevant parameters in the BAYSIS dataset is calculated (see figures/tables \ref{img:correlation_matrix_dataset_cramers}/\ref{table:appendix_correlation_matrix_dataset_cramers} for Cramer's $V$ and \ref{img:appendix_correlation_matrix_dataset_theils}/\ref{table:appendix_correlation_matrix_dataset_theils} for Theil's $U$). Cramer's $V$ reveals several strong relationships, which are 'Typ'-'UArt1'. 'AUrs1'-'Zust1', 'AUrs1'-'Zust2' and some  trivial relations of 'Char1'-'Char2', 'Bes1'-'Bes2', 'Lich1'-'Lich2'. The results of Theil's $U$ confirms the relationships identified by Cramer's $V$ with a moderate effect size and show the association of 'Aufhi'-'UArt' with a strong effect size. 
 
 % TODO check p-value and 
 
-That means that relations found in the later analysis, which contain the parameters 'Typ', 'UArt1, 'AUrs1, 'Zust1' and 'Zust2' might be in result of another depended variabel and should be checked for independence.
+That means that relations found in the later analysis, which contain the parameters 'Typ', 'UArt1, 'AUrs1, 'Zust1' and 'Zust2' might be in result of another depended variable and should be checked for independence.
 
 % ------- BAYSIS Dataset - Matrix --------
 \newgeometry{left=1.5cm,right=1cm}
@@ -451,9 +436,9 @@ The designed evaluation tool, utilizes a PostgreSQL database for its data storag
 \section{ArbIS}
 \label{dataset_arbis}
 
-The \acrfull{arbis}, as described in chapter \ref{dataset_arbis}, is a collection service of all roadworks or maintenance planned, ongoing or finished on the Bavarian street network. With the 4500 long term and more than 40.000 short term building sites on German highways per year \parencite{LAPID2018,Stmi2020}, road construction makes up for the majority of traffic obstructions in the summer months, when during the colder month, in which many kinds of construction projects are not possible, snow clearings or long-term constructions are the issue. That also means that the number and type of roadworks varies during the course of a year (StmB, 2020).
+The \acrfull{arbis}, as described in chapter \ref{dataset_arbis}, is a collection service of all roadworks or maintenance planned, ongoing or finished on the Bavarian street network. With the 4500 long term and more than 40.000 short term building sites on German highways per year \parencite{LAPID2018,Stmi2020}, road construction makes up for the majority of traffic obstructions in the summer months, when during the colder month, in which many kinds of construction projects are not possible, snow clearings or long-term constructions are the issue. That also means that the number and type of roadworks varies during the course of a year \parencite{Stmi2020}.
 
-The dataset for 2019 contains close to 650.000 datapoints, which each describe the temporal and spatial extend, road name and number of closed lanes of a roadwork fragment. This fragmentation of events makes is rather hard to statically analyze this dataset since each roadwork is spitted into any number of fragments in now recognizable pattern and are only linked by a roadwork identifier. Therefore the analysis of the dataset in this section is rather basic. The import processing, similarly to the \acrshort{baysis} data in \ref{dataset_baysis}, and aggregation of fragments produces 282.839 roadwork events in the database. The monthly distribution of roadworks in the year 2019 in figure \ref{img:arbis_dataset_dist_month} shows that the winter months of January, February and December tend to have less roadwork that others, due to colder temperatures. The month of July has the most roadworks.
+The dataset for 2019 contains close to 650.000 data-points, which each describe the temporal and spatial extend, road name and number of closed lanes of a roadwork fragment. This fragmentation of events makes is rather hard to statically analyze this dataset since each roadwork is spitted into any number of fragments in now recognizable pattern and are only linked by a roadwork identifier. Therefore the analysis of the dataset in this section is rather basic. The import processing, similarly to the \acrshort{baysis} data in \ref{dataset_baysis}, and aggregation of fragments produces 282.839 roadwork events in the database. The monthly distribution of roadworks in the year 2019 in figure \ref{img:arbis_dataset_dist_month} shows that the winter months of January, February and December tend to have less roadwork that others, due to colder temperatures. The month of July has the most roadworks.
 
 \begin{figure}[ht]
 	\centering
@@ -471,7 +456,7 @@ As with the BAYSIS data the counts of roadworks by road (shown in figure \ref{im
 	\label{img:arbis_dataset_dist_highway}
 \end{figure}
 
-\paragraph{AnzGesperrtFs} refers to the number of closed lanes for the time of the incident. The distribution (shown in figure \ref{}) shows that two categories hold nearly 100\,\%, zero and one block lane. Since there are some samples with two and three closed lane (in total less than .01\,\%) the variabel is of ordinal type and not dichotomous.
+\paragraph{AnzGesperrtFs} refers to the number of closed lanes for the time of the incident. The distribution (shown in figure \ref{}) shows that two categories hold nearly 100\,\%, zero and one block lane. Since there are some samples with two and three closed lane (in total less than .01\,\%) the variable is of ordinal type and not dichotomous.
 
 \paragraph{Einzug} describes the shift of the road way due to physical changes, measured in number of lanes (distribution show in \ref{}). It ranges from one to five lanes, where one, two and five are equally frequent. 
 
@@ -481,7 +466,7 @@ As with the BAYSIS data the counts of roadworks by road (shown in figure \ref{im
 
 \bigskip
 
-Table \ref{table:table_arbis_paramters} show all categorized parameters, relevant for the correlation analysis, with variabel group, type and the format of the containing data.
+Table \ref{table:table_arbis_paramters} show all categorized parameters, relevant for the correlation analysis, with variable group, type and the format of the containing data.
 	
 \begin{table}[ht]
 	\centering

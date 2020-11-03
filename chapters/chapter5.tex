@@ -441,6 +441,8 @@ For the analysis we are interested in the length and duration of the congestions
 
 For the analysis of social impact the congestion object is expanded with a time loss estimation, differentiated for passenger cars and heavy goods vehicles (HGV). This part was not implemented by the writer, but from the mentor Stefan Gürtler (S\&W). Since it is used in the analysis is should also be elaborated on. For the calculation of the total hours lost in a jam, the number of car in the jam need to be know.
 
+\todo{Elaborate on TimeLoss Calculation}
+
 %  Fahrzeug-Abstand über 2 Sekunden-Regel
 %  ΔlKfz =2*v/3600 [km]
 %  v in [km/h]!
@@ -576,9 +578,51 @@ The incident object is expanded with... BAYSIS and
 
 \todo{Final parameters of BAYSIS}
 
+\noindent
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|c|l} 
+		\toprule
+		Name & Description \\
+		\midrule 
+		Kat & Description \\
+		Typ & Description \\
+		Betei & Description \\
+		UArt & Description \\
+		AUrs & Description \\
+		AufHi & Description \\
+		Alkoh & Description \\
+		Char & Description \\
+		Bes & Description \\
+		Lich & Description \\
+		Zust & Description \\
+		Fstf & Description \\
+		WoTag & Description \\
+		FeiTag & Description \\
+		\bottomrule
+	\end{tabular}
+	\caption{Index and description of accident variables}
+\end{table}
+
 \subsubsection{ArbIS}
 
 \todo{Final parameters of ArbIS}
+
+\noindent
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|c|l} 
+		\toprule
+		Name & Description \\
+		\midrule 
+		AnzGesperrtFs & Description \\
+		Einzug & Description \\
+		Length & Description \\
+		Duration & Description \\
+		\bottomrule
+	\end{tabular}
+	\caption{Index and description of roadwork variables}
+\end{table}
  
 \section{Correlation Processing}
 \label{methodology_correlation_processing}

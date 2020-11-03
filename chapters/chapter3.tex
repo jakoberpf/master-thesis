@@ -40,7 +40,7 @@ As stated in \ref{correlation_variable_types} continuous variables are metric me
 
 % https://statistikguru.de/spss/produkt-moment-korrelation/pearson-korrelation-in-spss.html
 
-Pearson's $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set as it is non-paramteric. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \parencite{BenestyChenHuang2009,Sulthan2018}
+Pearson's $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set as it is non-parametric. It is therefore suitable for the examination of continuous-continuous variable relations, where we can assume finite size of variance and covariance. \parencite{BenestyChenHuang2009,Sulthan2018}
  
 The general correlation coefficient, shown in equation \ref{formula_correlation_basic} is the foundation for deducing Pearson's $r$. It is defined by the fraction of the covariance (see equation \ref{formula_correlation_covariant}) of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation (see equation \ref{formula_correlation_deviation}).\parencite{HerzSchlicherSiegener1992}
 
@@ -63,7 +63,7 @@ The general correlation coefficient, shown in equation \ref{formula_correlation_
 
 \bigskip
 
-The equation \ref{formula_pearson} shows Pearson's correlation coefficient $r$, which is a direct usage of the definition in \ref{formula_correlation_basic}, assuming that both data variables have the same length, named $i$. The symbols $\bar{x}$ and $\bar{y}$ correspond to the means of the data variabel $x$ and $y$, respectively. \parencite{BenestyChenHuang2009,Zychlinski2018}
+The equation \ref{formula_pearson} shows Pearson's correlation coefficient $r$, which is a direct usage of the definition in \ref{formula_correlation_basic}, assuming that both data variables have the same length, named $i$. The symbols $\bar{x}$ and $\bar{y}$ correspond to the means of the data variable $x$ and $y$, respectively. \parencite{BenestyChenHuang2009,Zychlinski2018}
 
 \smallskip
 
@@ -84,7 +84,7 @@ The equation can simplified to \ref{formula_pearson_simplified} with the $SS$ co
 \end{equation}
 
 \subsubsection{Interpretation of $r$}
-Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvi-linear correlated. 
+Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, when a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvy-linear correlated. 
 
 \subsubsection{Interpretation of effect size $|r|$}
 The degree of correlation, also be described as strength of association, is also called effect size and shows how strong the two variables are related with each other. It is defined specifically for Person's $r$ as the absolute values of $r$, mathematical written as $|r|$. According to Cohen \parencite{Cohen1988} the effect sizes of each correlation coefficient falls into one of two categorizes $D$ and $R$. $D$ corresponds to coefficients utilizing the mean difference and standardized mean difference. He defined the values of $D$ coefficients as small $D$ = .20, medium $D$ = .50, and large $D$ = .80 \parencite{Piegorsch2002}. The group of $R$ coefficients includes measures based on variance \parencite{Walker2005}. Cohen propose vastly different values of .01, .06, and .14 serve as indicators of small, medium, and large effect sizes for the $R$ group \parencite{Cohen1988}. However, if these values fit the purpose of the analysis, depends on the underlying data and is at discretion of the researcher.
@@ -136,7 +136,7 @@ The $p$-value can be comprised by comparing $\chi^2$ to a $\chi^2$-distribution 
 \end{itemize}
 
 \subsection{Continuous - Nominal}
-This type of relation is objectively the most complex to evaluate. One well known method to analyze the relation between a continuous and categorical variable, which is not ranked and has more than to values, is the analysis of variance (ANOVA). As it is a parametric test it unfortunately assumes normal or gaussian distributed variables, which is not give in our datasets (see chapter \ref{data}). A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis H-test \parencite{Leon1998}. Both tests indicates if at least one variabel stochastically dominates another, but not in which groups or in how many groups this domination occurs \parencite{OTSD2020}. They therefore do not provide a statement about the correlation strength, but the statistical significance of variances between groups.
+This type of relation is objectively the most complex to evaluate. One well known method to analyze the relation between a continuous and categorical variable, which is not ranked and has more than to values, is the analysis of variance (ANOVA). As it is a parametric test it unfortunately assumes normal or gaussian distributed variables, which is not give in our datasets (see chapter \ref{data}). A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis H-test \parencite{Leon1998}. Both tests indicates if at least one variable stochastically dominates another, but not in which groups or in how many groups this domination occurs \parencite{OTSD2020}. They therefore do not provide a statement about the correlation strength, but the statistical significance of variances between groups.
 
 The research of a non-parametric correlation coefficient for the relation of a continuous and nominal variable only provided one suitable option, the eta ($\eta$) coefficient from Pearson \parencite{Benninghaus2007}, describing the relationship between variables based on the sums of squares used in the ANOVA \parencite{Lewis2012,Benninghaus2007}.
 
@@ -206,16 +206,6 @@ allow to form \ref{formula_point_biserial_from_pearson} from \ref{formula_pearso
 \smallskip
 
 It must be pointed out that if the dichotomous variable is artificially binarized, i.e. there is likely continuous data underlying it, biserial correlation is a more a measurement of similarity instead of association.
-
-% https://de.wikipedia.org/wiki/Wilcoxon-Mann-Whitney-Test
-% https://pythonfordatascienceorg.wordpress.com/wilcoxon-sign-ranked-test-python/
-%The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which scipy.stats.wilcoxon() uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
-%
-%The hypothesis being test is:
-%
-%Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
-%Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
-%If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
 
 \subsubsection{Interpretation of $r_{pq}$}
 Due to the mathematical similarity of the Point Biserial to the Pearson's $r$, the general interpretation of Pearson's $r$ can be applied to Point Biserial with some adjustments. The range of the Point Biserial coefficient, from $0$ to $1$ removes the direction of correlation from the interpretation. According to Cohen \parencite{Cohen1988} the following can be used as guidelines for the effect size $r_{pq}$ \parencite{Leblanc2017}.
@@ -343,14 +333,14 @@ The uncertainty coefficient, also called entropy coefficient, is a measurement f
 	H(X) = -\sum_{x,y} p_{X,Y}(x,y)log p_{X,Y}(x,y)
 \end{equation}
 
-% Definition: Theil’s U symetrical
+% Definition: Theil’s U symmetrical
 %\begin{equation}
 %\label{formula_theils_sym}
 %	U(X,Y) = \frac{H(X)U(X|Y)-H(Y)U(Y|X)}{H(X)+H()Y} = 2[\frac{H(X)+H(Y)-H(X|Y)}{H(X)+H(Y)}]
 %\end{equation}
 
 \subsubsection{Interpretation}
-For the Interpretation of Cramers $V$ a adaption to Pearson's $r$ is necessary, but at the same time quite controversial. Some studies convert $V$ to the effect size $w$ for an equal measurement to $r$ ($r$ is representable over different sudies), when $V$ is already a measure of effect size by itself. \parencite{Baguley2016}
+For the Interpretation of Cramers $V$ a adaption to Pearson's $r$ is necessary, but at the same time quite controversial. Some studies convert $V$ to the effect size $w$ for an equal measurement to $r$ ($r$ is representable over different studies), when $V$ is already a measure of effect size by itself. \parencite{Baguley2016}
 %https://www.researchgate.net/post/Whats_the_reason_for_deriving_Cohens_w_from_Cramers_V_if_the_latter_is_already_a_measure_of_effect_size
 % https://www.researchgate.net/post/How_can_I_intepret_the_effect_sizes_of_Cramers_V_when_DF_3
 
@@ -381,8 +371,7 @@ The values of Theil's $U$ shows the predictability of the association, where the
 \subsubsection{Significance vs. Uncertainty}
 \label{correlation_significance_uncertainty}
 
-TODO: define the usage of significance vs uncertainty for Cramer's V and Theil's U
-% TODO define the usage of significance vs uncertainty for Cramer's V and Theil's U
+\todo{Define the usage of significance vs uncertainty for Cramer's V and Theil's U}
 %https://de.statista.com/statistik/lexikon/definition/122/signifikanz/
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3387884/
 %https://www.ons.gov.uk/methodology/methodologytopicsandstatisticalconcepts/uncertaintyandhowwemeasureit
@@ -391,31 +380,39 @@ TODO: define the usage of significance vs uncertainty for Cramer's V and Theil's
 %https://www.tandfonline.com/doi/full/10.1080/00223131.2013.820155
 
 \section{Correlation Matrix}
-As a result we have the following correlation coefficients and statistical test to be used for the mixed analysis of continuous and categorical variables. These will be implemented into a processing script in section \ref{methodology_??}.
+As a result we have the following correlation coefficients and statistical test to be used for the mixed analysis of continuous and categorical variables. These will be implemented into a processing script in section \autoref{methodology_correlation_processing}.
 
 \bigskip
 
 \begin{table}[ht]
 	\centering
-    \begin{tabular}{c|c|c}
-        
-					& Categorical 		& Continuous\\
-		\\[-1em]
-		\hline
-		\\[-1em]
-		 			& Cramer’s V  	& Eta $\eta$	\\
-		Categorical	& Theil’s U		& Point Biserial\\
-					& 				& Kendall's $\tau$\\
-		\\[-1em]
-		\hline
-		\\[-1em]
-					& Eta $\eta$		  			& \\
-		Continuous	& Point Biserial		& Pearson's $r$\\
-				& Kendall's $\tau$		& \\
+    \begin{tabular}{c|c|c|c|c}
+        \toprule
+						& Ordinal 			& Dichotomous 			&  Nominal		& Continuous			\\
+		\midrule
+		Ordinal			& Cramer’s $V$		& Cramer’s $V$			& Cramer’s $V$	& Kendall's $\tau$		\\
+		\midrule
+		Dichotomous		& Cramer’s $V$		& Cramer’s $V$			& Cramer’s $V$	& Point Biserial $r$	\\
+		\midrule
+		Nominal			& Cramer’s $V$		& Cramer’s $V$			& Cramer’s $V$	& Eta $\eta$			\\
+		\midrule
+		Continuous		& Kendall's $\tau$ 	& Point Biserial $r$	& Eta $\eta$	& Pearson's $r$			\\
+		\bottomrule
 	\end{tabular}
-	\caption{\label{tab:table-name}Candidates of Correlation Coefficients}
+	\caption{Correlation Coefficients Matrix}
+	\label{tab:correlation_coefficient_matrix}
 \end{table}
 	
 \section{Correlation Specification}
 
-% TODO Explain the process of why and how the correlation results are tested and further evaluated
+\todo{Explain the process of why and how the correlation results are tested and further evaluated}
+
+% https://de.wikipedia.org/wiki/Wilcoxon-Mann-Whitney-Test
+% https://pythonfordatascienceorg.wordpress.com/wilcoxon-sign-ranked-test-python/
+%The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which scipy.stats.wilcoxon() uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
+%
+%The hypothesis being test is:
+%
+%Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
+%Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
+%If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.

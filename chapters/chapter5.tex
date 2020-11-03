@@ -97,7 +97,7 @@ To illustrate which problems can occur when using cluster algorithms and to defi
 
 This works well as long as the groups don't overlay, intersect or have arbitrary shapes like in the figures \ref{cluster_dbscan}. When this is the case, the k-mean may cluster loosely related point together, which actually are more strongly related to other points, because it considers every point as possible neighbor. Since jams in FCD data can overlay and have any number of shape, as suitable algorithms need to be able to handle such data.
 
-Another issue with many clustering algorithms is the increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of the examplatory k-mean states that $n$ distances are calculated for $k$ points \parencite{Santhanam2010}. With the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \parencite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \parencite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^2$ calculations have to be computed over all iterations.
+Another issue with many clustering algorithms is the increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of the exemplary k-mean states that $n$ distances are calculated for $k$ points \parencite{Santhanam2010}. With the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \parencite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \parencite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^2$ calculations have to be computed over all iterations.
 
 \begin{equation}
 \label{formula_kmeans}
@@ -477,12 +477,6 @@ For the analysis of social impact the congestion object is expanded with a time 
 	t_{loss} = n_{Kfz} \cdot n_{lanes} \cdot l_{cell} \cdot ( v_{free} - v_{cell})
 \end{equation}
 
-% TODO read and use a source for loss parameter /Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
-\begin{itemize}
-	\item The cost rate passenger car  = 11\,[€/(Fz*h)] 
-	\item The cost rate for one truck / heavy goods vehicle = 25\,[€/(Fz*h)]
-\end{itemize}
-
 \smallskip
 
 \begin{itemize}
@@ -490,7 +484,7 @@ For the analysis of social impact the congestion object is expanded with a time 
 	\item[] $l_{vehicle}$ is the occupied space of one vehicle
 \end{itemize}
 
-A analysis based on all matched could be heavily biased, because all kind of relations are considered a once. To do a more specialized analysis, the congestion incident matches should be categorized. The three categories to be evaluated separately can be described as \textbf{Initiator}, \textbf{Effector} and \textbf{Follower}
+A analysis based on all matched could be heavily biased, because all kind of relations are considered a once. To do a more specialized analysis, the congestion incident matches should be categorized. The three categories to be evaluated separately can be described as \textbf{Initiator}, \textbf{Effector} and \textbf{Follower}.
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
 	\item[] \textbf{Jam Initiator} are matches, where the incidents happen before or immediately at the beginning of a congestion
@@ -498,7 +492,7 @@ A analysis based on all matched could be heavily biased, because all kind of rel
 	\item[] \textbf{Jam Follower} are matches, where the incidents happen after the congestion
 \end{itemize}
 
-To be able to run the categorization after the runtime intensive detection and matching processing, four additional congestion parameters are introduced. They describe the relative location of the incident to the congestion event. The temporal reference of the incident to the congestion is described by the parameters \textbf{temporalGlobalLocation}.
+To be able to run the categorization after the runtime intensive detection and matching processing, four additional congestion parameters are introduced. They describe the relative location of the incident to the congestion event. The temporal reference of the incident to the congestion is described by the parameter \textbf{temporalGlobalLocation}, based on the temporal distance. 
 \noindent
 \begin{table}[ht]
 	\centering
@@ -512,7 +506,7 @@ To be able to run the categorization after the runtime intensive detection and m
 	\caption{Index and description of temporal global location reference}
 \end{table}
 
-The spatial reference of if the incident to the congestion is described by the parameter \textbf{spatialGlobalLocation}. The incident...
+The spatial reference of if the incident to the congestion is described by the parameter \textbf{spatialGlobalLocation}, based on the spatial distance.
 \noindent
 \begin{table}[ht]
 	\centering
@@ -524,7 +518,7 @@ The spatial reference of if the incident to the congestion is described by the p
 	\caption{Index and description of spatial global location reference}
 \end{table}
 
-The temporal reference of if the incident is during the congestion (\textbf{temporalInternalLoc}). The incident is within...
+In the case that the incident happened temporal  during the congestion. The (\textbf{temporalInternalLocation} parameter is set. It describes in more detail where the incident is located during the congestion.
 \noindent
 \begin{table}[ht]
 	\centering
@@ -538,7 +532,7 @@ The temporal reference of if the incident is during the congestion (\textbf{temp
 	\caption{Index and description of temporal internal location reference}
 \end{table}
 
-The spatial reference of if the incident is during the congestion (\textbf{spatialInternalLoc}). The incident is within...
+In the case that the incident happened spatial during the congestion. The \textbf{spatialInternalLocation} parameter is set. It describes in more detail where the incident is located during the congestion.
 \noindent
 \begin{table}[ht]
 	\centering
@@ -553,20 +547,51 @@ The spatial reference of if the incident is during the congestion (\textbf{spati
 \end{table}
     
 As a result the congestion has the following attributes.
+\noindent
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|c|l} 
+		\toprule
+		Name & Unit & Description \\
+		\midrule 
+		TMax & $min$ & Temporal maximal extend, based on boundary rectangle\\
+		TAvg & $min$ & Temporal maximal extend, based on boundary convex hull\\
+		SMax & $m$ & Spatial maximal extend, based on boundary rectangle\\
+		SAvg & $m$ & Spatial maximal extend, based on boundary convex hull\\
+		TDist & $min$ & Temporal minimal distance\\
+		SDist & $m$ & Spatial minimal distance\\
+		Cov & $\%$ & Coverage of jammed area of the boundary rectangle\\
+		SDist & $h$ & Spatial minimal distance\\
+		SDist & $h$ & Spatial minimal distance\\
+		\bottomrule
+	\end{tabular}
+	\caption{Index and description of spatial internal location reference}
+\end{table}
 
-...
+\bigskip
     
 The incident object is expanded with... BAYSIS and 
 
 \subsubsection{BAYSIS}
 
+\todo{Final parameters of BAYSIS}
+
 \subsubsection{ArbIS}
 
+\todo{Final parameters of ArbIS}
  
 \section{Correlation Processing}
-\label{definition_correlation_processing}
+\label{methodology_correlation_processing}
+%\parencite{Potvin2020}
 
-Explain python script for correlation analysis, based on \parencite{Potvin2020}
+\subsubsection{Data Revision}
 
-CLEANING CLEANING CLEANING
+\todo{Which revision are implemented?}
 
+\subsubsection{Data Encoding}
+
+\todo{How is the data encoded for processing?}
+
+\subsubsection{Correlation Calculation}
+
+\todo{How does the correlation processing work?}

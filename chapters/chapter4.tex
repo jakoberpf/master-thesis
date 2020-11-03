@@ -1,6 +1,6 @@
 \chapter{Data Foundation}
 \label{data}
-In this chapter the provided datasets from the previously mentioned street information systems and the FCD provider will be elaborated. First an overview of FCD in general and the available dataset is given. To give an overview about what results can be expected the incident datasets from BAYSIS and ArbIS are presented with descriptive statistic. The most relevant parameters of the datasets will be elaborated and illustrated. The parameters are also categorized in the variable types, defined in chapter \ref{correlation_variable_types}.
+In this chapter the provided datasets from the previously mentioned street information systems and the FCD provider will be elaborated. First an overview of FCD in general and the available dataset is given. To give an overview about what results can be expected the incident datasets from BAYSIS and ArbIS are presented with descriptive statistic. The most relevant parameters of the datasets will be elaborated and illustrated. The parameters are also categorized in the variable types, defined in chapter \autoref{correlation_variable_types}.
 
 \section{FCD}
 \label{dataset_fcd}
@@ -11,7 +11,7 @@ As described in chapter 1.1, \acrshort{fcd} represents the movement of vehicles 
 % https://athene-forschung.unibw.de/doc/127445/127445.pdf
 % Traffic Speed Estimation and Prediction Using Floating Car Data.pdf
 
-Each of these aggregated speeds represent the mean speed over a three minute time interval on the corresponding road section. This arrangement of speeds for each time step and space step is called speed matrix and is the base data for the congestion detection. Figure \ref{speedMatrixPlot_mutipleMixedClusters} shows a visual representation a speed matrixes with the horizontal axes being the spatial extend and the vertical axes the time extend. Deep greens represent free flowing traffic with ~130 km/h, which is the norm speed in Germany (in German called “Richtgeschwindigkeit”) on highways set the legislator. The speed scale then develops linearly downwards deep red indicating traffic with 30 km/h or less. 
+Each of these aggregated speeds represent the mean speed over a three minute time interval on the corresponding road section. This arrangement of speeds for each time step and space step is called speed matrix and is the base data for the congestion detection. Figure \autoref{img:speedMatrixPlot_mutipleMixedClusters} shows a visual representation a speed matrixes with the horizontal axes being the spatial extend and the vertical axes the time extend. Deep greens represent free flowing traffic with ~130 km/h, which is the norm speed in Germany (in German called “Richtgeschwindigkeit”) on highways set the legislator. The speed scale then develops linearly downwards deep red indicating traffic with 30 km/h or less. 
 
 \begin{figure}[ht]
 	\centering
@@ -20,18 +20,18 @@ Each of these aggregated speeds represent the mean speed over a three minute tim
 	\label{img:speedMatrixPlot_mutipleMixedClusters}
 \end{figure}
 
-The observer will clearly recognize the jams represented by the clusters of red and orange cells in the figure \ref{img:speedMatrixPlot_mutipleMixedClusters}, with the angled extends towards the right down edge, due to the vehicle trajectory through space and time. These cluster, also shown in the two lower pictures, which representing one or multiple jams can be densely packed or spotted into smaller clusters or, depending on the severity of a jam can be seen, by the cluster which contain more orange or yellow cells than red. 
+The observer will clearly recognize the jams represented by the clusters of red and orange cells in the figure \autoref{img:speedMatrixPlot_mutipleMixedClusters}, with the angled extends towards the right down edge, due to the vehicle trajectory through space and time. These cluster, also shown in the two lower pictures, which representing one or multiple jams can be densely packed or spotted into smaller clusters or, depending on the severity of a jam can be seen, by the cluster which contain more orange or yellow cells than red. 
 
 From this visual clarity, the continuity of the data points and the precision on 3-minute intervals it can concluded that a comprehensive algorithmic approach should be able to detect such congestion events. This being said, the dataset does contain defects in the form of missing values for complete road sections, which can interfere with detection algorithm. Another defect type are obviously wrong speed block, meaning sudden speed drops or jumps to areas of identical speeds with an abnormal temporal and spatial extend, which have to be ignored during processing. 
 
 \section{BAYSIS}
 \label{dataset_baysis}
 
-The \acrfull{baysis} as describe in chapter \ref{dataset_baysis}, collects a wide range of different information types, one of then being accidents with the corresponding police reports. Accidents have a strong traffic influence on the Bavarian street network, with more than 400.000 being recorded in the year 2019 (StMi, 2020), hence their importance in this topic. The provided export from BAYSIS contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. 
+The \acrfull{baysis} as describe in chapter \autoref{dataset_baysis}, collects a wide range of different information types, one of then being accidents with the corresponding police reports. Accidents have a strong traffic influence on the Bavarian street network, with more than 400.000 being recorded in the year 2019 (StMi, 2020), hence their importance in this topic. The provided export from BAYSIS contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. 
 
-Each accident report includes a variety of specifications, which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved like nationality, age and gender. In total, one report contains 132 values, describing the accident, participant and environment. Because we do not want to form a stereotype of accident participant but rather find significant accident characteristics or environmental factors most of the descriptive values for the involved persons are not considered. Variables without any values or single values are also neglected. To meet a statistical significant result a diverse distribution in the values would be preferred, to reduce the risk of uncertain relation. Because the correlation of a non distributed variable, which for example has one values occupying a 95\% major share, is based on a sample set comprised of mostly the same samples, the interpretability for a correlation to other values but the major share is very limited (see \ref{correlation_significance_uncertainty} for more detailed elaboration of this assumption).
+Each accident report includes a variety of specifications, which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved like nationality, age and gender. In total, one report contains 132 values, describing the accident, participant and environment. Because we do not want to form a stereotype of accident participant but rather find significant accident characteristics or environmental factors most of the descriptive values for the involved persons are not considered. Variables without any values or single values are also neglected. To meet a statistical significant result a diverse distribution in the values would be preferred, to reduce the risk of uncertain relation. Because the correlation of a non distributed variable, which for example has one values occupying a 95\% major share, is based on a sample set comprised of mostly the same samples, the interpretability for a correlation to other values but the major share is very limited (see \autoref{correlation_significance_uncertainty} for more detailed elaboration of this assumption).
 
-From this curtailed pool of correlate able and analyze able characteristics all parameters that have a logical significance with causes or effects of an accident will be considered in the analysis.  The referred diagrams are available as larger prints in the appendix \ref{appendix_baysis} for better readability. 
+From this curtailed pool of correlate able and analyze able characteristics all parameters that have a logical significance with causes or effects of an accident will be considered in the analysis.  The referred diagrams are available as larger prints in the appendix \autoref{appendix_baysis} for better readability. 
 
 \begin{figure}[ht]
 	\centering
@@ -40,7 +40,7 @@ From this curtailed pool of correlate able and analyze able characteristics all 
 	\label{img:baysis_dataset_dist_month}
 \end{figure}
 
-A look on the monthly distribution of accidents recorded by BAYSIS (see figure \ref{img:baysis_dataset_dist_month}) shows that that the months of January, July and August have considerably higher number of accidents, with respectively 31\,\%, 21\,\% and 15\,\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased traffic volume because of public holidays is the most probable explanation for the higher number of accidents.
+A look on the monthly distribution of accidents recorded by BAYSIS (see figure \autoref{img:baysis_dataset_dist_month}) shows that that the months of January, July and August have considerably higher number of accidents, with respectively 31\,\%, 21\,\% and 15\,\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased traffic volume because of public holidays is the most probable explanation for the higher number of accidents. Another valuable distribution is the number of accidents per road (see figure \ref{img:baysis_dataset_dist_highway}). The roads A3, A9 and A8 have relative high count of accidents. In contrast the road A71 and downwards have only an accidents and therefore have a high uncertainty associated with them. 
 
 \begin{figure}[ht]
 	\centering
@@ -48,8 +48,6 @@ A look on the monthly distribution of accidents recorded by BAYSIS (see figure \
 	\caption{Distribution of accident counts, by road}
 	\label{img:baysis_dataset_dist_highway}
 \end{figure}
-
-Another valuable distribution is the number of accidents per road (see figure \ref{img:baysis_dataset_dist_highway}). The roads A3, A9 and A8 have relative high count of accidents. In contrast the road A71 and downwards have only an accidents and therefore have a high uncertainty associated with them. 
 
 \paragraph{Kat}
 The accident category (shown in figure \ref{img:appendix_baysis_dataset_Kat} and table \ref{table:baysis_dataset_Kat}), describes the which damages or injuries can be associated with the accident. It ranges from accident with just  damaged property, lightly and heavily injured to deathly accidents. The distribution develops from lowest to highs counts, in order of gravity of the category. The variable consists of four values, which can be ordered, and is therefore ordinal.
@@ -229,10 +227,10 @@ The obstacle collision distribution (shown in figure \ref{img:appendix_baysis_da
 \end{table}
 
 \paragraph{Alkoh}
-The Alcohol involvement indication parameter only contains one variables of $1$ ($yes$), whereas an empty variabel referred to $no$ or $unknown$. It reveals that only 1,9\% of accidents have one or more involved persons with measurable blood alcohol. The variable only has two unique values and is therefore dichotomous.
+The Alcohol involvement indication parameter only contains one variables of $1$ ($yes$), whereas an empty variable referred to $no$ or $unknown$. It reveals that only 1,9\% of accidents have one or more involved persons with measurable blood alcohol. The variable only has two unique values and is therefore dichotomous.
 
 \paragraph{Char}
-The variable distribution shown in figure \ref{img:appendix_baysis_dataset_Char} describes the characteristic of the street where the accident happened. Since we are only considering highway, the type of "Crossing", "Property" and "Roundabout" is expected to be zero. The variabel is not ordered and therefore of nominal type.
+The variable distribution shown in figure \ref{img:appendix_baysis_dataset_Char} describes the characteristic of the street where the accident happened. Since we are only considering highway, the type of "Crossing", "Property" and "Roundabout" is expected to be zero. The variable is not ordered and therefore of nominal type.
 %\begin{itemize}
 %	\setlength\itemsep{0em}
 %	\item 1 = Crossing

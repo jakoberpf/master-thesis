@@ -149,9 +149,8 @@
 
 \onehalfspacing
 \begin{document}
-\showthe\textwidth
+%\showthe\textwidth
 %418.25368pt.
-%l.92 \showthe\textwidth
 
 %\pagenumbering{roman}
 % Title page goes first
@@ -1784,17 +1783,16 @@ For the analysis of social impact the congestion object is expanded with a time 
 %  ΔttKante = nKfz * nLanes * lKante * ( vFree - vKante ) [h]
 %  v in [km/h]!
 
-
-
-% TODO read and use a source for loss parameter
-% file:///Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
-%\begin{itemize}
-%	\item The cost rate for one car loosing one hour travel time [€/(Fz*h)] cost.rate.car=11
-%	\item The cost rate for one truck / heavy goods vehicle loosing one hour travel time [€/(Fz*h)] cost.rate.hgv=25
-%\end{itemize}
+% TODO read and use a source for loss parameter /Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
+\begin{itemize}
+	\item The cost rate passanger car  = 11\,[€/(Fz*h)] 
+	\item The cost rate for one truck / heavy goods vehicle = 25\,[€/(Fz*h)]
+\end{itemize}
 
 
 The congestion object is expanded with...
+
+To classify the cogestion pased on hte typ
 
 The temporal reference of if the incident to the congestion (\textbf{temporalGlobalLoc}). The incident...
 \noindent
@@ -3181,33 +3179,33 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \label{appendix_baysis_dataset}
 
 % ------- BAYSIS Dataset - Figures --------
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple01}
-	\caption{Distribution of the accident category Typ, Kat and Betei}
-	\label{img:appendix_baysis_dataset_01}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple01}
+% 	\caption{Distribution of the accident category Typ, Kat and Betei}
+% 	\label{img:appendix_baysis_dataset_01}
+% \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple02}
-	\caption{Distribution of the accident category AufHi, Fstf and WoTag}
-	\label{img:appendix_baysis_dataset_02}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple02}
+% 	\caption{Distribution of the accident category AufHi, Fstf and WoTag}
+% 	\label{img:appendix_baysis_dataset_02}
+% \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple03}
-	\caption{Distribution of the accident category UArt1, AUrs1 and CHar1}
-	\label{img:appendix_baysis_dataset_03}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple03}
+% 	\caption{Distribution of the accident category UArt1, AUrs1 and CHar1}
+% 	\label{img:appendix_baysis_dataset_03}
+% \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple04}
-	\caption{Distribution of the accident category Bes1, Lich1, Zust1}
-	\label{img:appendix_baysis_dataset_04}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_count_multiple04}
+% 	\caption{Distribution of the accident category Bes1, Lich1, Zust1}
+% 	\label{img:appendix_baysis_dataset_04}
+% \end{figure}
 
 % ------- BAYSIS Dataset - Tabellen --------
 % \newgeometry{left=1cm,right=1cm,top=1cm}
@@ -3256,33 +3254,33 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \label{appendix_baysis_dataset}
 
 % ------- BAYSIS Matched - Figures --------
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_multiple01}
-	\caption{Distribution of the accident category '', ...}
-	\label{img:appendix_baysis_matched_01}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_multiple01}
+% 	\caption{Distribution of the accident category '', ...}
+% 	\label{img:appendix_baysis_matched_01}
+% \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_multiple02}
-	\caption{Distribution of the accident category '', ..}
-	\label{img:appendix_baysis_matched_02}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_multiple02}
+% 	\caption{Distribution of the accident category '', ..}
+% 	\label{img:appendix_baysis_matched_02}
+% \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_multiple03}
-	\caption{Distribution of the accident category '', ..}
-	\label{img:appendix_baysis_matched_03}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_multiple03}
+% 	\caption{Distribution of the accident category '', ..}
+% 	\label{img:appendix_baysis_matched_03}
+% \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_multiple04}
-	\caption{Distribution of the accident category '', ...}
-	\label{img:appendix_baysis_matched_04}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_count_multiple04}
+% 	\caption{Distribution of the accident category '', ...}
+% 	\label{img:appendix_baysis_matched_04}
+% \end{figure}
 % ------- BAYSIS Matched - Tabellen --------
 % \newgeometry{left=1cm,right=1cm,bottom=2cm}
 % \begin{sidewaystable}
@@ -3333,53 +3331,53 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 \label{appendix_baysis_selected_startJam}
 
 % ------- BAYSIS Selected01 - Figures --------
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple01}
-	\caption{Distribution of the accident category '', ...}
-	\label{img:appendix_baysis_selected_01_01}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple01}
+% 	\caption{Distribution of the accident category '', ...}
+% 	\label{img:appendix_baysis_selected_01_01}
+% \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple02}
-	\caption{Distribution of the accident category '', ..}
-	\label{img:appendix_baysis_selected_01_02}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple02}
+% 	\caption{Distribution of the accident category '', ..}
+% 	\label{img:appendix_baysis_selected_01_02}
+% \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple03}
-	\caption{Distribution of the accident category '', ..}
-	\label{img:appendix_baysis_selected_01_03}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple03}
+% 	\caption{Distribution of the accident category '', ..}
+% 	\label{img:appendix_baysis_selected_01_03}
+% \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple04}
-	\caption{Distribution of the accident category '', ...}
-	\label{img:appendix_baysis_selected_01_04}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_count_multiple04}
+% 	\caption{Distribution of the accident category '', ...}
+% 	\label{img:appendix_baysis_selected_01_04}
+% \end{figure}
 
 % ------- BAYSIS Selected01 - Matrix --------
-\newgeometry{left=1cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_corr_cramers}
-	\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Cramer's $V$}
-	\label{img:appendix_correlation_matrix_selected_startJam_cramers}
-\end{figure}
-\restoregeometry
+% \newgeometry{left=1cm,right=1cm}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_corr_cramers}
+% 	\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Cramer's $V$}
+% 	\label{img:appendix_correlation_matrix_selected_startJam_cramers}
+% \end{figure}
+% \restoregeometry
 
-\newgeometry{left=1cm,right=1cm}
-\label{appendix_baysis_dataset_corr_theils}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_corr_theils}
-	\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Theil's $U$}
-	\label{img:appendix_correlation_matrix_selected_startJam_theils}
-\end{figure}
-\restoregeometry
+% \newgeometry{left=1cm,right=1cm}
+% \label{appendix_baysis_dataset_corr_theils}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_01_startJam/plots/baysis_selected_corr_theils}
+% 	\caption{Correlation matrix for BAYSIS selected data (Jam Initiator), with Theil's $U$}
+% 	\label{img:appendix_correlation_matrix_selected_startJam_theils}
+% \end{figure}
+% \restoregeometry
 
 % ------- BAYSIS Selected01 - Tabellen --------
 % \newgeometry{left=1cm,right=1cm,bottom=2cm}
@@ -3432,24 +3430,24 @@ Expand DBSCAN to three dimension from space and time (2D) to include cell speed 
 
 Explanation...
 
-\newgeometry{left=1cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_cramers}
-	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Cramer's $V$}
-	\label{img:appendix_correlation_matrix_selected_startJam_cramers}
-\end{figure}
-\restoregeometry
+% \newgeometry{left=1cm,right=1cm}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_cramers}
+% 	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Cramer's $V$}
+% 	\label{img:appendix_correlation_matrix_selected_startJam_cramers}
+% \end{figure}
+% \restoregeometry
 
-\newgeometry{left=1cm,right=1cm,}
-\label{appendix_baysis_dataset_corr_theils}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_theils}
-	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Theil's $U$}
-	\label{img:appendix_correlation_matrix_selected_startJam_theils}
-\end{figure}
-\restoregeometry
+% \newgeometry{left=1cm,right=1cm,}
+% \label{appendix_baysis_dataset_corr_theils}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.52, trim=2cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/plots/baysis_selected_corr_theils}
+% 	\caption{Correlation matrix for BAYSIS selected data (Jam Effektor), with Theil's $U$}
+% 	\label{img:appendix_correlation_matrix_selected_startJam_theils}
+% \end{figure}
+% \restoregeometry
 
 % ------- BAYSIS Selected - Tabellen --------
 % \newgeometry{left=1cm,right=1cm,top=1cm}
@@ -3518,23 +3516,23 @@ Explanation...
 
 
 % ------- ArbIS Dataset - Matrix --------
-\newgeometry{left=1cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_cramers}
-	\caption{Correlation matrix for ArbIS dataset, with Cramers's $V$}
-	\label{img:appendix_arbis_correlation_matrix_dataset_cramers}
-\end{figure}
-\restoregeometry
+% \newgeometry{left=1cm,right=1cm}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_cramers}
+% 	\caption{Correlation matrix for ArbIS dataset, with Cramers's $V$}
+% 	\label{img:appendix_arbis_correlation_matrix_dataset_cramers}
+% \end{figure}
+% \restoregeometry
 
-\newgeometry{left=1cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_theils}
-	\caption{Correlation matrix for ArbIS dataset, with Theil's $U$}
-	\label{img:appendix_arbis_correlation_matrix_dataset_theils}
-\end{figure}
-\restoregeometry
+% \newgeometry{left=1cm,right=1cm}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.7, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_corr_theils}
+% 	\caption{Correlation matrix for ArbIS dataset, with Theil's $U$}
+% 	\label{img:appendix_arbis_correlation_matrix_dataset_theils}
+% \end{figure}
+% \restoregeometry
 
 % ------- ArbIS Dataset - Tables --------
 % \newgeometry{left=1cm,right=1cm}
@@ -3578,23 +3576,23 @@ Explanation...
 
 
 % ------- ArbIS Matched - Matrix --------
-\newgeometry{left=1cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.4, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_corr_cramers}
-	\caption{Correlation matrix for ArbIS matched data, with Cramer's $V$}
-	\label{img:appendix_arbis_correlation_matrix_matched_cramers}
-\end{figure}
-\restoregeometry
+% \newgeometry{left=1cm,right=1cm}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.4, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_corr_cramers}
+% 	\caption{Correlation matrix for ArbIS matched data, with Cramer's $V$}
+% 	\label{img:appendix_arbis_correlation_matrix_matched_cramers}
+% \end{figure}
+% \restoregeometry
 
-\newgeometry{left=1cm,right=1cm}
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.4, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_corr_theils}
-	\caption{Correlation matrix for ArbIS matched data, with Theil's $U$}
-	\label{img:appendix_arbis_correlation_matrix_matched_theils}
-\end{figure}
-\restoregeometry
+% \newgeometry{left=1cm,right=1cm}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[scale=0.4, trim=0cm 2cm 0cm 0cm]{../CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_corr_theils}
+% 	\caption{Correlation matrix for ArbIS matched data, with Theil's $U$}
+% 	\label{img:appendix_arbis_correlation_matrix_matched_theils}
+% \end{figure}
+% \restoregeometry
 
 % ------- ArbIS Matched - Tables --------
 % \newgeometry{left=1cm,right=1cm,top=1cm}
@@ -3662,7 +3660,6 @@ Explanation...
 \chapter*{Declaration of independence}
 
 Erklärung zur Master’s Thesis
-\newline \\
 Ich versichere hiermit, die vorliegende Arbeit selbständig verfasst und keine anderen Quellen als die angegebenen Quellen und Hilfsmittel benutzt zu haben. Die Arbeit wurde noch nicht anderweitig für Prüfungszwecke vorgelegt. 
 \newline \\ \\ \\
 Müunchen, 15.12.2020 : \hrulefill \newline

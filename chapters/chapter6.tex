@@ -20,7 +20,7 @@ List of strong correlations (.14 for $\eta$ and 0.5 for $r$ ...):
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
-		\caption{Correlation matrix for BAYSIS matched data, with $V$, $\eta$, $\tau$, $r_{pq}$}
+		\caption{Correlation matrix for BAYSIS matched data, with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
 		\label{img:correlation_matrix_matched_cramers}
 	\end{figure}
 \restoregeometry
@@ -63,6 +63,9 @@ Are these correlations significant or not ? --> Wilcoxon Test
 \smallskip
 Where are the significant correlations? --> Pairwise Test
 
+% --------------------------
+% -------- Strasse ---------
+% --------------------------
 \large
 \centerline{\textbf{Strasse}}
 \normalsize
@@ -187,7 +190,7 @@ Kruskal-Wallis rank sum test chi-squared = 324.97, df = 245, p-value = 0.000466
 		A980 & 1 & 82.00 &  & 82.00 & 82.00 & 82.00 & 0.00 \\ 
 		  \bottomrule
 	\end{tabular}
-	\caption{Group description of Streets by TempAvg}
+	\caption{Group description for \textit{Street} by \textit{TempAvg}}
 \end{table}
 
 \paragraph{Maximal spatial Extent:}
@@ -219,6 +222,7 @@ Kruskal-Wallis rank sum test chi-squared = 1804.8, df = 1516, p-value = 3.594e-0
 		A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
+	\caption{Wilcoxon Pairwise t-test for \textit{Street} by \textit{SpatMax}}
 \end{table}
 
 \begin{table}[ht]
@@ -277,8 +281,9 @@ Kruskal-Wallis rank sum test chi-squared = 1658.6, df = 1497, p-value = 0.002086
 	  	A71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
 	  	A45 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
 	  	A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-	   	\hline
+		\bottomrule
 	\end{tabular}
+	\caption{Wilcoxon Pairwise t-test for \textit{Street} by \textit{SpatAvg}}
 \end{table}
 
 \begin{table}[ht]
@@ -310,7 +315,7 @@ Kruskal-Wallis rank sum test chi-squared = 1658.6, df = 1497, p-value = 0.002086
 	\caption{Descriptives of the groups of \textit{Strasse} by the measurement \textit{SpatAvg}}
 \end{table}
 
-\paragraph{Temoral Distance:}
+\paragraph{Temporal Distance:}
 Kruskal-Wallis rank sum test chi-squared = 32.385, df = 24, p-value = 0.1177
 
 \paragraph{Spatial Distance:}
@@ -376,6 +381,9 @@ Kruskal-Wallis rank sum test chi-squared = 149.32, df = 95, p-value = 0.000317
 	\caption{Descriptives of the groups of \textit{Strasse} by the measurement \textit{Coverage}}
 \end{table}
 
+% ----------------------
+% -------- Kat ---------
+% ----------------------
 \large
 \centerline{\textbf{Kat}}
 \normalsize
@@ -400,15 +408,15 @@ Kruskal-Wallis rank sum test chi-squared = 263.93, df = 210, p-value = 0.00682
 \begin{table}[ht]
 	\small
 	\centering
-	\begin{tabular}{rrrrrrrrrrrrrr}
-		\hline
-	 	& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-	  	\hline
-		1 & 1.00 & 36.00 & 317.67 & 215.10 & 279.00 & 294.40 & 146.78 & 27.00 & 987.00 & 960.00 & 1.17 & 1.44 & 35.85 \\ 
-	  	2 & 1.00 & 217.00 & 191.03 & 167.18 & 135.00 & 163.32 & 93.40 & 9.00 & 1257.00 & 1248.00 & 2.27 & 8.04 & 11.35 \\ 
-	  	3 & 1.00 & 890.00 & 159.09 & 148.46 & 114.00 & 131.28 & 77.84 & 9.00 & 1323.00 & 1314.00 & 2.67 & 10.35 & 4.98 \\ 
-	  	4 & 1.00 & 724.00 & 182.68 & 195.84 & 117.00 & 144.27 & 108.97 & 9.00 & 1341.00 & 1332.00 & 2.53 & 8.49 & 7.28 \\ 
-	   	\hline
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\   
+	  	\midrule
+		1 & 36.00 & 317.67 & 215.10 & 279.00   & 27.00 & 987.00 & 960.00  \\ 
+	  	2 & 217.00 & 191.03 & 167.18 & 135.00 & 9.00 & 1257.00 & 1248.00  \\ 
+	  	3 & 890.00 & 159.09 & 148.46 & 114.00 & 9.00 & 1323.00 & 1314.00  \\ 
+	  	7 & 724.00 & 182.68 & 195.84 & 117.00  & 9.00 & 1341.00 & 1332.00 \\ 
+	   	\bottomrule
 	\end{tabular}
 	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempMax}}
 \end{table}
@@ -420,28 +428,28 @@ Kruskal-Wallis rank sum test chi-squared = 324.3, df = 245, p-value = 0.0005099
 	\small
 	\centering
 	\begin{tabular}{c|c|c|c}
-	  	\hline
+	  	\toprule
 	 	& 1 & 2 & 3 \\ 
-	  	\hline
+	  	\midrule
 		2 & 0.00 &  &  \\ 
 	  	3 & 0.00 & 0.00 &  \\ 
 	  	7 & 0.00 & 0.00 & 0.05 \\ 
-	   	\hline
+	   	\bottomrule
 	\end{tabular}
 \end{table}
 
 \begin{table}[ht]
 	\small
 	\centering
-	\begin{tabular}{rrrrrrrrrrrrrr}
-	  	\hline
-	 	& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-	  	\hline
-		X1 & 1.00 & 36.00 & 156.06 & 104.55 & 143.00 & 144.90 & 91.18 & 20.00 & 502.00 & 482.00 & 1.17 & 1.52 & 17.43 \\ 
-	  	X11 & 1.00 & 217.00 & 88.28 & 79.54 & 67.00 & 74.65 & 45.96 & 7.00 & 703.00 & 696.00 & 3.30 & 17.59 & 5.40 \\ 
-	  	X12 & 1.00 & 890.00 & 67.52 & 53.88 & 55.00 & 58.79 & 35.58 & 3.00 & 469.00 & 466.00 & 2.52 & 9.87 & 1.81 \\ 
-	  	X13 & 1.00 & 724.00 & 74.20 & 102.95 & 51.50 & 56.86 & 43.74 & 4.00 & 1326.00 & 1322.00 & 6.88 & 67.59 & 3.83 \\ 
-	   	\hline
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+	  	\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
+	  	\midrule
+		1 &  36.00 & 156.06 & 104.55 & 143.00 & 20.00 & 502.00 & 482.00 \\ 
+	  	2 & 217.00 & 88.28 & 79.54 & 67.00 & 7.00 & 703.00 & 696.00 \\ 
+	  	3 & 890.00 & 67.52 & 53.88 & 55.00 & 3.00 & 469.00 & 466.00 \\ 
+	  	7 & 724.00 & 74.20 & 102.95 & 51.50 & 4.00 & 1326.00 & 1322.00 \\ 
+	   	\bottomrule
 	\end{tabular}
 	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempAvg}}
 \end{table}
@@ -449,34 +457,38 @@ Kruskal-Wallis rank sum test chi-squared = 324.3, df = 245, p-value = 0.0005099
 \paragraph{Average spatial Extent:}
 Kruskal-Wallis rank sum test chi-squared = 1492, df = 1497, p-value = 0.5316
 
-\paragraph{Temoral Distance:}
+\paragraph{Temporal Distance:}
 Kruskal-Wallis rank sum test chi-squared = 149.52, df = 24, p-value < 2.2e-16
 
-	\begin{tabular}{rrrr}
-  	\hline
+\begin{tabular}{rrrr}
+  	\toprule
  	& 1 & 2 & 3 \\ 
-  	\hline
+  	\midrule
 	2 & 0.05 &  &  \\ 
   	3 & 0.00 & 0.00 &  \\ 
   	7 & 0.00 & 0.00 & 0.00 \\ 
-   	\hline
+   	\bottomrule
 \end{tabular}
 
 \begin{table}[ht]
+	\small
 	\centering
 	\begin{tabular}{rrrrrrrrrrrrrr}
-	  	\hline
+	  	\toprule
 		Group & Description & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-	  	\hline
+	  	\midrule
 		1 & Accident with deaths & 36.00 & 10.39 & 7.36 & 10.00 & 10.27 & 7.41 & 0.00 & 22.00 & 22.00 & 0.14 & -1.20 & 1.23 \\ 
 	  	2 & Accident with heavily injured & 217.00 & 7.87 & 6.92 & 7.00 & 7.18 & 8.90 & 0.00 & 24.00 & 24.00 & 0.58 & -0.66 & 0.47 \\ 
 	  	3 & Accident with lightly injured & 890.00 & 5.79 & 6.83 & 4.00 & 4.59 & 5.93 & 0.00 & 24.00 & 24.00 & 1.12 & 0.28 & 0.23 \\ 
-	  	4 & Accident with property damage & 724.00 & 4.29 & 6.62 & 0.00 & 2.90 & 0.00 & 0.00 & 24.00 & 24.00 & 1.43 & 0.88 & 0.25 \\ 
-	   	\hline
+	  	7 & Accident with property damage & 724.00 & 4.29 & 6.62 & 0.00 & 2.90 & 0.00 & 0.00 & 24.00 & 24.00 & 1.43 & 0.88 & 0.25 \\ 
+	   	\bottomrule
 	\end{tabular}
 	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempDist}}
 \end{table}
 
+% ----------------------
+% -------- Typ ---------
+% ----------------------
 \large
 \centerline{\textbf{Typ}}
 \normalsize

@@ -97,7 +97,7 @@ To illustrate which problems can occur when using cluster algorithms and to defi
 
 This works well as long as the groups don't overlay, intersect or have arbitrary shapes like in the figures \ref{cluster_dbscan}. When this is the case, the k-mean may cluster loosely related point together, which actually are more strongly related to other points, because it considers every point as possible neighbor. Since jams in FCD data can overlay and have any number of shape, as suitable algorithms need to be able to handle such data.
 
-Another issue with many clustering alorithms is the increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of the examplatory k-mean states that $n$ distances are calculated for $k$ points \parencite{Santhanam2010}. With the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \parencite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \parencite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^2$ calculations have to be computed over all iterations.
+Another issue with many clustering algorithms is the increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of the examplatory k-mean states that $n$ distances are calculated for $k$ points \parencite{Santhanam2010}. With the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \parencite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \parencite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^2$ calculations have to be computed over all iterations.
 
 \begin{equation}
 \label{formula_kmeans}
@@ -172,7 +172,7 @@ The algorithm is based on the density of points. This density representation is 
 	    	\draw (1pt,\y) -- (-3pt,\y) 
 	     	node[anchor=east] {\y}; 
 	
-		\coordinate[label={270:$$}] (C) at (8,1);
+		\coordinate[label={270:$ $}] (C) at (8,1);
 		\coordinate[label={180:$A$}] (A) at (2,1);
 		\coordinate[label={30:$B$}] (B) at (8,4);
 	
@@ -182,7 +182,7 @@ The algorithm is based on the density of points. This density representation is 
 		
 		\draw[decorate,decoration={brace,raise=12pt,amplitude=5pt}] (A) -- (B);
 		
-		\path (B) -- (P) node[midway,above]{$$}-- (A) node[midway,above]{$$} ($($(A)!0.5!(B)$)!1.2cm!90:(B)$) node {$d_{A,B}$}; % You can nest calc syntax!
+		\path (B) -- (P) node[midway,above]{$$} -- (A) node[midway,above]{$$} ($($(A)!0.5!(B)$)!1.2cm!90:(B)$) node {$d_{A,B}$}; % You can nest calc syntax!
 		
 		\filldraw[fill=white] (C) -- ($(C)!2mm!(A)$) coordinate (U) -- ($(U)!2mm!90:(C)$) 
 	      --($(C)!2mm!(B)$) --cycle;
@@ -237,7 +237,7 @@ As shown above, the euclidean distance calculation assumes a Euclidean space, me
 	    \foreach \y in {1,...,4}
 	    	\draw[black!30] (0.1,\y) -- (9.9,\y); 
 	    	
-	    \coordinate[label={270:$$}] (C) at (7,1);
+	    \coordinate[label={270:$ $}] (C) at (7,1);
 		\coordinate[label={180:$A$}] (A) at (1.5,1);
 		\coordinate[label={30:$B$}] (B) at (7,4);
 	
@@ -260,7 +260,7 @@ As shown above, the euclidean distance calculation assumes a Euclidean space, me
 
 \bigskip
 
-This makes a direct application of the Euclidian distance invalid to calculate the distance from point $A$ to point $B$. But then how can distances be represented in this 2D-space with different units? The solution developed for this application is to expand the 2D-representation of time and space into a 3D-representation of time, space and speed (absolute mean traveling speed is part of \acrshort{fcd}, see section \ref{dataset_fcd}). Because speed $[km/h]$ consist of both time $[min]$ and space $[m]$ is allows for the introduction of the common unit travel time, which can be comprise from these three parameters traveling speed, time duration and link lenght. At this point it has to be noted, the implemented definition does not represent actual travel time but server the need of being common unit and rough representation. To separate both terms the term \textit{artificial travel time} will be used instead of \textit{travel time}.
+This makes a direct application of the Euclidian distance invalid to calculate the distance from point $A$ to point $B$. But then how can distances be represented in this 2D-space with different units? The solution developed for this application is to expand the 2D-representation of time and space into a 3D-representation of time, space and speed (absolute mean traveling speed is part of \acrshort{fcd}, see section \ref{dataset_fcd}). Because speed $[km/h]$ consist of both time $[min]$ and space $[m]$ is allows for the introduction of the common unit travel time, which can be comprise from these three parameters traveling speed, time duration and link length. At this point it has to be noted, the implemented definition does not represent actual travel time but server the need of being common unit and rough representation. To separate both terms the term \textit{artificial travel time} will be used instead of \textit{travel time}.
 
 \begin{figure}[ht]
 	\centering	
@@ -394,7 +394,7 @@ Parameter calibration and estimation is a vital task when implementing algorithm
 \begin{itemize}
 	\item Aimed spatial gap : $l_{min,gap} = 5000 \, [m]$
 	\item Aimed temporal gap : $t_{min,gap} = 6 \, [min]$
-	\item Virtual travel-time gap $\varepsilon = t_{min,gap}^{artificial} = 360 \, s$
+	\item Virtual travel-time gap $\varepsilon = t_{min,gap}^{artificial} = 360 \, [s]$
 \end{itemize}
 
 \subsection{Pre and Post Data Revision}
@@ -403,8 +403,8 @@ Datasets are rarely flawless and as mentioned in section \ref{dataset_fcd}, the 
 As post processing, clusters which are too short in duration and length are removed. We assume that below a threshold a cluster can not be considered as a jam, and should be neglected. The following values for the minimal duration and length of a congestion where used. (see source code ??)
 
 \begin{itemize}
-	\item Minimum spatial length of an congestion event = 1000 [m]
-	\item Minimum temporal duration of an congestion event = 9 [min]
+	\item Minimum spatial length of an congestion event : $l_{min} = 1000 \, [m]$
+	\item Minimum temporal duration of an congestion event : $t_{min,gap} = 9 \, [min]$
 \end{itemize}
 
 \subsection{Shaping}
@@ -412,73 +412,93 @@ As post processing, clusters which are too short in duration and length are remo
 For a shape representation of the congestion the geometric method of convex hull was implemented. This shape was initially intended to be the base for the classification of congestion event into different type of jams alongside the paper \textit{Automated Classification of Different Congestion Types} \parencite{Kessler2020}. Unfortunately this classification processing was not finished in time for this thesis, but the implementation found use in the visual representation of jams and characteristics calculation.
 
 %https://www.diva-portal.org/smash/get/diva2:931027/FULLTEXT02
-\begin{figure}[ht]
-	\centering
-	\begin{tikzpicture}
-  	\draw (0,0) -- (0,1) -- (2,2) -- (2,0) -- cycle;
-  	\foreach \point in {(0,0),(1,1),(2,2),(0,1),(2,0)} {
-    	\fill[black] \point circle[radius=1pt];
-  	}
-	\end{tikzpicture}
-\end{figure}
-
-\bigskip
-
+% \begin{figure}[ht]
+% 	\centering
+% 	\begin{tikzpicture}
+%   	\draw (0,0) -- (0,1) -- (2,2) -- (2,0) -- cycle;
+%   	\foreach \point in {(0,0),(1,1),(2,2),(0,1),(2,0)} {
+%     	\fill[black] \point circle[radius=1pt];
+%   	}
+% 	\end{tikzpicture}
+% \end{figure}
 % TODO expand
 
 \section{Matching Algorithm}
 \label{methodology_matching}
-The matching process for finding adjacent incidents around jams is rather simple. When iterating over all jams, the incidents located on the same road and on the sam day are evaluated for the temporal and spatial distance to the outer line of the the congestion. When the distance fall in the range of the threshold they are considered as adjacent (see source code ??). T
+The matching process for finding adjacent incidents around jams is rather simple. When iterating over all jams, the incidents located on the same road and on the sam day are evaluated for the temporal and spatial distance to the outer line of the the congestion. When the distance fall in the range of the threshold they are considered as adjacent (see source code ??). The following values where used as thresholds.
+
 \begin{itemize}
-	\item The spatial distance an adjacent incident = 2000 [m]
-	\item The temporal distance an adjacent incident = 25 [min]
+	\item The spatial distance an adjacent incident : $l_{min,dist} = 2000 \, [m]$
+	\item The temporal distance an adjacent incident : $t_{min,dist} = 25 \, [min]$
 \end{itemize}
 
 \section{Data Processing}
 \label{methodology_data_processing}
-As result of the previous detection a matching algorithms we now have a list of jams with spatial and timely adjacent incidents. For further analysis the congestion and incident objects will be expanded with additionally features and exported in to a local data format.
+As result of the previous detection a matching algorithms we now have a list of jams with spatial and timely adjacent incidents. For further analysis congestion and incident matches will be expanded with additionally features and exported in to a local data format.
 
 \subsubsection{Congestion}
-For the analysis we are interested in the length and duration of the congestions. The length and duration of congestions, defined by the boundary rectangle can be heavy bias. It is also a very rough representation of the extends, and is therefore considered to be the maximum length and maximum duration. To have another representation of the time and space extends, an average duration and length is calculated, using the shape computed by the convex hull algorithm.
+For the analysis we are interested in the length and duration of the congestions. The length and duration of congestions, defined by the boundary rectangle can be heavy bias. It is also a very rough representation of the extends, and is therefore considered to be the maximum length and maximum duration. To have another representation of the time and space extends, an average duration and length is calculated, using the shape computed by the convex hull algorithm as mask.
 
-For the analysis of social impact the congestion object is expanded with a time loss estimation, differentiated for passenger cars and heavy goods vehicles (HGV). This part was not implemented by the writer, but from the mentor Stefan Gürtler (S\&W). 
+For the analysis of social impact the congestion object is expanded with a time loss estimation, differentiated for passenger cars and heavy goods vehicles (HGV). This part was not implemented by the writer, but from the mentor Stefan Gürtler (S\&W). Since it is used in the analysis is should also be elaborated on. For the calculation of the total hours lost in a jam, the number of car in the jam need to be know.
 
 %  Fahrzeug-Abstand über 2 Sekunden-Regel
 %  ΔlKfz =2*v/3600 [km]
 %  v in [km/h]!
-%
+
+\begin{equation}
+	l_{vehicle} = 2 \cdot \frac{v}{3600}
+\end{equation}
+
 %  Streckenlänge, welche von 100 Fahrzeuge eingenommen wird:
 %  L100Kfz=nPkw*( lPkw+ ΔlKfz) + nLkw*( llkw+ ΔlKfz)
 %  Mit
 %  nPkw=(1-SV)*100
 %  nLkw=SV*100
 %  Alle Längen in [km]
-%
+
+\begin{equation}
+	l_{vehicle} = 2 \cdot \frac{v}{3600}
+\end{equation}
+
 %  Dichte auf Kante:
 %  k= 100 Kfz / L100Kfz = 1 / ((1-SV)*( lPkw+ ΔlKfz) + SV *( llkw+ ΔlKfz)) [Fz/km]
-%
+
 %  Anzahl Fahrzeuge auf Kante:
 %  nKfz = lKante * k
 %  nPkw = (1-SV) * nKfz
 %  nLkw = SV * nKfz
 %  lKante in [km]
-%
+
 %  Reisezeitverlust auf Kante:
 %  ΔttKante = nKfz * nLanes * lKante * ( vFree - vKante ) [h]
 %  v in [km/h]!
 
+\begin{equation}
+	t_{loss} = n_{Kfz} \cdot n_{lanes} \cdot l_{cell} \cdot ( v_{free} - v_{cell})
+\end{equation}
+
 % TODO read and use a source for loss parameter /Users/jakoberpf/Downloads/neuberechnung-der-stauzeitkosten%20.pdf
 \begin{itemize}
-	\item The cost rate passanger car  = 11\,[€/(Fz*h)] 
+	\item The cost rate passenger car  = 11\,[€/(Fz*h)] 
 	\item The cost rate for one truck / heavy goods vehicle = 25\,[€/(Fz*h)]
 \end{itemize}
 
+\smallskip
 
-The congestion object is expanded with...
+\begin{itemize}
+	\setlength\itemsep{0.1em}	
+	\item[] $l_{vehicle}$ is the occupied space of one vehicle
+\end{itemize}
 
-To classify the cogestion pased on hte typ
+A analysis based on all matched could be heavily biased, because all kind of relations are considered a once. To do a more specialized analysis, the congestion incident matches should be categorized. The three categories to be evaluated separately can be described as \textbf{Initiator}, \textbf{Effector} and \textbf{Follower}
+\begin{itemize}
+	\setlength\itemsep{0.1em}	
+	\item[] \textbf{Jam Initiator} are matches, where the incidents happen before or immediately at the beginning of a congestion
+	\item[] \textbf{Jam Effector} are matches, where the incidents happen during a congestion or overlaps with the congestion
+	\item[] \textbf{Jam Follower} are matches, where the incidents happen after the congestion
+\end{itemize}
 
-The temporal reference of if the incident to the congestion (\textbf{temporalGlobalLoc}). The incident...
+To be able to run the categorization after the runtime intensive detection and matching processing, four additional congestion parameters are introduced. They describe the relative location of the incident to the congestion event. The temporal reference of the incident to the congestion is described by the parameters \textbf{temporalGlobalLocation}.
 \noindent
 \begin{table}[ht]
 	\centering
@@ -489,10 +509,10 @@ The temporal reference of if the incident to the congestion (\textbf{temporalGlo
  		4 & is overlapping after \\
  		5 & is after \\
 	\end{tabular}
-	\caption{Identifier and description of temporal global location reference}
+	\caption{Index and description of temporal global location reference}
 \end{table}
 
-The spatial reference of if the incident to the congestion (\textbf{spatialGlobalLoc}). The incident...
+The spatial reference of if the incident to the congestion is described by the parameter \textbf{spatialGlobalLocation}. The incident...
 \noindent
 \begin{table}[ht]
 	\centering
@@ -501,7 +521,7 @@ The spatial reference of if the incident to the congestion (\textbf{spatialGloba
  		2 & is during or overlapping \\ 
  		3 & is after \\ 
 	\end{tabular}
-	\caption{Identifier and description of spatial global location reference}
+	\caption{Index and description of spatial global location reference}
 \end{table}
 
 The temporal reference of if the incident is during the congestion (\textbf{temporalInternalLoc}). The incident is within...
@@ -515,7 +535,7 @@ The temporal reference of if the incident is during the congestion (\textbf{temp
  		4 & 30\,\% - 10\,\% to Ending \\
  		5 & 10\,\% to Ending \\
 	\end{tabular}
-	\caption{Identifier and description of temporal internal location reference}
+	\caption{Index and description of temporal internal location reference}
 \end{table}
 
 The spatial reference of if the incident is during the congestion (\textbf{spatialInternalLoc}). The incident is within...
@@ -529,7 +549,7 @@ The spatial reference of if the incident is during the congestion (\textbf{spati
  		4 & 30\,\% - 10\,\% to Ending \\
  		5 & 10\,\% to Ending \\
 	\end{tabular}
-	\caption{Identifier and description of spatial internal location reference}
+	\caption{Index and description of spatial internal location reference}
 \end{table}
     
 As a result the congestion has the following attributes.

@@ -1,111 +1,139 @@
 \chapter{Analysis of processing results}
 \label{analysis_processing}
+In this chapter the result of the data processing will be evaluated. Starting with the evaluation processing, which clusters the FCD, forms congestion events, finds adjacent incident and exports a list of congestion-incident matched. The second section will elaborate on the results of the correlation processing and use the results for a further analysis of relations.
 
+\section{Evaluation Processing}
 The results of the clustering and matching algorithm where visually reviewed to verify the performance. Thought iterative adjustments of the input parameters the clustering and matching algorithm where calibrated to a sufficient representation level (see final input parameters in \autoref{methodology_detection} and \autoref{methodology_matching}).
 
 \todo{Add Figures of clustering as proof} 
 
 \section{Correlation Processing}
+\label{analysis_processing_evaluation}
+The resulting datasets created by the evaluation tool (see section \autoref{methodology_detection} \autoref{methodology_matching} and \autoref{methodology_data_processing}), tasked with the detection and clustering of jams and search for adjacent incidents, are then processed by the correlation tool (\autoref{methodology_correlation_processing}). The correlation tool calculates multiple matrix tables with the correlation effect size, correlation significance and used correction coefficient for all variable combinations. From these tables and interpretation guidelines defined in \autoref{correlation_coefficient_types} for each coefficient type, we can deviated the strength of correlation and significance (see \autoref{correlation_significance}) for each combination. In the case of correlated and significant variables, it still needs to be determined what the found correlation predicates. This is done via the Post Hoc test, defined in \autoref{correlation_posthoc}.
 
-The resulting datasets created by the evaluation tool (see section \autoref{methodology_detection} \ref{methodology_matching} and \ref{methodology_data_processing}), task to detection and cluster jams and find adjacent incidents, are then processed by the correlation tool (\autoref{methodology_correlation_processing}). The correlation tool calculates a matrix table with the correlation effect size and used correction coefficient. From this two tables, which present the effect size and the corresponding coefficient, it can be deviated if a correlation is present or not.
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{r|c|c|c}  
+		\toprule
+		Coefficient & Weak 	& Moderate 	& Strong \\
+		\midrule
+		$r$ 		& .30	& .50		& .80 \\
+		$\eta$ 		& < .06 & .06		& .14 \\
+		$r_{pq}$	& < .30	& .30		& .50 \\
+		$\tau$ 		& < .30	& .30		& .50 \\
+		$V$ 		& < .30	& .30		& .40 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Correlation effect size interpretation for coefficient $r$,$\eta$,$r_{pq}$,$\tau$ and $V$}
+	\label{tbl:correlation_interpretation_guidelines}
+\end{table}
+
+To recap \autoref{correlation_coefficient_types}, \autoref{tbl:correlation_interpretation_guidelines} shows the guidelines for a weak, moderate and strong correlation effect size of the coefficients $r$,$\eta$,$r_{pq}$,$\tau$ and $V$.
 
 % -----------------------------------
 % -------- BAYSIS - Matched ---------
 % -----------------------------------
-\subsection{BAYSIS - Matched}
+\subsection{Accident - Congestion Matched Complete}
+\label{analysis_processing_correlation}
+The correlation matrix table for the congestion-accident matched dataset (see \autoref{table:appendix_correlation_matrix_matched_cramers}) is visual presented in \autoref{img:correlation_matrix_matched_cramers} showing the the correlation of each variable combination. When visual analyzing \autoref{img:correlation_matrix_matched_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \autoref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \autoref{tbl:correlation_list_baysis_matched})
 
-This correlation matrix table (shown in \autoref{table:appendix_coefficient_matrix_matched}) is visual presented in figure \ref{img:correlation_matrix_matched_cramers} showing the the correlation of each parameters for matched dataset. 
-
-List of strong correlations (.14 for $\eta$ and 0.5 for $r$ ...):
-
-\newgeometry{left=1.5cm,right=1cm}
-	\pagestyle{empty}
-	\begin{figure}[ht]
-		\centering
-		\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
-		\caption{Correlation matrix for BAYSIS matched data, with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
-		\label{img:correlation_matrix_matched_cramers}
-	\end{figure}
-\restoregeometry
-\pagestyle{headings}
-
-\noindent
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{c|l|l}  
-		Category & Strong & Moderate \\
-		\\[-1em]
-		\hline
-		\\[-1em]
-		Strasse & TMax, TAvg, SMax, SAvg, TDist, SDist, Cov & \\ 
- 		Kat & TMax, TAvg, SAvg, TDist & \\ 
- 		Typ & TDist, Cov & \\
+	\begin{tabular}{c|l}  
+		\toprule
+		Category & Strong \\
+		\midrule
+		Strasse & TMax, TAvg, SMax, SAvg, TDist, SDist, Cov \\ 
+ 		Kat & TMax, TAvg, SAvg, TDist \\ 
+ 		Typ & TDist, Cov \\
  		%Betei & & \\
- 		UArt1 & SAvg, TDist, Cov & \\
+ 		UArt1 & SAvg, TDist, Cov \\
  		%UArt2 & & \\
- 		AUrs1 & SAvg, TDist, SDist, Cov, TLHGV & \\
+ 		AUrs1 & SAvg, TDist, SDist, Cov, TLHGV \\
  		%AUrs2 & & \\
- 		AufHi & TMax, TAvg, TDist, Cov & \\
+ 		AufHi & TMax, TAvg, TDist, Cov \\
  		%Alkoh & & \\
  		%Char1 & & \\
  		%Char2 & & \\
  		%Bes1 & & \\
- 		Lich1 & Cov & \\
- 		Lich2 & Cov & \\
- 		Zust1 & Cov & \\
+ 		Lich1 & Cov \\
+ 		Lich2 & Cov \\
+ 		Zust1 & Cov \\
  		%Zust2 & & \\
  		%Fstf & & \\
- 		WoTag & Cov & \\
+ 		WoTag & Cov \\
  		%FeiTag & & \\
- 		Month & Cov & \\
+		Month & Cov \\
+		\bottomrule
 	\end{tabular}
-	\caption{List of incident variables and their strong/moderated correlated jam variable from the BAYSIS matched data}
+	\caption{List of incident variables and their strong correlated congestion variable from the congestion-accident data}
+	\label{tbl:correlation_list_baysis_matched}
 \end{table}
 
-Are these correlations significant or not ? --> Wilcoxon Test
-\smallskip
-Where are the significant correlations? --> Pairwise Test
+Next we need to verify that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \autoref{correlation_posthoc}.
+
+% \newgeometry{left=1.5cm,right=1cm}
+% 	\pagestyle{empty}
+% 	\begin{figure}[ht]
+% 		\centering
+% 		\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
+% 		\caption{Correlation matrix for BAYSIS matched data, with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
+% 		\label{img:correlation_matrix_matched_cramers}
+% 	\end{figure}
+% \restoregeometry
+
+\begin{figure}[!ht]
+	\centering
+	\makebox[\textwidth][c]{%
+		\includegraphics[width=1.4\textwidth, trim=0cm 2.5cm 6cm 3cm]{CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}%
+	}
+	\caption{Correlation matrix for BAYSIS matched data, with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
+	\label{img:correlation_matrix_matched_cramers}
+\end{figure}
+
+\pagebreak
 
 % --------------------------
 % -------- Strasse ---------
 % --------------------------
+
 \large
 \centerline{\textbf{Strasse}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
-
-Kruskal-Wallis chi-squared = 324.16, df = 210, p-value = 6.956e-07
-
+\paragraph{Maximal Temporal Extent}
+% $\chi^2 = 324.16$, $df = 210$
+The Kruskal-Wallis $t$-test of \textbf{Strasse}-\textbf{TMax} produces a $p$-value of 0.000006, which is below $\alpha=.05$. The null hypothesis can therefore be neglected and there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a Pairwise Wilcoxon-Mann-Whitney $t$-test is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Strasse_TMax}. All groups, where the $p$-value is below $\alpha=.05$, have significant differences. 
 \begin{table}[ht]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
 	\centering
 	\begin{tabular}{rrrrrrrrrrrrrrrrr}
 		\toprule
-		& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
+				& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
 		\midrule
-		A6 & 0.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-		A9 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-		A70 & 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-		A96 & 0.00 & 1.00 & 0.22 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-		A7 & 0.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
-		A73 & 0.00 & 1.00 & 0.31 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-		A99 & 1.00 & 1.00 & 1.00 & 1.00 & 0.44 & 1.00 & 0.59 &  &  &  &  &  &  &  &  &  \\ 
-		A92 & 0.00 & 1.00 & 0.16 & 1.00 & 1.00 & 1.00 & 1.00 & 0.22 &  &  &  &  &  &  &  &  \\ 
-		A93 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-		A94 & 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-		A72 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-		A995 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
-		A95 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-		A71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
-		A45 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
-		A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+		A6 		& 0.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A9 		& 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A70 	& 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A96 	& 0.00 & 1.00 & 0.22 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A7 		& 0.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A73 	& 0.00 & 1.00 & 0.31 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		A99 	& 1.00 & 1.00 & 1.00 & 1.00 & 0.44 & 1.00 & 0.59 &  &  &  &  &  &  &  &  &  \\ 
+		A92 	& 0.00 & 1.00 & 0.16 & 1.00 & 1.00 & 1.00 & 1.00 & 0.22 &  &  &  &  &  &  &  &  \\ 
+		A93 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		A94 	& 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		A72 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		A995 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		A95 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		A71 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		A45 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+		A980 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
-	\caption{Wilcoxon Pairwise t-test for \textit{Street} by \textit{TempMax}}
+	\caption{Pairwise Wilcoxon-Mann-Whitney $t$-test for \textit{Street} and \textit{TempMax}}
+	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
 \end{table}
-
+\autoref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend. The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_TMax} show that the mean value of A3 is 27\,\%-57\,\% higher than the means of A6, A7, A9, A70, A73, A92, A94 and A96. We can therefore interpret that accidents on the A3 are associated with significantly longer jams than on the A6, A9, A7, A70, A73, A92, A94 and A96.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -132,12 +160,13 @@ Kruskal-Wallis chi-squared = 324.16, df = 210, p-value = 6.956e-07
 		A980 & 1 & 99.00 &  & 99.00 & 99.00 & 99.00 & 0.00   \\ 
  		\bottomrule
 	\end{tabular}
-	\caption{Group description of Street by TempMax}
+	\caption{Group descriptives of \textit{Street} and \textit{TempMax}}
+	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
 \end{table}
 
-\paragraph{Average temporal Extent:}
-Kruskal-Wallis rank sum test chi-squared = 324.97, df = 245, p-value = 0.000466
-
+\paragraph{Average Temporal Extent}
+%chi-squared = 324.97, df = 245
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p$-value of 0.000466, which is below $\alpha=.05$. The null hypothesis can therefore be neglected and there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a Pairwise Wilcoxon-Mann-Whitney $t$-test is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Strasse_TAvg}. All groups, where the $p$-value is below $\alpha=.05$, have significant differences. 
 \begin{table}[ht]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -164,9 +193,10 @@ Kruskal-Wallis rank sum test chi-squared = 324.97, df = 245, p-value = 0.000466
 		A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
 		\bottomrule
 	\end{tabular}
-	\caption{Wilcoxon Pairwise t-test for \textit{Street} by \textit{TempMax}}
+	\caption{Wilcoxon Pairwise t-test for \textit{Street} by \textit{TempAvg}}
+	\label{tbl:wilcoxon_baysis_matched_Strasse_TAvg}
 \end{table}
-
+\autoref{tbl:wilcoxon_baysis_matched_Strasse_TAvg} shows, that the groups A73, A99 and A96 differ from group A3. There is no distinctive general trend. The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_TAvg} show that the mean value of A3 is about $\frac{1}{3}$ higher than the means of A73, A99 and A96. We can therefore interpret that accidents on the A3 lead to significantly longer (spatial) jams than on A73, A99 and A96.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -191,9 +221,10 @@ Kruskal-Wallis rank sum test chi-squared = 324.97, df = 245, p-value = 0.000466
 		A71 & 3 & 62.33 & 54.50 & 62.00 & 8.00 & 117.00 & 109.00 \\ 
 		A45 & 3 & 91.33 & 34.00 & 92.00 & 57.00 & 125.00 & 68.00 \\ 
 		A980 & 1 & 82.00 &  & 82.00 & 82.00 & 82.00 & 0.00 \\ 
-		  \bottomrule
+		\bottomrule
 	\end{tabular}
-	\caption{Group description for \textit{Street} by \textit{TempAvg}}
+	\caption{Group descriptives for \textit{Street} by \textit{TempAvg}}
+	\label{tbl:descriptives_baysis_matched_Strasse_TAvg}
 \end{table}
 
 \paragraph{Maximal spatial Extent:}

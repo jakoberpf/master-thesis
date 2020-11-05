@@ -440,7 +440,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$
 
 \begin{table}[!ht]
 	\centering
-	\small
+	\tiny
 	\begin{tabular}{c|l} 
 		\toprule
 		Code & Description \\ 
@@ -463,7 +463,7 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-va
 \begin{table}[ht]
 	\small
 	\centering
-	\begin{tabular}{c|c|c|c}
+	\begin{tabular}{rrrr}
 	  	\toprule
 	 	& 1 & 2 & 3 \\ 
 	  	\midrule
@@ -500,7 +500,7 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TAvg} produces a $p$-va
 \begin{table}[ht]
 	\small
 	\centering
-	\begin{tabular}{c|c|c|c}
+	\begin{tabular}{rrrr}
 	  	\toprule
 	 	& 1 & 2 & 3 \\ 
 	  	\midrule
@@ -541,7 +541,7 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-v
 \begin{table}[ht]
 	\small
 	\centering
-	\begin{tabular}{c|c|c|c}
+	\begin{tabular}{rrrr}
 		\toprule
 		& 1 & 2 & 3 \\ 
 		\midrule
@@ -581,7 +581,7 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-v
 
 \begin{table}[ht]
 	\centering
-	\small
+	\tiny
 	\begin{tabular}{c|l} 
 		\toprule
 		Code & Description \\ 
@@ -606,7 +606,7 @@ The Kruskal-Wallis rank sum test of \textbf{Typ}-\textbf{TDist} produces a $p$-v
 \begin{table}[ht]
 	\small
 	\centering
-	\begin{tabular}{c|c|c|c|c|c}
+	\begin{tabular}{rrrrrr}
 		\toprule
 		& 1 & 3 & 4 & 5 & 6 \\ 
 		\midrule
@@ -654,7 +654,7 @@ The Kruskal-Wallis rank sum test of \textbf{Typ}-\textbf{Cov} produces a $p$-val
 
 \begin{table}[ht]
 	\centering
-	\small
+	\tiny
 	\begin{tabular}{c|l} 
 		\toprule
 		Code & Description \\ 
@@ -705,23 +705,26 @@ The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{TDist} produces a $p$-
 	\label{tbl:wilcoxon_baysis_matched_UArt_TDist}
 \end{table}
 
+5 to 2,3,4
+7,8,9 to 0,1,2,3,5
+
 \begin{table}[ht]
 	\small
 	\centering
-	\begin{tabular}{rrrrrrrrrr}
+	\begin{tabular}{c|c|c|c|c|c|c|c}
 		\hline
-		& n & mean & sd & median & trimmed & mad & $min$ & $max$ & $\Delta$ \\ 
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 		\hline
-		X1 & 64.00 & 5.22 & 6.81 & 0.00 & 4.15 & 0.00 & 0.00 & 22.00 & 22.00 \\ 
-		X11 & 87.00 & 4.67 & 6.87 & 0.00 & 3.31 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
-		X12 & 838.00 & 5.02 & 6.51 & 1.00 & 3.81 & 1.48 & 0.00 & 24.00 & 24.00 \\ 
-		X13 & 453.00 & 4.47 & 6.28 & 0.00 & 3.17 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
-		X14 & 4.00 & 12.00 & 4.08 & 10.50 & 12.00 & 1.48 & 9.00 & 18.00 & 9.00 \\ 
-		X15 & 90.00 & 2.44 & 5.48 & 0.00 & 0.94 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
-		X16 & 6.00 & 13.17 & 7.99 & 13.50 & 13.17 & 6.67 & 0.00 & 23.00 & 23.00 \\ 
-		X17 & 35.00 & 12.63 & 8.62 & 14.00 & 12.76 & 10.38 & 0.00 & 24.00 & 24.00 \\ 
-		X18 & 165.00 & 8.79 & 7.55 & 8.00 & 8.21 & 10.38 & 0.00 & 24.00 & 24.00 \\ 
-		X19 & 125.00 & 9.02 & 7.02 & 9.00 & 8.54 & 7.41 & 0.00 & 24.00 & 24.00 \\ 
+		0 & 64.00 & 5.22 & 6.81 & 0.00 & 0.00 & 22.00 & 22.00 \\ 
+		1 & 87.00 & 4.67 & 6.87 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
+		2 & 838.00 & 5.02 & 6.51 & 1.00 & 0.00 & 24.00 & 24.00 \\ 
+		3 & 453.00 & 4.47 & 6.28 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
+		%4 & 4.00 & 12.00 & 4.08 & 10.50 & 9.00 & 18.00 & 9.00 \\ 
+		5 & 90.00 & 2.44 & 5.48 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
+		%6 & 6.00 & 13.17 & 7.99 & 13.50 & 0.00 & 23.00 & 23.00 \\ 
+		7 & 35.00 & 12.63 & 8.62 & 14.00 & 0.00 & 24.00 & 24.00 \\ 
+		8 & 165.00 & 8.79 & 7.55 & 8.00 & 0.00 & 24.00 & 24.00 \\ 
+		9 & 125.00 & 9.02 & 7.02 & 9.00 & 0.00 & 24.00 & 24.00 \\ 
 		\hline
 	\end{tabular}
 	\caption{Group descriptives of \textit{UArt} and \textit{Temporal Distance}}
@@ -754,30 +757,34 @@ The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{Cov} produces a $p$-va
 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
 \end{table}
 
+5 to 2,3
+7 to 3
+8 to 0,1,2,3,5
+9 to 2,3,4
+
 \begin{table}[ht]
 	\small
 	\centering
-	\begin{tabular}{rrrrrrrrrrrrr}
+	\begin{tabular}{c|c|c|c|c|c|c|c}
 		\toprule
-		& n & mean & sd & median & trimmed & mad & $min$ & $max$ & $\Delta$ \\ 
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
 		\midrule
-		X1 & 64.00 & 40.83 & 20.44 & 36.00 & 39.38 & 17.79 & 5.00 & 96.00 & 91.00 \\ 
-		X11 & 87.00 & 41.83 & 20.53 & 40.00 & 40.69 & 19.27 & 2.00 & 96.00 & 94.00 \\ 
-		X12 & 838.00 & 42.56 & 20.18 & 40.50 & 41.49 & 21.50 & 2.00 & 100.00 & 98.00 \\ 
-		X13 & 453.00 & 40.73 & 19.90 & 39.00 & 39.83 & 22.24 & 2.00 & 98.00 & 96.00 \\ 
-		X14 & 4.00 & 58.00 & 21.10 & 59.00 & 58.00 & 25.20 & 36.00 & 78.00 & 42.00 \\ 
-		X15 & 90.00 & 33.81 & 18.18 & 30.00 & 31.65 & 17.79 & 10.00 & 88.00 & 78.00 \\ 
-		X16 & 6.00 & 57.83 & 30.27 & 61.50 & 57.83 & 39.29 & 18.00 & 90.00 & 72.00 \\ 
-		X17 & 35.00 & 56.31 & 26.88 & 56.00 & 56.52 & 35.58 & 11.00 & 100.00 & 89.00 \\ 
-		X18 & 165.00 & 53.96 & 24.35 & 53.00 & 53.14 & 25.20 & 7.00 & 100.00 & 93.00 \\ 
-		X19 & 125.00 & 52.05 & 23.59 & 49.00 & 51.43 & 26.69 & 3.00 & 100.00 & 97.00 \\ 
+		0 & 64.00 & 40.83 & 20.44 & 36.00 & 5.00 & 96.00 & 91.00 \\ 
+		1 & 87.00 & 41.83 & 20.53 & 40.00 & 2.00 & 96.00 & 94.00 \\ 
+		2 & 838.00 & 42.56 & 20.18 & 40.50 & 2.00 & 100.00 & 98.00 \\ 
+		3 & 453.00 & 40.73 & 19.90 & 39.00 & 2.00 & 98.00 & 96.00 \\ 
+		%4 & 4.00 & 58.00 & 21.10 & 59.00 & 36.00 & 78.00 & 42.00 \\ 
+		5 & 90.00 & 33.81 & 18.18 & 30.00 & 10.00 & 88.00 & 78.00 \\ 
+		%6 & 6.00 & 57.83 & 30.27 & 61.50 & 18.00 & 90.00 & 72.00 \\ 
+		7 & 35.00 & 56.31 & 26.88 & 56.00 & 11.00 & 100.00 & 89.00 \\ 
+		8 & 165.00 & 53.96 & 24.35 & 53.00 & 7.00 & 100.00 & 93.00 \\ 
+		9 & 125.00 & 52.05 & 23.59 & 49.00 & 3.00 & 100.00 & 97.00 \\ 
 		\bottomrule
 	\end{tabular}
 	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
 	%\vspace{-8mm}
 \end{table}
-
 
 % -----------------------
 % -------- AUrs ---------
@@ -786,11 +793,87 @@ The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{Cov} produces a $p$-va
 \centerline{\textbf{AUrs1}}
 \normalsize
 
-\paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance:}
-\paragraph{Spatial Distance:}
-\paragraph{Coverage:}
-\paragraph{Time-loss HGV:}
+\begin{table}[ht]
+	\small
+	\centering
+
+	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
+\end{table}
+
+\begin{table}[ht]
+	\small
+	\centering
+
+	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_UArt_Cov}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Average Spatial Extent}
+data:  encoded[[main]] by encoded[[param]]
+Kruskal-Wallis chi-squared = 1608.4, df = 1497, p-value = 0.02281
+
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrrr}
+		\hline
+		& 0 & 72 & 73 & 75 & 76 & 77 & 80 & 81 & 82 & 83 & 84 & 86 & 87 & 88 \\ 
+		\hline
+		72 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		73 & 0.10 & 0.16 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		75 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+		76 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		77 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+		80 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		81 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		82 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.33 &  &  &  &  &  &  \\ 
+		83 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		84 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		86 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		87 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		88 & 0.03 & 0.03 & 0.18 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.06 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+		89 & 1.00 & 1.00 & 0.06 & 1.00 & 1.00 & 1.00 & 1.00 & 0.71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.10 \\ 
+		\hline
+	\end{tabular}
+	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
+\end{table}
+
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrr}
+		\hline
+		& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+		\hline
+		X1 & 1.00 & 1676.00 & 4001.59 & 2550.29 & 3456.00 & 3688.90 & 2335.84 & 135.00 & 17805.00 & 17670.00 & 1.22 & 1.80 & 62.29 \\ 
+		X11 & 1.00 & 41.00 & 5542.00 & 4347.10 & 4092.00 & 4853.91 & 3033.40 & 1009.00 & 16571.00 & 15562.00 & 1.16 & 0.32 & 678.90 \\ 
+		X12 & 1.00 & 95.00 & 3190.11 & 2152.19 & 2498.00 & 2876.38 & 1667.92 & 652.00 & 12288.00 & 11636.00 & 1.72 & 3.63 & 220.81 \\ 
+		X13 & 1.00 & 2.00 & 2396.50 & 1502.60 & 2396.50 & 2396.50 & 1575.26 & 1334.00 & 3459.00 & 2125.00 & 0.00 & -2.75 & 1062.50 \\ 
+		X14 & 1.00 & 1.00 & 1320.00 &  & 1320.00 & 1320.00 & 0.00 & 1320.00 & 1320.00 & 0.00 &  &  &  \\ 
+		X15 & 1.00 & 1.00 & 1168.00 &  & 1168.00 & 1168.00 & 0.00 & 1168.00 & 1168.00 & 0.00 &  &  &  \\ 
+		X16 & 1.00 & 1.00 & 2559.00 &  & 2559.00 & 2559.00 & 0.00 & 2559.00 & 2559.00 & 0.00 &  &  &  \\ 
+		X17 & 1.00 & 4.00 & 1475.00 & 508.49 & 1531.00 & 1475.00 & 501.86 & 837.00 & 2001.00 & 1164.00 & -0.19 & -2.07 & 254.25 \\ 
+		X18 & 1.00 & 13.00 & 4610.15 & 2205.44 & 4119.00 & 4531.45 & 2345.47 & 1660.00 & 8426.00 & 6766.00 & 0.44 & -1.34 & 611.68 \\ 
+		X19 & 1.00 & 2.00 & 2537.50 & 1403.61 & 2537.50 & 2537.50 & 1471.48 & 1545.00 & 3530.00 & 1985.00 & 0.00 & -2.75 & 992.50 \\ 
+		X110 & 1.00 & 1.00 & 3770.00 &  & 3770.00 & 3770.00 & 0.00 & 3770.00 & 3770.00 & 0.00 &  &  &  \\ 
+		X111 & 1.00 & 3.00 & 5089.67 & 5338.64 & 2151.00 & 5089.67 & 422.54 & 1866.00 & 11252.00 & 9386.00 & 0.38 & -2.33 & 3082.26 \\ 
+		X112 & 1.00 & 1.00 & 3048.00 &  & 3048.00 & 3048.00 & 0.00 & 3048.00 & 3048.00 & 0.00 &  &  &  \\ 
+		X113 & 1.00 & 8.00 & 1445.38 & 779.84 & 1107.00 & 1445.38 & 184.58 & 932.00 & 3283.00 & 2351.00 & 1.54 & 0.91 & 275.72 \\ 
+		X114 & 1.00 & 18.00 & 6106.22 & 3883.86 & 4648.00 & 6075.75 & 2809.53 & 347.00 & 12353.00 & 12006.00 & 0.45 & -1.27 & 915.43 \\ 
+		\hline
+	\end{tabular}
+	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_UArt_Cov}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Temporal Distance}
+\paragraph{Spatial Distance}
+\paragraph{Coverage}
+\paragraph{Time-loss Heavy Goods Vehicles}
 
 % ------------------------
 % -------- AufHi ---------
@@ -799,10 +882,10 @@ The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{Cov} produces a $p$-va
 \centerline{\textbf{AufHi}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
-\paragraph{Average temporal Extent:}
-\paragraph{Temporal Distance:}
-\paragraph{Coverage:}
+\paragraph{Maximal Temporal Extent}
+\paragraph{Average temporal Extent}
+\paragraph{Temporal Distance}
+\paragraph{Coverage}
 
 % -----------------------
 % -------- Lich ---------

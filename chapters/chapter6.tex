@@ -471,8 +471,7 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-va
 	\caption{Wilcoxon Pairwise $t$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Kat_TMax}
 \end{table}
-\autoref{tbl:wilcoxon_baysis_matched_Kat_TMax} shows that all groups have significant differences. The descriptives from \autoref{tbl:descriptives_baysis_matched_Kat_TMax} present increasing means from group 3 to 1.	We can interpret that the accident length (temporal) increases with the the 
-
+\autoref{tbl:wilcoxon_baysis_matched_Kat_TMax} shows that all groups have significant differences. The descriptives from \autoref{tbl:descriptives_baysis_matched_Kat_TMax} present increasing means from group 3 to 1.	We can interpret that the jam length (temporal) increases with accidents of lower groups. Also the drop from mean of group 1 to group 2 is quite substantial, which means that the accidents of group 1 result in about 40\,\% longer jams.
 \begin{table}[ht]
 	\small
 	\centering
@@ -488,11 +487,12 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-va
 	\end{tabular}
 	\caption{Group descriptives of \textit{Kat} and \textit{Maximal Temporal Extent}}
 	\label{tbl:descriptives_baysis_matched_Kat_TMax}
+	\vspace{-8mm}
 \end{table}
 
 \paragraph{Average Temporal Extent}
-Kruskal-Wallis rank sum test chi-squared = 324.3, df = 245, p-value = 0.0005099
-
+%chi-squared = 324.3, df = 245
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TAvg} produces a $p$-value of 0.00051, which is below $\alpha=.05$. The null hypothesis can therefore be neglected and there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a Pairwise Wilcoxon-Mann-Whitney $t$-test for \textbf{Kat}-\textbf{TAvg} is run, which produces \autoref{tbl:descriptives_baysis_matched_Kat_TAvg}. All groups, where the $p$-value is below $\alpha=.05$, have significant differences. 
 \begin{table}[ht]
 	\small
 	\centering
@@ -505,8 +505,10 @@ Kruskal-Wallis rank sum test chi-squared = 324.3, df = 245, p-value = 0.0005099
 	  	7 & 0.00 & 0.00 & 0.05 \\ 
 	   	\bottomrule
 	\end{tabular}
+	\caption{Group descriptives of \textit{Kat} and \textit{Average Temporal Extent}}
+	\label{tbl:descriptives_baysis_matched_Kat_TAvg}
 \end{table}
-
+\todo{Interpret}
 \begin{table}[ht]
 	\small
 	\centering
@@ -520,15 +522,18 @@ Kruskal-Wallis rank sum test chi-squared = 324.3, df = 245, p-value = 0.0005099
 	  	7 & 724.00 & 74.20 & 102.95 & 51.50 & 4.00 & 1326.00 & 1322.00 \\ 
 	   	\bottomrule
 	\end{tabular}
-	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempAvg}}
+	\caption{Group descriptives of \textit{Kat} and \textit{Average Temporal Extent}}
+	\label{tbl:descriptives_baysis_matched_Kat_TAvg}
+	\vspace{-8mm}
 \end{table}
 
 \paragraph{Average spatial Extent:}
-Kruskal-Wallis rank sum test chi-squared = 1492, df = 1497, p-value = 0.5316
+%chi-squared = 1492, df = 1497, p-value = 0.5316
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-value of 0.5316, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{Kat}. There are no significant groups to identify.
 
 \paragraph{Temporal Distance:}
-Kruskal-Wallis rank sum test chi-squared = 149.52, df = 24, p-value < 2.2e-16
-
+%chi-squared = 149.52, df = 24
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-value of < 0.000001, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected and there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a Pairwise Wilcoxon-Mann-Whitney $t$-test for \textbf{Kat}-\textbf{TDist} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Kat_TMax}. All groups, where the $p$-value is below $\alpha=.05$, have significant differences. 
 \begin{tabular}{rrrr}
   	\toprule
  	& 1 & 2 & 3 \\ 
@@ -538,7 +543,7 @@ Kruskal-Wallis rank sum test chi-squared = 149.52, df = 24, p-value < 2.2e-16
   	7 & 0.00 & 0.00 & 0.00 \\ 
    	\bottomrule
 \end{tabular}
-
+\todo{Interpret}
 \begin{table}[ht]
 	\small
 	\centering

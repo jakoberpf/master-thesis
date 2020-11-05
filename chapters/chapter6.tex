@@ -11,6 +11,9 @@ The results of the clustering and matching algorithm where visually reviewed to 
 \label{analysis_processing_evaluation}
 The resulting datasets created by the evaluation tool (see section \autoref{methodology_detection} \autoref{methodology_matching} and \autoref{methodology_data_processing}), tasked with the detection and clustering of jams and search for adjacent incidents, are then processed by the correlation tool (\autoref{methodology_correlation_processing}). The correlation tool calculates multiple matrix tables with the correlation effect size, correlation significance and used correction coefficient for all variable combinations. From these tables and interpretation guidelines defined in \autoref{correlation_coefficient_types} for each coefficient type, we can deviated the strength of correlation and significance (see \autoref{correlation_significance}) for each combination. In the case of correlated and significant variables, it still needs to be determined what the found correlation predicates. This is done via the Post Hoc test, defined in \autoref{correlation_posthoc}.
 
+\todo{Short explnation of Post Hoc}
+All groups, where the $p$-value is below $\alpha=.05$, have significant differences.
+
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{r|c|c|c}  

@@ -97,7 +97,7 @@ Next we need to verify that the correlation is significant and what the correlat
 % -------- Strasse ---------
 % --------------------------
 
-\large
+\Large
 \centerline{\textbf{Strasse}}
 \normalsize
 
@@ -366,39 +366,37 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SDist} produces a $
 
 \paragraph{Coverage:}
 %chi-squared = 149.32, df = 95
-The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$-value of 0.000317, which is below $\alpha=.05$. The null hypothesis can therefore be neglected and there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a Pairwise Wilcoxon-Mann-Whitney $t$-test for \textbf{Strasse}-\textbf{SMax} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Strasse_Cov}. All groups, where the $p$-value is below $\alpha=.05$, have significant differences. 
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$-value of 0.000317, which is below $\alpha=.05$. The null hypothesis can therefore be neglected and there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a Pairwise Wilcoxon-Mann-Whitney $t$-test for \textbf{Strasse}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Strasse_Cov}. All groups, where the $p$-value is below $\alpha=.05$, have significant differences. 
 \begin{table}[ht]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
 	\centering
 	\begin{tabular}{rrrrrrrrrrrrrrrrr}
 	  	\toprule
-		& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
+				& A3   & A6   & A9   & A70  & A96  & A7   & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
 	  	\midrule
-		A6 & 0.01 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-	  	A9 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-	  	A70 & 0.74 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-	  	A96 & 0.00 & 1.00 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-	  	A7 & 0.00 & 1.00 & 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
-	  	A73 & 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-	  	A99 & 1.00 & 0.00 & 0.00 & 0.09 & 0.00 & 0.00 & 0.00 &  &  &  &  &  &  &  &  &  \\ 
-	  	A92 & 0.00 & 1.00 & 0.12 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 &  &  &  &  &  &  &  &  \\ 
-	  	A93 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-	  	A94 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.13 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-	  	A72 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-	  	A995 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
-	  	A95 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-	  	A71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
-	  	A45 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
-	  	A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+		A6 		& 0.01 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A9 		& 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A70 	& 0.74 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A96 	& 0.00 & 1.00 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A7 		& 0.00 & 1.00 & 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A73 	& 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A99 	& 1.00 & 0.00 & 0.00 & 0.09 & 0.00 & 0.00 & 0.00 &  &  &  &  &  &  &  &  &  \\ 
+	  	A92 	& 0.00 & 1.00 & 0.12 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 &  &  &  &  &  &  &  &  \\ 
+	  	A93 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+	  	A94 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.13 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+	  	A72 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+	  	A995 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+	  	A95 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+	  	A71 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+	  	A45 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+	  	A980 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Wilcoxon Pairwise $t$-test for \textit{Street} and \textit{Coverage}}
 	\label{tbl:wilcoxon_baysis_matched_Strasse_Cov}
 \end{table}
-\autoref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A6, A7, A9, A73, A92 and A96 differ from group A3. The group A99 differs from group A6 and groups A96, AA7, A99, A92 differ from group A9. The group A99 also differs from the groups A70, A96, A7 and A73. There is no distinctive general trend. 
-
-The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_Cov} show that the mean of A3 is 45\,\% - 55\,\% higher than the means of A70, A73, A92, A93, A94, A96 and A99. It also shows that the means of the groups A6, A9 and A99 is about $\frac{1}{3}$ higher than the groups A73 and A94. We can interpret that accidents on the A3, A6, A9 and A99 lead to significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99.
+\autoref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A6, A7, A9, A73, A92 and A96 differ from group A3. The group A99 differs from group A6 and groups A96, AA7, A99, A92 differ from group A9. The group A99 also differs from the groups A70, A96, A7 and A73. There is no distinctive general trend. The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_Cov} show that the mean of A3 is 20\,\% - 30\,\% lower than the means of A6, A7, A9, A73, A92 and A96. It also shows that the mean of A6 is about $\frac{1}{3}$ higher than the mean of A99. We can interpret that accidents on the A3, A99 lead to significantly less denser jams than on A6, A7, A9, A73, A70, A92 and A96.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -432,13 +430,32 @@ The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_Cov} show
 % ----------------------
 % -------- Kat ---------
 % ----------------------
-\large
+\Large
 \centerline{\textbf{Kat}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
-Kruskal-Wallis rank sum test chi-squared = 263.93, df = 210, p-value = 0.00682
+\begin{table}[!ht]
+	\centering
+	\small
+	\begin{tabular}{c|l} 
+		\toprule
+		Code & Description \\ 
+		\midrule
+ 		0 	& Minor Accident  \\
+ 		1 	& Accident with deaths  \\ 
+ 		2 	& Accident with heavily injured  \\
+ 		3 	& Accident with lightly injured  \\
+		7 	& Accident with property damage  \\
+		\bottomrule
+	\end{tabular}
+	\caption{Encoding of \textbf{Kat}}
+	\label{table:analysis_encoding_Kat}
+	\vspace{-8mm}
+\end{table}
 
+\paragraph{Maximal Temporal Extent}
+%chi-squared = 263.93, df = 210
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-value of 0.00682, which is below $\alpha=.05$. The null hypothesis can therefore be neglected and there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a Pairwise Wilcoxon-Mann-Whitney $t$-test for \textbf{Kat}-\textbf{TMax} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Kat_TMax}. All groups, where the $p$-value is below $\alpha=.05$, have significant differences. 
 \begin{table}[ht]
 	\small
 	\centering
@@ -451,7 +468,10 @@ Kruskal-Wallis rank sum test chi-squared = 263.93, df = 210, p-value = 0.00682
 	  	7 & 0.00 & 0.03 & 0.77 \\ 
 	   	\bottomrule
 	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
+	\label{tbl:wilcoxon_baysis_matched_Kat_TMax}
 \end{table}
+\autoref{tbl:wilcoxon_baysis_matched_Kat_TMax} shows that all groups have significant differences. The descriptives from \autoref{tbl:descriptives_baysis_matched_Kat_TMax} present increasing means from group 3 to 1.	We can interpret that the accident length (temporal) increases with the the 
 
 \begin{table}[ht]
 	\small
@@ -466,10 +486,11 @@ Kruskal-Wallis rank sum test chi-squared = 263.93, df = 210, p-value = 0.00682
 	  	7 & 724.00 & 182.68 & 195.84 & 117.00  & 9.00 & 1341.00 & 1332.00 \\ 
 	   	\bottomrule
 	\end{tabular}
-	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempMax}}
+	\caption{Group descriptives of \textit{Kat} and \textit{Maximal Temporal Extent}}
+	\label{tbl:descriptives_baysis_matched_Kat_TMax}
 \end{table}
 
-\paragraph{Average temporal Extent:}
+\paragraph{Average Temporal Extent}
 Kruskal-Wallis rank sum test chi-squared = 324.3, df = 245, p-value = 0.0005099
 
 \begin{table}[ht]
@@ -521,14 +542,14 @@ Kruskal-Wallis rank sum test chi-squared = 149.52, df = 24, p-value < 2.2e-16
 \begin{table}[ht]
 	\small
 	\centering
-	\begin{tabular}{rrrrrrrrrrrrrr}
+	\begin{tabular}{rrrrrrrrrrr}
 	  	\toprule
-		Group & Description & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+		Group & Description & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & trimmed & mad & min & max & range \\ 
 	  	\midrule
-		1 & Accident with deaths & 36.00 & 10.39 & 7.36 & 10.00 & 10.27 & 7.41 & 0.00 & 22.00 & 22.00 & 0.14 & -1.20 & 1.23 \\ 
-	  	2 & Accident with heavily injured & 217.00 & 7.87 & 6.92 & 7.00 & 7.18 & 8.90 & 0.00 & 24.00 & 24.00 & 0.58 & -0.66 & 0.47 \\ 
-	  	3 & Accident with lightly injured & 890.00 & 5.79 & 6.83 & 4.00 & 4.59 & 5.93 & 0.00 & 24.00 & 24.00 & 1.12 & 0.28 & 0.23 \\ 
-	  	7 & Accident with property damage & 724.00 & 4.29 & 6.62 & 0.00 & 2.90 & 0.00 & 0.00 & 24.00 & 24.00 & 1.43 & 0.88 & 0.25 \\ 
+		1 & Accident with deaths & 36.00 & 10.39 & 7.36 & 10.00 & 10.27 & 7.41 & 0.00 & 22.00 & 22.00 \\ 
+	  	2 & Accident with heavily injured & 217.00 & 7.87 & 6.92 & 7.00 & 7.18 & 8.90 & 0.00 & 24.00 & 24.00 \\ 
+	  	3 & Accident with lightly injured & 890.00 & 5.79 & 6.83 & 4.00 & 4.59 & 5.93 & 0.00 & 24.00 & 24.00 \\ 
+	  	7 & Accident with property damage & 724.00 & 4.29 & 6.62 & 0.00 & 2.90 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempDist}}

@@ -356,12 +356,14 @@ As a result we have the following correlation coefficients and statistical test 
 
 \section{Significance vs. Uncertainty}
 \label{correlation_significance_uncertainty}
+Pure correlation is not enough to prove a relation between variables, especially when using the correlation evidence for predictive purposes. 
 
-\todo{Define the usage of significance vs uncertainty in general}
+\todo{Why Uncertainty and Significanc}
 
 \subsection{Uncertainty}
+\label{correlation_uncertainty}
 
-\todo{Define the usage of uncertainty for Cramer's $V$ and Theil's $U$}
+\todo{Define the usage of uncertainty Theil's $U$ and in general}
 
 %https://de.statista.com/statistik/lexikon/definition/122/signifikanz/
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3387884/
@@ -372,7 +374,7 @@ As a result we have the following correlation coefficients and statistical test 
 
 \subsection{Significance}
 \label{correlation_significance}
-The significance of a relation can be evaluated by the p-value, which is generally calculated via chi-squared. \autoref{formula_chi_squared_simplified} shows the chi-squared statistic taken from Wikipedia, cited from Karl Pearson \parencite{Pearson1990}.
+The significance of a relation can be evaluated by the common dependent $t$-test, which compares the $p$-value the alpha level. The $p$-value is generally calculated via chi-squared, shown in \autoref{formula_chi_squared_simplified} (chi-squared statistic), which was taken from Wikipedia and cited from Karl Pearson \parencite{Pearson1990}.
 
 % \begin{equation}
 % \label{formula_chi_squared}	
@@ -391,7 +393,7 @@ The significance of a relation can be evaluated by the p-value, which is general
 	\item[] $E_i = N p_i$ is the expected number of data samples with type $i$
 \end{itemize}
 
-The $p$-value can than be comprised by comparing $\chi^2$ to a $\chi^2$-distribution by calculation or by using a conversion table \parencite{Piegorsch2002}, with the degree of freedom $df = (n_x - 1) \cdot (n_y - 1)$. The resulting  $p$-value, is compared to the significance level $\alpha$, to either accept ($p > \alpha$) or reject ($p <= \alpha$) the null hypothesis ("The means are equal to the population"). For a 2-tailed $p$-value, $p$ will be doubled to incorporate both ends of the distribution. Usually a value of $0.05$ is chosen for $\alpha$, which means that there is a 5\% risk of falsely rejecting the null hypothesis. From this definition the following two interpretations of the correlation coefficient can be drawn. \parencite{OTSD2020}
+The $p$-value can than be comprised by comparing $\chi^2$ to a $\chi^2$-distribution by calculation or by using a conversion table \parencite{Piegorsch2002}, with the degree of freedom $df = (n_x - 1) \cdot (n_y - 1)$. The resulting  $p$-value, is compared to the $\alpha$ level, to either accept ($p > \alpha$) or reject ($p <= \alpha$) the null hypothesis ("The means are equal to the population"). For a 2-tailed $p$-value, $p$ will be doubled to incorporate both ends of the distribution. Usually a value of $.05$ is chosen for $\alpha$, which means that there is a 5\,\% risk of falsely rejecting the null hypothesis. From this definition the following two interpretations of the correlation coefficient can be drawn. \parencite{OTSD2020}
 
 \begin{itemize}
 	\item $p <= \alpha$ means that the null hypothesis can be rejected and indicates that is a significant dependency between the two tested variables. It can be concluded that the increase or decrease of one variable does significantly related to the increase or decrease of the other.
@@ -410,16 +412,12 @@ In the case of a relation of a categorical variable, the correlation effect size
 	h = \frac{12}{n(n+1)}\sum_{h}{\frac{S_h^2}{n_h}}-3(n+1)
 \end{equation}
 
-For the Kruskal-Wallis H-test applies the following. The higher value of $h$, the higher the variance between the unique variables. The significance of $h$ must be tested with $\chi^2$, defined in \autoref{correlation_significance}.
-
-\todo{Wilcoxon-Mann-Whitney}
+For the Kruskal-Wallis H-test applies the following. The higher value of $h$, the higher the variance between the unique variables. A high $h$ supports a already found correlation but must be tested for significance with $\chi^2$, defined in \autoref{correlation_significance}. If the significance, or $p$-value is larger than the defined $\alpha$, the null hypothesis can be rejected, which means the correlation, or variance between the groups are significant. For the identification of which groups create this significant variance, the following Wilcoxon-Mann-Whitney, sometimes also just called Wilcoxon $T$-test is applied pairwise.
 
 % https://de.wikipedia.org/wiki/Wilcoxon-Mann-Whitney-Test
 % https://pythonfordatascienceorg.wordpress.com/wilcoxon-sign-ranked-test-python/
-%The Wilcoxon signed-rank test is the non-parametric univariate test which is an alternative to the dependent t-test. It also is called the Wilcoxon T test, most commonly so when the statistic value is reported as a T value. Which  uses for it’s calculation. This is the recommended test to use when the data violates the assumption of normality. It’s used to test if there is a significant difference on scores when there is a “before” and “after” condition of some treatment or intervention. An example of this is if you where to collect the blood pressure for an individual before and after some treatment, condition, or time point.
-%
-%The hypothesis being test is:
-%
-%Null hypothesis (H0): The difference between the pairs follows a symmetric distribution around zero.
-%Alternative hypothesis (HA): The difference between the pairs does not follow a symmetric distribution around zero.
-%If the p-value is less than what is tested at, most commonly 0.05, one can reject the null hypothesis.
+The Wilcoxon $T$-test is the non-parametric univariate alternative to the dependent $t$-test and is the recommended test to use when the data violates the assumption of a normal distribution. It exists in two variations the Mann-Whitney U statistic and the Wilcoxon W ranked sum Statistic, which can be considered as equivalent. We will use the Wilcoxon ranked sum test in a pairwise approach to compare all groups with reach other. From the resulting matrix of $p$-values and the analog interpretation with the alpha level (see \autoref{correlation_significance}) the significant groups can be identified.
+
+These identified groups are the considered to having a significantly difference to the other groups and therefore can predictably point to a measurement characteristic from a category or vice versa.
+
+% https://statistikguru.de/spss/mann-whitney-u-test/effektstaerke-berechnen-3.html

@@ -1,0 +1,1080 @@
+% -----------------------------------
+% -------- BAYSIS - Matched ---------
+% -----------------------------------
+\subsection{Accident - Congestion Matched Complete}
+\label{analysis_processing_correlation}
+The correlation matrix table for the congestion-accident matched dataset (see \autoref{table:appendix_correlation_matrix_matched_cramers}) is visual presented in \autoref{img:correlation_matrix_matched_cramers} showing the the correlation of each variable combination. When visual analyzing \autoref{img:correlation_matrix_matched_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \autoref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \autoref{tbl:correlation_list_baysis_matched})
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|l}  
+		\toprule
+		Category & Strong \\
+		\midrule
+		Strasse & TMax, TAvg, SMax, SAvg, TDist, SDist, Cov \\ 
+ 		Kat & TMax, TAvg, SAvg, TDist \\ 
+ 		Typ & TDist, Cov \\
+ 		%Betei & & \\
+ 		UArt1 & SAvg, TDist, Cov \\
+ 		%UArt2 & & \\
+ 		AUrs1 & SAvg, TDist, SDist, Cov, TLHGV \\
+ 		%AUrs2 & & \\
+ 		AufHi & TMax, TAvg, TDist, Cov \\
+ 		%Alkoh & & \\
+ 		%Char1 & & \\
+ 		%Char2 & & \\
+ 		%Bes1 & & \\
+ 		Lich1 & Cov \\
+ 		Lich2 & Cov \\
+ 		Zust1 & Cov \\
+ 		%Zust2 & & \\
+ 		%Fstf & & \\
+ 		WoTag & Cov \\
+ 		%FeiTag & & \\
+		Month & Cov \\
+		\bottomrule
+	\end{tabular}
+	\caption{List of incident variables and their strong correlated congestion variable from the congestion-accident data}
+	\label{tbl:correlation_list_baysis_matched}
+\end{table}
+
+Next we need to verify that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \autoref{correlation_posthoc}.
+
+% \newgeometry{left=1.5cm,right=1cm}
+% 	\pagestyle{empty}
+% 	\begin{figure}[ht]
+% 		\centering
+% 		\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
+% 		\caption{Correlation matrix for BAYSIS matched data, with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
+% 		\label{img:correlation_matrix_matched_cramers}
+% 	\end{figure}
+% \restoregeometry
+
+\begin{figure}[!ht]
+	\centering
+	\makebox[\textwidth][c]{%
+		\includegraphics[width=1.4\textwidth, trim=0cm 2.5cm 6cm 3cm]{CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}%
+	}
+	\caption{Correlation matrix for BAYSIS matched data, with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
+	\label{img:correlation_matrix_matched_cramers}
+\end{figure}
+
+\pagebreak
+
+% --------------------------
+% -------- Strasse ---------
+% --------------------------
+\Large
+\centerline{\textbf{Strasse}}
+\normalsize
+This section analyzes the correlated relations of the variable \textbf{Strasse} and introduces a initial interpretation of each significant correlation. The descriptive tables only contain the significant groups, to reduce the size they occupy.
+
+\paragraph{Maximal Temporal Extent}
+% $\chi^2 = 324.16$, $df = 210$
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TMax} produces a $p$-value of 0.000006, which is below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{TMax} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Strasse_TMax}. 
+\begin{table}[ht]
+	\tiny
+	\setlength{\tabcolsep}{4pt}
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrrrrr}
+		\toprule
+				& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
+		\midrule
+		A6 		& 0.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A9 		& 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A70 	& 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A96 	& 0.00 & 1.00 & 0.22 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A7 		& 0.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A73 	& 0.00 & 1.00 & 0.31 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		A99 	& 1.00 & 1.00 & 1.00 & 1.00 & 0.44 & 1.00 & 0.59 &  &  &  &  &  &  &  &  &  \\ 
+		A92 	& 0.00 & 1.00 & 0.16 & 1.00 & 1.00 & 1.00 & 1.00 & 0.22 &  &  &  &  &  &  &  &  \\ 
+		A93 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		A94 	& 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		A72 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		A995 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		A95 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		A71 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		A45 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+		A980 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{pairwise Wilcoxon $T$-test for \textit{Street} and \textit{TempMax}}
+	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+\end{table}
+\autoref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend. The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_TMax} show that the mean value of A3 is 27\,\% - 57\,\% higher than the means of A6, A7, A9, A70, A73, A92, A94 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on the A6, A9, A7, A70, A73, A92, A94 and A96.
+\begin{table}[ht]
+	\tiny
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
+		\midrule
+		A3 & 574 & 235.29 & 218.01 & 162.00 & 9.00 & 1323.00 & 1314.00   \\ 
+		A6 & 127 & 153.05 & 150.42 & 108.00 & 12.00 & 864.00 & 852.00   \\ 
+		A9 & 466 & 170.85 & 151.33 & 118.50 & 9.00 & 1194.00 & 1185.00   \\ 
+		A70 & 31 & 106.55 & 79.42 & 81.00 & 24.00 & 369.00 & 345.00   \\ 
+		A96 & 156 & 117.94 & 80.93 & 106.50 & 12.00 & 384.00 & 372.00   \\ 
+		A7 & 130 & 153.37 & 194.10 & 102.00 & 9.00 & 1341.00 & 1332.00  \\ 
+		A73 & 129 & 125.95 & 135.01 & 93.00 & 12.00 & 1323.00 & 1311.00  \\ 
+		%A99 & 116 & 169.09 & 136.72 & 138.00 & 15.00 & 681.00 & 666.00  \\ 
+		A92 & 66 & 103.86 & 65.69 & 87.00 & 18.00 & 354.00 & 336.00 \\ 
+		%A93 & 21 & 163.57 & 155.71 & 111.00 & 36.00 & 588.00 & 552.00   \\ 
+		A94 & 37 & 101.59 & 54.60 & 99.00 & 15.00 & 249.00 & 234.00 \\ 
+		%A72 & 1 & 60.00 &  & 60.00 & 60.00 & 60.00 & 0.00 \\ 
+		%A995 & 2 & 28.50 & 27.58 & 28.50 & 9.00 & 48.00 & 39.00   \\ 
+		%A95 & 4 & 72.00 & 33.50 & 82.50 & 24.00 & 99.00 & 75.00  \\ 
+		%A71 & 3 & 90.00 & 78.63 & 69.00 & 24.00 & 177.00 & 153.00   \\ 
+		%A45 & 3 & 103.00 & 52.85 & 96.00 & 54.00 & 159.00 & 105.00   \\ 
+		%A980 & 1 & 99.00 &  & 99.00 & 99.00 & 99.00 & 0.00   \\ 
+ 		\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{Street} and \textit{TempMax}}
+	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Average Temporal Extent}
+%chi-squared = 324.97, df = 245
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p$-value of 0.000466, which is below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{TAvg} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Strasse_TAvg}. 
+\begin{table}[ht]
+	\tiny
+	\setlength{\tabcolsep}{4pt}
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrrrrr}
+		\toprule
+				& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
+		\midrule
+		A6 		& 0.55 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A9 		& 0.17 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A70		& 0.85 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A96 	& 0.04 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A7 		& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A73 	& 0.00 & 1.00 & 0.51 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		A99 	& 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+		A92 	& 0.16 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		A93 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		A94 	& 0.19 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		A72 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		A995 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		A95 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		A71		& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		A45 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+		A980 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
+		\bottomrule
+	\end{tabular}
+	\caption{pairwise Wilcoxon $T$-test for \textit{Street} and \textit{TempAvg}}
+	\label{tbl:wilcoxon_baysis_matched_Strasse_TAvg}
+\end{table}
+\autoref{tbl:wilcoxon_baysis_matched_Strasse_TAvg} shows, that the groups A73, A99 and A96 differ from group A3. There is no distinctive general trend. The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_TAvg} show that the mean value of A3 is about $\frac{1}{3}$ higher than the means of A73, A99 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on A73, A99 and A96.
+\begin{table}[ht]
+	\tiny
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\  
+		\midrule
+		A3 & 574 & 89.71 & 98.77 & 65.00 & 4.00 & 1260.00 & 1256.00 \\ 
+		%A6 & 127 & 69.94 & 65.86 & 56.00 & 3.00 & 376.00 & 373.00 \\ 
+		%A9 & 466 & 72.92 & 64.55 & 54.00 & 4.00 & 575.00 & 571.00 \\ 
+		%A70 & 31 & 50.10 & 23.99 & 49.00 & 10.00 & 99.00 & 89.00 \\ 
+		A96 & 156 & 61.18 & 44.23 & 52.50 & 5.00 & 247.00 & 242.00 \\ 
+		%A7 & 130 & 86.55 & 146.82 & 59.50 & 6.00 & 1326.00 & 1320.00 \\ 
+		A73 & 129 & 54.78 & 42.48 & 45.00 & 6.00 & 274.00 & 268.00 \\ 
+		A99 & 116 & 58.97 & 48.35 & 47.50 & 4.00 & 295.00 & 291.00 \\ 
+		%A92 & 66 & 55.24 & 36.43 & 51.50 & 8.00 & 235.00 & 227.00 \\ 
+		%A93 & 21 & 82.33 & 91.10 & 48.00 & 7.00 & 343.00 & 336.00 \\ 
+		%A94 & 37 & 49.86 & 31.63 & 44.00 & 14.00 & 145.00 & 131.00 \\ 
+		%A72 & 1 & 23.00 &  & 23.00 & 23.00 & 23.00 & 0.00 \\ 
+		%A995 & 2 & 24.00 & 21.21 & 24.00 & 9.00 & 39.00 & 30.00 \\ 
+		%A95 & 4 & 37.25 & 22.82 & 37.50 & 12.00 & 62.00 & 50.00 \\ 
+		%A71 & 3 & 62.33 & 54.50 & 62.00 & 8.00 & 117.00 & 109.00 \\ 
+		%A45 & 3 & 91.33 & 34.00 & 92.00 & 57.00 & 125.00 & 68.00 \\ 
+		%A980 & 1 & 82.00 &  & 82.00 & 82.00 & 82.00 & 0.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Group descriptives for \textit{Street} and \textit{TempAvg}}
+	\label{tbl:descriptives_baysis_matched_Strasse_TAvg}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Maximal Spatial Extent}
+%chi-squared = 1804.8, df = 1516
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p$-value of 0.000003, which is below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{SMax} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Strasse_SMax}.
+\begin{table}[ht]
+	\tiny
+	\setlength{\tabcolsep}{4pt}
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrrrrr}
+		\toprule
+				& A3   & A6   & A9   & A70  & A96  & A7   & A73   & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
+		\midrule
+		A6 		& 0.11 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A9 		& 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A70 	& 0.00 & 0.83 & 0.54 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A96 	& 0.00 & 1.00 & 0.22 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A7 		& 0.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A73 	& 0.00 & 0.00 & 0.00 & 1.00 & 1.00 & 0.59 &  &  &  &  &  &  &  &  &  &  \\ 
+		A99 	& 1.00 & 1.00 & 1.00 & 0.80 & 0.43 & 1.00 & 0.00 &  &  &  &  &  &  &  &  &  \\ 
+		A92 	& 0.00 & 0.00 & 0.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 &  &  &  &  &  &  &  &  \\ 
+		A93 	& 0.02 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		A94 	& 0.00 & 0.11 & 0.03 & 1.00 & 1.00 & 1.00 & 1.00 & 0.09 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		A72 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		A995 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		A95 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		A71 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		A45 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+		A980 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise t-test for \textit{Street} and \textit{SpatMax}}
+	\label{tbl:wilcoxon_baysis_matched_Strasse_SMax}
+\end{table}
+\autoref{tbl:wilcoxon_baysis_matched_Strasse_SMax} shows, that the groups A7, A9, A70, A73, A92, A94 and A96 differ from group A3. The groups A73 and A92 further differ from group A6 and A9. The group A99 differs from group A73 and group A99 differs from A92. There is no distinctive general trend. The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_SMax} show that the mean of A3 is 44\,\% - 66\,\% higher than the means of A7, A9, A70, A73, A92, A94 and A96. It also shows that the groups A6, A9 and A99 have a up to 50\,\% higher mean than the groups A73 and A92. We can interpret that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96.
+\begin{table}[ht]
+	\tiny
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\  
+		\midrule
+		A3 & 574 & 17804.82 & 27554.53 & 11367.00 & 1084.00 & 219082.00 & 217998.00 \\ 
+		A6 & 127 & 11067.98 & 8428.07 & 8634.00  & 965.00 & 43156.00 & 42191.00 \\ 
+		A9 & 466 & 10680.48 & 7724.45 & 8977.50 & 832.00 & 49765.00 & 48933.00 \\ 
+		A70 & 31 & 6676.39 & 3640.24 & 6136.00 & 1841.00 & 13058.00 & 11217.00 \\ 
+		A96 & 156 & 8950.30 & 8116.21 & 6315.00 & 971.00 & 70726.00 & 69755.00 \\ 
+		A7 & 130 & 9018.27 & 7293.14 & 7051.50 & 1108.00 & 43244.00 & 42136.00 \\ 
+		A73 & 129 & 6502.88 & 5033.20 & 5327.00 & 1036.00 & 33764.00 & 32728.00 \\ 
+		A99 & 116 & 13244.02 & 11313.27 & 9439.50 & 1280.00 & 48278.00 & 46998.00 \\ 
+		A92 & 66 & 6186.80 & 4000.10 & 4936.50 & 1176.00 & 23291.00 & 22115.00 \\ 
+		%A93 & 21 & 6765.00 & 4403.32 & 5323.00 & 1244.00 & 16922.00 & 15678.00 \\ 
+		A94 & 37 & 6220.38 & 3984.46 & 5768.00 & 1167.00 & 15550.00 & 14383.00 \\ 
+		%A72 & 1 & 3952.00 &  & 3952.00 & 3952.00 & 3952.00 & 0.00 \\ 
+		%A995 & 2 & 1866.50 & 133.64 & 1866.50 & 1772.00 & 1961.00 & 189.00 \\ 
+		%A95 & 4 & 4995.75 & 1065.05 & 4925.50 & 3798.00 & 6334.00 & 2536.00 \\ 
+		%A71 & 3 & 4890.33 & 3031.47 & 6342.00 & 1406.00 & 6923.00 & 5517.00 \\ 
+		%A45 & 3 & 3693.00 & 3286.40 & 1864.00 & 1728.00 & 7487.00 & 5759.00 \\ 
+		%A980 & 1 & 1925.00 &  & 1925.00 & 1925.00 & 1925.00 & 0.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{Street} and \textit{SpatMax}}
+	\label{tbl:descriptives_baysis_matched_Strasse_SMax}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Average Spatial Extent}
+%chi-squared = 1658.6, df = 1497
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p$-value of 0.002086, which is below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{SMax} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Strasse_SAvg}.
+\begin{table}[ht]
+	\tiny
+	\setlength{\tabcolsep}{4pt}
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrrrrr}
+		\toprule
+	 	& A3 & A6 & A9 & A70 & A96 & A7 & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
+		\midrule
+		A6 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A9 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A70 & 0.03 & 0.83 & 0.71 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A96 & 0.01 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A7 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A73 & 0.00 & 0.00 & 0.00 & 1.00 & 0.00 & 0.00 &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A99 & 0.00 & 1.00 & 0.06 & 1.00 & 1.00 & 1.00 & 0.51 &  &  &  &  &  &  &  &  &  \\ 
+	  	A92 & 0.00 & 0.61 & 0.03 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+	  	A93 & 0.02 & 0.46 & 0.16 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+	  	A94 & 0.00 & 0.07 & 0.01 & 1.00 & 0.36 & 0.31 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+	  	A72 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+	  	A995 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+	  	A95 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+	  	A71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+	  	A45 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+	  	A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{Street} and \textit{SpatAvg}}
+	\label{tbl:wilcoxon_baysis_matched_Strasse_SAvg}
+\end{table}
+\autoref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A70, A73, A92, A93, A94, A96 and A99 differ from group A3. The groups A73, A94 further differ from group A6 as well as A73, A99, A92 and A94 from group A9. There is no distinctive general trend. The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_SAvg} show that the mean of A3 is 45\,\% - 55\,\% higher the means of A70, A73, A92, A93, A94, A96 and A99. It also shows that the means of the groups A6, A9 and A99 is about 30\,\% higher mean than the groups A73 and A94. We can interpret that accidents on the A3, A6, A9 and A99 lead are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99.
+\begin{table}[ht]
+	\tiny
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+	  	\toprule
+	 	Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\  
+	  	\midrule
+		A3 & 574.00 & 4624.11 & 2781.72 & 4035.50 & 135.00 & 17805.00 & 17670.00 \\ 
+	  	A6 & 127.00 & 4361.50 & 3042.71 & 3235.00 & 458.00 & 16851.00 & 16393.00 \\ 
+	  	A9 & 466.00 & 4187.15 & 2569.83 & 3700.50 & 393.00 & 15132.00 & 14739.00 \\ 
+	  	A70 & 31.00 & 3010.45 & 2067.63 & 1974.00 & 1008.00 & 9937.00 & 8929.00 \\ 
+	  	A96 & 156.00 & 3664.63 & 2172.78 & 3292.50 & 387.00 & 10182.00 & 9795.00 \\ 
+	  	%A7 & 130.00 & 4141.68 & 3026.58 & 3537.50 & 643.00 & 16571.00 & 15928.00 \\ 
+	  	A73 & 129.00 & 2683.97 & 1981.91 & 2232.00 & 544.00 & 11832.00 & 11288.00 \\ 
+	  	A99 & 116.00 & 3240.97 & 1878.87 & 2978.00 & 583.00 & 8426.00 & 7843.00 \\ 
+	  	A92 & 66.00 & 2926.15 & 1521.59 & 2931.50 & 455.00 & 8970.00 & 8515.00 \\ 
+	  	A93 & 21.00 & 2525.43 & 1443.21 & 2338.00 & 664.00 & 6779.00 & 6115.00 \\ 
+	  	A94 & 37.00 & 2691.68 & 2023.38 & 2307.00 & 358.00 & 10393.00 & 10035.00 \\ 
+	  	%A72 & 1.00 & 1478.00 &  & 1478.00 & 1478.00 & 1478.00 & 0.00  \\ 
+	  	%A995 & 2.00 & 1527.00 & 277.19 & 1527.00 & 1331.00 & 1723.00 & 392.00 \\ 
+	  	%A95 & 4.00 & 2006.75 & 500.22 & 1956.50 & 1569.00 & 2545.00 & 976.00 \\ 
+	  	%A71 & 3.00 & 2778.33 & 2037.57 & 1981.00 & 1260.00 & 5094.00 & 3834.00 \\ 
+	  	%A45 & 3.00 & 2662.00 & 2951.43 & 1391.00 & 559.00 & 6036.00 & 5477.00 \\ 
+	  	%A980 & 1.00 & 1653.00 &  & 1653.00 & 1653.00 & 1653.00 & 0.00  \\ 
+	   	\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Average Spatial Extent}}
+	\label{tbl:descriptives_baysis_matched_Strasse_SAvg}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Temporal Distance}
+%chi-squared = 32.385, df = 24
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TDist} produces a $p$-value of 0.1177, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
+\paragraph{Spatial Distance}
+%chi-squared = 235.74, df = 219
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SDist} produces a $p$-value of 0.2084, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
+\paragraph{Coverage:}
+%chi-squared = 149.32, df = 95
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$-value of 0.000317, which is below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Strasse_Cov}. 
+\begin{table}[ht]
+	\tiny
+	\setlength{\tabcolsep}{4pt}
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrrrrr}
+	  	\toprule
+				& A3   & A6   & A9   & A70  & A96  & A7   & A73 & A99 & A92 & A93 & A94 & A72 & A995 & A95 & A71 & A45 \\ 
+	  	\midrule
+		A6 		& 0.01 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A9 		& 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A70 	& 0.74 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A96 	& 0.00 & 1.00 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A7 		& 0.00 & 1.00 & 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A73 	& 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+	  	A99 	& 1.00 & 0.00 & 0.00 & 0.09 & 0.00 & 0.00 & 0.00 &  &  &  &  &  &  &  &  &  \\ 
+	  	A92 	& 0.00 & 1.00 & 0.12 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 &  &  &  &  &  &  &  &  \\ 
+	  	A93 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+	  	A94 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.13 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+	  	A72 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+	  	A995 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+	  	A95 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+	  	A71 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+	  	A45 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+	  	A980 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+	   	\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{Street} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_Strasse_Cov}
+\end{table}
+\autoref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A6, A7, A9, A73, A92 and A96 differ from group A3. The group A99 differs from group A6 and groups A96, AA7, A99, A92 differ from group A9. The group A99 also differs from the groups A70, A96, A7 and A73. There is no distinctive general trend. The descriptives from \autoref{tbl:descriptives_baysis_matched_Strasse_Cov} show that the mean of A3 is 20\,\% - 30\,\% lower than the means of A6, A7, A9, A73, A92 and A96. It also shows that the mean of A6 is about $\frac{1}{3}$ higher than the mean of A99. We can interpret that accidents on the A3, A99 are associated with significantly less denser jams than on A6, A7, A9, A73, A70, A92 and A96.
+\begin{table}[ht]
+	\tiny
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+	  	\toprule
+	 	Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\   
+	  	\midrule
+		A3 & 574.00 & 37.59 & 19.51 & 35.00 & 2.00 & 100.00 & 98.00 \\ 
+	  	A6 & 127.00 & 46.99 & 24.06 & 44.00 & 9.00 & 100.00 & 91.00 \\ 
+	  	A9 & 466.00 & 43.93 & 18.49 & 41.00 & 6.00 & 100.00 & 94.00 \\ 
+	  	A70 & 31.00 & 50.29 & 25.00 & 44.00 & 9.00 & 92.00 & 83.00 \\ 
+	  	A96 & 156.00 & 51.62 & 21.68 & 54.00 & 2.00 & 100.00 & 98.00 \\ 
+	  	A7 & 130.00 & 53.46 & 24.19 & 54.00 & 6.00 & 100.00 & 94.00 \\ 
+	  	A73 & 129.00 & 46.49 & 22.88 & 42.00 & 7.00 & 100.00 & 93.00 \\ 
+	  	A99 & 116.00 & 33.21 & 18.03 & 31.00 & 5.00 & 85.00 & 80.00 \\ 
+	  	A92 & 66.00 & 53.15 & 21.80 & 52.50 & 14.00 & 98.00 & 84.00 \\ 
+	  	%A93 & 21.00 & 40.81 & 17.72 & 37.00 & 13.00 & 70.00 & 57.00 \\ 
+	  	%A94 & 37.00 & 47.76 & 23.69 & 44.00 & 11.00 & 88.00 & 77.00 \\ 
+	  	%A72 & 1.00 & 34.00 &  & 34.00 & 34.00 & 34.00 & 0.00 \\ 
+	  	%A995 & 2.00 & 79.00 & 2.83 & 79.00 & 77.00 & 81.00 & 4.00 \\ 
+	  	%A95 & 4.00 & 40.50 & 12.48 & 38.00 & 29.00 & 57.00 & 28.00 \\ 
+	  	%A71 & 3.00 & 57.67 & 29.37 & 71.00 & 24.00 & 78.00 & 54.00 \\ 
+	  	%A45 & 3.00 & 69.33 & 37.17 & 80.00 & 28.00 & 100.00 & 72.00 \\ 
+		%A980 & 1.00 & 80.00 &  & 80.00 & 80.00 & 80.00 & 0.00 \\ 		
+	  	\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_Strasse_Cov}
+	%\vspace{-8mm}
+\end{table}
+
+% ----------------------
+% -------- Kat ---------
+% ----------------------
+\Large
+\centerline{\textbf{Kat}}
+\normalsize
+This section analyzes the correlated relations of the variable \textbf{Kat} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \autoref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{Typ} is shown in \autoref{tbl:baysis_dataset_Typ}.
+% \begin{table}[!ht]
+% 	\centering
+% 	\tiny
+% 	\begin{tabular}{c|l} 
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule
+%  		0 	& Minor Accident  \\
+%  		1 	& Accident with deaths  \\ 
+%  		2 	& Accident with heavily injured  \\
+%  		3 	& Accident with lightly injured  \\
+% 		7 	& Accident with property damage  \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Encoding of \textbf{Kat}}
+% 	\label{table:analysis_encoding_Kat}
+% 	%\vspace{-8mm}
+% \end{table}
+
+\paragraph{Maximal Temporal Extent}
+%chi-squared = 263.93, df = 210
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-value of 0.00682, which is below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TMax} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Kat_TMax}.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrr}
+	  	\toprule
+	 	& 1 & 2 & 3 \\ 
+	  	\midrule
+		2 & 0.00 &  &  \\ 
+	  	3 & 0.00 & 0.01 &  \\ 
+	  	7 & 0.00 & 0.03 & 0.77 \\ 
+	   	\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
+	\label{tbl:wilcoxon_baysis_matched_Kat_TMax}
+\end{table}
+\autoref{tbl:wilcoxon_baysis_matched_Kat_TMax} shows that all groups, besides of group 7 to group 3, have significant differences. The descriptives from \autoref{tbl:descriptives_baysis_matched_Kat_TMax} present increasing means from lightly injured to deathly accident. We can interpret that the maximal jam length (temporal) increases with the gravity of the accident. Also the difference of group 1 to group 2 is quite substantial, which means that the accidents with deaths are associated with 40\,\% longer jams, than others. The group of accidents with property damage does significantly differ from the others. A comparisons of means puts the group in-between of accidents with slightly and heavily injured.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\   
+	  	\midrule
+		1 & 36.00 & 317.67 & 215.10 & 279.00   & 27.00 & 987.00 & 960.00  \\ 
+	  	2 & 217.00 & 191.03 & 167.18 & 135.00 & 9.00 & 1257.00 & 1248.00  \\ 
+	  	3 & 890.00 & 159.09 & 148.46 & 114.00 & 9.00 & 1323.00 & 1314.00  \\ 
+	  	7 & 724.00 & 182.68 & 195.84 & 117.00  & 9.00 & 1341.00 & 1332.00 \\ 
+	   	\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{Kat} and \textit{Maximal Temporal Extent}}
+	\label{tbl:descriptives_baysis_matched_Kat_TMax}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Average Temporal Extent}
+%chi-squared = 324.3, df = 245
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TAvg} produces a $p$-value of 0.00051, which is below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TAvg} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Kat_TAvg}.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrr}
+	  	\toprule
+	 	& 1 & 2 & 3 \\ 
+	  	\midrule
+		2 & 0.00 &  &  \\ 
+	  	3 & 0.00 & 0.00 &  \\ 
+	  	7 & 0.00 & 0.00 & 0.05 \\ 
+	   	\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{Kat} and \textit{Average Temporal Extent}}
+	\label{tbl:wilcoxon_baysis_matched_Kat_TAvg}
+\end{table}
+\autoref{tbl:wilcoxon_baysis_matched_Kat_TAvg} shows that all groups have significant differences. The descriptives from \autoref{tbl:descriptives_baysis_matched_Kat_TAvg} present increasing means from group 3 to 1.	We can interpret that the average jam length (temporal) increases with the gravity of the accident. Also the difference of group 1 to group 2 is quite substantial, which means that the accidents with deaths are associated with 40\,\% longer jams than others. The group of accidents with property damage does significantly differ from the others. A comparisons of means puts the group in-between of accidents with slightly and heavily injured.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+	  	\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
+	  	\midrule
+		1 &  36.00 & 156.06 & 104.55 & 143.00 & 20.00 & 502.00 & 482.00 \\ 
+	  	2 & 217.00 & 88.28 & 79.54 & 67.00 & 7.00 & 703.00 & 696.00 \\ 
+	  	3 & 890.00 & 67.52 & 53.88 & 55.00 & 3.00 & 469.00 & 466.00 \\ 
+	  	7 & 724.00 & 74.20 & 102.95 & 51.50 & 4.00 & 1326.00 & 1322.00 \\ 
+	   	\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{Kat} and \textit{Average Temporal Extent}}
+	\label{tbl:descriptives_baysis_matched_Kat_TAvg}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Average Spatial Extent}
+%chi-squared = 1492, df = 1497
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-value of 0.5316, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{Kat}. There are no significant groups to identify.
+
+\paragraph{Temporal Distance}
+%chi-squared = 149.52, df = 24
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-value of < 0.000001, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TDist} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Kat_TDist}. 
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrr}
+		\toprule
+		& 1 & 2 & 3 \\ 
+		\midrule
+		2 & 0.05 &  &  \\ 
+		3 & 0.00 & 0.00 &  \\ 
+		7 & 0.00 & 0.00 & 0.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{Kat} and \textit{Temporal Distance}}
+	\label{tbl:wilcoxon_baysis_matched_Kat_TDist}
+\end{table}
+\autoref{tbl:wilcoxon_baysis_matched_Kat_TDist} shows that all groups have significant differences. The descriptives from \autoref{tbl:descriptives_baysis_matched_Kat_TDist} present increasing means from group 4 to 1. We can interpret that the temporal distance from accidents to jams increases with the gravity of the accident.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+	  	\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
+	  	\midrule
+		1 & 36.00 & 10.39 & 7.36 & 10.00 & 0.00 & 22.00 & 22.00 \\ 
+	  	2 & 217.00 & 7.87 & 6.92 & 7.00 & 0.00 & 24.00 & 24.00 \\ 
+	  	3 & 890.00 & 5.79 & 6.83 & 4.00 & 0.00 & 24.00 & 24.00 \\ 
+	  	7 & 724.00 & 4.29 & 6.62 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
+	   	\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{Kat} and \textit{Temporal Distance}}
+	\label{tbl:descriptives_baysis_matched_Kat_TDist}
+	%\vspace{-8mm}
+\end{table}
+
+% ----------------------
+% -------- Typ ---------
+% ----------------------
+\Large
+\centerline{\textbf{Typ}}
+\normalsize
+This section analyzes the correlated relations of the variable \textbf{Typ} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \autoref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{Typ} is shown in \autoref{tbl:baysis_dataset_Typ}.
+% \begin{table}[ht]
+% 	\centering
+% 	\tiny
+% 	\begin{tabular}{c|l} 
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule
+%  		1 & Driving accident \\ 
+%  		2 & Turning accident \\
+%  		3 & Merging / Crossing accident \\
+%  		4 & Crossing over accident \\
+%  		5 & Accident in standing traffic \\
+%  		6 & Accident in straight traffic \\
+% 		7 & Other \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Encoding of \textbf{Typ}}
+% 	\label{table:analysis_encoding_Kat}
+% 	%\vspace{-8mm}
+% \end{table}
+
+\paragraph{Temporal Distance}
+%chi-squared = 53.142, df = 24
+The Kruskal-Wallis rank sum test of \textbf{Typ}-\textbf{TDist} produces a $p$-value of 0.000554, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Typ}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Typ}-\textbf{TDist} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Typ_TDist}. 
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrrrr}
+		\toprule
+		& 1 & 3 & 4 & 5 & 6 \\ 
+		\midrule
+		3 & 0.00 &  &  &  &  \\ 
+		4 & 0.56 & 0.01 &  &  &  \\ 
+		5 & 0.56 & 0.58 & 0.23 &  &  \\ 
+		6 & 0.00 & 0.00 & 0.05 & 1.00 &  \\ 
+		7 & 1.00 & 0.00 & 0.56 & 0.56 & 0.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{Typ} and \textit{Temporal Distance}}
+	\label{tbl:wilcoxon_baysis_matched_Typ_TDist}
+\end{table}
+The $p$-values in \autoref{tbl:wilcoxon_baysis_matched_Kat_TDist} show the groups 3 and 6 differ from 1, group 6 and 7 differ from 3 and group 7 differs from 6. The descriptives in \autoref{tbl:descriptives_baysis_matched_Typ_TDist} reveal that the groups 1 and 7 have a higher $\bar{x}$ than group 3 and 6. We can interpret that temporal distance of \textit{driving} and \textit{other} accidents is substantial higher than for \textit{merging}, \textit{crossing} and \textit{straight traffic} accidents. 
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
+		\midrule
+		1 & 301.00 & 8.31 & 7.40 & 7.00 & 0.00 & 24.00 & 24.00 \\ 
+		3 & 120.00 & 2.91 & 5.46 & 0.00 & 0.00 & 22.00 & 22.00 \\ 
+		%4 & 4.00 & 14.00 & 3.92 & 13.50 & 10.00 & 19.00 & 9.00 \\ 
+		%5 & 11.00 & 4.36 & 5.89 & 2.00 & 0.00 & 17.00 & 17.00 \\ 
+		6 & 1313.00 & 4.85 & 6.49 & 1.00 & 0.00 & 24.00 & 24.00 \\ 
+		7 & 118.00 & 8.63 & 8.15 & 7.00 & 0.00 & 24.00 & 24.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{Typ} and \textit{Temporal Distance}}
+	\label{tbl:descriptives_baysis_matched_Typ_TDist}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Coverage}
+%chi-squared = 99.367, df = 95, p-value = 0.3593
+The Kruskal-Wallis rank sum test of \textbf{Typ}-\textbf{Cov} produces a $p$-value of 0.3593, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{Typ}. There are no significant groups to identify.
+
+% -----------------------
+% -------- UArt ---------
+% -----------------------
+\Large
+\centerline{\textbf{UArt}}
+\normalsize
+This section
+The encoding and description of the variable \textbf{UArt} is shown in \autoref{tbl:baysis_dataset_UArt}. 
+% \begin{table}[ht]
+% 	\centering
+% 	\tiny
+% 	\begin{tabular}{c|l} 
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule
+%  		1 & Collision with starting, standing or stopping vehicle  \\ 
+%  		2 & Collision with ahead and waiting vehicle  \\
+%  		3 & Collision with vehicle on separate lane in same direction  \\
+%  		4 & Collision with vehicle going in opposite direction  \\
+%  		5 & Collision with turning or crossing vehicle  \\
+%  		6 & Collision between vehicle and pedestrian  \\
+%  		7 & Collision with obstacle  \\
+%  		8 & Deviation to the right  \\
+%  		9 & Deviation to the left  \\
+% 		0 & Other  \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Descriptive of \textbf{UArt}}
+% 	\label{table:analysis_encoding_UArt}
+% 	%\vspace{-8mm}
+% \end{table}
+
+\paragraph{Average Spatial Extent}
+%chi-squared = 1541.3, df = 1497, p-value = 0.2081
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{SAvg} produces a $p$-value of 0.2081, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{UArt}. There are no significant groups to identify.
+
+\paragraph{Temporal Distance}
+%chi-squared = 58.116, df = 24, p-value = 0.0001173
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{TDist} produces a $p$-value of 0.0001173, which is below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{UArt}-\textbf{TDist} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_UArt_TDist}. 
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrrrrrrrr}
+  		\toprule
+		& 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+		\midrule
+		1 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		4 & 0.53 & 0.27 & 0.30 & 0.16 &  &  &  &  &  \\ 
+		5 & 0.05 & 0.12 & 0.00 & 0.00 & 0.01 &  &  &  &  \\ 
+		6 & 0.37 & 0.24 & 0.24 & 0.14 & 1.00 & 0.01 &  &  &  \\ 
+		7 & 0.00 & 0.00 & 0.00 & 0.00 & 1.00 & 0.00 & 1.00 &  &  \\ 
+		8 & 0.01 & 0.00 & 0.00 & 0.00 & 1.00 & 0.00 & 1.00 & 0.32 &  \\ 
+		9 & 0.01 & 0.00 & 0.00 & 0.00 & 1.00 & 0.00 & 1.00 & 0.45 & 1.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{UArt} and \textit{Temporal Distance}}
+	\label{tbl:wilcoxon_baysis_matched_UArt_TDist}
+\end{table}
+The $p$-values in \autoref{tbl:wilcoxon_baysis_matched_UArt_TDist} show that group 5 differs from 2, 3 and 4. The groups 7, 8 and 9 differ from the groups 0, 1, 2, 3 and 5. The descriptives in \autoref{tbl:descriptives_baysis_matched_UArt_TDist} reveal that group 5 has the lowest $\bar{x}$ of all groups. The groups 7, 8 and 9 have the highest $\sigma$. This can be interpreted as accident collisions with \textit{turning} and \textit{crossing} vehicles have a close temporal reaction, when the jams of accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles take longer to create and vary the most.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\hline
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+		\hline
+		0 & 64 & 5.22 & 6.81 & 0.00 & 0.00 & 22.00 & 22.00 \\ 
+		1 & 87 & 4.67 & 6.87 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
+		2 & 838 & 5.02 & 6.51 & 1.00 & 0.00 & 24.00 & 24.00 \\ 
+		3 & 453 & 4.47 & 6.28 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
+		%4 & 4 & 12.00 & 4.08 & 10.50 & 9.00 & 18.00 & 9.00 \\ 
+		5 & 90 & 2.44 & 5.48 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
+		%6 & 6 & 13.17 & 7.99 & 13.50 & 0.00 & 23.00 & 23.00 \\ 
+		7 & 35 & 12.63 & 8.62 & 14.00 & 0.00 & 24.00 & 24.00 \\ 
+		8 & 165 & 8.79 & 7.55 & 8.00 & 0.00 & 24.00 & 24.00 \\ 
+		9 & 125 & 9.02 & 7.02 & 9.00 & 0.00 & 24.00 & 24.00 \\ 
+		\hline
+	\end{tabular}
+	\caption{Group descriptives of \textit{UArt} and \textit{Temporal Distance}}
+	\label{tbl:descriptives_baysis_matched_UArt_TDist}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Coverage}
+%chi-squared = 152.54, df = 95, p-value = 0.0001658
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{Cov} produces a $p$-value of 0.0001658, which is below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{UArt}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_UArt_Cov}.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrrrrrrrr}
+		\toprule
+		& 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+		\midrule
+		1 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		5 & 0.68 & 0.15 & 0.00 & 0.03 & 0.68 &  &  &  &  \\ 
+		6 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		7 & 0.23 & 0.29 & 0.10 & 0.04 & 1.00 & 0.00 & 1.00 &  &  \\ 
+		8 & 0.01 & 0.01 & 0.00 & 0.00 & 1.00 & 0.00 & 1.00 & 1.00 &  \\ 
+		9 & 0.05 & 0.07 & 0.00 & 0.00 & 1.00 & 0.00 & 1.00 & 1.00 & 1.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{UArt} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
+\end{table}
+The $p$-values in \autoref{tbl:wilcoxon_baysis_matched_UArt_TDist} show that group 5 differs from 2, 3 and group 7 differs from group 3. Further does the group 8 differs from groups 0, 1 ,2 , 3 and 5. Group 9 differs from 2, 3 and 4. The descriptives in \autoref{tbl:descriptives_baysis_matched_UArt_TDist} reveal that group 5 has the lowest $\bar{x}$ of all groups. The groups 7, 8 and 9 have the highest $\sigma$. This can be interpreted as accident collisions with \textit{turning} and \textit{crossing} vehicles are associated with lesser dense jams, when accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles are related with 60\,\% denser jams.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
+		\midrule
+		0 & 64 & 40.83 & 20.44 & 36.00 & 5.00 & 96.00 & 91.00 \\ 
+		1 & 87 & 41.83 & 20.53 & 40.00 & 2.00 & 96.00 & 94.00 \\ 
+		2 & 838 & 42.56 & 20.18 & 40.50 & 2.00 & 100.00 & 98.00 \\ 
+		3 & 453 & 40.73 & 19.90 & 39.00 & 2.00 & 98.00 & 96.00 \\ 
+		%4 & 4.00 & 58.00 & 21.10 & 59.00 & 36.00 & 78.00 & 42.00 \\ 
+		5 & 90 & 33.81 & 18.18 & 30.00 & 10.00 & 88.00 & 78.00 \\ 
+		%6 & 6.00 & 57.83 & 30.27 & 61.50 & 18.00 & 90.00 & 72.00 \\ 
+		7 & 35 & 56.31 & 26.88 & 56.00 & 11.00 & 100.00 & 89.00 \\ 
+		8 & 165 & 53.96 & 24.35 & 53.00 & 7.00 & 100.00 & 93.00 \\ 
+		9 & 125 & 52.05 & 23.59 & 49.00 & 3.00 & 100.00 & 97.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_UArt_Cov}
+	%\vspace{-8mm}
+\end{table}
+
+% -----------------------
+% -------- AUrs ---------
+% -----------------------
+\Large
+\centerline{\textbf{AUrs}}
+\normalsize
+The encoding and description of the variable \textbf{AUrs} is shown in \autoref{tbl:baysis_dataset_AUrs}.
+% \begin{table}[ht]
+% 	\centering
+% 	\small
+% 	\begin{tabular}{c|c|c|c|l}
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule
+% 		70 & Slippery street due to oil \\
+% 		71 & Slippery street due to dirt \\
+% 		72 & Slippery street due to snow or ice \\
+% 		73 & Slippery street due to rain \\
+% 		74 & Slippery street due to other objects \\
+% 		75 & Cart track due to rain, snow or ice \\
+% 		76 & Other condition of road \\
+% 		77 & Un-regular condition of traffic signs \\
+% 		78 & Bad lighting of street \\
+% 		79 & Bad safety on train crossing \\
+% 		80 & Visibility issues due to fog \\
+% 		81 & Visibility issues due to rain or hail \\
+% 		82 & Visibility issues due to sun or glare \\
+% 		83 & Crosswind \\
+% 		84 & Visibility issues due to storm \\
+% 		85 & Unsafe roadwork \\
+% 		86 & Wild animals \\
+% 		87 & Other animals \\
+% 		88 & Other obstacles \\
+% 		89 & Other causes \\
+% 		% Count[1] 0 = 8435 / Count[2] 0 = 10156
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Descriptive of \textbf{AUrs}}
+% 	\label{table:analysis_encoding_AUrs}
+% 	\vspace{-8mm}
+% \end{table}
+
+\paragraph{Average Spatial Extent}
+%chi-squared = 1608.4, df = 1497, p-value = 0.02281
+The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{SAvg} produces a $p$-value of 0.02281, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{AUrs}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{AUrs}-\textbf{SAvg} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AUrs_Cov}.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrrr}
+		\toprule
+		& 0 & 72 & 73 & 75 & 76 & 77 & 80 & 81 & 82 & 83 & 84 & 86 & 87 & 88 \\ 
+		\midrule
+		72 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		73 & 0.10 & 0.16 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		75 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+		76 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		77 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+		80 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		81 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		82 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.33 &  &  &  &  &  &  \\ 
+		83 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		84 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		86 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		87 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		88 & 0.03 & 0.03 & 0.18 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.06 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+		89 & 1.00 & 1.00 & 0.06 & 1.00 & 1.00 & 1.00 & 1.00 & 0.71 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.10 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Wilcoxon Pairwise $t$-test for \textit{AUrs} and \textit{Average Spatial Extent}}
+	\label{tbl:wilcoxon_baysis_matched_AUrs_SAvg}
+\end{table}
+The significances in \autoref{tbl:wilcoxon_baysis_matched_AUrs_SAvg} show that only group 88 differs from 0 and 72. This is to be expected, because of the retained variable (see \autoref{baysis_dataset_AUrs}). The type of group 0 is undefined and will be therefore neglected for the interpretation. A comparison of means from \autoref{tbl:descriptives_baysis_matched_AUrs_SAvg} shows that are about 1000m longer than jams associated with group 72. Since group 88 represents accident cause with \textit{other obstacles}, a meaningful interpretation is not really possible. 
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
+		\midrule
+		0  & 1676.00 & 4001.59 & 2550.29 & 3456.00 & 135.00 & 17805.00 & 17670.00 \\ 
+		72 & 41 & 5542.00 & 4347.10 & 4092.00 & 1009.00 & 16571.00 & 15562.00 \\ 
+		73 & 95 & 3190.11 & 2152.19 & 2498.00 & 652.00 & 12288.00 & 11636.00 \\ 
+		%75 & 2.00 & 2396.50 & 1502.60 & 2396.50 & 1334.00 & 3459.00 & 2125.00 \\ 
+		%76 & 1.00 & 1320.00 &  & 1320.00 & 1320.00 & 1320.00 & 0.00 \\ 
+		%77 & 1.00 & 1168.00 &  & 1168.00 & 1168.00 & 1168.00 & 0.00 \\ 
+		%80 & 1.00 & 2559.00 &  & 2559.00 & 2559.00 & 2559.00 & 0.00 \\ 
+		%81 & 4.00 & 1475.00 & 508.49 & 1531.00 & 837.00 & 2001.00 & 1164.00 \\ 
+		82 & 13 & 4610.15 & 2205.44 & 4119.00 & 1660.00 & 8426.00 & 6766.00 \\ 
+		%83 & 2.00 & 2537.50 & 1403.61 & 2537.50 & 1545.00 & 3530.00 & 1985.00 \\ 
+		%84 & 1.00 & 3770.00 &  & 3770.00 & 3770.00 & 3770.00 & 0.00 \\ 
+		%86 & 3.00 & 5089.67 & 5338.64 & 2151.00 & 1866.00 & 11252.00 & 9386.00 \\ 
+		%87 & 1.00 & 3048.00 &  & 3048.00 & 3048.00 & 3048.00 & 0.00 \\ 
+		%88 & 8.00 & 1445.38 & 779.84 & 1107.00 & 932.00 & 3283.00 & 2351.00 \\ 
+		89 & 18 & 6106.22 & 3883.86 & 4648.00 & 347.00 & 12353.00 & 12006.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{AUrs} and \textit{Average Spatial Extent}}
+	\label{tbl:descriptives_baysis_matched_AUrs_SAvg}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Temporal Distance}
+%chi-squared = 61.824, df = 24
+The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TDist} produces a $p$-value of 0.00003515, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{AUrs}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{TDist}-\textbf{SAvg} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AUrs_TDist}.
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrrr}
+        \toprule
+        & 0 & 72 & 73 & 75 & 76 & 77 & 80 & 81 & 82 & 83 & 84 & 86 & 87 & 88 \\ 
+        \midrule
+        72 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+        73 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+        75 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+        76 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+        77 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+        80 & 1.00 & 1.00 & 1.00 & 1.00 &  & 1.00 &  &  &  &  &  &  &  &  \\ 
+        81 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+        82 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+        83 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        84 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        86 & 0.56 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+        87 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+        88 & 0.08 & 1.00 & 0.54 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+        89 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+        \bottomrule
+	  \end{tabular}
+	\caption{Group descriptives of \textit{AUrs} and \textit{Temporal Distance}}
+	\label{tbl:wilcoxon_baysis_matched_AUrs_TDist}
+\end{table}
+
+\begin{table}[ht]
+	\small
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+        \toprule
+        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
+		\midrule
+        0 & 1676.00 & 5.22 & 6.75 & 1.00 & 0.00 & 24.00 & 24.00 \\ 
+		72 & 41.00 & 7.73 & 7.68 & 6.00 & 0.00 & 23.00 & 23.00 \\ 
+		73 & 95.00 & 7.60 & 6.45 & 6.00 & 0.00 & 24.00 & 24.00 \\ 
+		%75 & 2.00 & 2.50 & 3.54 & 2.50 & 0.00 & 5.00 & 5.00 \\ 
+		%76 & 1.00 & 0.00 &  & 0.00 & 0.00 & 0.00 & 0.00  \\ 
+		%77 & 1.00 & 24.00 &  & 24.00 & 24.00 & 24.00 & 0.00 \\ 
+		%80 & 1.00 & 0.00 &  & 0.00 & 0.00 & 0.00 & 0.00 \\ 
+		%81 & 4.00 & 4.75 & 4.57 & 4.50  & 0.00 & 10.00 & 10.00 \\ 
+		82 & 13.00 & 4.85 & 7.59 & 1.00 & 0.00 & 23.00 & 23.00 \\ 
+		%83 & 2.00 & 19.00 & 7.07 & 19.00 & 14.00 & 24.00 & 10.00 \\ 
+		%840 & 1.00 & 19.00 &  & 19.00 & 19.00 & 19.00 & 0.00 \\ 
+		%861 & 3.00 & 19.67 & 6.66 & 23.00 & 12.00 & 24.00 & 12.00 \\ 
+		%872 & 1.00 & 22.00 &  & 22.00 & 22.00 & 22.00 & 0.00 \\ 
+		%883 & 8.00 & 15.50 & 7.33 & 18.00 & 0.00 & 22.00 & 22.00 \\ 
+		89  & 18.00 & 9.56 & 7.81 & 10.00 & 0.00 & 22.00 & 22.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Group descriptives of \textit{AUrs} and \textit{Temporal Distance}}
+	\label{tbl:descriptives_baysis_matched_AUrs_TDist}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Spatial Distance}
+%chi-squared = 253.73, df = 219, p-value = 0.05366
+The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{SDist} produces a $p$-value of 0.05366, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{SDist}. There are no significant groups to identify.
+
+\paragraph{Coverage}
+%chi-squared = 177.01, df = 95, p-value = 6.826e-07
+The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{Cov} produces a $p$-value of 0.00003515, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Cov}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Cov}-\textbf{SAvg} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AUrs_Cov}.
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrrrrrrr}
+        \hline
+       & 0 & 72 & 73 & 75 & 76 & 77 & 80 & 81 & 82 & 83 & 84 & 86 & 87 & 88 \\ 
+        \hline
+      72 & 0.02 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+        73 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+        75 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+        76 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+        77 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+        80 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+        81 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+        82 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+        83 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        84 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        86 & 0.79 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+        87 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+        88 & 0.43 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+        89 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.78 & 1.00 & 1.00 \\ 
+         \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{AUrs} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_AUrs_Cov}
+\end{table}
+
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrrrrrr}
+        \hline
+       & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+        \hline
+      X1 & 1.00 & 1676.00 & 42.34 & 20.82 & 40.00 & 41.07 & 22.24 & 2.00 & 100.00 & 98.00 & 0.51 & -0.28 & 0.51 \\ 
+        X11 & 1.00 & 41.00 & 59.29 & 28.58 & 65.00 & 60.00 & 37.06 & 10.00 & 100.00 & 90.00 & -0.11 & -1.41 & 4.46 \\ 
+        X12 & 1.00 & 95.00 & 53.42 & 22.07 & 57.00 & 53.42 & 25.20 & 7.00 & 100.00 & 93.00 & -0.01 & -0.85 & 2.26 \\ 
+        X13 & 1.00 & 2.00 & 90.50 & 13.44 & 90.50 & 90.50 & 14.08 & 81.00 & 100.00 & 19.00 & 0.00 & -2.75 & 9.50 \\ 
+        X14 & 1.00 & 1.00 & 72.00 &  & 72.00 & 72.00 & 0.00 & 72.00 & 72.00 & 0.00 &  &  &  \\ 
+        X15 & 1.00 & 1.00 & 79.00 &  & 79.00 & 79.00 & 0.00 & 79.00 & 79.00 & 0.00 &  &  &  \\ 
+        X16 & 1.00 & 1.00 & 48.00 &  & 48.00 & 48.00 & 0.00 & 48.00 & 48.00 & 0.00 &  &  &  \\ 
+        X17 & 1.00 & 4.00 & 57.50 & 22.88 & 52.00 & 57.50 & 16.31 & 37.00 & 89.00 & 52.00 & 0.43 & -1.92 & 11.44 \\ 
+        X18 & 1.00 & 13.00 & 40.15 & 12.75 & 39.00 & 39.73 & 8.90 & 18.00 & 67.00 & 49.00 & 0.20 & -0.44 & 3.54 \\ 
+        X19 & 1.00 & 2.00 & 60.50 & 21.92 & 60.50 & 60.50 & 22.98 & 45.00 & 76.00 & 31.00 & 0.00 & -2.75 & 15.50 \\ 
+        X110 & 1.00 & 1.00 & 32.00 &  & 32.00 & 32.00 & 0.00 & 32.00 & 32.00 & 0.00 &  &  &  \\ 
+        X111 & 1.00 & 3.00 & 83.00 & 13.00 & 90.00 & 83.00 & 1.48 & 68.00 & 91.00 & 23.00 & -0.38 & -2.33 & 7.51 \\ 
+        X112 & 1.00 & 1.00 & 67.00 &  & 67.00 & 67.00 & 0.00 & 67.00 & 67.00 & 0.00 &  &  &  \\ 
+        X113 & 1.00 & 8.00 & 68.50 & 23.76 & 79.00 & 68.50 & 14.08 & 35.00 & 89.00 & 54.00 & -0.41 & -1.81 & 8.40 \\ 
+        X114 & 1.00 & 18.00 & 41.89 & 14.54 & 42.00 & 42.25 & 13.34 & 14.00 & 64.00 & 50.00 & -0.23 & -0.93 & 3.43 \\ 
+         \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{AUrs} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_AUrs_Cov}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Time-loss Heavy Goods Vehicles}
+%chi-squared = 531.98, df = 487, p-value = 0.07776
+The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TLHGV} produces a $p$-value of 0.05366, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{TLHGV}. There are no significant groups to identify.
+
+% ------------------------
+% -------- AufHi ---------
+% ------------------------
+\Large
+\centerline{\textbf{AufHi}}
+\normalsize
+
+\paragraph{Maximal Temporal Extent}
+
+% \begin{table}[ht]
+% 	\small
+% 	\centering
+
+% 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
+% 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
+% \end{table}
+
+% \begin{table}[ht]
+% 	\small
+% 	\centering
+
+% 	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
+% 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
+% 	%\vspace{-8mm}
+% \end{table}
+
+\paragraph{Average temporal Extent}
+\paragraph{Temporal Distance}
+\paragraph{Coverage}
+
+% -----------------------
+% -------- Lich ---------
+% -----------------------
+\Large
+\centerline{\textbf{Lich}}
+\normalsize
+
+\paragraph{Coverage}
+The Kruskal-Wallis rank sum test of \textbf{Lich1}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Lich1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Lich1}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_UArt_Cov}. 
+
+% \begin{table}[ht]
+% 	\small
+% 	\centering
+
+% 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
+% 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
+% \end{table}
+
+% \begin{table}[ht]
+% 	\small
+% 	\centering
+
+% 	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
+% 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
+% 	%\vspace{-8mm}
+% \end{table}
+
+\paragraph{Coverage}
+The Kruskal-Wallis rank sum test of \textbf{Lich2}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Lich2}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Lich2}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_UArt_Cov}. 
+
+% \begin{table}[ht]
+% 	\small
+% 	\centering
+
+% 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
+% 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
+% \end{table}
+
+% \begin{table}[ht]
+% 	\small
+% 	\centering
+
+% 	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
+% 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
+% 	%\vspace{-8mm}
+% \end{table}
+
+% -----------------------
+% -------- Zust ---------
+% -----------------------
+\Large
+\centerline{\textbf{Zust}}
+\normalsize
+
+\paragraph{Coverage}
+The Kruskal-Wallis rank sum test of \textbf{Zust1}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Zust1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Zust1}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_UArt_Cov}. 
+
+% ------------------------
+% -------- WoTag ---------
+% ------------------------
+\Large
+\centerline{\textbf{WoTag}}
+\normalsize
+
+\paragraph{Coverage}
+The Kruskal-Wallis rank sum test of \textbf{WoTag}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{WoTag}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_WoTag_Cov}. 
+
+% ------------------------
+% -------- Month ---------
+% ------------------------
+\Large
+\centerline{\textbf{Month}}
+\normalsize
+
+\paragraph{Coverage}
+The Kruskal-Wallis rank sum test of \textbf{Month}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Month}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Month_Cov}. 

@@ -184,6 +184,7 @@ The summarized distribution of the parameters \textbf{AUrs1} and \textbf{AUrs2} 
 \pagebreak
 
 \paragraph{AufHi}
+\label{baysis_dataset_AufHi}
 The obstacle collision distribution (shown table \autoref{table:baysis_dataset_AufHi} and visualized figure \autoref{img:appendix_baysis_dataset_AufHi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,5\,\% of accidents without any collision, it can be stated that in most cases a collision is part of an accident. The counts of the remaining categories are insignificant. The variable does not show any order and is therefore of nominal type.
 \begin{table}[ht]
 	\centering
@@ -209,9 +210,11 @@ The obstacle collision distribution (shown table \autoref{table:baysis_dataset_A
 \end{table}
 
 \paragraph{Alkoh}
+\label{baysis_dataset_Alkoh}
 The alcohol involvement indication parameter only contains one variables of $1 = yes$), whereas an empty variable referred to $no$ or $unknown$. It reveals that only 2.2\,\% of accidents have one or more involved persons with measurable blood alcohol. The variable only has two unique values and is therefore dichotomous.
 
 \paragraph{Char}
+\label{baysis_dataset_Char}
 The variable Char1 and Char2 (shown table \autoref{table:baysis_dataset_Char} and visualized figure \autoref{img:appendix_baysis_dataset_Char_Bes_Lich}) describe the characteristic of the street where the accident happened. Since we are only considering highway, the type of \textit{Crossing}, \textit{Property} and \textit{Roundabout} is expected to be zero. The variable is not ordered and therefore of nominal type.  
 \begin{table}[ht]
 	\centering
@@ -235,6 +238,7 @@ The variable Char1 and Char2 (shown table \autoref{table:baysis_dataset_Char} an
 \end{table}
 
 \paragraph{Bes}
+\label{baysis_dataset_Bes}
 The variables \textbf{Bes1}, \textbf{Bes2} and \textbf{Bes3} further define the street characteristic mentioned above. But they only contain one variable, referring to the category \textit{Roadwork}. The variable itself is therefore not suitable for a correlation analysis, because it is not distributed, but can be used to validate the roadwork matching performance.
 % \begin{table}[ht]
 % 	\centering
@@ -255,6 +259,7 @@ The variables \textbf{Bes1}, \textbf{Bes2} and \textbf{Bes3} further define the 
 % \end{table}
 
 \paragraph{Lich}
+\label{baysis_dataset_Lich}
 The light situation parameter (shown table \autoref{table:baysis_dataset_Lich} and visualized figure \autoref{img:appendix_baysis_dataset_Lich}) describes the lighting condition at the time of the accident. Because it can be ranked from best to worst lighting, both are of ordinal type.
 \begin{table}[ht]
 	\centering
@@ -276,6 +281,7 @@ The light situation parameter (shown table \autoref{table:baysis_dataset_Lich} a
 \end{table} 
 
 \paragraph{Zust}
+\label{baysis_dataset_Zust}
 The road condition parameter (shown table \autoref{table:baysis_dataset_Zust} and visualized figure \autoref{img:appendix_baysis_dataset_Zust}) describes in which condition the road was at time of the accident in the for of wet, dry, iced or slippery.
 \begin{table}[ht]
 	\centering
@@ -295,6 +301,7 @@ The road condition parameter (shown table \autoref{table:baysis_dataset_Zust} an
 \end{table}
 
 \paragraph{Fstf}
+\label{baysis_dataset_Fstf}
 The variable references the lane on which the accident happened (shown table \autoref{table:baysis_dataset_Fstf} and visualized figure \autoref{img:appendix_baysis_dataset_Fstf}). It names the number of lane from the right, the hard-shoulder or the wrong usage of a one-way street. It does not show an order of lanes, but not with the two other types of hard-shoulder and one-way street. It is therefore considered as nominal.
 \begin{table}[ht]
 	\centering
@@ -318,6 +325,7 @@ The variable references the lane on which the accident happened (shown table \au
 \end{table}
     
 \paragraph{WoTag}
+\label{baysis_dataset_WoTag}
 The variable of WoTag relates to the day of week, when the accident happened (shown in \autoref{img:baysis_dataset_WoTag}). It is debatable if week days can be ordered, but for this analysis we will consider the parameter of nominal type.
 \begin{figure}[ht]
 	\centering
@@ -328,6 +336,7 @@ The variable of WoTag relates to the day of week, when the accident happened (sh
 \end{figure}
 
 \paragraph{FeiTag}
+\label{baysis_dataset_FeiTag}
 Only 157 accidents took place on a public holiday. This is not a feature itself but the a possible correlation to jams could be that they are longer because of the increased traffic demand on holidays.
 	
 % ------- BAYSIS Dataset - Matrix --------

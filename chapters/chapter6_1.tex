@@ -751,11 +751,11 @@ The $p$-values in \autoref{tbl:wilcoxon_baysis_matched_UArt_TDist} show that gro
 \Large
 \centerline{\textbf{AUrs}}
 \normalsize
-The encoding and description of the variable \textbf{AUrs} is shown in \autoref{tbl:baysis_dataset_AUrs}.
+The encoding and description of the variable \textbf{AUrs} is shown in \autoref{tbl:baysis_dataset_AUrs}. The variable value of group 0, which occurs in the dataset is undefined by BAYSIS and will be therefore neglected for the interpretation.
 % \begin{table}[ht]
 % 	\centering
 % 	\small
-% 	\begin{tabular}{c|c|c|c|l}
+% 	\begin{tabular}{c|l}
 % 		\toprule
 % 		Code & Description \\ 
 % 		\midrule
@@ -791,7 +791,7 @@ The encoding and description of the variable \textbf{AUrs} is shown in \autoref{
 %chi-squared = 1608.4, df = 1497, p-value = 0.02281
 The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{SAvg} produces a $p$-value of 0.02281, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{AUrs}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{AUrs}-\textbf{SAvg} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AUrs_Cov}.
 \begin{table}[ht]
-	\small
+	\tiny
 	\centering
 	\begin{tabular}{rrrrrrrrrrrrrrr}
 		\toprule
@@ -816,7 +816,7 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{SAvg} produces a $p$-v
 	\caption{Wilcoxon Pairwise $t$-test for \textit{AUrs} and \textit{Average Spatial Extent}}
 	\label{tbl:wilcoxon_baysis_matched_AUrs_SAvg}
 \end{table}
-The significances in \autoref{tbl:wilcoxon_baysis_matched_AUrs_SAvg} show that only group 88 differs from 0 and 72. This is to be expected, because of the retained variable (see \autoref{baysis_dataset_AUrs}). The type of group 0 is undefined and will be therefore neglected for the interpretation. A comparison of means from \autoref{tbl:descriptives_baysis_matched_AUrs_SAvg} shows that are about 1000m longer than jams associated with group 72. Since group 88 represents accident cause with \textit{other obstacles}, a meaningful interpretation is not really possible. 
+The significances in \autoref{tbl:wilcoxon_baysis_matched_AUrs_SAvg} show that only group 88 differs from 0 and 72. This is to be expected, because of the retained variable (see \autoref{baysis_dataset_AUrs}). A comparison of means from \autoref{tbl:descriptives_baysis_matched_AUrs_SAvg} shows that are about 1000m longer than jams associated with group 72. Since group 88 represents accident cause with \textit{other obstacles}, a meaningful interpretation is not really possible. 
 \begin{table}[ht]
 	\small
 	\centering
@@ -848,9 +848,9 @@ The significances in \autoref{tbl:wilcoxon_baysis_matched_AUrs_SAvg} show that o
 
 \paragraph{Temporal Distance}
 %chi-squared = 61.824, df = 24
-The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TDist} produces a $p$-value of 0.00003515, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{AUrs}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{TDist}-\textbf{SAvg} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AUrs_TDist}.
+The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TDist} produces a $p$-value of 0.00003515, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{AUrs}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{AUrs}-\textbf{TDist} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AUrs_TDist}.
 \begin{table}[ht]
-	\small
+	\tiny
 	\centering
 	\begin{tabular}{rrrrrrrrrrrrrrr}
         \toprule
@@ -875,51 +875,23 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TDist} produces a $p$-
 	\caption{Group descriptives of \textit{AUrs} and \textit{Temporal Distance}}
 	\label{tbl:wilcoxon_baysis_matched_AUrs_TDist}
 \end{table}
-
-\begin{table}[ht]
-	\small
-	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-        \toprule
-        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
-		\midrule
-        0 & 1676.00 & 5.22 & 6.75 & 1.00 & 0.00 & 24.00 & 24.00 \\ 
-		72 & 41.00 & 7.73 & 7.68 & 6.00 & 0.00 & 23.00 & 23.00 \\ 
-		73 & 95.00 & 7.60 & 6.45 & 6.00 & 0.00 & 24.00 & 24.00 \\ 
-		%75 & 2.00 & 2.50 & 3.54 & 2.50 & 0.00 & 5.00 & 5.00 \\ 
-		%76 & 1.00 & 0.00 &  & 0.00 & 0.00 & 0.00 & 0.00  \\ 
-		%77 & 1.00 & 24.00 &  & 24.00 & 24.00 & 24.00 & 0.00 \\ 
-		%80 & 1.00 & 0.00 &  & 0.00 & 0.00 & 0.00 & 0.00 \\ 
-		%81 & 4.00 & 4.75 & 4.57 & 4.50  & 0.00 & 10.00 & 10.00 \\ 
-		82 & 13.00 & 4.85 & 7.59 & 1.00 & 0.00 & 23.00 & 23.00 \\ 
-		%83 & 2.00 & 19.00 & 7.07 & 19.00 & 14.00 & 24.00 & 10.00 \\ 
-		%840 & 1.00 & 19.00 &  & 19.00 & 19.00 & 19.00 & 0.00 \\ 
-		%861 & 3.00 & 19.67 & 6.66 & 23.00 & 12.00 & 24.00 & 12.00 \\ 
-		%872 & 1.00 & 22.00 &  & 22.00 & 22.00 & 22.00 & 0.00 \\ 
-		%883 & 8.00 & 15.50 & 7.33 & 18.00 & 0.00 & 22.00 & 22.00 \\ 
-		89  & 18.00 & 9.56 & 7.81 & 10.00 & 0.00 & 22.00 & 22.00 \\ 
-		\bottomrule
-	\end{tabular}
-	\caption{Group descriptives of \textit{AUrs} and \textit{Temporal Distance}}
-	\label{tbl:descriptives_baysis_matched_AUrs_TDist}
-	%\vspace{-8mm}
-\end{table}
+The significances in \autoref{tbl:wilcoxon_baysis_matched_AUrs_SAvg} show that the only significant $p$-values are with group 0. Since the group is undefined from BAYSIS, there is no further interpretation possible.
 
 \paragraph{Spatial Distance}
-%chi-squared = 253.73, df = 219, p-value = 0.05366
+%chi-squared = 253.73, df = 219
 The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{SDist} produces a $p$-value of 0.05366, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{SDist}. There are no significant groups to identify.
 
 \paragraph{Coverage}
-%chi-squared = 177.01, df = 95, p-value = 6.826e-07
-The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{Cov} produces a $p$-value of 0.00003515, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Cov}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Cov}-\textbf{SAvg} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AUrs_Cov}.
+%chi-squared = 177.01, df = 95
+The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{Cov} produces a $p$-value of 0.000006, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Cov}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{AUrs}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AUrs_Cov}.
 \begin{table}[ht]
-	\small
+	\tiny
 	\centering
     \begin{tabular}{rrrrrrrrrrrrrrr}
-        \hline
-       & 0 & 72 & 73 & 75 & 76 & 77 & 80 & 81 & 82 & 83 & 84 & 86 & 87 & 88 \\ 
-        \hline
-      72 & 0.02 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+        \toprule
+        & 0 & 72 & 73 & 75 & 76 & 77 & 80 & 81 & 82 & 83 & 84 & 86 & 87 & 88 \\ 
+        \midrule
+        72 & 0.02 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
         73 & 0.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
         75 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
         76 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
@@ -933,44 +905,16 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{Cov} produces a $p$-va
         87 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
         88 & 0.43 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
         89 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.78 & 1.00 & 1.00 \\ 
-         \hline
+        \bottomrule
       \end{tabular}
 	\caption{Group descriptives of \textit{AUrs} and \textit{Coverage}}
 	\label{tbl:wilcoxon_baysis_matched_AUrs_Cov}
 \end{table}
-
-\begin{table}[ht]
-	\small
-	\centering
-    \begin{tabular}{rrrrrrrrrrrrrr}
-        \hline
-       & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-        \hline
-      X1 & 1.00 & 1676.00 & 42.34 & 20.82 & 40.00 & 41.07 & 22.24 & 2.00 & 100.00 & 98.00 & 0.51 & -0.28 & 0.51 \\ 
-        X11 & 1.00 & 41.00 & 59.29 & 28.58 & 65.00 & 60.00 & 37.06 & 10.00 & 100.00 & 90.00 & -0.11 & -1.41 & 4.46 \\ 
-        X12 & 1.00 & 95.00 & 53.42 & 22.07 & 57.00 & 53.42 & 25.20 & 7.00 & 100.00 & 93.00 & -0.01 & -0.85 & 2.26 \\ 
-        X13 & 1.00 & 2.00 & 90.50 & 13.44 & 90.50 & 90.50 & 14.08 & 81.00 & 100.00 & 19.00 & 0.00 & -2.75 & 9.50 \\ 
-        X14 & 1.00 & 1.00 & 72.00 &  & 72.00 & 72.00 & 0.00 & 72.00 & 72.00 & 0.00 &  &  &  \\ 
-        X15 & 1.00 & 1.00 & 79.00 &  & 79.00 & 79.00 & 0.00 & 79.00 & 79.00 & 0.00 &  &  &  \\ 
-        X16 & 1.00 & 1.00 & 48.00 &  & 48.00 & 48.00 & 0.00 & 48.00 & 48.00 & 0.00 &  &  &  \\ 
-        X17 & 1.00 & 4.00 & 57.50 & 22.88 & 52.00 & 57.50 & 16.31 & 37.00 & 89.00 & 52.00 & 0.43 & -1.92 & 11.44 \\ 
-        X18 & 1.00 & 13.00 & 40.15 & 12.75 & 39.00 & 39.73 & 8.90 & 18.00 & 67.00 & 49.00 & 0.20 & -0.44 & 3.54 \\ 
-        X19 & 1.00 & 2.00 & 60.50 & 21.92 & 60.50 & 60.50 & 22.98 & 45.00 & 76.00 & 31.00 & 0.00 & -2.75 & 15.50 \\ 
-        X110 & 1.00 & 1.00 & 32.00 &  & 32.00 & 32.00 & 0.00 & 32.00 & 32.00 & 0.00 &  &  &  \\ 
-        X111 & 1.00 & 3.00 & 83.00 & 13.00 & 90.00 & 83.00 & 1.48 & 68.00 & 91.00 & 23.00 & -0.38 & -2.33 & 7.51 \\ 
-        X112 & 1.00 & 1.00 & 67.00 &  & 67.00 & 67.00 & 0.00 & 67.00 & 67.00 & 0.00 &  &  &  \\ 
-        X113 & 1.00 & 8.00 & 68.50 & 23.76 & 79.00 & 68.50 & 14.08 & 35.00 & 89.00 & 54.00 & -0.41 & -1.81 & 8.40 \\ 
-        X114 & 1.00 & 18.00 & 41.89 & 14.54 & 42.00 & 42.25 & 13.34 & 14.00 & 64.00 & 50.00 & -0.23 & -0.93 & 3.43 \\ 
-         \hline
-      \end{tabular}
-	\caption{Group descriptives of \textit{AUrs} and \textit{Coverage}}
-	\label{tbl:descriptives_baysis_matched_AUrs_Cov}
-	%\vspace{-8mm}
-\end{table}
+As with the variable \textbf{TDist}, the significances in \autoref{tbl:wilcoxon_baysis_matched_AUrs_SAvg} show that the only significant $p$-values are with group 0 and there is no further interpretation possible.
 
 \paragraph{Time-loss Heavy Goods Vehicles}
-%chi-squared = 531.98, df = 487, p-value = 0.07776
-The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TLHGV} produces a $p$-value of 0.05366, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{TLHGV}. There are no significant groups to identify.
+%chi-squared = 531.98, df = 487
+The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TLHGV} produces a $p$-value of 0.07776, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{TLHGV}. There are no significant groups to identify.
 
 % ------------------------
 % -------- AufHi ---------
@@ -978,29 +922,128 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TLHGV} produces a $p$-
 \Large
 \centerline{\textbf{AufHi}}
 \normalsize
+The encoding and description of the variable \textbf{AufHi} is shown in \autoref{tbl:baysis_dataset_AufHi}.
+% \begin{table}[ht]
+% 	\centering
+% 	\small
+% 	\begin{tabular}{c|l} 
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule 
+% 		0 & Single tree \\
+% 		1 & Pillar \\
+% 		2 & Abutment \\
+% 		3 & Guardrail \\
+% 		4 & Other object \\
+% 		5 & No collision \\
+% 		7 & Tree line or alley \\
+% 		8 & Tree group or forest \\
+% 		9 & Busches \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Descriptive of \textbf{AufHi}}
+% 	\label{table:baysis_dataset_AufHi}
+% 	\vspace{-8mm}
+% \end{table}
 
 \paragraph{Maximal Temporal Extent}
-
-% \begin{table}[ht]
-% 	\small
-% 	\centering
-
-% 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
-% 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
-% \end{table}
-
-% \begin{table}[ht]
-% 	\small
-% 	\centering
-
-% 	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
-% 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
-% 	%\vspace{-8mm}
-% \end{table}
+%chi-squared = 221.04, df = 210
+The Kruskal-Wallis rank sum test of \textbf{AufHi}-\textbf{TMax} produces a $p$-value of 0.2871, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{TMax}. There are no significant groups to identify.
 
 \paragraph{Average temporal Extent}
+%chi-squared = 272.8, df = 245
+The Kruskal-Wallis rank sum test of \textbf{AufHi}-\textbf{TAvg} produces a $p$-value of 0.1073, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{TAvg}. There are no significant groups to identify.
+
 \paragraph{Temporal Distance}
+%chi-squared = 154.03, df = 24
+
+The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TDist} produces a $p$-value of 0.00000000000002, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{AUrs}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{AUrs}-\textbf{TDist} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AufHi_TDist}.
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrr}
+        \hline
+        & 0 & 1 & 2 & 3 & 4 & 5 & 8 \\ 
+        \hline
+        1 & 1.00 &  &  &  &  &  &  \\ 
+        2 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        3 & 0.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        4 & 0.02 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+        5 & 0.27 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+        8 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+        9 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+        \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{AufHi} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_AufHi_TDist}
+\end{table}
+\todo{DO 3 -> 0, 4 -> 0}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrrrrrr}
+        \hline
+        & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+        \hline
+        0 & 1.00 & 1419.00 & 4.75 & 6.65 & 0.00 & 3.42 & 0.00 & 0.00 & 24.00 & 24.00 & 1.36 & 0.82 & 0.18 \\ 
+        %1 & 1.00 & 1.00 & 19.00 &  & 19.00 & 19.00 & 0.00 & 19.00 & 19.00 & 0.00 &  &  &  \\ 
+        %2 & 1.00 & 1.00 & 12.00 &  & 12.00 & 12.00 & 0.00 & 12.00 & 12.00 & 0.00 &  &  &  \\ 
+        3 & 1.00 & 381.00 & 7.90 & 6.87 & 7.00 & 7.18 & 7.41 & 0.00 & 24.00 & 24.00 & 0.59 & -0.58 & 0.35 \\ 
+        4 & 1.00 & 44.00 & 8.43 & 8.13 & 7.00 & 7.78 & 10.38 & 0.00 & 24.00 & 24.00 & 0.44 & -1.25 & 1.23 \\ 
+        5 & 1.00 & 16.00 & 8.44 & 7.87 & 7.50 & 8.14 & 9.64 & 0.00 & 21.00 & 21.00 & 0.37 & -1.50 & 1.97 \\ 
+        %8 & 1.00 & 3.00 & 9.33 & 11.37 & 6.00 & 9.33 & 8.90 & 0.00 & 22.00 & 22.00 & 0.27 & -2.33 & 6.57 \\ 
+        %9 & 1.00 & 2.00 & 12.50 & 7.78 & 12.50 & 12.50 & 8.15 & 7.00 & 18.00 & 11.00 & 0.00 & -2.75 & 5.50 \\ 
+        \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{AufHi} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_AufHi_Cov}
+	%\vspace{-8mm}
+\end{table}
+
 \paragraph{Coverage}
+%chi-squared = 197.06, df = 95
+The Kruskal-Wallis rank sum test of \textbf{AufHi}-\textbf{Cov} produces a $p$-value of 0.000000004, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{AufHi}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{AufHi}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_AufHi_Cov}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrr}
+        \hline
+        & 0 & 1 & 2 & 3 & 4 & 5 & 8 \\ 
+        \hline
+        1 & 1.00 &  &  &  &  &  &  \\ 
+        2 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        3 & 0.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        4 & 0.39 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+        5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+        8 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+        9 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+        \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{AufHi} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_AufHi_Cov}
+\end{table}
+\todo{DO}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrrrrrr}
+        \hline
+        & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+        \hline
+        X1 & 1.00 & 1419.00 & 41.11 & 20.49 & 38.00 & 39.84 & 22.24 & 2.00 & 100.00 & 98.00 & 0.52 & -0.34 & 0.54 \\ 
+        X11 & 1.00 & 1.00 & 76.00 &  & 76.00 & 76.00 & 0.00 & 76.00 & 76.00 & 0.00 &  &  &  \\ 
+        X12 & 1.00 & 1.00 & 38.00 &  & 38.00 & 38.00 & 0.00 & 38.00 & 38.00 & 0.00 &  &  &  \\ 
+        X13 & 1.00 & 381.00 & 51.43 & 22.33 & 50.00 & 50.62 & 23.72 & 3.00 & 100.00 & 97.00 & 0.28 & -0.63 & 1.14 \\ 
+        X14 & 1.00 & 44.00 & 50.18 & 23.51 & 48.50 & 48.28 & 20.76 & 10.00 & 100.00 & 90.00 & 0.66 & -0.25 & 3.54 \\ 
+        X15 & 1.00 & 16.00 & 51.50 & 20.07 & 42.00 & 50.93 & 22.24 & 22.00 & 89.00 & 67.00 & 0.43 & -1.09 & 5.02 \\ 
+        X16 & 1.00 & 3.00 & 52.00 & 38.59 & 49.00 & 52.00 & 50.41 & 15.00 & 92.00 & 77.00 & 0.08 & -2.33 & 22.28 \\ 
+        X17 & 1.00 & 2.00 & 73.50 & 37.48 & 73.50 & 73.50 & 39.29 & 47.00 & 100.00 & 53.00 & 0.00 & -2.75 & 26.50 \\ 
+        \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{AufHi} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_AufHi_Cov}
+	%\vspace{-8mm}
+\end{table}
 
 % -----------------------
 % -------- Lich ---------
@@ -1010,44 +1053,75 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs}-\textbf{TLHGV} produces a $p$-
 \normalsize
 
 \paragraph{Coverage}
-The Kruskal-Wallis rank sum test of \textbf{Lich1}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Lich1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Lich1}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_UArt_Cov}. 
-
-% \begin{table}[ht]
-% 	\small
-% 	\centering
-
-% 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
-% 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
-% \end{table}
-
-% \begin{table}[ht]
-% 	\small
-% 	\centering
-
-% 	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
-% 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
-% 	%\vspace{-8mm}
-% \end{table}
+%chi-squared = 139.81, df = 95
+The Kruskal-Wallis rank sum test of \textbf{Lich1}-\textbf{Cov} produces a $p$-value of 0.001908, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Lich1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Lich1}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Lich1_Cov}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrr}
+        \hline
+       & 0 & 1 \\ 
+        \hline
+      1 & 0.19 &  \\ 
+        2 & 0.00 & 0.05 \\ 
+         \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{Lich1} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_Lich1_Cov}
+\end{table}
+\todo{DO}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrrrrrr}
+        \hline
+       & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+        \hline
+      X1 & 1.00 & 1506.00 & 42.08 & 20.84 & 39.00 & 40.75 & 22.24 & 2.00 & 100.00 & 98.00 & 0.53 & -0.28 & 0.54 \\ 
+        X11 & 1.00 & 98.00 & 45.34 & 22.73 & 43.00 & 43.83 & 25.20 & 10.00 & 100.00 & 90.00 & 0.46 & -0.34 & 2.30 \\ 
+        X12 & 1.00 & 263.00 & 51.58 & 22.52 & 48.00 & 50.90 & 25.20 & 3.00 & 100.00 & 97.00 & 0.25 & -0.83 & 1.39 \\ 
+         \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{Lich1} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_Lich1_Cov}
+	%\vspace{-8mm}
+\end{table}
 
 \paragraph{Coverage}
-The Kruskal-Wallis rank sum test of \textbf{Lich2}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Lich2}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Lich2}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_UArt_Cov}. 
+%chi-squared = 140.55, df = 95
+The Kruskal-Wallis rank sum test of \textbf{Lich2}-\textbf{Cov} produces a $p$-value of 0.001669, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Lich2}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Lich2}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Lich2_Cov}. 
 
-% \begin{table}[ht]
-% 	\small
-% 	\centering
-
-% 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
-% 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
-% \end{table}
-
-% \begin{table}[ht]
-% 	\small
-% 	\centering
-
-% 	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
-% 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
-% 	%\vspace{-8mm}
-% \end{table}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrr}
+        \hline
+        & 0 & 3 \\ 
+        \hline
+        3 & 0.97 &  \\ 
+        4 & 0.00 & 0.20 \\ 
+        \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{Lich2} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_Lich2_Cov}
+\end{table}
+\todo{DO}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrrrrrr}
+        \hline
+        & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+        \hline
+        X1 & 1.00 & 1506.00 & 42.08 & 20.84 & 39.00 & 40.75 & 22.24 & 2.00 & 100.00 & 98.00 & 0.53 & -0.28 & 0.54 \\ 
+        X11 & 1.00 & 16.00 & 41.06 & 14.67 & 37.00 & 40.29 & 11.12 & 18.00 & 75.00 & 57.00 & 0.64 & -0.42 & 3.67 \\ 
+        X12 & 1.00 & 345.00 & 50.30 & 22.96 & 48.00 & 49.54 & 25.20 & 3.00 & 100.00 & 97.00 & 0.26 & -0.74 & 1.24 \\ 
+        \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{Lich2} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_Lich2_Cov}
+	%\vspace{-8mm}
+\end{table}
 
 % -----------------------
 % -------- Zust ---------
@@ -1057,7 +1131,39 @@ The Kruskal-Wallis rank sum test of \textbf{Lich2}-\textbf{Cov} produces a $p$-v
 \normalsize
 
 \paragraph{Coverage}
-The Kruskal-Wallis rank sum test of \textbf{Zust1}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Zust1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Zust1}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_UArt_Cov}. 
+%chi-squared = 138.34, df = 95
+The Kruskal-Wallis rank sum test of \textbf{Zust1}-\textbf{Cov} produces a $p$-value of 0.002477, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Zust1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Zust1}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Zust_Cov}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrr}
+        \hline
+        & 0 & 1 \\ 
+        \hline
+        1 & 0.00 &  \\ 
+        2 & 0.00 & 0.00 \\ 
+         \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{Zust} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_Zust_Cov}
+\end{table}
+\todo{DO}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrrrrrr}
+        \hline
+        & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+        \hline
+        X1 & 1.00 & 1413.00 & 41.81 & 20.46 & 39.00 & 40.53 & 20.76 & 2.00 & 100.00 & 98.00 & 0.53 & -0.26 & 0.54 \\ 
+        X11 & 1.00 & 414.00 & 47.99 & 22.71 & 45.50 & 47.07 & 24.46 & 3.00 & 100.00 & 97.00 & 0.30 & -0.62 & 1.12 \\ 
+        X12 & 1.00 & 40.00 & 60.85 & 27.02 & 64.50 & 61.91 & 34.84 & 13.00 & 100.00 & 87.00 & -0.23 & -1.29 & 4.27 \\ 
+        \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{Zust} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_Zust_Cov}
+	%\vspace{-8mm}
+\end{table}
 
 % ------------------------
 % -------- WoTag ---------
@@ -1067,7 +1173,49 @@ The Kruskal-Wallis rank sum test of \textbf{Zust1}-\textbf{Cov} produces a $p$-v
 \normalsize
 
 \paragraph{Coverage}
-The Kruskal-Wallis rank sum test of \textbf{WoTag}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{WoTag}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_WoTag_Cov}. 
+%chi-squared = 165.78, df = 95
+The Kruskal-Wallis rank sum test of \textbf{WoTag}-\textbf{Cov} produces a $p$-value of 0.00009, which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{WoTag}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_WoTag_Cov}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrr}
+        \hline
+        & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\ 
+        \hline
+        1 & 1.00 &  &  &  &  &  &  \\ 
+        2 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        3 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        4 & 0.20 & 0.48 & 0.20 & 1.00 &  &  &  \\ 
+        5 & 0.00 & 0.01 & 0.00 & 0.04 & 1.00 &  &  \\ 
+        6 & 0.00 & 0.01 & 0.00 & 0.03 & 1.00 & 1.00 &  \\ 
+        7 & 0.24 & 0.20 & 0.20 & 0.37 & 1.00 & 1.00 & 1.00 \\ 
+        \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{WoTag} and \textit{Coverage}}
+	\label{tbl:wilcoxon_baysis_matched_WoTag_Cov}
+\end{table}
+\todo{DO}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrrrrrr}
+        \hline
+        & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+        \hline
+        X1 & 1.00 & 280.00 & 40.62 & 20.88 & 37.00 & 38.71 & 20.76 & 6.00 & 100.00 & 94.00 & 0.77 & 0.14 & 1.25 \\ 
+        X11 & 1.00 & 290.00 & 41.07 & 19.21 & 38.00 & 40.41 & 19.27 & 3.00 & 90.00 & 87.00 & 0.28 & -0.66 & 1.13 \\ 
+        X12 & 1.00 & 295.00 & 40.62 & 20.57 & 38.00 & 39.25 & 23.72 & 3.00 & 100.00 & 97.00 & 0.53 & -0.41 & 1.20 \\ 
+        X13 & 1.00 & 339.00 & 42.20 & 20.90 & 40.00 & 41.26 & 19.27 & 2.00 & 100.00 & 98.00 & 0.45 & -0.30 & 1.14 \\ 
+        X14 & 1.00 & 190.00 & 46.62 & 23.33 & 41.50 & 45.03 & 24.46 & 6.00 & 100.00 & 94.00 & 0.51 & -0.73 & 1.69 \\ 
+        X15 & 1.00 & 205.00 & 48.65 & 22.38 & 45.00 & 47.44 & 22.24 & 12.00 & 100.00 & 88.00 & 0.41 & -0.66 & 1.56 \\ 
+        X16 & 1.00 & 256.00 & 47.95 & 21.99 & 45.00 & 47.05 & 22.24 & 2.00 & 100.00 & 98.00 & 0.32 & -0.39 & 1.37 \\ 
+        X17 & 1.00 & 12.00 & 57.92 & 24.14 & 68.50 & 59.10 & 13.34 & 16.00 & 88.00 & 72.00 & -0.55 & -1.38 & 6.97 \\ 
+        \hline
+      \end{tabular}
+	\caption{Group descriptives of \textit{WoTag} and \textit{Coverage}}
+	\label{tbl:descriptives_baysis_matched_WoTag_Cov}
+	%\vspace{-8mm}
+\end{table}
 
 % ------------------------
 % -------- Month ---------
@@ -1077,4 +1225,5 @@ The Kruskal-Wallis rank sum test of \textbf{WoTag}-\textbf{Cov} produces a $p$-v
 \normalsize
 
 \paragraph{Coverage}
-The Kruskal-Wallis rank sum test of \textbf{Month}-\textbf{Cov} produces a $p$-value of 0., which is way below $\alpha=.05$. The null hypothesis can therefore be neglected, which means there is a significant difference between the groups of \textbf{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Month}-\textbf{Cov} is run, which produces \autoref{tbl:wilcoxon_baysis_matched_Month_Cov}. 
+%chi-squared = 111.07, df = 95
+The Kruskal-Wallis rank sum test of \textbf{Month}-\textbf{Cov} produces a $p$-value of 0.1244, which is above $\alpha=.05$. The null hypothesis can't be neglected and there is \textbf{no} significant difference between the groups of \textbf{Cov}. There are no significant groups to identify.

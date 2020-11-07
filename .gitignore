@@ -169,6 +169,7 @@ TSWLatexianTemp*
 /CorrAnalysis/data/BAYSIS/01_dataset/BAYSIS_2019.xlsx
 /CorrAnalysis/data/BAYSIS/02_matched/_monthly
 /CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019.csv
+/CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019_nan.csv
 /CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019_cleaned.csv
 /CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019.xlsx
 /CorrAnalysis/data/BAYSIS/03_selected_01_startJam/csv/encoded.csv
@@ -178,6 +179,7 @@ TSWLatexianTemp*
 /Thesis/word
 # ignore evaluation code for now
 /CongEvaluation
+/chapters/__latexindent_temp.tex
 # ignore r project files
 .Rproj.user
 /CorrAnalysis/.RData
@@ -207,4 +209,3 @@ TSWLatexianTemp*
 /Thesis/Masterthesis_JakobErpf.dvi
 /thesis.pdf
 /backup
-/chapters/__latexindent_temp.tex

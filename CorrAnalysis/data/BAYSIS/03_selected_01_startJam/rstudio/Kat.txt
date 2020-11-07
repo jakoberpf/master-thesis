@@ -65,33 +65,10 @@ X1 & 1.00 & 29.00 & 148.76 & 90.65 & 144.00 & 143.28 & 77.10 & 20.00 & 376.00 & 
 data:  encoded[[main]] by encoded[[param]]
 Kruskal-Wallis chi-squared = 732.27, df = 720, p-value = 0.3673
 
-[1] "############ TempAvg ############"
+[1] "############ SpatAvg ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 222.52, df = 175, p-value = 0.008756
+Kruskal-Wallis chi-squared = 738.37, df = 727, p-value = 0.3767
 
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
-\begin{tabular}{rrrr}
-  \hline
- & 1 & 2 & 3 \\ 
-  \hline
-2 & 0.00 &  &  \\ 
-  3 & 0.00 & 0.01 &  \\ 
-  7 & 0.00 & 0.00 & 0.00 \\ 
-   \hline
-\end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
-\begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 29.00 & 148.76 & 90.65 & 144.00 & 143.28 & 77.10 & 20.00 & 376.00 & 356.00 & 0.62 & -0.39 & 16.83 \\ 
-  X11 & 1.00 & 144.00 & 80.91 & 67.52 & 61.50 & 69.44 & 43.00 & 7.00 & 426.00 & 419.00 & 2.44 & 7.71 & 5.63 \\ 
-  X12 & 1.00 & 423.00 & 63.84 & 51.24 & 53.00 & 55.92 & 28.17 & 5.00 & 469.00 & 464.00 & 3.53 & 19.18 & 2.49 \\ 
-  X13 & 1.00 & 181.00 & 53.61 & 80.96 & 39.00 & 42.15 & 26.69 & 4.00 & 920.00 & 916.00 & 7.79 & 74.78 & 6.02 \\ 
-   \hline
-\end{tabular}

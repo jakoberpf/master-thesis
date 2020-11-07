@@ -8,144 +8,74 @@ encoded <- read_delim(paste(path,"csv/encoded.csv",sep = ""), ";", escape_double
 options(xtable.floating = FALSE)
 options(xtable.timestamp = "")
 
-sink(paste(path,"rstudio/Strasse.txt",sep = ""))
+runAnalysis <- function(output, main, slaves) {
+  sink(output)
+  for (param in slaves) {
+    print(paste("############",paste(param,"############",sep = " "),sep = " "))
+    var.kruskal = kruskal.test(encoded[[main]]~encoded[[param]])
+    print(var.kruskal)
+    if (var.kruskal[["p.value"]] < 0.05) {
+      var.pairwise = pairwise.wilcox.test(encoded[[param]],encoded[[main]], paired = FALSE, p.adjust = "holm")
+      print(xtable(var.pairwise[["p.value"]]))
+      var.describe = describeBy(encoded[[param]],encoded[[main]])
+      var.merge = var.describe[[1]]
+      var.merge = var.merge[FALSE,]
+      for (i in 1:length(var.describe)) {
+        var.merge = rbind(var.merge,var.describe[[i]])
+      }
+      print(xtable(var.merge))
+      rm(var.pairwise,var.describe,var.merge)
+    }
+    rm(var.kruskal)
+  }
+  sink()
+}
 
-kruskal.test(encoded$Strasse~encoded$TempMax)
-kruskal.test(encoded$Strasse~encoded$TempAvg)
-kruskal.test(encoded$Strasse~encoded$SpatMax)
-kruskal.test(encoded$Strasse~encoded$SpatAvg)
-kruskal.test(encoded$Strasse~encoded$Coverage)
-kruskal.test(encoded$Strasse~encoded$TLHGV)
+###################
+##### Strasse #####
+###################
 
-pairwise.wilcox.test(encoded$TempMax,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TempAvg,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatMax,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatAvg,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$Coverage,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TLHGV,encoded$Strasse, paired = FALSE, p.adjust = "holm")
-
-describeBy(encoded$TempMax,encoded$Strasse)
-describeBy(encoded$TempAvg,encoded$Strasse)
-describeBy(encoded$SpatMax,encoded$Strasse)
-describeBy(encoded$SpatAvg,encoded$Strasse)
-describeBy(encoded$Coverage,encoded$Strasse)
-describeBy(encoded$TLHGV,encoded$Strasse)
-
-sink()
+list <- c("TempMax","TempAvg","SpatMax","SpatAvg","Coverage","TLHGV")
+runAnalysis(paste(path,"rstudio/Strasse.txt",sep = ""), "Strasse", list)
 
 ###############
 ##### Kat #####
 ###############
 
-sink(paste(path,"rstudio/Kat.txt",sep = ""))
-
-kruskal.test(encoded$Kat~encoded$TempMax)
-kruskal.test(encoded$Kat~encoded$TempAvg)
-kruskal.test(encoded$Kat~encoded$SpatMax)
-
-pairwise.wilcox.test(encoded$TempMax,encoded$Kat, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TempAvg,encoded$Kat, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatMax,encoded$Kat, paired = FALSE, p.adjust = "holm")
-
-describeBy(encoded$TempMax,encoded$Kat)
-describeBy(encoded$TempAvg,encoded$Kat)
-describeBy(encoded$SpatMax,encoded$Kat)
-
-sink()
+list <- c("TempMax","TempAvg","TempAvg")
+runAnalysis(paste(path,"rstudio/Kat.txt",sep = ""), "Kat", list)
 
 #################
 ##### UArt1 #####
 #################
 
-sink(paste(path,"rstudio/UArt1.txt",sep = ""))
-
-kruskal.test(encoded$UArt1~encoded$SpatAvg)
-
-pairwise.wilcox.test(encoded$SpatAvg,encoded$UArt1, paired = FALSE, p.adjust = "holm")
-
-describeBy(encoded$SpatAvg,encoded$UArt1)
-
-sink()
+list <- c("SpatAvg")
+runAnalysis(paste(path,"rstudio/UArt1.txt",sep = ""), "UArt1", list)
 
 #################
 ##### UArt2 #####
 #################
 
-sink(paste(path,"rstudio/UArt2.txt",sep = ""))
-
-kruskal.test(encoded$UArt2~encoded$SpatMax)
-
-pairwise.wilcox.test(encoded$SpatMax,encoded$UArt2, paired = FALSE, p.adjust = "holm")
-
-describeBy(encoded$SpatMax,encoded$UArt2)
-
-sink()
+list <- c("SpatMax")
+runAnalysis(paste(path,"rstudio/UArt1.txt",sep = ""), "UArt1", list)
 
 #################
 ##### AufHi #####
 #################
 
-sink(paste(path,"rstudio/AufHi.txt",sep = ""))
-
-kruskal.test(encoded$AufHi~encoded$TempMax)
-kruskal.test(encoded$AufHi~encoded$TempAvg)
-
-pairwise.wilcox.test(encoded$TempMax,encoded$AufHi, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TempAvg,encoded$AufHi, paired = FALSE, p.adjust = "holm")
-
-describeBy(encoded$TempMax,encoded$AufHi)
-describeBy(encoded$TempAvg,encoded$AufHi)
-
-sink()
+list <- c("TempMax","TempAvg")
+runAnalysis(paste(path,"rstudio/AufHi.txt",sep = ""), "AufHi", list)
 
 #################
 ##### WoTag #####
 #################
 
-sink(paste(path,"rstudio/WoTag.txt",sep = ""))
-
-kruskal.test(encoded$WoTag~encoded$TempAvg)
-kruskal.test(encoded$WoTag~encoded$SpatMax)
-kruskal.test(encoded$WoTag~encoded$Coverage)
-kruskal.test(encoded$WoTag~encoded$TLHGV)
-
-pairwise.wilcox.test(encoded$TempAvg,encoded$WoTag, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatMax,encoded$WoTag, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$Coverage,encoded$WoTag, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TLHGV,encoded$WoTag, paired = FALSE, p.adjust = "holm")
-
-describeBy(encoded$TempAvg,encoded$WoTag)
-describeBy(encoded$SpatMax,encoded$WoTag)
-describeBy(encoded$Coverage,encoded$WoTag)
-describeBy(encoded$TLHGV,encoded$WoTag)
-
-sink()
+list <- c("TempAvg","SpatMax","Coverage","TLHGV")
+runAnalysis(paste(path,"rstudio/WoTag.txt",sep = ""), "WoTag", list)
 
 #################
 ##### Month #####
 #################
 
-sink(paste(path,"rstudio/Month.txt",sep = ""))
-
-kruskal.test(encoded$Month~encoded$TempMax)
-kruskal.test(encoded$Month~encoded$TempAvg)
-kruskal.test(encoded$Month~encoded$SpatMax)
-kruskal.test(encoded$Month~encoded$SpatAvg)
-kruskal.test(encoded$Month~encoded$Coverage)
-kruskal.test(encoded$Month~encoded$TLHGV)
-
-pairwise.wilcox.test(encoded$TempMax,encoded$Month, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TempAvg,encoded$Month, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatMax,encoded$Month, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$SpatAvg,encoded$Month, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$Coverage,encoded$Month, paired = FALSE, p.adjust = "holm")
-pairwise.wilcox.test(encoded$TLHGV,encoded$Month, paired = FALSE, p.adjust = "holm")
-
-describeBy(encoded$TempMax,encoded$Month)
-describeBy(encoded$TempAvg,encoded$Month)
-describeBy(encoded$SpatMax,encoded$Month)
-describeBy(encoded$SpatAvg,encoded$Month)
-describeBy(encoded$Coverage,encoded$Month)
-describeBy(encoded$TLHGV,encoded$Month)
-
-sink()
+list <- c("TempMax","TempAvg","SpatMax","SpatAvg","Coverage","TLHGV")
+runAnalysis(paste(path,"rstudio/Month.txt",sep = ""), "Month", list)

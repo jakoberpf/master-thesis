@@ -3,12 +3,13 @@
 In this chapter the result of the data processing will be evaluated. Starting with the evaluation processing, which clusters the FCD, forms congestion events, finds adjacent incident and exports a list of congestion-incident matched. The second section will elaborate on the results of the correlation processing and use the results for a further analysis of relations.
 
 \section{Evaluation Processing}
+\label{analysis_processing_evaluation}
 The results of the clustering and matching algorithm where visually reviewed to verify the performance. Thought iterative adjustments of the input parameters the clustering and matching algorithm where calibrated to a sufficient representation level (see final input parameters in \cref{methodology_detection} and \cref{methodology_matching}).
 
 \todo{Add Figures of clustering as proof} 
 
 \section{Correlation Processing}
-\label{analysis_processing_evaluation}
+\label{analysis_processing_correlation}
 The resulting datasets created by the evaluation tool (see section \cref{methodology_detection} \cref{methodology_matching} and \cref{methodology_data_processing}), tasked with the detection and clustering of jams and search for adjacent incidents, are then processed by the correlation tool (\cref{methodology_correlation_processing}). The correlation tool calculates multiple matrix tables with the correlation effect size, correlation significance and used correction coefficient for all variable combinations. From these tables and interpretation guidelines defined in \cref{correlation_coefficient_types} for each coefficient type, we can deviated the strength of correlation and significance (see \cref{correlation_significance}) for each combination. To recap \cref{correlation_coefficient_types}, \cref{tbl:correlation_interpretation_guidelines} shows the guidelines for a weak, moderate and strong correlation effect size of the coefficients $r$,$\eta$,$r_{pq}$,$\tau$ and $V$. The significance is evaluated $\alpha=.05$.
 
 \begin{table}[ht]
@@ -34,9 +35,13 @@ In the case of correlated and significant variables, it still needs to be determ
 % -------- BAYSIS ---------
 % -------------------------
 \input{chapters/chapter6_1.tex}
+\clearpage
 \input{chapters/chapter6_2.tex}
+\clearpage
 \input{chapters/chapter6_3.tex}
+\clearpage
 \input{chapters/chapter6_4.tex}
+\clearpage
 
 % ------------------------
 % -------- ArbIS ---------

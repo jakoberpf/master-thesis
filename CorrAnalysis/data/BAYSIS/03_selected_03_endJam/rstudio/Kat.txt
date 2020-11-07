@@ -1,0 +1,14 @@
+[1] "############ TempMax ############"
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded[[main]] by encoded[[param]]
+Kruskal-Wallis chi-squared = 182.09, df = 168, p-value = 0.2165
+
+[1] "############ SpatMax ############"
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded[[main]] by encoded[[param]]
+Kruskal-Wallis chi-squared = 432.33, df = 427, p-value = 0.419
+

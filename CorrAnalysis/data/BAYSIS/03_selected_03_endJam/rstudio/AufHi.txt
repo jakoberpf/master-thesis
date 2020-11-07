@@ -1,0 +1,21 @@
+[1] "############ TempMax ############"
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded[[main]] by encoded[[param]]
+Kruskal-Wallis chi-squared = 154.9, df = 168, p-value = 0.7572
+
+[1] "############ TempAvg ############"
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded[[main]] by encoded[[param]]
+Kruskal-Wallis chi-squared = 157.26, df = 173, p-value = 0.7987
+
+[1] "############ Coverage ############"
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded[[main]] by encoded[[param]]
+Kruskal-Wallis chi-squared = 93.325, df = 77, p-value = 0.09933
+

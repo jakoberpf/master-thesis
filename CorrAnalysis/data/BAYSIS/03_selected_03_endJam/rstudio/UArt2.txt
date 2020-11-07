@@ -1,0 +1,7 @@
+[1] "############ TempDist ############"
+
+	Kruskal-Wallis rank sum test
+
+data:  encoded[[main]] by encoded[[param]]
+Kruskal-Wallis chi-squared = 22.714, df = 24, p-value = 0.5367
+

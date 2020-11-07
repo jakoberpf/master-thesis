@@ -97,14 +97,9 @@ if __name__ == '__main__':
             "AufHi",
             "Alkoh",
             "Char1", "Char2",
-            # "Char3",  # Not relevant because empty
-            "Bes1", "Bes2",
-            # "Bes3",  # Not relevant because empty
             "Lich1", "Lich2",
             "Zust1", "Zust2",
             "Fstf",
-            # "StrklVu", # Irrelevant
-            # "WoTagNr",  # Already represented by WoTag
             "WoTag",
             "FeiTag"]].copy()
 
@@ -133,10 +128,12 @@ if __name__ == '__main__':
     ### Selection ###
     #################
 
+    # select temporal during
     baysis_selected = baysis_matched.loc[
         (baysis_matched["TempGL"].isin([3]))
     ]
 
+    # select spatial during
     baysis_selected = baysis_selected.loc[
         (baysis_matched["SpatGL"].isin([2]))
     ]
@@ -157,47 +154,47 @@ if __name__ == '__main__':
          "TLHGV"],
         baysis_matched, plot_path, file_prefix, save_plot, show_plot)
 
-    plot_congestion_scatter(
-        ["TempMax"],
-        ["SpatMax"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
-
-    plot_congestion_scatter(
-        ["TempAvg"],
-        ["SpatAvg"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
-
-    plot_congestion_scatter(
-        ["TempDist"],
-        ["SpatDist"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
-
-    plot_congestion_scatter(
-        ["TLCar"],
-        ["TLHGV"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
-
-    locators = ["TempGL",
-                "SpatGL",
-                "TempIL",
-                "SpatIL"]
-
-    for atr in locators:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
-        baysis_selected.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
-        plt.xlabel(atr)
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
+    # plot_congestion_scatter(
+    #     ["TempMax"],
+    #     ["SpatMax"],
+    #     baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+    #
+    # plot_congestion_scatter(
+    #     ["TempAvg"],
+    #     ["SpatAvg"],
+    #     baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+    #
+    # plot_congestion_scatter(
+    #     ["TempDist"],
+    #     ["SpatDist"],
+    #     baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+    #
+    # plot_congestion_scatter(
+    #     ["TLCar"],
+    #     ["TLHGV"],
+    #     baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+    #
+    # locators = ["TempGL",
+    #             "SpatGL",
+    #             "TempIL",
+    #             "SpatIL"]
+    #
+    # for atr in locators:
+    #     plt.figure(figsize=set_size(418, 0.8))
+    #     plt.style.use('seaborn')
+    #     plt.rcParams.update(tex_fonts)
+    #     plt.title('Distribution of ' + atr)
+    #     plt.ylabel('Count')
+    #     baysis_selected.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
+    #     plt.xlabel(atr)
+    #     if save_plot:
+    #         plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
+    #         if not show_plot:
+    #             plt.close()
+    #     if show_plot:
+    #         plt.show()
+    #     else:
+    #         plt.close()
 
     ##################
     ### Histograms ###
@@ -242,151 +239,9 @@ if __name__ == '__main__':
     ### Counts ###
     ##############
 
-    scale = 1.0
-    (width, height) = set_size(418, scale)
-
-    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0], x='Typ', data=baysis_matched, palette='Spectral')
-    sns.countplot(ax=axs[1], x='Kat', data=baysis_matched, palette='Spectral')
-    sns.countplot(ax=axs[2], x='Betei', data=baysis_matched, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0], x='AufHi', data=baysis_matched, palette='Spectral')
-    sns.countplot(ax=axs[1], x='Fstf', data=baysis_matched, palette='Spectral')
-    sns.countplot(ax=axs[2], x='WoTag', data=baysis_matched, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple02.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    atr = 'UArt'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
-    atr = 'AUrs'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
-    atr = 'Char'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple03.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    atr = 'Bes'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
-    atr = 'Lich'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
-    atr = 'Zust'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple04.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
     ###############
     ### Scatter ###
     ###############
-
-    attributes = [
-        # "Strasse", # TODO fix handling of non number sequences in scatter plots
-        "Kat", "Typ", "Betei",
-        "UArt1", "UArt2",
-        "AUrs1", "AUrs2",
-        "AufHi",
-        "Alkoh",
-        "Char1", "Char2",
-        "Bes1", "Bes2",
-        "Lich1", "Lich2",
-        "Zust1", "Zust2",
-        # "Fstf", # TODO fix handling of non number sequences in scatter plots
-        # "StrklVu",  # TODO fix handling of non number sequences in scatter plots
-        # "WoTag", # TODO fix handling of non number sequences in scatter plots
-        "FeiTag"]
-
-    # Congestion -> Accident
-    for atr in attributes:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
-        baysis_selected.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
-        plt.xlabel(atr)
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
-    for atr in attributes:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        baysis_matched.plot.scatter(x='TempAvg', y='SpatAvg', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
-    # # Congestion -> Accident
-    # for atr in attributes:
-    #     plt.figure(figsize=set_size(418, 0.8))
-    #     plt.style.use('seaborn')
-    #     plt.rcParams.update(tex_fonts)
-    #     plt.title('Distribution of ' + atr)
-    #     plt.ylabel('Count')
-    #     baysis_selected.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
-    #     plt.xlabel(atr)
-    #     if save_plot:
-    #         plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
-    #         if not show_plot:
-    #             plt.close()
-    #     if show_plot:
-    #         plt.show()
-    #     else:
-    #         plt.close()
 
     ###########
     ### Box ###
@@ -410,7 +265,6 @@ if __name__ == '__main__':
                        "AUrs1", "AUrs2",
                        "AufHi",
                        "Char1", "Char2",
-                       "Bes1", "Bes2",
                        "Lich1", "Lich2",
                        "Zust1", "Zust2",
                        "WoTag",
@@ -465,12 +319,12 @@ if __name__ == '__main__':
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
-                   show=show_plot, figsize=(18, 15))
+    # plot_statistic(results.get('significance'), results.get('columns'),
+    #                nominal_columns, dichotomous_columns, ordinal_columns,
+    #                results.get('inf_nan_corr'),
+    #                results.get('columns_single_value'),
+    #                save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
+    #                show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
@@ -499,12 +353,12 @@ if __name__ == '__main__':
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
-                   show=show_plot, figsize=(18, 15))
+    # plot_statistic(results.get('significance'), results.get('columns'),
+    #                nominal_columns, dichotomous_columns, ordinal_columns,
+    #                results.get('inf_nan_corr'),
+    #                results.get('columns_single_value'),
+    #                save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
+    #                show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:

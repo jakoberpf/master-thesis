@@ -88,7 +88,7 @@ if __name__ == '__main__':
     (width, height) = set_size(418, scale)
 
     # Plot histogram of accidents over time / months
-    plt.figure(figsize=(width, height * 0.8))
+    plt.figure(figsize=(width, height * 0.9))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Histogram of accidents per month')
@@ -106,7 +106,7 @@ if __name__ == '__main__':
     # baysis_selected.drop('Month', axis='columns', inplace=True)
 
     # Plot histogram of accidents over highway
-    plt.figure(figsize=(width * 1.2, height * 0.8))
+    plt.figure(figsize=(width * 1.2, height * 0.9))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.title('Histogram of accidents per highways')

@@ -31,7 +31,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = False
+    generate_report = True
 
     data_path = 'data/'
     work_path = data_path + 'BAYSIS/02_matched/'
@@ -177,78 +177,6 @@ if __name__ == '__main__':
     ### Counts ###
     ##############
 
-    scale = 1.0
-    (width, height) = set_size(418, scale)
-
-    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0], x='Typ', data=baysis_matched, palette='Spectral')
-    sns.countplot(ax=axs[1], x='Kat', data=baysis_matched, palette='Spectral')
-    sns.countplot(ax=axs[2], x='Betei', data=baysis_matched, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    fig, axs = plt.subplots(3, 1, figsize=(width, 2.5 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0], x='AufHi', data=baysis_matched, palette='Spectral')
-    sns.countplot(ax=axs[1], x='Fstf', data=baysis_matched, palette='Spectral')
-    sns.countplot(ax=axs[2], x='WoTag', data=baysis_matched, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple02.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    atr = 'UArt'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
-    atr = 'AUrs'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
-    atr = 'Char'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple03.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    fig, axs = plt.subplots(2, 1, figsize=(width, 3 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    atr = 'Lich'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
-    atr = 'Zust'
-    concat = pd.concat([baysis_matched[atr + '1'], baysis_matched[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple04.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
     ###############
     ### Scatter ###
     ###############
@@ -321,12 +249,12 @@ if __name__ == '__main__':
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
-                   show=show_plot, figsize=(18, 15))
+    # plot_statistic(results.get('significance'), results.get('columns'),
+    #                nominal_columns, dichotomous_columns, ordinal_columns,
+    #                results.get('inf_nan_corr'),
+    #                results.get('columns_single_value'),
+    #                save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
+    #                show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
@@ -355,12 +283,12 @@ if __name__ == '__main__':
                      show=show_plot, figsize=(18, 15))
 
     # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
-                   show=show_plot, figsize=(18, 15))
+    # plot_statistic(results.get('significance'), results.get('columns'),
+    #                nominal_columns, dichotomous_columns, ordinal_columns,
+    #                results.get('inf_nan_corr'),
+    #                results.get('columns_single_value'),
+    #                save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
+    #                show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:

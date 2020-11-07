@@ -1,34 +1,7 @@
+[1] "############ TempDist ############"
 
 	Kruskal-Wallis rank sum test
 
-data:  encoded$Lich1 by encoded$TempDist
+data:  encoded[[main]] by encoded[[param]]
 Kruskal-Wallis chi-squared = 32.985, df = 24, p-value = 0.1044
 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$TempDist and encoded$Lich1 
-
-  -1   0       1   
-0 0.69 -       -   
-1 0.69 0.69    -   
-2 0.69 4.7e-05 0.69
-
-P value adjustment method: holm 
-
- Descriptive statistics by group 
-group: -1
-   vars n mean sd median trimmed mad min max range skew kurtosis se
-X1    1 1   18 NA     18      18   0  18  18     0   NA       NA NA
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 0
-   vars   n mean sd median trimmed  mad min max range skew kurtosis   se
-X1    1 582 9.36  6      8    8.76 5.93   0  24    24  0.8    -0.21 0.25
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 1
-   vars  n  mean   sd median trimmed  mad min max range skew kurtosis  se
-X1    1 51 10.37 5.72      9      10 4.45   1  23    22  0.6    -0.55 0.8
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 2
-   vars   n  mean   sd median trimmed  mad min max range skew kurtosis   se
-X1    1 143 12.16 6.81     11   11.94 7.41   1  24    23 0.33    -1.15 0.57

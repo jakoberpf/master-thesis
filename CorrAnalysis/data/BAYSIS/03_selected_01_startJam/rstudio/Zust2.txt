@@ -1,48 +1,33 @@
+[1] "############ TempAvg ############"
 
 	Kruskal-Wallis rank sum test
 
-data:  encoded$Zust2 by encoded$TempAvg
+data:  encoded[[main]] by encoded[[param]]
 Kruskal-Wallis chi-squared = 364.94, df = 175, p-value = 1.858e-15
 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$TempAvg and encoded$Zust2 
-
-  -1   
-2 0.038
-
-P value adjustment method: holm 
-
- Descriptive statistics by group 
-group: -1
-   vars   n  mean    sd median trimmed   mad min max range skew kurtosis   se
-X1    1 770 66.75 64.06     52   56.26 31.13   4 920   916 5.04    47.48 2.31
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 2
-   vars n   mean     sd median trimmed    mad min max range skew kurtosis    se
-X1    1 7 182.14 172.87    113  182.14 100.82  15 426   411 0.57    -1.67 65.34
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rr}
+  \hline
+ & -1 \\ 
+  \hline
+2 & 0.04 \\ 
+   \hline
+\end{tabular}
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rrrrrrrrrrrrrr}
+  \hline
+ & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+  \hline
+X1 & 1.00 & 770.00 & 66.75 & 64.06 & 52.00 & 56.26 & 31.13 & 4.00 & 920.00 & 916.00 & 5.04 & 47.48 & 2.31 \\ 
+  X11 & 1.00 & 7.00 & 182.14 & 172.87 & 113.00 & 182.14 & 100.82 & 15.00 & 426.00 & 411.00 & 0.57 & -1.67 & 65.34 \\ 
+   \hline
+\end{tabular}
+[1] "############ SpatAvg ############"
 
 	Kruskal-Wallis rank sum test
 
-data:  encoded$Zust2 by encoded$SpatAvg
+data:  encoded[[main]] by encoded[[param]]
 Kruskal-Wallis chi-squared = 636.17, df = 727, p-value = 0.9933
 
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  encoded$SpatAvg and encoded$Zust2 
-
-  -1   
-2 0.018
-
-P value adjustment method: holm 
-
- Descriptive statistics by group 
-group: -1
-   vars   n    mean      sd median trimmed     mad min   max range skew kurtosis    se
-X1    1 770 4094.76 2634.29 3545.5 3739.52 2295.06 135 16851 16716 1.25     1.67 94.93
------------------------------------------------------------------------------------------------------------------------------------------------- 
-group: 2
-   vars n    mean     sd median trimmed     mad  min   max range skew kurtosis      se
-X1    1 7 8566.14 5870.7   7165 8566.14 5834.03 2632 16571 13939 0.43    -1.75 2218.91

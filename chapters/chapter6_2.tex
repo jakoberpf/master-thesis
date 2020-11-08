@@ -2,8 +2,8 @@
 % -------- BAYSIS - Selected as Jam Initiator ---------
 % -----------------------------------------------------
 \subsection{BAYSIS - Selected as Jam Initiator}
-
-List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
+\label{analysis_processing_correlation_baysis_initiator}
+The correlation matrix table for the congestion-accident \textit{Jam Initiator} dataset (see \cref{table:appendix_correlation_matrix_matched_cramers}) is visual presented in \cref{img:correlation_matrix_matched_cramers} showing the the correlation of each variable combination. When visual analyzing \cref{img:correlation_matrix_matched_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \cref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \cref{tbl:correlation_list_baysis_initiator})
 
 \noindent
 \begin{table}[ht]
@@ -35,7 +35,8 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
  		Month & SMax, Cov, TLHGV & \\
  		\bottomrule
 	\end{tabular}
-	\caption{List of incident variables and their strong/moderated correlated jam variable from the BAYSIS selected data (Jam Initiator)}
+	\caption{List of incident variables and their strong correlated congestion variable from the congestion-accident matched data which are classified as \textit{Jam Initiator}}
+	\label{tbl:correlation_list_baysis_initiator}
 \end{table}
 
 Are these correlations significant or not ? --> Wilcoxon Test
@@ -43,59 +44,149 @@ Are these correlations significant or not ? --> Wilcoxon Test
 % --------------------------
 % -------- Strasse ---------
 % --------------------------
-\large
+\Large
 \centerline{\textbf{Strasse}}
 \normalsize
 
-\paragraph{Maximal temporal Extent:}
-\paragraph{Average temporal Extent:}
-\paragraph{Maximal spatial Extent:}
-\paragraph{Average spatial Extent:}
+\paragraph{Maximal Temporal Extent}
+% chi-squared = 151.97, df = 131
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TMax} produces a $p$-value of 0.1015, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
+\paragraph{Average Temporal Extent}
+% chi-squared = 173.3, df = 175
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p$-value of 0.5221, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
+\paragraph{Maximal Spatial Extent}
+% chi-squared = 752.87, df = 720
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p$-value of 0.1919, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
+\paragraph{Average Spatial Extent}
+% chi-squared = 753.78, df = 727
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SAvg} produces a $p$-value of 0.2385, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
 \paragraph{Coverage}
+% chi-squared = 112, df = 93
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$-value of 0.0875, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
 \paragraph{Time-loss Car}
+% chi-squared = 547.62, df = 529
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TLCar} produces a $p$-value of 0.2788, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
 
 % ----------------------
 % -------- Kat ---------
 % ----------------------
-\large
+\Large
 \centerline{\textbf{Kat}}
 \normalsize
+This section analyzes the correlated relations of the variable \textbf{Kat} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}.
+% \begin{table}[!ht]
+% 	\centering
+% 	\tiny
+% 	\begin{tabular}{c|l} 
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule
+%  		0 	& Minor Accident  \\
+%  		1 	& Accident with deaths  \\ 
+%  		2 	& Accident with heavily injured  \\
+%  		3 	& Accident with lightly injured  \\
+% 		7 	& Accident with property damage  \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Encoding of \textbf{Kat}}
+% 	\label{table:analysis_encoding_Kat}
+% 	%\vspace{-8mm}
+% \end{table}
 
-\paragraph{Maximal temporal Extent:}
-Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 
+\paragraph{Maximal Temporal Extent}
+% chi-squared = 196.02, df = 131
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-value of 0.0002, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TMax}. 
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|c|c|c}
 		\toprule  
   		& 1 & 2 & 3 \\ 
   		\midrule    
-		2 & 0.00013 & -       & -   \\   
-		\midrule
-		3 & 7.4e-08 & 0.00065 & -     \\ 
-		\midrule
-		7 & 4.7e-09 & 7.3e-09 & 6.2e-06 \\
+        2 & 0.00 &  &  \\ 
+        3 & 0.00 & 0.00 &  \\ 
+        7 & 0.00 & 0.00 & 0.00 \\ 
  		\bottomrule
 	\end{tabular}
-	\caption{Pairwise comparisons of the groups of \textit{Kat} by the measurement \textit{TempMax} using Wilcoxon rank sum test with continuity correction}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
+    \label{tbl:wilcoxon_baysis_initiator_Kat_TMax}
 \end{table}
-
+\todo{Explain}
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c|c}
+	\begin{tabular}{c|c|c|c|c|c|c|c}
 		\toprule  
-		Group & Description & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-		\midrule
-		1 & Accident with deaths & 29 & 290.07 & 190.59 & 255 & 27 & 864 & 837 \\ 
- 		2 & Accident with heavily injured & 144 & 156.23 & 119.44 & 120 & 9 & 657 & 648 \\
- 		3 & Accident with lightly injured & 423 & 121.05 & 105.34 & 99 & 9 & 1116 & 1107 \\
- 		4 & Accident with property damage & 181 & 103.13 & 143.89 & 75 & 9 & 1332 & 1332 \\ 
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+        \midrule
+        1 & 29  & 290.07 & 190.59 & 255.00 & 27 & 864  & 837 \\ 
+        2 & 144 & 156.23 & 119.44 & 120.00 & 9  & 657  & 648 \\ 
+        3 & 423 & 121.05 & 105.34 & 99.00  & 9  & 1116 & 1107 \\ 
+        7 & 181 & 103.13 & 143.89 & 75.00  & 9  & 1341 & 1332 \\ 
  		\bottomrule
 	\end{tabular}
-	\caption{Descriptives of the groups of \textit{Kat} by the measurement \textit{TempMax}}
+    \caption{Descriptives of the groups of \textit{Kat} and \textit{Maximal Temporal Extent}}
+    \label{tbl:descriptives_baysis_initiator_Kat_TMax}
 \end{table}
 
-\paragraph{Average temporal Extent:}
+\paragraph{Average temporal Extent}
+% chi-squared = 222.52, df = 175
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TAvg} produces a $p$-value of 0.0087, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TAvg}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrr}
+        \toprule
+        & 1 & 2 & 3 \\ 
+        \midrule
+        2 & 0.00 &  &  \\ 
+        3 & 0.00 & 0.01 &  \\ 
+        7 & 0.00 & 0.00 & 0.00 \\ 
+        \bottomrule
+    \end{tabular}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Average Temporal Extent}}
+	\label{tbl:wilcoxon_baysis_initiator_Kat_TAvg}
+\end{table}
+\todo{Explain}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrrrrrr}
+        \toprule
+        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+        \midrule
+        1 & 29.00  & 148.76 & 90.65 & 144.00 & 20.00 & 376.00 & 356.00 \\ 
+        2 & 144.00 & 80.91  & 67.52 & 61.50  & 7.00  & 426.00 & 419.00 \\ 
+        3 & 423.00 & 63.84  & 51.24 & 53.00  & 5.00  & 469.00 & 464.00 \\ 
+        7 & 181.00 & 53.61  & 80.96 & 39.00  & 4.00  & 920.00 & 916.00 \\ 
+        \bottomrule
+    \end{tabular}
+	\caption{Group descriptives of \textit{Kat} and \textit{Average temporal Extent}}
+	\label{tbl:descriptives_baysis_initiator_Kat_TAvg}
+	%\vspace{-8mm}
+\end{table}
+
+\paragraph{Maximal spatial Extent}
+% chi-squared = 732.27, df = 720
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{SMax} produces a $p$-value of 0.3673, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Kat}. There are no significant groups to identify.
+
+\paragraph{Average spatial Extent}
+% chi-squared = 738.37, df = 727
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{SAvg} produces a $p$-value of 0.3767, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Kat}. There are no significant groups to identify.
+
+% ----------------------
+% -------- Typ ---------
+% ----------------------
+\Large
+\centerline{\textbf{Typ}}
+\normalsize
+
+\paragraph{Average spatial Extent}
 % \begin{table}[ht]
 % 	\small
 % 	\centering
@@ -112,24 +203,45 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
 % 	%\vspace{-8mm}
 % \end{table}
-\paragraph{Maximal spatial Extent:}
-\paragraph{Average spatial Extent:}
+\paragraph{Temporal Distance}
+% \begin{table}[ht]
+% 	\small
+% 	\centering
 
-% ----------------------
-% -------- Typ ---------
-% ----------------------
-\large
-\centerline{\textbf{Typ}}
-\normalsize
+% 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
+% 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
+% \end{table}
 
-\paragraph{Average spatial Extent:}
-\paragraph{Temporal Distance:}
-\paragraph{Coverage:}
+% \begin{table}[ht]
+% 	\small
+% 	\centering
+
+% 	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
+% 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
+% 	%\vspace{-8mm}
+% \end{table}
+\paragraph{Coverage}
+% \begin{table}[ht]
+% 	\small
+% 	\centering
+
+% 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
+% 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
+% \end{table}
+
+% \begin{table}[ht]
+% 	\small
+% 	\centering
+
+% 	\caption{Group descriptives of \textit{Typ} and \textit{Coverage}}
+% 	\label{tbl:descriptives_baysis_matched_UArt_Cov}
+% 	%\vspace{-8mm}
+% \end{table}
 
 % ------------------------
 % -------- UArt1 ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{UArt1}}
 \normalsize
 
@@ -144,7 +256,7 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % ------------------------
 % -------- AUrs1 ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{AUrs1}}
 \normalsize
 
@@ -159,7 +271,7 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % ------------------------
 % -------- AUrs2 ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{AUrs2}}
 \normalsize
 
@@ -170,7 +282,7 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % ------------------------
 % -------- AufHi ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{AufHi}}
 \normalsize
 
@@ -182,7 +294,7 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % ------------------------
 % -------- Char1 ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{Char1}}
 \normalsize
 
@@ -191,7 +303,7 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % ------------------------
 % -------- Lich1 ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{Lich1}}
 \normalsize
 
@@ -200,7 +312,7 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % ------------------------
 % -------- Lich2 ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{Lich2}}
 \normalsize
 
@@ -209,7 +321,7 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % ------------------------
 % -------- Zust1 ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{Zust1}}
 \normalsize
 
@@ -218,7 +330,7 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % ------------------------
 % -------- Zust2 ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{Zust2}}
 \normalsize
 
@@ -228,7 +340,7 @@ Kruskal-Wallis --> chi-squared = 196.02, df = 131, p-value = 0.0002032
 % ------------------------
 % -------- Month ---------
 % ------------------------
-\large
+\Large
 \centerline{\textbf{Month}}
 \normalsize
 

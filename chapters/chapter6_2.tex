@@ -88,7 +88,6 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$
 % chi-squared = 547.62, df = 529
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TLCar} produces a $p$-value of 0.2788, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
 
-
 % ----------------------
 % -------- Kat ---------
 % ----------------------
@@ -115,13 +114,12 @@ This section analyzes the correlated relations of the variable \textbf{Kat} and 
 % 	%\vspace{-8mm}
 % \end{table}
 
-
 \paragraph{Maximal Temporal Extent}
 % chi-squared = 196.02, df = 131
-The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-value of 0.0002, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TMax}. 
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-value of 0.0002, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TMax}. 
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{c|c|c|c}
+	\begin{tabular}{rrrr}
 		\toprule  
   		& 1 & 2 & 3 \\ 
   		\midrule    
@@ -133,7 +131,7 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-va
     \caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
     \label{tbl:wilcoxon_baysis_initiator_Kat_TMax}
 \end{table}
-\todo{Explain}
+The 
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -172,7 +170,7 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TAvg} produces a $p$-va
 \begin{table}[ht]
 	\small
 	\centering
-    \begin{tabular}{rrrrrrrrrrrrrr}
+    \begin{tabular}{c|c|c|c|c|c|c|c}
         \toprule
         Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
         \midrule
@@ -230,7 +228,7 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-v
 \begin{table}[ht]
 	\small
 	\centering
-    \begin{tabular}{rrrrrrrrrrrrrr}
+    \begin{tabular}{c|c|c|c|c|c|c|c}
         \toprule
         Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
         \midrule
@@ -259,127 +257,167 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{Cov} produces a $p$-val
 \normalsize
 
 \paragraph{Maximal Temporal Extent}
-Kruskal-Wallis chi-squared = 184.29, df = 131, p-value = 0.001496
+% chi-squared = 184.29, df = 131
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{TMax} produces a $p$-value of 0.0015, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{UArt}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_UArt_TMax}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrr}
+        \toprule
+        & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+        \midrule
+        1 & 1.00 &  &  &  &  &  &  &  &  \\ 
+        2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+        3 & 1.00 & 0.04 & 0.00 &  &  &  &  &  &  \\ 
+        4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        6 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+        7 & 0.75 & 0.05 & 0.12 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+        8 & 1.00 & 0.21 & 0.43 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+        9 & 1.00 & 0.43 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+        \bottomrule
+      \end{tabular}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{UArt} and \textit{Maximal Temporal Extent}}
+    \label{tbl:wilcoxon_baysis_initiator_UArt_TMax}
+\end{table}
+\todo{Explain}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{c|c|c|c|c|c|c|c}
+        \toprule
+        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+        \midrule
+        0 & 24  & 140.75 & 100.75 & 114.00 & 30 & 375  & 345 \\ 
+        1 & 31  & 198.58 & 166.25 & 126.00 & 39 & 612  & 573 \\ 
+        2 & 345 & 134.87 & 108.69 & 105.00 & 9  & 864  & 855  \\ 
+        3 & 144 & 111.79 & 123.13 & 81.00  & 9  & 1116 & 1107 \\ 
+        4 & 4   & 186.00 & 145.68 & 175.50 & 39 & 354  & 315 \\ 
+        5 & 15  & 179.60 & 324.31 & 99.00  & 15 & 1341 & 1326 \\ 
+        6 & 4   & 171.00 & 98.62  & 178.50 & 66 & 261  & 195 \\ 
+        7 & 23  & 87.91  & 93.15  & 48.00  & 12 & 384  & 372 \\ 
+        8 & 107 & 118.46 & 117.62 & 87.00  & 18 & 813  & 795 \\ 
+        9 & 80  & 122.47 & 143.91 & 91.50  & 12 & 1152 & 1140 \\ 
+        \bottomrule
+      \end{tabular}
+    \caption{Group descriptives of \textit{UArt} and \textit{Maximal Temporal Extent}}
+    \label{tbl:descriptives_baysis_initiator_UArt_TMax}
+	%\vspace{-8mm}
+\end{table}
 
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
-\begin{tabular}{rrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
-  \hline
-1 & 1.00 &  &  &  &  &  &  &  &  \\ 
-  2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-  3 & 1.00 & 0.04 & 0.00 &  &  &  &  &  &  \\ 
-  4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-  5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
-  6 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-  7 & 0.75 & 0.05 & 0.12 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
-  8 & 1.00 & 0.21 & 0.43 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
-  9 & 1.00 & 0.43 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-   \hline
-\end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
-\begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 24.00 & 140.75 & 100.75 & 114.00 & 129.00 & 57.82 & 30.00 & 375.00 & 345.00 & 1.16 & 0.00 & 20.57 \\ 
-  X11 & 1.00 & 31.00 & 198.58 & 166.25 & 126.00 & 173.64 & 111.19 & 39.00 & 612.00 & 573.00 & 1.12 & 0.03 & 29.86 \\ 
-  X12 & 1.00 & 345.00 & 134.87 & 108.69 & 105.00 & 116.33 & 57.82 & 9.00 & 864.00 & 855.00 & 2.49 & 9.12 & 5.85 \\ 
-  X13 & 1.00 & 144.00 & 111.79 & 123.13 & 81.00 & 89.97 & 53.37 & 9.00 & 1116.00 & 1107.00 & 4.48 & 29.82 & 10.26 \\ 
-  X14 & 1.00 & 4.00 & 186.00 & 145.68 & 175.50 & 186.00 & 162.34 & 39.00 & 354.00 & 315.00 & 0.09 & -2.24 & 72.84 \\ 
-  X15 & 1.00 & 15.00 & 179.60 & 324.31 & 99.00 & 102.92 & 17.79 & 15.00 & 1341.00 & 1326.00 & 3.03 & 7.98 & 83.74 \\ 
-  X16 & 1.00 & 4.00 & 171.00 & 98.62 & 178.50 & 171.00 & 113.42 & 66.00 & 261.00 & 195.00 & -0.05 & -2.37 & 49.31 \\ 
-  X17 & 1.00 & 23.00 & 87.91 & 93.15 & 48.00 & 71.53 & 44.48 & 12.00 & 384.00 & 372.00 & 1.57 & 2.07 & 19.42 \\ 
-  X18 & 1.00 & 107.00 & 118.46 & 117.62 & 87.00 & 97.00 & 57.82 & 18.00 & 813.00 & 795.00 & 3.25 & 13.70 & 11.37 \\ 
-  X19 & 1.00 & 80.00 & 122.47 & 143.91 & 91.50 & 98.58 & 55.60 & 12.00 & 1152.00 & 1140.00 & 5.14 & 31.86 & 16.09 \\ 
-   \hline
-\end{tabular}
 \paragraph{Average Temporal Extent}
-Kruskal-Wallis chi-squared = 182.51, df = 175, p-value = 0.3331
+% chi-squared = 182.51, df = 175
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{TAvg} produces a $p$-value of 0.3331, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt}. There are no significant groups to identify.
+
 \paragraph{Maximal Spatial Extent}
-Kruskal-Wallis chi-squared = 735.57, df = 720, p-value = 0.3355
+% chi-squared = 735.57, df = 720
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{SMax} produces a $p$-value of 0.3355, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt}. There are no significant groups to identify.
+
 \paragraph{Average Spatial Extent}
-Kruskal-Wallis chi-squared = 741.73, df = 727, p-value = 0.3442
+% chi-squared = 741.73, df = 727
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{SAvg} produces a $p$-value of 0.3442, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt}. There are no significant groups to identify.
+
 \paragraph{Temporal Distance}
-Kruskal-Wallis chi-squared = 43.627, df = 24, p-value = 0.008429
+% chi-squared = 43.627, df = 24
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{TDist} produces a $p$-value of 0.0084, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{UArt}-\textbf{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_UArt_TDist}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrr}
+        \toprule
+        & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+        \midrule
+        1 & 1.00 &  &  &  &  &  &  &  &  \\ 
+        2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+        3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+        4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        6 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+        7 & 1.00 & 0.06 & 0.00 & 0.00 & 1.00 & 0.10 & 1.00 &  &  \\ 
+        8 & 1.00 & 1.00 & 0.01 & 0.01 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+        9 & 1.00 & 1.00 & 0.05 & 0.01 & 1.00 & 0.78 & 1.00 & 0.87 & 1.00 \\ 
+        \bottomrule
+      \end{tabular}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{UArt} and \textit{Temporal Distance}}
+    \label{tbl:wilcoxon_baysis_initiator_UArt_TDist}
+\end{table}
+\todo{Explain}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{c|c|c|c|c|c|c|c}
+        \toprule
+        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+        \midrule
+        0 & 24  & 11.04 & 6.22 & 10.00 & 2  & 22 & 20 \\ 
+        1 & 31  & 8.94  & 6.03 & 7.00  & 0  & 24 & 24 \\ 
+        2 & 345 & 9.21  & 5.90 & 8.00  & 1  & 24 & 23 \\ 
+        3 & 144 & 8.80  & 6.03 & 7.00  & 1  & 24 & 23 \\ 
+        4 & 4   & 12.00 & 4.08 & 10.50 & 9  & 18 & 9  \\ 
+        5 & 15  & 8.13  & 7.06 & 7.00  & 0  & 22 & 22 \\ 
+        6 & 4   & 14.00 & 3.92 & 13.50 & 10 & 19 & 9  \\ 
+        7 & 23  & 15.26 & 7.04 & 14.00 & 4  & 24 & 20 \\ 
+        8 & 107 & 11.81 & 6.57 & 11.00 & 1  & 24 & 23 \\ 
+        9 & 80  & 11.38 & 5.87 & 10.00 & 2  & 24 & 22 \\ 
+        \bottomrule
+      \end{tabular}
+    \caption{Group descriptives of \textit{UArt} and \textit{Temporal Distance}}
+    \label{tbl:descriptives_baysis_initiator_UArt_TDist}
+	%\vspace{-8mm}
+\end{table}
 
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
-\begin{tabular}{rrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
-  \hline
-1 & 1.00 &  &  &  &  &  &  &  &  \\ 
-  2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-  3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-  4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-  5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
-  6 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-  7 & 1.00 & 0.06 & 0.00 & 0.00 & 1.00 & 0.10 & 1.00 &  &  \\ 
-  8 & 1.00 & 1.00 & 0.01 & 0.01 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
-  9 & 1.00 & 1.00 & 0.05 & 0.01 & 1.00 & 0.78 & 1.00 & 0.87 & 1.00 \\ 
-   \hline
-\end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
-\begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 24.00 & 11.04 & 6.22 & 10.00 & 10.85 & 8.15 & 2.00 & 22.00 & 20.00 & 0.25 & -1.33 & 1.27 \\ 
-  X11 & 1.00 & 31.00 & 8.94 & 6.03 & 7.00 & 8.28 & 5.93 & 0.00 & 24.00 & 24.00 & 0.88 & 0.08 & 1.08 \\ 
-  X12 & 1.00 & 345.00 & 9.21 & 5.90 & 8.00 & 8.62 & 4.45 & 1.00 & 24.00 & 23.00 & 0.80 & -0.16 & 0.32 \\ 
-  X13 & 1.00 & 144.00 & 8.80 & 6.03 & 7.00 & 7.99 & 4.45 & 1.00 & 24.00 & 23.00 & 1.15 & 0.48 & 0.50 \\ 
-  X14 & 1.00 & 4.00 & 12.00 & 4.08 & 10.50 & 12.00 & 1.48 & 9.00 & 18.00 & 9.00 & 0.66 & -1.75 & 2.04 \\ 
-  X15 & 1.00 & 15.00 & 8.13 & 7.06 & 7.00 & 7.69 & 4.45 & 0.00 & 22.00 & 22.00 & 0.86 & -0.67 & 1.82 \\ 
-  X16 & 1.00 & 4.00 & 14.00 & 3.92 & 13.50 & 14.00 & 3.71 & 10.00 & 19.00 & 9.00 & 0.22 & -2.05 & 1.96 \\ 
-  X17 & 1.00 & 23.00 & 15.26 & 7.04 & 14.00 & 15.47 & 10.38 & 4.00 & 24.00 & 20.00 & -0.11 & -1.67 & 1.47 \\ 
-  X18 & 1.00 & 107.00 & 11.81 & 6.57 & 11.00 & 11.62 & 7.41 & 1.00 & 24.00 & 23.00 & 0.26 & -1.07 & 0.63 \\ 
-  X19 & 1.00 & 80.00 & 11.38 & 5.87 & 10.00 & 10.98 & 5.93 & 2.00 & 24.00 & 22.00 & 0.53 & -0.69 & 0.66 \\ 
-   \hline
-\end{tabular}
 \paragraph{Coverage}
-Kruskal-Wallis chi-squared = 119.45, df = 93, p-value = 0.0337
+% chi-squared = 119.45, df = 93
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{Cov} produces a $p$-value of 0.0337, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{UArt}-\textbf{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_UArt_TDist}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrrr}
+        \toprule
+        & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+        \midrule
+        1 & 1.00 &  &  &  &  &  &  &  &  \\ 
+        2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+        3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+        4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        6 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+        7 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+        8 & 1.00 & 1.00 & 0.12 & 0.09 & 1.00 & 0.72 & 1.00 & 1.00 &  \\ 
+        9 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+        \bottomrule
+      \end{tabular}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{UArt} and \textit{Coverage}}
+    \label{tbl:wilcoxon_baysis_initiator_UArt_Cov}
+\end{table}
+\todo{Explain}
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{c|c|c|c|c|c|c|c}
+        \toprule
+        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+        \midrule
+        0 & 24  & 51.38 & 20.70 & 45.50 & 23 & 96  & 73 \\ 
+        1 & 31  & 53.68 & 18.85 & 50.00 & 28 & 96  & 68 \\ 
+        2 & 345 & 50.71 & 19.95 & 50.00 & 7  & 100 & 93 \\ 
+        3 & 144 & 48.90 & 19.87 & 50.00 & 5  & 98  & 93 \\ 
+        4 & 4   & 58.00 & 21.10 & 59.00 & 36 & 78  & 42 \\ 
+        5 & 15  & 43.27 & 21.32 & 42.00 & 12 & 88  & 76 \\ 
+        6 & 4   & 74.75 & 18.93 & 80.50 & 48 & 90  & 42 \\ 
+        7 & 23  & 59.09 & 25.74 & 62.00 & 18 & 100 & 82 \\ 
+        8 & 107 & 58.85 & 23.92 & 57.00 & 7  & 100 & 93 \\ 
+        9 & 80  & 56.73 & 21.86 & 54.00 & 18 & 100 & 82 \\ 
+        \bottomrule
+      \end{tabular}
+    \caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
+    \label{tbl:descriptives_baysis_initiator_UArt_Cov}
+	%\vspace{-8mm}
+\end{table}
 
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
-\begin{tabular}{rrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
-  \hline
-1 & 1.00 &  &  &  &  &  &  &  &  \\ 
-  2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-  3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-  4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-  5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
-  6 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-  7 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
-  8 & 1.00 & 1.00 & 0.12 & 0.09 & 1.00 & 0.72 & 1.00 & 1.00 &  \\ 
-  9 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-   \hline
-\end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
-\begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 24.00 & 51.38 & 20.70 & 45.50 & 50.15 & 20.76 & 23.00 & 96.00 & 73.00 & 0.49 & -1.07 & 4.23 \\ 
-  X11 & 1.00 & 31.00 & 53.68 & 18.85 & 50.00 & 51.96 & 14.83 & 28.00 & 96.00 & 68.00 & 0.75 & -0.43 & 3.38 \\ 
-  X12 & 1.00 & 345.00 & 50.71 & 19.95 & 50.00 & 50.15 & 22.24 & 7.00 & 100.00 & 93.00 & 0.22 & -0.58 & 1.07 \\ 
-  X13 & 1.00 & 144.00 & 48.90 & 19.87 & 50.00 & 48.85 & 19.27 & 5.00 & 98.00 & 93.00 & 0.02 & -0.27 & 1.66 \\ 
-  X14 & 1.00 & 4.00 & 58.00 & 21.10 & 59.00 & 58.00 & 25.20 & 36.00 & 78.00 & 42.00 & -0.03 & -2.37 & 10.55 \\ 
-  X15 & 1.00 & 15.00 & 43.27 & 21.32 & 42.00 & 42.23 & 23.72 & 12.00 & 88.00 & 76.00 & 0.43 & -0.77 & 5.51 \\ 
-  X16 & 1.00 & 4.00 & 74.75 & 18.93 & 80.50 & 74.75 & 11.12 & 48.00 & 90.00 & 42.00 & -0.52 & -1.87 & 9.46 \\ 
-  X17 & 1.00 & 23.00 & 59.09 & 25.74 & 62.00 & 59.16 & 32.62 & 18.00 & 100.00 & 82.00 & -0.03 & -1.39 & 5.37 \\ 
-  X18 & 1.00 & 107.00 & 58.85 & 23.92 & 57.00 & 58.74 & 25.20 & 7.00 & 100.00 & 93.00 & 0.06 & -0.91 & 2.31 \\ 
-  X19 & 1.00 & 80.00 & 56.73 & 21.86 & 54.00 & 56.03 & 25.20 & 18.00 & 100.00 & 82.00 & 0.25 & -1.10 & 2.44 \\ 
-   \hline
-\end{tabular}
 \paragraph{Time-Loss Car}
-Kruskal-Wallis chi-squared = 525, df = 529, p-value = 0.5409
+% chi-squared = 525, df = 529
+The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{TLCar} produces a $p$-value of 0.5409, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt}. There are no significant groups to identify.
 
 % ------------------------
 % -------- AUrs1 ---------
@@ -387,6 +425,41 @@ Kruskal-Wallis chi-squared = 525, df = 529, p-value = 0.5409
 \Large
 \centerline{\textbf{AUrs1}}
 \normalsize
+This section analyzes the correlated relations of the accident variable \textbf{AUrs} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{AUrs} is shown in \cref{tbl:baysis_dataset_AUrs}. The variable value of group 0, which occurs in the dataset is undefined by BAYSIS and will be therefore neglected for the interpretation.
+% \begin{table}[ht]
+% 	\centering
+% 	\small
+% 	\begin{tabular}{c|l}
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule
+% 		70 & Slippery street due to oil \\
+% 		71 & Slippery street due to dirt \\
+% 		72 & Slippery street due to snow or ice \\
+% 		73 & Slippery street due to rain \\
+% 		74 & Slippery street due to other objects \\
+% 		75 & Cart track due to rain, snow or ice \\
+% 		76 & Other condition of road \\
+% 		77 & Un-regular condition of traffic signs \\
+% 		78 & Bad lighting of street \\
+% 		79 & Bad safety on train crossing \\
+% 		80 & Visibility issues due to fog \\
+% 		81 & Visibility issues due to rain or hail \\
+% 		82 & Visibility issues due to sun or glare \\
+% 		83 & Crosswind \\
+% 		84 & Visibility issues due to storm \\
+% 		85 & Unsafe roadwork \\
+% 		86 & Wild animals \\
+% 		87 & Other animals \\
+% 		88 & Other obstacles \\
+% 		89 & Other causes \\
+% 		% Count[1] 0 = 8435 / Count[2] 0 = 10156
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Descriptive of \textbf{AUrs}}
+% 	\label{table:analysis_encoding_AUrs}
+% 	\vspace{-8mm}
+% \end{table}
 
 \paragraph{Maximal Temporal Extent}
 % chi-squared = 136.52, df = 131
@@ -404,15 +477,15 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{TMax} produces a $p$-
 % chi-squared = 31.402, df = 24
 The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{TMax} produces a $p$-value of 0.1425, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{AUrs1}. There are no significant groups to identify.
 \paragraph{Coverage}
-% chi-squared = 123.97, df = 93, p-value = 0.0176
-
+% chi-squared = 123.97, df = 93
+The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{Cov} produces a $p$-value of 0.0176, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{AUrs1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{AUrs1}-\textbf{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_AUrs1_Cov}. 
 \begin{table}[ht]
 	\small
 	\centering
     \begin{tabular}{rrrrrrrrrrrrr}
-        \hline
+        \toprule
         & 0 & 72 & 73 & 75 & 77 & 81 & 82 & 83 & 84 & 86 & 87 & 88 \\ 
-        \hline
+        \midrule
         72 & 0.01 &  &  &  &  &  &  &  &  &  &  &  \\ 
         73 & 0.24 & 0.63 &  &  &  &  &  &  &  &  &  &  \\ 
         75 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
@@ -425,7 +498,7 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{TMax} produces a $p$-
         87 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
         88 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
         89 & 1.00 & 0.33 & 0.96 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.91 & 1.00 & 1.00 \\ 
-        \hline
+        \bottomrule
     \end{tabular}
     \caption{Pairwise Wilcoxon $T$-test for \textit{AUrs1} and \textit{Coverage}}
     \label{tbl:wilcoxon_baysis_initiator_AUrs1_Cov}
@@ -434,24 +507,24 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{TMax} produces a $p$-
 \begin{table}[ht]
 	\small
 	\centering
-    \begin{tabular}{rrrrrrrrrrrrrr}
-        \hline
-        & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-        \hline
-        X1 & 1.00 & 663.00 & 51.10 & 20.67 & 50.00 & 50.39 & 20.76 & 5.00 & 100.00 & 95.00 & 0.26 & -0.46 & 0.80 \\ 
-        X11 & 1.00 & 20.00 & 72.75 & 26.16 & 87.50 & 76.00 & 9.64 & 20.00 & 100.00 & 80.00 & -0.94 & -0.69 & 5.85 \\ 
-        X12 & 1.00 & 63.00 & 59.16 & 20.47 & 59.00 & 59.43 & 23.72 & 15.00 & 100.00 & 85.00 & -0.08 & -0.81 & 2.58 \\ 
-        X13 & 1.00 & 1.00 & 100.00 &  & 100.00 & 100.00 & 0.00 & 100.00 & 100.00 & 0.00 &  &  &  \\ 
-        X14 & 1.00 & 1.00 & 79.00 &  & 79.00 & 79.00 & 0.00 & 79.00 & 79.00 & 0.00 &  &  &  \\ 
-        X15 & 1.00 & 3.00 & 61.67 & 26.10 & 59.00 & 61.67 & 32.62 & 37.00 & 89.00 & 52.00 & 0.10 & -2.33 & 15.07 \\ 
-        X16 & 1.00 & 5.00 & 43.20 & 7.22 & 45.00 & 43.20 & 8.90 & 33.00 & 51.00 & 18.00 & -0.29 & -1.87 & 3.23 \\ 
-        X17 & 1.00 & 1.00 & 76.00 &  & 76.00 & 76.00 & 0.00 & 76.00 & 76.00 & 0.00 &  &  &  \\ 
-        X18 & 1.00 & 1.00 & 32.00 &  & 32.00 & 32.00 & 0.00 & 32.00 & 32.00 & 0.00 &  &  &  \\ 
-        X19 & 1.00 & 3.00 & 83.00 & 13.00 & 90.00 & 83.00 & 1.48 & 68.00 & 91.00 & 23.00 & -0.38 & -2.33 & 7.51 \\ 
-        X110 & 1.00 & 1.00 & 67.00 &  & 67.00 & 67.00 & 0.00 & 67.00 & 67.00 & 0.00 &  &  &  \\ 
-        X111 & 1.00 & 4.00 & 66.50 & 26.56 & 71.00 & 66.50 & 25.95 & 35.00 & 89.00 & 54.00 & -0.16 & -2.26 & 13.28 \\ 
-        X112 & 1.00 & 11.00 & 43.45 & 11.22 & 42.00 & 43.44 & 8.90 & 25.00 & 62.00 & 37.00 & 0.21 & -0.95 & 3.38 \\ 
-        \hline
+    \begin{tabular}{c|c|c|c|c|c|c|c}
+        \toprule
+        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+        \midrule
+        0  & 663 & 51.10  & 20.67 & 50.00  & 5   & 100 & 95 \\ 
+        72 & 20  & 72.75  & 26.16 & 87.50  & 20  & 100 & 80 \\ 
+        73 & 63  & 59.16  & 20.47 & 59.00  & 15  & 100 & 85 \\ 
+        %75 & 1   & 100.00 &       & 100.00 & 100 & 100 & 0 \\ 
+        %77 & 1   & 79.00  &       & 79.00  & 79  & 79  & 0 \\ 
+        %81 & 3   & 61.67  & 26.10 & 59.00  & 37  & 89  & 527 \\ 
+        %82 & 5   & 43.20  & 7.22  & 45.00  & 33  & 51  & 18 \\ 
+        %83 & 1   & 76.00  &       & 76.00  & 76  & 76  & 0 \\ 
+        %84 & 1   & 32.00  &       & 32.00  & 32  & 32  & 0 \\ 
+        %86 & 3   & 83.00  & 13.00 & 90.00  & 68  & 91  & 23 \\ 
+        %87 & 1   & 67.00  &       & 67.00  & 67  & 67  & 0 \\ 
+        %88 & 4   & 66.50  & 26.56 & 71.00  & 35  & 89  & 54 \\ 
+        89 & 11  & 43.45  & 11.22 & 42.00  & 25  & 62  & 37 \\ 
+        \bottomrule
       \end{tabular}
     \caption{Group descriptives of \textit{AUrs1} and \textit{Coverage}}
     \label{tbl:descriptives_baysis_initiator_AUrs1_Cov}
@@ -463,7 +536,7 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{TMax} produces a $p$-
 The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{TLHGV} produces a $p$-value of 0.1816, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{AUrs1}. There are no significant groups to identify.
 
 \medskip
-Next the second \textbf{AUrs} variable will be tested.
+Next the second \textbf{AUrs} variable \textbf{AUrs2} will be tested.
 \medskip
 
 \paragraph{Maximal Temporal Extent}
@@ -488,11 +561,85 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs2}-\textbf{TDist} produces a $p$
 \Large
 \centerline{\textbf{AufHi}}
 \normalsize
+This section analyzes the correlated relations of the accident variable \textbf{AufHi} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{AufHi} is shown in \cref{tbl:baysis_dataset_AufHi}.
+% \begin{table}[ht]
+% 	\centering
+% 	\small
+% 	\begin{tabular}{c|l} 
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule 
+% 		0 & Single tree \\
+% 		1 & Pillar \\
+% 		2 & Abutment \\
+% 		3 & Guardrail \\
+% 		4 & Other object \\
+% 		5 & No collision \\
+% 		7 & Tree line or alley \\
+% 		8 & Tree group or forest \\
+% 		9 & Busches \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Descriptive of \textbf{AufHi}}
+% 	\label{table:baysis_dataset_AufHi}
+% 	\vspace{-8mm}
+% \end{table}
 
-\paragraph{Maximal temporal Extent:}
-\paragraph{Average temporal Extent:}
-\paragraph{Temporal Distance:}
-\paragraph{Coverage:}
+\paragraph{Maximal Temporal Extent}
+% chi-squared = 160.41, df = 131
+The Kruskal-Wallis rank sum test of \textbf{AufHi}-\textbf{TMax} produces a $p$-value of 0.04118, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{AufHi}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{AufHi}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_AUrs1_Cov}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrr}
+        \hline
+        & 0 & 1 & 2 & 3 & 4 & 5 & 8 \\ 
+        \hline
+        1 & 1.00 &  &  &  &  &  &  \\ 
+        2 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        3 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+        5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+        8 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+        9 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+        \hline
+    \end{tabular}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{AufHi} and \textit{Maximal Temporal Extent}}
+    \label{tbl:wilcoxon_baysis_initiator_AufHi_TMax}
+\end{table}
+\todo{Explain}
+
+\paragraph{Average Temporal Extent}
+% chi-squared = 194.57, df = 175
+The Kruskal-Wallis rank sum test of \textbf{AufHi}-\textbf{TAvg} produces a $p$-value of 0.148, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{AufHi}. There are no significant groups to identify.
+
+\paragraph{Temporal Distance}
+% chi-squared = 52.281, df = 24
+The Kruskal-Wallis rank sum test of \textbf{AufHi}-\textbf{TMax} produces a $p$-value of 0.0007, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{AufHi}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{AufHi}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_AUrs1_Cov}. 
+\begin{table}[ht]
+	\small
+	\centering
+    \begin{tabular}{rrrrrrrrr}
+        \hline
+        & 0 & 1 & 2 & 3 & 4 & 5 & 8 \\ 
+        \hline
+        1 & 1.00 &  &  &  &  &  &  \\ 
+        2 & 1.00 & 1.00 &  &  &  &  &  \\ 
+        3 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+        4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+        5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+        8 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+        9 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+        \hline
+    \end{tabular}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{AufHi} and \textit{Maximal Temporal Extent}}
+    \label{tbl:wilcoxon_baysis_initiator_AufHi_TMax}
+\end{table}
+\todo{Explain}
+
+\paragraph{Coverage}
+% chi-squared = 113.59, df = 93
+The Kruskal-Wallis rank sum test of \textbf{AufHi}-\textbf{Cov} produces a $p$-value of 0.0723, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{AufHi}. There are no significant groups to identify.
 
 % ------------------------
 % -------- Char1 ---------
@@ -501,7 +648,9 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs2}-\textbf{TDist} produces a $p$
 \centerline{\textbf{Char1}}
 \normalsize
 
-\paragraph{Temporal Distance:}
+\paragraph{Temporal Distance}
+Kruskal-Wallis chi-squared = 33.449, df = 24, p-value = 0.09495
+The Kruskal-Wallis rank sum test of \textbf{AufHi}-\textbf{Cov} produces a $p$-value of 0.0723, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{AufHi}. There are no significant groups to identify.
 
 % ------------------------
 % -------- Lich1 ---------
@@ -509,17 +658,33 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs2}-\textbf{TDist} produces a $p$
 \Large
 \centerline{\textbf{Lich1}}
 \normalsize
+This section analyzes the correlated relations of the accident variable \textbf{Lich1} as well as \textbf{Lich2} and introduces a initial interpretation of each significant correlation. The encoding and description of the variable \textbf{Lich} is shown in \cref{tbl:baysis_dataset_AufHi}.
+% \begin{table}[ht]
+% 	\centering
+% 	\small
+% 	\begin{tabular}{c|c|c|c|l}
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule 
+% 		0 & Daylight \\
+% 		1 & Noon \\
+% 		2 & Darkness \\
+% 		3 & Street lighting working \\
+% 		4 & Street lighting not working \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Descriptive of \textbf{Lich}}
+% 	\label{tbl:baysis_dataset_Lich}
+% 	\vspace{-8mm}
+% \end{table} 
 
-\paragraph{Temporal Distance:}
+\paragraph{Temporal Distance}
+Kruskal-Wallis chi-squared = 32.985, df = 24, p-value = 0.1044
+The Kruskal-Wallis rank sum test of \textbf{Lich1}-\textbf{Cov} produces a $p$-value of 0.0723, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Lich1}. There are no significant groups to identify.
 
-% ------------------------
-% -------- Lich2 ---------
-% ------------------------
-\Large
-\centerline{\textbf{Lich2}}
-\normalsize
-
-\paragraph{Temporal Distance:}
+\paragraph{Temporal Distance}
+Kruskal-Wallis chi-squared = 31.941, df = 24, p-value = 0.1285
+The Kruskal-Wallis rank sum test of \textbf{Lich2}-\textbf{Cov} produces a $p$-value of 0.0723, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Lich2}. There are no significant groups to identify.
 
 % ------------------------
 % -------- Zust1 ---------
@@ -527,8 +692,50 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs2}-\textbf{TDist} produces a $p$
 \Large
 \centerline{\textbf{Zust1}}
 \normalsize
+This section analyzes the correlated relations of the accident variable \textbf{Zust} and introduces a initial interpretation of each significant correlation. The encoding and description of the variable \textbf{Zust} is shown in \cref{tbl:baysis_dataset_Zust}.
+% \begin{table}[ht]
+% 	\centering
+% 	\small
+% 	\begin{tabular}{c|c|c|c|l}
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule 
+% 		0 & Dry \\ 
+%  		1 & Wet \\ 
+%  		2 & Ice \\
+%  		3 & Slippery (oil, dirt, ...)  \\
+% 	\end{tabular}
+% 	\caption{Descriptive of \textbf{Zust}}
+% 	\label{tbl:baysis_dataset_Zust}
+% 	\vspace{-8mm}
+% \end{table}
 
 \paragraph{Coverage}
+Kruskal-Wallis chi-squared = 132.32, df = 93, p-value = 0.004638
+
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rrrr}
+  \hline
+ & -1 & 0 & 1 \\ 
+  \hline
+0 & 1.00 &  &  \\ 
+  1 & 1.00 & 0.04 &  \\ 
+  2 & 1.00 & 0.00 & 0.01 \\ 
+   \hline
+\end{tabular}
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rrrrrrrrrrrrrr}
+  \hline
+ & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+  \hline
+X1 & 1.00 & 2.00 & 53.50 & 65.76 & 53.50 & 53.50 & 68.94 & 7.00 & 100.00 & 93.00 & 0.00 & -2.75 & 46.50 \\ 
+  X11 & 1.00 & 549.00 & 50.74 & 20.32 & 49.00 & 50.06 & 22.24 & 6.00 & 100.00 & 94.00 & 0.27 & -0.52 & 0.87 \\ 
+  X12 & 1.00 & 208.00 & 55.35 & 21.35 & 55.00 & 54.92 & 22.24 & 5.00 & 100.00 & 95.00 & 0.16 & -0.59 & 1.48 \\ 
+  X13 & 1.00 & 18.00 & 74.06 & 26.80 & 87.50 & 75.94 & 9.64 & 18.00 & 100.00 & 82.00 & -1.05 & -0.51 & 6.32 \\ 
+   \hline
+\end{tabular}
 
 % ------------------------
 % -------- Zust2 ---------
@@ -537,8 +744,31 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs2}-\textbf{TDist} produces a $p$
 \centerline{\textbf{Zust2}}
 \normalsize
 
-\paragraph{Average temporal Extent:}
-\paragraph{Average spatial Extent:}
+\paragraph{Average Temporal Extent}
+Kruskal-Wallis chi-squared = 364.94, df = 175, p-value = 1.858e-15
+
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rr}
+  \hline
+ & -1 \\ 
+  \hline
+2 & 0.04 \\ 
+   \hline
+\end{tabular}
+% latex table generated in R 4.0.2 by xtable 1.8-4 package
+% 
+\begin{tabular}{rrrrrrrrrrrrrr}
+  \hline
+ & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+  \hline
+X1 & 1.00 & 770.00 & 66.75 & 64.06 & 52.00 & 56.26 & 31.13 & 4.00 & 920.00 & 916.00 & 5.04 & 47.48 & 2.31 \\ 
+  X11 & 1.00 & 7.00 & 182.14 & 172.87 & 113.00 & 182.14 & 100.82 & 15.00 & 426.00 & 411.00 & 0.57 & -1.67 & 65.34 \\ 
+   \hline
+\end{tabular}
+
+\paragraph{Average Spatial Extent}
+Kruskal-Wallis chi-squared = 636.17, df = 727, p-value = 0.9933
 
 % ------------------------
 % -------- Month ---------
@@ -546,7 +776,16 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs2}-\textbf{TDist} produces a $p$
 \Large
 \centerline{\textbf{Month}}
 \normalsize
+This section analyzes the correlated relations of the accident variable \textbf{Month}.
 
-\paragraph{Maximal spatial Extent:}
-\paragraph{Coverage:}
-\paragraph{Time-loss HGV:}
+\paragraph{Maximal Spatial Extent}
+% chi-squared = 732.66, df = 720
+The Kruskal-Wallis rank sum test of \textbf{Month}-\textbf{TMax} produces a $p$-value of 0.3635, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Month}. There are no significant groups to identify.
+
+\paragraph{Coverage}
+% chi-squared = 97.084, df = 93
+The Kruskal-Wallis rank sum test of \textbf{Month}-\textbf{Cov} produces a $p$-value of 0.3655, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Month}. There are no significant groups to identify.
+
+\paragraph{Time-loss HGV}
+% chi-squared = 396.82, df = 391
+The Kruskal-Wallis rank sum test of \textbf{Month}-\textbf{TLHGV} produces a $p$-value of 0.4086, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Month}. There are no significant groups to identify.

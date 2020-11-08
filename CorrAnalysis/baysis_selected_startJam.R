@@ -71,7 +71,7 @@ runAnalysis(paste(path,"rstudio/AUrs1.txt",sep = ""), "AUrs1", list)
 #################
 
 list <- c("TempMax","TempAvg","SpatAvg","TempDist")
-runAnalysis(paste(path,"rstudio/AUrs1.txt",sep = ""), "AUrs1", list)
+runAnalysis(paste(path,"rstudio/AUrs2.txt",sep = ""), "AUrs2", list)
 
 #################
 ##### AufHi #####

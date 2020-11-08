@@ -78,7 +78,7 @@ runAnalysis(paste(path,"rstudio/AufHi.txt",sep = ""), "AufHi", list)
 #################
 
 list <- c("Coverage")
-runAnalysis(paste(path,"rstudio/Lich1.txt",sep = ""), "Coverage", list)
+runAnalysis(paste(path,"rstudio/Lich1.txt",sep = ""), "Lich1", list)
 
 #################
 ##### WoTag #####

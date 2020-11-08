@@ -402,7 +402,7 @@ The $p$-value can than be comprised by comparing $\chi^2$ to a $\chi^2$-distribu
 
 \section{Post Hoc}
 \label{correlation_posthoc}
-In the case of a relation of a categorical variable, the correlation effect size its significance do not provided any statement on which categories are related. This need to be evaluated with a Post Hoc test. In our case the Post Hoc test is based on two separated test. First the variables will be tested for significancy with a Kruskal-Wallis h-test. 
+In the case of a relation of a categorical variable, the correlation effect size its significance do not provided any statement on which categories are related. This need to be evaluated with a Post Hoc test. In our case the Post Hoc test is based on two separated test. First the variables will be tested for significancy with a Kruskal-Wallis rank sum test. 
 
 % https://de.wikipedia.org/wiki/Kruskal-Wallis-Test
 % https://www.sciencedirect.com/topics/nursing-and-health-professions/kruskal-wallis-test
@@ -412,7 +412,7 @@ In the case of a relation of a categorical variable, the correlation effect size
 	h = \frac{12}{n(n+1)}\sum_{h}{\frac{S_h^2}{n_h}}-3(n+1)
 \end{equation}
 
-For the Kruskal-Wallis H-test applies the following. The higher value of $h$, the higher the variance between the unique variables. A high $h$ supports a already found correlation but must be tested for significance with $\chi^2$, defined in \autoref{correlation_significance}. If the significance, or $p$-value is larger than the defined $\alpha$, the null hypothesis can be rejected, which means the correlation, or variance between the groups are significant. For the identification of which groups create this significant variance, the following Wilcoxon-Mann-Whitney, sometimes also just called Wilcoxon $T$-test is applied pairwise.
+For Kruskal-Wallis $h$-test applies the following. The higher value of $h$, the higher the variance between the unique variables. A high $h$ supports a already found correlation but must be tested for significance with $\chi^2$, defined in \autoref{correlation_significance}. If the significance, or $p$-value is larger than the defined $\alpha$, the null hypothesis can be rejected, which means the correlation, or variance between the groups are significant. For the identification of which groups create this significant variance, the following Wilcoxon-Mann-Whitney, sometimes also just called Wilcoxon $T$-test is applied pairwise.
 
 % https://de.wikipedia.org/wiki/Wilcoxon-Mann-Whitney-Test
 % https://pythonfordatascienceorg.wordpress.com/wilcoxon-sign-ranked-test-python/

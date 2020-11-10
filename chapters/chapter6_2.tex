@@ -199,6 +199,27 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{SAvg} produces a $p$-va
 \Large
 \centerline{\textbf{Typ}}
 \normalsize
+This section analyzes the correlated relations of the accident variable \textbf{Typ} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}.
+% \begin{table}[ht]
+% 	\centering
+% 	\tiny
+% 	\begin{tabular}{c|l} 
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule
+%  		1 & Driving accident \\ 
+%  		2 & Turning accident \\
+%  		3 & Merging / Crossing accident \\
+%  		4 & Crossing over accident \\
+%  		5 & Accident in standing traffic \\
+%  		6 & Accident in straight traffic \\
+% 		7 & Other \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Encoding of \textbf{Typ}}
+% 	\label{table:analysis_encoding_Kat}
+% 	%\vspace{-8mm}
+% \end{table}
 
 \paragraph{Average spatial Extent}
 % chi-squared = 739.95, df = 727
@@ -224,7 +245,8 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-v
     \caption{Pairwise Wilcoxon $T$-test for \textit{Typ} and \textit{Temporal Distance}}
     \label{tbl:wilcoxon_baysis_initiator_Typ_TDist}
 \end{table}
-\todo{Explain}
+The significance matrix \cref{tbl:wilcoxon_baysis_initiator_Typ_TDist} shows that group 6 differs from group 1 and group 7 differs from 6. The descriptives from \cref{tbl:descriptives_baysis_initiator_Typ_TDist} also shows that the temporal distance in group 1 and 7 is 25\,\% higher than in group 6. Group 3 also shows a substantial gap in $\bar{x}$
+but only is barely significance with $p=.05$. Because the groups of $driving$ and $straight traffic$ accidents are very similar, there is no clear interpretation to be drawn.
 \begin{table}[ht]
 	\small
 	\centering
@@ -234,8 +256,8 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-v
         \midrule
         1 & 181 & 11.40 & 6.38 & 10.00 & 1  & 24 & 23 \\ 
         3 & 24  & 7.67  & 6.06 & 7.00  & 1  & 22 & 21 \\ 
-        4 & 4   & 14.00 & 3.92 & 13.50 & 10 & 19 & 9 \\ 
-        5 & 2   & 4.50  & 3.54 & 4.50  & 2  & 7  & 5 \\ 
+        %4 & 4   & 14.00 & 3.92 & 13.50 & 10 & 19 & 9 \\ 
+        %5 & 2   & 4.50  & 3.54 & 4.50  & 2  & 7  & 5 \\ 
         6 & 496 & 9.20  & 5.88 & 8.00  & 0  & 24 & 24 \\ 
         7 & 70  & 12.27 & 7.09 & 11.00 & 0  & 24 & 24 \\ 
         \bottomrule
@@ -255,6 +277,31 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{Cov} produces a $p$-val
 \Large
 \centerline{\textbf{UArt1}}
 \normalsize
+This section analyzes the correlated relations of the accident variable \textbf{UArt} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{UArt} is shown in \cref{tbl:baysis_dataset_UArt}. 
+% \begin{table}[ht]
+% 	\centering
+% 	\tiny
+% 	\begin{tabular}{c|l} 
+% 		\toprule
+% 		Code & Description \\ 
+% 		\midrule
+%  		1 & Collision with starting, standing or stopping vehicle  \\ 
+%  		2 & Collision with ahead and waiting vehicle  \\
+%  		3 & Collision with vehicle on separate lane in same direction  \\
+%  		4 & Collision with vehicle going in opposite direction  \\
+%  		5 & Collision with turning or crossing vehicle  \\
+%  		6 & Collision between vehicle and pedestrian  \\
+%  		7 & Collision with obstacle  \\
+%  		8 & Deviation to the right  \\
+%  		9 & Deviation to the left  \\
+% 		0 & Other  \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Descriptive of \textbf{UArt}}
+% 	\label{table:analysis_encoding_UArt}
+% 	%\vspace{-8mm}
+% \end{table}
+
 
 \paragraph{Maximal Temporal Extent}
 % chi-squared = 184.29, df = 131

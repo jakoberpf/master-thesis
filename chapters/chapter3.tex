@@ -414,6 +414,8 @@ In the case of a relation of a categorical variable the correlation effect size 
 	h = \frac{12}{n(n+1)}\sum_{h}{\frac{S_h^2}{n_h}}-3(n+1)
 \end{equation}
 
+\medskip
+
 For Kruskal-Wallis $h$-test the following rules apply. The higher the value of $h$, the higher is the variance between the unique variables. A high $h$ supports an already found correlation, but must be tested for significance with $\chi^2$ defined in \cref{correlation_significance}. If the significance or $p$-value is larger than $\alpha$ the null hypothesis can be rejected. This implies that the correlation or variance between the groups are significant. For the identification of which groups create this significant variance the following Wilcoxon-Mann-Whitney, sometimes also called Wilcoxon $T$-test is applied pairwise.
 
 % https://de.wikipedia.org/wiki/Wilcoxon-Mann-Whitney-Test
@@ -422,4 +424,7 @@ The Wilcoxon $T$-test is a non-parametric univariate alternative to the dependen
 
 These identified groups are considered to have a significant difference to the other groups and therefore can predictably point to a measurement characteristic from a category or vice versa.
 
-% https://statistikguru.de/spss/mann-whitney-u-test/effektstaerke-berechnen-3.html
+\todo{Ergänze Effektstärke für Mann-Whitney-U, wenn genügenn Zeit für Implementierung}
+%https://statistikguru.de/spss/mann-whitney-u-test/effektstaerke-berechnen-3.html
+
+

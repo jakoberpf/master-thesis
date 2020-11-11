@@ -46,3 +46,5 @@ TempAvg
 SpatAvg
 pq
 pqi
+Wilcoxon
+Kruskal-Wallis

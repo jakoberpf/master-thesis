@@ -20,7 +20,7 @@ A system capable of the described mentioned functionalities would likely consist
 The second component in charge of detecting \glspl{jam} as well as incident, requires input data like speed, volume, occupancy to represent the traffic situation and incident reports to define incident characteristics. The next component would then analyze the resulting dataset to find characteristic features of the jams and incidents, which will be determined in this thesis. In case the analysis of the characteristic shows a possible and imminent event it would trigger the last component to initiate appropriate controlling actions and prepare incident responses. In the following chapters of this introduction section, the reader will be introduced to the concepts and systems used to cover the input and output requirements in this thesis.
 
 \section{Continuous Floating Data}
-
+\label{introduction_continuous_floating_data}
 To detect \glspl{jam} continuous data about the speed or movement of the vehicle on the road is necessary. This kind of information can be collected through a variety of different systems to represent a real-time or at least current picture of the traffic situation. 
 
 The current street network of Bavaria heavily depends on stationary sensors to assess the traffic situation. This includes inductive loops, infrared or radar detectors which can provide traffic indicators like volume, speed, time gaps, jams, density and many others. The data collected with just stationary sensors can only describe the traffic trends restricted to their location and coverage which requires complex simulations and modeling to aggregate data for the missing areas where no sufficient coverage can be provided. Adding to this is the fluctuating result set quality which depends on the input data and simulation model quality. Especially highways are equipped with stationary sensors but the lower index streets network is only covered by a fragmented net of detectors with distances of up to 100\,km between detectors \parencite{INDRIX2015}. Fortunately, nowadays cars as well as drivers and riders are equipped with technology that allows real time tracking and comprehensive data collection. Automobiles can gather information from the build in sensors as well as the on-board GPS. Even mobile devices from drivers and riders can be used to collect location and movement data. \parencite{Randelhoff2016}
@@ -34,6 +34,7 @@ In contrast to \acrshort{fcd}, \acrlong{fpd} does not need an on-board GPS or ca
 Another type of floating data type is \acrfull{fco}. \acrshort{fco} does not only collect it's own \acrshort{fcd} but also data about it's surroundings with the built-in sensors. This includes the automatic recognition of cross- or opposite traffic, traffic volume or relative speeds to other cars. This additional data not only add detail but also allow for correctional fusion algorithms to reduce uncertainties or errors in the pure \acrshort{fcd}. \parencite{Randelhoff2016}
 
 \section{Street Information Systems}
+\label{introduction_street_information_systems}
 
 Besides of having a real-time or current picture of the traffic situation, the concept of the thesis also relies on information about current disturbances or possible triggers of disturbances. 
 
@@ -44,7 +45,7 @@ For disturbances in form of accidents the \acrfull{baysis}, a publicly available
 Another type of disturbance to consider is roadworks, for which an export from the \acrfull{arbis}, a software tool and database used by the Bavarian infrastructure ministry, will be consulted. The system is used to collect and archive all current, planned and passed roadwork and maintenance projects on the Bavarian state street net-work. With the collected information from \acrshort{arbis}, an effective, economic and safe execution of roadworks can be achieved. Furthermore \acrshort{arbis} can provide detailed report exports about current projects to the Bavarian traffic information office and traffic information channels. \parencite{trafficon2017}
 
 \section{Traffic Status Information}
-
+\label{introduction_traffic_status_information}
 To deliver information from traffic management systems to the road users traffic messaging channels can be used. Three known examples are \acrfull{rtti}, \acrfull{tmc} and \acrfull{atis}.
 
 The \acrshort{tmc} is a messenger system for jams and other traffic incidents. The public available service is free to use and publishes current congestion notifications in compatible navigation system and announcements in the local radio channels. In the scope of the \acrshort{tmc} the road network is split into \acrshort{tmc} sections. These sections are used to define the spatial location of the incident to report and typical start or end with road linkups. More detailed Incident information is obtained from the police or reports from traffic participants which adds a considerable before publication delay. It is therefore spatial and temporal to rather imprecise. \parencite{LAPID2020}

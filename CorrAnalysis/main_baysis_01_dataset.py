@@ -91,10 +91,8 @@ if __name__ == '__main__':
     plt.figure(figsize=(width, height * 0.9))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title('Histogram of accidents per month')
-    plt.ylabel('Count')
-    plt.xlabel('Month of 2019')
     ax = sns.countplot(x='Month', data=baysis_original, palette='Spectral', order=months)
+    plt.xlabel("")
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
     if show_plot:
@@ -109,11 +107,9 @@ if __name__ == '__main__':
     plt.figure(figsize=(width * 1.2, height * 0.9))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title('Histogram of accidents per highways')
-    plt.ylabel('Count')
-    plt.xlabel('Highway')
     ax = sns.countplot(x='Strasse', data=baysis_original, palette='Spectral', order=baysis_original['Strasse']
                        .value_counts().index)
+    plt.xlabel("")
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
     if show_plot:

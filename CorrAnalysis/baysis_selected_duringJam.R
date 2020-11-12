@@ -57,7 +57,7 @@ runAnalysis(paste(path,"rstudio/UArt1.txt",sep = ""), "UArt1", list)
 #################
 
 list <- c("SpatMax")
-runAnalysis(paste(path,"rstudio/UArt1.txt",sep = ""), "UArt1", list)
+runAnalysis(paste(path,"rstudio/UArt2.txt",sep = ""), "UArt2", list)
 
 #################
 ##### AufHi #####

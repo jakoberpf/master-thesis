@@ -1,7 +1,7 @@
-[1] "############ SpatMax ############"
+[1] "############ SpatAvg ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 659.02, df = 642, p-value = 0.3122
+Kruskal-Wallis chi-squared = 667.93, df = 647, p-value = 0.2762
 

@@ -5,10 +5,10 @@
 data:  encoded[[main]] by encoded[[param]]
 Kruskal-Wallis chi-squared = 182.09, df = 168, p-value = 0.2165
 
-[1] "############ SpatMax ############"
+[1] "############ SpatAvg ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 432.33, df = 427, p-value = 0.419
+Kruskal-Wallis chi-squared = 437.95, df = 436, p-value = 0.4647
 

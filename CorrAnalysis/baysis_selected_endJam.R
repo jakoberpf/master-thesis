@@ -42,7 +42,7 @@ runAnalysis(paste(path,"rstudio/Strasse.txt",sep = ""), "Strasse", list)
 ##### Kat #####
 ###############
 
-list <- c("TempMax","SpatMax")
+list <- c("TempMax","SpatAvg")
 runAnalysis(paste(path,"rstudio/Kat.txt",sep = ""), "Kat", list)
 
 #################

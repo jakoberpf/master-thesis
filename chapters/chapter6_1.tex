@@ -12,7 +12,7 @@ The correlation matrix table for the congestion-accident matched dataset (see \c
 		Category & Strong \\
 		\midrule
 		Strasse & TMax, TAvg, SMax, SAvg, TDist, SDist, Cov \\ 
- 		Kat & TMax, TAvg, SAvg, TDist \\ 
+ 		Kat & TMax, TAvg, SAvg, TDist \\
  		Typ & TDist, Cov \\
  		%Betei & & \\
  		UArt1 & SAvg, TDist, Cov \\
@@ -66,8 +66,20 @@ Next we need to verify that the correlation is significant and what the correlat
 \normalsize
 This section analyzes the correlated relations of the accident variable \textbf{Strasse} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered.
 
-\paragraph{Maximal Temporal Extent}
-% $\chi^2 = 324.16$, $df = 210$
+
+\paragraph{Temporal Distance}
+%chi-squared = 32.385, df = 24
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TDist} produces a $p$-value of 0.1177, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
+\paragraph{Spatial Distance}
+%chi-squared = 235.74, df = 219
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SDist} produces a $p$-value of 0.2084, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
+
+
+
+
+
+
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TMax} produces a $p$-value of 0.000006, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_TMax}. 
 \begin{table}[ht]
 	\tiny
@@ -98,7 +110,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TMax} produces a $p
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend. The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_TMax} show that the mean value of A3 is 27\,\% - 57\,\% higher than the means of A6, A7, A9, A70, A73, A92, A94 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on the A6, A9, A7, A70, A73, A92, A94 and A96.
+\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -113,9 +125,9 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TMax} produces a $p
 		A96 & 156 & 117.94 & 80.93 & 106.50 & 12.00 & 384.00 & 372.00   \\ 
 		A7 & 130 & 153.37 & 194.10 & 102.00 & 9.00 & 1341.00 & 1332.00  \\ 
 		A73 & 129 & 125.95 & 135.01 & 93.00 & 12.00 & 1323.00 & 1311.00  \\ 
-		%A99 & 116 & 169.09 & 136.72 & 138.00 & 15.00 & 681.00 & 666.00  \\ 
+		A99 & 116 & 169.09 & 136.72 & 138.00 & 15.00 & 681.00 & 666.00  \\ 
 		A92 & 66 & 103.86 & 65.69 & 87.00 & 18.00 & 354.00 & 336.00 \\ 
-		%A93 & 21 & 163.57 & 155.71 & 111.00 & 36.00 & 588.00 & 552.00   \\ 
+		A93 & 21 & 163.57 & 155.71 & 111.00 & 36.00 & 588.00 & 552.00   \\ 
 		A94 & 37 & 101.59 & 54.60 & 99.00 & 15.00 & 249.00 & 234.00 \\ 
 		%A72 & 1 & 60.00 &  & 60.00 & 60.00 & 60.00 & 0.00 \\ 
 		%A995 & 2 & 28.50 & 27.58 & 28.50 & 9.00 & 48.00 & 39.00   \\ 
@@ -129,9 +141,8 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TMax} produces a $p
 	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
 	%\vspace{-8mm}
 \end{table}
+The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_TMax} show that the mean value of A3 is 27\,\% - 57\,\% higher than the means of A6, A7, A9, A70, A73, A92, A94 and A96. It can be interpreted that accidents on the A3 are associated with significantly longer (temporal) jams than on the A6, A9, A7, A70, A73, A92, A94 and A96.
 
-\paragraph{Average Temporal Extent}
-%chi-squared = 324.97, df = 245
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p$-value of 0.000466, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_TAvg}. 
 \begin{table}[ht]
 	\tiny
@@ -162,7 +173,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Average Temporal Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Strasse_TAvg}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TAvg} shows, that the groups A73, A99 and A96 differ from group A3. There is no distinctive general trend. The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_TAvg} show that the mean value of A3 is about $\frac{1}{3}$ higher than the means of A73, A99 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on A73, A99 and A96.
+\cref{tbl:wilcoxon_baysis_matched_Strasse_TAvg} shows, that the groups A73, A99 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -171,16 +182,16 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\  
 		\midrule
 		A3 & 574 & 89.71 & 98.77 & 65.00 & 4.00 & 1260.00 & 1256.00 \\ 
-		%A6 & 127 & 69.94 & 65.86 & 56.00 & 3.00 & 376.00 & 373.00 \\ 
-		%A9 & 466 & 72.92 & 64.55 & 54.00 & 4.00 & 575.00 & 571.00 \\ 
-		%A70 & 31 & 50.10 & 23.99 & 49.00 & 10.00 & 99.00 & 89.00 \\ 
+		A6 & 127 & 69.94 & 65.86 & 56.00 & 3.00 & 376.00 & 373.00 \\ 
+		A9 & 466 & 72.92 & 64.55 & 54.00 & 4.00 & 575.00 & 571.00 \\ 
+		A70 & 31 & 50.10 & 23.99 & 49.00 & 10.00 & 99.00 & 89.00 \\ 
 		A96 & 156 & 61.18 & 44.23 & 52.50 & 5.00 & 247.00 & 242.00 \\ 
-		%A7 & 130 & 86.55 & 146.82 & 59.50 & 6.00 & 1326.00 & 1320.00 \\ 
+		A7 & 130 & 86.55 & 146.82 & 59.50 & 6.00 & 1326.00 & 1320.00 \\ 
 		A73 & 129 & 54.78 & 42.48 & 45.00 & 6.00 & 274.00 & 268.00 \\ 
 		A99 & 116 & 58.97 & 48.35 & 47.50 & 4.00 & 295.00 & 291.00 \\ 
-		%A92 & 66 & 55.24 & 36.43 & 51.50 & 8.00 & 235.00 & 227.00 \\ 
-		%A93 & 21 & 82.33 & 91.10 & 48.00 & 7.00 & 343.00 & 336.00 \\ 
-		%A94 & 37 & 49.86 & 31.63 & 44.00 & 14.00 & 145.00 & 131.00 \\ 
+		A92 & 66 & 55.24 & 36.43 & 51.50 & 8.00 & 235.00 & 227.00 \\ 
+		A93 & 21 & 82.33 & 91.10 & 48.00 & 7.00 & 343.00 & 336.00 \\ 
+		A94 & 37 & 49.86 & 31.63 & 44.00 & 14.00 & 145.00 & 131.00 \\ 
 		%A72 & 1 & 23.00 &  & 23.00 & 23.00 & 23.00 & 0.00 \\ 
 		%A995 & 2 & 24.00 & 21.21 & 24.00 & 9.00 & 39.00 & 30.00 \\ 
 		%A95 & 4 & 37.25 & 22.82 & 37.50 & 12.00 & 62.00 & 50.00 \\ 
@@ -193,9 +204,8 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p
 	\label{tbl:descriptives_baysis_matched_Strasse_TAvg}
 	%\vspace{-8mm}
 \end{table}
+The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_TAvg} show that the mean value of A3 is about $\frac{1}{3}$ higher than the means of A73, A99 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on A73, A99 and A96.
 
-\paragraph{Maximal Spatial Extent}
-%chi-squared = 1804.8, df = 1516
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p$-value of 0.000003, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_SMax}.
 \begin{table}[ht]
 	\tiny
@@ -226,7 +236,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Spatial Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Strasse_SMax}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_SMax} shows, that the groups A7, A9, A70, A73, A92, A94 and A96 differ from group A3. The groups A73 and A92 further differ from group A6 and A9. The group A99 differs from group A73 and group A99 differs from A92. There is no distinctive general trend. The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_SMax} show that the mean of A3 is 44\,\% - 66\,\% higher than the means of A7, A9, A70, A73, A92, A94 and A96. It also shows that the groups A6, A9 and A99 have a up to 50\,\% higher mean than the groups A73 and A92. We can interpret that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96.
+\cref{tbl:wilcoxon_baysis_matched_Strasse_SMax} shows, that the groups A7, A9, A70, A73, A92, A94 and A96 differ from group A3. The groups A73 and A92 further differ from group A6 and A9. The group A99 differs from group A73 and group A99 differs from A92. There is no distinctive general trend.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -243,7 +253,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p
 		A73 & 129 & 6502.88 & 5033.20 & 5327.00 & 1036.00 & 33764.00 & 32728.00 \\ 
 		A99 & 116 & 13244.02 & 11313.27 & 9439.50 & 1280.00 & 48278.00 & 46998.00 \\ 
 		A92 & 66 & 6186.80 & 4000.10 & 4936.50 & 1176.00 & 23291.00 & 22115.00 \\ 
-		%A93 & 21 & 6765.00 & 4403.32 & 5323.00 & 1244.00 & 16922.00 & 15678.00 \\ 
+		A93 & 21 & 6765.00 & 4403.32 & 5323.00 & 1244.00 & 16922.00 & 15678.00 \\ 
 		A94 & 37 & 6220.38 & 3984.46 & 5768.00 & 1167.00 & 15550.00 & 14383.00 \\ 
 		%A72 & 1 & 3952.00 &  & 3952.00 & 3952.00 & 3952.00 & 0.00 \\ 
 		%A995 & 2 & 1866.50 & 133.64 & 1866.50 & 1772.00 & 1961.00 & 189.00 \\ 
@@ -257,10 +267,9 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p
 	\label{tbl:descriptives_baysis_matched_Strasse_SMax}
 	%\vspace{-8mm}
 \end{table}
+The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_SMax} show that the mean of A3 is 44\,\% - 66\,\% higher than the means of A7, A9, A70, A73, A92, A94 and A96. It also shows that the groups A6, A9 and A99 have a up to 50\,\% higher mean than the groups A73 and A92. We can interpret that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96.
 
-\paragraph{Average Spatial Extent}
-%chi-squared = 1658.6, df = 1497
-The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p$-value of 0.002086, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_SAvg}.
+The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SAvg} produces a $p$-value of 0.002086, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{SAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_SAvg}.
 \begin{table}[ht]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -290,7 +299,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Average Spatial Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Strasse_SAvg}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A70, A73, A92, A93, A94, A96 and A99 differ from group A3. The groups A73, A94 further differ from group A6 as well as A73, A99, A92 and A94 from group A9. There is no distinctive general trend. The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_SAvg} show that the mean of A3 is 45\,\% - 55\,\% higher the means of A70, A73, A92, A93, A94, A96 and A99. It also shows that the means of the groups A6, A9 and A99 is about 30\,\% higher mean than the groups A73 and A94. We can interpret that accidents on the A3, A6, A9 and A99 lead are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99.
+\cref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A70, A73, A92, A93, A94, A96 and A99 differ from group A3. The groups A73, A94 further differ from group A6 as well as A73, A99, A92 and A94 from group A9. There is no distinctive general trend.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -321,17 +330,8 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p
 	\label{tbl:descriptives_baysis_matched_Strasse_SAvg}
 	%\vspace{-8mm}
 \end{table}
+The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_SAvg} show that the mean of A3 is 45\,\% - 55\,\% higher the means of A70, A73, A92, A93, A94, A96 and A99. It also shows that the means of the groups A6, A9 and A99 is about 30\,\% higher mean than the groups A73 and A94. We can interpret that accidents on the A3, A6, A9 and A99 lead are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99.
 
-\paragraph{Temporal Distance}
-%chi-squared = 32.385, df = 24
-The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TDist} produces a $p$-value of 0.1177, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
-
-\paragraph{Spatial Distance}
-%chi-squared = 235.74, df = 219
-The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SDist} produces a $p$-value of 0.2084, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
-
-\paragraph{Coverage}
-%chi-squared = 149.32, df = 95
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$-value of 0.000317, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_Cov}. 
 \begin{table}[ht]
 	\tiny
@@ -362,7 +362,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Coverage}}
 	\label{tbl:wilcoxon_baysis_matched_Strasse_Cov}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A6, A7, A9, A73, A92 and A96 differ from group A3. The group A99 differs from group A6 and groups A96, AA7, A99, A92 differ from group A9. The group A99 also differs from the groups A70, A96, A7 and A73. There is no distinctive general trend. The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_Cov} show that the mean of A3 is 20\,\% - 30\,\% lower than the means of A6, A7, A9, A73, A92 and A96. It also shows that the mean of A6 is about $\frac{1}{3}$ higher than the mean of A99. We can interpret that accidents on the A3, A99 are associated with significantly less denser jams than on A6, A7, A9, A73, A70, A92 and A96.
+\cref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A6, A7, A9, A73, A92 and A96 differ from group A3. The group A99 differs from group A6 and groups A96, AA7, A99, A92 differ from group A9. The group A99 also differs from the groups A70, A96, A7 and A73. There is no distinctive general trend. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -379,8 +379,8 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$
 	  	A73 & 129.00 & 46.49 & 22.88 & 42.00 & 7.00 & 100.00 & 93.00 \\ 
 	  	A99 & 116.00 & 33.21 & 18.03 & 31.00 & 5.00 & 85.00 & 80.00 \\ 
 	  	A92 & 66.00 & 53.15 & 21.80 & 52.50 & 14.00 & 98.00 & 84.00 \\ 
-	  	%A93 & 21.00 & 40.81 & 17.72 & 37.00 & 13.00 & 70.00 & 57.00 \\ 
-	  	%A94 & 37.00 & 47.76 & 23.69 & 44.00 & 11.00 & 88.00 & 77.00 \\ 
+	  	A93 & 21.00 & 40.81 & 17.72 & 37.00 & 13.00 & 70.00 & 57.00 \\ 
+	  	A94 & 37.00 & 47.76 & 23.69 & 44.00 & 11.00 & 88.00 & 77.00 \\ 
 	  	%A72 & 1.00 & 34.00 &  & 34.00 & 34.00 & 34.00 & 0.00 \\ 
 	  	%A995 & 2.00 & 79.00 & 2.83 & 79.00 & 77.00 & 81.00 & 4.00 \\ 
 	  	%A95 & 4.00 & 40.50 & 12.48 & 38.00 & 29.00 & 57.00 & 28.00 \\ 
@@ -393,6 +393,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$
 	\label{tbl:descriptives_baysis_matched_Strasse_Cov}
 	%\vspace{-8mm}
 \end{table}
+The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_Cov} show that the mean of A3 is 20\,\% - 30\,\% lower than the means of A6, A7, A9, A73, A92 and A96. It also shows that the mean of A6 is about $\frac{1}{3}$ higher than the mean of A99. We can interpret that accidents on the A3, A99 are associated with significantly less denser jams than on A6, A7, A9, A73, A70, A92 and A96.
 
 % ----------------------
 % -------- Kat ---------

@@ -15,13 +15,13 @@
 #  SOFTWARE.
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
-import numpy as np
 from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_statistic, set_size, tex_fonts, \
+from func_plot import plot_correlation, tex_fonts, \
     plot_congestion_dist, plot_congestion_scatter
 from func_utils import date_parser, print_welcome
 
@@ -43,6 +43,10 @@ if __name__ == '__main__':
 
     file_prefix = 'baysis_matched'
     file_plot_type = '.pdf'
+
+    ##############
+    ### Import ###
+    ##############
 
     baysis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True,
                                   date_parser=date_parser)
@@ -96,9 +100,9 @@ if __name__ == '__main__':
     # Removing whitespaces
     baysis_matched['Strasse'] = baysis_matched['Strasse'].str.replace(' ', '')
 
-    ##################
-    ### Congestion ###
-    ##################
+    ####################################
+    ### Congestion (Before Cleaning) ###
+    ####################################
 
     plot_congestion_dist(
         ["TempMax",
@@ -110,27 +114,29 @@ if __name__ == '__main__':
          "Coverage",
          "TLCar",
          "TLHGV"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+        baysis_matched, plot_path + 'cong_before_clean/', file_prefix, save_plot, show_plot)
 
-    plot_congestion_scatter(
-        ["TempMax"],
-        ["SpatMax"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+    ################
+    ### Cleaning ###
+    ################
 
-    plot_congestion_scatter(
-        ["TempAvg"],
-        ["SpatAvg"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+    baysis_matched = baysis_matched.drop(baysis_matched[baysis_matched['SpatMax'] > 50000].index)
 
-    plot_congestion_scatter(
-        ["TempDist"],
-        ["SpatDist"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+    ####################################
+    ### Congestion (After Cleaning) ###
+    ####################################
 
-    plot_congestion_scatter(
-        ["TLCar"],
-        ["TLHGV"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+    plot_congestion_dist(
+        ["TempMax",
+         "TempAvg",
+         "SpatMax",
+         "SpatAvg",
+         "TempDist",
+         "SpatDist",
+         "Coverage",
+         "TLCar",
+         "TLHGV"],
+        baysis_matched, plot_path + 'cong_after_clean/', file_prefix, save_plot, show_plot)
 
     ##################
     ### Histograms ###
@@ -248,14 +254,6 @@ if __name__ == '__main__':
                      save=save_plot, filepath=plot_path + file_prefix + '_corr_cramers.pdf',
                      show=show_plot, figsize=(18, 15))
 
-    # Plot statistics/significant matrix
-    # plot_statistic(results.get('significance'), results.get('columns'),
-    #                nominal_columns, dichotomous_columns, ordinal_columns,
-    #                results.get('inf_nan_corr'),
-    #                results.get('columns_single_value'),
-    #                save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
-    #                show=show_plot, figsize=(18, 15))
-
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
@@ -281,14 +279,6 @@ if __name__ == '__main__':
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.pdf',
                      show=show_plot, figsize=(18, 15))
-
-    # Plot statistics/significant matrix
-    # plot_statistic(results.get('significance'), results.get('columns'),
-    #                nominal_columns, dichotomous_columns, ordinal_columns,
-    #                results.get('inf_nan_corr'),
-    #                results.get('columns_single_value'),
-    #                save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
-    #                show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:

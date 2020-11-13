@@ -1049,27 +1049,7 @@ As \cref{tbl:wilcoxon_baysis_matched_AufHi_Cov} shows, only groups of 3 differs 
 \centerline{\textbf{Lich}}
 \normalsize
 This section analyzes the correlated relations of the accident variable \textbf{Lich1} as well as \textbf{Lich2} and introduces a initial interpretation of each significant correlation. The encoding and description of the variable \textbf{Lich} is shown in \cref{tbl:baysis_dataset_AufHi}.
-% \begin{table}[ht]
-% 	\centering
-% 	\small
-% 	\begin{tabular}{c|c|c|c|l}
-% 		\toprule
-% 		Code & Description \\ 
-% 		\midrule 
-% 		0 & Daylight \\
-% 		1 & Noon \\
-% 		2 & Darkness \\
-% 		3 & Street lighting working \\
-% 		4 & Street lighting not working \\
-% 		\bottomrule
-% 	\end{tabular}
-% 	\caption{Descriptive of \textbf{Lich}}
-% 	\label{tbl:baysis_dataset_Lich}
-% 	\vspace{-8mm}
-% \end{table} 
 
-\paragraph{Coverage}
-%chi-squared = 139.81, df = 95
 The Kruskal-Wallis rank sum test of \textbf{Lich1}-\textbf{Cov} produces a $p$-value of 0.0019, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Lich1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Lich1}-\textbf{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Lich1_Cov}. 
 \begin{table}[ht!]
 	\tiny
@@ -1085,7 +1065,7 @@ The Kruskal-Wallis rank sum test of \textbf{Lich1}-\textbf{Cov} produces a $p$-v
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Lich1} and \textit{Coverage}}
 	\label{tbl:wilcoxon_baysis_matched_Lich1_Cov}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Lich1_Cov} shows that only group 2 differs significantly from group 0. With the descriptives from \cref{tbl:descriptives_baysis_matched_Lich1_Cov} it can be stated that accidents during darkness are associated with 18\,\% denser jams than in daylight.
+\cref{tbl:wilcoxon_baysis_matched_Lich1_Cov} shows that only group 2 differs significantly from group 0. 
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -1102,9 +1082,8 @@ The Kruskal-Wallis rank sum test of \textbf{Lich1}-\textbf{Cov} produces a $p$-v
 	\label{tbl:descriptives_baysis_matched_Lich1_Cov}
 	%\vspace{-8mm}
 \end{table}
+With the descriptives from \cref{tbl:descriptives_baysis_matched_Lich1_Cov} it can be stated that accidents during darkness are associated with 18\,\% denser jams than in daylight.
 
-\paragraph{Coverage}
-%chi-squared = 140.55, df = 95
 The Kruskal-Wallis rank sum test of \textbf{Lich2}-\textbf{Cov} produces a $p$-value of 0.0016, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Lich2}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Lich2}-\textbf{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Lich2_Cov}. 
 \begin{table}[ht!]
 	\tiny
@@ -1120,7 +1099,7 @@ The Kruskal-Wallis rank sum test of \textbf{Lich2}-\textbf{Cov} produces a $p$-v
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Lich2} and \textit{Coverage}}
 	\label{tbl:wilcoxon_baysis_matched_Lich2_Cov}
 \end{table}
-Similar to \textit{Lich1} the \cref{tbl:wilcoxon_baysis_matched_Lich2_Cov} only group 4 differs significantly from group 0. With the descriptives from \cref{tbl:descriptives_baysis_matched_Lich2_Cov} it can state like for that accidents in ares where street light are disabled are associated with 18\,\% denser jams than in daylight, like \textit{Lich1}.
+Similar to \textit{Lich1} the \cref{tbl:wilcoxon_baysis_matched_Lich2_Cov} only group 4 differs significantly from group 0. 
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -1137,6 +1116,7 @@ Similar to \textit{Lich1} the \cref{tbl:wilcoxon_baysis_matched_Lich2_Cov} only 
 	\label{tbl:descriptives_baysis_matched_Lich2_Cov}
 	%\vspace{-8mm}
 \end{table}
+With the descriptives from \cref{tbl:descriptives_baysis_matched_Lich2_Cov} it can state like for that accidents in ares where street light are disabled are associated with 18\,\% denser jams than in daylight, like \textit{Lich1}.
 
 % -----------------------
 % -------- Zust ---------

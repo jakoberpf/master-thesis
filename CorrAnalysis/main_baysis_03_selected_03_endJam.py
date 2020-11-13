@@ -15,14 +15,14 @@
 #  SOFTWARE.
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
-import numpy as np
 from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_statistic, set_size, tex_fonts, \
-    plot_congestion_dist, plot_congestion_scatter
+from func_plot import plot_correlation, tex_fonts, \
+    plot_congestion_dist
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -44,10 +44,10 @@ if __name__ == '__main__':
     file_prefix = 'baysis_selected'
     file_plot_type = '.pdf'
 
-    baysis_imported = pd.read_csv(data_path + 'BAYSIS/02_matched/' + work_file, sep=';', decimal=',', parse_dates=True,
-                                  date_parser=date_parser)
+    baysis_read = pd.read_csv(data_path + 'BAYSIS/02_matched/' + work_file, sep=';', decimal=',', parse_dates=True,
+                              date_parser=date_parser)
 
-    baysis_matched = baysis_imported[
+    baysis_import = baysis_read[
         [
             # Congestion Data
             "TempMax",
@@ -104,45 +104,45 @@ if __name__ == '__main__':
             "FeiTag"]].copy()
 
     # Manual data type conversion from str to datetime64
-    baysis_imported['Date'] = pd.to_datetime(baysis_imported['Date'], format='%Y-%m-%d')
+    baysis_read['Date'] = pd.to_datetime(baysis_read['Date'], format='%Y-%m-%d')
 
     # Manual data type conversion from str to int64
-    baysis_matched["TLCar"] = pd.to_numeric(baysis_matched["TLCar"])
-    baysis_matched["TLHGV"] = pd.to_numeric(baysis_matched["TLHGV"])
-    baysis_matched["TLCar"] = baysis_matched["TLCar"].astype('int64')
-    baysis_matched["TLHGV"] = baysis_matched["TLHGV"].astype('int64')
+    baysis_import["TLCar"] = pd.to_numeric(baysis_import["TLCar"])
+    baysis_import["TLHGV"] = pd.to_numeric(baysis_import["TLHGV"])
+    baysis_import["TLCar"] = baysis_import["TLCar"].astype('int64')
+    baysis_import["TLHGV"] = baysis_import["TLHGV"].astype('int64')
 
     # Add month of roadwork
-    baysis_matched['Month'] = baysis_imported['Date'].dt.strftime('%b')
+    baysis_import['Month'] = baysis_read['Date'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
     # Removing errors in WoTag
     days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
-    baysis_matched['WoTag'].loc[np.invert(baysis_matched['WoTag'].isin(days))] = ''
+    baysis_import['WoTag'].loc[np.invert(baysis_import['WoTag'].isin(days))] = ''
 
     # Removing whitespaces
-    baysis_matched['Strasse'] = baysis_matched['Strasse'].str.replace(' ', '')
+    baysis_import['Strasse'] = baysis_import['Strasse'].str.replace(' ', '')
 
     #################
     ### Selection ###
     #################
 
-    baysis_selected = baysis_matched.loc[
-        (baysis_matched["TempGL"].isin([3, 4, 5]))
+    baysis_selected = baysis_import.loc[
+        (baysis_import["TempGL"].isin([3, 4, 5]))
     ]
 
     baysis_selected = baysis_selected.loc[
-        (baysis_matched["TempIL"].isin([-1, 4, 5]))
+        (baysis_selected["TempIL"].isin([-1, 4, 5]))
     ]
 
     baysis_selected = baysis_selected.loc[
-        (baysis_matched["SpatGL"].isin([2, 3]))
+        (baysis_selected["SpatGL"].isin([2, 3]))
     ]
 
-    ##################
-    ### Congestion ###
-    ##################
+    ####################################
+    ### Congestion (Before Cleaning) ###
+    ####################################
 
     plot_congestion_dist(
         ["TempMax",
@@ -154,49 +154,29 @@ if __name__ == '__main__':
          "Coverage",
          "TLCar",
          "TLHGV"],
-        baysis_matched, plot_path, file_prefix, save_plot, show_plot)
+        baysis_selected, plot_path + 'cong_before_clean/', file_prefix, save_plot, show_plot)
 
-    # plot_congestion_scatter(
-    #     ["TempMax"],
-    #     ["SpatMax"],
-    #     baysis_matched, plot_path, file_prefix, save_plot, show_plot)
-    #
-    # plot_congestion_scatter(
-    #     ["TempAvg"],
-    #     ["SpatAvg"],
-    #     baysis_matched, plot_path, file_prefix, save_plot, show_plot)
-    #
-    # plot_congestion_scatter(
-    #     ["TempDist"],
-    #     ["SpatDist"],
-    #     baysis_matched, plot_path, file_prefix, save_plot, show_plot)
-    #
-    # plot_congestion_scatter(
-    #     ["TLCar"],
-    #     ["TLHGV"],
-    #     baysis_matched, plot_path, file_prefix, save_plot, show_plot)
-    #
-    # locators = ["TempGL",
-    #             "SpatGL",
-    #             "TempIL",
-    #             "SpatIL"]
-    #
-    # for atr in locators:
-    #     plt.figure(figsize=set_size(418, 0.8))
-    #     plt.style.use('seaborn')
-    #     plt.rcParams.update(tex_fonts)
-    #     plt.title('Distribution of ' + atr)
-    #     plt.ylabel('Count')
-    #     baysis_selected.plot.scatter(x='TempMax', y='SpatMax', c=atr, colormap='viridis')
-    #     plt.xlabel(atr)
-    #     if save_plot:
-    #         plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
-    #         if not show_plot:
-    #             plt.close()
-    #     if show_plot:
-    #         plt.show()
-    #     else:
-    #         plt.close()
+    ################
+    ### Cleaning ###
+    ################
+
+    baysis_selected = baysis_selected.drop(baysis_selected[baysis_selected['SpatMax'] > 50000].index)
+
+    ####################################
+    ### Congestion (After Cleaning) ###
+    ####################################
+
+    plot_congestion_dist(
+        ["TempMax",
+         "TempAvg",
+         "SpatMax",
+         "SpatAvg",
+         "TempDist",
+         "SpatDist",
+         "Coverage",
+         "TLCar",
+         "TLHGV"],
+        baysis_selected, plot_path + 'cong_after_clean/', file_prefix, save_plot, show_plot)
 
     ##################
     ### Histograms ###
@@ -262,15 +242,16 @@ if __name__ == '__main__':
     ###################
 
     # define column types
-    nominal_columns = ["Str", "Kat", "Typ",
-                       "UArt1", "UArt2",
-                       "AUrs1", "AUrs2",
-                       "AufHi",
-                       "Char1", "Char2",
-                       "Lich1", "Lich2",
-                       "Zust1", "Zust2",
-                       "WoTag",
-                       'Month']
+    nominal_columns = [
+        "Str", "Kat", "Typ",
+        "UArt1", "UArt2",
+        "AUrs1", "AUrs2",
+        "AufHi",
+        "Char1", "Char2",
+        "Lich1", "Lich2",
+        "Zust1", "Zust2",
+        "WoTag",
+        'Month']
     dichotomous_columns = ["Alkoh"]
     ordinal_columns = ["Betei", "Fstf", "FeiTag"]
 
@@ -320,14 +301,6 @@ if __name__ == '__main__':
                      save=save_plot, filepath=plot_path + file_prefix + '_corr_cramers.pdf',
                      show=show_plot, figsize=(18, 15))
 
-    # Plot statistics/significant matrix
-    # plot_statistic(results.get('significance'), results.get('columns'),
-    #                nominal_columns, dichotomous_columns, ordinal_columns,
-    #                results.get('inf_nan_corr'),
-    #                results.get('columns_single_value'),
-    #                save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
-    #                show=show_plot, figsize=(18, 15))
-
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
@@ -353,14 +326,6 @@ if __name__ == '__main__':
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.pdf',
                      show=show_plot, figsize=(18, 15))
-
-    # Plot statistics/significant matrix
-    # plot_statistic(results.get('significance'), results.get('columns'),
-    #                nominal_columns, dichotomous_columns, ordinal_columns,
-    #                results.get('inf_nan_corr'),
-    #                results.get('columns_single_value'),
-    #                save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
-    #                show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:

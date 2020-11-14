@@ -3,7 +3,7 @@
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 364.94, df = 175, p-value = 1.858e-15
+Kruskal-Wallis chi-squared = 364.47, df = 175, p-value = 2.107e-15
 
 % latex table generated in R 4.0.2 by xtable 1.8-4 package
 % 
@@ -20,7 +20,7 @@ Kruskal-Wallis chi-squared = 364.94, df = 175, p-value = 1.858e-15
   \hline
  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
   \hline
-X1 & 1.00 & 770.00 & 66.75 & 64.06 & 52.00 & 56.26 & 31.13 & 4.00 & 920.00 & 916.00 & 5.04 & 47.48 & 2.31 \\ 
+X1 & 1.00 & 769.00 & 66.71 & 64.09 & 52.00 & 56.24 & 31.13 & 4.00 & 920.00 & 916.00 & 5.04 & 47.46 & 2.31 \\ 
   X11 & 1.00 & 7.00 & 182.14 & 172.87 & 113.00 & 182.14 & 100.82 & 15.00 & 426.00 & 411.00 & 0.57 & -1.67 & 65.34 \\ 
    \hline
 \end{tabular}
@@ -29,5 +29,5 @@ X1 & 1.00 & 770.00 & 66.75 & 64.06 & 52.00 & 56.26 & 31.13 & 4.00 & 920.00 & 916
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 636.17, df = 727, p-value = 0.9933
+Kruskal-Wallis chi-squared = 635.35, df = 726, p-value = 0.9932
 

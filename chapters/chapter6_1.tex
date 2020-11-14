@@ -478,7 +478,7 @@ This section analyzes the correlated relations of the accident variable \textbf{
 
 The Kruskal-Wallis rank sum test of \textbf{Typ}-\textbf{TDist} produces a $p$-value of 0.000554, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Typ}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Typ}-\textbf{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Typ_TDist}. 
 \begin{table}[ht]
-	\small
+	\tiny
 	\centering
 	\begin{tabular}{rrrrrr}
 		\toprule
@@ -496,7 +496,7 @@ The Kruskal-Wallis rank sum test of \textbf{Typ}-\textbf{TDist} produces a $p$-v
 \end{table}
 The $p$-values in \cref{tbl:wilcoxon_baysis_matched_Kat_TDist} show the groups 3 and 6 differ from 1, group 6 and 7 differ from 3 and group 7 differs from 6. The descriptives in \cref{tbl:descriptives_baysis_matched_Typ_TDist} reveal that the groups 1 and 7 have a higher $\bar{x}$ than group 3 and 6. We can interpret that temporal distance of \textit{driving} and \textit{other} accidents is substantial higher than for \textit{merging}, \textit{crossing} and \textit{straight traffic} accidents. 
 \begin{table}[ht]
-	\small
+	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
 		\toprule
@@ -516,40 +516,9 @@ The $p$-values in \cref{tbl:wilcoxon_baysis_matched_Kat_TDist} show the groups 3
 % -----------------------
 % -------- UArt ---------
 % -----------------------
-\Large
-\centerline{\textbf{UArt}}
-\normalsize
-This section analyzes the correlated relations of the accident variable \textbf{UArt} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{UArt} is shown in \cref{tbl:baysis_dataset_UArt}. 
-% \begin{table}[ht]
-% 	\centering
-% 	\tiny
-% 	\begin{tabular}{c|l} 
-% 		\toprule
-% 		Code & Description \\ 
-% 		\midrule
-%  		1 & Collision with starting, standing or stopping vehicle  \\ 
-%  		2 & Collision with ahead and waiting vehicle  \\
-%  		3 & Collision with vehicle on separate lane in same direction  \\
-%  		4 & Collision with vehicle going in opposite direction  \\
-%  		5 & Collision with turning or crossing vehicle  \\
-%  		6 & Collision between vehicle and pedestrian  \\
-%  		7 & Collision with obstacle  \\
-%  		8 & Deviation to the right  \\
-%  		9 & Deviation to the left  \\
-% 		0 & Other  \\
-% 		\bottomrule
-% 	\end{tabular}
-% 	\caption{Descriptive of \textbf{UArt}}
-% 	\label{table:analysis_encoding_UArt}
-% 	%\vspace{-8mm}
-% \end{table}
+\centerheading{UArt}
+This section analyzes the correlated relations of the accident variable \textbf{UArt} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{UArt} is shown in \cref{tbl:baysis_dataset_UArt}. The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{SAvg} produces a $p$-value of 0.2081, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt}. There are no significant groups to identify.
 
-\paragraph{Average Spatial Extent}
-%chi-squared = 1541.3, df = 1497, p-value = 0.2081
-The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{SAvg} produces a $p$-value of 0.2081, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt}. There are no significant groups to identify.
-
-\paragraph{Temporal Distance}
-%chi-squared = 58.116, df = 24, p-value = 0.0001173
 The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{TDist} produces a $p$-value of 0.0001173, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{UArt}-\textbf{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_UArt_TDist}. 
 \begin{table}[ht]
 	\small
@@ -597,8 +566,6 @@ The $p$-values in \cref{tbl:wilcoxon_baysis_matched_UArt_TDist} show that group 
 	%\vspace{-8mm}
 \end{table}
 
-\paragraph{Coverage}
-%chi-squared = 152.54, df = 95, p-value = 0.0001658
 The Kruskal-Wallis rank sum test of \textbf{UArt}-\textbf{Cov} produces a $p$-value of 0.0001658, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{UArt}-\textbf{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_UArt_Cov}.
 \begin{table}[ht]
 	\small

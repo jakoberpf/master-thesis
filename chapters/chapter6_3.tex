@@ -53,20 +53,9 @@ Next we need to verify that the correlation is significant and what the correlat
 % -------- Strasse ---------
 % --------------------------
 \centerheading{Strasse}
+This section analyzes the correlated relations of the accident variable \textit{Strasse}. The correlations of \textit{Strasse} - \textit{SAvg} and \textit{Strasse} - \textit{TLHGV} produces a $p$-value above the $\alpha$-level of .05 in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected for these relations and there are no significant groups to identify.
 
-\paragraph{Average Spatial Extent}
-Kruskal-Wallis chi-squared = 704.4, df = 647, p-value = 0.05831
-
-\paragraph{Time-loss HGV}
-Kruskal-Wallis chi-squared = 391.61, df = 366, p-value = 0.1711
-
-
-
-
-
-\paragraph{Maximal Temporal Extent}
-Kruskal-Wallis chi-squared = 255.99, df = 199, p-value = 0.003967
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TMax} produces a $p$-value of 0.003967, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TMax}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -121,9 +110,7 @@ Kruskal-Wallis chi-squared = 255.99, df = 199, p-value = 0.003967
 	%\vspace{-8mm}
 \end{table}
 
-\paragraph{Average Temporal Extent}
-Kruskal-Wallis chi-squared = 291.56, df = 210, p-value = 0.0001665
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TAvg} produces a $p$-value of 0.0001665, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TAvg}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -178,9 +165,7 @@ Kruskal-Wallis chi-squared = 291.56, df = 210, p-value = 0.0001665
 	%\vspace{-8mm}
 \end{table}
 
-\paragraph{Maximal Spatial Extent}
-Kruskal-Wallis chi-squared = 752.33, df = 642, p-value = 0.001658
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SMax} produces a $p$-value of 0.001658, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_SMax}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -210,24 +195,24 @@ Kruskal-Wallis chi-squared = 752.33, df = 642, p-value = 0.001658
 \begin{table}[ht]
 	\tiny
 	\centering
-	\begin{tabular}{rrrrrrrrrrrrrr}
+	\begin{tabular}{c|c|c|c|c|c|c|c}
 		\toprule
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 		\midrule
 		A3   & 278 & 24884.31 & 35913.14 & 15931.50 & 1566 & 219082 & 217516 \\ 
 		A6   & 37  & 16711.43 & 9518.81  & 14449.00 & 2655 & 40033  & 37378 \\ 
 		A9   & 192 & 13271.42 & 8473.71  & 11654.50 & 1315 & 49765  & 48450 \\ 
-		A70  & 7   & 8698.57  & 2612.81  & 8969.00  & 3852 & 11096  & 7244 \\ 
+		%A70  & 7   & 8698.57  & 2612.81  & 8969.00  & 3852 & 11096  & 7244 \\ 
 		A99  & 63  & 17558.70 & 12223.42 & 14698.00 & 2351 & 48278  & 45927 \\ 
 		A93  & 12  & 8158.42  & 4473.23  & 7461.50  & 2896 & 16922  & 14026 \\ 
 		A94  & 14  & 7277.64  & 4218.45  & 6947.00  & 1206 & 15550  & 14344 \\ 
 		A7   & 35  & 11825.00 & 8885.99  & 9506.00  & 3041 & 43244  & 40203 \\ 
 		A73  & 52  & 7964.98  & 5995.59  & 6559.50  & 1036 & 33764  & 32728 \\ 
 		A96  & 41  & 11825.98 & 6911.19  & 9676.00  & 2006 & 27965  & 25959 \\ 
-		A995 & 1   & 1772.00  &  		 & 1772.00  & 1772 & 1772   & 0 \\ 
+		%A995 & 1   & 1772.00  &  		 & 1772.00  & 1772 & 1772   & 0 \\ 
 		A92  & 21  & 7255.76  & 3637.71  & 7364.00  & 1176 & 13522  & 12346 \\ 
-		A95  & 1   & 4636.00  &  		 & 4636.00  & 4636 & 4636   & 0 \\ 
-		A980 & 1   & 1925.00  &  		 & 1925.00  & 1925 & 1925   & 0 \\ 
+		%A95  & 1   & 4636.00  &  		 & 4636.00  & 4636 & 4636   & 0 \\ 
+		%A980 & 1   & 1925.00  &  		 & 1925.00  & 1925 & 1925   & 0 \\ 
 		\bottomrule
 	  \end{tabular}
     \caption{Group descriptives of \textit{Strasse} and \textit{Maximal Spatial Extent} (Jam Effector)}
@@ -235,10 +220,7 @@ Kruskal-Wallis chi-squared = 752.33, df = 642, p-value = 0.001658
 	%\vspace{-8mm}
 \end{table}
 
-
-\paragraph{Coverage}
-Kruskal-Wallis chi-squared = 127.9, df = 81, p-value = 0.0006961
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{Cov} produces a $p$-value of 0.0006961, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_Cov}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -268,24 +250,24 @@ Kruskal-Wallis chi-squared = 127.9, df = 81, p-value = 0.0006961
 \begin{table}[ht]
 	\tiny
 	\centering
-	\begin{tabular}{rrrrrrrrrrrrrr}
+	\begin{tabular}{c|c|c|c|c|c|c|c}
 		\toprule
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 		\midrule
 		A3   & 278 & 30.76 & 17.01 & 28.00 & 2  & 100 & 98 \\ 
 		A6   & 37  & 30.81 & 16.61 & 25.00 & 9  & 65  & 56 \\ 
 		A9   & 192 & 36.09 & 13.77 & 34.50 & 6  & 86  & 80 \\ 
-		A70  & 7   & 41.71 & 28.46 & 32.00 & 15 & 86  & 71 \\ 
+		%A70  & 7   & 41.71 & 28.46 & 32.00 & 15 & 86  & 71 \\ 
 		A99  & 63  & 26.79 & 14.71 & 25.00 & 7  & 63  & 56 \\ 
 		A93  & 12  & 37.25 & 17.78 & 36.50 & 13 & 70  & 57 \\ 
 		A94  & 14  & 36.79 & 21.00 & 33.50 & 11 & 77  & 66 \\ 
 		A7   & 35  & 45.60 & 25.54 & 42.00 & 6  & 100 & 94 \\ 
 		A73  & 52  & 32.94 & 15.73 & 30.50 & 7  & 77  & 70 \\ 
 		A96  & 41  & 42.90 & 21.63 & 42.00 & 9  & 85  & 76 \\ 
-		A995 & 1   & 81.00 &  	   & 81.00 & 81 & 81  & 0 \\ 
+		%A995 & 1   & 81.00 &  	   & 81.00 & 81 & 81  & 0 \\ 
 		A92  & 21  & 47.71 & 22.04 & 47.00 & 21 & 88  & 67 \\ 
-		A95  & 1   & 57.00 &  	   & 57.00 & 57 & 57  & 0 \\ 
-		A980 & 1   & 80.00 &  	   & 80.00 & 80 & 80  & 0 \\ 
+		%A95  & 1   & 57.00 &  	   & 57.00 & 57 & 57  & 0 \\ 
+		%A980 & 1   & 80.00 &  	   & 80.00 & 80 & 80  & 0 \\ 
 		\bottomrule
 	  \end{tabular}
     \caption{Group descriptives of \textit{Strasse} and \textit{Coverage} (Jam Effector)}
@@ -297,101 +279,92 @@ Kruskal-Wallis chi-squared = 127.9, df = 81, p-value = 0.0006961
 % -------- Kat ---------
 % ----------------------
 \centerheading{Kat}
-The relations of \textbf{Kat}-\textbf{TMax}, \textbf{Kat}-\textbf{TAvg} and \textbf{Kat}-\textbf{SAvg} produce a $p$-value above $\alpha=.05$. The null hypothesizes can't be rejected and there are \textbf{no} significant differences between the groups of \textbf{Kat}. There are no significant groups to identify.
+The relations of \textit{Kat} - \textit{TMax}, \textit{Kat} - \textit{TAvg} and \textit{Kat} - \textit{SAvg} produce a $p$-value above $\alpha=.05$. The null hypothesizes can't be rejected and there are no significant differences between the groups of \textit{Kat}. There are no significant groups to identify.
 
 % --------------------------------
 % -------- UArt1 & UArt2 ---------
 % --------------------------------
 \centerheading{UArt}
-The relations of \textbf{UArt1}-\textbf{SAvg} and \textbf{UArt2}-\textbf{SMax} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are \textbf{no} significant differences between the groups of \textbf{UArt1} and \textbf{UArt2}. There are no significant groups to identify.
+The relations of \textit{UArt1} - \textit{SAvg} and \textit{UArt2} - \textit{SMax} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences between the groups of \textit{UArt1} and \textit{UArt2}. There are no significant groups to identify.
 
 % ------------------------
 % -------- AufHi ---------
 % ------------------------
 \centerheading{AufHi}
-Both relations \textbf{AufHi} - \textbf{TMax} and \textbf{AufHi} - \textbf{TAvg} produce a $p$-value above the $\alpha$-level in the Kruskal-Wallis rank sum test. The null hypothesizes can't be rejected and there are \textbf{no} significant differences between the groups of \textbf{AufHi}. There are therefore no significant groups to identify.
+Both relations \textit{AufHi} - \textit{TMax} and \textit{AufHi} - \textit{TAvg} produce a $p$-value above the $\alpha$-level in the Kruskal-Wallis rank sum test. The null hypothesizes can't be rejected and there are no significant differences between the groups of \textit{AufHi}. There are therefore no significant groups to identify.
 
 % ------------------------
 % -------- WoTag ---------
 % ------------------------
 \centerheading{WoTag}
+This section analyzes the correlated relations of the accident variable \textit{AUrs1}. The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TAvg} and \textit{WoTag} - \textit{Cov} produce a $p$-value above $\alpha=.05$. The null hypothesis for these relations can't be rejected and there is no significant difference between the groups of \textit{WoTag} in regards of \textit{TAvg} and \textit{Cov}.
 
-\paragraph{Average Temporal Extent}
-Kruskal-Wallis chi-squared = 227.09, df = 209, p-value = 0.186
-The Kruskal-Wallis rank sum test of \textbf{Kat} - \textbf{SAvg} produces a $p$-value of 0.2762, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Kat}. There are no significant groups to identify.
-
-\paragraph{Maximal Spatial Extent}
-Kruskal-Wallis chi-squared = 720.56, df = 638, p-value = 0.01265
-
-\begin{table}[ht]
-	\small
+The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{SMax} produces a $p$-value of 0.0126, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{WoTag} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_WoTag_TMax}. 
+\begin{table}[ht!]
+	\tiny
 	\centering
 	\begin{tabular}{rrrrrrr}
-		\hline
-	& Di & Do & Fr & Mi & Mo & Sa \\ 
-		\hline
-	Do & 1.00 &  &  &  &  &  \\ 
+		\toprule
+		   & Di & Do & Fr & Mi & Mo & Sa \\ 
+		\midrule
+		Do & 1.00 &  &  &  &  &  \\ 
 		Fr & 1.00 & 1.00 &  &  &  &  \\ 
 		Mi & 1.00 & 1.00 & 1.00 &  &  &  \\ 
 		Mo & 1.00 & 0.95 & 1.00 & 0.93 &  &  \\ 
 		Sa & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
 		So & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-		\hline
+		\bottomrule
 	  \end{tabular}
-    \caption{Pairwise Wilcoxon $T$-test for \textit{AUrs1} and \textit{Coverage}}
-    \label{tbl:wilcoxon_baysis_effector_AUrs1_Cov}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{WoTag} and \textit{Maximal Spatial Extent}}
+    \label{tbl:wilcoxon_baysis_effector_WoTag_TMax}
 \end{table}
-\todo{Explain}
+The tables shows that the differences are not group specific, which means that the relation can be neglected (see \cref{correlation_posthoc}).
 
-\paragraph{Coverage}
-Kruskal-Wallis chi-squared = 95.72, df = 81, p-value = 0.1262
-
-\paragraph{Time-loss HGV}
-Kruskal-Wallis chi-squared = 430.91, df = 364, p-value = 0.008977
-
-\begin{table}[ht]
-	\small
+The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TLHGV} produces a $p$-value of 0.0089, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{WoTag} - \textit{TLHGV} is run, which produces \cref{tbl:wilcoxon_baysis_effector_WoTag_TLHGV}. 
+\begin{table}[ht!]
+	\tiny
 	\centering
     \begin{tabular}{rrrrrrr}
-		\hline
-		& Di & Do & Fr & Mi & Mo & Sa \\ 
-		\hline
+		\toprule
+		   & Di & Do & Fr & Mi & Mo & Sa \\ 
+		\midrule
 		Do & 1.00 &  &  &  &  &  \\ 
 		Fr & 1.00 & 1.00 &  &  &  &  \\ 
 		Mi & 0.02 & 1.00 & 1.00 &  &  &  \\ 
 		Mo & 0.82 & 1.00 & 1.00 & 1.00 &  &  \\ 
 		Sa & 1.00 & 1.00 & 1.00 & 0.82 & 1.00 &  \\ 
 		So & 1.00 & 1.00 & 1.00 & 0.03 & 0.65 & 1.00 \\ 
-		\hline
+		\bottomrule
 	\end{tabular}
-    \caption{Pairwise Wilcoxon $T$-test for \textit{AUrs1} and \textit{Coverage}}
-    \label{tbl:wilcoxon_baysis_effector_AUrs1_Cov}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{WoTag} and \textit{Time-loss HGV}}
+    \label{tbl:wilcoxon_baysis_effector_WoTag_TLHGV}
 \end{table}
 \todo{Explain}
-\begin{table}[ht]
-	\small
+\begin{table}[ht!]
+	\tiny
 	\centering
-    \begin{tabular}{rrrrrrrrrrrrrr}
-		\hline
-		& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-		\hline
-		X1 & 1.00 & 115.00 & 766.97 & 141.79 & 794.00 & 769.81 & 182.36 & 518.00 & 999.00 & 481.00 & -0.18 & -1.20 & 13.22 \\ 
-		X11 & 1.00 & 131.00 & 739.22 & 143.43 & 720.00 & 737.72 & 182.36 & 511.00 & 983.00 & 472.00 & 0.11 & -1.32 & 12.53 \\ 
-		X12 & 1.00 & 150.00 & 735.81 & 153.58 & 714.00 & 732.47 & 200.15 & 502.00 & 998.00 & 496.00 & 0.16 & -1.39 & 12.54 \\ 
-		X13 & 1.00 & 127.00 & 707.32 & 139.30 & 681.00 & 700.08 & 155.67 & 501.00 & 995.00 & 494.00 & 0.39 & -0.88 & 12.36 \\ 
-		X14 & 1.00 & 89.00 & 728.10 & 134.08 & 727.00 & 725.11 & 164.57 & 514.00 & 986.00 & 472.00 & 0.14 & -1.19 & 14.21 \\ 
-		X15 & 1.00 & 65.00 & 750.46 & 143.80 & 778.00 & 752.32 & 155.67 & 507.00 & 988.00 & 481.00 & -0.23 & -1.29 & 17.84 \\ 
-		X16 & 1.00 & 73.00 & 774.67 & 141.34 & 784.00 & 777.46 & 194.22 & 534.00 & 994.00 & 460.00 & -0.14 & -1.22 & 16.54 \\ 
-		\hline
+    \begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+		\midrule
+		Di & 115 & 766.97 & 141.79 & 794.00 & 518 & 999 & 481 \\ 
+		Do & 131 & 739.22 & 143.43 & 720.00 & 511 & 983 & 472 \\ 
+		Fr & 150 & 735.81 & 153.58 & 714.00 & 502 & 998 & 496 \\ 
+		Mi & 127 & 707.32 & 139.30 & 681.00 & 501 & 995 & 494 \\ 
+		Mo & 89  & 728.10 & 134.08 & 727.00 & 514 & 986 & 472 \\ 
+		Sa & 65  & 750.46 & 143.80 & 778.00 & 507 & 988 & 481 \\ 
+		So & 73  & 774.67 & 141.34 & 784.00 & 534 & 994 & 460 \\ 
+		\bottomrule
 	\end{tabular}
-    \caption{Group descriptives of \textit{AUrs1} and \textit{Coverage}}
-    \label{tbl:descriptives_baysis_effector_AUrs1_Cov}
+    \caption{Group descriptives of \textit{WoTag} and \textit{Time-loss HGV}}
+    \label{tbl:descriptives_baysis_effector_WoTag_TLHGV}
 	%\vspace{-8mm}
 \end{table}
 
-\large
-\centerline{\textbf{Month}}
-\normalsize
+% ------------------------
+% -------- Month ---------
+% ------------------------
+\centerheading{Month}
 
 \paragraph{Maximal Temporal Extent}
 Kruskal-Wallis chi-squared = 197.96, df = 199, p-value = 0.5074
@@ -402,10 +375,10 @@ Kruskal-Wallis chi-squared = 239.6, df = 210, p-value = 0.07871
 \paragraph{Maximal Spatial Extent}
 Kruskal-Wallis chi-squared = 722.28, df = 642, p-value = 0.01494
 \begin{tabular}{rrrrrrrrrrrr}
-	\hline
-   & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
-	\hline
-  1 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+	\toprule
+	& 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
+	\midrule
+	1 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
 	2 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
 	3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
 	4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
@@ -416,15 +389,15 @@ Kruskal-Wallis chi-squared = 722.28, df = 642, p-value = 0.01494
 	9 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.20 & 1.00 & 0.40 &  &  \\ 
 	10 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.38 & 0.00 & 0.09 & 0.01 & 1.00 &  \\ 
 	11 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.91 \\ 
-	 \hline
-  \end{tabular}
+	\bottomrule
+\end{tabular}
   % latex table generated in R 4.0.2 by xtable 1.8-4 package
   % 
-  \begin{tabular}{rrrrrrrrrrrrrr}
-	\hline
-   	& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-	\hline
-  	X1 & 1.00 & 39.00 & 15204.44 & 10633.53 & 11151.00 & 14423.06 & 8507.16 & 1772.00 & 38867.00 & 37095.00 & 0.72 & -0.79 & 1702.73 \\ 
+\begin{tabular}{rrrrrrrrrrrrrr}
+	\toprule
+	& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
+	\midrule
+	X1 & 1.00 & 39.00 & 15204.44 & 10633.53 & 11151.00 & 14423.06 & 8507.16 & 1772.00 & 38867.00 & 37095.00 & 0.72 & -0.79 & 1702.73 \\ 
 	X11 & 1.00 & 38.00 & 13921.39 & 9612.90 & 12118.50 & 12777.91 & 9202.50 & 1176.00 & 44548.00 & 43372.00 & 1.20 & 1.53 & 1559.42 \\ 
 	X12 & 1.00 & 51.00 & 12295.18 & 9266.62 & 9669.00 & 11234.27 & 8197.30 & 1206.00 & 48278.00 & 47072.00 & 1.34 & 2.47 & 1297.59 \\ 
 	X13 & 1.00 & 57.00 & 15190.47 & 11402.17 & 12433.00 & 13719.66 & 10090.58 & 1415.00 & 43070.00 & 41655.00 & 1.07 & 0.24 & 1510.25 \\ 
@@ -436,8 +409,8 @@ Kruskal-Wallis chi-squared = 722.28, df = 642, p-value = 0.01494
 	X19 & 1.00 & 65.00 & 14558.85 & 19682.16 & 9917.00 & 11682.72 & 8178.02 & 1524.00 & 153237.00 & 151713.00 & 5.41 & 35.02 & 2441.27 \\ 
 	X110 & 1.00 & 56.00 & 10844.89 & 8940.48 & 8712.00 & 9417.35 & 6484.15 & 1883.00 & 36151.00 & 34268.00 & 1.40 & 1.15 & 1194.72 \\ 
 	X111 & 1.00 & 49.00 & 15302.61 & 11066.27 & 11386.00 & 14171.83 & 7064.59 & 1925.00 & 43244.00 & 41319.00 & 1.02 & -0.06 & 1580.90 \\ 
-	 \hline
-  \end{tabular}
+	\bottomrule
+\end{tabular}
 
 \paragraph{Average spatial Extent:}
 Kruskal-Wallis chi-squared = 719.2, df = 647, p-value = 0.02528

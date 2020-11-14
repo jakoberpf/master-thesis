@@ -15,23 +15,23 @@ The correlation matrix table for the congestion-accident matched dataset (see \c
  		Kat & TMax, TAvg, SAvg, TDist \\
  		Typ & TDist, Cov \\
  		%Betei & & \\
- 		UArt1 & SAvg, TDist, Cov \\
+ 		UArt1 & SAvg, TDist, Cov \\ % + SMax
  		%UArt2 & & \\
- 		AUrs1 & SAvg, TDist, SDist, Cov, TLHGV \\
+ 		AUrs1 & SAvg, TDist, SDist, Cov, TLHGV \\ % + SMax
  		%AUrs2 & & \\
  		AufHi & TMax, TAvg, TDist, Cov \\
  		%Alkoh & & \\
- 		%Char1 & & \\
+ 		%Char1 & & \\ -> Strasse ??
  		%Char2 & & \\
  		%Bes1 & & \\
  		Lich1 & Cov \\
- 		Lich2 & Cov \\
- 		Zust1 & Cov \\
+ 		Lich2 & Cov \\ % + Lich2
+ 		Zust1 & Cov \\ % -> Strasse ??
  		%Zust2 & & \\
- 		%Fstf & & \\
+ 		%Fstf & & \\ % -> Strasse ??
  		WoTag & Cov \\
  		%FeiTag & & \\
-		Month & Cov \\
+		Month & Cov \\ % + TMax. SMAx
 		\bottomrule
 	\end{tabular}
 	\caption{List of incident variables and their strong correlated congestion variable from the congestion-accident matched data}

@@ -3,40 +3,40 @@
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 151.97, df = 131, p-value = 0.1015
+Kruskal-Wallis chi-squared = 150.85, df = 130, p-value = 0.1019
 
 [1] "############ TempAvg ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 173.3, df = 175, p-value = 0.5221
+Kruskal-Wallis chi-squared = 173.49, df = 175, p-value = 0.518
 
 [1] "############ SpatMax ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 752.87, df = 720, p-value = 0.1919
+Kruskal-Wallis chi-squared = 751.87, df = 719, p-value = 0.1917
 
 [1] "############ SpatAvg ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 753.78, df = 727, p-value = 0.2385
+Kruskal-Wallis chi-squared = 752.76, df = 726, p-value = 0.2384
 
 [1] "############ Coverage ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 112, df = 93, p-value = 0.08749
+Kruskal-Wallis chi-squared = 112.77, df = 93, p-value = 0.07982
 
 [1] "############ TLCar ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 547.62, df = 529, p-value = 0.2788
+Kruskal-Wallis chi-squared = 546.63, df = 528, p-value = 0.2785
 

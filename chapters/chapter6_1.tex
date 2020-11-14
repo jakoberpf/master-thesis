@@ -64,24 +64,10 @@ Next we need to verify that the correlation is significant and what the correlat
 \Large
 \centerline{\textbf{Strasse}}
 \normalsize
-This section analyzes the correlated relations of the accident variable \textbf{Strasse} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered.
-
-
-\paragraph{Temporal Distance}
-%chi-squared = 32.385, df = 24
-The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TDist} produces a $p$-value of 0.1177, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
-
-\paragraph{Spatial Distance}
-%chi-squared = 235.74, df = 219
-The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SDist} produces a $p$-value of 0.2084, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Strasse}. There are no significant groups to identify.
-
-
-
-
-
+This section analyzes the correlated relations of the accident variable \textbf{Strasse} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The correlations of \textbf{Strasse}-\textbf{TDist} and \textbf{Strasse}-\textbf{SDist} produces a $p$-value above the $\alpha$-level of .05 in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected for these relations and there are no significant groups to identify.
 
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TMax} produces a $p$-value of 0.000006, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_TMax}. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
 	\centering
@@ -111,7 +97,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TMax} produces a $p
 	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -138,7 +124,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TMax} produces a $p
 The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_TMax} show that the mean value of A3 is 27\,\% - 57\,\% higher than the means of A6, A7, A9, A70, A73, A92, and A94. It can be interpreted that accidents on the A3 are associated with significantly longer (temporal) jams than on the A6, A9, A7, A70, A73, A92, and A94.
 
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p$-value of 0.000466, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_TAvg}. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
 	\centering
@@ -168,7 +154,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p
 	\label{tbl:wilcoxon_baysis_matched_Strasse_TAvg}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Strasse_TAvg} shows, that the groups A73, A99 and A96 differ from group A3. There is no distinctive general trend.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -195,7 +181,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{TAvg} produces a $p
 The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_TAvg} show that the mean value of A3 is about $\frac{1}{3}$ higher than the means of A73, A99 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on A73, A99 and A96.
 
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p$-value of 0.000003, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_SMax}.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
 	\centering
@@ -225,7 +211,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p
 	\label{tbl:wilcoxon_baysis_matched_Strasse_SMax}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Strasse_SMax} shows, that the groups A7, A9, A70, A73, A92, A94 and A96 differ from group A3. The groups A73 and A92 further differ from group A6 and A9. The group A99 differs from group A73 and group A99 differs from A92. There is no distinctive general trend.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -258,7 +244,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SMax} produces a $p
 The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_SMax} show that the mean of A3 is 44\,\% - 66\,\% higher than the means of A7, A9, A70, A73, A92, A94 and A96. It also shows that the groups A6, A9 and A99 have a up to 50\,\% higher mean than the groups A73 and A92. We can interpret that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96.
 
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SAvg} produces a $p$-value of 0.002086, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{SAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_SAvg}.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
 	\centering
@@ -288,7 +274,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SAvg} produces a $p
 	\label{tbl:wilcoxon_baysis_matched_Strasse_SAvg}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A70, A73, A92, A93, A94, A96 and A99 differ from group A3. The groups A73, A94 further differ from group A6 as well as A73, A99, A92 and A94 from group A9. There is no distinctive general trend.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -300,18 +286,12 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SAvg} produces a $p
 	  	A9 & 466.00 & 4187.15 & 2569.83 & 3700.50 & 393.00 & 15132.00 & 14739.00 \\ 
 	  	A70 & 31.00 & 3010.45 & 2067.63 & 1974.00 & 1008.00 & 9937.00 & 8929.00 \\ 
 	  	A96 & 156.00 & 3664.63 & 2172.78 & 3292.50 & 387.00 & 10182.00 & 9795.00 \\ 
-	  	%A7 & 130.00 & 4141.68 & 3026.58 & 3537.50 & 643.00 & 16571.00 & 15928.00 \\ 
+	  	A7 & 130.00 & 4141.68 & 3026.58 & 3537.50 & 643.00 & 16571.00 & 15928.00 \\ 
 	  	A73 & 129.00 & 2683.97 & 1981.91 & 2232.00 & 544.00 & 11832.00 & 11288.00 \\ 
 	  	A99 & 116.00 & 3240.97 & 1878.87 & 2978.00 & 583.00 & 8426.00 & 7843.00 \\ 
 	  	A92 & 66.00 & 2926.15 & 1521.59 & 2931.50 & 455.00 & 8970.00 & 8515.00 \\ 
 	  	A93 & 21.00 & 2525.43 & 1443.21 & 2338.00 & 664.00 & 6779.00 & 6115.00 \\ 
 	  	A94 & 37.00 & 2691.68 & 2023.38 & 2307.00 & 358.00 & 10393.00 & 10035.00 \\ 
-	  	%A72 & 1.00 & 1478.00 &  & 1478.00 & 1478.00 & 1478.00 & 0.00  \\ 
-	  	%A995 & 2.00 & 1527.00 & 277.19 & 1527.00 & 1331.00 & 1723.00 & 392.00 \\ 
-	  	%A95 & 4.00 & 2006.75 & 500.22 & 1956.50 & 1569.00 & 2545.00 & 976.00 \\ 
-	  	%A71 & 3.00 & 2778.33 & 2037.57 & 1981.00 & 1260.00 & 5094.00 & 3834.00 \\ 
-	  	%A45 & 3.00 & 2662.00 & 2951.43 & 1391.00 & 559.00 & 6036.00 & 5477.00 \\ 
-	  	%A980 & 1.00 & 1653.00 &  & 1653.00 & 1653.00 & 1653.00 & 0.00  \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Group descriptives of \textit{Strasse} and \textit{Average Spatial Extent}}
@@ -321,7 +301,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{SAvg} produces a $p
 The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_SAvg} show that the mean of A3 is 45\,\% - 55\,\% higher the means of A70, A73, A92, A93, A94, A96 and A99. It also shows that the means of the groups A6, A9 and A99 is about 30\,\% higher mean than the groups A73 and A94. We can interpret that accidents on the A3, A6, A9 and A99 lead are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99.
 
 The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$-value of 0.000317, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Strasse}-\textbf{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Strasse_Cov}. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
 	\centering
@@ -351,7 +331,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$
 	\label{tbl:wilcoxon_baysis_matched_Strasse_Cov}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Strasse_SAvg} shows, that the groups A6, A7, A9, A73, A92 and A96 differ from group A3. The group A99 differs from group A6 and groups A96, AA7, A99, A92 differ from group A9. The group A99 also differs from the groups A70, A96, A7 and A73. There is no distinctive general trend. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -368,13 +348,7 @@ The Kruskal-Wallis rank sum test of \textbf{Strasse}-\textbf{Cov} produces a $p$
 	  	A99 & 116.00 & 33.21 & 18.03 & 31.00 & 5.00 & 85.00 & 80.00 \\ 
 	  	A92 & 66.00 & 53.15 & 21.80 & 52.50 & 14.00 & 98.00 & 84.00 \\ 
 	  	A93 & 21.00 & 40.81 & 17.72 & 37.00 & 13.00 & 70.00 & 57.00 \\ 
-	  	A94 & 37.00 & 47.76 & 23.69 & 44.00 & 11.00 & 88.00 & 77.00 \\ 
-	  	%A72 & 1.00 & 34.00 &  & 34.00 & 34.00 & 34.00 & 0.00 \\ 
-	  	%A995 & 2.00 & 79.00 & 2.83 & 79.00 & 77.00 & 81.00 & 4.00 \\ 
-	  	%A95 & 4.00 & 40.50 & 12.48 & 38.00 & 29.00 & 57.00 & 28.00 \\ 
-	  	%A71 & 3.00 & 57.67 & 29.37 & 71.00 & 24.00 & 78.00 & 54.00 \\ 
-	  	%A45 & 3.00 & 69.33 & 37.17 & 80.00 & 28.00 & 100.00 & 72.00 \\ 
-		%A980 & 1.00 & 80.00 &  & 80.00 & 80.00 & 80.00 & 0.00 \\ 		
+	  	A94 & 37.00 & 47.76 & 23.69 & 44.00 & 11.00 & 88.00 & 77.00 \\ 	
 	  	\bottomrule
 	\end{tabular}
 	\caption{Group descriptives of \textit{Strasse} and \textit{Coverage}}
@@ -386,31 +360,9 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Strasse_Cov} show th
 % ----------------------
 % -------- Kat ---------
 % ----------------------
-\Large
-\centerline{\textbf{Kat}}
-\normalsize
-This section analyzes the correlated relations of the accident variable \textbf{Kat} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}.
-% \begin{table}[!ht]
-% 	\centering
-% 	\tiny
-% 	\begin{tabular}{c|l} 
-% 		\toprule
-% 		Code & Description \\ 
-% 		\midrule
-%  		0 	& Minor Accident  \\
-%  		1 	& Accident with deaths  \\ 
-%  		2 	& Accident with heavily injured  \\
-%  		3 	& Accident with lightly injured  \\
-% 		7 	& Accident with property damage  \\
-% 		\bottomrule
-% 	\end{tabular}
-% 	\caption{Encoding of \textbf{Kat}}
-% 	\label{table:analysis_encoding_Kat}
-% 	%\vspace{-8mm}
-% \end{table}
+\centerheading{Kat}
+This section analyzes the correlated relations of the accident variable \textbf{Kat} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{SAvg} produces a $p$-value above $\alpha=.05$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textbf{Kat} in this relation.
 
-\paragraph{Maximal Temporal Extent}
-%chi-squared = 263.93, df = 210
 The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-value of 0.00682, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TMax}.
 \begin{table}[ht]
 	\small
@@ -421,13 +373,13 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-va
 	  	\midrule
 		2 & 0.00 &  &  \\ 
 	  	3 & 0.00 & 0.01 &  \\ 
-	  	7 & 0.00 & 0.03 & 0.77 \\ 
+	  	7 & 0.00 & 0.02 & 0.78 \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Kat_TMax}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Kat_TMax} shows that all groups, besides of group 7 to group 3, have significant differences. The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TMax} present increasing means from lightly injured to deathly accident. We can interpret that the maximal jam length (temporal) increases with the gravity of the accident. Also the difference of group 1 to group 2 is quite substantial, which means that the accidents with deaths are associated with 40\,\% longer jams, than others. The group of accidents with property damage does significantly differ from the others. A comparisons of means puts the group in-between of accidents with slightly and heavily injured.
+\cref{tbl:wilcoxon_baysis_matched_Kat_TMax} shows that all groups, besides of group 7 to group 3, have significant differences. 
 \begin{table}[ht]
 	\small
 	\centering
@@ -436,21 +388,20 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-va
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\   
 	  	\midrule
 		1 & 36.00 & 317.67 & 215.10 & 279.00   & 27.00 & 987.00 & 960.00  \\ 
-	  	2 & 217.00 & 191.03 & 167.18 & 135.00 & 9.00 & 1257.00 & 1248.00  \\ 
-	  	3 & 890.00 & 159.09 & 148.46 & 114.00 & 9.00 & 1323.00 & 1314.00  \\ 
-	  	7 & 724.00 & 182.68 & 195.84 & 117.00  & 9.00 & 1341.00 & 1332.00 \\ 
+	  	2 & 216.00 & 189.03 & 164.93 & 135.00 & 9.00 & 1257.00 & 1248.00  \\ 
+	  	3 & 881.00 & 155.26 & 141.87 & 111.00 & 9.00 & 1323.00 & 1314.00  \\ 
+	  	7 & 718.00 & 179.35 & 192.33 & 117.00  & 9.00 & 1341.00 & 1332.00 \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Group descriptives of \textit{Kat} and \textit{Maximal Temporal Extent}}
 	\label{tbl:descriptives_baysis_matched_Kat_TMax}
 	%\vspace{-8mm}
 \end{table}
+The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TMax} present increasing means from lightly injured to deathly accident. We can interpret that the maximal jam length (temporal) increases with the gravity of the accident. Also the difference of group 1 to group 2 is quite substantial, which means that the accidents with deaths are associated with 40\,\% longer jams, than others. The group of accidents with property damage does significantly differ from the others. A comparisons of means puts the group in-between of accidents with slightly and heavily injured.
 
-\paragraph{Average Temporal Extent}
-%chi-squared = 324.3, df = 245
-The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TAvg} produces a $p$-value of 0.00051, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TAvg}.
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TAvg} produces a $p$-value of 0.0005, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TAvg}.
 \begin{table}[ht]
-	\small
+	\tiny
 	\centering
 	\begin{tabular}{rrrr}
 	  	\toprule
@@ -464,34 +415,29 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TAvg} produces a $p$-va
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Average Temporal Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Kat_TAvg}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Kat_TAvg} shows that all groups have significant differences. The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TAvg} present increasing means from group 3 to 1.	We can interpret that the average jam length (temporal) increases with the gravity of the accident. Also the difference of group 1 to group 2 is quite substantial, which means that the accidents with deaths are associated with 40\,\% longer jams than others. The group of accidents with property damage does significantly differ from the others. A comparisons of means puts the group in-between of accidents with slightly and heavily injured.
+\cref{tbl:wilcoxon_baysis_matched_Kat_TAvg} shows that all groups have significant differences. The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TAvg} present increasing means from group 3 to 1.
 \begin{table}[ht]
-	\small
+	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
 	  	\toprule
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
 	  	\midrule
 		1 &  36.00 & 156.06 & 104.55 & 143.00 & 20.00 & 502.00 & 482.00 \\ 
-	  	2 & 217.00 & 88.28 & 79.54 & 67.00 & 7.00 & 703.00 & 696.00 \\ 
-	  	3 & 890.00 & 67.52 & 53.88 & 55.00 & 3.00 & 469.00 & 466.00 \\ 
-	  	7 & 724.00 & 74.20 & 102.95 & 51.50 & 4.00 & 1326.00 & 1322.00 \\ 
+	  	2 & 216.00 & 88.31 & 79.73 & 66.50 & 7.00 & 703.00 & 696.00 \\ 
+	  	3 & 881.00 & 67.32 & 53.98 & 54.00 & 3.00 & 469.00 & 466.00 \\ 
+	  	7 & 718.00 & 74.08 & 103.32 & 51.00 & 4.00 & 1326.00 & 1322.00 \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Group descriptives of \textit{Kat} and \textit{Average Temporal Extent}}
 	\label{tbl:descriptives_baysis_matched_Kat_TAvg}
 	%\vspace{-8mm}
 \end{table}
+We can interpret that the average jam length (temporal) increases with the gravity of the accident. Also the difference of group 1 to group 2 is quite substantial, which means that the accidents with deaths are associated with 40\,\% longer jams than others. The group of accidents with property damage does significantly differ from the others. A comparisons of means puts the group in-between of accidents with slightly and heavily injured.
 
-\paragraph{Average Spatial Extent}
-%chi-squared = 1492, df = 1497
-The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-value of 0.5316, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Kat}. There are no significant groups to identify.
-
-\paragraph{Temporal Distance}
-%chi-squared = 149.52, df = 24
-The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-value of < 0.000001, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TDist}. 
+The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-value of < 0.0001, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TDist}. 
 \begin{table}[ht]
-	\small
+	\tiny
 	\centering
 	\begin{tabular}{rrrr}
 		\toprule
@@ -507,16 +453,16 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-v
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Kat_TDist} shows that all groups have significant differences. The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TDist} present increasing means from group 4 to 1. We can interpret that the temporal distance from accidents to jams increases with the gravity of the accident.
 \begin{table}[ht]
-	\small
+	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
 	  	\toprule
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
 	  	\midrule
 		1 & 36.00 & 10.39 & 7.36 & 10.00 & 0.00 & 22.00 & 22.00 \\ 
-	  	2 & 217.00 & 7.87 & 6.92 & 7.00 & 0.00 & 24.00 & 24.00 \\ 
-	  	3 & 890.00 & 5.79 & 6.83 & 4.00 & 0.00 & 24.00 & 24.00 \\ 
-	  	7 & 724.00 & 4.29 & 6.62 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
+	  	2 & 216.00 & 7.91 & 6.92 & 7.00 & 0.00 & 24.00 & 24.00 \\ 
+	  	3 & 881.00 & 5.81 & 6.82 & 4.00 & 0.00 & 24.00 & 24.00 \\ 
+	  	7 & 718.00 & 4.33 & 6.63 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Group descriptives of \textit{Kat} and \textit{Temporal Distance}}
@@ -527,33 +473,9 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-v
 % ----------------------
 % -------- Typ ---------
 % ----------------------
-\Large
-\centerline{\textbf{Typ}}
-\normalsize
-This section analyzes the correlated relations of the accident variable \textbf{Typ} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}.
-% \begin{table}[ht]
-% 	\centering
-% 	\tiny
-% 	\begin{tabular}{c|l} 
-% 		\toprule
-% 		Code & Description \\ 
-% 		\midrule
-%  		1 & Driving accident \\ 
-%  		2 & Turning accident \\
-%  		3 & Merging / Crossing accident \\
-%  		4 & Crossing over accident \\
-%  		5 & Accident in standing traffic \\
-%  		6 & Accident in straight traffic \\
-% 		7 & Other \\
-% 		\bottomrule
-% 	\end{tabular}
-% 	\caption{Encoding of \textbf{Typ}}
-% 	\label{table:analysis_encoding_Kat}
-% 	%\vspace{-8mm}
-% \end{table}
+\centerheading{Typ}
+This section analyzes the correlated relations of the accident variable \textbf{Typ} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis rank sum test of \textbf{Typ}-\textbf{Cov} produces a $p$-value above $\alpha$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textbf{Typ} in this relation.
 
-\paragraph{Temporal Distance}
-%chi-squared = 53.142, df = 24
 The Kruskal-Wallis rank sum test of \textbf{Typ}-\textbf{TDist} produces a $p$-value of 0.000554, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Typ}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Typ}-\textbf{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Typ_TDist}. 
 \begin{table}[ht]
 	\small
@@ -582,8 +504,6 @@ The $p$-values in \cref{tbl:wilcoxon_baysis_matched_Kat_TDist} show the groups 3
 		\midrule
 		1 & 301.00 & 8.31 & 7.40 & 7.00 & 0.00 & 24.00 & 24.00 \\ 
 		3 & 120.00 & 2.91 & 5.46 & 0.00 & 0.00 & 22.00 & 22.00 \\ 
-		%4 & 4.00 & 14.00 & 3.92 & 13.50 & 10.00 & 19.00 & 9.00 \\ 
-		%5 & 11.00 & 4.36 & 5.89 & 2.00 & 0.00 & 17.00 & 17.00 \\ 
 		6 & 1313.00 & 4.85 & 6.49 & 1.00 & 0.00 & 24.00 & 24.00 \\ 
 		7 & 118.00 & 8.63 & 8.15 & 7.00 & 0.00 & 24.00 & 24.00 \\ 
 		\bottomrule
@@ -592,10 +512,6 @@ The $p$-values in \cref{tbl:wilcoxon_baysis_matched_Kat_TDist} show the groups 3
 	\label{tbl:descriptives_baysis_matched_Typ_TDist}
 	%\vspace{-8mm}
 \end{table}
-
-\paragraph{Coverage}
-%chi-squared = 99.367, df = 95, p-value = 0.3593
-The Kruskal-Wallis rank sum test of \textbf{Typ}-\textbf{Cov} produces a $p$-value of 0.3593, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{Typ}. There are no significant groups to identify.
 
 % -----------------------
 % -------- UArt ---------

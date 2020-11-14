@@ -3,5 +3,5 @@
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 32.985, df = 24, p-value = 0.1044
+Kruskal-Wallis chi-squared = 33.029, df = 24, p-value = 0.1035
 

@@ -14,27 +14,25 @@ The correlation matrix table for the congestion-accident \textit{Jam Follower} d
 		\hline
 		\\[-1em]
 		Strasse & TMax, TAvg, SMax, SAvg, TDist, SDist, Cov, TLHGV \\ 
- 		Kat & TMax, SAvg\\ 
- 		%Typ & \\
- 		%Betei & \\
- 		UArt1 & TAvg, SAvg, TDist, Cov, TLHVG \\
- 		UArt2 & TDist \\
- 		AUrs1 & TDist, SDist, Cov, TLHGV \\
- 		%AUrs2 & \\
- 		AufHi & TMax, TAvg, Cov \\
+ 		Kat & TMax, SAvg \\ % + SMax % -> Strasse
+ 		%Typ & \\ + Cov % -> Strasse
+ 		%Betei & \\ % -> Strasse
+ 		UArt1 & TAvg, SAvg, TDist, Cov, TLHVG \\ % + SMax % -> Strasse
+ 		UArt2 & TDist \\ % + Cov % -> Strasse
+ 		AUrs1 & TDist, SDist, Cov, TLHGV \\ % -> Strasse
+ 		%AUrs2 & \\ % -> Strasse
+ 		AufHi & TMax, TAvg, Cov \\ % -> Strasse
  		%Alkoh & \\
- 		%Char1 & \\
- 		%Char2 & \\
- 		%Bes1 & \\
- 		%Bes2 & \\
- 		Lich1 & Cov \\
- 		%Lich2 & \\
- 		%Zust1 & \\
- 		%Zust2 & \\
- 		%Fstf & \\
- 		WoTag & TAvg, SMax, SAvg, TDist, Cov, TLHGV \\
+ 		%Char1 & \\ % -> Strasse
+ 		%Char2 & \\ % -> Strasse
+ 		Lich1 & Cov \\ % -> Strasse
+ 		%Lich2 & \\ + Cov % -> Strasse
+ 		%Zust1 & \\ + Cov % -> Strasse
+ 		%Zust2 & \\ % -> Strasse
+ 		%Fstf & \\ % -> Strasse
+ 		WoTag & TAvg, SMax, SAvg, TDist, Cov, TLHGV \\ % + TLCar % -> Strasse
  		%FeiTag & \\
- 		Month & TMax, TAvg, SMax, Cov, TLHGV \\
+ 		Month & TMax, TAvg, SMax, Cov, TLHGV \\ % + SAvg % -> Strasse
 	\end{tabular}
     \caption{List of incident variables and their strong correlated congestion variable from the congestion-accident matched data which are classified as \textit{Jam Follower}}
 	\label{tbl:correlation_list_baysis_follower}

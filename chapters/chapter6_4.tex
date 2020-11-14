@@ -2,8 +2,8 @@
 % -------- BAYSIS - Selected as Jam Follower ---------
 % ----------------------------------------------------
 \subsection{BAYSIS - Selected as Jam Follower}
-
-List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
+\label{analysis_processing_correlation_baysis_follower}
+The correlation matrix table for the congestion-accident \textit{Jam Follower} dataset (see \cref{table:appendix_correlation_matrix_matched_cramers}) is visual presented in \cref{img:correlation_matrix_selected_effector_cramers} showing the the correlation of each variable combination. When visual analyzing \cref{img:correlation_matrix_matched_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \cref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \cref{tbl:correlation_list_baysis_follower})
 
 \noindent
 \begin{table}[h!]
@@ -40,93 +40,45 @@ List of strong corrs (.14 for $\eta$ and 0.5 for $r$ ...):
 	\label{tbl:correlation_list_baysis_follower}
 \end{table}
 
-% \newgeometry{left=1.5cm,right=1cm}
-% 	\pagestyle{empty}
-% 	\begin{figure}[ht]
-% 		\centering
-% 		\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
-% 		\caption{Correlation matrix for BAYSIS matched data, with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
-% 		\label{img:correlation_matrix_matched_cramers}
-% 	\end{figure}
-% \restoregeometry
+Next we need to verify that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \cref{correlation_posthoc}. In the following sections, the correlated relations of the variables in \cref{tbl:correlation_list_baysis_follower} are analyzed and an initial interpretation of each significant correlation is introduced. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not shown. The descriptive tables, showing the count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) therefore only contain groups with significant sample sizes.
+
 \begin{figure}[!ht]
 	\centering
 	\makebox[\textwidth][c]{%
 		\includegraphics[width=1.4\textwidth, trim=0cm 2.5cm 6cm 3cm]{CorrAnalysis/data/BAYSIS/03_selected_03_endJam/plots/baysis_selected_corr_cramers}%
 	}
 	\caption{Correlation matrix for congestion-accident matched data classified as \textit{Jam Effector}, with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
-	\label{img:correlation_matrix_matched_cramers}
+	\label{img:correlation_matrix_selected_effector_cramers}
 \end{figure}
 
 % --------------------------
 % -------- Strasse ---------
 % --------------------------
 \centerheading{Strasse}
-This section analyzes the correlated relations of the accident variable \textbf{Strasse} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. All relations of \textbf{Strasse}-\textbf{TMax}, \textbf{Strasse}-\textbf{TAvg}, \textbf{Strasse}-\textbf{SMax}, \textbf{Strasse}-\textbf{SAvg}, \textbf{Strasse}-\textbf{TDist}, \textbf{Strasse}-\textbf{SDist}, \textbf{Strasse}-\textbf{Cov} and \textbf{Strasse}-\textbf{TLHGV} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are \textbf{no} significant differences between the groups of \textbf{Strasse} in these relations.
+All relations of \textit{Strasse} - \textit{TMax}, \textit{Strasse} - \textit{TAvg}, \textit{Strasse} - \textit{SMax}, \textit{Strasse} - \textit{SAvg}, \textit{Strasse} - \textit{TDist}, \textit{Strasse} - \textit{SDist}, \textit{Strasse} - \textit{Cov} and \textit{Strasse} - \textit{TLHGV} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are \textit{no} significant differences between the groups of \textit{Strasse} in these relations.
 
-\large
-\centerline{\textbf{Kat}}
-\normalsize
-
-\paragraph{Maximal Temporal Extent}
-Kruskal-Wallis chi-squared = 314.97, df = 293, p-value = 0.1805
-
-\paragraph{Average Spatial Extent}
-Kruskal-Wallis chi-squared = 437.95, df = 436, p-value = 0.4647
+% ----------------------
+% -------- Kat ---------
+% ----------------------
+\centerheading{Kat}
+Both relations of \textit{Kat} - \textit{TMax} and \textit{Kat} - \textit{SAvg} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are \textit{no} significant differences between the groups of \textit{Kat} in these relations.
 
 % ------------------------
-% -------- UArt1 ---------
+% -------- UArt ---------
 % ------------------------
-\Large
-\centerline{\textbf{UArt1}}
-\normalsize
-\textbf{UArt1}-\textbf{TAvg}
-\textbf{UArt1}-\textbf{SAvg}
-\textbf{UArt1}-\textbf{TDist}
-\textbf{UArt1}-\textbf{Cov}
-\textbf{UArt1}-\textbf{TLHGV}
-\textbf{UArt2}-\textbf{TDist}
-
-% \paragraph{Average Temporal Extent}
-% % chi-squared = 184.45, df = 168
-% The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{TAvg} produces a $p$-value of 0.1825, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt1}. There are no significant groups to identify.
-
-% \paragraph{Average spatial Extent:}
-% % chi-squared = 446.42, df = 436
-% The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{SAvg} produces a $p$-value of 0.3548, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt1}. There are no significant groups to identify.
-
-% \paragraph{Temporal Distance}
-% % chi-squared = 21.683, df = 24
-% The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{TDist} produces a $p$-value of 0.5982, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt1}. There are no significant groups to identify.
-
-% \paragraph{Coverage}
-% % chi-squared = 85.244, df = 77
-% The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{Cov} produces a $p$-value of 0.2434, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt1}. There are no significant groups to identify.
-
-% \paragraph{Time-loss HGV}
-% % chi-squared = 298.02, df = 293
-% The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{TLHGV} produces a $p$-value of 0.4076, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt1}. There are no significant groups to identify.
+\centerheading{UArt1}
+All relations of \textit{UArt1} - \textit{TAvg}, \textit{UArt1} - \textit{SAvg}, \textit{UArt1} - \textit{TDist}, \textit{UArt1} - \textit{Cov}, \textit{UArt1} - \textit{TLHGV} and \textit{UArt2} - \textit{TDist} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are \textit{no} significant differences between the groups of \textit{Strasse} in these relations.
 
 % ------------------------
-% -------- UArt2 ---------
+% -------- AUrs ---------
 % ------------------------
-% \Large
-% \centerline{\textbf{UArt2}}
-% \normalsize
-
-% \paragraph{Temporal Distance}
-% % chi-squared = 22.714, df = 24
-% The Kruskal-Wallis rank sum test of \textbf{UArt2}-\textbf{TDist} produces a $p$-value of 0.5367, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is \textbf{no} significant difference between the groups of \textbf{UArt1}. There are no significant groups to identify.
-
-% ------------------------
-% -------- AUrs1 ---------
-% ------------------------
-\large
-\centerline{\textbf{AUrs1}}
-\normalsize
+\centerheading{AUrs1}
 
 \paragraph{Temporal Distance}
 Kruskal-Wallis chi-squared = 15.692, df = 24, p-value = 0.8989
+
+\paragraph{Time-loss HGV}
+Kruskal-Wallis chi-squared = 313.02, df = 293, p-value = 0.2015
 
 \paragraph{Spatial Distance}
 Kruskal-Wallis chi-squared = 104.3, df = 79, p-value = 0.0299

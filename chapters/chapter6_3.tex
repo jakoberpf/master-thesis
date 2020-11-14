@@ -39,15 +39,8 @@ The correlation matrix table for the congestion-accident \textit{Jam Effector} d
 	\label{tbl:correlation_list_baysis_effector}
 \end{table}
 
-% \newgeometry{left=1.5cm,right=1cm}
-% 	\pagestyle{empty}
-% 	\begin{figure}[ht]
-% 		\centering
-% 		\includegraphics[scale=0.52, trim=3cm 2cm 0cm 0cm]{../CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}
-% 		\caption{Correlation matrix for BAYSIS matched data, with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
-% 		\label{img:correlation_matrix_matched_cramers}
-% 	\end{figure}
-% \restoregeometry
+Next we need to verify that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \cref{correlation_posthoc}. In the following sections, the correlated relations of the variables in \cref{tbl:correlation_list_baysis_effector} are analyzed and an initial interpretation of each significant correlation is introduced. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not shown. The descriptive tables, showing the count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) therefore only contain groups with significant sample sizes.
+
 \begin{figure}[!ht]
 	\centering
 	\makebox[\textwidth][c]{%
@@ -57,10 +50,10 @@ The correlation matrix table for the congestion-accident \textit{Jam Effector} d
 	\label{img:correlation_matrix_selected_effector_cramers}
 \end{figure}
 
-\large
-\centerline{\textbf{Strasse}}
-\normalsize
-
+% --------------------------
+% -------- Strasse ---------
+% --------------------------
+\centerheading{Strasse}
 
 \paragraph{Average Spatial Extent}
 Kruskal-Wallis chi-squared = 704.4, df = 647, p-value = 0.05831

@@ -64,132 +64,73 @@ Both relations of \textit{Kat} - \textit{TMax} and \textit{Kat} - \textit{SAvg} 
 % ------------------------
 % -------- UArt ---------
 % ------------------------
-\centerheading{UArt1}
+\centerheading{UArt}
 All relations of \textit{UArt1} - \textit{TAvg}, \textit{UArt1} - \textit{SAvg}, \textit{UArt1} - \textit{TDist}, \textit{UArt1} - \textit{Cov}, \textit{UArt1} - \textit{TLHGV} and \textit{UArt2} - \textit{TDist} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are \textit{no} significant differences between the groups of \textit{Strasse} in these relations.
 
 % ------------------------
 % -------- AUrs ---------
 % ------------------------
-\centerheading{AUrs1}
+\centerheading{AUrs}
+This section analyzes the correlated relations of the accident variable \textit{AUrs1}. The correlations of \textit{AUrs1} - \textit{TDist} and \textit{AUrs1} - \textit{TLHGV} produces a $p$-value above the $\alpha$-level of .05 in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected for these relations and there are no significant groups to identify.
 
-\paragraph{Temporal Distance}
-Kruskal-Wallis chi-squared = 15.692, df = 24, p-value = 0.8989
-
-\paragraph{Time-loss HGV}
-Kruskal-Wallis chi-squared = 313.02, df = 293, p-value = 0.2015
-
-\paragraph{Spatial Distance}
-Kruskal-Wallis chi-squared = 104.3, df = 79, p-value = 0.0299
-
+The Kruskal-Wallis rank sum test of \textit{AUrs1} - \textit{SDist} produces a $p$-value of 0.0372, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AUrs1} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_follower_AUrs1_SDist}. 
 \begin{table}[ht]
 	\tiny
 	\centering
 	\begin{tabular}{rrrrrrr}
-		\hline
+		\toprule
 		& 0 & 72 & 73 & 80 & 82 & 88 \\ 
-		\hline
+		\midrule
 		72 & 1.00 &  &  &  &  &  \\ 
-		73 & 0.09 & 0.35 &  &  &  &  \\ 
+		73 & 0.10 & 0.35 &  &  &  &  \\ 
 		80 & 1.00 &  & 1.00 &  &  &  \\ 
 		82 & 1.00 &  & 1.00 &  &  &  \\ 
-		88 & 0.36 & 0.04 & 1.00 & 1.00 & 0.55 &  \\ 
+		88 & 0.40 & 0.04 & 1.00 & 1.00 & 0.55 &  \\ 
 		89 & 1.00 &  & 1.00 &  &  & 1.00 \\ 
-		\hline
+		\bottomrule
 	  \end{tabular}
     \caption{Pairwise Wilcoxon $T$-test for \textit{AUrs1} and \textit{Spatial Distance} (Jam Follower)}
     \label{tbl:wilcoxon_baysis_follower_AUrs1_SDist}
 \end{table}
-\todo{Explain}
-\begin{table}[ht]
-	\tiny
-	\centering
-	\begin{tabular}{rrrrrrrrrrrrrr}
-		\hline
-		& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-		\hline
-		X1 & 1.00 & 437.00 & 100.42 & 294.15 & 0.00 & 19.26 & 0.00 & 0.00 & 1949.00 & 1949.00 & 3.77 & 15.04 & 14.07 \\ 
-		X11 & 1.00 & 9.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
-		X12 & 1.00 & 16.00 & 369.00 & 583.01 & 0.00 & 278.86 & 0.00 & 0.00 & 2000.00 & 2000.00 & 1.50 & 1.30 & 145.75 \\ 
-		X13 & 1.00 & 1.00 & 0.00 &  & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  &  \\ 
-		X14 & 1.00 & 4.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
-		X15 & 1.00 & 2.00 & 3.00 & 0.00 & 3.00 & 3.00 & 0.00 & 3.00 & 3.00 & 0.00 &  &  & 0.00 \\ 
-		X16 & 1.00 & 2.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
-		\hline
-	  \end{tabular}
-    \caption{Group descriptives of \textit{AUrs1} and \textit{Spatial Distance} (Jam Follower)}
-    \label{tbl:descriptives_baysis_follower_AUrs1_SDist}
-	%\vspace{-8mm}
-\end{table}
+The tables shows that the differences are not group specific, since no groups differs significantly. \todo{Add section of Global and Specific Signifcancy}
 
-\paragraph{Coverage}
-Kruskal-Wallis chi-squared = 114.97, df = 77, p-value = 0.003296
-
+The Kruskal-Wallis rank sum test of \textit{AUrs1} - \textit{Cov} produces a $p$-value of 0.0024, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AUrs1} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_follower_AUrs1_Cov}. 
 \begin{table}[ht]
 	\tiny
 	\centering
 	\begin{tabular}{rrrrrrr}
-		\hline
+		\toprule
 		& 0 & 72 & 73 & 80 & 82 & 88 \\ 
-		\hline
+		\midrule
 		72 & 0.28 &  &  &  &  &  \\ 
 		73 & 1.00 & 1.00 &  &  &  &  \\ 
 		80 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
 		82 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
 		88 & 0.33 & 0.79 & 0.56 & 1.00 & 1.00 &  \\ 
 		89 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-		\hline
+		\bottomrule
 	  \end{tabular}
     \caption{Pairwise Wilcoxon $T$-test for \textit{AUrs1} and \textit{Coverage} (Jam Follower)}
     \label{tbl:wilcoxon_baysis_follower_AUrs1_Cov}
 \end{table}
-\todo{Explain}
-\begin{table}[ht]
-	\tiny
-	\centering
-	\begin{tabular}{rrrrrrrrrrrrrr}
-		\hline
-		& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-		\hline
-		X1 & 1.00 & 437.00 & 36.35 & 18.02 & 35.00 & 35.12 & 17.79 & 2.00 & 100.00 & 98.00 & 0.66 & 0.32 & 0.86 \\ 
-		X11 & 1.00 & 9.00 & 50.22 & 13.94 & 49.00 & 50.22 & 16.31 & 28.00 & 67.00 & 39.00 & -0.20 & -1.65 & 4.65 \\ 
-		X12 & 1.00 & 16.00 & 41.44 & 18.39 & 39.50 & 41.79 & 25.20 & 10.00 & 68.00 & 58.00 & -0.14 & -1.35 & 4.60 \\ 
-		X13 & 1.00 & 1.00 & 48.00 &  & 48.00 & 48.00 & 0.00 & 48.00 & 48.00 & 0.00 &  &  &  \\ 
-		X14 & 1.00 & 4.00 & 35.50 & 22.04 & 28.50 & 35.50 & 11.86 & 18.00 & 67.00 & 49.00 & 0.56 & -1.83 & 11.02 \\ 
-		X15 & 1.00 & 2.00 & 88.00 & 0.00 & 88.00 & 88.00 & 0.00 & 88.00 & 88.00 & 0.00 &  &  & 0.00 \\ 
-		X16 & 1.00 & 2.00 & 37.00 & 11.31 & 37.00 & 37.00 & 11.86 & 29.00 & 45.00 & 16.00 & 0.00 & -2.75 & 8.00 \\ 
-		\hline
-	  \end{tabular}
-    \caption{Group descriptives of \textit{AUrs1} and \textit{Coverage}}
-    \label{tbl:descriptives_baysis_follower_AUrs1_Cov}
-	%\vspace{-8mm}
-\end{table}
+The tables shows that the differences are not group specific, since no groups differs significantly. \todo{Add section of Global and Specific Signifcancy}
 
-\paragraph{Time-loss HGV}
-Kruskal-Wallis chi-squared = 313.02, df = 293, p-value = 0.2015
+% ------------------------
+% -------- AufHi ---------
+% ------------------------
+\centerheading{AufHi}
+All relations of \textit{AufHi} - \textit{TMax}, \textit{AufHi} - \textit{TAvg} and \textit{AufHi} - \textit{Cov} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences between the groups of \textit{AufHi} in these relations.
 
-\large
-\centerline{\textbf{AufHi}}
-\normalsize
+% ------------------------
+% -------- Lich1 ---------
+% ------------------------
+\centerheading{Lich}
+The relation of \textit{Lich1} - \textit{Cov} produce a $p$-value above $\alpha=.05$ in the Kruskal-Wallis rank sum test. The null hypothesizes can't be rejected and there are \textit{no} significant differences between the groups of \textit{Lich1}.
 
-\paragraph{Maximal temporal Extent:}
-Kruskal-Wallis chi-squared = 154.9, df = 168, p-value = 0.7572
-
-\paragraph{Average temporal Extent:}
-Kruskal-Wallis chi-squared = 157.26, df = 173, p-value = 0.7987
-
-\paragraph{Coverage}
-Kruskal-Wallis chi-squared = 93.325, df = 77, p-value = 0.09933
-
-\large
-\centerline{\textbf{Lich1}}
-\normalsize
-
-\paragraph{Coverage}
-Kruskal-Wallis chi-squared = 88.003, df = 77, p-value = 0.1839
-
-\large
-\centerline{\textbf{WoTag}}
-\normalsize
+% ------------------------
+% -------- WoTag ---------
+% ------------------------
+\centerheading{WoTag}
 
 \paragraph{Maximal temporal Extent:}
 Kruskal-Wallis chi-squared = 168.61, df = 167, p-value = 0.4506
@@ -209,9 +150,10 @@ Kruskal-Wallis chi-squared = 73.906, df = 77, p-value = 0.5788
 \paragraph{Time-loss HGV}
 Kruskal-Wallis chi-squared = 318.99, df = 293, p-value = 0.1422
 
-\large
-\centerline{\textbf{Month}}
-\normalsize
+% ------------------------
+% -------- Month ---------
+% ------------------------
+\centerheading{Month}
 
 \paragraph{Maximal temporal Extent:}
 Kruskal-Wallis chi-squared = 165.89, df = 168, p-value = 0.5316

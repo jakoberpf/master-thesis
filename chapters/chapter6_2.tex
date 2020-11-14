@@ -13,26 +13,26 @@ The correlation matrix table for the congestion-accident \textit{Jam Initiator} 
 		\textbf{Category} & \textbf{Strong} \\
 		\midrule
 		Strasse & TMax, TAvg, SMax, SAvg, Cov, TLCar \\ 
- 		Kat & TMax, TAvg, SMax, SAvg \\ 
- 		Typ & SAvg, TDist, Cov \\
+ 		Kat & TMax, TAvg, SMax, SAvg \\ % -> Strasse
+ 		Typ & SAvg, TDist, Cov \\  % -> Strasse
  		%Betei & \\ + TMax
  		UArt1 & TMax, TAvg, SMax, SAvg, TDist, Cov, TLCar \\
- 		%UArt2 & \\
- 		AUrs1 & TMax, TAvg, SMax, SAvg, TDist, Cov, TLHGV \\
+ 		%UArt2 & \\  % -> Strasse
+ 		AUrs1 & TMax, TAvg, SMax, SAvg, TDist, Cov, TLHGV \\ % -> Strasse
  		AUrs2 & TMax, TAvg, SAvg, TDist \\
  		AufHi & TMax, TAvg, TDist, Cov \\
  		%Alkoh & \\
- 		Char1 & TDist \\
+ 		Char1 & TDist \\ % -> Strasse
  		%Char2 & \\
  		%Bes1 & \\
  		Lich1 & TDist \\
- 		Lich2 & TDist \\
+ 		Lich2 & TDist \\ % -> Strasse
  		Zust1 & Cov \\
- 		Zust2 & TAvg, SAvg \\
+ 		Zust2 & TAvg, SAvg \\ % -> Strasse
  		%Fstf & \\
  		%WoTag & \\
  		%FeiTag & \\
- 		Month & SMax, Cov, TLHGV \\
+ 		Month & SMax, Cov, TLHGV \\ % -> Strasse
  		\bottomrule
 	\end{tabular}
 	\caption{List of incident variables and their strong correlated congestion variable from the congestion-accident matched data which are classified as \textit{Jam Initiator}}

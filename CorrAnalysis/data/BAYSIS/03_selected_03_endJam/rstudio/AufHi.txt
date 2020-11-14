@@ -3,19 +3,19 @@
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 154.9, df = 168, p-value = 0.7572
+Kruskal-Wallis chi-squared = 159.26, df = 165, p-value = 0.6114
 
 [1] "############ TempAvg ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 157.26, df = 173, p-value = 0.7987
+Kruskal-Wallis chi-squared = 152.01, df = 170, p-value = 0.8354
 
 [1] "############ Coverage ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 93.325, df = 77, p-value = 0.09933
+Kruskal-Wallis chi-squared = 90.577, df = 74, p-value = 0.09238
 

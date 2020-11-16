@@ -78,6 +78,9 @@ if __name__ == '__main__':
 
     # Removing whitespaces
     arbis_import['Strasse'] = arbis_import['Strasse'].str.replace(' ', '')
+    
+    # Fixing dtype of AnzGesperrtFs
+    arbis_import['AnzGesperrtFs'] = pd.to_numeric(arbis_import['AnzGesperrtFs'], downcast='integer')
 
     ##################
     ### Histograms ###

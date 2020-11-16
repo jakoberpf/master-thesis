@@ -64,109 +64,32 @@
     morestring=[b]"
 }
 
-\lstdefinelanguage{SQL}{
-    keywords={select, where, from},
-    keywordstyle=\color{editorGreen}\bfseries,
-    ndkeywords={},
+% define language
+\lstdefinelanguage{Java}{
+    keywords={typeof, new, true, false, catch, then, function, return, null, catch, switch, var, if, in, while, do, else, case, break, default, public, void, class},
+    keywordstyle=\color{javapurple}\bfseries,
+    ndkeywords={class, export, boolean, throw, implements, import, this, const},
     ndkeywordstyle=\color{vscodeblue}\bfseries,
     identifierstyle=\color{black},
     sensitive=false,
-    comment=[l]{--},
+    comment=[l]{//},
     morecomment=[s]{/*}{*/},
-    commentstyle=\color{editorGreen}\ttfamily,
-    stringstyle=\color{darkred}\ttfamily,
+    commentstyle=\color{javagreen},
+    stringstyle=\color{javared},
     morestring=[b]',
     morestring=[b]"
-}
-
-
-\lstdefinelanguage{HTML5}{
-  language=html,
-  sensitive=true,	
-  alsoletter={<>=-},	
-  morecomment=[s]{<!-}{-->},
-  tag=[s],
-  otherkeywords={
-  % General
-  >,
-  % Standard tags
-	<!DOCTYPE,
-  </html, <html, <head, <title, </title, <style, </style, <link, </head, <meta, />,
-	% body
-	</body, <body,
-	% Divs
-	</div, <div, </div>, 
-	% Paragraphs
-	</p, <p, </p>,
-	% scripts
-	</script, <script,
-  % More tags...
-  <canvas, /canvas>, <svg, <rect, <animateTransform, </rect>, </svg>, <video, <source, <iframe, </iframe>, </video>, <image, </image>, <header, </header, <article, </article
-  },
-  ndkeywords={
-  % General
-  =,
-  % HTML attributes
-  charset=, src=, id=, width=, height=, style=, type=, rel=, href=,
-  % SVG attributes
-  fill=, attributeName=, begin=, dur=, from=, to=, poster=, controls=, x=, y=, repeatCount=, xlink:href=,
-  % properties
-  margin:, padding:, background-image:, border:, top:, left:, position:, width:, height:, margin-top:, margin-bottom:, font-size:, line-height:,
-	% CSS3 properties
-  transform:, -moz-transform:, -webkit-transform:,
-  animation:, -webkit-animation:,
-  transition:,  transition-duration:, transition-property:, transition-timing-function:,
-  }
-}
-
-\lstdefinestyle{html} {%
-  % Code design
-  keywordstyle=\color{lightblack}\bfseries,
-  ndkeywordstyle=\color{lightblack}\bfseries,
-  identifierstyle=\color{lightblack},
-  commentstyle=\color{green}\ttfamily,
-  stringstyle=\color{darkred}\ttfamily,
-  % Code
-  language=HTML5,
-%  alsolanguage=JavaScript,
-  alsodigit={.:;},	
-  tabsize=2,
-  showtabs=false,
-  showspaces=false,
-  showstringspaces=false,
-  extendedchars=true,
-  breaklines=true,
-  % German umlauts
-  literate=%
-  {Ö}{{\"O}}1
-  {Ä}{{\"A}}1
-  {Ü}{{\"U}}1
-  {ß}{{\ss}}1
-  {ü}{{\"u}}1
-  {ä}{{\"a}}1
-  {ö}{{\"o}}1
-}
-
-\lstdefinelanguage{CSS} 
-{morekeywords={color,background,margin,padding,margin,padding,font,weight,display,position,top,left,right,bottom,list,style,border,size,white,space,min,width, 	transition}, 
-	sensitive=false, 
-	morecomment=[l]{//}, 
-	morecomment=[s]{/*}{*/}, 
-	morestring=[b]", 
-}
-
-\lstdefinestyle{css} {%
-  language=CSS,
-  keywordstyle=\color{lightblack},
 }
 
 \lstdefinestyle{js} {
   language=JavaScript
 }
 
-\lstdefinestyle{sql} {
-  language=SQL,
-  keywordstyle=\color{azure}  
+\lstdefinestyle{java} {
+  language=Java
+}
+
+\lstdefinestyle{py} {
+  language=Python
 }
 
 %Usage

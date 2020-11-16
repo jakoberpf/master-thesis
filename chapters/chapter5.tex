@@ -302,24 +302,38 @@ This makes a direct application of the Euclidian distance invalid to calculate t
 Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv y=[y_1,...,y_n]$ and $speed$ $\equiv z=[z_1,...,z_n]$ the mathematical definition of calculation for the distance from point $A$ to point $B$ is as follows.
 
 \paragraph{Time dimension} Traveling just in the time dimension is not actual possible, hence the term artificial travel time. But assuming that both point $A$ and $B$ are at the same \textbf{space} step, the distance is calculated by:
-
 \begin{equation}
 	t_{x,A,B}^{artificial} = (x_B - x_A) \cdot ( x_{interval} + 1 )
 	\label{equation_t_v_time}
 \end{equation}
-
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
 	\item[] $x_A | x_B$ is the $x$ index of point $A | B$
 	\item[] $x_{interval}$ is the time interval or step duration
 \end{itemize}
 
-\paragraph{Space dimension} Traveling just through space is also not actual possible, but in the artificial travel time. Under the assumption that point $A$ and point $B$ are in the \textbf{time} step, the distance is calculated by:  
+\begin{lstlisting}[basicstyle=\tiny, style=java, caption={vertical distance calculation}, label=lst:distance_calc_vertical] 
+    /**
+     * Computes the vertical distance from A to B in [s]
+     *
+     * @param a The indexes of from where, with [0] = stepIdx and [1] = linkIdx
+     * @param b The indexes of to where, with [0] = stepIdx and [1] = linkIdx
+     * @return The travel time in seconds
+     */
+    public double computeVertical(final int[] a, final int[] b) {
+        // make sure that cells are on the same link
+        assert a[1] == b[1];
+        // calculate number of steps between cells
+        final int deltaSteps = (Math.abs(b[0] - a[0]));
+        // the vertical travel time in [s] is sum of ( time steps [idx] * step duration [min] * 60 [s] ) and therefore is inclusive
+        return deltaSteps * stepDuration * 60;
+    }
+\end{lstlisting}
 
+\paragraph{Space dimension} Traveling just through space is also not actual possible, but in the artificial travel time. Under the assumption that point $A$ and point $B$ are in the \textbf{time} step, the distance is calculated by:  
 \begin{equation}
 	t_{y,A,B}^{artificial} = (\frac{y_{A}^{length}}{2}  \cdot z_{A}^{speed}) + (\frac{y_{B}^{length}}{2} \cdot z_{B}^{speed}) + \sum_{i}^{y_A + 1,...,y_B - 1} (y_{i}^{length} \cdot z_{i}^{speed})
 \end{equation}
-
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
 	\item[] $y_A | y_B$ is the $y$ index of point $A | B$
@@ -327,8 +341,36 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $z_{speed}$ is the speed in the cell
 \end{itemize}
 
-\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the conversion to the artificial travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary. This achieved by using the aimed gap thresholds to form a calibrator value, which scales the axis appropriately, to be of equal scaling (see source code ??). This makes it possible to use the artificial travel time a distance parameters, for horizontal, vertical and diagonal movements.
+\begin{lstlisting}[basicstyle=\tiny, style=java, caption={horizontal distance calculation}, label=lst:distance_calc_horizontal] 
+	/**
+	* Computes the horizontal distance from A to B in [s]
+	*
+	* @param a_idx The indexes of from where, with [0] = stepIdx and [1] = linkIdx
+	* @param b_idx The indexes of to where, with [0] = stepIdx and [1] = linkIdx
+	* @return The travel time in seconds
+	*/
+   public double computeHorizontal(final int[] a_idx, final int[] b_idx) {
+	   // make sure that cells are in the same time step
+	   assert a_idx[0] == b_idx[0];
+	   final int stepIdx = a_idx[0];
+	   // space travel time in [s] is sum of ( link length [m] / ( the speed [km/h] * 1000 / 3600 ) [m/s] )
+	   double spaceTime = 0;
+	   int lowerLinkIdx = Math.min(a_idx[1], b_idx[1]);
+	   int upperLinkIdx = Math.max(a_idx[1], b_idx[1]);
+	   for (int i = lowerLinkIdx + 1; i < upperLinkIdx; i++) {
+		   double travelSpeed = speedMatrix[stepIdx][i] * 1000D / 3600;
+		   spaceTime = spaceTime + (linkLengths[i] / travelSpeed);
+	   }
+	   // add half travel time from start and end cell (middle to middle or inclusive)
+	   double travelSpeedA = speedMatrix[stepIdx][lowerLinkIdx] * 1000D / 3600;
+	   spaceTime = spaceTime + (linkLengths[lowerLinkIdx] / travelSpeedA / 2);
+	   double travelSpeedB = speedMatrix[b_idx[0]][upperLinkIdx] * 1000D / 3600;
+	   spaceTime = spaceTime + (linkLengths[upperLinkIdx] / travelSpeedB / 2);
+	   return spaceTime;
+   }
+\end{lstlisting}
 
+\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the conversion to the artificial travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary. This achieved by using the aimed gap thresholds to form a calibrator value, which scales the axis appropriately, to be of equal scaling. This makes it possible to use the artificial travel time a distance parameters, for horizontal, vertical and diagonal movements. The implementation is shown in \cref{lst:distance_calc_diagonal}.
 \begin{equation}
 	t_{x,y,A,B}^{artificial} = \sqrt{(t_{x,A,B}^{art})^2 + (t_{y,A,B}^{art} \cdot c)^2}
 \end{equation}
@@ -338,7 +380,6 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 \begin{equation}
 	c = \frac{t_{min,gap} \cdot v_{freeflow}}{l_{min,gap}}
 \end{equation}
-
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
 	\item[] $xy_A | xy_B$ is the $xy$ index of point $A | B$
@@ -349,6 +390,86 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $l_{min,gap}$ is the the aimed space gap
 	\item[] $v_{freeflow}$ is the assumed free flowing speed (typically 130\,[km/h])
 \end{itemize}
+
+\begin{lstlisting}[basicstyle=\tiny, style=java, caption={diagonal distance calculation}, label=lst:distance_calc_diagonal] 
+	/**
+	* Computes the distance between two n-dimensional vectors.
+	* <p>
+	* The vectors are not required to have the same dimension, but should represent the
+	* [0] time step and [1] link step
+	*
+	* @param a The first vector with [0] = stepIdx and [1] = linkIdx
+	* @param b The second vector with [0] = stepIdx and [1] = linkIdx
+	* @return The distance between the two vectors
+	* @throws DimensionMismatchException If the array lengths differ.
+	*/
+   public double computeDistance(int[] a, int[] b) throws DimensionMismatchException {
+	   if (a.length != b.length) {
+		   throw new DimensionMismatchException(a.length, b.length);
+	   }
+	   if (a[0] == b[0] && a[1] == b[1]) {
+		   // same link and same step -> travel time from A to B is zero
+		   return 0;
+	   } else if (a[1] == b[1]) {
+		   // same link -> travel time from A to B can be calculated vertically
+		   return computeVertical(a, b);
+	   } else if (a[0] == b[0]) {
+		   // same step -> travel time from A to B can be calculated horizontally
+		   final double minimalVerticalTravelTime = stepDuration * 60 * 0.5;
+		   return Math.sqrt(Math.pow(minimalVerticalTravelTime, 2) + Math.pow(computeHorizontal(a, b) * horizontalCalibrator, 2));
+	   } else {
+		   // compute diagonal with pythagorus and mean of speeds
+		   final int sigT = a[0] > b[0] ? -1 : 1;
+		   final int sigX = a[1] > b[1] ? -1 : 1;
+		   final int deltaSteps = sigT * (Math.abs(b[0] - a[0]) - 1);
+		   final int deltaLinks = sigX * (Math.abs(b[1] - a[1]) - 1);
+		   // collect absolute speed in rectangle from cell A and cell B
+		   final int[] absoluteSpeeds = new int[(Math.abs(deltaSteps) + 2) * (Math.abs(deltaLinks) + 2)];
+		   int absoluteSpeedsCounter = 0;
+		   for (int i = 1; i <= Math.abs(deltaSteps) + 2; i++) {
+			   for (int j = 1; j <= Math.abs(deltaLinks) + 2; j++) {
+				   absoluteSpeeds[absoluteSpeedsCounter] = speedMatrix[a[0] + sigT * i - sigT][a[1] + sigX * j - sigX];
+				   absoluteSpeedsCounter++;
+			   }
+		   }
+		   // compute mean travel time over cell rectangle
+		   int speedSum = 0;
+		   for (int i = 0; i < absoluteSpeedsCounter; i++) {
+			   speedSum += absoluteSpeeds[i];
+		   }
+		   final double meanSpeed = (double) speedSum / absoluteSpeedsCounter;
+		   // compute the total space between the points in [m] by adding up all link lengths
+		   final int deltaSpace;
+		   if (deltaLinks == 0) {
+			   deltaSpace = 0; // if the cell A and B are right next to each other -> no spacial distance
+		   } else if (sigX < 0) {
+			   int tempDeltaSpace = 0;
+			   tempDeltaSpace += linkLengths[a[1]] / 2; // add beginning cell length half
+			   for (int i = b[1] + 1; i < a[1]; i++) {
+				   tempDeltaSpace += linkLengths[i];
+			   }
+			   tempDeltaSpace += linkLengths[b[1]] / 2; // add ending cell length half
+			   deltaSpace = tempDeltaSpace;
+		   } else {
+			   int tempDeltaSpace = 0;
+			   tempDeltaSpace += linkLengths[a[1]] / 2; // add beginning cell length half
+			   for (int i = a[1] + 1; i < b[1]; i++) {
+				   tempDeltaSpace += linkLengths[i];
+			   }
+
+			   tempDeltaSpace += linkLengths[b[1]] / 2; // add ending cell length half
+			   deltaSpace = tempDeltaSpace;
+		   }
+		   // compute the total space time in [s] from the link lengths and absolute speeds
+		   final int deltaSpaceTime;
+		   deltaSpaceTime = (int) Math.round(deltaSpace / (meanSpeed * 1000 / 3600));
+		   // compute the total time between the points in [s], can be done vertically
+		   final double deltaTime = computeVertical(new int[]{a[0], a[1]}, new int[]{b[0], a[1]});
+		   // compute and return the mean travel time from A to B
+		   return Math.sqrt(Math.pow(deltaTime, 2) + Math.pow(deltaSpaceTime * horizontalCalibrator, 2));
+	   }
+   }
+\end{lstlisting}
 
 % TODO read and add infos: https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \parencite{Hatbauer2011}
 
@@ -557,7 +678,7 @@ As a result the congestion has the following attributes.
 \section{Correlation Processing}
 \label{methodology_correlation_processing}
 
-The correlation processing is written in Python and R with the help of some common data analysis frameworks like Pandas, NumPy or Psych. The code base was inspired by the analysis tool from Potvin \parencite{Potvin2020}. This section will explain the process of analyzing the two dataset from the evaluation processing (roadwork-congestion and accident-congestion). The first step in any data analysis is the data import and preparation, explain in \cref{methodology_correlation_processing_revision} and \cref{methodology_correlation_processing_encoding}.
+The correlation processing is written in Python and R with the help of some common data analysis frameworks like Pandas, NumPy or Psych. The code base was inspired by the analysis tool from Potvin \parencite{Potvin2020}. This section will explain the process of analyzing the two dataset from the evaluation processing (roadwork-congestion and accident-congestion). The first step in any data analysis is the data import and preparation, explain in \cref{methodology_correlation_processing_revision} and \cref{methodology_correlation_processing_encoding}. After this initial steps the tool calculates the correlations and significances for all variable combinations, explain in \cref{methodology_correlation_processing_correlation} and \cref{methodology_correlation_processing_significanc}. 
 
 \subsubsection{Data Revision}
 \label{methodology_correlation_processing_revision}
@@ -566,6 +687,13 @@ The
 \subsubsection{Data Encoding}
 \label{methodology_correlation_processing_encoding}
 \todo{How is the data encoded for processing?}
+
+\begin{lstlisting}[style=js, caption={Beispiellisting}, label=lst:sample] 
+function hello(world){
+    console.log('hello ' + world);
+}
+\end{lstlisting}
+
 
 \subsubsection{Correlation Calculation}
 \label{methodology_correlation_processing_correlation}

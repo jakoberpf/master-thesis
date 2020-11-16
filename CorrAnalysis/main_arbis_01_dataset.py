@@ -42,9 +42,9 @@ if __name__ == '__main__':
     file_prefix = 'arbis_dataset'
     file_plot_type = '.pdf'
 
-    arbis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True, date_parser=date_parser)
+    arbis_read = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True, date_parser=date_parser)
 
-    arbis_original = arbis_imported[
+    arbis_import = arbis_read[
         [
             # Roadwork Data
             # 'Von', 'Bis',  # Not correlate able
@@ -63,21 +63,21 @@ if __name__ == '__main__':
         ]].copy()
 
     # Manual data type conversion from str to datetime64
-    arbis_imported['Von'] = pd.to_datetime(arbis_imported['Von'], format='%Y-%m-%d %H:%M:%S')
-    arbis_imported['Bis'] = pd.to_datetime(arbis_imported['Bis'], format='%Y-%m-%d %H:%M:%S')
+    arbis_read['Von'] = pd.to_datetime(arbis_read['Von'], format='%Y-%m-%d %H:%M:%S')
+    arbis_read['Bis'] = pd.to_datetime(arbis_read['Bis'], format='%Y-%m-%d %H:%M:%S')
 
     # Add length of roadwork fragment in kilometers
-    arbis_original['Length'] = abs((arbis_imported['VonKilometer'] - arbis_imported['BisKilometer'])) * 1000
+    arbis_import['Length'] = abs((arbis_read['VonKilometer'] - arbis_read['BisKilometer'])) * 1000
     # Add duration of roadwork fragment in minutes
-    arbis_original['Duration'] = abs((arbis_imported['Von'] - arbis_imported['Bis'])).dt.total_seconds() / 60
+    arbis_import['Duration'] = abs((arbis_read['Von'] - arbis_read['Bis'])).dt.total_seconds() / 60
 
     # Add month of roadwork
-    arbis_original['Month'] = arbis_imported['Von'].dt.strftime('%b')
+    arbis_import['Month'] = arbis_read['Von'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
     # Removing whitespaces
-    arbis_original['Strasse'] = arbis_original['Strasse'].str.replace(' ', '')
+    arbis_import['Strasse'] = arbis_import['Strasse'].str.replace(' ', '')
 
     ##################
     ### Histograms ###
@@ -91,7 +91,7 @@ if __name__ == '__main__':
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.ylabel('Count')
-    sns.countplot(x='Month', data=arbis_original, palette='Spectral', order=months)
+    sns.countplot(x='Month', data=arbis_import, palette='Spectral', order=months)
     plt.xlabel('')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
     plt.ylabel('Count')
-    sns.countplot(x='Strasse', data=arbis_original, palette='Spectral', order=arbis_original['Strasse']
+    sns.countplot(x='Strasse', data=arbis_import, palette='Spectral', order=arbis_import['Strasse']
                   .value_counts().index)
     plt.xlabel('')
     if save_plot:
@@ -121,6 +121,23 @@ if __name__ == '__main__':
     ##############
     ### Counts ###
     ##############
+
+    scale = 1.0
+    (width, height) = set_size(418, scale)
+    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    sns.countplot(ax=axs[0], x='AnzGesperrtFs', data=arbis_import, palette='Spectral')
+    sns.countplot(ax=axs[1], x='Einzug', data=arbis_import, palette='Spectral')
+    sns.countplot(ax=axs[2], x='Richtung', data=arbis_import, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
+        if not show_plot:
+            plt.close()
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
     ###############
     ### Scatter ###
@@ -135,7 +152,7 @@ if __name__ == '__main__':
     ##################
 
     if generate_report:
-        report = ProfileReport(arbis_original, title='ArbIS Original Dataset Report')
+        report = ProfileReport(arbis_import, title='ArbIS Original Dataset Report')
         report.to_file(work_path + file_prefix + '_report.html')
 
     ###################
@@ -148,7 +165,7 @@ if __name__ == '__main__':
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
 
     # Encode non numerical columns
-    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_original,
+    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_import,
                                                            ['Strasse',
                                                             'StreckeID',
                                                             'Month'],

@@ -468,18 +468,15 @@ A analysis based on all matched could be heavily biased, because all kind of rel
 	\item[] \textbf{Jam Follower} are matches, where the incidents happened after the congestion. 
 \end{itemize}
 
-% \begin{figure}[ht]
-% 	\centering	
-% 	\begin{tikzpicture}
-% 		\draw[pattern=north west lines, pattern color=blue] (0,0) rectangle (2,4);
-
-% 		\draw[fill=fondo,very thick] (0:1 cm) -- (72:1 cm) -- (144:1 cm) -- (216:1 cm) -- (288:1 cm) -- cycle;
-% 		\foreach \x in {0,72,...,288} {
-% 			\draw[diagonal,thin] (\x:1 cm) -- (\x + 180:0.809 cm);}
-
-% 	\end{tikzpicture}
-% 	\caption{Euclidian distance in 2-dimensional non-euclidian space}
-% \end{figure}
+These classification are visually represented in \cref{img:jam_classifation}, where the red traveling symbolizes a congestion in the FCD space. The three classifications \textit{Initiator} , \textit{Effector}  and \textit{Follower}  are symbolizes with the different hatchings of yellow stripes, green squares and red rhombus.
+\begin{figure}[ht]
+	\centering	
+	\include{assets/jam_classification.tex}
+	\vspace{-4mm}
+	\caption{Visual representation of the classifications \textit{Initiator} (yellow stripes), \textit{Effector} (green squares) and \textit{Follower} (red rhombus)}
+	\label{img:jam_classifation}
+	\vspace{-4mm}
+\end{figure}
 
 To be able to run the categorization after the runtime intensive detection and matching processing, four additional congestion parameters are introduced. They describe the relative location of the incident to the congestion event. The temporal reference of the incident to the congestion is described by the parameter \textbf{temporalGlobalLocation}, based on the temporal distance. 
 \begin{table}[ht]

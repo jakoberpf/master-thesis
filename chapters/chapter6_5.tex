@@ -1,5 +1,5 @@
 \subsection{ArbIS}
-\label{analysis_processing_correlation_baysis_matched}
+\label{analysis_processing_correlation_arbis_matched}
 The correlation matrix table for the congestion-roadwork dataset (see \cref{tbl:appendix_arbis_correlation_matrix_dataset_cramers}) is visual presented in \cref{img:correlation_matrix_arbis_selected_effector_cramers} showing the the correlation of each variable combination. When visual analyzing \cref{img:correlation_matrix_arbis_selected_effector_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \cref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \cref{tbl:correlation_list_arbis_matched}). Since the focus of the thesis are the correlations between accidents and jams, these are only collected from the bottom-left rectangle of the matrix, where the congestion and accidents variables intersect.
 \begin{table}[h!]
 	\centering
@@ -35,12 +35,7 @@ Next we need to verify that the correlation is significant and what the correlat
 \centerheading{Strasse}
 This section analyzes the correlated relations of the accident variable \textit{Strasse}. The correlations of \textit{Strasse} - \textit{SAvg} and \textit{Strasse} - \textit{TLHGV} produces a $p$-value above the $\alpha$-level of .05 in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected for these relations and there are no significant groups to identify.
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TMax} produces a $p$-value of 0.003967, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TMax}. 
-
-
-\paragraph{Maximal Temporal Extent}
-Kruskal-Wallis chi-squared = 957.47, df = 203, p-value < 2.2e-16
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TMax} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_TMax}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -68,9 +63,9 @@ Kruskal-Wallis chi-squared = 957.47, df = 203, p-value < 2.2e-16
     \bottomrule
   \end{tabular}
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+	\label{tbl:wilcoxon_arbis_matched_Strasse_TMax}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
+The table shows, that the groups A3 and A93 differ from group A9, A7 and A6. The A93 also differs from A96, A995 and A92. The A96 differs from A3 and A99.
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -89,31 +84,25 @@ Kruskal-Wallis chi-squared = 957.47, df = 203, p-value < 2.2e-16
     A96  & 230  & 105.80 & 95.17  & 75.00  & 9   & 384  & 375 \\ 
     A995 & 14   & 60.00  & 28.70  & 48.00  & 18  & 105  & 87 \\ 
     A92  & 82   & 132.40 & 134.72 & 79.50  & 9   & 768  & 759 \\ 
-    A72  & 3    & 425.00 & 313.50 & 606.00 & 63  & 606  & 543 \\ 
-    A93  & 160  & 157.33 & 55.97  & 189.00 & 9   & 312  & 303 \\ 
-    A95  & 2    & 117.00 & 106.07 & 117.00 & 42  & 192  & 150 \\ 
+    A93  & 160  & 157.33 & 55.97  & 189.00 & 9   & 312  & 303 \\  
     A94  & 56   & 179.57 & 124.79 & 165.00 & 15  & 369  & 354 \\ 
-    A980 & 3    & 83.00  & 27.71  & 99.00  & 51  & 99   & 48 \\ 
-    A45  & 2    & 123.00 & 0.00   & 123.00 & 123 & 123  & 0 \\ 
     \bottomrule
   \end{tabular}
 	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	\label{tbl:descriptives_arbis_matched_Strasse_TMax}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TMax} 
 
-
-\paragraph{Average Temporal Extent}
-Kruskal-Wallis chi-squared = 1050.6, df = 256, p-value < 2.2e-16
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TAvg} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_TAvg}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
 	\centering
   \begin{tabular}{rrrrrrrrrrrrrrrrr}
-    \hline
+    \toprule
          & A9 & A7 & A70 & A71 & A6 & A73 & A3 & A99 & A96 & A995 & A92 & A72 & A93 & A95 & A94 & A980 \\ 
-    \hline
+    \midrule
     A7   & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
     A70  & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
     A71  & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
@@ -130,19 +119,19 @@ Kruskal-Wallis chi-squared = 1050.6, df = 256, p-value < 2.2e-16
     A94  & 1.00 & 1.00 & 1.00 & 1.00 & 0.14 & 1.00 & 1.00 & 0.00 & 0.63 & 0.53 & 1.00 & 1.00 & 0.02 & 1.00 &  &  \\ 
     A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
     A45  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-    \hline
+    \midrule
   \end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Average Temporal Extent}}
+	\label{tbl:wilcoxon_arbis_matched_Strasse_TAvg}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
+\cref{tbl:wilcoxon_arbis_matched_Strasse_TAvg} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht!]
 	\tiny
 	\centering
   \begin{tabular}{rrrrrrrrrrrrrr}
-    \hline
+    \toprule
     & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-    \hline
+    \midrule
     A9   & 1.00 & 656.00 & 85.61 & 100.78 & 42.00 & 64.66 & 41.51 & 5.00 & 575.00 & 570.00 & 2.12 & 4.76 & 3.93 \\ 
     A7   & 1.00 & 302.00 & 87.76 & 117.13 & 44.50 & 60.64 & 40.77 & 5.00 & 858.00 & 853.00 & 3.03 & 12.53 & 6.74 \\ 
     A70  & 1.00 & 50.00 & 154.38 & 236.49 & 55.50 & 93.28 & 52.63 & 6.00 & 966.00 & 960.00 & 2.20 & 4.03 & 33.44 \\ 
@@ -154,28 +143,23 @@ Kruskal-Wallis chi-squared = 1050.6, df = 256, p-value < 2.2e-16
     A96  & 1.00 & 230.00 & 69.31 & 73.52 & 43.00 & 53.59 & 39.29 & 5.00 & 290.00 & 285.00 & 1.64 & 1.70 & 4.85 \\ 
     A995 & 1.00 & 14.00 & 37.14 & 23.98 & 23.00 & 36.50 & 20.02 & 8.00 & 74.00 & 66.00 & 0.23 & -1.87 & 6.41 \\ 
     A92  & 1.00 & 82.00 & 81.83 & 90.35 & 45.50 & 65.23 & 40.77 & 5.00 & 489.00 & 484.00 & 2.24 & 5.95 & 9.98 \\ 
-    A72  & 1.00 & 3.00 & 333.67 & 267.31 & 488.00 & 333.67 & 0.00 & 25.00 & 488.00 & 463.00 & -0.38 & -2.33 & 154.33 \\ 
     A93  & 1.00 & 160.00 & 115.96 & 50.96 & 141.00 & 121.91 & 31.13 & 6.00 & 199.00 & 193.00 & -0.62 & -1.03 & 4.03 \\ 
-    A95  & 1.00 & 2.00 & 60.50 & 23.33 & 60.50 & 60.50 & 24.46 & 44.00 & 77.00 & 33.00 & 0.00 & -2.75 & 16.50 \\ 
     A94  & 1.00 & 56.00 & 84.98 & 64.07 & 70.00 & 77.70 & 65.98 & 6.00 & 248.00 & 242.00 & 0.84 & -0.12 & 8.56 \\ 
-    A980 & 1.00 & 3.00 & 62.33 & 34.06 & 82.00 & 62.33 & 0.00 & 23.00 & 82.00 & 59.00 & -0.38 & -2.33 & 19.67 \\ 
-    A45  & 1.00 & 2.00 & 107.00 & 0.00 & 107.00 & 107.00 & 0.00 & 107.00 & 107.00 & 0.00 &  &  & 0.00 \\ 
-    \hline
+    \midrule
   \end{tabular}
-	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Average Temporal Extent}}
+	\label{tbl:descriptives_arbis_matched_Strasse_TAvg}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TAvg}
 
-\paragraph{Maximal Spatial Extent}
-Kruskal-Wallis chi-squared = 3082.1, df = 1228, p-value < 2.2e-16
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SMax} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_SMax}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
 	\centering
   \begin{tabular}{rrrrrrrrrrrrrrrrr}
-    \hline
+    \toprule
          & A9 & A7 & A70 & A71 & A6 & A73 & A3 & A99 & A96 & A995 & A92 & A72 & A93 & A95 & A94 & A980 \\ 
     \hline
     A7   & 0.58 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
@@ -196,10 +180,10 @@ Kruskal-Wallis chi-squared = 3082.1, df = 1228, p-value < 2.2e-16
     A45  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
     \hline
   \end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Spatial Extent}}
+	\label{tbl:wilcoxon_arbis_matched_Strasse_SMax}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
+\cref{tbl:wilcoxon_arbis_matched_Strasse_SMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -218,22 +202,17 @@ Kruskal-Wallis chi-squared = 3082.1, df = 1228, p-value < 2.2e-16
     A96  & 1.00 & 230.00 & 5639.41 & 6034.92 & 3072.00 & 4226.37 & 1856.96 & 951.00 & 27965.00 & 27014.00 & 2.07 & 3.48 & 397.93 \\ 
     A995 & 1.00 & 14.00 & 3618.14 & 1331.10 & 4288.00 & 3684.67 & 796.16 & 1613.00 & 4825.00 & 3212.00 & -0.35 & -1.78 & 355.75 \\ 
     A92  & 1.00 & 82.00 & 5758.10 & 3673.73 & 4544.00 & 5227.71 & 3114.94 & 999.00 & 16931.00 & 15932.00 & 1.22 & 0.92 & 405.70 \\ 
-    A72  & 1.00 & 3.00 & 8253.67 & 506.34 & 8546.00 & 8253.67 & 0.00 & 7669.00 & 8546.00 & 877.00 & -0.38 & -2.33 & 292.33 \\ 
     A93  & 1.00 & 160.00 & 3530.39 & 3718.54 & 1926.00 & 2571.59 & 34.10 & 699.00 & 22528.00 & 21829.00 & 3.21 & 9.95 & 293.98 \\ 
-    A95  & 1.00 & 2.00 & 4020.00 & 4133.75 & 4020.00 & 4020.00 & 4333.64 & 1097.00 & 6943.00 & 5846.00 & 0.00 & -2.75 & 2923.00 \\ 
     A94  & 1.00 & 56.00 & 5849.05 & 3394.57 & 5785.00 & 5667.57 & 2513.01 & 1025.00 & 12582.00 & 11557.00 & 0.47 & -0.67 & 453.62 \\ 
-    A980 & 1.00 & 3.00 & 2791.33 & 1500.53 & 1925.00 & 2791.33 & 0.00 & 1925.00 & 4524.00 & 2599.00 & 0.38 & -2.33 & 866.33 \\ 
-    A45  & 1.00 & 2.00 & 2075.00 & 0.00 & 2075.00 & 2075.00 & 0.00 & 2075.00 & 2075.00 & 0.00 &  &  & 0.00 \\ 
     \hline
   \end{tabular}
-	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Spatial Extent}}
+	\label{tbl:descriptives_arbis_matched_Strasse_SMax}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SMax}
 
-\paragraph{Average Spatial Extent}
-Kruskal-Wallis chi-squared = 2889, df = 1319, p-value < 2.2e-16
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SAvg} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SAvg} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_SAvg}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -260,10 +239,10 @@ Kruskal-Wallis chi-squared = 2889, df = 1319, p-value < 2.2e-16
     A45  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
     \hline
   \end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Average Spatial Extent}}
+	\label{tbl:wilcoxon_arbis_matched_Strasse_SAvg}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
+\cref{tbl:wilcoxon_arbis_matched_Strasse_SAvg} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -282,22 +261,17 @@ Kruskal-Wallis chi-squared = 2889, df = 1319, p-value < 2.2e-16
     A96  & 1.00 & 230.00 & 2488.22 & 1790.94 & 2160.00 & 2144.86 & 1068.21 & 404.00 & 9767.00 & 9363.00 & 2.10 & 4.77 & 118.09 \\ 
     A995 & 1.00 & 14.00 & 1976.93 & 1044.51 & 1950.00 & 1992.67 & 1714.63 & 569.00 & 3196.00 & 2627.00 & 0.06 & -1.72 & 279.16 \\ 
     A92  & 1.00 & 82.00 & 3360.88 & 2294.30 & 2882.00 & 3040.65 & 1786.53 & 457.00 & 11703.00 & 11246.00 & 1.27 & 1.23 & 253.36 \\ 
-    A72  & 1.00 & 3.00 & 3808.67 & 1292.69 & 4555.00 & 3808.67 & 0.00 & 2316.00 & 4555.00 & 2239.00 & -0.38 & -2.33 & 746.33 \\ 
-    A93  & 1.00 & 160.00 & 2243.26 & 2065.34 & 1575.00 & 1749.74 & 449.23 & 461.00 & 11161.00 & 10700.00 & 3.42 & 11.30 & 163.28 \\ 
-    A95  & 1.00 & 2.00 & 2093.50 & 1584.63 & 2093.50 & 2093.50 & 1661.25 & 973.00 & 3214.00 & 2241.00 & 0.00 & -2.75 & 1120.50 \\ 
+    A93  & 1.00 & 160.00 & 2243.26 & 2065.34 & 1575.00 & 1749.74 & 449.23 & 461.00 & 11161.00 & 10700.00 & 3.42 & 11.30 & 163.28 \\  
     A94  & 1.00 & 56.00 & 2557.62 & 1655.86 & 2551.00 & 2354.04 & 1104.54 & 506.00 & 6393.00 & 5887.00 & 1.06 & 0.54 & 221.27 \\ 
-    A980 & 1.00 & 3.00 & 1835.00 & 315.23 & 1653.00 & 1835.00 & 0.00 & 1653.00 & 2199.00 & 546.00 & 0.38 & -2.33 & 182.00 \\ 
-    A45  & 1.00 & 2.00 & 1884.00 & 0.00 & 1884.00 & 1884.00 & 0.00 & 1884.00 & 1884.00 & 0.00 &  &  & 0.00 \\ 
     \hline
   \end{tabular}
-	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Average Spatial Extent}}
+	\label{tbl:descriptives_arbis_matched_Strasse_SAvg}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SAvg}
 
-\paragraph{Temporal Distance}
-Kruskal-Wallis chi-squared = 58.971, df = 24, p-value = 8.911e-05
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TDist} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TDist} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_TDist}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -324,10 +298,10 @@ Kruskal-Wallis chi-squared = 58.971, df = 24, p-value = 8.911e-05
     A45  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  & 1.00 &  & 1.00 &  \\ 
     \hline
   \end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Temporal Distance}}
+	\label{tbl:wilcoxon_arbis_matched_Strasse_TDist}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
+\cref{tbl:wilcoxon_arbis_matched_Strasse_TDist} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -346,22 +320,17 @@ Kruskal-Wallis chi-squared = 58.971, df = 24, p-value = 8.911e-05
     A96  & 1.00 & 230.00 & 3.09 & 6.17 & 0.00 & 1.56 & 0.00 & 0.00 & 24.00 & 24.00 & 1.84 & 2.08 & 0.41 \\ 
     A995 & 1.00 & 14.00 & 1.64 & 6.15 & 0.00 & 0.00 & 0.00 & 0.00 & 23.00 & 23.00 & 2.98 & 7.41 & 1.64 \\ 
     A92  & 1.00 & 82.00 & 1.20 & 3.85 & 0.00 & 0.08 & 0.00 & 0.00 & 22.00 & 22.00 & 3.58 & 12.88 & 0.43 \\ 
-    A72  & 1.00 & 3.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
     A93  & 1.00 & 160.00 & 2.39 & 5.50 & 0.00 & 0.86 & 0.00 & 0.00 & 23.00 & 23.00 & 2.22 & 3.65 & 0.43 \\ 
-    A95  & 1.00 & 2.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
     A94  & 1.00 & 56.00 & 2.18 & 5.06 & 0.00 & 0.96 & 0.00 & 0.00 & 23.00 & 23.00 & 2.30 & 4.61 & 0.68 \\ 
-    A980 & 1.00 & 3.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
-    A45  & 1.00 & 2.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
     \hline
   \end{tabular}
-	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Temporal Distance}}
+	\label{tbl:descriptives_arbis_matched_Strasse_TDist}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TDist}
 
-\paragraph{Spatial Distance}
-Kruskal-Wallis chi-squared = 598.77, df = 431, p-value = 1.465e-07
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SDist} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SDist} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_SDist}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -388,10 +357,10 @@ Kruskal-Wallis chi-squared = 598.77, df = 431, p-value = 1.465e-07
     A45  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
     \hline
   \end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Spatial Distance}}
+	\label{tbl:wilcoxon_arbis_matched_Strasse_SDist}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
+\cref{tbl:wilcoxon_arbis_matched_Strasse_SDist} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -410,22 +379,17 @@ Kruskal-Wallis chi-squared = 598.77, df = 431, p-value = 1.465e-07
     A96  & 1.00 & 230.00 & 146.79 & 395.78 & 0.00 & 25.03 & 0.00 & 0.00 & 1958.00 & 1958.00 & 2.80 & 6.83 & 26.10 \\ 
     A995 & 1.00 & 14.00 & 288.29 & 545.94 & 0.00 & 190.58 & 0.00 & 0.00 & 1749.00 & 1749.00 & 1.55 & 1.10 & 145.91 \\ 
     A92  & 1.00 & 82.00 & 96.22 & 295.14 & 0.00 & 18.50 & 0.00 & 0.00 & 1626.00 & 1626.00 & 3.90 & 15.67 & 32.59 \\ 
-    A72  & 1.00 & 3.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
     A93  & 1.00 & 160.00 & 34.58 & 189.72 & 0.00 & 0.00 & 0.00 & 0.00 & 1769.00 & 1769.00 & 6.67 & 49.58 & 15.00 \\ 
-    A95  & 1.00 & 2.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
     A94  & 1.00 & 56.00 & 327.38 & 606.32 & 0.00 & 198.54 & 0.00 & 0.00 & 1983.00 & 1983.00 & 1.66 & 1.29 & 81.02 \\ 
-    A980 & 1.00 & 3.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 &  &  & 0.00 \\ 
-    A45  & 1.00 & 2.00 & 175.00 & 247.49 & 175.00 & 175.00 & 259.45 & 0.00 & 350.00 & 350.00 & 0.00 & -2.75 & 175.00 \\ 
     \hline
   \end{tabular}
-	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Spatial Distance}}
+	\label{tbl:descriptives_arbis_matched_Strasse_SDist}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SDist}
 
-\paragraph{Coverage}
-Kruskal-Wallis chi-squared = 748.96, df = 93, p-value < 2.2e-16
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{Cov} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_Cov}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -452,10 +416,10 @@ Kruskal-Wallis chi-squared = 748.96, df = 93, p-value < 2.2e-16
     A45  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
     \hline
   \end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Coverage}}
+	\label{tbl:wilcoxon_arbis_matched_Strasse_Cov}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
+\cref{tbl:wilcoxon_arbis_matched_Strasse_Cov} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -474,22 +438,17 @@ Kruskal-Wallis chi-squared = 748.96, df = 93, p-value < 2.2e-16
     A96  & 1.00 & 230.00 & 58.77 & 25.54 & 58.00 & 59.57 & 31.88 & 7.00 & 100.00 & 93.00 & -0.17 & -1.08 & 1.68 \\ 
     A995 & 1.00 & 14.00 & 49.21 & 17.17 & 44.00 & 49.17 & 26.69 & 26.00 & 73.00 & 47.00 & 0.01 & -1.79 & 4.59 \\ 
     A92  & 1.00 & 82.00 & 56.78 & 19.62 & 59.00 & 57.06 & 21.50 & 12.00 & 100.00 & 88.00 & -0.14 & -0.78 & 2.17 \\ 
-    A72  & 1.00 & 3.00 & 44.33 & 13.28 & 52.00 & 44.33 & 0.00 & 29.00 & 52.00 & 23.00 & -0.38 & -2.33 & 7.67 \\ 
     A93  & 1.00 & 160.00 & 69.51 & 16.48 & 68.00 & 71.79 & 25.20 & 22.00 & 91.00 & 69.00 & -0.86 & -0.01 & 1.30 \\ 
-    A95  & 1.00 & 2.00 & 68.00 & 38.18 & 68.00 & 68.00 & 40.03 & 41.00 & 95.00 & 54.00 & 0.00 & -2.75 & 27.00 \\ 
     A94  & 1.00 & 56.00 & 47.82 & 23.60 & 44.00 & 46.80 & 19.27 & 10.00 & 100.00 & 90.00 & 0.43 & -0.47 & 3.15 \\ 
-    A980 & 1.00 & 3.00 & 69.00 & 19.05 & 80.00 & 69.00 & 0.00 & 47.00 & 80.00 & 33.00 & -0.38 & -2.33 & 11.00 \\ 
-    A45  & 1.00 & 2.00 & 87.00 & 0.00 & 87.00 & 87.00 & 0.00 & 87.00 & 87.00 & 0.00 &  &  & 0.00 \\ 
     \hline
   \end{tabular}
-	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Coverage}}
+	\label{tbl:descriptives_arbis_matched_Strasse_Cov}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_Cov}
 
-\paragraph{Time-loss Car}
-Kruskal-Wallis chi-squared = 2072.8, df = 769, p-value < 2.2e-16
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TLCar} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TLCar} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_TLCar}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -516,10 +475,10 @@ Kruskal-Wallis chi-squared = 2072.8, df = 769, p-value < 2.2e-16
     A45  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
     \hline
   \end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Time-loss Car}}
+	\label{tbl:wilcoxon_arbis_matched_Strasse_TLCar}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
+The table shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -538,22 +497,17 @@ Kruskal-Wallis chi-squared = 2072.8, df = 769, p-value < 2.2e-16
     A96  & 1.00 & 230.00 & 1494.62 & 278.01 & 1530.00 & 1500.08 & 380.29 & 1010.00 & 1997.00 & 987.00 & -0.16 & -1.25 & 18.33 \\ 
     A995 & 1.00 & 14.00 & 1497.86 & 252.08 & 1592.00 & 1510.25 & 306.16 & 1034.00 & 1813.00 & 779.00 & -0.41 & -1.26 & 67.37 \\ 
     A92  & 1.00 & 82.00 & 1525.43 & 267.00 & 1595.00 & 1532.76 & 326.17 & 1056.00 & 1976.00 & 920.00 & -0.23 & -1.28 & 29.49 \\ 
-    A72  & 1.00 & 3.00 & 1800.00 & 86.60 & 1850.00 & 1800.00 & 0.00 & 1700.00 & 1850.00 & 150.00 & -0.38 & -2.33 & 50.00 \\ 
     A93  & 1.00 & 160.00 & 1368.61 & 249.94 & 1297.00 & 1354.96 & 194.96 & 1012.00 & 1988.00 & 976.00 & 0.59 & -0.40 & 19.76 \\ 
-    A95  & 1.00 & 2.00 & 1402.50 & 4.95 & 1402.50 & 1402.50 & 5.19 & 1399.00 & 1406.00 & 7.00 & 0.00 & -2.75 & 3.50 \\ 
     A94  & 1.00 & 56.00 & 1537.91 & 274.00 & 1540.00 & 1540.13 & 285.40 & 1079.00 & 1990.00 & 911.00 & 0.00 & -1.27 & 36.62 \\ 
-    A980 & 1.00 & 3.00 & 1124.00 & 48.50 & 1152.00 & 1124.00 & 0.00 & 1068.00 & 1152.00 & 84.00 & -0.38 & -2.33 & 28.00 \\ 
-    A45  & 1.00 & 2.00 & 1254.00 & 0.00 & 1254.00 & 1254.00 & 0.00 & 1254.00 & 1254.00 & 0.00 &  &  & 0.00 \\ 
     \hline
   \end{tabular}
-	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Time-loss Car}}
+	\label{tbl:descriptives_arbis_matched_Strasse_TLCar}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TLCar}
 
-\paragraph{Time-loss HGV}
-Kruskal-Wallis chi-squared = 1668.3, df = 474, p-value < 2.2e-16
-
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TLHGV} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TLHGV} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_TLHGV}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -580,10 +534,10 @@ Kruskal-Wallis chi-squared = 1668.3, df = 474, p-value < 2.2e-16
     A45  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
     \hline
   \end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:wilcoxon_baysis_matched_Strasse_TMax}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Time-loss HGV}}
+	\label{tbl:wilcoxon_arbis_matched_Strasse_TLHGV}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Strasse_TMax} shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
+The table shows, that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3. There is no distinctive general trend.
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -602,18 +556,15 @@ Kruskal-Wallis chi-squared = 1668.3, df = 474, p-value < 2.2e-16
     A96  & 1.00 & 230.00 & 750.74 & 141.48 & 737.00 & 750.49 & 166.79 & 500.00 & 999.00 & 499.00 & 0.05 & -1.13 & 9.33 \\ 
     A995 & 1.00 & 14.00 & 704.50 & 82.95 & 752.50 & 707.17 & 85.25 & 567.00 & 810.00 & 243.00 & -0.39 & -1.45 & 22.17 \\ 
     A92  & 1.00 & 82.00 & 739.94 & 152.04 & 703.00 & 736.30 & 197.19 & 529.00 & 979.00 & 450.00 & 0.15 & -1.45 & 16.79 \\ 
-    A72  & 1.00 & 3.00 & 721.33 & 156.46 & 631.00 & 721.33 & 0.00 & 631.00 & 902.00 & 271.00 & 0.38 & -2.33 & 90.33 \\ 
     A93  & 1.00 & 160.00 & 648.00 & 175.73 & 551.00 & 624.96 & 68.20 & 500.00 & 999.00 & 499.00 & 0.88 & -0.81 & 13.89 \\ 
-    A95  & 1.00 & 2.00 & 690.00 & 227.69 & 690.00 & 690.00 & 238.70 & 529.00 & 851.00 & 322.00 & 0.00 & -2.75 & 161.00 \\ 
     A94  & 1.00 & 56.00 & 771.16 & 129.38 & 799.00 & 772.76 & 200.89 & 559.00 & 959.00 & 400.00 & -0.03 & -1.47 & 17.29 \\ 
-    A980 & 1.00 & 3.00 & 734.67 & 102.77 & 794.00 & 734.67 & 0.00 & 616.00 & 794.00 & 178.00 & -0.38 & -2.33 & 59.33 \\ 
-    A45  & 1.00 & 2.00 & 868.00 & 0.00 & 868.00 & 868.00 & 0.00 & 868.00 & 868.00 & 0.00 &  &  & 0.00 \\ 
     \hline
   \end{tabular}
-	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Strasse_TMax}
+	\caption{Group descriptives of \textit{Strasse} and \textit{Time-loss HGV}}
+	\label{tbl:descriptives_arbis_matched_Strasse_TMax}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TMax}
 
 % -------------------------
 % -------- Month ---------

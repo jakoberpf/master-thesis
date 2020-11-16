@@ -20,7 +20,7 @@ import seaborn as sns
 from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, set_size, tex_fonts
+from func_plot import plot_correlation, set_size, tex_fonts, plot_arbis_dist
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -121,6 +121,15 @@ if __name__ == '__main__':
     else:
         plt.close()
 
+    #####################
+    ### Distributions ###
+    #####################
+
+    plot_arbis_dist([
+        'Length',
+        'Duration'],
+        arbis_import, plot_path, file_prefix, save_plot, show_plot)
+
     ##############
     ### Counts ###
     ##############
@@ -179,6 +188,8 @@ if __name__ == '__main__':
     with open(csv_path + 'encoded_dict.csv', 'w') as tf:
         for key in arbis_encoded_dict.keys():
             tf.write("%s, %s\n" % (key, arbis_encoded_dict[key]))
+
+    arbis_encoded = arbis_encoded.rename(columns={'AnzGesperrtFs': 'AGF'})
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused

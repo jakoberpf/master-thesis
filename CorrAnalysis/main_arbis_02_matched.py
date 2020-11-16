@@ -237,6 +237,16 @@ if __name__ == '__main__':
         for key in arbis_encoded_dict.keys():
             tf.write("%s, %s\n" % (key, arbis_encoded_dict[key]))
 
+    arbis_encoded = arbis_encoded.rename(columns={"TempMax": "TMax",
+                                                  "TempAvg": "TAvg",
+                                                  "SpatMax": "SMax",
+                                                  "SpatAvg": "SAvg",
+                                                  "Coverage": "Cov",
+                                                  "TempDist": "TDist",
+                                                  "SpatDist": "SDist",
+                                                  'Strasse': "Str",
+                                                  'AnzGesperrtFs': 'AGF'})
+
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused
     results = compute_correlations(

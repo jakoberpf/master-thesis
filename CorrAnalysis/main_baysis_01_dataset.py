@@ -393,14 +393,6 @@ if __name__ == '__main__':
                      save=save_plot, filepath=plot_path + file_prefix + '_corr_cramers.pdf',
                      show=show_plot, scale=4.0)
 
-    # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
-                   show=show_plot, scale=4.0)
-
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
@@ -426,14 +418,6 @@ if __name__ == '__main__':
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.pdf',
                      show=show_plot, scale=4.0)
-
-    # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
-                   show=show_plot, scale=4.0)
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:

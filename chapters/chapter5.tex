@@ -406,7 +406,7 @@ The matching process for finding adjacent incidents around jams is rather simple
 
 \section{Data Processing}
 \label{methodology_data_processing}
-As result of the previous detection a matching algorithms we now have a list of jams with spatial and timely adjacent incidents (accidents and roadworks). For further analysis congestion and incident matches will be expanded with additionally features and exported in to a local data format for the analysis.
+As result of the previous detection a matching algorithms we now have a list of congestion objects with spatial and timely adjacent incidents objects (accidents and roadworks). For the statistical analysis these congestion and incident matches will be expanded with additionally features and exported in to a local data format.
 
 \subsubsection{Congestion}
 For the analysis we are interested in the length and duration of the congestions. The length and duration of congestions, defined by the boundary rectangle can be heavily biased. It is also a very rough representation of the extends, and is therefore considered to be the maximum length and maximum duration. To have another representation of the time and space extends, an average duration and length is calculated. This is done by iteration over the time step or link step and calculating the mean of the jam length or duration respectively.
@@ -478,7 +478,7 @@ These classification are visually represented in \cref{img:jam_classifation}, wh
 	\vspace{-4mm}
 \end{figure}
 
-To be able to run the categorization after the runtime intensive detection and matching processing, four additional congestion parameters are introduced. They describe the relative location of the incident to the congestion event. The temporal reference of the incident to the congestion is described by the parameter \textbf{temporalGlobalLocation}, based on the temporal distance. 
+To be able to do the categorization after the runtime intensive detection and matching processing, four additional congestion parameters are introduced into the congestion object. They describe the relative location of the incident to the congestion event. The temporal reference of the incident to the congestion is described by the parameter \textit{temporalGlobalLocation} (shown in \cref{tbl:jam_classification_GLT}), based on the temporal distance.
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -489,10 +489,10 @@ To be able to run the categorization after the runtime intensive detection and m
  		5 & is after \\
 	\end{tabular}
 	\caption{Encoding and description of temporal global location reference}
+	\label{tbl:jam_classification_GLT}
 	\vspace{-4mm}
 \end{table}
-
-The spatial reference of if the incident to the congestion is described by the parameter \textbf{spatialGlobalLocation}, based on the spatial distance.
+The spatial reference of if the incident to the congestion is described by the parameter \textit{spatialGlobalLocation} (shown in \cref{tbl:jam_classification_GLS}), based on the spatial distance.
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -501,10 +501,10 @@ The spatial reference of if the incident to the congestion is described by the p
  		3 & is after \\ 
 	\end{tabular}
 	\caption{Encoding and description of spatial global location reference}
+	\label{tbl:jam_classification_GLS}
 	\vspace{-4mm}
 \end{table}
-
-In the case that the incident happened temporal  during the congestion. The (\textbf{temporalInternalLocation} parameter is set. It describes in more detail where the incident is located during the congestion.
+In the case that the incident happened temporal during the congestion. The (\textit{temporalInternalLocation} (shown in \cref{tbl:jam_classification_ILT}) parameter is set. It describes percentile threshold where the incident is located during the congestion.
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -515,10 +515,10 @@ In the case that the incident happened temporal  during the congestion. The (\te
  		5 & 10\,\% to Ending \\
 	\end{tabular}
 	\caption{Encoding and description of temporal internal location reference}
+	\label{tbl:jam_classification_ILT}
 	\vspace{-4mm}
 \end{table}
-
-In the case that the incident happened spatial during the congestion. The \textbf{spatialInternalLocation} parameter is set. It describes in more detail where the incident is located during the congestion.
+In the case that the incident happened spatial during the congestion. The \textit{spatialInternalLocation} (shown in \cref{tbl:jam_classification_ILS}) parameter is set. It describes is percentile threshold where the incident is located during the congestion.
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -529,6 +529,7 @@ In the case that the incident happened spatial during the congestion. The \textb
  		5 & 10\,\% to Ending \\
 	\end{tabular}
 	\caption{Encoding and description of spatial internal location reference}
+	\label{tbl:jam_classification_ILS}
 	\vspace{-4mm}
 \end{table}
     
@@ -546,8 +547,8 @@ As a result the congestion has the following attributes.
 		TDist & $min$ & Temporal minimal distance \\
 		SDist & $m$   & Spatial minimal distance \\
 		Cov   & $\%$  & Coverage of jammed area of the boundary rectangle \\
-		SDist & $h$   & Spatial minimal distance \\
-		SDist & $h$   & Spatial minimal distance \\
+		TLCar & $h$   & Total time loss of passenger cars \\
+		TLHGV & $h$   & Total time loss of heavy goods vehicles \\
 		\bottomrule
 	\end{tabular}
 	\caption{Variables, Units and descriptions of congestion object}

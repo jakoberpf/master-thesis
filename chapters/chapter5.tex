@@ -292,34 +292,6 @@ This makes a direct application of the Euclidian distance invalid to calculate t
 			scatter/use mapped color={
 				draw=mapped color,fill=mapped color!70},
 			]
-			% `pgfplots_scatter4.dat' contains a large sequence of
-			% the form
-			% l_0   l_1     l_2     
-			% 1     6       -1      
-			% -1    -1      -1      
-			% 0     -1      -1      
-			% -1    0       -1      
-			% -1    -1      0       
-			% 1     -1      -1      
-			% 0     0       -1      
-			% 0     -1      0       
-			%\addplot3[only marks,scatter,mark=cube*,mark size=7] 
-		 	%table {plotdata/pgfplots_scatterdata4.dat};
-			%\addplot3[mesh,domain=1:9] {exp(-x^2-y^2)};
-	%		\addplot3[surf,
-	%		  mesh/interior colormap=
-	%		    {blueblack}{color=(black) color=(blue)},
-	%		  % slightly increase sampling quality (was 25):
-	%		  samples=31,    
-	%		  % avoids overshooting corners:
-	%		  miter limit=1, 
-	%		  % move boundary between inner and outer:
-	%		  mesh/interior colormap thresh=0.1,
-	%		  colormap/blackwhite, 
-	%		  domain=0:9] 
-	%			{sin(deg(8*pi*x))* exp(-20*(y-0.5)^2) 
-	%			+ exp(-(x-0.5)^2*30 
-	%				- (y-0.25)^2 - (x-0.5)*(y-0.25))};
 			% http://pgfplots.sourceforge.net/gallery.html. 
 		\end{axis}
 		
@@ -425,7 +397,7 @@ For a shape representation of the congestion the geometric method of convex hull
 
 \section{Matching Algorithm}
 \label{methodology_matching}
-The matching process for finding adjacent incidents around jams is rather simple. When iterating over all jams, the incidents located on the same road and on the sam day are evaluated for the temporal and spatial distance to the outer line of the the congestion. When the distance fall in the range of the threshold they are considered as adjacent (see source code ??). The following values where used as thresholds.
+The matching process for finding adjacent incidents around jams is rather simple. When iterating over all jams, the incidents located on the same road and on the same day are evaluated for the temporal and spatial distance to the outer line of the the congestion. When the distance falls in the range of the threshold they are considered as adjacent. The following values where used as thresholds.
 
 \begin{itemize}
 	\item The spatial distance an adjacent incident : $l_{min,dist} = 2000 \, [m]$
@@ -434,67 +406,80 @@ The matching process for finding adjacent incidents around jams is rather simple
 
 \section{Data Processing}
 \label{methodology_data_processing}
-As result of the previous detection a matching algorithms we now have a list of jams with spatial and timely adjacent incidents. For further analysis congestion and incident matches will be expanded with additionally features and exported in to a local data format.
+As result of the previous detection a matching algorithms we now have a list of jams with spatial and timely adjacent incidents (accidents and roadworks). For further analysis congestion and incident matches will be expanded with additionally features and exported in to a local data format for the analysis.
 
 \subsubsection{Congestion}
-For the analysis we are interested in the length and duration of the congestions. The length and duration of congestions, defined by the boundary rectangle can be heavy bias. It is also a very rough representation of the extends, and is therefore considered to be the maximum length and maximum duration. To have another representation of the time and space extends, an average duration and length is calculated, using the shape computed by the convex hull algorithm as mask.
+For the analysis we are interested in the length and duration of the congestions. The length and duration of congestions, defined by the boundary rectangle can be heavily biased. It is also a very rough representation of the extends, and is therefore considered to be the maximum length and maximum duration. To have another representation of the time and space extends, an average duration and length is calculated. This is done by iteration over the time step or link step and calculating the mean of the jam length or duration respectively.
 
-For the analysis of social impact the congestion object is expanded with a time loss estimation, differentiated for passenger cars and heavy goods vehicles (HGV). This part was not implemented by the writer, but from the mentor Stefan Gürtler (S\&W). Since it is used in the analysis is should also be elaborated on. For the calculation of the total hours lost in a jam, the number of car in the jam need to be know.
-
-\todo{Elaborate on TimeLoss Calculation}
-
-%  Fahrzeug-Abstand über 2 Sekunden-Regel
-%  ΔlKfz =2*v/3600 [km]
-%  v in [km/h]!
-
+For the analysis of social impact the congestion object is expanded with a time loss estimation, differentiated for passenger cars and heavy goods vehicles (HGV). This part was not implemented by the writer, but from the mentor Stefan Gürtler (S\&W) and used as implemented. Since it is used in the analysis, the calculation will explained in the following. First the headway with the cell speed is calculated with the assumption that drivers follow the two second rule, see \cref{equation_timeloss_vehicles_headway}.
 \begin{equation}
-	l_{vehicle} = 2 \cdot \frac{v}{3600}
+	l_{headway} = 2 \cdot \frac{v_{cell}}{3600}
+	\label{equation_timeloss_vehicles_headway}
 \end{equation}
-
-%  Streckenlänge, welche von 100 Fahrzeuge eingenommen wird:
-%  L100Kfz=nPkw*( lPkw+ ΔlKfz) + nLkw*( llkw+ ΔlKfz)
-%  Mit
-%  nPkw=(1-SV)*100
-%  nLkw=SV*100
-%  Alle Längen in [km]
-
+Then the occupied space of a hundred vehicles can then be comprised by the headway and the vehicle lengths as in \cref{equation_timeloss_vehicles_length}.
 \begin{equation}
-	l_{vehicle} = 2 \cdot \frac{v}{3600}
+	l_{100,vehicles} = n_{car} \cdot (l_{headway} \cdot l_{car}) + n_{hgv} \cdot (l_{headway} \cdot l_{hgv})
+	\label{equation_timeloss_vehicles_length}
 \end{equation}
-
-%  Dichte auf Kante:
-%  k= 100 Kfz / L100Kfz = 1 / ((1-SV)*( lPkw+ ΔlKfz) + SV *( llkw+ ΔlKfz)) [Fz/km]
-
-%  Anzahl Fahrzeuge auf Kante:
-%  nKfz = lKante * k
-%  nPkw = (1-SV) * nKfz
-%  nLkw = SV * nKfz
-%  lKante in [km]
-
-%  Reisezeitverlust auf Kante:
-%  ΔttKante = nKfz * nLanes * lKante * ( vFree - vKante ) [h]
-%  v in [km/h]!
-
 \begin{equation}
-	t_{loss} = n_{Kfz} \cdot n_{lanes} \cdot l_{cell} \cdot ( v_{free} - v_{cell})
+	n_{car} = (1-r) \cdot 100
 \end{equation}
-
-\smallskip
-
+\begin{equation}
+	n_{hgv} = r \cdot 100 
+\end{equation}
+The density of vehicles for the cell speed can be calculated as in \cref{equation_timeloss_vehicles_density}.
+\begin{equation}
+	d = \frac{1}{((1-r) \cdot (l_{headway} \cdot l_{car}) + r \cdot (l_{headway} \cdot l_{hgv})}
+	\label{equation_timeloss_vehicles_density}
+\end{equation}
+The appropriate vehicle count can then be deviated by \cref{equation_timeloss_vehicles_count,equation_timeloss_vehicles_count_car,equation_timeloss_vehicles_count_hgv}
+\begin{equation}
+	n_{vehicles} = l_{cell} \cdot d
+	\label{equation_timeloss_vehicles_count}
+\end{equation}
+\begin{equation}
+	n_{car} = (1-r) \cdot n_{vehicles}
+	\label{equation_timeloss_vehicles_count_car}
+\end{equation}
+\begin{equation}
+	n_{hgv} = r \cdot n_{vehicles}
+	\label{equation_timeloss_vehicles_count_hgv}
+\end{equation}
+To calculate the total hours lost for either passenger car or heavy goods vehicle due to the jam, \cref{equation_timeloss} is applied with the appropriate 
+\begin{equation}
+	t_{loss,car/hgv} = n_{car/hgv} \cdot n_{lanes} \cdot l_{cell} \cdot ( v_{free} - v_{cell})
+	\label{equation_timeloss}
+\end{equation}
 \begin{itemize}
-	\setlength\itemsep{0.1em}	
-	\item[] $l_{vehicle}$ is the occupied space of one vehicle
+	\setlength\itemsep{0.01em}	
+	\item[] $v_{cell}$ is the mean vehicle speed in [km/h]
+	\item[] $v_{free}$ is the assumed free flowing speed in [km/h]
+	\item[] $d$ is the density of vehicles in the cell [veh/km]
+	\item[] $r$ is the ratio of heavy goods vehicle to passenger cars 
 \end{itemize}
 
-A analysis based on all matched could be heavily biased, because all kind of relations are considered a once. To do a more specialized analysis, the congestion incident matches should be categorized. The three categories to be evaluated separately can be described as \textbf{Initiator}, \textbf{Effector} and \textbf{Follower}.
+\bigskip
+
+A analysis based on all matched could be heavily biased, because all kind of relations are considered a once. To do a more specialized analysis, the congestion incident matches should be categorized. The three categories to be evaluated separately can be described as \textit{Initiator}, \textit{Effector} and \textit{Follower}.
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
-	\item[] \textbf{Jam Initiator} are matches, where the incidents happen before or immediately at the beginning of a congestion
-	\item[] \textbf{Jam Effector} are matches, where the incidents happen during a congestion or overlaps with the congestion
-	\item[] \textbf{Jam Follower} are matches, where the incidents happen after the congestion
+	\item[] \textbf{Jam Initiator} are matches, where the incidents happened before or immediately at the beginning of a congestion. These could be the initiator or cause for the congestion and are therefore the most interesting to analysis.
+	\item[] \textbf{Jam Effector} are matches, where the incidents happened during a congestion or overlaps with the congestion. These probably have the jam as a cause, like rear-end accidents.
+	\item[] \textbf{Jam Follower} are matches, where the incidents happened after the congestion. 
 \end{itemize}
 
-\todo{Visual representation of the three categories}
+% \begin{figure}[ht]
+% 	\centering	
+% 	\begin{tikzpicture}
+% 		\draw[pattern=north west lines, pattern color=blue] (0,0) rectangle (2,4);
+
+% 		\draw[fill=fondo,very thick] (0:1 cm) -- (72:1 cm) -- (144:1 cm) -- (216:1 cm) -- (288:1 cm) -- cycle;
+% 		\foreach \x in {0,72,...,288} {
+% 			\draw[diagonal,thin] (\x:1 cm) -- (\x + 180:0.809 cm);}
+
+% 	\end{tikzpicture}
+% 	\caption{Euclidian distance in 2-dimensional non-euclidian space}
+% \end{figure}
 
 To be able to run the categorization after the runtime intensive detection and matching processing, four additional congestion parameters are introduced. They describe the relative location of the incident to the congestion event. The temporal reference of the incident to the congestion is described by the parameter \textbf{temporalGlobalLocation}, based on the temporal distance. 
 \begin{table}[ht]
@@ -571,30 +556,29 @@ As a result the congestion has the following attributes.
 	\caption{Variables, Units and descriptions of congestion object}
 \end{table}
 
-\bigskip
-    
-The incident object is expanded with... BAYSIS and 
-
- 
 \section{Correlation Processing}
 \label{methodology_correlation_processing}
-%\parencite{Potvin2020}
+
+The correlation processing is written in Python and R with the help of some common data analysis frameworks like Pandas, NumPy or Psych. The code base was inspired by the analysis tool from Potvin \parencite{Potvin2020}. This section will explain the process of analyzing the two dataset from the evaluation processing (roadwork-congestion and accident-congestion). The first step in any data analysis is the data import and preparation, explain in \cref{methodology_correlation_processing_revision} and \cref{methodology_correlation_processing_encoding}.
 
 \subsubsection{Data Revision}
-
-\todo{Which revision are implemented?}
+\label{methodology_correlation_processing_revision}
+The 
 
 \subsubsection{Data Encoding}
-
+\label{methodology_correlation_processing_encoding}
 \todo{How is the data encoded for processing?}
 
 \subsubsection{Correlation Calculation}
-
+\label{methodology_correlation_processing_correlation}
 \todo{How does the correlation processing work?}
 
 \subsubsection{Significancy Evaluation}
-
+\label{methodology_correlation_processing_significanc}
 \todo{How does the correlation processing work?}
+
+
+
 
 % \begin{minipage}{\linewidth}
 % \begin{lstlisting}[style=js, caption={Beispiellisting}, label=lst:sample] 

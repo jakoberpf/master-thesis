@@ -20,7 +20,7 @@ import seaborn as sns
 from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_statistic, set_size, tex_fonts
+from func_plot import plot_correlation, set_size, tex_fonts
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -90,10 +90,9 @@ if __name__ == '__main__':
     plt.figure(figsize=(width, height * 0.9))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title(r'Histogram of total roadworks per month')
     plt.ylabel('Count')
-    plt.xlabel('Month of 2019')
     sns.countplot(x='Month', data=arbis_original, palette='Spectral', order=months)
+    plt.xlabel('')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
     if show_plot:
@@ -108,11 +107,10 @@ if __name__ == '__main__':
     plt.figure(figsize=(width * 1.2, height * 0.9))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title('Histogram of total roadworks per highways')
     plt.ylabel('Count')
-    plt.xlabel('Highway')
     sns.countplot(x='Strasse', data=arbis_original, palette='Spectral', order=arbis_original['Strasse']
                   .value_counts().index)
+    plt.xlabel('')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
     if show_plot:
@@ -120,70 +118,9 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    # plt.figure(figsize=(width, height))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Histogram of roadwork length')
-    # plt.xlabel('Highway')
-    # sns.histplot(x='Length', data=arbis_original, palette='Spectral')
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_hist_length.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-    #
-    # plt.figure(figsize=(width, height))
-    # plt.style.use('seaborn')
-    # plt.rcParams.update(tex_fonts)
-    # plt.title('Histogram of roadwork duration')
-    # plt.xlabel('Highway')
-    # sns.histplot(x='Duration', data=arbis_original, palette='Spectral')
-    # if save_plot:
-    #     plt.savefig(plot_path + file_prefix + '_hist_duration.pdf')
-    # if show_plot:
-    #     plt.show()
-    # else:
-    #     plt.close()
-
     ##############
     ### Counts ###
     ##############
-
-    # Single plots
-
-    scale = 1.0
-    (width, height) = set_size(418, scale)
-
-    # Plot distribution of AnzGesperrtFs
-    plt.figure(figsize=(width, height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    plt.title('Distribution of AnzGesperrtFs')
-    plt.ylabel('Count')
-    plt.xlabel('AnzGesperrtFs')
-    sns.countplot(x='AnzGesperrtFs', data=arbis_original, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_AnzGesperrtFs.pdf')
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    # Plot distribution of Einzug
-    plt.figure(figsize=(width, height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    plt.title('Distribution of Einzug')
-    plt.ylabel('Count')
-    plt.xlabel('Einzug')
-    sns.countplot(x='Einzug', data=arbis_original, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_Einzug.pdf')
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
 
     ###############
     ### Scatter ###
@@ -238,14 +175,6 @@ if __name__ == '__main__':
                      save=save_plot, filepath=plot_path + file_prefix + '_corr_cramers.pdf',
                      show=show_plot, scale=2.0)
 
-    # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
-                   show=show_plot, scale=2.0)
-
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
@@ -271,14 +200,6 @@ if __name__ == '__main__':
                      results.get('columns_single_value'),
                      save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.pdf',
                      show=show_plot, scale=2.0)
-
-    # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.pdf',
-                   show=show_plot, scale=2.0)
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:

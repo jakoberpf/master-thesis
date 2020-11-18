@@ -3,7 +3,7 @@
 % -----------------------------------------------------
 \subsection{Congestion - Accidents categorizes as Jam Initiator}
 \label{analysis_processing_correlation_baysis_initiator}
-The correlation matrix table for the congestion-accident \textit{Jam Initiator} dataset (see \cref{table:appendix_correlation_matrix_matched_cramers}) is visual presented in \cref{img:correlation_matrix_selected_initiator_cramers} showing the the correlation of each variable combination. When visual analyzing \cref{img:correlation_matrix_matched_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \cref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \cref{tbl:correlation_list_baysis_initiator}). Since the focus of the thesis are the correlations between accidents and jams, these are only collected from the bottom-left rectangle of the matrix, where the congestion and accidents variables intersect. Correlations of the kind congestion - congestion or accident - accident are not considered.
+The correlation matrix table for the congestion - accident dataset, which are classified as \textit{Jam Initiator} (see \cref{table:appendix_correlation_matrix_matched_cramers}) is visual presented in \cref{img:correlation_matrix_selected_initiator_cramers} showing the the correlation of each variable combination. When visual analyzing \cref{img:correlation_matrix_matched_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \cref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \cref{tbl:correlation_list_baysis_initiator}). Since the focus of the thesis are the correlations between accidents and jams, these are only collected from the bottom-left rectangle of the matrix, where the congestion and accidents variables intersect. Correlations of the kind congestion - congestion or accident - accident are not considered.
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -56,32 +56,7 @@ All of the Kruskal-Wallis rank sum test for \textit{Strasse} - \textit{TMax}, \t
 % -------- Kat ---------
 % ----------------------
 \centerheading{Kat}
-This section analyzes the correlated relations of the variable \textbf{Kat}. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}.
-% \begin{table}[!ht]
-% 	\centering
-% 	\tiny
-% 	\begin{tabular}{c|l} 
-% 		\toprule
-% 		Code & Description \\ 
-% 		\midrule
-%  		0 	& Minor Accident  \\
-%  		1 	& Accident with deaths  \\ 
-%  		2 	& Accident with heavily injured  \\
-%  		3 	& Accident with lightly injured  \\
-% 		7 	& Accident with property damage  \\
-% 		\bottomrule
-% 	\end{tabular}
-% 	\caption{Encoding of \textbf{Kat}}
-% 	\label{table:analysis_encoding_Kat}
-% 	%\vspace{-8mm}
-% \end{table}
-\paragraph{Maximal spatial Extent}
-% chi-squared = 732.27, df = 720
-The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{SMax} produces a $p$-value of 0.3673, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textbf{Kat}. There are no significant groups to identify.
-
-\paragraph{Average spatial Extent}
-% chi-squared = 738.37, df = 727
-The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{SAvg} produces a $p$-value of 0.3767, which is above $\alpha=.05$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textbf{Kat}. There are no significant groups to identify.
+This section analyzes the correlated relations of the variable \textbf{Kat}. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis tests of \textbf{Kat}-\textbf{SMax} and \textbf{Kat}-\textbf{SAvg} produce a $p$-value above the $\alpha$-level. The null hypothesis can't be rejected and there is no significant difference between the groups of \textbf{Kat} in these relations.
 
 \paragraph{Maximal Temporal Extent}
 % chi-squared = 196.02, df = 131
@@ -97,7 +72,7 @@ The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-va
         7 & 0.00 & 0.00 & 0.00 \\ 
  		\bottomrule
 	\end{tabular}
-    \caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent} (Jam Initiator)}
     \label{tbl:wilcoxon_baysis_initiator_Kat_TMax}
 \end{table}
 The matrix shows that there is a general trend and all groups differ significantly. With the descriptives from \cref{tbl:descriptives_baysis_initiator_Kat_TMax} that the $\bar{x}$ and $\tilde{x}$ increases from group 7 to 1. We can therefore interpret that the maximal duration of jams, created by accidents increases with the gravity of the accident.

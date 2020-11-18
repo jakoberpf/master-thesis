@@ -508,23 +508,23 @@ The descriptives in \cref{tbl:descriptives_baysis_matched_Typ_TDist} reveal that
 \centerheading{UArt}
 This section analyzes the correlated relations of the accident variable \textit{UArt}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{UArt} is shown in \cref{tbl:baysis_dataset_UArt}. The Kruskal-Wallis rank sum test of \textit{UArt}-\textit{SAvg} produces a $p$-value of 0.2081, which is above the $\alpha$-level. The null hypothesis can't be rejected and there is \textit{no} significant difference between the groups of \textit{UArt}. There are no significant groups to identify.
 
-The Kruskal-Wallis test of \textit{UArt}-\textit{TDist} produces a $p$-value of 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{UArt}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_UArt_TDist}. 
+The Kruskal-Wallis test of \textit{UArt}-\textit{TDist} produces a $p$-value of below 0.0001, which is way below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{UArt}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_UArt_TDist}. 
 \begin{table}[ht]
 	\small
 	\centering
 	\begin{tabular}{rrrrrrrrrr}
   		\toprule
-		& 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+		  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
 		\midrule
 		% 1 & 1.00 &  &  &  &  &  &  &  &  \\ 
 		% 2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
 		% 3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-		% 4 & 0.53 & 0.27 & 0.30 & 0.16 &  &  &  &  &  \\ 
-		5 & \red{0.05} & 0.12 & \red{0.00} & \red{0.00} & \red{0.01} &  &  &  &  \\ 
-		6 & 0.37 & 0.24 & 0.24 & 0.14 & 1.00 & \red{0.01} &  &  &  \\ 
+		% 4 & 0.57 & 0.22 & 0.31 & 0.17 &  &  &  &  &  \\ 
+		5 & \red{0.04} & 0.17 & \red{0.00} & \red{0.00} & \red{0.01} &  &  &  &  \\ 
+		6 & 0.40 & 0.19 & 0.23 & 0.16 & 1.00 & \red{0.01} &  &  &  \\ 
 		7 & \red{0.00} & \red{0.00} & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} & 1.00 &  &  \\ 
-		8 & \red{0.01} & \red{0.00} & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 0.32 &  \\ 
-		9 & \red{0.01} & \red{0.00} & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 0.45 & 1.00 \\ 
+		8 & \red{0.02} & \red{0.00} & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 0.32 &  \\ 
+		9 & \red{0.01} & \red{0.00} & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 0.50 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
 	\caption{Pairwise Wilcoxon $T$-test for \textit{UArt} and \textit{Temporal Distance}}
@@ -538,14 +538,14 @@ The $p$-values in \cref{tbl:wilcoxon_baysis_matched_UArt_TDist} show that group 
 		\hline
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 		\hline
-		0 & 64 & 5.22 & 6.81 & 0.00 & 0.00 & 22.00 & 22.00 \\ 
-		1 & 87 & 4.67 & 6.87 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
-		2 & 838 & 5.02 & 6.51 & 1.00 & 0.00 & 24.00 & 24.00 \\ 
-		3 & 453 & 4.47 & 6.28 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
-		5 & 90 & 2.44 & 5.48 & 0.00 & 0.00 & 24.00 & 24.00 \\  
-		7 & 35 & 12.63 & 8.62 & 14.00 & 0.00 & 24.00 & 24.00 \\ 
-		8 & 165 & 8.79 & 7.55 & 8.00 & 0.00 & 24.00 & 24.00 \\ 
-		9 & 125 & 9.02 & 7.02 & 9.00 & 0.00 & 24.00 & 24.00 \\ 
+		0 & 63  & 5.30  & 6.83 & 0.00  & 0 & 22 & 22 \\ 
+		1 & 86  & 4.44  & 6.58 & 0.00  & 0 & 24 & 24 \\ 
+		2 & 831 & 5.05  & 6.53 & 1.00  & 0 & 24 & 24 \\ 
+		3 & 447 & 4.53  & 6.30 & 0.00  & 0 & 24 & 24 \\ 
+		5 & 90  & 2.44  & 5.48 & 0.00  & 0 & 24 & 24 \\  
+		7 & 35  & 12.63 & 8.62 & 14.00 & 0 & 24 & 24 \\ 
+		8 & 165 & 8.79  & 7.55 & 8.00  & 0 & 24 & 24 \\ 
+		9 & 124 & 9.10  & 7.00 & 9.00  & 0 & 24 & 24 \\ 
 		\hline
 	\end{tabular}
 	\caption{Group descriptives of \textit{UArt} and \textit{Temporal Distance}}
@@ -559,15 +559,15 @@ The Kruskal-Wallis test of \textit{UArt}-\textit{Cov} produces a $p$-value of 0.
 	\centering
 	\begin{tabular}{rrrrrrrrrr}
 		\toprule
-		& 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+		  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
 		\midrule
 		% 1 & 1.00 &  &  &  &  &  &  &  &  \\ 
 		% 2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
 		% 3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
 		% 4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-		5 & 0.68 & 0.15 & 0.00 & 0.03 & 0.68 &  &  &  &  \\ 
+		5 & 0.41 & 0.10 & 0.00 & 0.01 & 0.65 &  &  &  &  \\ 
 		% 6 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-		7 & 0.23 & 0.29 & 0.10 & 0.04 & 1.00 & 0.00 & 1.00 &  &  \\ 
+		7 & 0.30 & 0.36 & 0.12 & 0.05 & 1.00 & 0.00 & 1.00 &  &  \\ 
 		8 & 0.01 & 0.01 & 0.00 & 0.00 & 1.00 & 0.00 & 1.00 & 1.00 &  \\ 
 		9 & 0.05 & 0.07 & 0.00 & 0.00 & 1.00 & 0.00 & 1.00 & 1.00 & 1.00 \\ 
 		\bottomrule
@@ -583,14 +583,14 @@ The $p$-values in \cref{tbl:wilcoxon_baysis_matched_UArt_TDist} show that group 
 		\toprule
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
 		\midrule
-		0 & 64 & 40.83 & 20.44 & 36.00 & 5.00 & 96.00 & 91.00 \\ 
-		1 & 87 & 41.83 & 20.53 & 40.00 & 2.00 & 96.00 & 94.00 \\ 
-		2 & 838 & 42.56 & 20.18 & 40.50 & 2.00 & 100.00 & 98.00 \\ 
-		3 & 453 & 40.73 & 19.90 & 39.00 & 2.00 & 98.00 & 96.00 \\  
-		5 & 90 & 33.81 & 18.18 & 30.00 & 10.00 & 88.00 & 78.00 \\ 
-		7 & 35 & 56.31 & 26.88 & 56.00 & 11.00 & 100.00 & 89.00 \\ 
-		8 & 165 & 53.96 & 24.35 & 53.00 & 7.00 & 100.00 & 93.00 \\ 
-		9 & 125 & 52.05 & 23.59 & 49.00 & 3.00 & 100.00 & 97.00 \\ 
+		0 & 63  & 41.40 & 20.09 & 37.00 & 5  & 96  & 91 \\ 
+		1 & 86  & 42.29 & 20.19 & 40.50 & 2  & 96  & 94 \\ 
+		2 & 831 & 42.86 & 20.00 & 41.00 & 2  & 100 & 98 \\ 
+		3 & 447 & 41.21 & 19.59 & 39.00 & 2  & 98  & 96 \\  
+		5 & 90  & 33.81 & 18.18 & 30.00 & 10 & 88  & 78 \\ 
+		7 & 35  & 56.31 & 26.88 & 56.00 & 11 & 100 & 89 \\ 
+		8 & 165 & 53.96 & 24.35 & 53.00 & 7  & 100 & 93 \\ 
+		9 & 124 & 52.44 & 23.26 & 49.00 & 3  & 100 & 97 \\ 
 		\bottomrule
 	\end{tabular}
 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}

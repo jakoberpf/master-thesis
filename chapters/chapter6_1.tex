@@ -1,9 +1,9 @@
 % -----------------------------------
 % -------- BAYSIS - Matched ---------
 % -----------------------------------
-\subsection{Accident - Congestion Global}
+\subsection{Congestion - Accidents in general}
 \label{analysis_processing_correlation_baysis_matched}
-The correlation matrix table for the congestion-accident matched dataset (see \cref{table:appendix_correlation_matrix_matched_cramers}) is visual presented in \cref{img:correlation_matrix_matched_cramers} showing the the correlation of each variable combination. When visual analyzing \cref{img:correlation_matrix_matched_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \cref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \cref{tbl:correlation_list_baysis_matched}). Since the focus of the thesis are the correlations between accidents and jams, these are only collected from the bottom-left corner of the matrix, where the congestion and accidents variables intersect. Correlations of the kind congestion - congestion or accident - accident are not considered.
+The correlation matrix table for the complete congestion-accident matched dataset (see \cref{table:appendix_correlation_matrix_matched_cramers}) is visual presented in \cref{img:correlation_matrix_matched_cramers} showing the the correlation of each variable combination. When visual analyzing \cref{img:correlation_matrix_matched_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \cref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \cref{tbl:correlation_list_baysis_matched}). Since the focus of the thesis are the correlations between accidents and jams, these are only collected from the bottom-left corner of the matrix, where the congestion and accidents variables intersect. Correlations of the kind congestion - congestion or accident - accident are not considered.
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|l}  
@@ -341,7 +341,7 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov} show that t
 % -------- Kat ---------
 % ----------------------
 \centerheading{Kat}
-This section analyzes the correlated relations of the accident variable \textit{Kat} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{SAvg} produces a $p$-value above $\alpha=.05$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Kat} in this relation.
+This section analyzes the correlated relations of the accident variable \textit{Kat}. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{SAvg} produces a $p$-value above $\alpha=.05$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Kat} in this relation.
 
 The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TMax} produces a $p$-value of 0.0068, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TMax}.
 \begin{table}[ht]
@@ -351,9 +351,9 @@ The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TMax} produces a $p$-va
 	  	\toprule
 	 	& 1 & 2 & 3 \\ 
 	  	\midrule
-		2 & 0.00 &  &  \\ 
-	  	3 & 0.00 & 0.01 &  \\ 
-	  	7 & 0.00 & 0.02 & 0.78 \\ 
+		2 & \red{0.00} &  &  \\ 
+	  	3 & \red{0.00} & \red{0.01} &  \\ 
+	  	7 & \red{0.00} & \red{0.02} & 0.78 \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
@@ -387,9 +387,9 @@ The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TAvg} produces a $p$-va
 	  	\toprule
 	 	& 1 & 2 & 3 \\ 
 	  	\midrule
-		2 & 0.00 &  &  \\ 
-	  	3 & 0.00 & 0.00 &  \\ 
-	  	7 & 0.00 & 0.00 & 0.05 \\ 
+		2 & \red{0.00} &  &  \\ 
+	  	3 & \red{0.00} & \red{0.00} &  \\ 
+	  	7 & \red{0.00} & \red{0.00} & \red{0.05} \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Average Temporal Extent}}
@@ -403,10 +403,10 @@ The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TAvg} produces a $p$-va
 	  	\toprule
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
 	  	\midrule
-		1 &  36.00 & 156.06 & 104.55 & 143.00 & 20.00 & 502.00 & 482.00 \\ 
-	  	2 & 216.00 & 88.31 & 79.73 & 66.50 & 7.00 & 703.00 & 696.00 \\ 
-	  	3 & 881.00 & 67.32 & 53.98 & 54.00 & 3.00 & 469.00 & 466.00 \\ 
-	  	7 & 718.00 & 74.08 & 103.32 & 51.00 & 4.00 & 1326.00 & 1322.00 \\ 
+		1 & 36  & 156.06 & 104.55 & 143.00 & 20 & 502  & 482  \\ 
+	  	2 & 216 & 88.31  & 79.73  & 66.50  & 7  & 703  & 696  \\ 
+	  	3 & 881 & 67.32  & 53.98  & 54.00  & 3  & 469  & 466  \\ 
+	  	7 & 718 & 74.08  & 103.32 & 51.00  & 4  & 1326 & 1322 \\ 
 	   	\bottomrule
 	\end{tabular}
 	\caption{Group descriptives of \textit{Kat} and \textit{Average Temporal Extent}}

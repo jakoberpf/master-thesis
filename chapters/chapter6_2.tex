@@ -8,7 +8,7 @@ The correlation matrix table for the congestion - accident dataset, which are cl
 	\centering
 	\begin{tabular}{c|l}  
 		\toprule
-		\textbf{Category} & \textbf{Strong} \\
+		\textit{Category} & \textit{Strong} \\
 		\midrule
 		Strasse & TMax, TAvg, SMax, SAvg, Cov, TLCar \\ 
  		Kat & TMax, TAvg, SMax, SAvg \\ % -> Strasse
@@ -56,26 +56,24 @@ All of the Kruskal-Wallis rank sum test for \textit{Strasse} - \textit{TMax}, \t
 % -------- Kat ---------
 % ----------------------
 \centerheading{Kat}
-This section analyzes the correlated relations of the variable \textbf{Kat}. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis tests of \textbf{Kat}-\textbf{SMax} and \textbf{Kat}-\textbf{SAvg} produce a $p$-value above the $\alpha$-level. The null hypothesis can't be rejected and there is no significant difference between the groups of \textbf{Kat} in these relations.
+This section analyzes the correlated relations of the variable \textit{Kat}. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis tests of \textit{Kat}-\textit{SMax} and \textit{Kat}-\textit{SAvg} produce a $p$-value above the $\alpha$-level. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Kat} in these relations.
 
-\paragraph{Maximal Temporal Extent}
-% chi-squared = 196.02, df = 131
-The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TMax} produces a $p$-value of 0.0002, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TMax}. 
+The Kruskal-Wallis test of \textit{Kat}-\textit{TMax} produces a $p$-value of 0.0002, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TMax}. 
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{rrrr}
 		\toprule  
-  		& 1 & 2 & 3 \\ 
+  		  & 1 & 2 & 3 \\ 
   		\midrule    
-        2 & 0.00 &  &  \\ 
-        3 & 0.00 & 0.00 &  \\ 
-        7 & 0.00 & 0.00 & 0.00 \\ 
+        2 & \red{0.00} &  &  \\ 
+        3 & \red{0.00} & \red{0.00} &  \\ 
+        7 & \red{0.00} & \red{0.00} & \red{0.00} \\ 
  		\bottomrule
 	\end{tabular}
     \caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent} (Jam Initiator)}
     \label{tbl:wilcoxon_baysis_initiator_Kat_TMax}
 \end{table}
-The matrix shows that there is a general trend and all groups differ significantly. With the descriptives from \cref{tbl:descriptives_baysis_initiator_Kat_TMax} that the $\bar{x}$ and $\tilde{x}$ increases from group 7 to 1. We can therefore interpret that the maximal duration of jams, created by accidents increases with the gravity of the accident.
+The matrix shows that there is a general trend and all groups differ significantly.
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -84,33 +82,35 @@ The matrix shows that there is a general trend and all groups differ significant
         \midrule
         1 & 29  & 290.07 & 190.59 & 255.00 & 27 & 864  & 837 \\ 
         2 & 144 & 156.23 & 119.44 & 120.00 & 9  & 657  & 648 \\ 
-        3 & 423 & 121.05 & 105.34 & 99.00  & 9  & 1116 & 1107 \\ 
+        3 & 422 & 120.18 & 103.92 & 99.00  & 9  & 1116 & 1107 \\ 
         7 & 181 & 103.13 & 143.89 & 75.00  & 9  & 1341 & 1332 \\ 
  		\bottomrule
 	\end{tabular}
     \caption{Descriptives of the groups of \textit{Kat} and \textit{Maximal Temporal Extent} (Jam Initiator)}
     \label{tbl:descriptives_baysis_initiator_Kat_TMax}
 \end{table}
+% 156+121+103 / 3 = 126
+% diff 126,290 = 164
+% mean diff 156,121,103 = 26
+With the descriptives from \cref{tbl:descriptives_baysis_initiator_Kat_TMax} that the $\bar{x}$ and $\tilde{x}$ increases from group 7 to 1. The difference between the group 1 and the others is 164\,min, when the groups 2, 3 and 7 differ on average by 26\,min. The groups 2, 3 and 7 differ by 26\,min on average. We can therefore interpret that the maximal duration of jams, created by accidents increases with the gravity of the accident. 
 
-\paragraph{Average temporal Extent}
-% chi-squared = 222.52, df = 175
-The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TAvg} produces a $p$-value of 0.0087, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TAvg}. 
+The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TAvg} produces a $p$-value of 0.0087, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TAvg}. 
 \begin{table}[ht]
 	\small
 	\centering
     \begin{tabular}{rrrr}
         \toprule
-        & 1 & 2 & 3 \\ 
+          & 1 & 2 & 3 \\ 
         \midrule
-        2 & 0.00 &  &  \\ 
-        3 & 0.00 & 0.01 &  \\ 
-        7 & 0.00 & 0.00 & 0.00 \\ 
+        2 & \red{0.00} &  &  \\ 
+        3 & \red{0.00} & \red{0.01} &  \\ 
+        7 & \red{0.00} & \red{0.00} & \red{0.00} \\ 
         \bottomrule
     \end{tabular}
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Average Temporal Extent} (Jam Initiator)}
 	\label{tbl:wilcoxon_baysis_initiator_Kat_TAvg}
 \end{table}
-The $p$-values show that all groups differ significantly from each other. The descriptives in table \cref{tbl:descriptives_baysis_initiator_Kat_TAvg}, show that $\bar{x}$ and $\tilde{x}$ increases with the groups from 7 to 1, like \textbf{TAMx}. The interpretation is therefore similar that the average duration of jams created by accident increases with the gravity of the accident.
+The $p$-values show that all groups differ significantly from each other.
 \begin{table}[ht]
 	\small
 	\centering
@@ -120,7 +120,7 @@ The $p$-values show that all groups differ significantly from each other. The de
         \midrule
         1 & 29  & 148.76 & 90.65 & 144.00 & 20 & 376 & 356 \\ 
         2 & 144 & 80.91  & 67.52 & 61.50  & 7  & 426 & 419 \\ 
-        3 & 423 & 63.84  & 51.24 & 53.00  & 5  & 469 & 464 \\ 
+        3 & 422 & 63.75  & 51.27 & 53.00  & 5  & 469 & 464 \\ 
         7 & 181 & 53.61  & 80.96 & 39.00  & 4  & 920 & 916 \\ 
         \bottomrule
     \end{tabular}
@@ -128,17 +128,21 @@ The $p$-values show that all groups differ significantly from each other. The de
 	\label{tbl:descriptives_baysis_initiator_Kat_TAvg}
 	%\vspace{-8mm}
 \end{table}
+% 80+63+53 / 3 = 65
+% diff 148,65 = 83
+% mean diff 80,63,53 = 10
+The descriptives in table \cref{tbl:descriptives_baysis_initiator_Kat_TAvg}, show that $\bar{x}$ and $\tilde{x}$ increases with the groups from 7 to 1, like \textit{TMax}. The interpretation is therefore similar that the average duration of jams created by accident increases with the gravity of the accident.
 
 % ----------------------
 % -------- Typ ---------
 % ----------------------
 \Large
-\centerline{\textbf{Typ}}
+\centerline{\textit{Typ}}
 \normalsize
-This section analyzes the correlated relations of the accident variable \textbf{Typ} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The relations of \textbf{Kat}-\textbf{SAvg} and 
-\textbf{Kat}-\textbf{Cov} produce a $p$-value above the $\alpha$-level in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected and there is no significant difference between the groups of \textbf{Typ} for these relations. The are also no significant groups to be identified for these relations.
+This section analyzes the correlated relations of the accident variable \textit{Typ} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The relations of \textit{Kat}-\textit{SAvg} and 
+\textit{Kat}-\textit{Cov} produce a $p$-value above the $\alpha$-level in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected and there is no significant difference between the groups of \textit{Typ} for these relations. The are also no significant groups to be identified for these relations.
 
-The Kruskal-Wallis rank sum test of \textbf{Kat}-\textbf{TDist} produces a $p$-value of 0.0261, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{Kat}-\textbf{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Typ_TDist}. 
+The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TDist} produces a $p$-value of 0.0261, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Typ_TDist}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -182,9 +186,9 @@ The descriptives from \cref{tbl:descriptives_baysis_initiator_Typ_TDist} also sh
 % -------- UArt1 ---------
 % ------------------------
 \centerheading{UArt}
-This section analyzes the correlated relations of the accident variable \textbf{UArt} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{UArt} is shown in \cref{tbl:baysis_dataset_UArt}. The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{TAvg}, \textbf{UArt1}-\textbf{SMax}, \textbf{UArt1}-\textbf{SAvg} and \textbf{UArt1}-\textbf{TLCar} produce $p$-values above the $\alpha$-level. This means that the null hypothesis can't be rejected and there is no significant difference between the groups of \textbf{UArt1} in these relations. 
+This section analyzes the correlated relations of the accident variable \textit{UArt} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{UArt} is shown in \cref{tbl:baysis_dataset_UArt}. The Kruskal-Wallis rank sum test of \textit{UArt1}-\textit{TAvg}, \textit{UArt1}-\textit{SMax}, \textit{UArt1}-\textit{SAvg} and \textit{UArt1}-\textit{TLCar} produce $p$-values above the $\alpha$-level. This means that the null hypothesis can't be rejected and there is no significant difference between the groups of \textit{UArt1} in these relations. 
 
-The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{TMax} produces a $p$-value of 0.0015, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{UArt1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{UArt1}-\textbf{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_UArt_TMax}. 
+The Kruskal-Wallis rank sum test of \textit{UArt1}-\textit{TMax} produces a $p$-value of 0.0015, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{UArt1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{UArt1}-\textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_UArt_TMax}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -233,7 +237,7 @@ It shows that only groups 4 and 7 differ significantly from group 1.
 \end{table}
 Because group 4 only contains 4 samples (see \cref{tbl:descriptives_baysis_initiator_UArt_TMax}) it is considered uncertain (see \cref{correlation_uncertainty}).
 
-The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{TDist} produces a $p$-value of 0.0084, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textbf{UArt1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textbf{UArt1}-\textbf{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_UArt_TDist}. 
+The Kruskal-Wallis rank sum test of \textit{UArt1}-\textit{TDist} produces a $p$-value of 0.0084, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{UArt1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{UArt1}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_UArt_TDist}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -281,7 +285,7 @@ The table shows, that groups 7, 8 and 9 differ from group 2 and 3.
 \end{table}
 In consideration of the descriptives in \cref{tbl:descriptives_baysis_initiator_UArt_TDist} it can be interpreted that accidents with \textit{obstacles collision}, \textit{deviations to the right} and \textit{deviations to the left} have a longer (temporal) reaction (see distribution of $\bar{x}$) to create a jam than accident with ahead vehicles.
 
-The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{Cov} produces a $p$-value of 0.0337, which is below $\alpha$-level. The null hypothesis can therefore be rejected, which means there are significant differences in \textbf{UArt}. To identify the significant groups the a pairwise Wilcoxon $T$-test for \textbf{UArt1}-\textbf{Cov}, produces \cref*{tbl:wilcoxon_baysis_initiator_UArt_Cov}. It shows that the significant differences are not related to any specific group of \textbf{UArt1} and the correlation can be neglected.
+The Kruskal-Wallis rank sum test of \textit{UArt1}-\textit{Cov} produces a $p$-value of 0.0337, which is below $\alpha$-level. The null hypothesis can therefore be rejected, which means there are significant differences in \textit{UArt}. To identify the significant groups the a pairwise Wilcoxon $T$-test for \textit{UArt1}-\textit{Cov}, produces \cref*{tbl:wilcoxon_baysis_initiator_UArt_Cov}. It shows that the significant differences are not related to any specific group of \textit{UArt1} and the correlation can be neglected.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -308,9 +312,9 @@ The Kruskal-Wallis rank sum test of \textbf{UArt1}-\textbf{Cov} produces a $p$-v
 % -------- AUrs1 ---------
 % ------------------------
 \centerheading{AUrs}
-This section analyzes the correlated relations of the accident variable \textbf{AUrs1} and \textbf{AUrs2}, also introducing a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textbf{AUrs} is shown in \cref{tbl:baysis_dataset_AUrs}. The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{TMax}, \textbf{AUrs1}-\textbf{TAvg}, \textbf{AUrs1}-\textbf{SMax}, \textbf{AUrs1}-\textbf{SAvg}, \textbf{AUrs1}-\textbf{TDist} and \textbf{AUrs1}-\textbf{TLCar} produce $p$-values above the $\alpha$-level. This means that the null hypothesis can't be rejected and there is no significant difference between the groups of \textbf{UArt1} in these relations. 
+This section analyzes the correlated relations of the accident variable \textit{AUrs1} and \textit{AUrs2}, also introducing a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{AUrs} is shown in \cref{tbl:baysis_dataset_AUrs}. The Kruskal-Wallis rank sum test of \textit{AUrs1}-\textit{TMax}, \textit{AUrs1}-\textit{TAvg}, \textit{AUrs1}-\textit{SMax}, \textit{AUrs1}-\textit{SAvg}, \textit{AUrs1}-\textit{TDist} and \textit{AUrs1}-\textit{TLCar} produce $p$-values above the $\alpha$-level. This means that the null hypothesis can't be rejected and there is no significant difference between the groups of \textit{UArt1} in these relations. 
 
-The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{Cov} produces a $p$-value of 0.0176, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, pointing to a significant difference between the groups of \textbf{AUrs1}. The pairwise Wilcoxon $T$-test of \textbf{AUrs1}-\textbf{Cov} for identification of the relevant groups (see \cref{tbl:wilcoxon_baysis_initiator_AUrs1_Cov}) shows that the significance differences is not group specific. The correlation can therefore be neglected.
+The Kruskal-Wallis rank sum test of \textit{AUrs1}-\textit{Cov} produces a $p$-value of 0.0176, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, pointing to a significant difference between the groups of \textit{AUrs1}. The pairwise Wilcoxon $T$-test of \textit{AUrs1}-\textit{Cov} for identification of the relevant groups (see \cref{tbl:wilcoxon_baysis_initiator_AUrs1_Cov}) shows that the significance differences is not group specific. The correlation can therefore be neglected.
 \begin{table}[ht]
 	\small
 	\centering
@@ -340,7 +344,7 @@ The Kruskal-Wallis rank sum test of \textbf{AUrs1}-\textbf{Cov} produces a $p$-v
 % -------- AUrs2 ---------
 % ------------------------
 \medskip
-All relations of the second \textbf{AUrs} variable \textbf{AUrs2} (\textbf{AUrs2}-\textbf{TMax}, \textbf{AUrs2}-\textbf{TAvg}, \textbf{AUrs2}-\textbf{SAvg} and \textbf{AUrs2}-\textbf{TDist}) produce $p$-values above $\alpha$-level. The null hypothesizes can't be rejected and there is no significant differences between the groups of \textbf{AUrs2}. There are therefore no significant groups to identify.
+All relations of the second \textit{AUrs} variable \textit{AUrs2} (\textit{AUrs2}-\textit{TMax}, \textit{AUrs2}-\textit{TAvg}, \textit{AUrs2}-\textit{SAvg} and \textit{AUrs2}-\textit{TDist}) produce $p$-values above $\alpha$-level. The null hypothesizes can't be rejected and there is no significant differences between the groups of \textit{AUrs2}. There are therefore no significant groups to identify.
 
 % ------------------------
 % -------- AufHi ---------

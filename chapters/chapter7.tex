@@ -3,40 +3,71 @@
 In the previous chapter the datasets where analyzes for collections and the relevance of the correlation was evaluated. The analysis has presented are a number of separated statistical statements and interpretations. Because these are to specific on their own they need to be summarizes to comprise a general statement. This summary and general interpretation is topic of this chapter.
 
 \section{Accidents}
-The analysis of the congestion -  accidents correlations is separated into sections, to account for the different accident types of Initiator, Effector and Follower (see ref ??). 
+The analysis of the congestion -  accidents correlations is separated into sections, to account for the different accident types of Initiator, Effector and Follower (see \label{methodology_data_processing}). 
 
 \subsection{Street (\textit{Strasse})}
 \label{analysis_sum_Strasse}
 The relations of the variable \textit{Street} in the global congestion -  accidents dataset show the features listed below.
 \begin{itemize}
-    \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only individual groups show statistical significant differences. Descriptives clearly show three groups of short (A94, A93, A92, A70), medium (A99, A73, A7, A96, A9, A6) and long (A3).
+    \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only individual groups show statistical significant differences. Descriptives clearly show three groups of short (A94, A93, A92 and A70), medium (A99, A73, A7, A96, A9 and A6) and long (A3).
     \item \textit{Str} - \textit{TAvg} : Average jam duration is generally related to the street, but only A3, A73 and A99 show statistical significant differences. The descriptives show that the A94, A92, A73 and A70 tend to have shorter jams than A3, A6, A7 and A9.
     \item \textit{Str} - \textit{SMax} : Maximum jam length is generally related to the street, with many road showing statistical significant differences. The descriptives show three groups of short (A94, A93, A92, A73 and A70), medium (A96 and A7) and long (A3, A6, A9 and A99) separated by about 50\,\% increases.
     \item \textit{Str} - \textit{SAvg} : Average jam length is generally related to the street, with many road showing statistical significant differences. The descriptives show two groups of shorter (A70, A96, A73, A99, A92, A93 and A94) and longer (A3, A6, A9 and A7).
-    \item \textit{Str} - \textit{Cov} : Coverage is generally related to the street, with most road showing statistical significant differences. The descriptives show that jams on the A3 and A99 are about one third less dense than A6, A7, A9, A73, A70, A92 and A96.
+    \item \textit{Str} - \textit{Cov} : Coverage is generally related to the street, with most road showing statistical significant differences. The descriptives show that jams on the A3 and A99 are about $\frac{1}{3}$ less dense than A6, A7, A9, A73, A70, A92 and A96.
 \end{itemize}
-In accordance with these finding, it can be interpreted that in general the street plays a significant role defining the size and form of a congestion. This is not surprising since the demand on the street, which varies heavily between the streets is the major factor influencing the buildup of a congestion. Non the less it is interesting the the differences are substantial with ranges from 30\,\% to 50\,\% between groups and are replicated over difference variable relations.
+In accordance with these finding, it can be interpreted that in general the street plays a significant role defining the size and form of a congestion. This is not surprising since the demand on the street, which varies heavily between the streets is the major factor influencing the buildup of a congestion. Non the less it is interesting the the differences are substantial with ranges from 30\,\% to 50\,\% increases between groups and are replicated over difference variable relations.
 
 The relation class of \text{Jam Intiator} and \text{Jam Follower} don't show any relevance in the found collections. In the case of the \text{Jam Intiator} this it especially unfortunate, since it is the most promising group for predictions.
 
 Unlike the before and after classification, the jam relation class of \text{Jam Effector}, which hold accidents during a congestion presents a number of relevant correlations:
 \begin{itemize}
-    \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only an small number of groups show statistical significant differences. Descriptives show that the significant differences are similar to the global dataset. Accidents on the A3 created twice as long congestions than on the other streets. The descriptives further separate the streets into three groups of long (A3, A7), medium (A6, A99, A93 and A73) and short (A94, A96, and A92), based on $\bar{x}$ and $\sigma$.
-    \item 
+    \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only an small number of groups show statistical significant differences. Descriptives show similar features like in the global dataset. Accidents on the A3 created twice as long congestions than on the other streets. The descriptives further separate the streets into three groups of long (A3, A7), medium (A6, A99, A93 and A73) and short (A94, A96, and A92), based on $\bar{x}$ and $\sigma$.
+    \item \textit{Strasse} - \textit{TAvg} : Average jam duration is generally related to the street, but only two groups show statistical significant differences. Descriptives show similar features like in the global dataset. The significant differences show that the A3 and A7 have around 30\,\%-50\,\% longer jams than the A99 and A73. Based on $\bar{x}$ and $\sigma$ from the descriptives, the road can be groups into short (A92, A73, A94 and A99), medium (A6, A9 and A96) and long (A3, A93 and A7).
+    \item \textit{Strasse} - \textit{SMax} : Maximum jam length is generally related to the street, with many road showing statistical significant differences. Descriptives show similar features like in the global dataset. The distribution of the significant $\bar{x}$ and $\sigma$ can be separated into three groups of short (A73, A92, A93 and A94), medium (A6, A7, A9, A96 and A99) and long (A3). Each of these groups differ by 50\,\% to 80\,\% increases.
+    \item \textit{Strasse} - \textit{Cov} : The coverage is generally related to the street. The descriptives show that the coverage increases from A3 over A9 and A92 to A7, A96 and A92 by up to 80\,\%.
 \end{itemize}
-\todo{Summarize}
+As already mentioned, these findings are mostly logical and not surprising. But they provide a statistical defined statement about the rations of increases or differences. 
 
 \subsection{Accident category (\textit{Kat})}
-\begin{itemize}
-    \item 
-\end{itemize}
-\todo{Summarize}
+\label{analysis_sum_Kat}
+In the global dataset the variable \textit{Kat} showed a general dependence to the maximum and average duration and a general trend of increasing duration with the injury gravity of the accident. The category of accidents with property damage does not fit into this trend and sits in-between the lightly and heavily injured category. This changes when considering just the \textit{Jam Initiators}, where all categories follow one increasing trend. The differences between the categories of lightly injured, heavily injured and property damage is 29\,min/10\,min, but the category of deadly accident differs from the the rest by up to 143\,min/80\,min in maximum/average duration. The differences are roughly the same for the \textit{Jam Initiators}.
+
+Unlike the temporal length, the spatial length does not correlate with the accident category. According to the global dataset, the temporal distance is heavily related to the accident category. But the differences of $\bar{x}$ and $\sigma$ only show a maximum differences of 5\,min, which is arguably low for an interpretation. Non the less in can be said, that the temporal distance between accident and congestion increased with the injury gravity.
 
 \subsection{Accident type (\textit{Typ})}
-\begin{itemize}
-    \item 
-\end{itemize}
-\todo{Summarize}
+The \textit{Typ} only significantly relates to the temporal distance between the accident and congestion. Accidents of the kind \textit{Driving accident} and \textit{Other} (average of 12\,min) have a longer temporal distance than crossing accident or accidents in straight traffic (average of 8\,min). 
+
+\subsection{Accident kind (\textit{UArt})}
+Only the global dataset show correlations of congestion characteristic and the accident kind. From these relations the temporal distance and coverage are significant. The temporal distance for accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles is 8\,min higher than for accident collisions with \textit{turning} and \textit{crossing} vehicles (average of 10\,min). The categories resembling accidents typical during have a temporal distance of 5\,min on average.
+The coverage relation 
+
+\subsection{Accident cause (\textit{AUrs})}
+
+
+
+\subsection{Accident collision object type (\textit{AufHi})}
+
+
+
+\subsection{Accident environment characteristic (\textit{Char})}
+
+
+
+\subsection{Accident lighting environment (\textit{Lich})}
+
+
+
+\subsection{Road condition (\textit{Zust})}
+
+
+
+\subsection{Weekday (\textit{WoTag})}
+
+
+
+\subsection{Month (\textit{Month})}
+
+
 
 \section{Roadworks}
 

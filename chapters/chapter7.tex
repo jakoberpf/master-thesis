@@ -7,7 +7,7 @@ The analysis of the congestion -  accidents correlations is separated into secti
 
 \subsection{Street (\textit{Strasse})}
 \label{analysis_sum_Strasse}
-The relations of the variable \textit{Street} in the global congestion -  accidents dataset show the following features.
+The relations of the variable \textit{Street} in the global congestion -  accidents dataset show the features listed below.
 \begin{itemize}
     \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only individual groups show statistical significant differences. Descriptives clearly show three groups of short (A94, A93, A92, A70), medium (A99, A73, A7, A96, A9, A6) and long (A3).
     \item \textit{Str} - \textit{TAvg} : Average jam duration is generally related to the street, but only A3, A73 and A99 show statistical significant differences. The descriptives show that the A94, A92, A73 and A70 tend to have shorter jams than A3, A6, A7 and A9.
@@ -15,10 +15,16 @@ The relations of the variable \textit{Street} in the global congestion -  accide
     \item \textit{Str} - \textit{SAvg} : Average jam length is generally related to the street, with many road showing statistical significant differences. The descriptives show two groups of shorter (A70, A96, A73, A99, A92, A93 and A94) and longer (A3, A6, A9 and A7).
     \item \textit{Str} - \textit{Cov} : Coverage is generally related to the street, with most road showing statistical significant differences. The descriptives show that jams on the A3 and A99 are about one third less dense than A6, A7, A9, A73, A70, A92 and A96.
 \end{itemize}
-In accordance with these finding, it can be interpreted that in general the street plays a significant role defining the size and form of a congestion. This is not surprising since the demand on the street, which varies heavily between the streets is on major factor influencing the buildup of a congestion. Non the less it is interesting the the differences are substantial with ranges from 30\,\% to 50\,\% between groups and are replicated over difference variables.
+In accordance with these finding, it can be interpreted that in general the street plays a significant role defining the size and form of a congestion. This is not surprising since the demand on the street, which varies heavily between the streets is the major factor influencing the buildup of a congestion. Non the less it is interesting the the differences are substantial with ranges from 30\,\% to 50\,\% between groups and are replicated over difference variable relations.
 
-The relation class of \text{Jam Intiator} doesn't show any relevance in the found collections, which is unfortunate, since it it the most promising groups for predictions. 
+The relation class of \text{Jam Intiator} and \text{Jam Follower} don't show any relevance in the found collections. In the case of the \text{Jam Intiator} this it especially unfortunate, since it is the most promising group for predictions.
 
+Unlike the before and after classification, the jam relation class of \text{Jam Effector}, which hold accidents during a congestion presents a number of relevant correlations:
+\begin{itemize}
+    \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only an small number of groups show statistical significant differences. Descriptives show that the significant differences are similar to the global dataset. Accidents on the A3 created twice as long congestions than on the other streets. The descriptives further separate the streets into three groups of long (A3, A7), medium (A6, A99, A93 and A73) and short (A94, A96, and A92), based on $\bar{x}$ and $\sigma$.
+    \item 
+\end{itemize}
+\todo{Summarize}
 
 \subsection{Accident category (\textit{Kat})}
 \begin{itemize}

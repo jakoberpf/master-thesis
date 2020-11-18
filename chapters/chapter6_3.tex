@@ -51,7 +51,7 @@ Next we need to verify that the correlation is significant and what the correlat
 \centerheading{Strasse}
 This section analyzes the correlated relations of the accident variable \textit{Strasse}. The correlations of \textit{Strasse} - \textit{SAvg} and \textit{Strasse} - \textit{TLHGV} produces a $p$-value above the $\alpha$-level of .05 in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected for these relations and there are no significant groups to identify.
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TMax} produces a $p$-value of 0.003967, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TMax}. 
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TMax} produces a $p$-value of 0.0039, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TMax}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -105,9 +105,9 @@ The table shows that the roads A94, A73, A96 and A95 differs from the A3. The A7
     \label{tbl:descriptives_baysis_effector_Strasse_TMax}
 	%\vspace{-8mm}
 \end{table}
-The descriptives from \cref{tbl:descriptives_baysis_effector_Strasse_TMax} show that the A94, A73 and A96 (the A95 is uncertain) have a mean maximal temporal distance of 140\,m. It can be therefore interpreted that accidents on the A3 is associated with twice as long jams than the other groups. For the A9 can be interpreted that it's accidents are associated with 40\,\% longer jams, than the A73.
+The descriptives from \cref{tbl:descriptives_baysis_effector_Strasse_TMax} show that the A94, A73 and A96 (the A95 is uncertain) have a mean maximal temporal distance of 140\,m. Compared to the $\bar{x}$ of the A3 of 311\,m it can be interpreted that accidents on the A3 is associated with twice as long jams than the other groups. For the A9 can be interpreted that it's accidents are associated with 40\,\% longer jams, than the A73.
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TAvg} produces a $p$-value of 0.0001665, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TAvg}. 
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TAvg} produces a $p$-value of 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TAvg}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -275,6 +275,8 @@ The table shows that roads A9 and A92 differ significantly from A3. The road A99
 \end{table}
 The descriptives in \cref{tbl:descriptives_baysis_effector_Strasse_Cov} show that the $\bar{x}$ of A9 and A92 is 20\,\% and 56\,\% higher than A3. The $\bar{x}$ of A99 is the lower and 38\,\% lower than A9. A7, A96 and A92 have the highest $\bar{x}$ with 73\,\%, 61\,\% and 80\,\% above A99. It can be interpreted that the coverage increases from A3 over A9 and A92 to A7, A96 and A92 by up to 80\,\%.
 
+\clearpage
+
 % ----------------------
 % -------- Kat ---------
 % ----------------------
@@ -297,7 +299,7 @@ Both relations \textit{AufHi} - \textit{TMax} and \textit{AufHi} - \textit{TAvg}
 % -------- WoTag ---------
 % ------------------------
 \centerheading{WoTag}
-This section analyzes the correlated relations of the accident variable \textit{AUrs1}. The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TAvg} and \textit{WoTag} - \textit{Cov} produce a $p$-value above $\alpha=.05$. The null hypothesis for these relations can't be rejected and there is no significant difference between the groups of \textit{WoTag} in regards of \textit{TAvg} and \textit{Cov}.
+This section analyzes the correlated relations of the accident variable \textit{WoTag}. The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TAvg} and \textit{WoTag} - \textit{Cov} produce a $p$-value above $\alpha=.05$. The null hypothesis for these relations can't be rejected and there is no significant difference between the groups of \textit{WoTag} in regards of \textit{TAvg} and \textit{Cov}.
 
 The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{SMax} produces a $p$-value of 0.0126, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{WoTag} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_WoTag_TMax}. 
 \begin{table}[ht!]
@@ -365,21 +367,9 @@ The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TLHGV} produces a $
 % -------- Month ---------
 % ------------------------
 \centerheading{Month}
-
-\paragraph{Maximal Temporal Extent}
-Kruskal-Wallis chi-squared = 197.96, df = 199, p-value = 0.5074
-
-\paragraph{Average Temporal Extent}
-Kruskal-Wallis chi-squared = 239.6, df = 210, p-value = 0.07871
-
-\paragraph{Time-loss HGV}
-Kruskal-Wallis chi-squared = 380.43, df = 366, p-value = 0.2908
-
-\paragraph{Coverage}
-Kruskal-Wallis chi-squared = 95.784, df = 81, p-value = 0.1252
-
-\paragraph{Maximal Spatial Extent}
-Kruskal-Wallis chi-squared = 722.28, df = 642, p-value = 0.01494
+This section analyzes the correlated relations of the accident variable \textit{Month}. The Kruskal-Wallis rank sum test of \textit{Month} - \textit{TMax}, \textit{Month} - \textit{TAvg}, \textit{Month} - \textit{TLHGV} and \textit{Month} - \textit{Cov} produce a $p$-value above the $\alpha$-level. The null hypothesis for these relations can't be rejected and there is no significant difference between the groups of \textit{Month} in regards of \textit{TMax}, \textit{TAvg}, \textit{TLHGV} and \textit{Cov}.
+% \paragraph{Maximal Temporal Extent}
+% Kruskal-Wallis chi-squared = 197.96, df = 199, p-value = 0.5074
 
 \begin{table}[ht]
 	\tiny
@@ -412,16 +402,16 @@ Kruskal-Wallis chi-squared = 722.28, df = 642, p-value = 0.01494
 		\toprule
 		& vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
 		\midrule
-		X1 & 1.00 & 39.00 & 15204.44 & 10633.53 & 11151.00 & 14423.06 & 8507.16 & 1772.00 & 38867.00 & 37095.00 & 0.72 & -0.79 & 1702.73 \\ 
-		X11 & 1.00 & 38.00 & 13921.39 & 9612.90 & 12118.50 & 12777.91 & 9202.50 & 1176.00 & 44548.00 & 43372.00 & 1.20 & 1.53 & 1559.42 \\ 
-		X12 & 1.00 & 51.00 & 12295.18 & 9266.62 & 9669.00 & 11234.27 & 8197.30 & 1206.00 & 48278.00 & 47072.00 & 1.34 & 2.47 & 1297.59 \\ 
-		X13 & 1.00 & 57.00 & 15190.47 & 11402.17 & 12433.00 & 13719.66 & 10090.58 & 1415.00 & 43070.00 & 41655.00 & 1.07 & 0.24 & 1510.25 \\ 
-		X14 & 1.00 & 53.00 & 25006.21 & 48825.44 & 12057.00 & 13576.56 & 9733.27 & 1315.00 & 219082.00 & 217767.00 & 3.52 & 11.14 & 6706.69 \\ 
-		X15 & 1.00 & 60.00 & 25007.18 & 45097.00 & 12339.00 & 13513.90 & 8289.96 & 2632.00 & 189730.00 & 187098.00 & 3.21 & 8.88 & 5822.00 \\ 
-		X16 & 1.00 & 114.00 & 17771.96 & 12364.77 & 14791.00 & 16233.34 & 9751.06 & 1036.00 & 64943.00 & 63907.00 & 1.20 & 1.28 & 1158.07 \\ 
-		X17 & 1.00 & 90.00 & 18327.20 & 28345.23 & 11955.00 & 13190.35 & 6828.11 & 2500.00 & 195310.00 & 192810.00 & 5.41 & 30.81 & 2987.85 \\ 
-		X18 & 1.00 & 83.00 & 18134.89 & 16807.92 & 16198.00 & 15904.31 & 9974.93 & 2006.00 & 135780.00 & 133774.00 & 4.25 & 26.34 & 1844.91 \\ 
-		X19 & 1.00 & 65.00 & 14558.85 & 19682.16 & 9917.00 & 11682.72 & 8178.02 & 1524.00 & 153237.00 & 151713.00 & 5.41 & 35.02 & 2441.27 \\ 
+		X1   & 1.00 & 39.00 & 15204.44 & 10633.53 & 11151.00 & 14423.06 & 8507.16 & 1772.00 & 38867.00 & 37095.00 & 0.72 & -0.79 & 1702.73 \\ 
+		X11  & 1.00 & 38.00 & 13921.39 & 9612.90 & 12118.50 & 12777.91 & 9202.50 & 1176.00 & 44548.00 & 43372.00 & 1.20 & 1.53 & 1559.42 \\ 
+		X12  & 1.00 & 51.00 & 12295.18 & 9266.62 & 9669.00 & 11234.27 & 8197.30 & 1206.00 & 48278.00 & 47072.00 & 1.34 & 2.47 & 1297.59 \\ 
+		X13  & 1.00 & 57.00 & 15190.47 & 11402.17 & 12433.00 & 13719.66 & 10090.58 & 1415.00 & 43070.00 & 41655.00 & 1.07 & 0.24 & 1510.25 \\ 
+		X14  & 1.00 & 53.00 & 25006.21 & 48825.44 & 12057.00 & 13576.56 & 9733.27 & 1315.00 & 219082.00 & 217767.00 & 3.52 & 11.14 & 6706.69 \\ 
+		X15  & 1.00 & 60.00 & 25007.18 & 45097.00 & 12339.00 & 13513.90 & 8289.96 & 2632.00 & 189730.00 & 187098.00 & 3.21 & 8.88 & 5822.00 \\ 
+		X16  & 1.00 & 114.00 & 17771.96 & 12364.77 & 14791.00 & 16233.34 & 9751.06 & 1036.00 & 64943.00 & 63907.00 & 1.20 & 1.28 & 1158.07 \\ 
+		X17  & 1.00 & 90.00 & 18327.20 & 28345.23 & 11955.00 & 13190.35 & 6828.11 & 2500.00 & 195310.00 & 192810.00 & 5.41 & 30.81 & 2987.85 \\ 
+		X18  & 1.00 & 83.00 & 18134.89 & 16807.92 & 16198.00 & 15904.31 & 9974.93 & 2006.00 & 135780.00 & 133774.00 & 4.25 & 26.34 & 1844.91 \\ 
+		X19  & 1.00 & 65.00 & 14558.85 & 19682.16 & 9917.00 & 11682.72 & 8178.02 & 1524.00 & 153237.00 & 151713.00 & 5.41 & 35.02 & 2441.27 \\ 
 		X110 & 1.00 & 56.00 & 10844.89 & 8940.48 & 8712.00 & 9417.35 & 6484.15 & 1883.00 & 36151.00 & 34268.00 & 1.40 & 1.15 & 1194.72 \\ 
 		X111 & 1.00 & 49.00 & 15302.61 & 11066.27 & 11386.00 & 14171.83 & 7064.59 & 1925.00 & 43244.00 & 41319.00 & 1.02 & -0.06 & 1580.90 \\ 
 		\bottomrule

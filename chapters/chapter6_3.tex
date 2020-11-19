@@ -16,7 +16,7 @@ The correlation matrix table for the congestion - accident dataset, which are cl
  		%Typ & \\ % -> Strasse
  		%Betei & \\
  		UArt1 & SAvg \\ % -> Strasse
- 		UArt2 & \\ % - SMax % -> Strasse
+ 		%UArt2 & \\ % -> Strasse
  		%AUrs1 & \\ % -> Strasse
  		%AUrs2 & \\
  		AufHi & TMax, TAvg \\
@@ -51,7 +51,7 @@ Next we need to verify that the correlation is significant and what the correlat
 \centerheading{Strasse}
 This section analyzes the correlated relations of the accident variable \textit{Strasse}. The correlations of \textit{Strasse} - \textit{SAvg} and \textit{Strasse} - \textit{TLHGV} produces a $p$-value above the $\alpha$-level of .05 in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected for these relations and there are no significant groups to identify.
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TMax} produces a $p$-value of 0.0039, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TMax}. 
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TMax} produces a $p$-value of 0.0104, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TMax}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -60,14 +60,14 @@ The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TMax} produces a 
 		     & A3 & A6 & A9 & A70 & A99 & A93 & A94 & A7 & A73 & A96 & A995 & A92 & A95 \\ 
 		\midrule
 		% A6   & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-		% A9   & 0.23 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+		% A9   & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
 		% A70  & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-		% A99  & 0.28 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+		% A99  & 0.85 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
 		% A93  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
 		A94  & \red{0.01} & 1.00 & 0.06 & 1.00 & 0.28 & 1.00 &  &  &  &  &  &  &  \\ 
-		% A7   & 0.87 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		% A7   & .00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
 		A73  & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 0.23 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-		A96  & \red{0.00} & 1.00 & 0.34 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		A96  & \red{0.00} & 1.00 & 0.35 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
 		% A995 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
 		A92  & \red{0.01} & 1.00 & 0.24 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
 		% A95  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
@@ -85,7 +85,7 @@ The table shows that the roads A94, A73, A96 and A95 differs from the A3. The A7
 		\toprule
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 		\midrule
-		A3   & 278 & 311.57 & 227.68 & 252.00 & 18 & 1257 & 1239 \\ 
+		A3   & 265 & 297.62 & 219.09 & 243.00 & 18 & 1257 & 1239 \\ 
 		A6   & 37  & 236.59 & 183.03 & 207.00 & 18 & 705  & 687  \\ 
 		A9   & 192 & 243.45 & 178.97 & 201.00 & 15 & 1194 & 1179 \\ 
 		A99  & 63  & 212.57 & 140.78 & 195.00 & 21 & 681  & 660  \\ 
@@ -103,7 +103,7 @@ The table shows that the roads A94, A73, A96 and A95 differs from the A3. The A7
 \end{table}
 The descriptives from \cref{tbl:descriptives_baysis_effector_Strasse_TMax} show that the A94, A73 and A96 (the A95 is uncertain) have a mean maximal temporal distance of 140\,min. Compared to the $\bar{x}$ of the A3 of 311\,min it can be interpreted that accidents on the A3 is associated with twice as long jams than the other groups. For the A9 can be interpreted that it's accidents are associated with 40\,\% longer jams, than the A73.
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TAvg} produces a $p$-value of 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TAvg}. 
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TAvg} produces a $p$-value of 0.0003, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_TAvg}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -114,14 +114,14 @@ The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TAvg} produces a 
 		% A6   & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
 		% A9   & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
 		% A70  & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-		A99  & \red{0.01} & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+		A99  & \red{0.02} & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
 		% A93  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
-		% A94  & 0.08 & 1.00 & 0.53 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		% A94  & 0.11 & 1.00 & 0.53 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
 		% A7   & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.61 &  &  &  &  &  &  \\ 
 		A73  & \red{0.00} & 1.00 & 0.00 & 1.00 & 1.00 & 1.00 & 1.00 & \red{0.02} &  &  &  &  &  \\ 
 		% A96  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.87 &  &  &  &  \\ 
 		% A995 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-		% A92  & 0.90 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		% A92  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
 		% A95  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
 		% A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 		\bottomrule
@@ -137,7 +137,7 @@ The table shows that the roads A99 and A73 differ from the A3. The A73 also diff
 		\toprule
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 		\midrule
-		A3   & 278 & 103.46 & 85.35  & 83.00 & 7  & 703  & 696 \\ 
+		A3   & 265 & 104.05 & 87.02 & 84.00 & 7  & 703  & 696 \\ 
 		A6   & 37  & 82.43  & 74.19  & 70.00 & 3  & 301  & 298 \\ 
 		A9   & 192 & 91.31  & 74.64  & 75.00 & 5  & 575  & 570 \\  
 		A99  & 63  & 65.73  & 47.32  & 52.00 & 4  & 295  & 291 \\ 
@@ -155,59 +155,7 @@ The table shows that the roads A99 and A73 differ from the A3. The A73 also diff
 \end{table}
 The descriptives in \cref{tbl:descriptives_baysis_effector_Strasse_TAvg} show that the mean $\bar{x}$ of the groups A99 and A73 is 56\,min, which is nearly 50\,\% lower than the $\bar{x}$ of A3. The $\bar{x}$ of A73 is also just $\frac{1}{3}$ compared to the A94. It can be interpreted that accidents on the A3 and A7 are associated with significantly longer jams than on other roads.
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SMax} produces a $p$-value of 0.0016, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_SMax}. 
-\begin{table}[ht]
-	\tiny
-	\centering
-	\begin{tabular}{rrrrrrrrrrrrrr}
-		\toprule
-			 & A3 & A6 & A9 & A70 & A99 & A93 & A94 & A7 & A73 & A96 & A995 & A92 & A95 \\ 
-		\midrule
-		% A6   & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
-		A9   & \red{0.00} & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
-		% A70  & 0.92 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-		% A99  & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
-		A93  & \red{0.05} & 0.13 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
-		A94  & \red{0.01} & \red{0.03} & 0.41 & 1.00 & 0.24 & 1.00 &  &  &  &  &  &  &  \\ 
-		A7   & \red{0.03} & 0.65 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-		A73  & \red{0.00} & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 1.00 & 0.93 &  &  &  &  &  \\ 
-		A96  & \red{0.04} & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.18 &  &  &  &  \\ 
-		% A995 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-		A92  & \red{0.00} & \red{0.00} & \red{0.04} & 1.00 & \red{0.04} & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
-		% A95  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
-		% A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
-		\bottomrule
-	  \end{tabular}
-    \caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Spatial Extent} (Jam Effector)}
-    \label{tbl:wilcoxon_baysis_effector_Strasse_SMax}
-\end{table}
-The table shows that the roads of A9, A93, A7, A73, A96, and A92 differ significantly from A3. The roads A94, A73 and A92 also differ significantly from A6. A73 and A92 also differ significantly from A9 and A99, but there is no distinctive trend.
-\begin{table}[ht]
-	\tiny
-	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-		\midrule
-		A3   & 278 & 24884.31 & 35913.14 & 15931.50 & 1566 & 219082 & 217516 \\ 
-		A6   & 37  & 16711.43 & 9518.81  & 14449.00 & 2655 & 40033  & 37378 \\ 
-		A9   & 192 & 13271.42 & 8473.71  & 11654.50 & 1315 & 49765  & 48450 \\ 
-		A99  & 63  & 17558.70 & 12223.42 & 14698.00 & 2351 & 48278  & 45927 \\ 
-		A93  & 12  & 8158.42  & 4473.23  & 7461.50  & 2896 & 16922  & 14026 \\ 
-		A94  & 14  & 7277.64  & 4218.45  & 6947.00  & 1206 & 15550  & 14344 \\ 
-		A7   & 35  & 11825.00 & 8885.99  & 9506.00  & 3041 & 43244  & 40203 \\ 
-		A73  & 52  & 7964.98  & 5995.59  & 6559.50  & 1036 & 33764  & 32728 \\ 
-		A96  & 41  & 11825.98 & 6911.19  & 9676.00  & 2006 & 27965  & 25959 \\ 
-		A92  & 21  & 7255.76  & 3637.71  & 7364.00  & 1176 & 13522  & 12346 \\ 
-		\bottomrule
-	  \end{tabular}
-    \caption{Group descriptives of \textit{Strasse} and \textit{Maximal Spatial Extent} (Jam Effector)}
-    \label{tbl:descriptives_baysis_effector_Strasse_SMax}
-	%\vspace{-8mm}
-\end{table}
-The descriptives in \cref{tbl:descriptives_baysis_effector_Strasse_SMax} show that $\bar{x}$ of A6, A7, A9, A96 and A99 are between 50\,\% to 80\,\% higher than A73, A92, A93 and A94. The $\bar{x}$ of A3 supersedes the A6, A7, A9, A96 and A99 by a similar amount again. It can be interpreted that the maximal spatial distance varies from A73, A92, A93 and A94 over A6, A7, A9, A96 and A99 to the A3, by up to 340\,\%.
-
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{Cov} produces a $p$-value of 0.0007, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_Cov}. 
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SMax} produces a $p$-value of 0.0025, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_SMax}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -218,12 +166,64 @@ The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{Cov} produces a $
 		% A6   & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
 		A9   & \red{0.00} & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
 		% A70  & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		% A99  & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+		A93  & 0.07 & 0.13 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		A94  & \red{0.01} & \red{0.03} & 0.41 & 1.00 & 0.24 & 1.00 &  &  &  &  &  &  &  \\ 
+		A7   & 0.08 & 0.65 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		A73  & \red{0.00} & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 1.00 & 0.95 &  &  &  &  &  \\ 
+		A96  & 0.13 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.18 &  &  &  &  \\ 
+		% A995 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		A92  & \red{0.00} & \red{0.00} & \red{0.04} & 1.00 & \red{0.04} & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		% A95  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+		% A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+		\bottomrule
+	  \end{tabular}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Spatial Extent} (Jam Effector)}
+    \label{tbl:wilcoxon_baysis_effector_Strasse_SMax}
+\end{table}
+The table shows that the roads of A9, A73, and A92 differ significantly from A3. The roads A94, A73 and A92 also differ significantly from A6. A73 and A92 also differ significantly from A9 and A99, but there is no distinctive trend.
+\begin{table}[ht]
+	\tiny
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\toprule
+		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+		\midrule
+		A3   & 265 & 17755.15 & 11139.22 & 14811.00 & 1566 & 46328 & 44762 \\ 
+		A6   & 37  & 16711.43 & 9518.81  & 14449.00 & 2655 & 40033 & 37378 \\ 
+		A9   & 192 & 13271.42 & 8473.71  & 11654.50 & 1315 & 49765 & 48450 \\ 
+		A99  & 63  & 17558.70 & 12223.42 & 14698.00 & 2351 & 48278 & 45927 \\ 
+		A93  & 12  & 8158.42  & 4473.23  & 7461.50  & 2896 & 16922 & 14026 \\ 
+		A94  & 14  & 7277.64  & 4218.45  & 6947.00  & 1206 & 15550 & 14344 \\ 
+		A7   & 35  & 11825.00 & 8885.99  & 9506.00  & 3041 & 43244 & 40203 \\ 
+		A73  & 52  & 7964.98  & 5995.59  & 6559.50  & 1036 & 33764 & 32728 \\ 
+		A96  & 41  & 11825.98 & 6911.19  & 9676.00  & 2006 & 27965 & 25959 \\ 
+		A92  & 21  & 7255.76  & 3637.71  & 7364.00  & 1176 & 13522 & 12346 \\ 
+		\bottomrul
+	  \end{tabular}
+    \caption{Group descriptives of \textit{Strasse} and \textit{Maximal Spatial Extent} (Jam Effector)}
+    \label{tbl:descriptives_baysis_effector_Strasse_SMax}
+	%\vspace{-8mm}
+\end{table}
+The descriptives in \cref{tbl:descriptives_baysis_effector_Strasse_SMax} show that $\bar{x}$ of A6, A7, A9, A96 and A99 are between 50\,\% to 80\,\% higher than A73, A92, A93 and A94. The $\bar{x}$ of A3 supersedes the A6, A7, A9, A96 and A99 by a similar amount again. It can be interpreted that the maximal spatial distance varies from A73, A92, A93 and A94 over A6, A7, A9, A96 and A99 to the A3, by up to 340\,\%.
+
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{Cov} produces a $p$-value of 0.0055, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Strasse_Cov}. 
+\begin{table}[ht]
+	\tiny
+	\centering
+	\begin{tabular}{rrrrrrrrrrrrrr}
+		\toprule
+			 & A3 & A6 & A9 & A70 & A99 & A93 & A94 & A7 & A73 & A96 & A995 & A92 & A95 \\ 
+		\midrule
+		% A6   & 1.00 &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+		A9   & \red{0.01} & 1.00 &  &  &  &  &  &  &  &  &  &  &  \\ 
+		% A70  & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
 		A99  & 1.00 & 1.00 & \red{0.00} & 1.00 &  &  &  &  &  &  &  &  &  \\ 
 		% A93  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
 		% A94  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-		A7   & 0.09 & 1.00 & 1.00 & 1.00 & \red{0.02} & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		A7   & 0.25 & 1.00 & 1.00 & 1.00 & \red{0.02} & 1.00 & 1.00 &  &  &  &  &  &  \\ 
 		% A73  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-		A96  & 0.07 & 1.00 & 1.00 & 1.00 & \red{0.02} & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		A96  & 0.21 & 1.00 & 1.00 & 1.00 & \red{0.02} & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
 		% A995 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
 		A92  & \red{0.03} & 0.43 & 1.00 & 1.00 & \red{0.01} & 1.00 & 1.00 & 1.00 & 0.61 & 1.00 & 1.00 &  &  \\ 
 		% A95  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
@@ -241,20 +241,16 @@ The table shows that roads A9 and A92 differ significantly from A3. The road A99
 		\toprule
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 		\midrule
-		A3   & 278 & 30.76 & 17.01 & 28.0 & 2  & 100 & 98 \\ 
+		A3   & 265 & 32.02 & 16.40 & 28.0 & 2  & 100 & 92 \\ 
 		A6   & 37  & 30.81 & 16.61 & 25.0 & 9  & 65  & 56 \\ 
 		A9   & 192 & 36.09 & 13.77 & 34.5 & 6  & 86  & 80 \\ 
-		%A70  & 7   & 41.71 & 28.46 & 32.0 & 15 & 86  & 71 \\ 
 		A99  & 63  & 26.79 & 14.71 & 25.0 & 7  & 63  & 56 \\ 
 		A93  & 12  & 37.25 & 17.78 & 36.5 & 13 & 70  & 57 \\ 
 		A94  & 14  & 36.79 & 21.00 & 33.5 & 11 & 77  & 66 \\ 
 		A7   & 35  & 45.60 & 25.54 & 42.0 & 6  & 100 & 94 \\ 
 		A73  & 52  & 32.94 & 15.73 & 30.5 & 7  & 77  & 70 \\ 
 		A96  & 41  & 42.90 & 21.63 & 42.0 & 9  & 85  & 76 \\ 
-		%A995 & 1   & 81.00 &  	   & 81.0 & 81 & 81  & 0 \\ 
 		A92  & 21  & 47.71 & 22.04 & 47.0 & 21 & 88  & 67 \\ 
-		%A95  & 1   & 57.00 &  	   & 57.0 & 57 & 57  & 0 \\ 
-		%A980 & 1   & 80.00 &  	   & 80.0 & 80 & 80  & 0 \\ 
 		\bottomrule
 	  \end{tabular}
     \caption{Group descriptives of \textit{Strasse} and \textit{Coverage} (Jam Effector)}
@@ -271,11 +267,11 @@ The descriptives in \cref{tbl:descriptives_baysis_effector_Strasse_Cov} show tha
 \centerheading{Kat}
 The relations of \textit{Kat} - \textit{TMax}, \textit{Kat} - \textit{TAvg} and \textit{Kat} - \textit{SAvg} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences between the groups of \textit{Kat}. There are no significant groups to identify.
 
-% --------------------------------
-% -------- UArt1 & UArt2 ---------
-% --------------------------------
+% ------------------------
+% -------- UArt1 ---------
+% ------------------------
 \centerheading{UArt}
-The relations of \textit{UArt1} - \textit{SAvg} and \textit{UArt2} - \textit{SMax} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences between the groups of \textit{UArt1} and \textit{UArt2}. There are no significant groups to identify.
+The relation of \textit{UArt1} - \textit{SAvg} produces a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences between the groups of \textit{UArt1} and \textit{UArt2}. There are no significant groups to identify.
 
 % ------------------------
 % -------- AufHi ---------
@@ -310,7 +306,7 @@ The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{SMax} produces a $p
 \end{table}
 The tables shows that the differences are not group specific, which means that the relation can be neglected (see \cref{correlation_posthoc}).
 
-The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TLHGV} produces a $p$-value of 0.0089, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{WoTag} - \textit{TLHGV} is run, which produces \cref{tbl:wilcoxon_baysis_effector_WoTag_TLHGV}. 
+The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TLHGV} produces a $p$-value of 0.0089, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{WoTag} - \textit{TLHGV} is run, which produces \cref{tbl:wilcoxon_baysis_effector_WoTag_TLHGV}. 
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -318,12 +314,12 @@ The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TLHGV} produces a $
 		\toprule
 		   & Di & Do & Fr & Mi & Mo & Sa \\ 
 		\midrule
-		Do & 1.00 &  &  &  &  &  \\ 
-		Fr & 1.00 & 1.00 &  &  &  &  \\ 
-		Mi & 0.02 & 1.00 & 1.00 &  &  &  \\ 
-		Mo & 0.82 & 1.00 & 1.00 & 1.00 &  &  \\ 
-		Sa & 1.00 & 1.00 & 1.00 & 0.82 & 1.00 &  \\ 
-		So & 1.00 & 1.00 & 1.00 & 0.03 & 0.65 & 1.00 \\ 
+		% Do & 1.00 &  &  &  &  &  \\ 
+		% Fr & 1.00 & 1.00 &  &  &  &  \\ 
+		% Mi & 0.02 & 1.00 & 1.00 &  &  &  \\ 
+		% Mo & 0.82 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		% Sa & 1.00 & 1.00 & 1.00 & 0.82 & 1.00 &  \\ 
+		So & 1.00 & 1.00 & 1.00 & \red{0.03} & 0.65 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
     \caption{Pairwise Wilcoxon $T$-test for \textit{WoTag} and \textit{Time-loss HGV}}

@@ -3,14 +3,14 @@
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 739.95, df = 727, p-value = 0.3613
+Kruskal-Wallis chi-squared = 738.99, df = 726, p-value = 0.3608
 
 [1] "############ TempDist ############"
 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 39.181, df = 24, p-value = 0.02614
+Kruskal-Wallis chi-squared = 39.131, df = 24, p-value = 0.02646
 
 % latex table generated in R 4.0.2 by xtable 1.8-4 package
 % 
@@ -35,7 +35,7 @@ X1 & 1.00 & 181.00 & 11.40 & 6.38 & 10.00 & 11.02 & 7.41 & 1.00 & 24.00 & 23.00 
   X11 & 1.00 & 24.00 & 7.67 & 6.06 & 7.00 & 6.90 & 5.19 & 1.00 & 22.00 & 21.00 & 1.14 & 0.28 & 1.24 \\ 
   X12 & 1.00 & 4.00 & 14.00 & 3.92 & 13.50 & 14.00 & 3.71 & 10.00 & 19.00 & 9.00 & 0.22 & -2.05 & 1.96 \\ 
   X13 & 1.00 & 2.00 & 4.50 & 3.54 & 4.50 & 4.50 & 3.71 & 2.00 & 7.00 & 5.00 & 0.00 & -2.75 & 2.50 \\ 
-  X14 & 1.00 & 496.00 & 9.20 & 5.88 & 8.00 & 8.60 & 4.45 & 0.00 & 24.00 & 24.00 & 0.84 & -0.04 & 0.26 \\ 
+  X14 & 1.00 & 495.00 & 9.21 & 5.88 & 8.00 & 8.60 & 4.45 & 0.00 & 24.00 & 24.00 & 0.84 & -0.05 & 0.26 \\ 
   X15 & 1.00 & 70.00 & 12.27 & 7.09 & 11.00 & 12.09 & 8.15 & 0.00 & 24.00 & 24.00 & 0.26 & -1.20 & 0.85 \\ 
    \hline
 \end{tabular}
@@ -44,5 +44,5 @@ X1 & 1.00 & 181.00 & 11.40 & 6.38 & 10.00 & 11.02 & 7.41 & 1.00 & 24.00 & 23.00 
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 87.648, df = 93, p-value = 0.6372
+Kruskal-Wallis chi-squared = 87.421, df = 93, p-value = 0.6437
 

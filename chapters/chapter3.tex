@@ -400,7 +400,6 @@ The $p$-value can then be comprised by comparing $\chi^2$ to a $\chi^2$-distribu
 \label{correlation_posthoc}
 In the case of a relation of a categorical variable the correlation effect size and it's significance do not provide any statement on which categories are related. This needs to be further evaluated with a Post Hoc test. In our case the Post Hoc test is based on two separated tests. First the variables will be tested for significance with a Kruskal-Wallis rank sum test. 
 
-% https://de.wikipedia.org/wiki/Kruskal-Wallis-Test
 % https://www.sciencedirect.com/topics/nursing-and-health-professions/kruskal-wallis-test
 \smallskip
 \begin{equation}
@@ -410,17 +409,28 @@ In the case of a relation of a categorical variable the correlation effect size 
 
 \medskip
 
-For Kruskal-Wallis $h$-test the following rules apply. The higher the value of $h$, the higher is the variance between the unique variables. A high $h$ supports an already found correlation, but must be tested for significance with $\chi^2$ defined in \cref{correlation_significance}. If the significance or $p$-value is larger than $\alpha$ the null hypothesis can be rejected. This implies that the correlation or variance between the groups are significant. For the identification of which groups create this significant variance the following Wilcoxon-Mann-Whitney, sometimes also called Wilcoxon $T$-test is applied pairwise.
+For Kruskal-Wallis $h$-test the following rules apply. The higher the value of $h$, the higher is the variance between the unique variables. A high $h$ normally supports an already found correlation, but must be tested for significance with $\chi^2$ defined in \cref{correlation_significance}. If the significance or $p$-value is below the $\alpha$-level of $.05$ the null hypothesis can be rejected. This implies that the correlation or variances between the groups are significant. For the identification of which groups create this significant variance the following Wilcoxon-Mann-Whitney, sometimes also called Wilcoxon $T$-test is applied pairwise.
 
-% https://de.wikipedia.org/wiki/Wilcoxon-Mann-Whitney-Test
-% https://pythonfordatascienceorg.wordpress.com/wilcoxon-sign-ranked-test-python/
-The Wilcoxon $T$-test is a non-parametric univariate alternative to the dependent $t$-test and is the recommended test to use when the data violates the assumption of a normal distribution. The two variations \textit{Mann-Whitney U statistic} and \text{Wilcoxon W sanked sum statistic} can be considered as equivalent. The Wilcoxon ranked sum test will be used in a pairwise approach to compare all groups with each other. From the resulting matrix of $p$-values and the analog interpretation with the alpha level (see \cref{correlation_significance}) the significant groups can be identified.
+The Wilcoxon $T$-test is a non-parametric univariate alternative to the dependent $t$-test and is the recommended test to use when the data violates the assumption of a normal distribution. The two variations \textit{Mann-Whitney U statistic} and \text{Wilcoxon W sanked sum statistic} can be considered as equivalent. The Wilcoxon ranked sum test will be used in a pairwise approach to compare all groups with each other. 
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+		{
+		p(G_1,G_1) & p(G_n,G_1) \\
+		p(G_1,G_n) & p(G_n,G_n) \\};
+		\path[-stealth]
+		(m-1-1) edge node [left] {$1,...,n$} (m-2-1)
+				edge (m-1-2)
+				edge [dashed,-] node [below] {$p$} node [above] {$0$} (m-2-2)
+		(m-2-1.east|-m-2-2) edge node [below] {$1,...,n$} (m-2-2)
+		(m-1-2) edge node [right] {} (m-2-2);
+  	\end{tikzpicture}	
+  	\caption{2-dimensional group Significance matrix}
+\end{figure}
+From the resulting matrix of $p$-values and the analog interpretation with the $\alpha$-level (see \cref{correlation_significance}) the significant groups can be identified. These identified groups are considered to have a significant difference to the other groups and therefore can predictably point to a measurement characteristic from a category or vice versa.
 
-These identified groups are considered to have a significant difference to the other groups and therefore can predictably point to a measurement characteristic from a category or vice versa.
+A non significant difference between does not mean that there is no correlation, but only that the sample set and size can not support significancy. There are also cases, where the $p$-value of the correlation coefficient and the general Kruskal-Wallis rank sum test show significant differences in the variable, but the pairwise Wilcoxon ranked sum test does not show any significant differences between the groups. This unfitting difference between the \textit{global} and \textit{specific} significance appears when variables have differences between the samples, but the differences are not reflected by the groups or the sample size is not sufficient to support the significancy of the differences. These controversial correlations can also be evaluated in a exploratory data analysis, keeping in mind their limited interpretability and predictability.
 
-There can be the special case, where the $p$-value of the correlation coefficient and the general Kruskal-Wallis rank sum test show significant differences, but the pairwise Wilcoxon ranked sum test does not show any significant groups. This unfitting difference between the \textit{global} and \textit{specific} significance appears when variables have differences between the samples, but the differences are not reflected by the groups. The interpretability of these relations is controversial and the correlation will therefore dismissed.
-
-\todo{Ergänze Effektstärke für Mann-Whitney-U}
+%\todo{Ergänze Effektstärke für Mann-Whitney-U}
 %https://statistikguru.de/spss/mann-whitney-u-test/effektstaerke-berechnen-3.html
-
-

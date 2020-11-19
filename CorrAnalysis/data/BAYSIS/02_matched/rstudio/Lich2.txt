@@ -3,7 +3,7 @@
 	Kruskal-Wallis rank sum test
 
 data:  encoded[[main]] by encoded[[param]]
-Kruskal-Wallis chi-squared = 140.55, df = 95, p-value = 0.001669
+Kruskal-Wallis chi-squared = 137.42, df = 93, p-value = 0.001897
 
 % latex table generated in R 4.0.2 by xtable 1.8-4 package
 % 
@@ -11,8 +11,8 @@ Kruskal-Wallis chi-squared = 140.55, df = 95, p-value = 0.001669
   \hline
  & 0 & 3 \\ 
   \hline
-3 & 0.97 &  \\ 
-  4 & 0.00 & 0.20 \\ 
+3 & 0.98 &  \\ 
+  4 & 0.00 & 0.18 \\ 
    \hline
 \end{tabular}
 % latex table generated in R 4.0.2 by xtable 1.8-4 package
@@ -21,8 +21,8 @@ Kruskal-Wallis chi-squared = 140.55, df = 95, p-value = 0.001669
   \hline
  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
   \hline
-X1 & 1.00 & 1506.00 & 42.08 & 20.84 & 39.00 & 40.75 & 22.24 & 2.00 & 100.00 & 98.00 & 0.53 & -0.28 & 0.54 \\ 
+X1 & 1.00 & 1492.00 & 42.42 & 20.62 & 40.00 & 41.03 & 22.24 & 5.00 & 100.00 & 95.00 & 0.55 & -0.28 & 0.53 \\ 
   X11 & 1.00 & 16.00 & 41.06 & 14.67 & 37.00 & 40.29 & 11.12 & 18.00 & 75.00 & 57.00 & 0.64 & -0.42 & 3.67 \\ 
-  X12 & 1.00 & 345.00 & 50.30 & 22.96 & 48.00 & 49.54 & 25.20 & 3.00 & 100.00 & 97.00 & 0.26 & -0.74 & 1.24 \\ 
+  X12 & 1.00 & 343.00 & 50.55 & 22.78 & 48.00 & 49.75 & 25.20 & 7.00 & 100.00 & 93.00 & 0.28 & -0.75 & 1.23 \\ 
    \hline
 \end{tabular}

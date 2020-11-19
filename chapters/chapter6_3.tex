@@ -285,7 +285,7 @@ Both relations \textit{AufHi} - \textit{TMax} and \textit{AufHi} - \textit{TAvg}
 \centerheading{WoTag}
 This section analyzes the correlated relations of the accident variable \textit{WoTag}. The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TAvg} and \textit{WoTag} - \textit{Cov} produce a $p$-value above $\alpha=.05$. The null hypothesis for these relations can't be rejected and there is no significant difference between the groups of \textit{WoTag} in regards of \textit{TAvg} and \textit{Cov}.
 
-The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{SMax} produces a $p$-value of 0.0126, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{WoTag} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_WoTag_TMax}. 
+The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{SMax} produces a $p$-value of 0.0175, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{WoTag} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_WoTag_TMax}. 
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -296,7 +296,7 @@ The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{SMax} produces a $p
 		Do & 1.00 &  &  &  &  &  \\ 
 		Fr & 1.00 & 1.00 &  &  &  &  \\ 
 		Mi & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-		Mo & 1.00 & 0.95 & 1.00 & 0.93 &  &  \\ 
+		Mo & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
 		Sa & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
 		So & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 		\bottomrule
@@ -316,10 +316,10 @@ The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TLHGV} produces a $
 		\midrule
 		% Do & 1.00 &  &  &  &  &  \\ 
 		% Fr & 1.00 & 1.00 &  &  &  &  \\ 
-		% Mi & 0.02 & 1.00 & 1.00 &  &  &  \\ 
+		Mi & \red{0.03} & 1.00 & 1.00 &  &  &  \\ 
 		% Mo & 0.82 & 1.00 & 1.00 & 1.00 &  &  \\ 
 		% Sa & 1.00 & 1.00 & 1.00 & 0.82 & 1.00 &  \\ 
-		So & 1.00 & 1.00 & 1.00 & \red{0.03} & 0.65 & 1.00 \\ 
+		So & 1.00 & 1.00 & 1.00 & \red{0.05} & 0.65 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
     \caption{Pairwise Wilcoxon $T$-test for \textit{WoTag} and \textit{Time-loss HGV}}
@@ -334,9 +334,9 @@ The Kruskal-Wallis rank sum test of \textit{WoTag} - \textit{TLHGV} produces a $
 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 		\midrule
 		Di & 115 & 766.97 & 141.79 & 794.00 & 518 & 999 & 481 \\ 
-		Do & 131 & 739.22 & 143.43 & 720.00 & 511 & 983 & 472 \\ 
-		Fr & 150 & 735.81 & 153.58 & 714.00 & 502 & 998 & 496 \\ 
-		Mi & 127 & 707.32 & 139.30 & 681.00 & 501 & 995 & 494 \\ 
+		Do & 129 & 739.48 & 143.28 & 720.00 & 511 & 983 & 472 \\ 
+		Fr & 142 & 739.78 & 155.44 & 720.00 & 502 & 998 & 496 \\ 
+		Mi & 124 & 709.44 & 140.31 & 692.50 & 501 & 995 & 494 \\ 
 		Mo & 89  & 728.10 & 134.08 & 727.00 & 514 & 986 & 472 \\ 
 		Sa & 65  & 750.46 & 143.80 & 778.00 & 507 & 988 & 481 \\ 
 		So & 73  & 774.67 & 141.34 & 784.00 & 534 & 994 & 460 \\ 

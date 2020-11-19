@@ -4,7 +4,7 @@
 \subsection{Congestion - Accidents in general}
 \label{analysis_processing_correlation_baysis_matched}
 The correlation matrix table for the complete congestion-accident matched dataset (see \cref{table:appendix_correlation_matrix_matched_cramers}) is visual presented in \cref{img:correlation_matrix_matched_cramers} showing the the correlation of each variable combination. When visual analyzing \cref{img:correlation_matrix_matched_cramers} and checking the guidelines for a strong correlation in reference to the applied coefficient (identifiable with \cref{table:appendix_coefficient_matrix_matched}) we get a list of strongly correlated variable combinations (see \cref{tbl:correlation_list_baysis_matched}). Since the focus of the thesis are the correlations between accidents and jams, these are only collected from the bottom-left corner of the matrix, where the congestion and accidents variables intersect. Correlations of the kind congestion - congestion or accident - accident are not considered.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|l}  
 		\toprule
@@ -342,10 +342,10 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov} show that t
 % ----------------------
 \centerheading{Kat}
 \label{ana:baysis_global_Kat}
-This section analyzes the correlated relations of the accident variable \textit{Kat}. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{SAvg} produces a $p$-value above $\alpha$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Kat} in this relation.
+This section analyzes the correlated relations of the accident variable \textit{Kat}. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis rank sum test of \textit{Kat} - \textit{SAvg} produces a $p$-value above $\alpha$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Kat} in this relation.
 
-The Kruskal-Wallis test of \textit{Kat}-\textit{TMax} produces a $p$-value of 0.0068, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TMax}.
-\begin{table}[ht]
+The Kruskal-Wallis test of \textit{Kat} - \textit{TMax} produces a $p$-value of 0.0068, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TMax}.
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{rrrr}
@@ -361,7 +361,7 @@ The Kruskal-Wallis test of \textit{Kat}-\textit{TMax} produces a $p$-value of 0.
 	\label{tbl:wilcoxon_baysis_matched_Kat_TMax}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Kat_TMax} shows that all groups, besides of group 7 to group 3, have significant differences. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -383,8 +383,8 @@ The Kruskal-Wallis test of \textit{Kat}-\textit{TMax} produces a $p$-value of 0.
 % mean diff 189,155,179 = 29
 The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TMax} present increasing means from lightly injured to deathly accident. We can interpret that the maximal temporal jam length  increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 143\,min longer jams, than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the property damage group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 29\,min on average.
 
-The Kruskal-Wallis test of \textit{Kat}-\textit{TAvg} produces a $p$-value of 0.0005, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TAvg}.
-\begin{table}[ht]
+The Kruskal-Wallis test of \textit{Kat} - \textit{TAvg} produces a $p$-value of 0.0005, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TAvg}.
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{rrrr}
@@ -400,7 +400,7 @@ The Kruskal-Wallis test of \textit{Kat}-\textit{TAvg} produces a $p$-value of 0.
 	\label{tbl:wilcoxon_baysis_matched_Kat_TAvg}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Kat_TAvg} shows that all groups have significant differences. The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TAvg} present increasing means from group 3 to 1.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -422,8 +422,8 @@ The Kruskal-Wallis test of \textit{Kat}-\textit{TAvg} produces a $p$-value of 0.
 % mean diff 88,67,74 = 10
 We can interpret that the average temporal jam length increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 80\,min longer jams than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 10\,min on average. 
 
-The Kruskal-Wallis test of \textit{Kat}-\textit{TDist} produces a $p$-value below 0.0001, which is way below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TDist}. 
-\begin{table}[ht]
+The Kruskal-Wallis test of \textit{Kat} - \textit{TDist} produces a $p$-value below 0.0001, which is way below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat} - \textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TDist}. 
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{rrrr}
@@ -439,7 +439,7 @@ The Kruskal-Wallis test of \textit{Kat}-\textit{TDist} produces a $p$-value belo
 	\label{tbl:wilcoxon_baysis_matched_Kat_TDist}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Kat_TDist} shows that all groups have significant differences. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -462,10 +462,10 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TDist} present i
 % -------- Typ ---------
 % ----------------------
 \centerheading{Typ}
-This section analyzes the correlated relations of the accident variable \textit{Typ}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis rank sum test of \textit{Typ}-\textit{Cov} produces a $p$-value above $\alpha$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Typ} in this relation.
+This section analyzes the correlated relations of the accident variable \textit{Typ}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis rank sum test of \textit{Typ} - \textit{Cov} produces a $p$-value above $\alpha$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Typ} in this relation.
 
 The Kruskal-Wallis rank sum test of \textit{Typ}-\textit{TDist} produces a $p$-value of 0.0005, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Typ}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Typ}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Typ_TDist}. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{rrrrrr}
@@ -483,7 +483,7 @@ The Kruskal-Wallis rank sum test of \textit{Typ}-\textit{TDist} produces a $p$-v
 	\label{tbl:wilcoxon_baysis_matched_Typ_TDist}
 \end{table}
 The $p$-values in \cref{tbl:wilcoxon_baysis_matched_Kat_TDist} show the groups 3 and 6 differ from 1, group 6 and 7 differ from 3 and group 7 differs from 6.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -509,7 +509,7 @@ The descriptives in \cref{tbl:descriptives_baysis_matched_Typ_TDist} reveal that
 This section analyzes the correlated relations of the accident variable \textit{UArt}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{UArt} is shown in \cref{tbl:baysis_dataset_UArt}. The Kruskal-Wallis rank sum test of \textit{UArt}-\textit{SAvg} produces a $p$-value of 0.2081, which is above the $\alpha$-level. The null hypothesis can't be rejected and there is \textit{no} significant difference between the groups of \textit{UArt}. There are no significant groups to identify.
 
 The Kruskal-Wallis test of \textit{UArt}-\textit{TDist} produces a $p$-value of below 0.0001, which is way below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{UArt}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_UArt_TDist}. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{rrrrrrrrrr}
@@ -531,7 +531,7 @@ The Kruskal-Wallis test of \textit{UArt}-\textit{TDist} produces a $p$-value of 
 	\label{tbl:wilcoxon_baysis_matched_UArt_TDist}
 \end{table}
 The $p$-values in \cref{tbl:wilcoxon_baysis_matched_UArt_TDist} show that group 5 differs from 2, 3 and 4. The groups 7, 8 and 9 differ from the groups 0, 1, 2, 3 and 5.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -555,7 +555,7 @@ The $p$-values in \cref{tbl:wilcoxon_baysis_matched_UArt_TDist} show that group 
 The descriptives in \cref{tbl:descriptives_baysis_matched_UArt_TDist} reveal that group 5 has the lowest $\bar{x}$ and $\sigma$ of all groups and the groups 7, 8 and 9 have the highest. This can be interpreted as accident collisions with \textit{turning} and \textit{crossing} vehicles have a close temporal reaction, when jams of accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles take longer to create (average of 8\,min). The categories describing \textit{starting}, \textit{standing}, \textit{stopping}, \textit{ahead and waiting vehicle} and \textit{vehicle on separate lane in same direction} have an average of 5\,min.
 
 The Kruskal-Wallis test of \textit{UArt}-\textit{Cov} produces a $p$-value of 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{UArt}-\textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_UArt_Cov}.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{rrrrrrrrrr}
@@ -577,7 +577,7 @@ The Kruskal-Wallis test of \textit{UArt}-\textit{Cov} produces a $p$-value of 0.
 	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
 \end{table}
 The $p$-values in \cref{tbl:wilcoxon_baysis_matched_UArt_Cov} show that group 5 differs from 2, 3 and group 7 differs from group 3. Further does the group 8 differs from groups 0, 1 ,2 , 3 and 5. Group 9 differs from 2, 3 and 4.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -607,7 +607,7 @@ The descriptives in \cref{tbl:descriptives_baysis_matched_UArt_Cov} reveal that 
 This section analyzes the correlated relations of the accident variable \textit{AUrs}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{AUrs} is shown in \cref{tbl:baysis_dataset_AUrs}. The variable value of group 0, which occurs in the dataset is undefined by BAYSIS and will be therefore neglected for the interpretation. The Kruskal-Wallis tests of \textit{AUrs}-\textit{SDist} and \textit{AUrs}-\textit{TLHGV} produce a $p$-values above the $\alpha$-level. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{SDist} for these relations.
 
 The Kruskal-Wallis test of \textit{AUrs}-\textit{SAvg} produces a $p$-value of 0.0228, which is below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{AUrs}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AUrs}-\textit{SAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_AUrs_Cov}.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{rrrrrrrrrrrrrrr}
@@ -634,7 +634,7 @@ The Kruskal-Wallis test of \textit{AUrs}-\textit{SAvg} produces a $p$-value of 0
 	\label{tbl:wilcoxon_baysis_matched_AUrs_SAvg}
 \end{table}
 The significances in \cref{tbl:wilcoxon_baysis_matched_AUrs_SAvg} show that only group 88 differs from 0 and 72. This is to be expected, because of the retained variable (see \cref{baysis_dataset_AUrs}). 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\small
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c|c}
@@ -655,7 +655,7 @@ The significances in \cref{tbl:wilcoxon_baysis_matched_AUrs_SAvg} show that only
 A comparison of $\bar{x}$ from \cref{tbl:descriptives_baysis_matched_AUrs_SAvg} shows that are about 1000\,m longer than jams associated with group 72. Since group 88 represents accident cause with \textit{other obstacles}, a meaningful interpretation is not really possible. 
 
 The Kruskal-Wallis test of \textit{AUrs}-\textit{TDist} produces a $p$-value below 0.0001, which is way below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{AUrs}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AUrs}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_AUrs_TDist}.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
 	\begin{tabular}{rrrrrrrrrrrrrrr}
@@ -684,7 +684,7 @@ The Kruskal-Wallis test of \textit{AUrs}-\textit{TDist} produces a $p$-value bel
 The significances in \cref{tbl:wilcoxon_baysis_matched_AUrs_TDist} show that the only significant $p$-values are with group 0. Since the group is undefined from BAYSIS, there is no further interpretation possible.
 
 The Kruskal-Wallis test of \textit{AUrs}-\textit{Cov} produces a $p$-value below 0.0001, which is way below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Cov}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AUrs}-\textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_AUrs_Cov}.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
     \begin{tabular}{rrrrrrrrrrrrrrr}
@@ -719,7 +719,7 @@ As with the variable \textit{TDist}, the significances in \cref{tbl:wilcoxon_bay
 This section analyzes the correlated relations of the accident variable \textit{AufHi} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{AufHi} is shown in \cref{tbl:baysis_dataset_AufHi}. The Kruskal-Wallis test of \textit{AufHi} - \textit{TMax} and \textit{AufHi} - \textit{TAvg} produce a $p$-value above the $\alpha$-level. The null hypothesis can't be rejected and there are no significant differences between the groups of \textit{AufHi} in these relations.
 
 The Kruskal-Wallis test of \textit{AUrs} - \textit{TDist} produces a $p$-value of $p < 0.0001$, which is way below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{AUrs}. A pairwise Wilcoxon $T$-test for \textit{AUrs} - \textit{TDist} produces \cref{tbl:wilcoxon_baysis_matched_AufHi_TDist}.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
     \begin{tabular}{rrrrrrrr}
@@ -739,7 +739,7 @@ The Kruskal-Wallis test of \textit{AUrs} - \textit{TDist} produces a $p$-value o
 	\label{tbl:wilcoxon_baysis_matched_AufHi_TDist}
 \end{table}
 As \cref{tbl:wilcoxon_baysis_matched_AufHi_TDist} shows, the groups of 3 and 4 differ significantly from 0. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
     \begin{tabular}{c|c|c|c|c|c|c|c}
@@ -759,7 +759,7 @@ As \cref{tbl:wilcoxon_baysis_matched_AufHi_TDist} shows, the groups of 3 and 4 d
 When comparing $\bar{x}$ of the named groups, it becomes clear that the accidents with \textit{trees} ($\bar{x}$ of 4.7\,min) have a much shorter distance to the adjacent jam, than accidents with the \textit{guardrail} or \textit{other obstacles} ($\bar{x}$ of 8.4\,min).
 
 The Kruskal-Wallis test of \textit{AufHi} - \textit{Cov} produces a $p$-value of $p < 0.0001$, which is way below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{AufHi}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AufHi} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_AufHi_Cov}. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
     \begin{tabular}{rrrrrrrr}
@@ -779,7 +779,7 @@ The Kruskal-Wallis test of \textit{AufHi} - \textit{Cov} produces a $p$-value of
 	\label{tbl:wilcoxon_baysis_matched_AufHi_Cov}
 \end{table}
 As \cref{tbl:wilcoxon_baysis_matched_AufHi_Cov} shows, only groups of 3 differs significantly from 0. 
-\begin{table}[ht]
+\begin{table}[ht!]
 	\tiny
 	\centering
     \begin{tabular}{c|c|c|c|c|c|c|c}

@@ -354,9 +354,7 @@ With the descriptives in \cref{tbl:descriptives_baysis_effector_WoTag_TLHGV} it 
 \centerheading{Month}
 This section analyzes the correlated relations of the accident variable \textit{Month}. The Kruskal-Wallis rank sum test of \textit{Month} - \textit{TMax}, \textit{Month} - \textit{TAvg}, \textit{Month} - \textit{TLHGV} and \textit{Month} - \textit{Cov} produce a $p$-value above the $\alpha$-level. The null hypothesis for these relations can't be rejected and there is no significant difference between the groups of \textit{Month} in regards of \textit{TMax}, \textit{TAvg}, \textit{TLHGV} and \textit{Cov}.
 
-\paragraph{Maximal Spatial Extent}
-Kruskal-Wallis chi-squared = 709.66, df = 635, p-value = 0.02084
-
+The Kruskal-Wallis rank sum test of \textit{Month} - \textit{SMax} produces a $p$-value of 0.0208, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_SMax}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -364,23 +362,23 @@ Kruskal-Wallis chi-squared = 709.66, df = 635, p-value = 0.02084
 		\toprule
 		    & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov \\ 
 		\midrule
-		Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-		Mar & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
-		Apr & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
-		May & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-		Jun & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-		Jul & 1.00 & 1.00 & 0.53 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-		Aug & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
-		Sep & 1.00 & 1.00 & 0.82 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-		Oct & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.17 & 1.00 & 0.31 &  &  \\ 
-		Nov & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 & 0.15 & 0.01 & 1.00 &  \\ 
-		Dec & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.93 \\ 
+		% Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		% Mar & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+		% Apr & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		% May & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		% Jun & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		% Jul & 1.00 & 1.00 & 0.53 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		% Aug & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		% Sep & 1.00 & 1.00 & 0.82 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		% Oct & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.17 & 1.00 & 0.31 &  &  \\ 
+		Nov & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 & 0.15 & \red{0.01} & 1.00 &  \\ 
+		% Dec & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.93 \\ 
 		\bottomrule
 	\end{tabular}
     \caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Maximal Spatial Extent}}
-    \label{tbl:wilcoxon_baysis_effector_Month_TMax}
+    \label{tbl:wilcoxon_baysis_effector_Month_SMax}
 \end{table}
-\todo{Explain}
+The table shows, that only the groups of Nov differs significantly from Oct.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -403,13 +401,12 @@ Kruskal-Wallis chi-squared = 709.66, df = 635, p-value = 0.02084
 		\bottomrule
 	\end{tabular}
     \caption{Group descriptives of \textit{Month} and \textit{Maximal Spatial Extent}}
-    \label{tbl:descriptives_baysis_effector_Month_TMax}
+    \label{tbl:descriptives_baysis_effector_Month_SMax}
 	%\vspace{-8mm}
 \end{table}
+The descriptives in \cref{tbl:descriptives_baysis_effector_Month_SMax} show that the count $n$ is distributed over the year with a peek in July and low in January. The November shows the shorts spatial length when the July show the longest length in $\bar{x}$ and $\sigma$. There is no distinctive general trend.
 
-\paragraph{Average Spatial Extent}
-Kruskal-Wallis chi-squared = 719.2, df = 647, p-value = 0.0.03482
-
+The Kruskal-Wallis rank sum test of \textit{Month} - \textit{SAvg} produces a $p$-value of 0.0348, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{SAvg} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_SAvg}. 
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -431,9 +428,9 @@ Kruskal-Wallis chi-squared = 719.2, df = 647, p-value = 0.0.03482
 		\bottomrule
 	  \end{tabular}
     \caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Average Spatial Extent}}
-    \label{tbl:wilcoxon_baysis_effector_Month_TAvg}
+    \label{tbl:wilcoxon_baysis_effector_Month_SAvg}
 \end{table}
-\todo{Explain}
+The table doesn't show any significant differences, meaning that the differences are not group specific.
 \begin{table}[ht]
 	\tiny
 	\centering
@@ -456,6 +453,7 @@ Kruskal-Wallis chi-squared = 719.2, df = 647, p-value = 0.0.03482
 		\bottomrule
 	\end{tabular}
     \caption{Group descriptives of \textit{Month} and \textit{Average Spatial Extent}}
-    \label{tbl:descriptives_baysis_effector_Month_TAvg}
+    \label{tbl:descriptives_baysis_effector_Month_SAvg}
 	%\vspace{-8mm}
 \end{table}
+The descriptives from \cref{tbl:descriptives_baysis_effector_Month_SAvg} show that November has the shortest average spatial lengths when the December show the longest average lengths in $\bar{x}$ and $\sigma$. There is no distinctive general trend.

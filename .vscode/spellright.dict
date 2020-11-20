@@ -40,6 +40,7 @@ proversion
 Regber
 Heghes
 Rampe
+# Others
 toc
 TempDist
 TempAvg
@@ -49,3 +50,7 @@ pqi
 Wilcoxon
 Kruskal-Wallis
 Potvin
+hgv
+veh
+Math.sqrt 
+Math.pow

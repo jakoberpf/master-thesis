@@ -66,32 +66,115 @@ This section analyzes the correlated relations of the accident variable \textit{
 	\label{tbl:wilcoxon_arbis_matched_Strasse_TMax}
 \end{table}
 The table shows, that the groups A3 and A93 differ from group A9, A7 and A6. The A93 also differs from A96, A995 and A92. The A96 differs from A3 and A99.
-\begin{table}[ht!]
-	\tiny
+% \begin{table}[ht!]
+% 	\tiny
+% 	\centering
+% 	\begin{tabular}{c|c|c|c|c|c|c|c}
+% 		\toprule
+% 		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+% 		\midrule
+% 		A9   & 656  & 159.55 & 175.78 & 100.50 & 9   & 1323 & 1314 \\ 
+% 		A7   & 302  & 158.38 & 213.55 & 87.00  & 9   & 1323 & 1314 \\ 
+% 		A70  & 50   & 228.90 & 279.03 & 105.00 & 15  & 963  & 948 \\ 
+% 		A71  & 10   & 83.40  & 72.87  & 48.00  & 36  & 249  & 213 \\ 
+% 		A6   & 198  & 142.24 & 166.46 & 85.50  & 9   & 864  & 855 \\ 
+% 		A73  & 86   & 153.59 & 235.85 & 100.50 & 9   & 1323 & 1314 \\ 
+% 		A3   & 1023 & 233.66 & 279.35 & 123.00 & 9   & 1326 & 1317 \\ 
+% 		A99  & 312  & 158.88 & 155.05 & 135.00 & 9   & 1320 & 1311 \\ 
+% 		A96  & 230  & 105.80 & 95.17  & 75.00  & 9   & 384  & 375 \\ 
+% 		A995 & 14   & 60.00  & 28.70  & 48.00  & 18  & 105  & 87 \\ 
+% 		A92  & 82   & 132.40 & 134.72 & 79.50  & 9   & 768  & 759 \\ 
+% 		A93  & 160  & 157.33 & 55.97  & 189.00 & 9   & 312  & 303 \\  
+% 		A94  & 56   & 179.57 & 124.79 & 165.00 & 15  & 369  & 354 \\ 
+% 		\bottomrule
+% \bar{x} - sum = 1953,7, mean = 150.28
+% 	\end{tabular}
+% 	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
+% 	\label{tbl:descriptives_arbis_matched_Strasse_TMax}
+% 	%\vspace{-8mm}
+% \end{table}
+
+\pgfplotstableread[col sep=comma,header=false]{
+	A9   , 656  , 159.55 , 175.78 , 100.50 , 9   , 1323 , 1314
+	A7   , 302  , 158.38 , 213.55 , 87.00  , 9   , 1323 , 1314
+	A70  , 50   , 228.90 , 279.03 , 105.00 , 15  , 963  , 948 
+	A71  , 10   , 83.40  , 72.87  , 48.00  , 36  , 249  , 213 
+	A6   , 198  , 142.24 , 166.46 , 85.50  , 9   , 864  , 855 
+	A73  , 86   , 153.59 , 235.85 , 100.50 , 9   , 1323 , 1314
+	A3   , 1023 , 233.66 , 279.35 , 123.00 , 9   , 1326 , 1317
+	A99  , 312  , 158.88 , 155.05 , 135.00 , 9   , 1320 , 1311
+	A96  , 230  , 105.80 , 95.17  , 75.00  , 9   , 384  , 375 
+	A995 , 14   , 60.00  , 28.70  , 48.00  , 18  , 105  , 87 
+	A92  , 82   , 132.40 , 134.72 , 79.50  , 9   , 768  , 759 
+	A93  , 160  , 157.33 , 55.97  , 189.00 , 9   , 312  , 303 
+	A94  , 56   , 179.57 , 124.79 , 165.00 , 15  , 369  , 354 
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+
+\begin{figure}[htp]
 	\centering
-	\begin{tabular}{rrrrrrrrrrrrrr}
-		\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-		\midrule
-		A9   & 656  & 159.55 & 175.78 & 100.50 & 9   & 1323 & 1314 \\ 
-		A7   & 302  & 158.38 & 213.55 & 87.00  & 9   & 1323 & 1314 \\ 
-		A70  & 50   & 228.90 & 279.03 & 105.00 & 15  & 963  & 948 \\ 
-		A71  & 10   & 83.40  & 72.87  & 48.00  & 36  & 249  & 213 \\ 
-		A6   & 198  & 142.24 & 166.46 & 85.50  & 9   & 864  & 855 \\ 
-		A73  & 86   & 153.59 & 235.85 & 100.50 & 9   & 1323 & 1314 \\ 
-		A3   & 1023 & 233.66 & 279.35 & 123.00 & 9   & 1326 & 1317 \\ 
-		A99  & 312  & 158.88 & 155.05 & 135.00 & 9   & 1320 & 1311 \\ 
-		A96  & 230  & 105.80 & 95.17  & 75.00  & 9   & 384  & 375 \\ 
-		A995 & 14   & 60.00  & 28.70  & 48.00  & 18  & 105  & 87 \\ 
-		A92  & 82   & 132.40 & 134.72 & 79.50  & 9   & 768  & 759 \\ 
-		A93  & 160  & 157.33 & 55.97  & 189.00 & 9   & 312  & 303 \\  
-		A94  & 56   & 179.57 & 124.79 & 165.00 & 15  & 369  & 354 \\ 
-		\bottomrule
-	\end{tabular}
+	\begin{minipage}{0.6\textwidth}
+		\tiny
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			A9   & 656  & 159.55 & 175.78 & 100.50 & 9   & 1323 & 1314 \\ 
+			A7   & 302  & 158.38 & 213.55 & 87.00  & 9   & 1323 & 1314 \\ 
+			A70  & 50   & 228.90 & 279.03 & 105.00 & 15  & 963  & 948 \\ 
+			A71  & 10   & 83.40  & 72.87  & 48.00  & 36  & 249  & 213 \\ 
+			A6   & 198  & 142.24 & 166.46 & 85.50  & 9   & 864  & 855 \\ 
+			A73  & 86   & 153.59 & 235.85 & 100.50 & 9   & 1323 & 1314 \\ 
+			A3   & 1023 & 233.66 & 279.35 & 123.00 & 9   & 1326 & 1317 \\ 
+			A99  & 312  & 158.88 & 155.05 & 135.00 & 9   & 1320 & 1311 \\ 
+			A96  & 230  & 105.80 & 95.17  & 75.00  & 9   & 384  & 375 \\ 
+			A995 & 14   & 60.00  & 28.70  & 48.00  & 18  & 105  & 87 \\ 
+			A92  & 82   & 132.40 & 134.72 & 79.50  & 9   & 768  & 759 \\ 
+			A93  & 160  & 157.33 & 55.97  & 189.00 & 9   & 312  & 303 \\  
+			A94  & 56   & 179.57 & 124.79 & 165.00 & 15  & 369  & 354 \\ 
+			\bottomrule
+			% \bar{x} - sum = 1953,7, mean = 150.28
+		\end{tabular}
+		\subcaption[second caption.]{Text}\label{fig:1b}
+	\end{minipage}%
+	\begin{minipage}{0.4\textwidth}
+		\tiny
+		\centering
+		% https://texwelt.de/fragen/26286/zwei-gruppen-bei-einem-gestapelten-balkendiagramm-und-zentrierte-balkenbeschriftungen
+		% https://tex.stackexchange.com/questions/275229/forcing-all-axis-labels-to-display-in-a-plot
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				% height=\textheight,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0.5,
+				% xticklabels={A9,A7,A70,A71,A6,A73,A3,A99,A96,A995,A92,A93,A94},
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				extra y ticks={150},
+				extra y tick style={%
+				  tick label style={red},
+				  grid style={red}
+				}
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Text}\label{fig:1b}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
 	\label{tbl:descriptives_arbis_matched_Strasse_TMax}
 	%\vspace{-8mm}
-\end{table}
+\end{figure}
 With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TMax} and the named significant differences it can be interpreted that roadworks on the A3 result in 80\,\% longer $\bar{x}$ than on the A9, A7 and A6. The A70 has a similar difference. Roadworks on the A96 and A995 result in significantly shorter $\bar{x}$ than on the A3 and A99.
 
 The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TAvg} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_TAvg}. 
@@ -561,10 +644,10 @@ The table shows, that the groups differ from group . There is no distinctive gen
 		\bottomrule
 	\end{tabular}
 	\caption{Group descriptives of \textit{Strasse} and \textit{Time-loss HGV}}
-	\label{tbl:descriptives_arbis_matched_Strasse_TMax}
+	\label{tbl:descriptives_arbis_matched_Strasse_TLHGV}
 	%\vspace{-8mm}
 \end{table}
-The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TMax}
+The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TLHGV}
 
 % ------------------------
 % -------- Month ---------
@@ -577,8 +660,7 @@ This section analyzes the correlated relations of the accident variable \textit{
 
 The Kruskal-Wallis test of \textit{Month} - \textit{TAvg} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_TAvg}. 
 Kruskal-Wallis chi-squared = 760.09, df = 256, p-value < 2.2e-16
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrr}
   \hline
  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
@@ -596,8 +678,7 @@ Kruskal-Wallis chi-squared = 760.09, df = 256, p-value < 2.2e-16
   11 & 1.00 & 1.00 & 0.97 & 1.00 & 0.01 & 1.00 & 0.20 & 1.00 & 0.00 & 1.00 & 1.00 \\ 
    \hline
 \end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrrrr}
   \hline
  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
@@ -619,8 +700,6 @@ X1 & 1.00 & 118.00 & 86.61 & 107.08 & 40.50 & 65.74 & 43.74 & 6.00 & 630.00 & 62
 
 The Kruskal-Wallis test of \textit{Month} - \textit{SMax} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_SMax}. 
 Kruskal-Wallis chi-squared = 2781.7, df = 1228, p-value < 2.2e-16
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
 \begin{tabular}{rrrrrrrrrrrr}
   \hline
  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
@@ -638,8 +717,7 @@ Kruskal-Wallis chi-squared = 2781.7, df = 1228, p-value < 2.2e-16
   11 & 0.68 & 0.30 & 1.00 & 0.01 & 1.00 & 1.00 & 0.01 & 1.00 & 1.00 & 1.00 & 0.05 \\ 
    \hline
 \end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrrrr}
   \hline
  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
@@ -660,8 +738,7 @@ X1 & 1.00 & 118.00 & 10172.38 & 8829.63 & 6320.00 & 8834.40 & 6759.17 & 1109.00 
 \end{tabular}
 
 The Kruskal-Wallis test of \textit{Month} - \textit{SAvg} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{SAvg} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_SAvg}. 
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrr}
   \hline
  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
@@ -679,8 +756,7 @@ The Kruskal-Wallis test of \textit{Month} - \textit{SAvg} produces a $p$-value b
   11 & 1.00 & 0.30 & 1.00 & 0.93 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.09 \\ 
    \hline
 \end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrrrr}
   \hline
  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
@@ -701,8 +777,7 @@ X1 & 1.00 & 118.00 & 4011.67 & 3677.51 & 2525.00 & 3319.57 & 1790.98 & 651.00 & 
 \end{tabular}
 
 The Kruskal-Wallis test of \textit{Month} - \textit{SDist} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{SDist} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_SDist}. 
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrr}
   \hline
  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
@@ -720,8 +795,7 @@ The Kruskal-Wallis test of \textit{Month} - \textit{SDist} produces a $p$-value 
   11 & 0.01 & 0.00 & 0.20 & 0.10 & 0.24 & 0.04 & 0.00 & 1.00 & 1.00 & 0.68 & 1.00 \\ 
    \hline
 \end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrrrr}
   \hline
  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
@@ -745,8 +819,7 @@ The Kruskal-Wallis test of \textit{Month} - \textit{Cov} produces a $p$-value be
 % ############ Coverage ############"
 Kruskal-Wallis chi-squared = 385.52, df = 93, p-value < 2.2e-16
 
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrr}
   \hline
  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
@@ -764,8 +837,7 @@ Kruskal-Wallis chi-squared = 385.52, df = 93, p-value < 2.2e-16
   11 & 1.00 & 1.00 & 1.00 & 0.01 & 0.00 & 1.00 & 0.00 & 1.00 & 1.00 & 1.00 & 0.79 \\ 
    \hline
 \end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrrrr}
   \hline
  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
@@ -786,8 +858,7 @@ X1 & 1.00 & 118.00 & 44.60 & 23.91 & 41.00 & 42.28 & 26.69 & 7.00 & 100.00 & 93.
 \end{tabular}
 
 The Kruskal-Wallis test of \textit{Month} - \textit{TLCar} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{TLCar} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_TLCar}. 
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrr}
   \hline
  & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
@@ -805,8 +876,7 @@ The Kruskal-Wallis test of \textit{Month} - \textit{TLCar} produces a $p$-value 
   11 & 1.00 & 1.00 & 0.08 & 0.00 & 1.00 & 1.00 & 0.04 & 0.28 & 1.00 & 0.02 & 1.00 \\ 
    \hline
 \end{tabular}
-% latex table generated in R 4.0.2 by xtable 1.8-4 package
-% 
+
 \begin{tabular}{rrrrrrrrrrrrrr}
   \hline
  & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 

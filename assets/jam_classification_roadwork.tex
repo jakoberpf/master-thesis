@@ -1,0 +1,70 @@
+
+
+% Pattern Info
+ 
+\tikzset{
+pattern size/.store in=\mcSize, 
+pattern size = 5pt,
+pattern thickness/.store in=\mcThickness, 
+pattern thickness = 0.3pt,
+pattern radius/.store in=\mcRadius, 
+pattern radius = 1pt}
+\makeatletter
+\pgfutil@ifundefined{pgf@pattern@name@_1rpuoobhp}{
+\pgfdeclarepatternformonly[\mcThickness,\mcSize]{_1rpuoobhp}
+{\pgfqpoint{0pt}{0pt}}
+{\pgfpoint{\mcSize+\mcThickness}{\mcSize+\mcThickness}}
+{\pgfpoint{\mcSize}{\mcSize}}
+{
+\pgfsetcolor{\tikz@pattern@color}
+\pgfsetlinewidth{\mcThickness}
+\pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+\pgfpathlineto{\pgfpoint{\mcSize+\mcThickness}{\mcSize+\mcThickness}}
+\pgfusepath{stroke}
+}}
+\makeatother
+
+% Pattern Info
+ 
+\tikzset{
+pattern size/.store in=\mcSize, 
+pattern size = 5pt,
+pattern thickness/.store in=\mcThickness, 
+pattern thickness = 0.3pt,
+pattern radius/.store in=\mcRadius, 
+pattern radius = 1pt}
+\makeatletter
+\pgfutil@ifundefined{pgf@pattern@name@_wi4yywaj6}{
+\makeatletter
+\pgfdeclarepatternformonly[\mcRadius,\mcThickness,\mcSize]{_wi4yywaj6}
+{\pgfpoint{-0.5*\mcSize}{-0.5*\mcSize}}
+{\pgfpoint{0.5*\mcSize}{0.5*\mcSize}}
+{\pgfpoint{\mcSize}{\mcSize}}
+{
+\pgfsetcolor{\tikz@pattern@color}
+\pgfsetlinewidth{\mcThickness}
+\pgfpathcircle\pgfpointorigin{\mcRadius}
+\pgfusepath{stroke}
+}}
+\makeatother
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,448); %set diagram left start at 0, and has height of 448
+
+%Shape: Right Triangle [id:dp9663057525957102] 
+\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.58 ] (261.32,338.62) -- (450.59,210.26) -- (450.41,338.88) -- cycle ;
+%Shape: Rectangle [id:dp24895882612767384] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=0 ][pattern=_1rpuoobhp,pattern size=6pt,pattern thickness=0.75pt,pattern radius=0pt, pattern color={rgb, 255:red, 74; green, 144; blue, 226}][dash pattern={on 4.5pt off 4.5pt}] (430,181) -- (500.5,181) -- (500.5,370) -- (430,370) -- cycle ;
+%Shape: Rectangle [id:dp377788366640051] 
+\draw  [pattern=_wi4yywaj6,pattern size=6pt,pattern thickness=0.75pt,pattern radius=0.75pt, pattern color={rgb, 255:red, 155; green, 155; blue, 155}] (440.5,188) -- (490.5,188) -- (490.5,339) -- (440.5,339) -- cycle ;
+%Shape: Rectangle [id:dp24262190577696208] 
+\draw   (229.5,180) -- (500.5,180) -- (500.5,370) -- (229.5,370) -- cycle ;
+
+% Text Node
+\draw (477.45,233.49) node [anchor=north west][inner sep=0.75pt]  [rotate=-89.91] [align=left] {Roadwork};
+% Text Node
+\draw (315,313) node [anchor=north west][inner sep=0.75pt]   [align=left] {Congestion};
+
+
+\end{tikzpicture}

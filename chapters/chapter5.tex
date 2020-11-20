@@ -579,26 +579,32 @@ To calculate the total hours lost for either passenger car or heavy goods vehicl
 
 \bigskip
 
-A analysis based on all matched could be heavily biased, because all kind of relations are considered a once. To do a more specialized analysis, the congestion - incident matches should be categorized. For accidents the three categories to be evaluated separately can be described as \textit{Initiator}, \textit{Effector} and \textit{Follower}.
+A analysis based on all matches could be heavily biased. For a more specialized analysis, the congestion - incident matches should be categorizable into different relation types, like initiation or effect. For accidents the three categories to be evaluated separately can be described as \textit{Initiators}, \textit{Effectors} and \textit{Followers}. For roadworks the same detailed categorization is not that viable, but a single selection of \textit{Initiators} is.
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
-	\item[] \textbf{Jam Initiator} are matches, where the accident happened before or immediately at the beginning of a congestion. These could be the initiator or cause for the congestion and are therefore the most interesting to analysis.
+	\item[] \textbf{Jam Initiator} are matches, where the accident happened before or immediately at the beginning of a congestion. These could be the initiator or cause for the congestion and are subjectively the most interesting for analysis. In terms of roadwork it are matches, where the roadwork is located after or during the congestion and the roadwork could be considered as cause.
 	\item[] \textbf{Jam Effector} are matches, where the accident happened during a congestion or overlaps with the congestion. These probably have the jam as a cause, like rear-end accidents.
 	\item[] \textbf{Jam Follower} are matches, where the accident happened after the congestion. 
 \end{itemize}
-
-These classification are visually represented in \cref{img:jam_classifation}, where the red traveling symbolizes a congestion in the FCD space. The three classifications \textit{Initiator} , \textit{Effector}  and \textit{Follower}  are symbolizes with the different hatchings of yellow stripes, green squares and red rhombus.
-\begin{figure}[ht]
-	\centering	
-	\include{assets/jam_classification.tex}
-	\vspace{-4mm}
-	\caption{Visual representation of the classifications \textit{Initiator} (yellow stripes), \textit{Effector} (green squares) and \textit{Follower} (red rhombus)}
+This classification can be visually represented like in \cref{img:jam_classifation}, where the red traveling symbolizes a congestion in the FCD space. The three classifications \textit{Initiator}, \textit{Effector} and \textit{Follower} are symbolized with the different hatchings of yellow stripes, green squares and red rhombus.
+\begin{figure}[htp]
+	% https://www.mathcha.io/editor
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\include{assets/jam_classification_accident.tex}
+		\subcaption[first caption.]{Accidents}\label{fig:1a}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\include{assets/jam_classification_roadwork.tex}
+		\subcaption[second caption.]{Roadworks}\label{fig:1b}
+	\end{minipage}%
+	\caption{Visual representation of the accident and roadwork classifications \textit{Initiator} (yellow stripes), \textit{Effector} (green squares) and \textit{Follower} (red rhombus)}
 	\label{img:jam_classifation}
-	\vspace{-4mm}
 \end{figure}
-
 To be able to do the categorization after the runtime intensive detection and matching processing, which allows for easier testing and calibration, four additional congestion parameters are introduced into the congestion object. They describe the relative location of the accident to the congestion event. The temporal reference of the accident to the congestion is described by the parameter \textit{temporalGlobalLocation} (shown in \cref{tbl:jam_classification_GLT}), based on the temporal distance.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|l}  
 		1 & is before \\ 
@@ -612,7 +618,7 @@ To be able to do the categorization after the runtime intensive detection and ma
 	\vspace{-4mm}
 \end{table}
 The spatial reference of if the incident to the congestion is described by the parameter \textit{spatialGlobalLocation} (shown in \cref{tbl:jam_classification_GLS}), based on the spatial distance.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|l}  
 		1 & is before \\ 
@@ -624,7 +630,7 @@ The spatial reference of if the incident to the congestion is described by the p
 	\vspace{-4mm}
 \end{table}
 In the case that the incident happened temporal during the congestion. The (\textit{temporalInternalLocation} (shown in \cref{tbl:jam_classification_ILT}) parameter is set. It describes percentile threshold where the incident is located during the congestion.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|l}  
 		1 & 10\,\% to Beginning \\
@@ -638,7 +644,7 @@ In the case that the incident happened temporal during the congestion. The (\tex
 	\vspace{-4mm}
 \end{table}
 In the case that the incident happened spatial during the congestion. The \textit{spatialInternalLocation} (shown in \cref{tbl:jam_classification_ILS}) parameter is set. It describes is percentile threshold where the incident is located during the congestion.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|l}  
 		1 & 10\,\% to Beginning \\
@@ -653,7 +659,7 @@ In the case that the incident happened spatial during the congestion. The \texti
 \end{table}
     
 As a result the congestion object has the following attributes.
-\begin{table}[ht]
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|c|l} 
 		\toprule
@@ -681,7 +687,7 @@ The correlation processing is written in Python and R with the help of some comm
 
 \subsubsection{Data Revision}
 \label{methodology_correlation_processing_revision}
-The 
+The data processing in the evaluation tool already clean the ingress data from most defects, however it does not remove flawed data samples. During the analysis it became clear that the congestion detection still produces congestions with abnormal and non plausible extends. As a preprocessing of the correlation analysis, jams with a length over 50\,km are removed, to remove samples like 200km length. Besides of this empty values, $-1$ and are considered as \textit{NaN} or not available.
 
 \subsubsection{Data Encoding}
 \label{methodology_correlation_processing_encoding}

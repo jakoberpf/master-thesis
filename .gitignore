@@ -165,6 +165,7 @@ TSWLatexianTemp*
 /CorrAnalysis/data/ArbIS/02_matched/_monthly
 /CorrAnalysis/data/ArbIS/02_matched/ArbIS_2019.csv
 /CorrAnalysis/data/ArbIS/02_matched/ArbIS_2019.xlsx
+/CorrAnalysis/data/ArbIS/03_selected/csv/encoded.csv
 /CorrAnalysis/data/BAYSIS/01_dataset/BAYSIS_2019.csv
 /CorrAnalysis/data/BAYSIS/01_dataset/BAYSIS_2019.xlsx
 /CorrAnalysis/data/BAYSIS/02_matched/_monthly
@@ -207,7 +208,8 @@ TSWLatexianTemp*
 /Thesis/Masterthesis_JakobErpf.bbl
 /Thesis/Masterthesis_JakobErpf.blg
 /Thesis/Masterthesis_JakobErpf.dvi
-/thesis.pdf
+# Others
 /backup
 /CorrAnalysis/congestion
 /CorrAnalysis/export
+

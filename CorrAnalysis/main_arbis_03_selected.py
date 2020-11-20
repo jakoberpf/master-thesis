@@ -20,8 +20,8 @@ import seaborn as sns
 from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, plot_statistic, set_size, tex_fonts, \
-    plot_congestion_dist, plot_arbis_dist, plot_congestion_scatter
+from func_plot import plot_correlation, set_size, tex_fonts, \
+    plot_congestion_dist, plot_arbis_dist
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     save_plot = True
     show_plot = False
 
-    generate_report = False
+    generate_report = True
 
     data_path = 'data/'
     work_path = data_path + 'ArbIS/03_selected/'
@@ -40,51 +40,54 @@ if __name__ == '__main__':
 
     work_file = 'ArbIS_2019.csv'
 
-    file_prefix = 'arbis_matched'
+    file_prefix = 'arbis_selected'
     file_plot_type = '.pdf'
 
-    arbis_imported = pd.read_csv(work_path + work_file, sep=';', decimal=',', parse_dates=True, date_parser=date_parser)
+    arbis_read = pd.read_csv(data_path + 'ArbIS/02_matched/' + work_file, sep=';', decimal=',', parse_dates=True,
+                             date_parser=date_parser)
 
-    arbis_matched = arbis_imported[
+    arbis_import = arbis_read[
         [
             # Congestion Data
-            "TempExMax",
-            # "TempExMin", # Not implemented
-            "SpatExMax",
-            # "SpatExMin", # Not implemented
+            "TempMax",
+            "TempAvg",
+            "SpatMax",
+            "SpatAvg",
             "TempDist",
             "SpatDist",
-            #  * The temporal reference of if the incident to the congestion. The incident...
-            #  * [-1] = Not Set
-            #  * [1] = is before
-            #  * [2] = is after
-            #  * [3] = is during
-            #  * [4] = is overlapping before
-            #  * [5] = is overlapping after
-            "temporalGlobalLoc",
-            #  * The spatial reference of if the incident to the congestion. The incident...
-            #  * [0] = is before or after
-            #  * [1] = is during
-            "spatialGlobalLoc",
-            #  * The temporal reference of if the incident is during the congestion. The incident is within...
-            #  * [-1] = Not Set in case not during or overlapping
-            #  * [1] = 10% to Beginning
-            #  * [2] = 10% - 30% to Beginning
-            #  * [3] = 30% - 70% (Middle)
-            #  * [4] = 30% - 10% to Ending
-            #  * [5] = 10% to Ending
-            "temporalInternalLoc",
-            #  * The spatial reference of if the incident is during the congestion. The incident is within...
-            #  * [-1] = Not Set in case not during or overlapping
-            #  * [1] = 10% to Beginning
-            #  * [2] = 10% - 30% to Beginning
-            #  * [3] = 30% - 70% (Middle)
-            #  * [4] = 30% - 10% to Ending
-            #  * [5] = 10% to Ending
-            "spatialInternalLoc",
             "Coverage",
-            "TimeLossCar",
-            "TimeLossHGV",
+            # The temporal reference of if the incident to the congestion. The incident...
+            # [-1] = Not Set
+            # [1] = is before
+            # [2] = is overlapping before
+            # [3] = is during
+            # [4] = is overlapping after
+            # [5] = is after
+            "TempGL",
+            # The spatial reference of if the incident to the congestion. The incident...
+            # [-1] = Not Set in case of congestion with no distance
+            # [1] = is before
+            # [2] = is during or overlapping
+            # [3] = is after
+            "SpatGL",
+            # The temporal reference of if the incident is during the congestion. The incident is within...
+            # [-1] = Not Set in case not during or overlapping
+            # [1] = 10% to Beginning
+            # [2] = 10% - 30% to Beginning
+            # [3] = 30% - 70% (Middle)
+            # [4] = 30% - 10% to Ending
+            # [5] = 10% to Ending
+            "TempIL",
+            # The spatial reference of if the incident is during the congestion. The incident is within...
+            # [-1] = Not Set in case not during or overlapping
+            # [1] = 10% to Beginning
+            # [2] = 10% - 30% to Beginning
+            # [3] = 30% - 70% (Middle)
+            # [4] = 30% - 10% to Ending
+            # [5] = 10% to Ending
+            "SpatIL",
+            "TLCar",
+            "TLHGV",
             # Accident Data
             # "Von", "Bis", # Not correlate able
             "Strasse",
@@ -102,70 +105,73 @@ if __name__ == '__main__':
             "Duration"]].copy()
 
     # Manual data type conversion from str to datetime64
-    arbis_imported['Von'] = pd.to_datetime(arbis_imported['Von'], format='%Y-%m-%d %H:%M:%S')
-    arbis_imported['Bis'] = pd.to_datetime(arbis_imported['Bis'], format='%Y-%m-%d %H:%M:%S')
+    arbis_read['Von'] = pd.to_datetime(arbis_read['Von'], format='%Y-%m-%d %H:%M:%S')
+    arbis_read['Bis'] = pd.to_datetime(arbis_read['Bis'], format='%Y-%m-%d %H:%M:%S')
 
     # Manual data type conversion from str to int64
-    arbis_matched["TimeLossCar"] = pd.to_numeric(arbis_matched["TimeLossCar"])
-    arbis_matched["TimeLossHGV"] = pd.to_numeric(arbis_matched["TimeLossHGV"])
-    arbis_matched["TimeLossCar"] = arbis_matched["TimeLossCar"].astype('int64')
-    arbis_matched["TimeLossHGV"] = arbis_matched["TimeLossHGV"].astype('int64')
+    arbis_import["TLCar"] = pd.to_numeric(arbis_import["TLCar"])
+    arbis_import["TLHGV"] = pd.to_numeric(arbis_import["TLHGV"])
+    arbis_import["TLCar"] = arbis_import["TLCar"].astype('int64')
+    arbis_import["TLHGV"] = arbis_import["TLHGV"].astype('int64')
 
     # Add month of roadwork
-    arbis_matched['Month'] = arbis_imported['Von'].dt.strftime('%b')
+    arbis_import['Month'] = arbis_read['Von'].dt.strftime('%b')
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    ##################
-    ### Congestion ###
-    ##################
+    #################
+    ### Selection ###
+    #################
+
+    # select temporal before, overlapping during
+    arbis_selected = arbis_import.loc[
+        (arbis_import["TempGL"].isin([1, 2, 3, 4]))
+    ]
+
+    # select spatial before or during
+    arbis_selected = arbis_selected.loc[
+        (arbis_selected["SpatGL"].isin([2, 3]))
+    ]
+
+    ####################################
+    ### Congestion (Before Cleaning) ###
+    ####################################
 
     plot_congestion_dist(
-        ["TempExMax",
-         "SpatExMax",
+        ["TempMax",
+         "TempAvg",
+         "SpatMax",
+         "SpatAvg",
          "TempDist",
          "SpatDist",
          "Coverage",
-         "TimeLossCar",
-         "TimeLossHGV"],
-        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
+         "TLCar",
+         "TLHGV"],
+        arbis_selected, plot_path + 'cong_before_clean/', file_prefix, save_plot, show_plot)
 
-    plot_congestion_scatter(
-        ["TempExMax"],
-        ["SpatExMax"],
-        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
+    ################
+    ### Cleaning ###
+    ################
 
-    plot_congestion_scatter(
-        ["TempDist"],
-        ["SpatDist"],
-        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
+    arbis_selected = arbis_selected.drop(arbis_selected[arbis_selected['SpatMax'] > 50000].index)
+    arbis_selected['TempDist'].loc[arbis_selected['TempDist'].isin([0])] = None
+    arbis_selected['SpatDist'].loc[arbis_selected['SpatDist'].isin([0])] = None
 
-    plot_congestion_scatter(
-        ["TimeLossCar"],
-        ["TimeLossHGV"],
-        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
+    ####################################
+    ### Congestion (After Cleaning) ###
+    ####################################
 
-    locators = ["temporalGlobalLoc",
-                "spatialGlobalLoc",
-                "temporalInternalLoc",
-                "spatialInternalLoc"]
-
-    for atr in locators:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Distribution of ' + atr)
-        plt.ylabel('Count')
-        arbis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
-        plt.xlabel(atr)
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
+    plot_congestion_dist(
+        ["TempMax",
+         "TempAvg",
+         "SpatMax",
+         "SpatAvg",
+         "TempDist",
+         "SpatDist",
+         "Coverage",
+         "TLCar",
+         "TLHGV"],
+        arbis_selected, plot_path + 'cong_after_clean/', file_prefix, save_plot, show_plot)
 
     ##################
     ### Histograms ###
@@ -178,7 +184,7 @@ if __name__ == '__main__':
     plt.title('Histogram of roadwork per month, with at least one adjacent congestion')
     plt.ylabel('Count')
     plt.xlabel('Month of 2019')
-    sns.countplot(x='Month', data=arbis_matched, palette='Spectral', order=months)
+    sns.countplot(x='Month', data=arbis_selected, palette='Spectral', order=months)
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
         if not show_plot:
@@ -198,7 +204,7 @@ if __name__ == '__main__':
     plt.title('Histogram of roadwork per highway, with at least one adjacent congestion')
     plt.ylabel('Count')
     plt.xlabel('Highway')
-    sns.countplot(x='Strasse', data=arbis_matched, palette='Spectral')
+    sns.countplot(x='Strasse', data=arbis_selected, palette='Spectral')
     if save_plot:
         plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
         if not show_plot:
@@ -215,56 +221,22 @@ if __name__ == '__main__':
     plot_arbis_dist([
         'Length',
         'Duration'],
-        arbis_matched, plot_path, file_prefix, save_plot, show_plot)
+        arbis_selected, plot_path, file_prefix, save_plot, show_plot)
 
     ##############
     ### Counts ###
     ##############
 
-    # Plot distribution of AnzGesperrtFs
-    plt.figure(figsize=set_size(418))
+    scale = 1.0
+    (width, height) = set_size(418, scale)
+    fig, axs = plt.subplots(3, 1, figsize=(width, 3 * height))
     plt.style.use('seaborn')
     plt.rcParams.update(tex_fonts)
-    plt.title('Distribution of AnzGesperrtFs')
-    plt.ylabel('Count')
-    plt.xlabel('AnzGesperrtFs')
-    sns.countplot(x='AnzGesperrtFs', data=arbis_matched, palette='Spectral')
+    sns.countplot(ax=axs[0], x='AnzGesperrtFs', data=arbis_selected, palette='Spectral')
+    sns.countplot(ax=axs[1], x='Einzug', data=arbis_selected, palette='Spectral')
+    sns.countplot(ax=axs[2], x='Richtung', data=arbis_selected, palette='Spectral')
     if save_plot:
-        plt.savefig(plot_path + file_prefix + '_dist_AnzGesperrtFs.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    # Plot distribution of Einzug
-    plt.figure(figsize=set_size(418))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    plt.title('Distribution of Einzug')
-    plt.ylabel('Count')
-    plt.xlabel('Einzug')
-    sns.countplot(x='Einzug', data=arbis_matched, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_dist_Einzug.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    # Plot distribution of Richtung
-    plt.figure(figsize=set_size(418, 0.8))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    plt.title('Distribution of Richtung')
-    plt.ylabel('Count')
-    plt.xlabel('Richtung')
-    sns.countplot(x='Richtung', data=arbis_matched, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_dist_Richtung.pdf')
+        plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
         if not show_plot:
             plt.close()
     if show_plot:
@@ -276,54 +248,6 @@ if __name__ == '__main__':
     ### Scatter ###
     ###############
 
-    # Congestion -> Roadwork
-    for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Scatterplot of ' + atr)
-        arbis_matched.plot.scatter(x='TempExMax', y='SpatExMax', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_E_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
-    # Congestion -> Roadwork
-    for atr in ['AnzGesperrtFs', 'Einzug', 'Length', 'Duration']:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Scatterplot of ' + atr)
-        arbis_matched.plot.scatter(x='TempDist', y='SpatDist', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_D_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
-    # Roadwork -> Congestion
-    for atr in ['TempExMax', 'SpatExMax', 'TimeLossCar', 'TimeLossHGV']:
-        plt.figure(figsize=set_size(418, 0.8))
-        plt.style.use('seaborn')
-        plt.rcParams.update(tex_fonts)
-        plt.title('Scatterplot of ' + atr)
-        arbis_matched.plot.scatter(x='Length', y='Duration', c=atr, colormap='viridis')
-        if save_plot:
-            plt.savefig(plot_path + file_prefix + '_scatter_' + atr + '.pdf')
-            if not show_plot:
-                plt.close()
-        if show_plot:
-            plt.show()
-        else:
-            plt.close()
-
     ###########
     ### Box ###
     ###########
@@ -333,7 +257,7 @@ if __name__ == '__main__':
     ##############
 
     if generate_report:
-        report = ProfileReport(arbis_matched, title='ArbIS Matched Dataset Report')
+        report = ProfileReport(arbis_selected, title='ArbIS Matched Dataset Report')
         report.to_file(work_path + file_prefix + '_report.html')
 
     ###################
@@ -341,13 +265,13 @@ if __name__ == '__main__':
     ###################
 
     # define column types
-    nominal_columns = ['Strasse',
+    nominal_columns = ['Str',
                        'Month']
     dichotomous_columns = ['Richtung']
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']
 
     # Encode non numerical columns
-    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_matched,
+    arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected,
                                                            ["Strasse",
                                                             'Month'],
                                                            drop_single_label=False,
@@ -357,6 +281,21 @@ if __name__ == '__main__':
     with open(csv_path + 'encoded_dict.csv', 'w') as tf:
         for key in arbis_encoded_dict.keys():
             tf.write("%s, %s\n" % (key, arbis_encoded_dict[key]))
+
+    arbis_encoded = arbis_encoded.rename(columns={"TempMax": "TMax",
+                                                  "TempAvg": "TAvg",
+                                                  "SpatMax": "SMax",
+                                                  "SpatAvg": "SAvg",
+                                                  "Coverage": "Cov",
+                                                  "TempDist": "TDist",
+                                                  "SpatDist": "SDist",
+                                                  'Strasse': "Str",
+                                                  'AnzGesperrtFs': 'AGF'})
+
+    arbis_encoded = arbis_encoded.drop(columns=["TempGL",
+                                                "SpatGL",
+                                                "TempIL",
+                                                "SpatIL"])
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused
@@ -373,23 +312,15 @@ if __name__ == '__main__':
                      save=save_plot, filepath=plot_path + file_prefix + '_corr_cramers.pdf',
                      show=show_plot, figsize=(18, 15))
 
-    # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_cramers.pdf',
-                   show=show_plot, figsize=(18, 15))
-
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_cramers.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + file_prefix + '_sign_cramers.tex', 'w') as tf:
-        tf.write(results.get('significance').to_latex())
+        tf.write(results.get('significance').to_latex(float_format="{:0.3f}".format))
 
     with open(tex_path + file_prefix + '_coef_cramers.tex', 'w') as tf:
-        tf.write(results.get('coefficient').to_latex())
+        tf.write(results.get('coefficient').to_latex(escape=False))
 
     # Calculate with Theil's U
     results = None  # To make sure that no old data is reused
@@ -404,25 +335,17 @@ if __name__ == '__main__':
                      nominal_columns, dichotomous_columns, ordinal_columns,
                      results.get('inf_nan_corr'),
                      results.get('columns_single_value'),
-                     save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.png',
+                     save=save_plot, filepath=plot_path + file_prefix + '_corr_theils.pdf',
                      show=show_plot, figsize=(18, 15))
-
-    # Plot statistics/significant matrix
-    plot_statistic(results.get('significance'), results.get('columns'),
-                   nominal_columns, dichotomous_columns, ordinal_columns,
-                   results.get('inf_nan_corr'),
-                   results.get('columns_single_value'),
-                   save=save_plot, filepath=plot_path + file_prefix + '_sign_theils.png',
-                   show=show_plot, figsize=(18, 15))
 
     # Export correlation/statistics/coefficients into latex tables
     with open(tex_path + file_prefix + '_corr_theils.tex', 'w') as tf:
         tf.write(results.get('correlation').to_latex(float_format="{:0.2f}".format))
 
     with open(tex_path + file_prefix + '_sign_theils.tex', 'w') as tf:
-        tf.write(results.get('significance').to_latex())
+        tf.write(results.get('significance').to_latex(float_format="{:0.3f}".format))
 
     with open(tex_path + file_prefix + '_coef_theils.tex', 'w') as tf:
-        tf.write(results.get('coefficient').to_latex())
+        tf.write(results.get('coefficient').to_latex(escape=False))
 
     print('Finished ArbIS Dataset Analysis')

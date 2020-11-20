@@ -220,7 +220,7 @@ if __name__ == '__main__':
     ###################
 
     # define column types
-    nominal_columns = ['Strasse',
+    nominal_columns = ['Str',
                        'Month']
     dichotomous_columns = ['Richtung']
     ordinal_columns = ['AnzGesperrtFs', 'Einzug']

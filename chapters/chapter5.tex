@@ -484,9 +484,9 @@ To further accelerate the algorithm, is is implemented with support of parallel 
 Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters as adjustments. If $\varepsilon$ is too small, part of the data will not be clustered, since the distances to many points is below the threshold. These points are therefore considered as outliner/noise and reduce the actual size of the cluster or make the cluster neglect able because $minPoints$ will not be reached to create a dense region. On the other side, if the value is chosen too high, a high number of point will be considered as one cluster, when they should be multiple separate clusters. The $minPoints$ threshold should generally satisfy $minPoints > D + 1$ and should be high enough for our implementation to neglect small and arbitrary jams. \parencite{Padro2017}. For the implemented variation of distance measuring the aimed time gap $t_{min,gap}$ and aimed space gap $l_{min,gap}$ threshold also need to be set. This is necessary to scale the axis so that they represent the aimed thresholds through neighborhood $\varepsilon$. The following values are the result of iterative testing, to find the most representable cluster consolidation results. 
 
 \begin{itemize}
-	\item Aimed spatial gap : $l_{min,gap} = 5000 \, [m]$
-	\item Aimed temporal gap : $t_{min,gap} = 6 \, [min]$
-	\item Virtual travel-time gap $\varepsilon = t_{min,gap}^{artificial} = 360 \, [s]$
+	\item Aimed spatial gap : $l_{min,gap} = 5000 \,[m]$
+	\item Aimed temporal gap : $t_{min,gap} = 6 \,[min]$
+	\item Virtual travel-time gap $\varepsilon = t_{min,gap}^{artificial} = 360 \,[s]$
 \end{itemize}
 
 \subsection{Pre and Post Data Revision}
@@ -495,8 +495,8 @@ Datasets are rarely flawless and as mentioned in section \ref{dataset_fcd}, the 
 As post processing, clusters which are too short in duration and length are removed. We assume that below a threshold a cluster can not be considered as a jam, and should be neglected. The following values for the minimal duration and length of a congestion where used. (see source code ??)
 
 \begin{itemize}
-	\item Minimum spatial length of an congestion event : $l_{min} = 1000 \, [m]$
-	\item Minimum temporal duration of an congestion event : $t_{min,gap} = 9 \, [min]$
+	\item Minimum spatial length of an congestion event : $l_{min} = 1000 \,[m]$
+	\item Minimum temporal duration of an congestion event : $t_{min,gap} = 9 \,[min]$
 \end{itemize}
 
 \subsection{Shaping}
@@ -520,8 +520,8 @@ For a shape representation of the congestion the geometric method of convex hull
 The matching process for finding adjacent incidents around jams is rather simple. When iterating over all jams, the incidents located on the same road and on the same day are evaluated for the temporal and spatial distance to the outer line of the the congestion. When the distance falls in the range of the threshold they are considered as adjacent. The following values where used as thresholds.
 
 \begin{itemize}
-	\item The spatial distance an adjacent incident : $l_{min,dist} = 2000 \, [m]$
-	\item The temporal distance an adjacent incident : $t_{min,dist} = 25 \, [min]$
+	\item The spatial distance an adjacent incident : $l_{min,dist} = 2000 \,[m]$
+	\item The temporal distance an adjacent incident : $t_{min,dist} = 25 \,[min]$
 \end{itemize}
 
 \section{Data Processing}

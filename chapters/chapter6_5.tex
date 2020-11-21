@@ -300,7 +300,8 @@ The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SMax} produces a 
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Maximal Spatial Extent}}
 	\label{tbl:wilcoxon_arbis_matched_Strasse_SMax}
 \end{table}
-The table shows, that the groups A3 and A93 differ from group A9, A7, A70, A6 and A73. There is no distinctive general trend.
+The table shows, that the groups A3 and A93 differ from group A6, A7, A70, A73, A9, A96, A92, A93 and A94. The group A99 also differs from A96, A995, A92, A93 and A94. The A94 also differs from A99.
+% #### START: Table and Plot
 \pgfplotstableread[col sep=comma,header=false]{
 	A9   , 656  , 8655.57  , 8521.51  , 4778 , 1035 , 49765 , 48730 
 	A7   , 302  , 6238.63  , 4902.30  , 4397 , 902  , 20030 , 19128 
@@ -321,46 +322,45 @@ The table shows, that the groups A3 and A93 differ from group A9, A7, A70, A6 an
 ]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
-	\begin{minipage}{0.6\textwidth}
+	\begin{minipage}{0.5\textwidth}
 		\tiny
+		\setlength{\tabcolsep}{4pt}
 		\centering
 		\begin{tabular}{c|c|c|c|c|c|c|c}
 			\toprule
 			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 			\midrule
-			9   & 656  & 8655.57  & 8521.51  & 4778 & 1035 & 49765 & 48730 \\ 
-			7   & 302  & 6238.63  & 4902.30  & 4397 & 902  & 20030 & 19128 \\ 
-			70  & 50   & 5729.56  & 4763.20  & 3224 & 1365 & 20249 & 18884 \\ 
-			71  & 10   & 3899.00  & 2746.84  & 2339 & 2075 & 10225 & 8150  \\ 
-			6   & 198  & 8421.67  & 8209.85  & 5690 & 965  & 40033 & 39068 \\ 
-			73  & 86   & 7717.21  & 7747.18  & 4813 & 1095 & 33764 & 32669 \\ 
-			3   & 1023 & 11836.50 & 11045.29 & 7979 & 1014 & 47607 & 46593 \\ 
-			99  & 312  & 9337.49  & 7230.99  & 7978 & 991  & 48987 & 47996 \\ 
-			96  & 230  & 5639.41  & 6034.92  & 3072 & 951  & 27965 & 27014 \\ 
-			995 & 14   & 3618.14  & 1331.10  & 4288 & 1613 & 4825  & 3212  \\ 
-			92  & 82   & 5758.10  & 3673.73  & 4544 & 999  & 16931 & 15932 \\ 
-			93  & 160  & 3530.39  & 3718.54  & 1926 & 99   & 22528 & 21829 \\ 
-			94  & 56   & 5849.05  & 3394.57  & 5785 & 1025 & 12582 & 11557 \\ 
+			A9   & 656  & 8655.57  & 8521.51  & 4778 & 1035 & 49765 & 48730 \\ 
+			A7   & 302  & 6238.63  & 4902.30  & 4397 & 902  & 20030 & 19128 \\ 
+			A70  & 50   & 5729.56  & 4763.20  & 3224 & 1365 & 20249 & 18884 \\ 
+			A71  & 10   & 3899.00  & 2746.84  & 2339 & 2075 & 10225 & 8150  \\ 
+			A6   & 198  & 8421.67  & 8209.85  & 5690 & 965  & 40033 & 39068 \\ 
+			A73  & 86   & 7717.21  & 7747.18  & 4813 & 1095 & 33764 & 32669 \\ 
+			A3   & 1023 & 11836.50 & 11045.29 & 7979 & 1014 & 47607 & 46593 \\ 
+			A99  & 312  & 9337.49  & 7230.99  & 7978 & 991  & 48987 & 47996 \\ 
+			A96  & 230  & 5639.41  & 6034.92  & 3072 & 951  & 27965 & 27014 \\ 
+			A995 & 14   & 3618.14  & 1331.10  & 4288 & 1613 & 4825  & 3212  \\ 
+			A92  & 82   & 5758.10  & 3673.73  & 4544 & 999  & 16931 & 15932 \\ 
+			A93  & 160  & 3530.39  & 3718.54  & 1926 & 99   & 22528 & 21829 \\ 
+			A94  & 56   & 5849.05  & 3394.57  & 5785 & 1025 & 12582 & 11557 \\ 
 			\bottomrule
-			% \bar{x} - sum = 1039.02 mean = 79.92
-			% \sigma - sum = 1127.22, mean = 86,70
+			% \bar{x} - sum = 80230.72, mean = 6633.13 
+			% \sigma - sum = 73320.02, mean = 5640.00
 			% \tilde{x} 
 		\end{tabular}
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_SMax}
 	\end{minipage}%
-	\begin{minipage}{0.4\textwidth}
+	\begin{minipage}{0.55\textwidth}
 		\tiny
 		\centering
 		\begin{tikzpicture}
 			\begin{axis}[
-				% Gitterlinien für y-Ticks
 				width=\textwidth,
 				height=5.5cm,
 				xmajorgrids=true,
 				ymajorgrids=true,
 				xtick=data,
 				xmin=0,xmax=12,
-				% xticklabels={A9,A7,A70,A71,A6,A73,A3,A99,A96,A995,A92,A93,A94},
 				xticklabels from table={\data}{[index]0},
 				% zusätzliche Beschriftung an y-Achse
 				every extra y tick/.style={
@@ -370,7 +370,8 @@ The table shows, that the groups A3 and A93 differ from group A9, A7, A70, A6 an
 						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
 					},
 				},
-				extra y ticks={80,87},
+				extra y ticks={6633,5640},
+				extra y tick labels={0.6,0.5}
 			]
 			\addplot table [absolute series=2] {\data};
 			\addplot table [absolute series=3] {\data};
@@ -384,12 +385,10 @@ The table shows, that the groups A3 and A93 differ from group A9, A7, A70, A6 an
 	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Spatial Extent}}
 	%\vspace{-8mm}
 \end{figure}
+% #### END: Table and Plot
+With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SMax,fig:descriptives_arbis_matched_Strasse_SMax} it can be interpreted that roadworks on the A3, A9, A6 A99 and A73 result in significantly longer jams than on the A96, A92, A94, A93 and A70.
 
-
-
-The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SMax}
-
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SAvg} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SAvg} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_SAvg}. 
+The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SAvg} produces a $p$-value of < 0.0001, which is far below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference in \textit{SAvg}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SAvg} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_SAvg}. 
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -419,34 +418,92 @@ The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SAvg} produces a 
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Average Spatial Extent}}
 	\label{tbl:wilcoxon_arbis_matched_Strasse_SAvg}
 \end{table}
-\cref{tbl:wilcoxon_arbis_matched_Strasse_SAvg} shows, that the groups  differ from group . There is no distinctive general trend.
-\begin{table}[ht!]
-	\tiny
+It shows, that the groups A99, A96 and A93 differ from group A9 and A3. The A93 also differs from A92 and A73 from A3.
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	A9   , 656  , 3537.87 , 3014.80 , 2388.50 , 697 , 14785 , 14088 
+	A7   , 302  , 2917.97 , 2988.99 , 2113.50 , 284 , 15602 , 15318 
+	A70  , 50   , 3170.10 , 3033.98 , 1816.00 , 532 , 12543 , 12011 
+	A71  , 10   , 2572.50 , 3027.05 , 1323.00 , 802 , 10425 , 9623  
+	A6   , 198  , 3189.79 , 2385.78 , 2267.00 , 458 , 14150 , 13692 
+	A73  , 86   , 2508.40 , 1834.03 , 2006.00 , 419 , 10039 , 9620  
+	A3   , 1023 , 3733.90 , 2979.43 , 2835.00 , 355 , 15054 , 14699 
+	A99  , 312  , 2381.29 , 1265.40 , 1974.00 , 502 , 5931  , 5429  
+	A96  , 230  , 2488.22 , 1790.94 , 2160.00 , 404 , 9767  , 9363  
+	A995 , 14   , 1976.93 , 1044.51 , 1950.00 , 569 , 3196  , 2627  
+	A92  , 82   , 3360.88 , 2294.30 , 2882.00 , 457 , 11703 , 11246 
+	A93  , 160  , 2243.26 , 2065.34 , 1575.00 , 461 , 11161 , 10700  
+	A94  , 56   , 2557.62 , 1655.86 , 2551.00 , 506 , 6393  , 5887  
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-		\midrule
-		A9   & 656  & 3537.87 & 3014.80 & 2388.50 & 697 & 14785 & 14088 \\ 
-		A7   & 302  & 2917.97 & 2988.99 & 2113.50 & 284 & 15602 & 15318 \\ 
-		A70  & 50   & 3170.10 & 3033.98 & 1816.00 & 532 & 12543 & 12011 \\ 
-		A71  & 10   & 2572.50 & 3027.05 & 1323.00 & 802 & 10425 & 9623  \\ 
-		A6   & 198  & 3189.79 & 2385.78 & 2267.00 & 458 & 14150 & 13692 \\ 
-		A73  & 86   & 2508.40 & 1834.03 & 2006.00 & 419 & 10039 & 9620  \\ 
-		A3   & 1023 & 3733.90 & 2979.43 & 2835.00 & 355 & 15054 & 14699 \\ 
-		A99  & 312  & 2381.29 & 1265.40 & 1974.00 & 502 & 5931  & 5429  \\ 
-		A96  & 230  & 2488.22 & 1790.94 & 2160.00 & 404 & 9767  & 9363  \\ 
-		A995 & 14   & 1976.93 & 1044.51 & 1950.00 & 569 & 3196  & 2627  \\ 
-		A92  & 82   & 3360.88 & 2294.30 & 2882.00 & 457 & 11703 & 11246 \\ 
-		A93  & 160  & 2243.26 & 2065.34 & 1575.00 & 461 & 11161 & 10700 \\  
-		A94  & 56   & 2557.62 & 1655.86 & 2551.00 & 506 & 6393  & 5887  \\ 
-		\bottomrule
-	\end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			A9   & 656  & 3537.87 & 3014.80 & 2388.50 & 697 & 14785 & 14088 \\ 
+			A7   & 302  & 2917.97 & 2988.99 & 2113.50 & 284 & 15602 & 15318 \\ 
+			A70  & 50   & 3170.10 & 3033.98 & 1816.00 & 532 & 12543 & 12011 \\ 
+			A71  & 10   & 2572.50 & 3027.05 & 1323.00 & 802 & 10425 & 9623  \\ 
+			A6   & 198  & 3189.79 & 2385.78 & 2267.00 & 458 & 14150 & 13692 \\
+			A73  & 86   & 2508.40 & 1834.03 & 2006.00 & 419 & 10039 & 9620  \\ 
+			A3   & 1023 & 3733.90 & 2979.43 & 2835.00 & 355 & 15054 & 14699 \\ 
+			A99  & 312  & 2381.29 & 1265.40 & 1974.00 & 502 & 5931  & 5429  \\ 
+			A96  & 230  & 2488.22 & 1790.94 & 2160.00 & 404 & 9767  & 9363  \\ 
+			A995 & 14   & 1976.93 & 1044.51 & 1950.00 & 569 & 3196  & 2627  \\ 
+			A92  & 82   & 3360.88 & 2294.30 & 2882.00 & 457 & 11703 & 11246 \\ 
+			A93  & 160  & 2243.26 & 2065.34 & 1575.00 & 461 & 11161 & 10700 \\  
+			A94  & 56   & 2557.62 & 1655.86 & 2551.00 & 506 & 6393  & 5887  \\ 
+			\bottomrule
+			% \bar{x} - sum = 36638.73, mean = 2818.36 
+			% \sigma - sum = 29380.41, mean = 2260.03
+			% \tilde{x} 
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_SAvg}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				height=5.5cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=12,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				extra y ticks={2818,2260},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_SAvg}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Average Spatial Extent}}
-	\label{tbl:descriptives_arbis_matched_Strasse_SAvg}
 	%\vspace{-8mm}
-\end{table}
-The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SAvg}
+\end{figure}
+% #### END: Table and Plot
+With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SAvg,fig:descriptives_arbis_matched_Strasse_SAvg} it can be interpreted that roadworks on the A3, A9 and A93 result in significantly longer jams than on the A92, A93, A96 and A73.
 
 The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TDist} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TDist} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_TDist}. 
 \begin{table}[ht!]

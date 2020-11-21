@@ -1098,6 +1098,7 @@ Although the groups differ significantly, the descriptives in \cref{tbl:descript
 \centerheading{Month}
 \varintrosimplewithoutsam{Month} \varintronosigsing{Month}{TDist}
 
+% ############################################
 \groupintrosigsig{Month}{TAvg}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny
@@ -1107,23 +1108,23 @@ Although the groups differ significantly, the descriptives in \cref{tbl:descript
 		\toprule
 		  & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov \\ 
 		\midrule
-		Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-		Mar & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
-		Apr & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
-		May & 1.00 & 0.17 & 1.00 & 0.26 &  &  &  &  &  &  &  \\ 
-		Jun & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-		Jul & 1.00 & 0.68 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-		Aug & 1.00 & 1.00 & 1.00 & 1.00 & 0.89 & 1.00 & 1.00 &  &  &  &  \\ 
+		% Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		% Mar & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+		% Apr & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		% May & 1.00 & 0.17 & 1.00 & 0.26 &  &  &  &  &  &  &  \\ 
+		% Jun & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		% Jul & 1.00 & 0.68 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		% Aug & 1.00 & 1.00 & 1.00 & 1.00 & 0.89 & 1.00 & 1.00 &  &  &  &  \\ 
 		Sep & \red{0.00} & \red{0.00} & \red{0.00} & \red{0.00} & \red{0.00} & \red{0.00} & \red{0.00} & \red{0.00} &  &  &  \\ 
 		Oct & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & \red{0.00} &  &  \\ 
 		Nov & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & \red{0.00} & 1.00 &  \\ 
 		Dec & 1.00 & 1.00 & 0.97 & 1.00 & \red{0.01} & 1.00 & 0.20 & 1.00 & \red{0.00} & 1.00 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Average Temporal Extent}}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Average Temporal Extent}}
 	\label{tbl:wilcoxon_arbis_matched_Month_TAvg}
 \end{table}
-It shows that the groups ?? and ?? differ significantly.
+It shows that all groups have significantly differences from group of September.
 % #### START: Table and Plot
 \pgfplotstableread[col sep=comma,header=false]{
 	Jan , 118 , 86.61  , 107.08 , 40.50 , 6 , 630  , 624  
@@ -1165,11 +1166,344 @@ It shows that the groups ?? and ?? differ significantly.
 			Nov & 213 & 82.36  & 137.96 & 38.00 & 5 & 1326 & 1321 \\ 
 			Dec & 278 & 98.18  & 153.84 & 44.50 & 5 & 1326 & 1321 \\ 
 			\bottomrule
-			% \bar{x} - sum = , mean = 
-			% \sigma - sum = , mean = 
+			% \bar{x} - sum = 975.63, mean = 81.30
+			% \sigma - sum = 1187.33, mean = 98.94
 			% \tilde{x} 
 		\end{tabular}
-		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_TLHGV}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_TAvg}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				height=5cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=11,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				extra y ticks={81,99},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_TAvg}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Month} and \textit{Average Temporal Extent}}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_TAvg,fig:descriptives_arbis_matched_Month_TAvg} it can be interpreted that roadworks in September result in significantly longer jams than the average. The jams in May tend to be significantly shorter than the average.
+
+% ############################################
+\groupintrosigsig{Month}{SMax}{arbis}{matched}
+\begin{table}[ht!]
+	\tiny
+	\setlength{\tabcolsep}{4pt}
+	\centering
+	\begin{tabular}{rrrrrrrrrrrr}
+		\toprule
+		  & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov \\ 
+		\midrule
+		% Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		% Mar & 0.41 & 0.60 &  &  &  &  &  &  &  &  &  \\ 
+		Apr & 1.00 & 1.00 & \red{0.01} &  &  &  &  &  &  &  &  \\ 
+		% May & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		% Jun & 1.00 & 1.00 & 1.00 & 0.30 & 1.00 &  &  &  &  &  &  \\ 
+		% Jul & 1.00 & 1.00 & 0.37 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		Aug & \red{0.00} & \red{0.00} & 0.69 & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} &  &  &  &  \\ 
+		Sep & 0.37 & \red{0.01} & 1.00 & 0.00 & 0.07 & 1.00 & \red{0.00} & 1.00 &  &  &  \\ 
+		Oct & \red{0.02} & \red{0.00} & 1.00 & \red{0.00} & \red{0.01} & 1.00 & \red{0.00} & 1.00 & 1.00 &  &  \\ 
+		Nov & \red{0.00} & \red{0.00} & \red{0.02} & \red{0.00} & \red{0.00} & \red{0.01} & \red{0.00} & 1.00 & 0.14 & 1.00 &  \\ 
+		Dec & 0.68 & 0.30 & 1.00 & \red{0.01} & 1.00 & 1.00 & \red{0.01} & 1.00 & 1.00 & 1.00 & \red{0.05} \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Maximal Spatial Extent}}
+	\label{tbl:wilcoxon_arbis_matched_Month_SMax}
+\end{table}
+It shows that all groups have significantly differences form some other group. The groups of February, April, July, August, October and November differ from a relative high number of groups.
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	Jan , 118 , 10172.38 , 8829.63  , 6320.00 , 1109 , 44751 , 43642
+	Feb , 160 , 12219.37 , 12948.08 , 6214.00 , 999  , 48987 , 47988
+	Mar , 216 , 7325.81  , 6207.77  , 5007.00 , 1436 , 31160 , 29724
+	Apr , 271 , 10553.42 , 9582.49  , 8387.00 , 1350 , 47196 , 45846
+	May , 268 , 9677.59  , 9065.93  , 6742.00 , 1035 , 40805 , 39770
+	Jun , 186 , 9062.72  , 8839.51  , 5695.00 , 1084 , 34411 , 33327
+	Jul , 529 , 10596.79 , 10632.15 , 6586.00 , 902  , 49765 , 48863
+	Aug , 273 , 6356.36  , 5593.06  , 3497.00 , 699  , 32154 , 31455
+	Sep , 370 , 8167.19  , 8370.94  , 4982.00 , 965  , 41011 , 40046
+	Oct , 307 , 6838.37  , 6394.64  , 4414.00 , 1025 , 31676 , 30651 
+	Nov , 213 , 6521.21  , 7176.02  , 3955.00 , 1014 , 33764 , 32750
+	Dec , 278 , 8165.85  , 7680.25  , 4731.00 , 951  , 34227 , 33276
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			Jan & 118 & 10172.38 & 8829.63  & 6320.00 & 1109 & 44751 & 43642 \\
+			Feb & 160 & 12219.37 & 12948.08 & 6214.00 & 999  & 48987 & 47988 \\
+			Mar & 216 & 7325.81  & 6207.77  & 5007.00 & 1436 & 31160 & 29724 \\
+			Apr & 271 & 10553.42 & 9582.49  & 8387.00 & 1350 & 47196 & 45846 \\
+			May & 268 & 9677.59  & 9065.93  & 6742.00 & 1035 & 40805 & 39770 \\
+			Jun & 186 & 9062.72  & 8839.51  & 5695.00 & 1084 & 34411 & 33327 \\
+			Jul & 529 & 10596.79 & 10632.15 & 6586.00 & 902  & 49765 & 48863 \\
+			Aug & 273 & 6356.36  & 5593.06  & 3497.00 & 699  & 32154 & 31455 \\
+			Sep & 370 & 8167.19  & 8370.94  & 4982.00 & 965  & 41011 & 40046 \\
+			Oct & 307 & 6838.37  & 6394.64  & 4414.00 & 1025 & 31676 & 30651 \\ 
+			Nov & 213 & 6521.21  & 7176.02  & 3955.00 & 1014 & 33764 & 32750 \\
+			Dec & 278 & 8165.85  & 7680.25  & 4731.00 & 951  & 34227 & 33276 \\
+			\bottomrule
+			% \bar{x} - sum = 105657.06, mean = 8804.75
+			% \sigma - sum = 101320.47, mean = 8443.37
+			% \tilde{x} 
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_SMax}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				height=5cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=11,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				extra y ticks={8804,8443},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_SMax}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Month} and \textit{Maximal Spatial Extent}}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_SMax,fig:descriptives_arbis_matched_Month_SMax} is can be interpreted that roadworks in February, April and July result in significantly spatial longer jams than the average. The roadwork jams in March, August, October and November tend to be significantly spatial shorter than the average.
+
+% ############################################
+\groupintrosigsig{Month}{SAvg}{arbis}{matched}
+\begin{table}[ht!]
+	\tiny
+	\setlength{\tabcolsep}{4pt}
+	\centering
+	\begin{tabular}{rrrrrrrrrrrr}
+		\toprule
+		  & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov \\ 
+		\midrule
+		% Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		% Mar & 1.00 & 0.49 &  &  &  &  &  &  &  &  &  \\ 
+		% Apr & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		% May & 1.00 & 0.82 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		% Jun & 1.00 & 0.47 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		% Jul & 1.00 & 0.15 & 1.00 & 0.94 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		Aug & 0.25 & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 1.00 & 0.51 &  &  &  &  \\ 
+		% Sep & 1.00 & 0.12 & 1.00 & 0.29 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		Oct & 1.00 & \red{0.03} & 1.00 & \red{0.03} & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		Nov & \red{0.00} & \red{0.00} & \red{0.02} & \red{0.00} & \red{0.01} & 0.15 & \red{0.00} & 1.00 & \red{0.01} & 0.09 &  \\ 
+		% Dec & 1.00 & 0.30 & 1.00 & 0.93 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.09 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Average Spatial Extent}}
+	\label{tbl:wilcoxon_arbis_matched_Month_SMax}
+\end{table}
+It shows that most groups have significantly differences to another group. The groups of February, April and November differ from a relative high number of groups.
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	Jan , 118 , 4011.67 , 3677.51 , 2525.00 , 651 , 14785 , 14134
+	Feb , 160 , 3976.34 , 3246.48 , 2666.50 , 718 , 14150 , 13432
+	Mar , 216 , 2899.98 , 1945.37 , 2295.00 , 676 , 9748  , 9072 
+	Apr , 271 , 3633.27 , 3073.18 , 2598.00 , 569 , 15602 , 15033
+	May , 268 , 3160.32 , 2197.68 , 2732.00 , 458 , 10860 , 10402
+	Jun , 186 , 3002.61 , 2171.31 , 2291.00 , 692 , 11206 , 10514
+	Jul , 529 , 3292.55 , 2763.41 , 2132.00 , 502 , 13146 , 12644
+	Aug , 273 , 2793.92 , 2224.25 , 2141.00 , 506 , 12288 , 11782
+	Sep , 370 , 3269.36 , 3012.09 , 2096.00 , 404 , 14776 , 14372
+	Oct , 307 , 2751.38 , 2013.59 , 2282.00 , 625 , 11161 , 10536
+	Nov , 213 , 2639.70 , 2401.25 , 1916.00 , 305 , 13639 , 13334
+	Dec , 278 , 3423.72 , 3129.03 , 2036.00 , 284 , 15054 , 14770
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			Jan & 118 & 4011.67 & 3677.51 & 2525.00 & 651 & 14785 & 14134 \\
+			Feb & 160 & 3976.34 & 3246.48 & 2666.50 & 718 & 14150 & 13432 \\
+			Mar & 216 & 2899.98 & 1945.37 & 2295.00 & 676 & 9748  & 9072  \\
+			Apr & 271 & 3633.27 & 3073.18 & 2598.00 & 569 & 15602 & 15033 \\
+			May & 268 & 3160.32 & 2197.68 & 2732.00 & 458 & 10860 & 10402 \\
+			Jun & 186 & 3002.61 & 2171.31 & 2291.00 & 692 & 11206 & 10514 \\
+			Jul & 529 & 3292.55 & 2763.41 & 2132.00 & 502 & 13146 & 12644 \\
+			Aug & 273 & 2793.92 & 2224.25 & 2141.00 & 506 & 12288 & 11782 \\
+			Sep & 370 & 3269.36 & 3012.09 & 2096.00 & 404 & 14776 & 14372 \\
+			Oct & 307 & 2751.38 & 2013.59 & 2282.00 & 625 & 11161 & 10536 \\
+			Nov & 213 & 2639.70 & 2401.25 & 1916.00 & 305 & 13639 & 13334 \\
+			Dec & 278 & 3423.72 & 3129.03 & 2036.00 & 284 & 15054 & 14770 \\
+			\bottomrule
+			% \bar{x} - sum = 38854.82, mean = 3237.90
+			% \sigma - sum = 31855.15, mean = 2654.59
+			% \tilde{x} 
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_SAvg}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				height=5cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=11,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				extra y ticks={3238,2655},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_SAvg}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Month} and \textit{Maximal Spatial Extent}}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_SAvg,fig:descriptives_arbis_matched_Month_SAvg} is can be interpreted that roadworks in January, February and April result in significantly spatial longer jams than the average. The roadwork jams in March, August, October and November tend to be significantly spatial shorter than the average.
+
+% ############################################
+\groupintrosigsig{Month}{SDist}{arbis}{matched}
+\begin{table}[ht!]
+	\tiny
+	\setlength{\tabcolsep}{4pt}
+	\centering
+	\begin{tabular}{rrrrrrrrrrrr}
+		\toprule
+		  & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov \\ 
+		\midrule
+		% Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+		% Mar & 1.00 & 0.27 &  &  &  &  &  &  &  &  &  \\ 
+		% Apr & 1.00 & 0.25 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		% May & 1.00 & 0.10 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		% Jun & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+		Jul & 1.00 & 1.00 & 0.18 & 0.12 & \red{0.02} & 1.00 &  &  &  &  &  \\ 
+		Aug & 0.36 & \red{0.01} & 1.00 & 1.00 & 1.00 & 1.00 & \red{0.00} &  &  &  &  \\ 
+		Sep & 0.21 & \red{0.00} & 1.00 & 1.00 & 1.00 & 1.00 & \red{0.00} & 1.00 &  &  &  \\ 
+		Oct & 1.00 & \red{0.05} & 1.00 & 1.00 & 1.00 & 1.00 & \red{0.00} & 1.00 & 1.00 &  &  \\ 
+		Nov & \red{0.00} & \red{0.00} & \red{0.03} & \red{0.01} & \red{0.03} & \red{0.01} & \red{0.00} & 0.68 & 0.73 & 0.09 &  \\ 
+		Dec & \red{0.01} & \red{0.00} & 0.20 & 0.10 & 0.24 & \red{0.04} & \red{0.00} & 1.00 & 1.00 & 0.68 & 1.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Spatial Distance}}
+	\label{tbl:wilcoxon_arbis_matched_Month_SDist}
+\end{table}
+It shows that most groups have significantly differences to another group. The groups of February, July, November and December differ from a relative high number of groups.
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	Jan , 118 , 79.52  , 273.88 , 0 , 0 , 1686 , 1686 
+	Feb , 160 , 83.44  , 319.89 , 0 , 0 , 1615 , 1615 
+	Mar , 216 , 149.79 , 404.38 , 0 , 0 , 1861 , 1861 
+	Apr , 271 , 150.68 , 408.76 , 0 , 0 , 1910 , 1910 
+	May , 268 , 146.19 , 409.04 , 0 , 0 , 1979 , 1979 
+	Jun , 186 , 124.91 , 351.03 , 0 , 0 , 1879 , 1879 
+	Jul , 529 , 93.17  , 330.01 , 0 , 0 , 1973 , 1973 
+	Aug , 273 , 170.69 , 421.76 , 0 , 0 , 1859 , 1859 
+	Sep , 370 , 185.51 , 403.48 , 0 , 0 , 1968 , 1968 
+	Oct , 307 , 194.72 , 469.83 , 0 , 0 , 1983 , 1983 
+	Nov , 213 , 176.46 , 406.35 , 0 , 0 , 1925 , 1925 
+	Dec , 278 , 287.55 , 559.68 , 0 , 0 , 1988 , 1988 
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			Jan & 118 & 79.52  & 273.88 & 0 & 0 & 1686 & 1686 \\ 
+			Feb & 160 & 83.44  & 319.89 & 0 & 0 & 1615 & 1615 \\ 
+			Mar & 216 & 149.79 & 404.38 & 0 & 0 & 1861 & 1861 \\ 
+			Apr & 271 & 150.68 & 408.76 & 0 & 0 & 1910 & 1910 \\ 
+			May & 268 & 146.19 & 409.04 & 0 & 0 & 1979 & 1979 \\ 
+			Jun & 186 & 124.91 & 351.03 & 0 & 0 & 1879 & 1879 \\ 
+			Jul & 529 & 93.17  & 330.01 & 0 & 0 & 1973 & 1973 \\ 
+			Aug & 273 & 170.69 & 421.76 & 0 & 0 & 1859 & 1859 \\ 
+			Sep & 370 & 185.51 & 403.48 & 0 & 0 & 1968 & 1968 \\ 
+			Oct & 307 & 194.72 & 469.83 & 0 & 0 & 1983 & 1983 \\ 
+			Nov & 213 & 176.46 & 406.35 & 0 & 0 & 1925 & 1925 \\ 
+			Dec & 278 & 287.55 & 559.68 & 0 & 0 & 1988 & 1988 \\ 
+			\bottomrule
+			% \bar{x} - sum = 1842.63, mean = 153.55
+			% \sigma - sum = 4758.09, mean = 395.50
+			% \tilde{x} 
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_SDist}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
 		\tiny
@@ -1191,7 +1525,7 @@ It shows that the groups ?? and ?? differ significantly.
 						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
 					},
 				},
-				extra y ticks={732,136},
+				extra y ticks={153,395},
 			]
 			\addplot table [absolute series=2] {\data};
 			\addplot table [absolute series=3] {\data};
@@ -1200,210 +1534,232 @@ It shows that the groups ?? and ?? differ significantly.
 				$\bar{x}$,$\sigma$,$\tilde{x}$}
 			\end{axis}
 		 \end{tikzpicture}\vfill
-		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_TLHGV}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_SDist}
 	\end{minipage}%
-	\caption{Group descriptives of \textit{Strasse} and \textit{Time-loss Heavy goods vehicle}}
+	\caption{Group descriptives of \textit{Month} and \textit{Spatial Distance}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
+With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_SDist,fig:descriptives_arbis_matched_Month_SDist} is can be interpreted that roadworks in October and December result in significantly longer spatial distances than the average. The roadwork jams in January, February and July tend to have significantly shorter spatial distances than the average.
 
+% ############################################
+% \groupintrosigsig{Month}{Cov}{arbis}{matched}
+% \begin{table}[ht!]
+% 	\tiny
+% 	\setlength{\tabcolsep}{4pt}
+% 	\centering
+% 	\begin{tabular}{rrrrrrrrrrrr}
+% 		\toprule
+% 		  & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov \\ 
+% 		\midrule
+% 		Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+% 		Mar & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+% 		Apr & 1.00 & 1.00 & 0.75 &  &  &  &  &  &  &  &  \\ 
+% 		May & 1.00 & 1.00 & 0.71 & 1.00 &  &  &  &  &  &  &  \\ 
+% 		Jun & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+% 		Jul & 1.00 & 0.79 & 0.09 & 1.00 & 1.00 & 0.61 &  &  &  &  &  \\ 
+% 		Aug & 0.42 & 0.32 & 0.11 & 0.00 & 0.00 & 0.35 & 0.00 &  &  &  &  \\ 
+% 		Sep & 0.14 & 0.03 & 0.03 & 0.00 & 0.00 & 0.02 & 0.00 & 1.00 &  &  &  \\ 
+% 		Oct & 0.50 & 0.35 & 0.20 & 0.00 & 0.00 & 0.14 & 0.00 & 1.00 & 1.00 &  &  \\ 
+% 		Nov & 0.06 & 0.01 & 0.00 & 0.00 & 0.00 & 0.03 & 0.00 & 0.35 & 1.00 & 1.00 &  \\ 
+% 		Dec & 1.00 & 1.00 & 1.00 & 0.01 & 0.00 & 1.00 & 0.00 & 1.00 & 1.00 & 1.00 & 0.79 \\  
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Coverage}}
+% 	\label{tbl:wilcoxon_arbis_matched_Month_Cov}
+% \end{table}
+% It shows that most groups have significantly differences to another group. The groups of  differ from a relative high number of groups.
+% % #### START: Table and Plot
+% \pgfplotstableread[col sep=comma,header=false]{
+% 	Jan , 118 , 44.60 , 23.91 , 41 , 7 , 100 , 93 
+% 	Feb , 160 , 44.26 , 22.06 , 40 , 9 , 100 , 91 
+% 	Mar , 216 , 44.06 , 18.71 , 42 , 8 , 100 , 92 
+% 	Apr , 271 , 41.35 , 22.90 , 34 , 8 , 100 , 92 
+% 	May , 268 , 40.62 , 21.17 , 37 , 7 , 100 , 93 
+% 	Jun , 186 , 44.35 , 22.91 , 43 , 4 , 100 , 96 
+% 	Jul , 529 , 39.25 , 18.30 , 39 , 4 , 100 , 96 
+% 	Aug , 273 , 48.62 , 19.09 , 48 , 7 , 100 , 93 
+% 	Sep , 370 , 52.62 , 25.63 , 52 , 9 , 100 , 91 
+% 	Oct , 307 , 51.11 , 25.16 , 47 , 8 , 100 , 92 
+% 	Nov , 213 , 53.48 , 25.65 , 54 , 6 , 100 , 94 
+% 	Dec , 278 , 48.60 , 22.92 , 47 , 7 , 100 , 93 
+% }\data
+% \pgfplotstablecreatecol[
+%   create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+% ]{sum}{\data}
+% \begin{figure}[ht!]
+% 	\centering
+% 	\begin{minipage}{0.5\textwidth}
+% 		\tiny
+% 		\setlength{\tabcolsep}{4pt}
+% 		\centering
+% 		\begin{tabular}{c|c|c|c|c|c|c|c}
+% 			\toprule
+% 			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+% 			\midrule
+% 			Jan & 118 & 44.60 & 23.91 & 41 & 7 & 100 & 93 \\ 
+% 			Feb & 160 & 44.26 & 22.06 & 40 & 9 & 100 & 91 \\ 
+% 			Mar & 216 & 44.06 & 18.71 & 42 & 8 & 100 & 92 \\ 
+% 			Apr & 271 & 41.35 & 22.90 & 34 & 8 & 100 & 92 \\ 
+% 			May & 268 & 40.62 & 21.17 & 37 & 7 & 100 & 93 \\ 
+% 			Jun & 186 & 44.35 & 22.91 & 43 & 4 & 100 & 96 \\ 
+% 			Jul & 529 & 39.25 & 18.30 & 39 & 4 & 100 & 96 \\ 
+% 			Aug & 273 & 48.62 & 19.09 & 48 & 7 & 100 & 93 \\ 
+% 			Sep & 370 & 52.62 & 25.63 & 52 & 9 & 100 & 91 \\ 
+% 			Oct & 307 & 51.11 & 25.16 & 47 & 8 & 100 & 92 \\ 
+% 			Nov & 213 & 53.48 & 25.65 & 54 & 6 & 100 & 94 \\ 
+% 			Dec & 278 & 48.60 & 22.92 & 47 & 7 & 100 & 93 \\ 
+% 			\bottomrule
+% 			% \bar{x} - sum = 552.92, mean = 46.07
+% 			% \sigma - sum = 268.41, mean = 22.36
+% 			% \tilde{x} 
+% 		\end{tabular}
+% 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_Cov}
+% 	\end{minipage}%
+% 	\begin{minipage}{0.55\textwidth}
+% 		\tiny
+% 		\centering
+% 		\begin{tikzpicture}
+% 			\begin{axis}[
+% 				width=\textwidth,
+% 				height=5cm,
+% 				xmajorgrids=true,
+% 				ymajorgrids=true,
+% 				xtick=data,
+% 				xmin=0,xmax=12,
+% 				xticklabels from table={\data}{[index]0},
+% 				% zusätzliche Beschriftung an y-Achse
+% 				every extra y tick/.style={
+% 					tick0/.initial=blue,
+% 					tick1/.initial=red,
+% 					yticklabel style={
+% 						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+% 					},
+% 				},
+% 				extra y ticks={46,22},
+% 			]
+% 			\addplot table [absolute series=2] {\data};
+% 			\addplot table [absolute series=3] {\data};
+% 			\addplot table [absolute series=4] {\data};
+% 			\legend{
+% 				$\bar{x}$,$\sigma$,$\tilde{x}$}
+% 			\end{axis}
+% 		 \end{tikzpicture}\vfill
+% 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_Cov}
+% 	\end{minipage}%
+% 	\caption{Group descriptives of \textit{Month} and \textit{Coverage}}
+% 	%\vspace{-8mm}
+% \end{figure}
+% % #### END: Table and Plot
+% With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_Cov,fig:descriptives_arbis_matched_Month_Cov} is can be interpreted that roadworks in  result in significantly spatial longer jams than the average. The roadwork jams in  tend to be significantly spatial shorter than the average.
 
-
-
-The Kruskal-Wallis test of \textit{Month} - \textit{SMax} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_SMax}. 
-Kruskal-Wallis chi-squared = 2781.7, df = 1228, p-value < 2.2e-16
-\begin{tabular}{rrrrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
-  \hline
-1 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-  2 & 0.41 & 0.60 &  &  &  &  &  &  &  &  &  \\ 
-  3 & 1.00 & 1.00 & 0.01 &  &  &  &  &  &  &  &  \\ 
-  4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-  5 & 1.00 & 1.00 & 1.00 & 0.30 & 1.00 &  &  &  &  &  &  \\ 
-  6 & 1.00 & 1.00 & 0.37 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-  7 & 0.00 & 0.00 & 0.69 & 0.00 & 0.00 & 1.00 & 0.00 &  &  &  &  \\ 
-  8 & 0.37 & 0.01 & 1.00 & 0.00 & 0.07 & 1.00 & 0.00 & 1.00 &  &  &  \\ 
-  9 & 0.02 & 0.00 & 1.00 & 0.00 & 0.01 & 1.00 & 0.00 & 1.00 & 1.00 &  &  \\ 
-  10 & 0.00 & 0.00 & 0.02 & 0.00 & 0.00 & 0.01 & 0.00 & 1.00 & 0.14 & 1.00 &  \\ 
-  11 & 0.68 & 0.30 & 1.00 & 0.01 & 1.00 & 1.00 & 0.01 & 1.00 & 1.00 & 1.00 & 0.05 \\ 
-   \hline
-\end{tabular}
-
-\begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 118.00 & 10172.38 & 8829.63 & 6320.00 & 8834.40 & 6759.17 & 1109.00 & 44751.00 & 43642.00 & 1.34 & 1.66 & 812.83 \\ 
-  X11 & 1.00 & 160.00 & 12219.37 & 12948.08 & 6214.00 & 9547.41 & 6291.41 & 999.00 & 48987.00 & 47988.00 & 1.50 & 1.18 & 1023.64 \\ 
-  X12 & 1.00 & 216.00 & 7325.81 & 6207.77 & 5007.00 & 6145.76 & 3713.17 & 1436.00 & 31160.00 & 29724.00 & 1.71 & 2.58 & 422.39 \\ 
-  X13 & 1.00 & 271.00 & 10553.42 & 9582.49 & 8387.00 & 8883.65 & 7829.61 & 1350.00 & 47196.00 & 45846.00 & 1.94 & 4.20 & 582.10 \\ 
-  X14 & 1.00 & 268.00 & 9677.59 & 9065.93 & 6742.00 & 8173.04 & 6238.78 & 1035.00 & 40805.00 & 39770.00 & 1.61 & 2.47 & 553.79 \\ 
-  X15 & 1.00 & 186.00 & 9062.72 & 8839.51 & 5695.00 & 7414.17 & 4837.72 & 1084.00 & 34411.00 & 33327.00 & 1.47 & 1.23 & 648.14 \\ 
-  X16 & 1.00 & 529.00 & 10596.79 & 10632.15 & 6586.00 & 8458.30 & 5567.16 & 902.00 & 49765.00 & 48863.00 & 1.71 & 2.48 & 462.27 \\ 
-  X17 & 1.00 & 273.00 & 6356.36 & 5593.06 & 3497.00 & 5284.40 & 2363.26 & 699.00 & 32154.00 & 31455.00 & 1.77 & 3.14 & 338.51 \\ 
-  X18 & 1.00 & 370.00 & 8167.19 & 8370.94 & 4982.00 & 6453.15 & 4530.83 & 965.00 & 41011.00 & 40046.00 & 1.76 & 2.73 & 435.18 \\ 
-  X19 & 1.00 & 307.00 & 6838.37 & 6394.64 & 4414.00 & 5600.60 & 3316.58 & 1025.00 & 31676.00 & 30651.00 & 1.95 & 3.82 & 364.96 \\ 
-  X110 & 1.00 & 213.00 & 6521.21 & 7176.02 & 3955.00 & 5004.73 & 3994.12 & 1014.00 & 33764.00 & 32750.00 & 2.12 & 4.50 & 491.69 \\ 
-  X111 & 1.00 & 278.00 & 8165.85 & 7680.25 & 4731.00 & 6823.96 & 3591.60 & 951.00 & 34227.00 & 33276.00 & 1.42 & 1.11 & 460.63 \\ 
-   \hline
-\end{tabular}
-
-The Kruskal-Wallis test of \textit{Month} - \textit{SAvg} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{SAvg} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_SAvg}. 
-
-\begin{tabular}{rrrrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
-  \hline
-1 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-  2 & 1.00 & 0.49 &  &  &  &  &  &  &  &  &  \\ 
-  3 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
-  4 & 1.00 & 0.82 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-  5 & 1.00 & 0.47 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-  6 & 1.00 & 0.15 & 1.00 & 0.94 & 1.00 & 1.00 &  &  &  &  &  \\ 
-  7 & 0.25 & 0.00 & 1.00 & 0.00 & 1.00 & 1.00 & 0.51 &  &  &  &  \\ 
-  8 & 1.00 & 0.12 & 1.00 & 0.29 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-  9 & 1.00 & 0.03 & 1.00 & 0.03 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
-  10 & 0.00 & 0.00 & 0.02 & 0.00 & 0.01 & 0.15 & 0.00 & 1.00 & 0.01 & 0.09 &  \\ 
-  11 & 1.00 & 0.30 & 1.00 & 0.93 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.09 \\ 
-   \hline
-\end{tabular}
-
-\begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 118.00 & 4011.67 & 3677.51 & 2525.00 & 3319.57 & 1790.98 & 651.00 & 14785.00 & 14134.00 & 1.60 & 1.52 & 338.54 \\ 
-  X11 & 1.00 & 160.00 & 3976.34 & 3246.48 & 2666.50 & 3361.74 & 1825.82 & 718.00 & 14150.00 & 13432.00 & 1.50 & 1.42 & 256.66 \\ 
-  X12 & 1.00 & 216.00 & 2899.98 & 1945.37 & 2295.00 & 2577.68 & 1335.08 & 676.00 & 9748.00 & 9072.00 & 1.59 & 2.38 & 132.37 \\ 
-  X13 & 1.00 & 271.00 & 3633.27 & 3073.18 & 2598.00 & 3016.17 & 1860.66 & 569.00 & 15602.00 & 15033.00 & 2.20 & 5.16 & 186.68 \\ 
-  X14 & 1.00 & 268.00 & 3160.32 & 2197.68 & 2732.00 & 2862.53 & 2013.37 & 458.00 & 10860.00 & 10402.00 & 1.04 & 0.16 & 134.24 \\ 
-  X15 & 1.00 & 186.00 & 3002.61 & 2171.31 & 2291.00 & 2644.41 & 1216.47 & 692.00 & 11206.00 & 10514.00 & 1.58 & 2.28 & 159.21 \\ 
-  X16 & 1.00 & 529.00 & 3292.55 & 2763.41 & 2132.00 & 2726.83 & 1156.43 & 502.00 & 13146.00 & 12644.00 & 1.94 & 3.46 & 120.15 \\ 
-  X17 & 1.00 & 273.00 & 2793.92 & 2224.25 & 2141.00 & 2382.74 & 1326.93 & 506.00 & 12288.00 & 11782.00 & 1.98 & 4.17 & 134.62 \\ 
-  X18 & 1.00 & 370.00 & 3269.36 & 3012.09 & 2096.00 & 2606.84 & 931.81 & 404.00 & 14776.00 & 14372.00 & 2.21 & 4.55 & 156.59 \\ 
-  X19 & 1.00 & 307.00 & 2751.38 & 2013.59 & 2282.00 & 2360.52 & 1120.85 & 625.00 & 11161.00 & 10536.00 & 2.35 & 6.12 & 114.92 \\ 
-  X110 & 1.00 & 213.00 & 2639.70 & 2401.25 & 1916.00 & 2150.36 & 1617.52 & 305.00 & 13639.00 & 13334.00 & 1.91 & 3.57 & 164.53 \\ 
-  X111 & 1.00 & 278.00 & 3423.72 & 3129.03 & 2036.00 & 2793.17 & 1338.79 & 284.00 & 15054.00 & 14770.00 & 1.82 & 2.92 & 187.67 \\ 
-   \hline
-\end{tabular}
-
-The Kruskal-Wallis test of \textit{Month} - \textit{SDist} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{SDist} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_SDist}. 
-
-\begin{tabular}{rrrrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
-  \hline
-1 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-  2 & 1.00 & 0.27 &  &  &  &  &  &  &  &  &  \\ 
-  3 & 1.00 & 0.25 & 1.00 &  &  &  &  &  &  &  &  \\ 
-  4 & 1.00 & 0.10 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-  5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-  6 & 1.00 & 1.00 & 0.18 & 0.12 & 0.02 & 1.00 &  &  &  &  &  \\ 
-  7 & 0.36 & 0.01 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 &  &  &  &  \\ 
-  8 & 0.21 & 0.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 & 1.00 &  &  &  \\ 
-  9 & 1.00 & 0.05 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 & 1.00 & 1.00 &  &  \\ 
-  10 & 0.00 & 0.00 & 0.03 & 0.01 & 0.03 & 0.01 & 0.00 & 0.68 & 0.73 & 0.09 &  \\ 
-  11 & 0.01 & 0.00 & 0.20 & 0.10 & 0.24 & 0.04 & 0.00 & 1.00 & 1.00 & 0.68 & 1.00 \\ 
-   \hline
-\end{tabular}
-
-\begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 118.00 & 79.52 & 273.88 & 0.00 & 9.92 & 0.00 & 0.00 & 1686.00 & 1686.00 & 4.39 & 20.54 & 25.21 \\ 
-  X11 & 1.00 & 160.00 & 83.44 & 319.89 & 0.00 & 0.00 & 0.00 & 0.00 & 1615.00 & 1615.00 & 3.90 & 13.94 & 25.29 \\ 
-  X12 & 1.00 & 216.00 & 149.79 & 404.38 & 0.00 & 30.47 & 0.00 & 0.00 & 1861.00 & 1861.00 & 2.88 & 7.34 & 27.51 \\ 
-  X13 & 1.00 & 271.00 & 150.68 & 408.76 & 0.00 & 28.41 & 0.00 & 0.00 & 1910.00 & 1910.00 & 2.87 & 7.30 & 24.83 \\ 
-  X14 & 1.00 & 268.00 & 146.19 & 409.04 & 0.00 & 26.61 & 0.00 & 0.00 & 1979.00 & 1979.00 & 3.10 & 8.75 & 24.99 \\ 
-  X15 & 1.00 & 186.00 & 124.91 & 351.03 & 0.00 & 21.91 & 0.00 & 0.00 & 1879.00 & 1879.00 & 3.11 & 9.21 & 25.74 \\ 
-  X16 & 1.00 & 529.00 & 93.17 & 330.01 & 0.00 & 0.68 & 0.00 & 0.00 & 1973.00 & 1973.00 & 3.80 & 13.85 & 14.35 \\ 
-  X17 & 1.00 & 273.00 & 170.69 & 421.76 & 0.00 & 47.04 & 0.00 & 0.00 & 1859.00 & 1859.00 & 2.58 & 5.54 & 25.53 \\ 
-  X18 & 1.00 & 370.00 & 185.51 & 403.48 & 0.00 & 83.39 & 0.00 & 0.00 & 1968.00 & 1968.00 & 2.43 & 5.51 & 20.98 \\ 
-  X19 & 1.00 & 307.00 & 194.72 & 469.83 & 0.00 & 62.31 & 0.00 & 0.00 & 1983.00 & 1983.00 & 2.41 & 4.67 & 26.81 \\ 
-  X110 & 1.00 & 213.00 & 176.46 & 406.35 & 0.00 & 60.51 & 0.00 & 0.00 & 1925.00 & 1925.00 & 2.60 & 5.84 & 27.84 \\ 
-  X111 & 1.00 & 278.00 & 287.55 & 559.68 & 0.00 & 152.92 & 0.00 & 0.00 & 1988.00 & 1988.00 & 1.93 & 2.60 & 33.57 \\ 
-   \hline
-\end{tabular}
-
-The Kruskal-Wallis test of \textit{Month} - \textit{Cov} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_Cov}. 
-% ############ Coverage ############"
-Kruskal-Wallis chi-squared = 385.52, df = 93, p-value < 2.2e-16
-
-
-\begin{tabular}{rrrrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
-  \hline
-1 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-  2 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
-  3 & 1.00 & 1.00 & 0.75 &  &  &  &  &  &  &  &  \\ 
-  4 & 1.00 & 1.00 & 0.71 & 1.00 &  &  &  &  &  &  &  \\ 
-  5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-  6 & 1.00 & 0.79 & 0.09 & 1.00 & 1.00 & 0.61 &  &  &  &  &  \\ 
-  7 & 0.42 & 0.32 & 0.11 & 0.00 & 0.00 & 0.35 & 0.00 &  &  &  &  \\ 
-  8 & 0.14 & 0.03 & 0.03 & 0.00 & 0.00 & 0.02 & 0.00 & 1.00 &  &  &  \\ 
-  9 & 0.50 & 0.35 & 0.20 & 0.00 & 0.00 & 0.14 & 0.00 & 1.00 & 1.00 &  &  \\ 
-  10 & 0.06 & 0.01 & 0.00 & 0.00 & 0.00 & 0.03 & 0.00 & 0.35 & 1.00 & 1.00 &  \\ 
-  11 & 1.00 & 1.00 & 1.00 & 0.01 & 0.00 & 1.00 & 0.00 & 1.00 & 1.00 & 1.00 & 0.79 \\ 
-   \hline
-\end{tabular}
-
-\begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 118.00 & 44.60 & 23.91 & 41.00 & 42.28 & 26.69 & 7.00 & 100.00 & 93.00 & 0.70 & -0.32 & 2.20 \\ 
-  X11 & 1.00 & 160.00 & 44.26 & 22.06 & 40.00 & 43.05 & 24.46 & 9.00 & 100.00 & 91.00 & 0.46 & -0.69 & 1.74 \\ 
-  X12 & 1.00 & 216.00 & 44.06 & 18.71 & 42.00 & 42.96 & 20.02 & 8.00 & 100.00 & 92.00 & 0.51 & -0.21 & 1.27 \\ 
-  X13 & 1.00 & 271.00 & 41.35 & 22.90 & 34.00 & 39.29 & 25.20 & 8.00 & 100.00 & 92.00 & 0.67 & -0.32 & 1.39 \\ 
-  X14 & 1.00 & 268.00 & 40.62 & 21.17 & 37.00 & 38.71 & 23.72 & 7.00 & 100.00 & 93.00 & 0.69 & -0.12 & 1.29 \\ 
-  X15 & 1.00 & 186.00 & 44.35 & 22.91 & 43.00 & 42.80 & 26.69 & 4.00 & 100.00 & 96.00 & 0.38 & -0.63 & 1.68 \\ 
-  X16 & 1.00 & 529.00 & 39.25 & 18.30 & 39.00 & 38.36 & 14.83 & 4.00 & 100.00 & 96.00 & 0.57 & 0.74 & 0.80 \\ 
-  X17 & 1.00 & 273.00 & 48.62 & 19.09 & 48.00 & 49.01 & 23.72 & 7.00 & 100.00 & 93.00 & -0.06 & -0.70 & 1.16 \\ 
-  X18 & 1.00 & 370.00 & 52.62 & 25.63 & 52.00 & 52.66 & 35.58 & 9.00 & 100.00 & 91.00 & 0.09 & -1.42 & 1.33 \\ 
-  X19 & 1.00 & 307.00 & 51.11 & 25.16 & 47.00 & 50.36 & 31.13 & 8.00 & 100.00 & 92.00 & 0.23 & -1.13 & 1.44 \\ 
-  X110 & 1.00 & 213.00 & 53.48 & 25.65 & 54.00 & 54.14 & 37.06 & 6.00 & 100.00 & 94.00 & -0.12 & -1.11 & 1.76 \\ 
-  X111 & 1.00 & 278.00 & 48.60 & 22.92 & 47.00 & 47.60 & 23.72 & 7.00 & 100.00 & 93.00 & 0.37 & -0.50 & 1.37 \\ 
-   \hline
-\end{tabular}
-
-The Kruskal-Wallis test of \textit{Month} - \textit{TLCar} produces a $p$-value below 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Month}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Month} - \textit{TLCar} is run, which produces \cref{tbl:wilcoxon_baysis_effector_Month_TLCar}. 
-
-\begin{tabular}{rrrrrrrrrrrr}
-  \hline
- & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
-  \hline
-1 & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
-  2 & 0.05 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
-  3 & 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
-  4 & 0.85 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-  5 & 1.00 & 1.00 & 1.00 & 0.46 & 1.00 &  &  &  &  &  &  \\ 
-  6 & 0.05 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-  7 & 0.22 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
-  8 & 1.00 & 1.00 & 0.08 & 0.00 & 1.00 & 1.00 & 0.00 & 0.04 &  &  &  \\ 
-  9 & 0.04 & 1.00 & 1.00 & 1.00 & 1.00 & 0.40 & 0.73 & 1.00 & 0.00 &  &  \\ 
-  10 & 1.00 & 1.00 & 0.10 & 0.03 & 1.00 & 1.00 & 0.00 & 0.16 & 1.00 & 0.00 &  \\ 
-  11 & 1.00 & 1.00 & 0.08 & 0.00 & 1.00 & 1.00 & 0.04 & 0.28 & 1.00 & 0.02 & 1.00 \\ 
-   \hline
-\end{tabular}
-
-\begin{tabular}{rrrrrrrrrrrrrr}
-  \hline
- & vars & n & mean & sd & median & trimmed & mad & min & max & range & skew & kurtosis & se \\ 
-  \hline
-X1 & 1.00 & 118.00 & 1428.22 & 303.79 & 1388.50 & 1416.18 & 381.77 & 1012.00 & 1966.00 & 954.00 & 0.26 & -1.46 & 27.97 \\ 
-  X11 & 1.00 & 160.00 & 1486.67 & 295.94 & 1486.00 & 1488.07 & 418.09 & 1005.00 & 1997.00 & 992.00 & -0.02 & -1.24 & 23.40 \\ 
-  X12 & 1.00 & 216.00 & 1538.59 & 304.77 & 1553.50 & 1545.30 & 398.08 & 1010.00 & 1997.00 & 987.00 & -0.08 & -1.31 & 20.74 \\ 
-  X13 & 1.00 & 271.00 & 1549.43 & 283.26 & 1574.00 & 1559.74 & 397.34 & 1001.00 & 1976.00 & 975.00 & -0.18 & -1.27 & 17.21 \\ 
-  X14 & 1.00 & 268.00 & 1504.66 & 289.40 & 1499.00 & 1506.81 & 381.03 & 1003.00 & 1999.00 & 996.00 & -0.05 & -1.17 & 17.68 \\ 
-  X15 & 1.00 & 186.00 & 1481.70 & 276.89 & 1473.00 & 1478.59 & 388.44 & 1021.00 & 1994.00 & 973.00 & 0.07 & -1.16 & 20.30 \\ 
-  X16 & 1.00 & 529.00 & 1527.63 & 243.81 & 1555.00 & 1536.83 & 260.94 & 1001.00 & 1999.00 & 998.00 & -0.33 & -0.55 & 10.60 \\ 
-  X17 & 1.00 & 273.00 & 1531.97 & 306.05 & 1619.00 & 1544.47 & 364.72 & 1000.00 & 1989.00 & 989.00 & -0.35 & -1.19 & 18.52 \\ 
-  X18 & 1.00 & 370.00 & 1461.87 & 249.90 & 1477.50 & 1457.82 & 280.95 & 1001.00 & 1982.00 & 981.00 & 0.15 & -1.01 & 12.99 \\ 
-  X19 & 1.00 & 307.00 & 1555.69 & 297.27 & 1629.00 & 1567.29 & 323.21 & 1007.00 & 1996.00 & 989.00 & -0.39 & -1.11 & 16.97 \\ 
-  X110 & 1.00 & 213.00 & 1452.33 & 266.82 & 1359.00 & 1437.68 & 263.90 & 1036.00 & 1988.00 & 952.00 & 0.44 & -0.91 & 18.28 \\ 
-  X111 & 1.00 & 278.00 & 1452.09 & 310.35 & 1399.00 & 1446.56 & 395.85 & 1000.00 & 1997.00 & 997.00 & 0.19 & -1.43 & 18.61 \\ 
-   \hline
-\end{tabular}
+% % ############################################
+% \groupintrosigsig{Month}{TLCar}{arbis}{matched}
+% \begin{table}[ht!]
+% 	\tiny
+% 	\setlength{\tabcolsep}{4pt}
+% 	\centering
+% 	\begin{tabular}{rrrrrrrrrrrr}
+% 		\toprule
+% 		  & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov \\ 
+% 		\midrule
+% 		Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+% 		Mar & 0.05 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+% 		Apr & 0.01 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+% 		May & 0.85 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+% 		Jun & 1.00 & 1.00 & 1.00 & 0.46 & 1.00 &  &  &  &  &  &  \\ 
+% 		Jul & 0.05 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+% 		Aug & 0.22 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+% 		Sep & 1.00 & 1.00 & 0.08 & 0.00 & 1.00 & 1.00 & 0.00 & 0.04 &  &  &  \\ 
+% 		Oct & 0.04 & 1.00 & 1.00 & 1.00 & 1.00 & 0.40 & 0.73 & 1.00 & 0.00 &  &  \\ 
+% 		Nov & 1.00 & 1.00 & 0.10 & 0.03 & 1.00 & 1.00 & 0.00 & 0.16 & 1.00 & 0.00 &  \\ 
+% 		Dec & 1.00 & 1.00 & 0.08 & 0.00 & 1.00 & 1.00 & 0.04 & 0.28 & 1.00 & 0.02 & 1.00 \\ 
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Time-loss Car}}
+% 	\label{tbl:wilcoxon_arbis_matched_Month_TLCar}
+% \end{table}
+% It shows that most groups have significantly differences to another group. The groups of  differ from a relative high number of groups.
+% % #### START: Table and Plot
+% \pgfplotstableread[col sep=comma,header=false]{
+% 	Jan , 118 , 1428.22 , 303.79 , 1388.5 , 1012 , 1966 , 954 
+% 	Feb , 160 , 1486.67 , 295.94 , 1486.0 , 1005 , 1997 , 992
+% 	Mar , 216 , 1538.59 , 304.77 , 1553.5 , 1010 , 1997 , 987
+% 	Apr , 271 , 1549.43 , 283.26 , 1574.0 , 1001 , 1976 , 975
+% 	May , 268 , 1504.66 , 289.40 , 1499.0 , 1003 , 1999 , 996
+% 	Jun , 186 , 1481.70 , 276.89 , 1473.0 , 1021 , 1994 , 973 
+% 	Jul , 529 , 1527.63 , 243.81 , 1555.0 , 1001 , 1999 , 998
+% 	Aug , 273 , 1531.97 , 306.05 , 1619.0 , 1000 , 1989 , 989
+% 	Sep , 370 , 1461.87 , 249.90 , 1477.5 , 1001 , 1982 , 981 
+% 	Oct , 307 , 1555.69 , 297.27 , 1629.0 , 1007 , 1996 , 989
+% 	Nov , 213 , 1452.33 , 266.82 , 1359.0 , 1036 , 1988 , 952 
+% 	Dec , 278 , 1452.09 , 310.35 , 1399.0 , 1000 , 1997 , 997 
+% }\data
+% \pgfplotstablecreatecol[
+%   create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+% ]{sum}{\data}
+% \begin{figure}[ht!]
+% 	\centering
+% 	\begin{minipage}{0.5\textwidth}
+% 		\tiny
+% 		\setlength{\tabcolsep}{4pt}
+% 		\centering
+% 		\begin{tabular}{c|c|c|c|c|c|c|c}
+% 			\toprule
+% 			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+% 			\midrule
+% 			Jan & 118 & 1428.22 & 303.79 & 1388.50 & 1012 & 1966 & 954 \\ 
+% 			Feb & 160 & 1486.67 & 295.94 & 1486.00 & 1005 & 1997 & 992 \\
+% 			Mar & 216 & 1538.59 & 304.77 & 1553.50 & 1010 & 1997 & 987 \\
+% 			Apr & 271 & 1549.43 & 283.26 & 1574.00 & 1001 & 1976 & 975 \\
+% 			May & 268 & 1504.66 & 289.40 & 1499.00 & 1003 & 1999 & 996 \\
+% 			Jun & 186 & 1481.70 & 276.89 & 1473.00 & 1021 & 1994 & 973 \\ 
+% 			Jul & 529 & 1527.63 & 243.81 & 1555.00 & 1001 & 1999 & 998 \\
+% 			Aug & 273 & 1531.97 & 306.05 & 1619.00 & 1000 & 1989 & 989 \\
+% 			Sep & 370 & 1461.87 & 249.90 & 1477.50 & 1001 & 1982 & 981 \\ 
+% 			Oct & 307 & 1555.69 & 297.27 & 1629.00 & 1007 & 1996 & 989 \\
+% 			Nov & 213 & 1452.33 & 266.82 & 1359.00 & 1036 & 1988 & 952 \\ 
+% 			Dec & 278 & 1452.09 & 310.35 & 1399.00 & 1000 & 1997 & 997 \\ 
+% 			\bottomrule
+% 			% \bar{x} - sum = , mean = 
+% 			% \sigma - sum = , mean = 
+% 			% \tilde{x} 
+% 		\end{tabular}
+% 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_TLCar}
+% 	\end{minipage}%
+% 	\begin{minipage}{0.55\textwidth}
+% 		\tiny
+% 		\centering
+% 		\begin{tikzpicture}
+% 			\begin{axis}[
+% 				width=\textwidth,
+% 				height=5cm,
+% 				xmajorgrids=true,
+% 				ymajorgrids=true,
+% 				xtick=data,
+% 				xmin=0,xmax=12,
+% 				xticklabels from table={\data}{[index]0},
+% 				% zusätzliche Beschriftung an y-Achse
+% 				every extra y tick/.style={
+% 					tick0/.initial=blue,
+% 					tick1/.initial=red,
+% 					yticklabel style={
+% 						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+% 					},
+% 				},
+% 				extra y ticks={3238,2655},
+% 			]
+% 			\addplot table [absolute series=2] {\data};
+% 			\addplot table [absolute series=3] {\data};
+% 			\addplot table [absolute series=4] {\data};
+% 			\legend{
+% 				$\bar{x}$,$\sigma$,$\tilde{x}$}
+% 			\end{axis}
+% 		 \end{tikzpicture}\vfill
+% 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_TLCar}
+% 	\end{minipage}%
+% 	\caption{Group descriptives of \textit{Month} and \textit{Time-loss Car}}
+% 	%\vspace{-8mm}
+% \end{figure}
+% % #### END: Table and Plot
+% With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_TLCar,fig:descriptives_arbis_matched_Month_TLCar} is can be interpreted that roadworks in  result in significantly spatial longer jams than the average. The roadwork jams in  tend to be significantly spatial shorter than the average.

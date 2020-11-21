@@ -57,19 +57,20 @@ All relations of \textit{Strasse} - \textit{TMax}, \textit{Strasse} - \textit{TA
 \centerheading{Kat}
 Both relations of \textit{Kat} - \textit{TMax} and \textit{Kat} - \textit{SAvg} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences in the variable \textit{Kat} in these relations.
 
-% ------------------------
+% -----------------------
 % -------- UArt ---------
-% ------------------------
+% -----------------------
 \centerheading{UArt}
 All relations of \textit{UArt1} - \textit{TAvg}, \textit{UArt1} - \textit{SAvg}, \textit{UArt1} - \textit{TDist}, \textit{UArt1} - \textit{Cov}, \textit{UArt1} - \textit{TLHGV} and \textit{UArt2} - \textit{TDist} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences in the variable \textit{Strasse} in these relations.
 
-% ------------------------
+% -----------------------
 % -------- AUrs ---------
-% ------------------------
+% -----------------------
 \centerheading{AUrs}
-This section analyzes the correlated relations of the accident variable \textit{AUrs1}. The correlations of \textit{AUrs1} - \textit{TDist} and \textit{AUrs1} - \textit{TLHGV} produces a $p$-value above the $\alpha$-level of .05 in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected for these relations and there are no significant groups to identify.
+\varintrosimplewithsam{AUrs} \varintronosigmul{AUrs}{\textit{AUrs1} - \textit{TDist} and \textit{AUrs1} - \textit{TLHGV}}
 
-The Kruskal-Wallis rank sum test of \textit{AUrs1} - \textit{SDist} produces a $p$-value of 0.0372, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference in the variable \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AUrs1} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_follower_AUrs1_SDist}. 
+% ##############################################
+\groupintrosig{AUrs1}{SDist}{0.0372}{baysis}{follower}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -81,7 +82,7 @@ The Kruskal-Wallis rank sum test of \textit{AUrs1} - \textit{SDist} produces a $
 		73 & 0.10 & 0.35 &  &  &  &  \\ 
 		80 & 1.00 &  & 1.00 &  &  &  \\ 
 		82 & 1.00 &  & 1.00 &  &  &  \\ 
-		88 & 0.40 & 0.04 & 1.00 & 1.00 & 0.55 &  \\ 
+		88 & 0.40 & \red{0.04} & 1.00 & 1.00 & 0.55 &  \\ 
 		89 & 1.00 &  & 1.00 &  &  & 1.00 \\ 
 		\bottomrule
 	  \end{tabular}
@@ -90,7 +91,8 @@ The Kruskal-Wallis rank sum test of \textit{AUrs1} - \textit{SDist} produces a $
 \end{table}
 The tables shows that the differences are not group specific, which means that the relation can be neglected (see \cref{correlation_posthoc}). \todo{Add descriptives}
 
-The Kruskal-Wallis rank sum test of \textit{AUrs1} - \textit{Cov} produces a $p$-value of 0.0024, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference in the variable \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AUrs1} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_follower_AUrs1_Cov}. 
+% ##############################################
+\groupintrosig{AUrs1}{Cov}{0.0372}{baysis}{follower}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -115,22 +117,22 @@ The tables shows that the differences are not group specific, which means that t
 % -------- AufHi ---------
 % ------------------------
 \centerheading{AufHi}
-All relations of \textit{AufHi} - \textit{TMax}, \textit{AufHi} - \textit{TAvg} and \textit{AufHi} - \textit{Cov} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences in the variable \textit{AufHi} in these relations.
+\varintronosigmul{AufHi}{\textit{AufHi} - \textit{TMax}, \textit{AufHi} - \textit{TAvg} and \textit{AufHi} - \textit{Cov}}
 
 % ------------------------
 % -------- Lich1 ---------
 % ------------------------
 \centerheading{Lich}
-The relation of \textit{Lich1} - \textit{Cov} produce a $p$-value above $\alpha$ in the Kruskal-Wallis rank sum test. The null hypothesizes can't be rejected and there are no significant differences in the variable \textit{Lich1}.
+\varintronosigsing{Lich1}{Cov}
 
 % ------------------------
 % -------- WoTag ---------
 % ------------------------
 \centerheading{WoTag}
-All relations of \textit{WoTag} - \textit{TMax}, \textit{WoTag} - \textit{SMax}, \textit{WoTag} - \textit{SAvg}, \textit{WoTag} - \textit{TDist}, \textit{WoTag} - \textit{Cov} and \textit{WoTag} - \textit{TLHGV} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences in the variable \textit{WoTag} in these relations.
+\varintronosigmul{WoTag}{\textit{WoTag} - \textit{TMax}, \textit{WoTag} - \textit{SMax}, \textit{WoTag} - \textit{SAvg}, \textit{WoTag} - \textit{TDist}, \textit{WoTag} - \textit{Cov} and \textit{WoTag} - \textit{TLHGV}}
 
 % ------------------------
 % -------- Month ---------
 % ------------------------
 \centerheading{Month}
-All relations of \textit{Month} - \textit{TMax}, \textit{Month} - \textit{SMax}, \textit{Month} - \textit{SAvg}, \textit{Month} - \textit{Cov} and \textit{Month} - \textit{TLHGV} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences in the variable \textit{Month} in these relations.
+\varintronosigmul{Month}{\textit{Month} - \textit{TMax}, \textit{Month} - \textit{SMax}, \textit{Month} - \textit{SAvg}, \textit{Month} - \textit{Cov} and \textit{Month} - \textit{TLHGV}}

@@ -604,9 +604,10 @@ The descriptives in \cref{tbl:descriptives_baysis_matched_UArt_Cov} reveal that 
 % -------- AUrs ---------
 % -----------------------
 \centerheading{AUrs}
-This section analyzes the correlated relations of the accident variable \textit{AUrs}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{AUrs} is shown in \cref{tbl:baysis_dataset_AUrs}. The variable value of group 0, which occurs in the dataset is undefined by BAYSIS and will be therefore neglected for the interpretation. The Kruskal-Wallis tests of \textit{AUrs}-\textit{SDist} and \textit{AUrs}-\textit{TLHGV} produce a $p$-values above the $\alpha$-level. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{SDist} for these relations.
 
-The Kruskal-Wallis test of \textit{AUrs}-\textit{SAvg} produces a $p$-value of 0.0228, which is below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{AUrs}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AUrs}-\textit{SAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_AUrs_Cov}.
+\varintrowithsam{baysis}{AUrs} The variable value of group 0, which occurs in the dataset is undefined by BAYSIS and will be therefore neglected for the interpretation. \varintronosigmul{AUrs}{SDist}{\textit{AUrs}-\textit{SDist} and \textit{AUrs}-\textit{TLHGV}} 
+
+\groupintrosig{AUrs}{SAvg}{0.0228}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -633,7 +634,7 @@ The Kruskal-Wallis test of \textit{AUrs}-\textit{SAvg} produces a $p$-value of 0
 	\caption{Pairwise Wilcoxon $T$-test for \textit{AUrs} and \textit{Average Spatial Extent}}
 	\label{tbl:wilcoxon_baysis_matched_AUrs_SAvg}
 \end{table}
-The significances in \cref{tbl:wilcoxon_baysis_matched_AUrs_SAvg} show that only group 88 differs from 0 and 72. This is to be expected, because of the retained variable (see \cref{baysis_dataset_AUrs}). 
+It shows that only group 88 differs from 0 and 72. This is to be expected, because of the retained variable (see \cref{baysis_dataset_AUrs}). 
 \begin{table}[ht!]
 	\small
 	\centering

@@ -7,3 +7,31 @@
 
 % The "\todo{this still has to be done}" is a command that highlights todos in the text.
 \newcommand{\todo}[1]{\textcolor{vscodered}{TODO: \texttt{#1}}}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+
+\usepackage{textcomp}
+\newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
+
+
+% Text snippets
+
+% Variable Analysis Intro with uncertainty
+\newcommand{\varintrosimplewithsam}[1]{This section analyzes the correlated relations of the accident variable \textit{#1}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered.}
+% Variable Analysis Intro without uncertainty
+\newcommand{\varintrosimplewithoutsam}[1]{This section analyzes the correlated relations of the accident variable \textit{#1}.}
+
+% Variable Analysis Intro with uncertainty
+\newcommand{\varintrowithsam}[2]{This section analyzes the correlated relations of the accident variable \textit{#2}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{#2} is shown in \cref{tbl:#1_dataset_#2}.}
+% Variable Analysis Intro without uncertainty
+\newcommand{\varintrowithoutsam}[2]{This section analyzes the correlated relations of the accident variable \textit{#2}. The encoding and description of the variable \textit{#2} is shown in \cref{tbl:#1_dataset_#2}.}
+
+% Variable Analysis Intro when a single relation shows no significance
+\newcommand{\varintronosigsing}[2]{The Kruskal-Wallis test of \textit{#1} - \textit{#2} results in a $p$-value above the defined $\alpha$-level. Therefore the null hypothesis can't be rejected and no significant difference in \textit{#2} for the relations of \textit{#1} are present.}
+% Variable Analysis Intro when multiple relations show no significance
+\newcommand{\varintronosigmul}[3]{The Kruskal-Wallis tests of #3 result $p$-values above the defined $\alpha$-level. Therefore the null hypothesis can't be rejected and no significant difference in \textit{#2} for these relations are present.}
+
+% Group Analysis Intro with significant alpha and above .0001
+\newcommand{\groupintrosig}[5]{The Kruskal-Wallis test of the relation \textit{#1} - \textit{#2} produces a $p$-value of #3, which is below the defined $\alpha$-level. Therefore the null hypothesis can be rejected, meaning that there are significant differences in \textit{#2} between the groups of \textit{#1}. The significant groups can be identified with a pairwise Wilcoxon $T$-test, which is shown in \cref{tbl:wilcoxon_#4_#5_#1_#2}.}
+% Group Analysis Intro with significant alpha and below .0001
+\newcommand{\groupintrosigsig}[4]{The Kruskal-Wallis test of the relation \textit{#1} - \textit{#2} produces a $p$-value below .0001, which is far below the defined $\alpha$-level. Therefore the null hypothesis can be rejected, meaning that there are strong significant differences in \textit{#2} between the groups of \textit{#1}. The significant groups can be identified with a pairwise Wilcoxon $T$-test, which is shown in \cref{tbl:wilcoxon_#3_#4_#1_#2}.}

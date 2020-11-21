@@ -12,10 +12,10 @@ The correlation matrix table for the congestion - accident dataset, which are cl
 		\midrule
 		Strasse & TMax, TAvg, SMax, SAvg, Cov, TLCar \\ 
  		Kat & TMax, TAvg, SMax, SAvg \\ % -> Strasse
- 		Typ & SAvg, TDist, Cov \\  % -> Strasse
- 		%Betei & \\ + TMax
+ 		Typ & SAvg, TDist, Cov \\ % -> Strasse
+ 		%Betei & \\
  		UArt1 & TMax, TAvg, SMax, SAvg, TDist, Cov, TLCar \\
- 		%UArt2 & \\  % -> Strasse
+ 		%UArt2 & \\ % -> Strasse
  		AUrs1 & TMax, TAvg, SMax, SAvg, TDist, Cov, TLHGV \\ % -> Strasse
  		AUrs2 & TMax, TAvg, SAvg, TDist \\
  		AufHi & TMax, TAvg, TDist, Cov \\
@@ -36,7 +36,7 @@ The correlation matrix table for the congestion - accident dataset, which are cl
 	\caption{List of incident variables and their strong correlated congestion variable from the congestion-accident matched data which are classified as \textit{Jam Initiator}}
 	\label{tbl:correlation_list_baysis_initiator}
 \end{table}
-Next we need to verify that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \cref{correlation_posthoc}. In the following sections, the correlated relations of the variables in \cref{tbl:correlation_list_baysis_initiator} are analyzed and an initial interpretation of each significant correlation is introduced. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not shown. The descriptive tables, showing the count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) therefore only contain groups with significant sample sizes.
+Next we need to verify that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \cref{correlation_posthoc}. \secintroend{baysis}{initiator}
 \begin{figure}[!ht]
 	\centering
 	\makebox[\textwidth][c]{%

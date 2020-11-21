@@ -38,7 +38,8 @@ Next we need to verify that the correlation is significant and what the correlat
 \centerheading{Strasse}
 \varintrosimplewithsam{Strasse}
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TMax} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_TMax}. 
+% ##############################################
+\groupintrosigsig{Strasse}{TMax}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -155,7 +156,8 @@ The table shows, that the groups A3 and A93 differ from group A9, A7 and A6. The
 \end{figure}
 With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TMax} and the named significant differences it can be interpreted that roadworks on the A3 result in 80\,\% longer $\bar{x}$ than on the A9, A7 and A6. The A70 has a similar difference. Roadworks on the A96 and A995 result in significantly shorter $\bar{x}$ than on the A3 and A99.
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{TAvg} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_TAvg}. 
+% ##############################################
+\groupintrosigsig{Strasse}{TAvg}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -272,7 +274,8 @@ The table shows, that the groups A99 and A93 differ from group A9 and A7. The A9
 \end{figure}
 With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TAvg,fig:descriptives_arbis_matched_Strasse_TAvg} it can be interpreted that roadworks on the A73, A93, A99 and A995 result in significantly shorter jams than on the A3, A7, A70, A92 and A94. 
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SMax} produces a $p$-value of < 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Strasse}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_SMax}. 
+% ##############################################
+\groupintrosigsig{Strasse}{SMax}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -390,7 +393,8 @@ The table shows, that the groups A3 and A93 differ from group A6, A7, A70, A73, 
 % #### END: Table and Plot
 With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SMax,fig:descriptives_arbis_matched_Strasse_SMax} it can be interpreted that roadworks on the A3, A9, A6 A99 and A73 result in significantly longer jams than on the A96, A92, A94, A93 and A70.
 
-The Kruskal-Wallis rank sum test of \textit{Strasse} - \textit{SAvg} produces a $p$-value of < 0.0001, which is far below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference in \textit{SAvg}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Strasse} - \textit{SAvg} is run, which produces \cref{tbl:wilcoxon_arbis_matched_Strasse_SAvg}. 
+% ##############################################
+\groupintrosigsig{Strasse}{SAvg}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -507,6 +511,7 @@ It shows, that the groups A99, A96 and A93 differ from group A9 and A3. The A93 
 % #### END: Table and Plot
 With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SAvg,fig:descriptives_arbis_matched_Strasse_SAvg} it can be interpreted that roadworks on the A3, A9 and A93 result in significantly longer jams than on the A92, A93, A96 and A73.
 
+% ###############################################
 \groupintrosigsig{Strasse}{TDist}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny
@@ -624,6 +629,7 @@ It shows, that the groups A7, A3 and A92 differ from group A9. The A96 differs f
 % #### END: Table and Plot
 The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TDist,fig:descriptives_arbis_matched_Strasse_TDist} don't show a clear interpretation, although the A9 shows a clear maximum and A92 a clear minimum.
 
+% ###############################################
 \groupintrosigsig{Strasse}{SDist}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny
@@ -741,6 +747,7 @@ It shows that the groups A3, A73, A93, A94 and A99 differ significantly.
 % #### END: Table and Plot
 With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SDist,fig:descriptives_arbis_matched_Strasse_SDist} it can be interpreted that the roads A94 and A99 have a higher spatial distance than the A73 and A93.
 
+% #############################################
 \groupintrosigsig{Strasse}{Cov}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny
@@ -858,6 +865,7 @@ It shows that the groups A3, A7, A70, A73, A9, A92, A93, A94, A96, A99 and A995 
 % #### END: Table and Plot
 With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_Cov,fig:descriptives_arbis_matched_Strasse_Cov} it can be interpreted that the road A70, A92, A93, and A96 have a significantly higher coverage than the A3, A73 and A99.
 
+% ###############################################
 \groupintrosigsig{Strasse}{TLCar}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny
@@ -975,6 +983,7 @@ It shows that the groups A3, A7, A70, A73, A92, A93, A94, A96 and A99 differ sig
 % #### END: Table and Plot
 Although the groups differ significantly, the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TLCar,fig:descriptives_arbis_matched_Strasse_TLCar} don't proved interpretable differences.
 
+% ###############################################
 \groupintrosigsig{Strasse}{TLHGV}{arbis}{matched}
 \begin{table}[ht!]
 	\tiny

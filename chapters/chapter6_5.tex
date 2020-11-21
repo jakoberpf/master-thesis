@@ -88,6 +88,7 @@ The table shows, that the groups A3 and A93 differ from group A9, A7 and A6. The
 	\centering
 	\begin{minipage}{0.5\textwidth}
 		\tiny
+		\setlength{\tabcolsep}{4pt}
 		\centering
 		\begin{tabular}{c|c|c|c|c|c|c|c}
 			\toprule
@@ -112,7 +113,7 @@ The table shows, that the groups A3 and A93 differ from group A9, A7 and A6. The
 		\end{tabular}
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_TMax}
 	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.55\textwidth}
 		\tiny
 		\centering
 		% https://texwelt.de/fragen/26286/zwei-gruppen-bei-einem-gestapelten-balkendiagramm-und-zentrierte-balkenbeschriftungen
@@ -125,7 +126,7 @@ The table shows, that the groups A3 and A93 differ from group A9, A7 and A6. The
 				xmajorgrids=true,
 				ymajorgrids=true,
 				xtick=data,
-				xmin=0.5,
+				xmin=0,xmax=12,
 				% xticklabels={A9,A7,A70,A71,A6,A73,A3,A99,A96,A995,A92,A93,A94},
 				xticklabels from table={\data}{[index]0},
 				% zusätzliche Beschriftung an y-Achse
@@ -205,6 +206,7 @@ The table shows, that the groups A99 and A93 differ from group A9 and A7. The A9
 	\centering
 	\begin{minipage}{0.5\textwidth}
 		\tiny
+		\setlength{\tabcolsep}{4pt}
 		\centering
 		\begin{tabular}{c|c|c|c|c|c|c|c}
 			\toprule
@@ -230,7 +232,7 @@ The table shows, that the groups A99 and A93 differ from group A9 and A7. The A9
 		\end{tabular}
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_TAvg}
 	\end{minipage}%
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.55\textwidth}
 		\tiny
 		\centering
 		\begin{tikzpicture}

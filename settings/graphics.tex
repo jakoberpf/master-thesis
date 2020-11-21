@@ -15,3 +15,34 @@
 
 % plotting latex figures
 \usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\pgfplotsset{
+  percentage series/.style={
+    table/y expr=(\thisrow{#1}/\thisrow{sum}*100),
+    table/meta=#1,
+    table/x expr=\coordindex,
+  },
+  absolute series/.style={
+    table/y expr=(\thisrow{#1}),
+    table/meta=#1,
+    table/x expr=\coordindex,
+  },
+  percentage plot/.style={
+    axis line style={draw=none},% Achsen nicht zeichnen
+    tick pos=lower,% y-Ticks links, x-Ticks unten
+    tick align=outside,% Ticks nach außen antragen,
+    tick style={draw=none},% aber nicht zeichnen
+    % Beschriftung in Balken:
+    nodes near coords,
+    point meta=explicit,
+    every node near coord/.append style={text=black},
+    % Bereich und Beschriftung der y-Achse:
+    ymin=0,ymax=100,
+    ytick={0,20,...,100},
+    yticklabel=\pgfmathprintnumber{\tick}\,$\%$,
+    % Gitterlinien für y-Ticks
+    ymajorgrids=true,
+    grid style={draw=none}
+  }
+}

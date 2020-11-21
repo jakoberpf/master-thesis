@@ -19,10 +19,7 @@ As with the congestion - accident datasets in \cref{analysis_processing_correlat
   \caption{List of incident variables and their strong/moderated correlated jam variable from the ArbIS matched data}
   \label{tbl:correlation_list_arbis_matched}
 \end{table}
-As \cref{tbl:correlation_list_arbis_matched} show, only the variables Strasse and Month are correlated with congestion characteristics. Both variables tend to bias an interpretation of congestion characteristics because the 
-
-
-Next we need to verify that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \cref{correlation_posthoc}. In the following sections, the correlated relations of the variables in \cref{tbl:correlation_list_arbis_matched} are analyzed and an initial interpretation of each significant correlation is introduced. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not shown. The descriptive tables, showing the count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) therefore only contain groups with significant sample sizes.
+As \cref{tbl:correlation_list_arbis_matched} show, only the variables Strasse and Month are correlated with congestion characteristics. Both variables aren't actually roadworks specific characteristics but more general features. They still will be evaluated to identify possible dependencies. For that it needs to be verified that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \cref{correlation_posthoc}. \secintroend{arbis}{matched}
 \begin{figure}[!ht]
 	\centering
 	\makebox[\textwidth][c]{%
@@ -130,7 +127,6 @@ The table shows, that the groups A3 and A93 differ from group A9, A7 and A6. The
 				ymajorgrids=true,
 				xtick=data,
 				xmin=0,xmax=12,
-				% xticklabels={A9,A7,A70,A71,A6,A73,A3,A99,A96,A995,A92,A93,A94},
 				xticklabels from table={\data}{[index]0},
 				% zusätzliche Beschriftung an y-Achse
 				every extra y tick/.style={

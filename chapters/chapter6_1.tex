@@ -36,7 +36,7 @@ The correlation matrix table for the complete congestion-accident matched datase
 	\caption{List of incident variables and their strong correlated congestion variable from the congestion-accident matched data}
 	\label{tbl:correlation_list_baysis_matched}
 \end{table}
-Next we need to verify that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \cref{correlation_posthoc}. In the following sections, the correlated relations of the variables in \cref{tbl:correlation_list_baysis_matched} are analyzed and an interpretation of each significant correlation is introduced. Groups with an insufficient sample size (see \cref{correlation_uncertainty}) are neglected and not shown. The descriptive tables, showing the count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) therefore only contain groups with significant sample sizes.
+Next we need to verify that the correlation is significant and what the correlation predicates. Therefore each correlation will be evaluated with the Post Hoc test, defined in \cref{correlation_posthoc}. \secintroend{baysis}{matched}
 \begin{figure}[!ht]
 	\centering
 	\makebox[\textwidth][c]{%
@@ -50,9 +50,12 @@ Next we need to verify that the correlation is significant and what the correlat
 % -------- Strasse ---------
 % --------------------------
 \centerheading{Street}
-This section analyzes the correlated relations of the accident variable \textit{Str}. The correlations of \textit{Str} - \textit{TDist} and \textit{Str} - \textit{SDist} produces a $p$-value above the $\alpha$-level in the Kruskal-Wallis test. The null hypothesis therefore can't be rejected for these relations and there are no significant groups to identify.
+\label{ana:baysis_matched_Str}
+\varintrosimplewithsam{Str}
+\varintronosigmul{Str}{\textit{Str} - \textit{TDist} and \textit{Str} - \textit{SDist}}
 
-The Kruskal-Wallis test of \textit{Str} - \textit{TMax} produces a $p$-value below 0.0001, which is below the $\alpha$-level. The null hypothesis can therefore be rejected, which means that there is a significant difference between the groups of \textit{Str}. To identify the significant groups the pairwise Wilcoxon $T$-test of \textit{Str}-\textit{TMax} produces \cref{tbl:wilcoxon_baysis_matched_Str_TMax}. 
+% ##############################################
+\groupintrosigsig{Str}{TMax}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -109,7 +112,8 @@ It shows that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from grou
 \end{table}
 The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TMax} show that the mean value of A3 is 27\,\% - 57\,\% higher than the means of A6, A7, A9, A70, A73, A92, and A94. It can be interpreted that accidents on the A3 are associated with significantly longer (temporal) jams than on the A6, A9, A7, A70, A73, A92, and A94. The $\sigma$ supports this interpretation of by $\bar{x}$. The descriptives clearly show three ranked groups of short (A94, A93, A92, A70), medium (A99, A73, A7, A96, A9, A6) and long (A3).
 
-The Kruskal-Wallis test of \textit{Str} - \textit{TAvg} produces a $p$-value of 0.0004, which is below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Str}. To identify the significant groups the pairwise Wilcoxon $T$-test of \textit{Str}-\textit{TAvg} produces \cref{tbl:wilcoxon_baysis_matched_Str_TAvg}. 
+% ##############################################
+\groupintrosig{Str}{TAvg}{0.0004}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -166,7 +170,8 @@ The table shows, that the groups A73 and A99 differ from group A3, but there is 
 \end{table}
 The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg} show that the mean value of A3 is about $\frac{1}{3}$ higher than the means of A73 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on A73 and A96. The descriptives also show general increase of $\bar{x}$ and $\sigma$ around 35\,\% between the roads A94, A92, A73 and A70 to A3, A6, A7 and A9.
 
-The Kruskal-Wallis test of \textit{Str} - \textit{SMax} produces a $p$-value below 0.0001, which is below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Str}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Str} - \textit{SMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Str_SMax}.
+% ##############################################
+\groupintrosigsig{Str}{TAvg}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -223,7 +228,8 @@ The Kruskal-Wallis test of \textit{Str} - \textit{SMax} produces a $p$-value bel
 \end{table}
 The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SMax} show that the mean of A3 is 44\,\% - 66\,\% higher than the means of A7, A9, A70, A73, A92, A94 and A96. It also shows that the groups A6, A9 and A99 have a up to 50\,\% higher mean than the groups A73 and A92. We can interpret that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96. Based on the $\bar{x}$ and $\sigma$ the roads can be separated into three groups of short (A94, A93, A92, A73 and A70), medium (A96 and A7) and long (A3, A6, A9 and A99).
 
-The Kruskal-Wallis test of \textit{Str} - \textit{SAvg} produces a $p$-value of 0.0027, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Str}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Str} - \textit{SAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Str_SAvg}.
+% ##############################################
+\groupintrosig{Str}{SAvg}{0.0027}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -280,7 +286,8 @@ The Kruskal-Wallis test of \textit{Str} - \textit{SAvg} produces a $p$-value of 
 \end{table}
 The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SAvg} show that the mean of A3 is 45\,\% - 55\,\% higher the means of A70, A73, A92, A93, A94, A96 and A99. It also shows that the means of the groups A6, A9 and A99 is about 30\,\% higher mean than the groups A73 and A94. We can interpret that accidents on the A3, A6, A9 and A99 lead are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99. The groups can be separated into two groups based on $\bar{x}$ and $\sigma$. A3, A6, A9 and A7 tend to have longer (spatial) longer jams when A70, A96, A73, A99, A92, A93 and A94 tend to have shorter (spatial) jams.
 
-The Kruskal-Wallis test of \textit{Str} - \textit{Cov} produces a $p$-value of 0.0018, which is below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Str}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Str} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Str_Cov}. 
+% ##############################################
+\groupintrosig{Str}{Cov}{0.0018}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\setlength{\tabcolsep}{4pt}
@@ -342,9 +349,10 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov} show that t
 % ----------------------
 \centerheading{Kat}
 \label{ana:baysis_global_Kat}
-This section analyzes the correlated relations of the accident variable \textit{Kat}. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis rank sum test of \textit{Kat} - \textit{SAvg} produces a $p$-value above $\alpha$. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Kat} in this relation.
+\varintrosimplewithsam{Kat} \varintronosigsing{Kat}{SAvg}
 
-The Kruskal-Wallis test of \textit{Kat} - \textit{TMax} produces a $p$-value of 0.0068, which is below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat} - \textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TMax}.
+% ##############################################
+\groupintrosig{Kat}{TMax}{0.0068}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -604,7 +612,6 @@ The descriptives in \cref{tbl:descriptives_baysis_matched_UArt_Cov} reveal that 
 % -------- AUrs ---------
 % -----------------------
 \centerheading{AUrs}
-
 \varintrowithsam{baysis}{AUrs} The variable value of group 0, which occurs in the dataset is undefined by BAYSIS and will be therefore neglected for the interpretation. \varintronosigmul{AUrs}{SDist}{\textit{AUrs}-\textit{SDist} and \textit{AUrs}-\textit{TLHGV}} 
 
 \groupintrosig{AUrs}{SAvg}{0.0228}{baysis}{matched}

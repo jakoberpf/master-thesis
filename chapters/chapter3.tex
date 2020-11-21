@@ -432,5 +432,73 @@ From the resulting matrix of $p$-values and the analog interpretation with the $
 
 A non significant difference between does not mean that there is no correlation, but only that the sample set and size can not support significancy. There are also cases, where the $p$-value of the correlation coefficient and the general Kruskal-Wallis rank sum test show significant differences in the variable, but the pairwise Wilcoxon ranked sum test does not show any significant differences between the groups. This unfitting difference between the \textit{global} and \textit{specific} significance appears when variables have differences between the samples, but the differences are not reflected by the groups or the sample size is not sufficient to support the significancy of the differences. These controversial correlations can also be evaluated in a exploratory data analysis, keeping in mind their limited interpretability and predictability.
 
+To find out what the significant, as well the non significant groups/differences are relating to in the variable, the descriptives of count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) are considered and presented as shown in \cref{tbl:descriptives_sample,fig:descriptives_sample}.
+\pgfplotstableread[col sep=comma,header=false]{
+	G1 , 0 , 70  , 60  , 50 
+	G2 , 0 , 90  , 95  , 70 
+	G3 , 0 , 100 , 110 , 80  
+	G4 , 0 , 110 , 115 , 90  
+	G5 , 0 , 130 , 150 , 110 
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			% G_1   & $n_1$  & $\bar{x}_1$ & $\sigma_1$ & $\tilde{x}_1$ & $min_1$ & $max_1$ & $\Delta_1$ \\ 
+			% ...   & ...    & ... 	   	 & ...	  	  & ...		      & ...   	& ... 	  & ... 	   \\ 
+			% G_n   & $n_n$  & $\bar{x}_n$ & $\sigma_n$ & $\tilde{x}_n$ & $min_n$ & $max_n$ & $\Delta_n$ \\ 
+			\bottomrule
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_sample}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		% https://texwelt.de/fragen/26286/zwei-gruppen-bei-einem-gestapelten-balkendiagramm-und-zentrierte-balkenbeschriftungen
+		% https://tex.stackexchange.com/questions/275229/forcing-all-axis-labels-to-display-in-a-plot
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				width=\textwidth,
+				height=5.5cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=4,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					tick2/.initial=brown,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				extra y ticks={100,110,80},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_sample}
+	\end{minipage}%
+	\caption{Group descriptives sample}
+	%\vspace{-8mm}
+\end{figure}
+From these the amount of difference between the groups can be deviated. 
+
 %\todo{Ergänze Effektstärke für Mann-Whitney-U}
 %https://statistikguru.de/spss/mann-whitney-u-test/effektstaerke-berechnen-3.html

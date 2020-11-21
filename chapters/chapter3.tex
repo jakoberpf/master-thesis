@@ -432,7 +432,7 @@ From the resulting matrix of $p$-values and the analog interpretation with the $
 
 A non significant difference between does not mean that there is no correlation, but only that the sample set and size can not support significancy. There are also cases, where the $p$-value of the correlation coefficient and the general Kruskal-Wallis rank sum test show significant differences in the variable, but the pairwise Wilcoxon ranked sum test does not show any significant differences between the groups. This unfitting difference between the \textit{global} and \textit{specific} significance appears when variables have differences between the samples, but the differences are not reflected by the groups or the sample size is not sufficient to support the significancy of the differences. These controversial correlations can also be evaluated in a exploratory data analysis, keeping in mind their limited interpretability and predictability.
 
-To find out what the significant, as well the non significant groups/differences are relating to in the variable, the descriptives of count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) are considered and presented as shown in \cref{tbl:descriptives_sample,fig:descriptives_sample}.
+To define what the significant, as well the non significant groups are referring in the variable, the statical indicators of count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) are considered. These a quite common for describing statical data and can be considered as robust. These indicators can be presented as table or visual plot, as shown in \cref{tbl:descriptives_sample,fig:descriptives_sample}.
 \pgfplotstableread[col sep=comma,header=false]{
 	G1 , 0 , 70  , 60  , 50 
 	G2 , 0 , 90  , 95  , 70 
@@ -453,9 +453,10 @@ To find out what the significant, as well the non significant groups/differences
 			\toprule
 			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
 			\midrule
-			% G_1   & $n_1$  & $\bar{x}_1$ & $\sigma_1$ & $\tilde{x}_1$ & $min_1$ & $max_1$ & $\Delta_1$ \\ 
-			% ...   & ...    & ... 	   	 & ...	  	  & ...		      & ...   	& ... 	  & ... 	   \\ 
-			% G_n   & $n_n$  & $\bar{x}_n$ & $\sigma_n$ & $\tilde{x}_n$ & $min_n$ & $max_n$ & $\Delta_n$ \\ 
+			$G_1$     & $n_1$  	  & $\bar{x}_1$ 	  & $\sigma_1$ 	   & $\tilde{x}_1$ 	   & $min_1$ 	 & $max_1$     & $\Delta_1$	 	\\ 
+			...   	  & ...    	  & ... 	   	 	  & ...	  	  	   & ...		       & ...   		 & ... 	  	   & ... 	   	    \\ 
+			$G_{n-1}$ & $n_{n-1}$ & $\bar{x}_{n-1}$   & $\sigma_{n-1}$ & $\tilde{x}_{n-1}$ & $min_{n-1}$ & $max_{n-1}$ & $\Delta_{n-1}$ \\ 
+			$G_n$     & $n_n$  	  & $\bar{x}_n$ 	  & $\sigma_n$ 	   & $\tilde{x}_n$ 	   & $min_n$ 	 & $max_n$ 	   & $\Delta_n$ 	\\ 
 			\bottomrule
 		\end{tabular}
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_sample}
@@ -498,7 +499,7 @@ To find out what the significant, as well the non significant groups/differences
 	\caption{Group descriptives sample}
 	%\vspace{-8mm}
 \end{figure}
-From these the amount of difference between the groups can be deviated. 
+The table show the values of all descriptives for all groups, when the figure on the right show a plot of mean ($\bar{x}$), standard deviation ($\sigma$) and median ($\tilde{x}$) with the color coded means From these the amount of difference between the groups can be deviated, by looking for outliners or distinct variances in the distributions, which can be interpreted accordingly. The indicators of $min$, $max$ and range ($\Delta$) can give clues what distributions should be expected and if the variable is sufficiently distributed. 
 
 %\todo{Ergänze Effektstärke für Mann-Whitney-U}
 %https://statistikguru.de/spss/mann-whitney-u-test/effektstaerke-berechnen-3.html

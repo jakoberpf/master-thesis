@@ -299,7 +299,76 @@
     	\label{table:appendix_coefficient_matrix_selected_duringJam}
     \end{sidewaystable}
     % \restoregeometry
-    
+
+    % -------- WoTag ---------
+    \begin{table}[ht!]
+        \tiny
+        \centering
+        \begin{tabular}{rrrrrrr}
+            \toprule
+               & Di & Do & Fr & Mi & Mo & Sa \\ 
+            \midrule
+            Do & 1.00 &  &  &  &  &  \\ 
+            Fr & 1.00 & 1.00 &  &  &  &  \\ 
+            Mi & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+            Mo & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+            Sa & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+            So & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+            \bottomrule
+          \end{tabular}
+        \caption{Pairwise Wilcoxon $T$-test for \textit{WoTag} and \textit{Maximal Spatial Extent} (Jam Effector)}
+        \label{tbl:wilcoxon_baysis_effector_WoTag_TMax}
+    \end{table}
+
+    % -------- Month ---------
+    \begin{table}[ht!]
+        \tiny
+        \centering
+        \begin{tabular}{rrrrrrrrrrrr}
+            \toprule
+                & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov \\ 
+            \midrule
+            Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+            Mar & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+            Apr & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+            May & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+            Jun & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+            Jul & 1.00 & 1.00 & 0.53 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+            Aug & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+            Sep & 1.00 & 1.00 & 0.82 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+            Oct & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.17 & 1.00 & 0.31 &  &  \\ 
+            Nov & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.00 & 0.15 & \red{0.01} & 1.00 &  \\ 
+            Dec & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.93 \\ 
+            \bottomrule
+        \end{tabular}
+        \caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Maximal Spatial Extent}}
+        \label{tbl:wilcoxon_baysis_effector_Month_SMax_complete}
+    \end{table}
+
+    \begin{table}[ht!]
+        \tiny
+        \centering
+        \begin{tabular}{rrrrrrrrrrrr}
+            \toprule
+                & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov \\ 
+            \midrule
+            Feb & 1.00 &  &  &  &  &  &  &  &  &  &  \\ 
+            Mar & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
+            Apr & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
+            May & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+            Jun & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
+            Jul & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+            Aug & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+            Sep & 1.00 & 1.00 & 0.79 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+            Oct & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+            Nov & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.83 & 1.00 & 0.08 & 1.00 &  \\ 
+            Dec & 1.00 & 1.00 & 0.33 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.07 \\ 
+            \bottomrule
+          \end{tabular}
+        \caption{Pairwise Wilcoxon $T$-test for \textit{Month} and \textit{Average Spatial Extent} (Jam Effector)}
+        \label{tbl:wilcoxon_baysis_effector_Month_SAvg}
+    \end{table}
+
     % -----------------------------------------------
     % ------- BAYSIS Selected - Jam Follower --------
     % -----------------------------------------------

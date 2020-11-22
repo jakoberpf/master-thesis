@@ -39,8 +39,6 @@ A look on the monthly distribution of accidents recorded by BAYSIS (see \cref{im
 	\vspace{-8mm}
 \end{figure}
 
-\clearpage
-
 \paragraph{Kat}
 \label{baysis_dataset_Kat}
 The accident category (shown in \cref{tbl:baysis_dataset_Kat} and visualized in \cref{img:baysis_dataset_Kat}), describes the which damages or injuries can be associated with the accident. It ranges from accident with just  damaged property, lightly and heavily injured to deathly accidents. The distribution develops from lowest to highs counts, in order of gravity of the category. The variable consists of four values, which can be ordered, and is therefore ordinal.
@@ -116,21 +114,21 @@ The accident cause type is defined by the two variables \textbf{UArt1} and \text
 		\toprule
 		Code & Count[1] & Count[2] & Freq. [\%] & Description \\ 
 		\midrule
- 		1 & 466		& 13	& & Collision with starting, standing or stopping vehicle  \\ 
- 		2 & 2111	& 44 	& & Collision with ahead and waiting vehicle  \\
- 		3 & 2873	& 140	& & Collision with vehicle on separate lane in same direction  \\
- 		4 &	16		& 4		& & Collision with vehicle going in opposite direction  \\
- 		5 & 240		& 12	& & Collision with turning or crossing vehicle  \\
- 		6 & 19		& 1		& & Collision between vehicle and pedestrian  \\
- 		7 & 411		& 42	& & Collision with obstacle  \\
- 		8 & 1728	& 381	& & Deviation to the right  \\
- 		9 & 1446	& 517	& & Deviation to the left  \\
-		0 & 951		& 42	& & Other  \\
+ 		1 & 466		& 13	& 4.2  & Collision with starting, standing or stopping vehicle  \\ 
+ 		2 & 2111	& 44 	& 18.8 & Collision with ahead and waiting vehicle  \\
+ 		3 & 2873	& 140	& 26.3 & Collision with vehicle on separate lane in same direction  \\
+ 		4 &	16		& 4		& 0.2   & Collision with vehicle going in opposite direction  \\
+ 		5 & 240		& 12	& 2.2  & Collision with turning or crossing vehicle  \\
+ 		6 & 19		& 1		& 0.2   & Collision between vehicle and pedestrian  \\
+ 		7 & 411		& 42	& 4.0  & Collision with obstacle  \\
+ 		8 & 1728	& 381	& 18.4 & Deviation to the right  \\
+ 		9 & 1446	& 517	& 17.1 & Deviation to the left  \\
+		0 & 951		& 42	& 8.7  & Other  \\
 		\bottomrule
 	\end{tabular}
 	\caption{Descriptive of \textbf{UArt}}
 	\label{tbl:baysis_dataset_UArt}
-	\vspace{-8mm}
+	%\vspace{-8mm}
 \end{table}
 
 \paragraph{AUrs}
@@ -143,26 +141,26 @@ The summarized distribution of the parameters \textbf{AUrs1} and \textbf{AUrs2} 
 		\toprule
 		Code & Count[1] & Count[2] & Freq. [\%] & Description \\ 
 		\midrule
-		%70 & - 	& -		& & Slippery street due to oil \\
-		%71 & -		& -		& & Slippery street due to dirt \\
-		72 & 618	& -		& & Slippery street due to snow or ice \\
-		73 & 855	& 45	& & Slippery street due to rain \\
-		%74 & -		& -		& & Slippery street due to other objects \\
-		75 & 11		& 12	& & Cart track due to rain, snow or ice \\
-		76 & 10		& 3		& & Other condition of road \\
-		%77 & 1		& -		& & Un-regular condition of traffic signs \\
-		%78 & -		& -		& & Bad lighting of street \\
-		%79 & -		& -		& & Bad safety on train crossing \\
-		%80 & 1		& 3		& & Visibility issues due to fog \\
-		81 & 4		& 17 	& & Visibility issues due to rain or hail \\
-		82 & 24		& -		& & Visibility issues due to sun or glare \\
-		%83 & 2		& 3		& & Crosswind \\
-		84 & 1		& 14	& & Visibility issues due to storm \\
-		%85 & -		& -		& & Unsafe roadwork \\
-		86 & 21		& -		& & Wild animals \\
-		%87 & 1		& -		& & Other animals \\
-		88 & 134	& 4		& & Other obstacles \\
-		89 & 97		& 4		& & Other causes \\
+		%70 & - 	& -		&     & Slippery street due to oil \\
+		%71 & -		& -		&     & Slippery street due to dirt \\
+		72 & 618	& -		& 33  & Slippery street due to snow or ice \\
+		73 & 855	& 45	& 48  & Slippery street due to rain \\
+		%74 & -		& -		&     & Slippery street due to other objects \\
+		75 & 11		& 12	& 1.2 & Cart track due to rain, snow or ice \\
+		76 & 10		& 3		& 0.7 & Other condition of road \\
+		%77 & 1		& -		&     & Un-regular condition of traffic signs \\
+		%78 & -		& -		&     & Bad lighting of street \\
+		%79 & -		& -		&     & Bad safety on train crossing \\
+		%80 & 1		& 3		&     & Visibility issues due to fog \\
+		81 & 4		& 17 	& 1.1 & Visibility issues due to rain or hail \\
+		82 & 24		& -		& 1.3 & Visibility issues due to sun or glare \\
+		%83 & 2		& 3		&     & Crosswind \\
+		84 & 1		& 14	& 0.8 & Visibility issues due to storm \\
+		%85 & -		& -		&     & Unsafe roadwork \\
+		86 & 21		& -		& 1.1 & Wild animals \\
+		%87 & 1		& -		&     & Other animals \\
+		88 & 134	& 4		& 7.4 & Other obstacles \\
+		89 & 97		& 4		& 5.4 & Other causes \\
 		% Count[1] 0 = 8435 / Count[2] 0 = 10156
 		\bottomrule
 	\end{tabular}
@@ -170,8 +168,6 @@ The summarized distribution of the parameters \textbf{AUrs1} and \textbf{AUrs2} 
 	\label{tbl:baysis_dataset_AUrs}
 	\vspace{-8mm}
 \end{table}
-
-\pagebreak
 
 \paragraph{AufHi}
 \label{baysis_dataset_AufHi}
@@ -213,18 +209,18 @@ The variable Char1 and Char2 (shown in \autoref{tbl:baysis_dataset_Char} and vis
 		\toprule
 		Code & Count[1] & Count[2] & Freq. [\%] & Description \\ 
 		\midrule
-		%1 & - 	& -		&	& Crossing \\
-	    2 & 42	& -		&	& Entry / Exit \\
-	    %3 & 1	& -		&	& Property access \\
-	    4 & 380	& -		&	& Incline \\
-	    5 & 371	& -		&	& Decline \\
-	    6 & 404	& 263	&	& Curve \\
-		%7 & -	& -		&	& Roundabout \\
+		%1 & - 	& -		& 		& Crossing \\
+	    2 & 42	& -		& 2.9	& Entry / Exit \\
+	    %3 & 1	& -		&		& Property access \\
+	    4 & 380	& -		& 26	& Incline \\
+	    5 & 371	& -		& 25.4	& Decline \\
+	    6 & 404	& 263	& 45.7	& Curve \\
+		%7 & -	& -		&		& Roundabout \\
 		\bottomrule
 	\end{tabular}
 	\caption{Descriptive of \textbf{Char}}
 	\label{tbl:baysis_dataset_Char}
-	% \vspace{-8mm}
+	\vspace{-8mm}
 \end{table}
 
 \paragraph{Bes}
@@ -258,16 +254,16 @@ The light situation variable (shown in \cref{tbl:baysis_dataset_Lich} and visual
 		\toprule
 		Code & \textbf{Lich1} & \textbf{Lich2} & Freq. [\%] & Description \\ 
 		\midrule 
-		0 & 6833 	& - 	& & Daylight \\
-		1 & 627 	& -		& & Noon \\
-		2 & 2560	& - 	& & Darkness \\
-		3 & - 		& 3005	& & Street lighting working \\
-		4 & - 		& 182	& & Street lighting not working \\
+		0 & 6833 	& - 	& 51.7 & Daylight \\
+		1 & 627 	& -		& 4.7  & Noon \\
+		2 & 2560	& - 	& 19.4 & Darkness \\
+		3 & - 		& 3005	& 22.8 & Street lighting working \\
+		4 & - 		& 182	& 1.4  & Street lighting not working \\
 		\bottomrule
 	\end{tabular}
 	\caption{Descriptive of \textbf{Lich}}
 	\label{tbl:baysis_dataset_Lich}
-	% \vspace{-8mm}
+	\vspace{-8mm}
 \end{table} 
 
 \paragraph{Zust}
@@ -280,14 +276,14 @@ The road condition parameter (shown \cref{tbl:baysis_dataset_Zust} and visualize
 		\toprule
 		Code & \textbf{Zust} & Count[2] & Freq. [\%] & Description \\ 
 		\midrule 
-		0 & 6851 	& -		& & Dry \\ 
- 		1 & 2606	& -		& & Wet \\ 
- 		2 & 582		& 207	& & Ice \\
+		0 & 6851 	& -		& 66.9 & Dry \\ 
+ 		1 & 2606	& -		& 25.4 & Wet \\ 
+ 		2 & 582		& 207	& 7.7  & Ice \\
  		%3 & - 		& -		& & Slippery (oil, dirt, ...)  \\
 	\end{tabular}
 	\caption{Descriptive of \textbf{Zust}}
 	\label{tbl:baysis_dataset_Zust}
-	% \vspace{-8mm}
+	\vspace{-8mm}
 \end{table}
 
 \paragraph{Fstf}

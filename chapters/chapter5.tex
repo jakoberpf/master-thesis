@@ -312,7 +312,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $x_{interval}$ is the time interval or step duration
 \end{itemize}
 
-\begin{lstlisting}[basicstyle=\tiny, style=java, caption={vertical distance calculation}, label=lst:distance_calc_vertical] 
+\begin{lstlisting}[basicstyle=\tiny, style=java, caption={Implementation of \textit{vertical distance calculation}}, label=lst:distance_calc_vertical] 
     /**
      * Computes the vertical distance from A to B in [s]
      *
@@ -341,7 +341,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $z_{speed}$ is the speed in the cell
 \end{itemize}
 
-\begin{lstlisting}[basicstyle=\tiny, style=java, caption={horizontal distance calculation}, label=lst:distance_calc_horizontal] 
+\begin{lstlisting}[basicstyle=\tiny, style=java, caption={Implementation of \textit{horizontal distance calculation}}, label=lst:distance_calc_horizontal] 
 	/**
 	* Computes the horizontal distance from A to B in [s]
 	*
@@ -391,7 +391,8 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $v_{freeflow}$ is the assumed free flowing speed (typically 130\,[km/h])
 \end{itemize}
 
-\begin{lstlisting}[basicstyle=\tiny, style=java, caption={diagonal distance calculation}, label=lst:distance_calc_diagonal] 
+The \cref{lst:distance_calc_diagonal} shows 
+\begin{lstlisting}[basicstyle=\tiny, style=java, caption={Implementation of \textit{diagonal distance calculation}}, label=lst:distance_calc_diagonal] 
 	/**
 	* Computes the distance between two n-dimensional vectors.
 	* <p>
@@ -693,16 +694,11 @@ The data processing in the evaluation tool already clean the ingress data from m
 \label{methodology_correlation_processing_encoding}
 \todo{How is the data encoded for processing?}
 
-\begin{lstlisting}[style=js, caption={Beispiellisting}, label=lst:sample] 
-function hello(world){
-    console.log('hello ' + world);
-}
-\end{lstlisting}
-
 
 \subsubsection{Correlation Calculation}
 \label{methodology_correlation_processing_correlation}
 \todo{How does the correlation processing work?}
+
 
 \subsubsection{Significancy Evaluation}
 \label{methodology_correlation_processing_significanc}

@@ -21,16 +21,13 @@ Deep greens represent free flowing traffic with 130 km/h, according to the norm 
 \section{Accident Data (BAYSIS)}
 \label{dataset_baysis}
 The \acrfull{baysis} as described in \cref{introduction_street_information_systems}, collects a wide range of different information types, one of them being accidents with the corresponding police reports. The provided export from BAYSIS contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. Each accident report includes a variety of specifications which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved persons like nationality, age and gender. In total, one report contains 132 values describing the accident, participant and environment. As there shouldn't be a stereotype of accident participant formed but rather significant accident characteristics or environmental factors found, most of the descriptive values for the involved persons are not considered. Variables which contain no values or a single values and fall under the uncertainty threshold (see \cref{correlation_uncertainty}) are also neglected. From this curtailed pool of correlate able and analyze able characteristics all parameters that have a logical significance with causes or effects of an accident will be considered in the analysis. The referred figures are available as larger prints in the appendix \cref{appendix_baysis} for better readability, as they do not properly fit in the text. 
-
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.9]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_hist_month}
 	\caption{Distribution of accident counts by months}
 	\label{img:baysis_dataset_dist_month}
 \end{figure}
-
 A look on the monthly distribution of accidents recorded by BAYSIS (see \cref{img:baysis_dataset_dist_month}) shows that that the months of January, July and August have considerably higher number of accidents, with respectively 31\,\%, 21\,\% and 15\,\% increase over the mean count of 855 accidents per month. The increased number in January can be explained with the increased number of accidents due to ice and snow conditions, which reduces traction on roads and can lead to uncontrollable vehicle behavior. Also the reduced visibility during snow falls increases accident numbers. In July and August the increased traffic volume because of public holidays is the most probable explanation for the higher number of accidents. Another valuable distribution is the number of accidents per road (see \cref{img:baysis_dataset_dist_highway}). The roads A3, A9 and A8 have relative high count of accidents. In contrast the road A71 and downwards have only an accidents and therefore have a high uncertainty associated with them. 
-
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.75]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_hist_highway}
@@ -38,7 +35,6 @@ A look on the monthly distribution of accidents recorded by BAYSIS (see \cref{im
 	\label{img:baysis_dataset_dist_highway}
 	\vspace{-8mm}
 \end{figure}
-
 \paragraph{Kat}
 \label{baysis_dataset_Kat}
 The accident category (shown in \cref{tbl:baysis_dataset_Kat} and visualized in \cref{img:baysis_dataset_Kat}), describes the which damages or injuries can be associated with the accident. It ranges from accident with just  damaged property, lightly and heavily injured to deathly accidents. The distribution develops from lowest to highs counts, in order of gravity of the category. The variable consists of four values, which can be ordered, and is therefore ordinal.
@@ -47,7 +43,7 @@ The accident category (shown in \cref{tbl:baysis_dataset_Kat} and visualized in 
 	\small
 	\begin{tabular}{c|c|c|l} 
 		\toprule
-		Code & Count & Freq. [\%] & Description \\ 
+		Code & Count & Freq. & Description \\ 
 		\midrule
  		0 	& - 	& 	-	& Minor Accident  \\
  		1 	& 76 	& 0.7 	& Accident with deaths  \\ 
@@ -60,7 +56,6 @@ The accident category (shown in \cref{tbl:baysis_dataset_Kat} and visualized in 
 	\label{tbl:baysis_dataset_Kat}
 	% \vspace{-8mm}
 \end{table}
-
 \paragraph{Typ}
 \label{baysis_dataset_Typ}
 The accident type variable (shown \cref{tbl:baysis_dataset_Typ} and visualized in \cref{img:baysis_dataset_Typ}) incorporates different kind of traffic movements, from straight driving to turning movements or merging. It describes during which kind of movement the accident happened. Beside of an 80\,\% share of accidents related to driving or straight driving situations, the parameter does not indicate any other features. The variable does not show any order and is therefore of nominal type.
@@ -69,7 +64,7 @@ The accident type variable (shown \cref{tbl:baysis_dataset_Typ} and visualized i
 	\small
 	\begin{tabular}{c|c|c|l} 
 		\toprule
-		Code & Count & Freq. [\%] & Description \\ 
+		Code & Count & Freq. & Description \\ 
 		\midrule
  		1 & 2820	& 27.5	& Driving accident \\ 
  		%2 & 1		& < 0.1 & Turning accident \\
@@ -84,7 +79,6 @@ The accident type variable (shown \cref{tbl:baysis_dataset_Typ} and visualized i
 	\label{tbl:baysis_dataset_Typ}
 	\vspace{-8mm}
 \end{table}
-
 \paragraph{Betei}
 \label{baysis_dataset_Betei}
 The distribution of the number of involved persons (shown in \cref{tbl:baysis_dataset_Betei} and visualized in \cref{img:baysis_dataset_Betei}) shows that more than 96\,\% of accidents have three or less involved persons, supported by a mean of 1.9 involved persons. The major share of two involved persons makes up for 56\,\% and the second biggest of one involved person for 30\,\% of the total count. Because of the increasing order of values, the variable is of ordinal type.
@@ -96,14 +90,13 @@ The distribution of the number of involved persons (shown in \cref{tbl:baysis_da
 		 			& 1		& 2		& 3		& 4		& 5		& 6  	& > 7\\ 
 		\midrule
  		Count 		& 2768	& 6047	& 1085	& 235	& 72 	& 24	& 30 \\ 
- 		Freq. [\%] 	& 27.0	& 58.9	& 10.6 	& 2.3	& 0.7 	& 0.2 	& 0.1 \\
+ 		Freq. 	& 27.0	& 58.9	& 10.6 	& 2.3	& 0.7 	& 0.2 	& 0.1 \\
 		\bottomrule
 	\end{tabular}
 	\caption{Descriptive of \textbf{Betei}}
 	\label{tbl:baysis_dataset_Betei}
 	\vspace{-8mm}
 \end{table}
-
 \paragraph{UArt}
 \label{baysis_dataset_UArt}
 The accident cause type is defined by the two variables \textbf{UArt1} and \textbf{UArt2} (shown in \cref{tbl:baysis_dataset_UArt} and visualized in \cref{img:baysis_dataset_UArt}), whereat the first is the more suitable one. They describe the type of collision cause and presents two major sets. One being the accidents with waiting, stopping and starting vehicles in the same lane, which describe typical collision accidents during congested traffic. The other being the accidents in the next left or right lane, which describe common lane changing collisions. Accidents with cross traffic, pedestrians or opposite traffic are relatively uncommon. The variable does not show any order and is therefore of nominal type.
@@ -112,7 +105,7 @@ The accident cause type is defined by the two variables \textbf{UArt1} and \text
 	\small
 	\begin{tabular}{c|c|c|c|l} 
 		\toprule
-		Code & Count[1] & Count[2] & Freq. [\%] & Description \\ 
+		Code & Count[1] & Count[2] & Freq. & Description \\ 
 		\midrule
  		1 & 466		& 13	& 4.2  & Collision with starting, standing or stopping vehicle  \\ 
  		2 & 2111	& 44 	& 18.8 & Collision with ahead and waiting vehicle  \\
@@ -130,7 +123,6 @@ The accident cause type is defined by the two variables \textbf{UArt1} and \text
 	\label{tbl:baysis_dataset_UArt}
 	%\vspace{-8mm}
 \end{table}
-
 \paragraph{AUrs}
 \label{baysis_dataset_AUrs}
 The summarized distribution of the parameters \textbf{AUrs1} and \textbf{AUrs2} (shown in \cref{tbl:baysis_dataset_AUrs} and visualized in \cref{img:baysis_dataset_AUrs}) shows that the variable is no much distributed and only a small number of categories hold have a relevant sample size. Because of that any correlation to this parameter needs to interpreted with caution, due the the high uncertainty. The variable is of nominal type.
@@ -139,7 +131,7 @@ The summarized distribution of the parameters \textbf{AUrs1} and \textbf{AUrs2} 
 	\small
 	\begin{tabular}{c|c|c|c|l}
 		\toprule
-		Code & Count[1] & Count[2] & Freq. [\%] & Description \\ 
+		Code & Count[1] & Count[2] & Freq. & Description \\ 
 		\midrule
 		%70 & - 	& -		&     & Slippery street due to oil \\
 		%71 & -		& -		&     & Slippery street due to dirt \\
@@ -168,7 +160,6 @@ The summarized distribution of the parameters \textbf{AUrs1} and \textbf{AUrs2} 
 	\label{tbl:baysis_dataset_AUrs}
 	\vspace{-8mm}
 \end{table}
-
 \paragraph{AufHi}
 \label{baysis_dataset_AufHi}
 The obstacle collision distribution (shown in \cref{tbl:baysis_dataset_AufHi} and visualized in \cref{img:baysis_dataset_AufHi}) reveals that in most collision accidents car hit the guardrails. The other categories are rather uncommon. With 1,4\,\% of accidents without any collision, it can be stated that in most cases a collision is part of an accident. The counts of the remaining categories are insignificant. The variable does not show any order and is therefore of nominal type.
@@ -177,7 +168,7 @@ The obstacle collision distribution (shown in \cref{tbl:baysis_dataset_AufHi} an
 	\small
 	\begin{tabular}{c|c|c|l} 
 		\toprule
-		Code & Count & Freq. [\%] & Description \\ 
+		Code & Count & Freq. & Description \\ 
 		\midrule 
 		0 & 16 		& 0.2	& Single tree \\
 		1 & 12 		& 0.1	& Pillar \\
@@ -194,11 +185,9 @@ The obstacle collision distribution (shown in \cref{tbl:baysis_dataset_AufHi} an
 	\label{tbl:baysis_dataset_AufHi}
 	\vspace{-8mm}
 \end{table}
-
 \paragraph{Alkoh}
 \label{baysis_dataset_Alkoh}
 The alcohol involvement indication variable only contains one variables of $1 = yes$), whereas an empty variable referred to $no$ or $unknown$. It reveals that only 2.2\,\% of accidents have one or more involved persons with measurable blood alcohol. The variable only has two unique values and is therefore dichotomous.
-
 \paragraph{Char}
 \label{baysis_dataset_Char}
 The variable Char1 and Char2 (shown in \autoref{tbl:baysis_dataset_Char} and visualized in \ref{img:baysis_dataset_Char}) describe the characteristic of the street where the accident happened. Since we are only considering highway, the type of \textit{Crossing}, \textit{Property} and \textit{Roundabout} is expected to be zero. The variable is not ordered and therefore of nominal type.  
@@ -207,7 +196,7 @@ The variable Char1 and Char2 (shown in \autoref{tbl:baysis_dataset_Char} and vis
 	\small
 	\begin{tabular}{c|c|c|c|l}
 		\toprule
-		Code & Count[1] & Count[2] & Freq. [\%] & Description \\ 
+		Code & Count[1] & Count[2] & Freq. & Description \\ 
 		\midrule
 		%1 & - 	& -		& 		& Crossing \\
 	    2 & 42	& -		& 2.9	& Entry / Exit \\
@@ -222,7 +211,6 @@ The variable Char1 and Char2 (shown in \autoref{tbl:baysis_dataset_Char} and vis
 	\label{tbl:baysis_dataset_Char}
 	\vspace{-8mm}
 \end{table}
-
 \paragraph{Bes}
 \label{baysis_dataset_Bes}
 The variables \textbf{Bes1}, \textbf{Bes2} and \textbf{Bes3} further define the street characteristic mentioned above. But they only contain one variable, referring to the category \textit{Roadwork}. The variable itself is therefore not suitable for a correlation analysis, because it is not distributed, but can be used to validate the roadwork matching performance.
@@ -243,7 +231,6 @@ The variables \textbf{Bes1}, \textbf{Bes2} and \textbf{Bes3} further define the 
 % 	\caption{Identifier and description of 'Bes'}
 % 	\label{table:baysis_dataset_Bes}
 % \end{table}
-
 \paragraph{Lich}
 \label{baysis_dataset_Lich}
 The light situation variable (shown in \cref{tbl:baysis_dataset_Lich} and visualized in \cref{img:baysis_dataset_Lich}) describes the lighting condition at the time of the accident. The variable \textbf{Lich1} describes the nature light setting, when \textbf{Lich2} describes if the street light was working. Because \textbf{Lich1} can be ranked from best to worst lighting is of ordinal type. \textbf{Lich2} only has two values and is therefore dichotomous.
@@ -252,7 +239,7 @@ The light situation variable (shown in \cref{tbl:baysis_dataset_Lich} and visual
 	\small
 	\begin{tabular}{c|c|c|c|l}
 		\toprule
-		Code & \textbf{Lich1} & \textbf{Lich2} & Freq. [\%] & Description \\ 
+		Code & \textbf{Lich1} & \textbf{Lich2} & Freq. & Description \\ 
 		\midrule 
 		0 & 6833 	& - 	& 51.7 & Daylight \\
 		1 & 627 	& -		& 4.7  & Noon \\
@@ -265,7 +252,6 @@ The light situation variable (shown in \cref{tbl:baysis_dataset_Lich} and visual
 	\label{tbl:baysis_dataset_Lich}
 	\vspace{-8mm}
 \end{table} 
-
 \paragraph{Zust}
 \label{baysis_dataset_Zust}
 The road condition parameter (shown \cref{tbl:baysis_dataset_Zust} and visualized \cref{img:baysis_dataset_Zust}) describes in which condition the road was at time of the accident in the for of wet, dry, iced or slippery.
@@ -274,7 +260,7 @@ The road condition parameter (shown \cref{tbl:baysis_dataset_Zust} and visualize
 	\small
 	\begin{tabular}{c|c|c|c|l}
 		\toprule
-		Code & \textbf{Zust} & Count[2] & Freq. [\%] & Description \\ 
+		Code & \textbf{Zust} & Count[2] & Freq. & Description \\ 
 		\midrule 
 		0 & 6851 	& -		& 66.9 & Dry \\ 
  		1 & 2606	& -		& 25.4 & Wet \\ 
@@ -285,7 +271,6 @@ The road condition parameter (shown \cref{tbl:baysis_dataset_Zust} and visualize
 	\label{tbl:baysis_dataset_Zust}
 	\vspace{-8mm}
 \end{table}
-
 \paragraph{Fstf}
 \label{baysis_dataset_Fstf}
 The variable references the lane on which the accident happened (shown in \cref{tbl:baysis_dataset_Fstf} and visualized in \cref{img:baysis_dataset_Fstf}). It names the number of lane from the right, the hard-shoulder or the wrong usage of a one-way street. It does not show an order of lanes, but not with the two other types of hard-shoulder and one-way street. It is therefore considered as nominal.
@@ -294,7 +279,7 @@ The variable references the lane on which the accident happened (shown in \cref{
 	\small
 	\begin{tabular}{c|c|c|l}
 		\toprule
-		Code & \textbf{Fstf} & Freq. [\%] & Description \\ 
+		Code & \textbf{Fstf} & Freq. & Description \\ 
 		\midrule  
 		1 & 2821 	& 27.5 	& first lane from the right \\
 		2 & 4274 	& 41.7 	& second lane from the right \\
@@ -308,12 +293,10 @@ The variable references the lane on which the accident happened (shown in \cref{
 	\caption{Descriptive of \textbf{Fstf}}
 	\label{tbl:baysis_dataset_Fstf}
 	\vspace{-8mm}
-\end{table}
-    
+\end{table} 
 \paragraph{WoTag}
 \label{baysis_dataset_WoTag}
 The variable of WoTag relates to the day of week, when the accident happened (shown in \cref{img:baysis_dataset_WoTag}). It is debatable if week days can be ordered, but for this analysis we will consider the parameter of nominal type.
-
 \paragraph{FeiTag}
 \label{baysis_dataset_FeiTag}
 Only 157 accidents took place on a public holiday. This is not a feature itself but the a possible correlation to jams could be that they are longer because of the increased traffic demand on holidays.
@@ -372,7 +355,7 @@ Only 157 accidents took place on a public holiday. This is not a feature itself 
 % 	\label{tab:baysis_variables}
 % \end{table}
 
-The designed evaluation tool, utilizes a PostgreSQL database for its data storage. Therefore the BAYSIS data in form of \acrfull{csv} needs to processed and converted into SQL data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the necessary processing and import into the database, 7971 re cords end up being converted and persisted, which equivalent to 77,6\% of the total number of accidents. This 22,4\% of data loss is due to the conversion of from the BAYSIS geo-system to the HERE network, which tries to find a corresponding street network location to the legacy location of the BAYSIS dataset. If it is not able to locate the position of the BYSIS dataset on our street network, the record is discarded.s
+The designed evaluation tool, utilizes a PostgreSQL database for its data storage. Therefore the BAYSIS data in form of \acrfull{csv} needs to processed and converted into SQL data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the necessary processing and import into the database, 7971 records end up being converted and persisted, which equivalent to 77,6\,\% of the total number of accidents. This 22,4\,\% of data loss is due to the conversion of from the BAYSIS geo-system to the HERE network, which tries to find a corresponding street network location to the legacy location of the BAYSIS dataset. If it is not able to locate the position of the BYSIS dataset on our street network, the record is discarded.
 
 \section{Roadwork Data (ArbIS)}
 \label{dataset_arbis}
@@ -380,24 +363,19 @@ The designed evaluation tool, utilizes a PostgreSQL database for its data storag
 The \acrfull{arbis}, as described in \autoref{dataset_arbis}, is a collection service of all roadworks or maintenance which is planned, ongoing or finished on the Bavarian street network. The dataset for 2019 contains close to 650.000 data-points, which each describe the temporal and spatial extend, road name and number of closed lanes of a roadwork fragment. This fragmentation of events makes is rather hard to statically analyze this dataset since each roadwork is spitted into any number of fragments are only linked by a roadwork identifier. Therefore the analysis of the dataset in this section is rather basic. The import processing works similarly to the \acrshort{baysis} data in \autoref{dataset_baysis} and produces 282.839 roadwork events in the database after the aggregation of fragments. 
 
 With the 4500 long term and more than 40.000 short term building sites on German highways per year \parencite{LAPID2018,Stmi2020}, road construction makes up for the majority of traffic obstructions in the summer months. During the colder month, in which many kinds of construction projects are not possible, snow clearings or long-term constructions are the main obstacles. That also means that the number and type of roadworks varies during the course of a year \parencite{Stmi2020}. 
-
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_hist_month}
 	\caption{Monthly distribution of roadwork fraction counts}
 	\label{img:arbis_dataset_dist_month}
 \end{figure}
-
 The monthly distribution of roadworks in the year 2019 in figure \autoref{img:arbis_dataset_dist_month} supports this statement, since the winter months of January, February and December tend to have less roadwork that others. The month of July has the most roadworks. Similar to the BAYSIS data the road \textit{A3} and \text{A9} have the highest numbers of roadworks (shown in figure \autoref{img:arbis_dataset_dist_highway}).
-
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_hist_highway}
 	\caption{Distribution of roadwork fraction counts, by road}
 	\label{img:arbis_dataset_dist_highway}
 \end{figure}
-
-\pagebreak
 
 \paragraph{AnzGesperrtFs} refers to the number of closed lanes for the time of the incident. The distribution shows that two states of zero and one block lane hold nearly 100\,\%. Since the variable can be ordered by the number of lane, it is of ordinal type.
 \todo{Descriptives}

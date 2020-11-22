@@ -13,8 +13,14 @@
 \usepackage{textcomp}
 \newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
 
+\newcommand{\centerheading}[1]{
+    \subsubsection{#1}
+    \vspace{-4mm}
+}
 
-% Text snippets
+%% Text snippets
+% Accident/Roadwork Section Intro 
+\newcommand{\secintroend}[2]{In the following sections, the correlated relations of the variables in \cref{tbl:correlation_list_#1_#2} are analyzed and an initial interpretation of each significant correlation is introduced. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not shown to reduce the overall table size. The descriptive tables, showing the count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) therefore only contain groups with significant sample sizes.}
 
 % Variable Analysis Intro with uncertainty
 \newcommand{\varintrosimplewithsam}[1]{This section analyzes the correlated relations of the accident variable \textit{#1}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered.}
@@ -27,9 +33,11 @@
 \newcommand{\varintrowithoutsam}[2]{This section analyzes the correlated relations of the accident variable \textit{#2}. The encoding and description of the variable \textit{#2} is shown in \cref{tbl:#1_dataset_#2}.}
 
 % Variable Analysis Intro when a single relation shows no significance
-\newcommand{\varintronosigsing}[2]{The Kruskal-Wallis test of \textit{#1} - \textit{#2} results in a $p$-value above the defined $\alpha$-level. Therefore the null hypothesis can't be rejected and no significant difference in \textit{#2} for the relations of \textit{#1} are present.}
+\newcommand{\varintronosigsing}[2]{The Kruskal-Wallis test of \textit{#1} - \textit{#2} results in a $p$-value above the defined $\alpha$-level. Therefore the null hypothesis can't be rejected and no significant differences in \textit{#2} for the relations of \textit{#1} are present.}
+% Variable Analysis Intro when just two relations show no significance
+\newcommand{\varintronosigdouble}[2]{Both Kruskal-Wallis tests of #2 result in $p$-values above the defined $\alpha$-level. Therefore the null hypothesis can't be rejected and no significant differences in \textit{#1} for Both relations are present.}
 % Variable Analysis Intro when multiple relations show no significance
-\newcommand{\varintronosigmul}[3]{The Kruskal-Wallis tests of #3 result $p$-values above the defined $\alpha$-level. Therefore the null hypothesis can't be rejected and no significant difference in \textit{#2} for these relations are present.}
+\newcommand{\varintronosigmul}[2]{The Kruskal-Wallis tests of #2 result in $p$-values above the defined $\alpha$-level. Therefore the null hypothesis can't be rejected and no significant differences in \textit{#1} for these relations are present.}
 
 % Group Analysis Intro with significant alpha and above .0001
 \newcommand{\groupintrosig}[5]{The Kruskal-Wallis test of the relation \textit{#1} - \textit{#2} produces a $p$-value of #3, which is below the defined $\alpha$-level. Therefore the null hypothesis can be rejected, meaning that there are significant differences in \textit{#2} between the groups of \textit{#1}. The significant groups can be identified with a pairwise Wilcoxon $T$-test, which is shown in \cref{tbl:wilcoxon_#4_#5_#1_#2}.}

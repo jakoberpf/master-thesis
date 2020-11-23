@@ -97,6 +97,7 @@ if __name__ == '__main__':
             "AufHi",
             "Alkoh",
             "Char1", "Char2",
+            "Bes1", "Bes2",
             "Lich1", "Lich2",
             "Zust1", "Zust2",
             "Fstf",
@@ -284,6 +285,9 @@ if __name__ == '__main__':
         plt.show()
     else:
         plt.close()
+
+    baysis_selected.drop('Bes1', axis='columns', inplace=True)
+    baysis_selected.drop('Bes2', axis='columns', inplace=True)
 
     ###############
     ### Scatter ###

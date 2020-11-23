@@ -636,7 +636,7 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov} show that t
 \label{ana:baysis_global_Kat}
 \varintrosimplewithsam{Kat} \varintronosigsing{Kat}{SAvg}
 
-% ##############################################
+% ################################################
 \groupintrosig{Kat}{TMax}{0.0068}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
@@ -653,7 +653,7 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov} show that t
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Kat_TMax}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Kat_TMax} shows that all groups, besides of group 7 to group 3, have significant differences. 
+It shows that all groups, besides of group 7 to group 3, have significant differences. 
 % #### START: Table and Plot
 \pgfplotstableread[col sep=comma,header=false]{
 	1 , 36  , 317.67 , 215.10 , 279 , 27 , 987  , 960 
@@ -700,7 +700,7 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov} show that t
 				xmajorgrids=true,
 				ymajorgrids=true,
 				xtick=data,
-				xmin=0,xmax=10,
+				xmin=0,xmax=3,
 				xticklabels from table={\data}{[index]0},
 				% zusätzliche Beschriftung an y-Achse
 				every extra y tick/.style={
@@ -727,7 +727,8 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov} show that t
 % #### END: Table and Plot
 The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TMax,fig:descriptives_baysis_matched_Kat_TMax} present increasing means from lightly injured to deathly accident. We can interpret that the maximal temporal jam length  increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 143\,min longer jams, than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the property damage group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 29\,min on average.
 
-The Kruskal-Wallis test of \textit{Kat} - \textit{TAvg} produces a $p$-value of 0.0005, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TAvg}.
+% ################################################
+\groupintrosig{Kat}{TAvg}{0.0005}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -743,30 +744,82 @@ The Kruskal-Wallis test of \textit{Kat} - \textit{TAvg} produces a $p$-value of 
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Average Temporal Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Kat_TAvg}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Kat_TAvg} shows that all groups have significant differences. The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TAvg} present increasing means from group 3 to 1.
-\begin{table}[ht!]
-	\tiny
+It shows that all groups have significant differences.
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	1 , 36  , 156.06 , 104.55 , 143.0 , 20 , 502  , 482 
+	2 , 216 , 88.31  , 79.73  , 66.5  , 7  , 703  , 696 
+	3 , 881 , 67.32  , 53.98  , 54.0  , 3  , 469  , 466 
+	7 , 718 , 74.08  , 103.32 , 51.0  , 4  , 1326 , 1322
+}\data 
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-	  	\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
-	  	\midrule
-		1 & 36  & 156.06 & 104.55 & 143.00 & 20 & 502  & 482  \\ 
-	  	2 & 216 & 88.31  & 79.73  & 66.50  & 7  & 703  & 696  \\ 
-	  	3 & 881 & 67.32  & 53.98  & 54.00  & 3  & 469  & 466  \\ 
-	  	7 & 718 & 74.08  & 103.32 & 51.00  & 4  & 1326 & 1322 \\ 
-	   	\bottomrule
-	\end{tabular}
-	\caption{Group descriptives of \textit{Kat} and \textit{Average Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Kat_TAvg}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			1 & 36  & 156.06 & 104.55 & 143.00 & 20 & 502  & 482  \\ 
+			2 & 216 & 88.31  & 79.73  & 66.50  & 7  & 703  & 696  \\ 
+			3 & 881 & 67.32  & 53.98  & 54.00  & 3  & 469  & 466  \\ 
+			7 & 718 & 74.08  & 103.32 & 51.00  & 4  & 1326 & 1322 \\ 
+			\bottomrule
+			% \bar{x} - sum = , mean = 
+			% \sigma - sum = , mean = 
+			% \tilde{x}
+			%
+			% 88+67+74 / 3 = 76
+			% diff 156,76 = 80
+			% mean diff 88,67,74 = 10
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Kat_TAvg}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				width=\textwidth,
+				height=4.7cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=3,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				% extra y ticks={201,161},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Kat_TAvg}
+	\end{minipage}%
+	\caption{Group descriptives of  \textit{Kat} and \textit{Average Temporal Extent}}
 	%\vspace{-8mm}
-\end{table}
-% 88+67+74 / 3 = 76
-% diff 156,76 = 80
-% mean diff 88,67,74 = 10
-We can interpret that the average temporal jam length increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 80\,min longer jams than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 10\,min on average. 
+\end{figure}
+% #### END: Table and Plot
+The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TAvg} present increasing means from group 3 to 1. We can interpret that the average temporal jam length increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 80\,min longer jams than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 10\,min on average. 
 
-The Kruskal-Wallis test of \textit{Kat} - \textit{TDist} produces a $p$-value below 0.0001, which is way below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat} - \textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TDist}. 
+% #########################################
+\groupintrosigsig{Kat}{TDist}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -782,24 +835,78 @@ The Kruskal-Wallis test of \textit{Kat} - \textit{TDist} produces a $p$-value be
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Temporal Distance}}
 	\label{tbl:wilcoxon_baysis_matched_Kat_TDist}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Kat_TDist} shows that all groups have significant differences. 
-\begin{table}[ht!]
-	\tiny
+It shows that all groups have significant differences. 
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	1 , 36  , 10.39 , 7.36 , 10 , 0 , 22 , 22 
+	2 , 216 , 7.91  , 6.92 , 7  , 0 , 24 , 24 
+	3 , 881 , 5.81  , 6.82 , 4  , 0 , 24 , 24 
+	7 , 718 , 4.33  , 6.63 , 0  , 0 , 24 , 24 
+}\data 
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-	  	\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
-	  	\midrule
-		1 & 36  & 10.39 & 7.36 & 10.00 & 0.00 & 22.00 & 22.00 \\ 
-	  	2 & 216 & 7.91 & 6.92 & 7.00 & 0.00 & 24.00 & 24.00 \\ 
-	  	3 & 881 & 5.81 & 6.82 & 4.00 & 0.00 & 24.00 & 24.00 \\ 
-	  	7 & 718 & 4.33 & 6.63 & 0.00 & 0.00 & 24.00 & 24.00 \\ 
-	   	\bottomrule
-	\end{tabular}
-	\caption{Group descriptives of \textit{Kat} and \textit{Temporal Distance}}
-	\label{tbl:descriptives_baysis_matched_Kat_TDist}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			1 & 36  & 10.39 & 7.36 & 10 & 0 & 22 & 22 \\ 
+			2 & 216 & 7.91  & 6.92 & 7  & 0 & 24 & 24 \\ 
+			3 & 881 & 5.81  & 6.82 & 4  & 0 & 24 & 24 \\ 
+			7 & 718 & 4.33  & 6.63 & 0  & 0 & 24 & 24 \\ 
+			\bottomrule
+			% \bar{x} - sum = , mean = 
+			% \sigma - sum = , mean = 
+			% \tilde{x}
+			%
+			% 88+67+74 / 3 = 76
+			% diff 156,76 = 80
+			% mean diff 88,67,74 = 10
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Kat_TDist}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				width=\textwidth,
+				height=4.7cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=3,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				% extra y ticks={201,161},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Kat_TDist}
+	\end{minipage}%
+	\caption{Group descriptives of  \textit{Kat} and \textit{Temporal Distance}}
 	%\vspace{-8mm}
-\end{table}
+\end{figure}
+% #### END: Table and Plot
 The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TDist} present increasing means from group 4 to 1. We can interpret that the temporal distance from accidents to jams increases with the gravity of the accident.
 
 % ----------------------

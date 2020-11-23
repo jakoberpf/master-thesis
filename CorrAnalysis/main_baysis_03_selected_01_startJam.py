@@ -292,8 +292,8 @@ if __name__ == '__main__':
     else:
         plt.close()
 
-    baysis_matched.drop('Bes1', axis='columns', inplace=True)
-    baysis_matched.drop('Bes2', axis='columns', inplace=True)
+    baysis_selected.drop('Bes1', axis='columns', inplace=True)
+    baysis_selected.drop('Bes2', axis='columns', inplace=True)
 
     ###############
     ### Scatter ###

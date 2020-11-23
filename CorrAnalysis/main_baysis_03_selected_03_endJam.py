@@ -22,7 +22,7 @@ from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
 from func_plot import plot_correlation, tex_fonts, \
-    plot_congestion_dist
+    plot_congestion_dist, set_size
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -220,6 +220,72 @@ if __name__ == '__main__':
     ##############
     ### Counts ###
     ##############
+
+    # Multi plots
+
+    scale = 1.0
+    (width, height) = set_size(418, scale)
+
+    fig, axs = plt.subplots(4, 1, figsize=(width, 3.5 * height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    sns.countplot(ax=axs[0], x='Kat', data=baysis_selected, palette='Spectral')
+    sns.countplot(ax=axs[1], x='Typ', data=baysis_selected, palette='Spectral')
+    sns.countplot(ax=axs[2], x='Betei', data=baysis_selected, palette='Spectral')
+    atr = 'UArt'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[3], x=atr, data=concat, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
+        if not show_plot:
+            plt.close()
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    fig, axs = plt.subplots(4, 1, figsize=(width, 3.5  * height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    atr = 'AUrs'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
+    sns.countplot(ax=axs[1], x='AufHi', data=baysis_selected, palette='Spectral')
+    atr = 'Char'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
+    atr = 'Bes'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[3], x=atr, data=concat, palette='Spectral')
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_multiple02.pdf')
+        if not show_plot:
+            plt.close()
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
+
+    fig, axs = plt.subplots(4, 1, figsize=(width, 3.5 * height))
+    plt.style.use('seaborn')
+    plt.rcParams.update(tex_fonts)
+    atr = 'Lich'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
+    atr = 'Zust'
+    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
+    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
+    sns.countplot(ax=axs[2], x='Fstf', data=baysis_selected, palette='Spectral')
+    sns.countplot(ax=axs[3], x='WoTag', data=baysis_selected, palette='Spectral',
+                  order=['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
+    if save_plot:
+        plt.savefig(plot_path + file_prefix + '_count_multiple03.pdf')
+        if not show_plot:
+            plt.close()
+    if show_plot:
+        plt.show()
+    else:
+        plt.close()
 
     ###############
     ### Scatter ###

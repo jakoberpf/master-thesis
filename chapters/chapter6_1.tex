@@ -40,7 +40,7 @@ Next we need to verify that the correlation is significant and what the correlat
 \begin{figure}[!ht]
 	\centering
 	\makebox[\textwidth][c]{%
-		\includegraphics[width=1.4\textwidth, trim=0cm 2.5cm 6cm 3cm]{CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers}%
+		\includegraphics[width=1.4\textwidth, trim=0cm 2.5cm 6cm 3cm]{CorrAnalysis/data/BAYSIS/02_matched/plots/baysis_matched_corr_cramers_edited}%
 	}
 	\caption{Correlation matrix for congestion-accident matched data calculated with $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
 	\label{img:correlation_matrix_matched_cramers}
@@ -82,35 +82,92 @@ Next we need to verify that the correlation is significant and what the correlat
 		% A980 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Maximal Temporal Extent}}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Maximal Temporal Extent}, see \cref{tbl:wilcoxon_baysis_matched_Str_TMax_complete} for complete table}
 	\label{tbl:wilcoxon_baysis_matched_Str_TMax}
 \end{table}
-It shows that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ from group A3, but is no distinctive general trend.
-\begin{table}[ht!]
-	\tiny
+It shows that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ significantly from group A3, but there is no distinctive general trend.
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	A3  , 559 , 225.76 , 210.36 , 156.0 , 9  , 1323 , 1314 
+	A6  , 127 , 153.05 , 150.42 , 108.0 , 12 , 864  , 852  
+	A9  , 466 , 170.85 , 151.33 , 118.5 , 9  , 1194 , 1185 
+	A70 , 31  , 106.55 , 79.42  , 81.0 , 24 , 369  , 345  
+	A96 , 155 , 118.32 , 81.05  , 108.0 , 12 , 384  , 372  
+	A7  , 130 , 153.37 , 194.10 , 102.0 , 9  , 1341 , 1332 
+	A73 , 129 , 125.95 , 135.01 , 93.0 , 12 , 1323 , 1311 
+	A99 , 116 , 169.09 , 136.72 , 138.0 , 15 , 681  , 666  
+	A92 , 66  , 103.86 , 65.69  , 87.0 , 18 , 354  , 336  
+	A93 , 21  , 163.57 , 155.71 , 111.0 , 36 , 588  , 552  
+	A94 , 37  , 101.59 , 54.60  , 99.0 , 15 , 249  , 234  
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
-		\midrule
-		A3  & 559 & 225.76 & 210.36 & 156.00 & 9  & 1323 & 1314 \\ 
-		A6  & 127 & 153.05 & 150.42 & 108.00 & 12 & 864  & 852  \\ 
-		A9  & 466 & 170.85 & 151.33 & 118.50 & 9  & 1194 & 1185 \\ 
-		A70 & 31  & 106.55 & 79.42  & 81.00  & 24 & 369  & 345  \\ 
-		A96 & 155 & 118.32 & 81.05  & 108.00 & 12 & 384  & 372  \\ 
-		A7  & 130 & 153.37 & 194.10 & 102.00 & 9  & 1341 & 1332 \\ 
-		A73 & 129 & 125.95 & 135.01 & 93.00  & 12 & 1323 & 1311 \\ 
-		A99 & 116 & 169.09 & 136.72 & 138.00 & 15 & 681  & 666  \\ 
-		A92 & 66  & 103.86 & 65.69  & 87.00  & 18 & 354  & 336  \\ 
-		A93 & 21  & 163.57 & 155.71 & 111.00 & 36 & 588  & 552  \\ 
-		A94 & 37  & 101.59 & 54.60  & 99.00  & 15 & 249  & 234  \\ 
- 		\bottomrule
-	\end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			A3  & 559 & 225.76 & 210.36 & 156.0 & 9  & 1323 & 1314 \\ 
+			A6  & 127 & 153.05 & 150.42 & 108.0 & 12 & 864  & 852  \\ 
+			A9  & 466 & 170.85 & 151.33 & 118.5 & 9  & 1194 & 1185 \\ 
+			A70 & 31  & 106.55 & 79.42  & 81.0 & 24 & 369  & 345  \\ 
+			A96 & 155 & 118.32 & 81.05  & 108.0 & 12 & 384  & 372  \\ 
+			A7  & 130 & 153.37 & 194.10 & 102.0 & 9  & 1341 & 1332 \\ 
+			A73 & 129 & 125.95 & 135.01 & 93.0 & 12 & 1323 & 1311 \\ 
+			A99 & 116 & 169.09 & 136.72 & 138.0 & 15 & 681  & 666  \\ 
+			A92 & 66  & 103.86 & 65.69  & 87.0 & 18 & 354  & 336  \\ 
+			A93 & 21  & 163.57 & 155.71 & 111.0 & 36 & 588  & 552  \\ 
+			A94 & 37  & 101.59 & 54.60  & 99.0 & 15 & 249  & 234  \\ 
+			\bottomrule
+			% \bar{x} - sum = , mean = 
+			% \sigma - sum = , mean = 
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_TMax}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				width=\textwidth,
+				height=4.7cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=10,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				% extra y ticks={201,161},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Str_TMax}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Str_TMax}
 	%\vspace{-8mm}
-\end{table}
-The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TMax} show that the mean value of A3 is 27\,\% - 57\,\% higher than the means of A6, A7, A9, A70, A73, A92, and A94. It can be interpreted that accidents on the A3 are associated with significantly longer (temporal) jams than on the A6, A9, A7, A70, A73, A92, and A94. The $\sigma$ supports this interpretation of by $\bar{x}$. The descriptives clearly show three ranked groups of short (A94, A93, A92, A70), medium (A99, A73, A7, A96, A9, A6) and long (A3).
+\end{figure}
+% #### END: Table and Plot
+The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TMax,fig:descriptives_baysis_matched_Str_TMax} show that the mean length of A3 is 27\,\% - 57\,\% higher than the means of A6, A7, A9, A70, A73, A92, and A94. Therefore it can be interpreted that accidents on the A3 are associated with significantly longer (temporal) jams than on the A6, A9, A7, A70, A73, A92, and A94. $\sigma$ and $\tilde{x}$ supports this interpretation with similar features. The descriptives also show three ranked groups of short (A70, A92, A94), medium (A99, A73, A7, A96, A9, A6) and long (A3).
 
 % ##############################################
 \groupintrosig{Str}{TAvg}{0.0004}{baysis}{matched}
@@ -140,35 +197,92 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TMax} show that 
 		% A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
 		\bottomrule
 	\end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Average Temporal Extent}}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Average Temporal Extent}, see \cref{tbl:wilcoxon_baysis_matched_Str_TAvg_complete} for complete table}
 	\label{tbl:wilcoxon_baysis_matched_Str_TAvg}
 \end{table}
-The table shows, that the groups A73 and A99 differ from group A3, but there is no distinctive general trend.
-\begin{table}[ht!]
-	\tiny
+The table shows that the groups A73 and A99 differ significantly from group A3, but there is no distinctive general trend.
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	A3  , 559 , 89.66 , 98.94  , 65.00 , 4  , 1260 , 1256 
+	A6  , 127 , 69.94 , 65.86  , 56.00 , 3  , 376  , 373  
+	A9  , 466 , 72.92 , 64.55  , 54.00 , 4  , 575  , 571  
+	A70 , 31  , 50.10 , 23.99  , 49.00 , 10 , 99   , 89   
+	A96 , 155 , 61.37 , 44.31  , 52.50 , 5  , 247  , 242  
+	A7  , 130 , 86.55 , 146.82 , 59.50 , 6  , 1326 , 1320 
+	A73 , 129 , 54.78 , 42.48  , 45.00 , 6  , 274  , 268  
+	A99 , 116 , 58.97 , 48.35  , 47.50 , 4  , 295  , 291  
+	A92 , 66  , 55.24 , 36.43  , 51.50 , 8  , 235  , 227  
+	A93 , 21  , 82.33 , 91.10  , 48.00 , 7  , 343  , 336  
+	A94 , 37  , 49.86 , 31.63  , 44.00 , 14 , 145  , 131   
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\  
-		\midrule
-		A3  & 559 & 89.66 & 98.94  & 65.00 & 4  & 1260 & 1256 \\ 
-		A6  & 127 & 69.94 & 65.86  & 56.00 & 3  & 376  & 373  \\ 
-		A9  & 466 & 72.92 & 64.55  & 54.00 & 4  & 575  & 571  \\ 
-		A70 & 31  & 50.10 & 23.99  & 49.00 & 10 & 99   & 89   \\ 
-		A96 & 155 & 61.37 & 44.31  & 52.50 & 5  & 247  & 242  \\ 
-		A7  & 130 & 86.55 & 146.82 & 59.50 & 6  & 1326 & 1320 \\ 
-		A73 & 129 & 54.78 & 42.48  & 45.00 & 6  & 274  & 268  \\ 
-		A99 & 116 & 58.97 & 48.35  & 47.50 & 4  & 295  & 291  \\ 
-		A92 & 66  & 55.24 & 36.43  & 51.50 & 8  & 235  & 227  \\ 
-		A93 & 21  & 82.33 & 91.10  & 48.00 & 7  & 343  & 336  \\ 
-		A94 & 37  & 49.86 & 31.63  & 44.00 & 14 & 145  & 131  \\ 
-		\bottomrule
-	\end{tabular}
-	\caption{Group descriptives for \textit{Street} and \textit{Average Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Str_TAvg}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			A3  & 559 & 89.66 & 98.94  & 65.00 & 4  & 1260 & 1256 \\ 
+			A6  & 127 & 69.94 & 65.86  & 56.00 & 3  & 376  & 373  \\ 
+			A9  & 466 & 72.92 & 64.55  & 54.00 & 4  & 575  & 571  \\ 
+			A70 & 31  & 50.10 & 23.99  & 49.00 & 10 & 99   & 89   \\ 
+			A96 & 155 & 61.37 & 44.31  & 52.50 & 5  & 247  & 242  \\ 
+			A7  & 130 & 86.55 & 146.82 & 59.50 & 6  & 1326 & 1320 \\ 
+			A73 & 129 & 54.78 & 42.48  & 45.00 & 6  & 274  & 268  \\ 
+			A99 & 116 & 58.97 & 48.35  & 47.50 & 4  & 295  & 291  \\ 
+			A92 & 66  & 55.24 & 36.43  & 51.50 & 8  & 235  & 227  \\ 
+			A93 & 21  & 82.33 & 91.10  & 48.00 & 7  & 343  & 336  \\ 
+			A94 & 37  & 49.86 & 31.63  & 44.00 & 14 & 145  & 131  \\ 
+			\bottomrule
+			% \bar{x} - sum = , mean = 
+			% \sigma - sum = , mean = 
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_TAvg}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				width=\textwidth,
+				height=4.7cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=10,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				% extra y ticks={201,161},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Str_TAvg}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Street} and \textit{Average Temporal Extent}}
 	%\vspace{-8mm}
-\end{table}
-The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg} show that the mean value of A3 is about $\frac{1}{3}$ higher than the means of A73 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on A73 and A96. The descriptives also show general increase of $\bar{x}$ and $\sigma$ around 35\,\% between the roads A94, A92, A73 and A70 to A3, A6, A7 and A9.
+\end{figure}
+% #### END: Table and Plot
+The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg,fig:descriptives_baysis_matched_Str_TAvg} show that the mean value of A3 is about 30\,\% higher than the means of A73 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on A73 and A96. The descriptives also show general increase of $\bar{x}$ and $\sigma$ around 35\,\% between the roads A94, A92, A73 and A70 to A3, A6, A7 and A9.
 
 % ##############################################
 \groupintrosigsig{Str}{TAvg}{baysis}{matched}
@@ -198,35 +312,92 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg} show that 
 		% A980 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Maximal Spatial Extent}}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Maximal Spatial Extent}, see \cref{tbl:wilcoxon_baysis_matched_Str_SMax_complete} for complete table}
 	\label{tbl:wilcoxon_baysis_matched_Str_SMax}
 \end{table}
 It shows, that the groups A7, A9, A70, A73, A92, A94 and A96 differ from group A3. The groups A73 and A92 further differ from group A6 and A9. The group A99 differs from group A73 and group A92 differs from A99, but there is no distinctive general trend.
-\begin{table}[ht!]
-	\tiny
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	A3  , 559 , 13874.96 , 10064.51 , 11014.00 , 1084 , 46328 , 45244 
+	A6  , 127 , 11067.98 , 8428.07  , 8634.00  , 965  , 43156 , 42191 
+	A9  , 466 , 10680.48 , 7724.45  , 8977.50  , 832  , 49765 , 48933 
+	A70 , 31  , 6676.39  , 3640.24  , 6136.00  , 1841 , 13058 , 11217 
+	A96 , 155 , 8551.75  , 6431.18  , 6238.00  , 971  , 27965 , 26994 
+	A7  , 130 , 9018.27  , 7293.14  , 7051.50  , 1108 , 43244 , 42136 
+	A73 , 129 , 6502.88  , 5033.20  , 5327.00  , 1036 , 33764 , 32728 
+	A99 , 116 , 13244.02 , 11313.27 , 9439.50  , 1280 , 48278 , 46998 
+	A92 , 66  , 6186.80  , 4000.10  , 4936.50  , 1176 , 23291 , 22115 
+	A93 , 21  , 6765.00  , 4403.32  , 5323.00  , 1244 , 16922 , 15678 
+	A94 , 37  , 6220.38  , 3984.46  , 5768.00  , 1167 , 15550 , 14383   
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\  
-		\midrule
-		A3  & 559 & 13874.96 & 10064.51 & 11014.00 & 1084 & 46328 & 45244 \\ 
-		A6  & 127 & 11067.98 & 8428.07  & 8634.00  & 965  & 43156 & 42191 \\ 
-		A9  & 466 & 10680.48 & 7724.45  & 8977.50  & 832  & 49765 & 48933 \\ 
-		A70 & 31  & 6676.39  & 3640.24  & 6136.00  & 1841 & 13058 & 11217 \\ 
-		A96 & 155 & 8551.75  & 6431.18  & 6238.00  & 971  & 27965 & 26994 \\ 
-		A7  & 130 & 9018.27  & 7293.14  & 7051.50  & 1108 & 43244 & 42136 \\ 
-		A73 & 129 & 6502.88  & 5033.20  & 5327.00  & 1036 & 33764 & 32728 \\ 
-		A99 & 116 & 13244.02 & 11313.27 & 9439.50  & 1280 & 48278 & 46998 \\ 
-		A92 & 66  & 6186.80  & 4000.10  & 4936.50  & 1176 & 23291 & 22115 \\ 
-		A93 & 21  & 6765.00  & 4403.32  & 5323.00  & 1244 & 16922 & 15678 \\ 
-		A94 & 37  & 6220.38  & 3984.46  & 5768.00  & 1167 & 15550 & 14383 \\ 
-		\bottomrule
-	\end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			A3  & 559 & 13874.96 & 10064.51 & 11014.00 & 1084 & 46328 & 45244 \\ 
+			A6  & 127 & 11067.98 & 8428.07  & 8634.00  & 965  & 43156 & 42191 \\ 
+			A9  & 466 & 10680.48 & 7724.45  & 8977.50  & 832  & 49765 & 48933 \\ 
+			A70 & 31  & 6676.39  & 3640.24  & 6136.00  & 1841 & 13058 & 11217 \\ 
+			A96 & 155 & 8551.75  & 6431.18  & 6238.00  & 971  & 27965 & 26994 \\ 
+			A7  & 130 & 9018.27  & 7293.14  & 7051.50  & 1108 & 43244 & 42136 \\ 
+			A73 & 129 & 6502.88  & 5033.20  & 5327.00  & 1036 & 33764 & 32728 \\ 
+			A99 & 116 & 13244.02 & 11313.27 & 9439.50  & 1280 & 48278 & 46998 \\ 
+			A92 & 66  & 6186.80  & 4000.10  & 4936.50  & 1176 & 23291 & 22115 \\ 
+			A93 & 21  & 6765.00  & 4403.32  & 5323.00  & 1244 & 16922 & 15678 \\ 
+			A94 & 37  & 6220.38  & 3984.46  & 5768.00  & 1167 & 15550 & 14383 \\ 
+			\bottomrule
+			% \bar{x} - sum = , mean = 
+			% \sigma - sum = , mean = 
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_SMax}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				width=\textwidth,
+				height=4.7cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=10,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				% extra y ticks={201,161},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Str_SMax}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Maximal Spatial Extent}}
-	\label{tbl:descriptives_baysis_matched_Str_SMax}
 	%\vspace{-8mm}
-\end{table}
-The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SMax} show that the mean of A3 is 44\,\% - 66\,\% higher than the means of A7, A9, A70, A73, A92, A94 and A96. It also shows that the groups A6, A9 and A99 have a up to 50\,\% higher mean than the groups A73 and A92. We can interpret that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96. Based on the $\bar{x}$ and $\sigma$ the roads can be separated into three groups of short (A94, A93, A92, A73 and A70), medium (A96 and A7) and long (A3, A6, A9 and A99).
+\end{figure}
+% #### END: Table and Plot
+The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SMax,fig:descriptives_baysis_matched_Str_SMax} show that the mean of A3 is 44\,\% - 66\,\% higher than the means of A7, A9, A70, A73, A92, A94 and A96. It also shows that the groups A6, A9 and A99 have a up to 50\,\% higher mean than the groups A73 and A92. We can interpret that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96. Based on the $\bar{x}$ and $\sigma$ the roads can be separated into three groups of short (A94, A93, A92, A73 and A70), medium (A96 and A7) and long (A3, A6, A9 and A99).
 
 % ##############################################
 \groupintrosig{Str}{SAvg}{0.0027}{baysis}{matched}
@@ -256,35 +427,92 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SMax} show that 
 	  	% A980 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Average Spatial Extent}}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Average Spatial Extent}, see \cref{tbl:wilcoxon_baysis_matched_Str_SAvg_complete} for complete table}
 	\label{tbl:wilcoxon_baysis_matched_Str_SAvg}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Str_SAvg} shows, that the groups A70, A73, A92, A93, A94, A96 and A99 differ from group A3. The groups A73, A94 further differ from group A6 as well as A73, A99, A92 and A94 from group A9, but there is no distinctive general trend.
-\begin{table}[ht!]
-	\tiny
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	A3  , 559 , 4537.56 , 2735.62 , 3986.0 , 135  , 17805 , 17670
+	A6  , 127 , 4361.50 , 3042.71 , 3235.0 , 458  , 16851 , 16393
+	A9  , 466 , 4187.15 , 2569.83 , 3700.5 , 393  , 15132 , 14739
+	A70 , 31  , 3010.45 , 2067.63 , 1974.0 , 1008 , 9937  , 8929 
+	A96 , 155 , 3678.39 , 2172.99 , 3299.0 , 387  , 10182 , 9795 
+	A7  , 130 , 4141.68 , 3026.58 , 3537.5 , 643  , 16571 , 15928
+	A73 , 129 , 2683.97 , 1981.91 , 2232.0 , 544  , 11832 , 11288
+	A99 , 116 , 3240.97 , 1878.87 , 2978.0 , 583  , 8426  , 7843 
+	A92 , 66  , 2926.15 , 1521.59 , 2931.5 , 455  , 8970  , 8515 
+	A93 , 21  , 2525.43 , 1443.21 , 2338.0 , 664  , 6779  , 6115 
+	A94 , 37  , 2691.68 , 2023.38 , 2307.0 , 358  , 10393 , 10035
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-	  	\toprule
-	 	Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\  
-	  	\midrule
-		A3  & 559 & 4537.56 & 2735.62 & 3986.00 & 135  & 17805 & 17670 \\ 
-	  	A6  & 127 & 4361.50 & 3042.71 & 3235.00 & 458  & 16851 & 16393 \\ 
-	  	A9  & 466 & 4187.15 & 2569.83 & 3700.50 & 393  & 15132 & 14739 \\ 
-	  	A70 & 31  & 3010.45 & 2067.63 & 1974.00 & 1008 & 9937  & 8929 \\ 
-	  	A96 & 155 & 3678.39 & 2172.99 & 3299.00 & 387  & 10182 & 9795 \\ 
-	  	A7  & 130 & 4141.68 & 3026.58 & 3537.50 & 643  & 16571 & 15928 \\ 
-	  	A73 & 129 & 2683.97 & 1981.91 & 2232.00 & 544  & 11832 & 11288 \\ 
-	  	A99 & 116 & 3240.97 & 1878.87 & 2978.00 & 583  & 8426  & 7843 \\ 
-	  	A92 & 66  & 2926.15 & 1521.59 & 2931.50 & 455  & 8970  & 8515 \\ 
-	  	A93 & 21  & 2525.43 & 1443.21 & 2338.00 & 664  & 6779  & 6115 \\ 
-	  	A94 & 37  & 2691.68 & 2023.38 & 2307.00 & 358  & 10393 & 10035 \\ 
-	   	\bottomrule
-	\end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			A3  & 559 & 4537.56 & 2735.62 & 3986.0 & 135  & 17805 & 17670 \\ 
+			A6  & 127 & 4361.50 & 3042.71 & 3235.0 & 458  & 16851 & 16393 \\ 
+			A9  & 466 & 4187.15 & 2569.83 & 3700.5 & 393  & 15132 & 14739 \\ 
+			A70 & 31  & 3010.45 & 2067.63 & 1974.0 & 1008 & 9937  & 8929 \\ 
+			A96 & 155 & 3678.39 & 2172.99 & 3299.0 & 387  & 10182 & 9795 \\ 
+			A7  & 130 & 4141.68 & 3026.58 & 3537.5 & 643  & 16571 & 15928 \\ 
+			A73 & 129 & 2683.97 & 1981.91 & 2232.0 & 544  & 11832 & 11288 \\ 
+			A99 & 116 & 3240.97 & 1878.87 & 2978.0 & 583  & 8426  & 7843 \\ 
+			A92 & 66  & 2926.15 & 1521.59 & 2931.5 & 455  & 8970  & 8515 \\ 
+			A93 & 21  & 2525.43 & 1443.21 & 2338.0 & 664  & 6779  & 6115 \\ 
+			A94 & 37  & 2691.68 & 2023.38 & 2307.0 & 358  & 10393 & 10035 \\ 
+			\bottomrule
+			% \bar{x} - sum = , mean = 
+			% \sigma - sum = , mean = 
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_SAvg}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				width=\textwidth,
+				height=4.7cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=10,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				% extra y ticks={201,161},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Str_SAvg}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Average Spatial Extent}}
-	\label{tbl:descriptives_baysis_matched_Str_SAvg}
 	%\vspace{-8mm}
-\end{table}
-The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SAvg} show that the mean of A3 is 45\,\% - 55\,\% higher the means of A70, A73, A92, A93, A94, A96 and A99. It also shows that the means of the groups A6, A9 and A99 is about 30\,\% higher mean than the groups A73 and A94. We can interpret that accidents on the A3, A6, A9 and A99 lead are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99. The groups can be separated into two groups based on $\bar{x}$ and $\sigma$. A3, A6, A9 and A7 tend to have longer (spatial) longer jams when A70, A96, A73, A99, A92, A93 and A94 tend to have shorter (spatial) jams.
+\end{figure}
+% #### END: Table and Plot
+The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SAvg,fig:descriptives_baysis_matched_Str_SAvg} show that the mean of A3 is 45\,\% - 55\,\% higher the means of A70, A73, A92, A93, A94, A96 and A99. It also shows that the means of the groups A6, A9 and A99 is about 30\,\% higher mean than the groups A73 and A94. We can interpret that accidents on the A3, A6, A9 and A99 lead are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99. The groups can be separated into two groups based on $\bar{x}$ and $\sigma$. A3, A6, A9 and A7 tend to have longer (spatial) longer jams when A70, A96, A73, A99, A92, A93 and A94 tend to have shorter (spatial) jams.
 
 % ##############################################
 \groupintrosig{Str}{Cov}{0.0018}{baysis}{matched}
@@ -314,34 +542,91 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SAvg} show that 
 	  	% A980 	& 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
 	   	\bottomrule
 	\end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Coverage}}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Coverage}, see \cref{tbl:wilcoxon_baysis_matched_Str_Cov_complete} for complete table}
 	\label{tbl:wilcoxon_baysis_matched_Str_Cov}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Str_SAvg} shows, that the groups A6, A7, A9, A73, A92 and A96 differ from group A3. The group A99 differs from group A6 and groups A96, AA7, A99, A92 differ from group A9. The group A99 also differs from the groups A70, A96, A7 and A73, but there is no distinctive general trend. 
-\begin{table}[ht!]
-	\tiny
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	A3  , 559 , 38.44 , 19.04 , 36.0 , 2  , 100 , 98 
+	A6  , 127 , 46.99 , 24.06 , 44.0 , 9  , 100 , 91 
+	A9  , 466 , 43.93 , 18.49 , 41.0 , 6  , 100 , 94 
+	A70 , 31  , 50.29 , 25.00 , 44.0 , 9  , 92  , 83 
+	A96 , 155 , 51.94 , 21.38 , 54.0 , 2  , 100 , 98 
+	A7  , 130 , 53.46 , 24.19 , 54.0 , 6  , 100 , 94 
+	A73 , 129 , 46.49 , 22.88 , 42.0 , 7  , 100 , 93 
+	A99 , 116 , 33.21 , 18.03 , 31.0 , 5  , 85  , 80 
+	A92 , 66  , 53.15 , 21.80 , 52.5 , 14 , 98  , 84 
+	A93 , 21  , 40.81 , 17.72 , 37.0 , 13 , 70  , 57 
+	A94 , 37  , 47.76 , 23.69 , 44.0 , 11 , 88  , 77 
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-	  	\toprule
-	 	Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\   
-	  	\midrule
-		A3  & 559 & 38.44 & 19.04 & 36.00 & 2  & 100 & 98 \\ 
-	  	A6  & 127 & 46.99 & 24.06 & 44.00 & 9  & 100 & 91 \\ 
-	  	A9  & 466 & 43.93 & 18.49 & 41.00 & 6  & 100 & 94 \\ 
-	  	A70 & 31  & 50.29 & 25.00 & 44.00 & 9  & 92  & 83 \\ 
-	  	A96 & 155 & 51.94 & 21.38 & 54.00 & 2  & 100 & 98 \\ 
-	  	A7  & 130 & 53.46 & 24.19 & 54.00 & 6  & 100 & 94 \\ 
-	  	A73 & 129 & 46.49 & 22.88 & 42.00 & 7  & 100 & 93 \\ 
-	  	A99 & 116 & 33.21 & 18.03 & 31.00 & 5  & 85  & 80 \\ 
-	  	A92 & 66  & 53.15 & 21.80 & 52.50 & 14 & 98  & 84 \\ 
-	  	A93 & 21  & 40.81 & 17.72 & 37.00 & 13 & 70  & 57 \\ 
-	  	A94 & 37  & 47.76 & 23.69 & 44.00 & 11 & 88  & 77 \\ 	
-	  	\bottomrule
-	\end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			A3  & 559 & 38.44 & 19.04 & 36.0 & 2  & 100 & 98 \\ 
+			A6  & 127 & 46.99 & 24.06 & 44.0 & 9  & 100 & 91 \\ 
+			A9  & 466 & 43.93 & 18.49 & 41.0 & 6  & 100 & 94 \\ 
+			A70 & 31  & 50.29 & 25.00 & 44.0 & 9  & 92  & 83 \\ 
+			A96 & 155 & 51.94 & 21.38 & 54.0 & 2  & 100 & 98 \\ 
+			A7  & 130 & 53.46 & 24.19 & 54.0 & 6  & 100 & 94 \\ 
+			A73 & 129 & 46.49 & 22.88 & 42.0 & 7  & 100 & 93 \\ 
+			A99 & 116 & 33.21 & 18.03 & 31.0 & 5  & 85  & 80 \\ 
+			A92 & 66  & 53.15 & 21.80 & 52.5 & 14 & 98  & 84 \\ 
+			A93 & 21  & 40.81 & 17.72 & 37.0 & 13 & 70  & 57 \\ 
+			A94 & 37  & 47.76 & 23.69 & 44.0 & 11 & 88  & 77 \\ 
+			\bottomrule
+			% \bar{x} - sum = , mean = 
+			% \sigma - sum = , mean = 
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_Cov}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				width=\textwidth,
+				height=4.7cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=10,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				% extra y ticks={201,161},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Str_Cov}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Coverage}}
-	\label{tbl:descriptives_baysis_matched_Str_Cov}
 	%\vspace{-8mm}
-\end{table}
+\end{figure}
+% #### END: Table and Plot
 The descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov} show that the mean of A3 is 20\,\% - 30\,\% lower than the means of A6, A7, A9, A73, A92 and A96. It also shows that the mean of A6 is about $\frac{1}{3}$ higher than the mean of A99. We can interpret that accidents on the A3, A99 are associated with significantly less denser jams than on A6, A7, A9, A73, A70, A92 and A96.
 
 % ----------------------
@@ -369,27 +654,78 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov} show that t
 	\label{tbl:wilcoxon_baysis_matched_Kat_TMax}
 \end{table}
 \cref{tbl:wilcoxon_baysis_matched_Kat_TMax} shows that all groups, besides of group 7 to group 3, have significant differences. 
-\begin{table}[ht!]
-	\tiny
+% #### START: Table and Plot
+\pgfplotstableread[col sep=comma,header=false]{
+	1 , 36  , 317.67 , 215.10 , 279 , 27 , 987  , 960 
+	2 , 216 , 189.03 , 164.93 , 135 , 9  , 1257 , 1248 
+	3 , 881 , 155.26 , 141.87 , 111 , 9  , 1323 , 1314 
+	7 , 718 , 179.35 , 192.33 , 117 , 9  , 1341 , 1332 
+}\data
+\pgfplotstablecreatecol[
+  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
+]{sum}{\data}
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\   
-	  	\midrule
-		1 & 36  & 317.67 & 215.10 & 279 & 27 & 987  & 960 \\ 
-	  	2 & 216 & 189.03 & 164.93 & 135 & 9  & 1257 & 1248 \\ 
-	  	3 & 881 & 155.26 & 141.87 & 111 & 9  & 1323 & 1314 \\ 
-	  	7 & 718 & 179.35 & 192.33 & 117 & 9  & 1341 & 1332 \\ 
-	   	\bottomrule
-	\end{tabular}
-	\caption{Group descriptives of \textit{Kat} and \textit{Maximal Temporal Extent}}
-	\label{tbl:descriptives_baysis_matched_Kat_TMax}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			1 & 36  & 317.67 & 215.10 & 279 & 27 & 987  & 960 \\ 
+			2 & 216 & 189.03 & 164.93 & 135 & 9  & 1257 & 1248 \\ 
+			3 & 881 & 155.26 & 141.87 & 111 & 9  & 1323 & 1314 \\ 
+			7 & 718 & 179.35 & 192.33 & 117 & 9  & 1341 & 1332 \\ 
+			\bottomrule
+			% \bar{x} - sum = , mean = 
+			% \sigma - sum = , mean = 
+			% \tilde{x}
+			%
+			% 189+155+179 / 3 = 174
+			% diff 317,174 = 143
+			% mean diff 189,155,179 = 29
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Kat_TMax}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\tiny
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				% Gitterlinien für y-Ticks
+				width=\textwidth,
+				height=4.7cm,
+				xmajorgrids=true,
+				ymajorgrids=true,
+				xtick=data,
+				xmin=0,xmax=10,
+				xticklabels from table={\data}{[index]0},
+				% zusätzliche Beschriftung an y-Achse
+				every extra y tick/.style={
+					tick0/.initial=blue,
+					tick1/.initial=red,
+					yticklabel style={
+						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+					},
+				},
+				% extra y ticks={201,161},
+			]
+			\addplot table [absolute series=2] {\data};
+			\addplot table [absolute series=3] {\data};
+			\addplot table [absolute series=4] {\data};
+			\legend{
+				$\bar{x}$,$\sigma$,$\tilde{x}$}
+			\end{axis}
+		 \end{tikzpicture}\vfill
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Kat_TMax}
+	\end{minipage}%
+	\caption{Group descriptives of  \textit{Kat} and \textit{Maximal Temporal Extent}}
 	%\vspace{-8mm}
-\end{table}
-% 189+155+179 / 3 = 174
-% diff 317,174 = 143
-% mean diff 189,155,179 = 29
-The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TMax} present increasing means from lightly injured to deathly accident. We can interpret that the maximal temporal jam length  increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 143\,min longer jams, than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the property damage group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 29\,min on average.
+\end{figure}
+% #### END: Table and Plot
+The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TMax,fig:descriptives_baysis_matched_Kat_TMax} present increasing means from lightly injured to deathly accident. We can interpret that the maximal temporal jam length  increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 143\,min longer jams, than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the property damage group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 29\,min on average.
 
 The Kruskal-Wallis test of \textit{Kat} - \textit{TAvg} produces a $p$-value of 0.0005, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat} - \textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Kat_TAvg}.
 \begin{table}[ht!]

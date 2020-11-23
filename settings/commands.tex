@@ -43,3 +43,30 @@
 \newcommand{\groupintrosig}[5]{The Kruskal-Wallis test of the relation \textit{#1} - \textit{#2} produces a $p$-value of #3, which is below the defined $\alpha$-level. Therefore the null hypothesis can be rejected, meaning that there are significant differences in \textit{#2} between the groups of \textit{#1}. The significant groups can be identified with a pairwise Wilcoxon $T$-test, which is shown in \cref{tbl:wilcoxon_#4_#5_#1_#2}.}
 % Group Analysis Intro with significant alpha and below .0001
 \newcommand{\groupintrosigsig}[4]{The Kruskal-Wallis test of the relation \textit{#1} - \textit{#2} produces a $p$-value below .0001, which is far below the defined $\alpha$-level. Therefore the null hypothesis can be rejected, meaning that there are strong significant differences in \textit{#2} between the groups of \textit{#1}. The significant groups can be identified with a pairwise Wilcoxon $T$-test, which is shown in \cref{tbl:wilcoxon_#3_#4_#1_#2}.}
+
+%% Graphic snippets
+
+\newcommand{\sumcompbarstreet}[2]{
+    \begin{figure}
+        \tiny
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                ybar,
+                % bar width=.1cm,
+                width=\textwidth,
+                height=4.7cm,
+                xmajorgrids=true,
+                ymajorgrids=true,
+                xtick=data,
+                xticklabels from table={#1}{[index]0}
+            ] 
+            \addplot table[x expr=\coordindex, y=globalMeanMax] {#1};
+            \addplot table[x expr=\coordindex, y=effectorMeanMax] {#1};
+            \legend{$\bar{x}_{global}$,$\bar{x}_{effector}$}
+            \end{axis}
+         \end{tikzpicture}
+        \caption{Comparison of descriptives $\bar{x}_{global}$ and $\bar{x}_{effector}$ (\textit{#2})}
+        %\vspace{-8mm}
+    \end{figure}
+}

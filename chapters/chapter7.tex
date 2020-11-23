@@ -8,24 +8,44 @@ The analysis of the congestion -  accidents correlations is separated into secti
 \subsection{Street (\textit{Strasse})}
 \label{analysis_sum_Strasse}
 The relations of the variable \textit{Street} in the global congestion -  accidents dataset show the features listed below.
+
 \begin{itemize}
-    \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only individual groups show statistical significant differences. Descriptives clearly show three groups of short (A94, A93, A92 and A70), medium (A99, A73, A7, A96, A9 and A6) and long (A3).
+    \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only individual groups show statistical significant differences. the descriptives show three groups of short (A94, A93, A92 and A70), medium (A99, A73, A7, A96, A9 and A6) and long (A3).
+    \pgfplotstableread[col sep=comma]{
+        Road, globalMeanMax, globalMedianMax, globalStandartDeviationMax, effectorMeanMax, effectorMedianMax, effectorStandartDeviationMax
+        A3  , 225.76 , 210.36 , 156.0 , 297.62 , 219.09 , 243.0
+        A6  , 153.05 , 150.42 , 108.0 , 236.59 , 183.03 , 207.0 
+        A9  , 170.85 , 151.33 , 118.5 , 243.45 , 178.97 , 201.0 
+        A70 , 106.55 , 79.42  , 81.0  ,        ,        ,
+        A96 , 118.32 , 81.05  , 108.0 , 155.85 , 84.33  , 144.0 
+        A7  , 153.37 , 194.10 , 102.0 , 254.66 , 306.21 , 168.0
+        A73 , 125.95 , 135.01 , 93.0  , 157.21 , 179.42 , 130.5
+        A99 , 169.09 , 136.72 , 138.0 , 212.57 , 140.78 , 195.0
+        A92 , 103.86 , 65.69  , 87.0  , 134.71 , 82.25  , 138.0
+        A93 , 163.57 , 155.71 , 111.0 , 212.00 , 187.74 , 130.5
+        A94 , 101.59 , 54.60  , 99.0  , 109.71 , 56.07  , 97.5
+    }\data
+    \sumcompbarstreet{\data}{TMax}
     \item \textit{Str} - \textit{TAvg} : Average jam duration is generally related to the street, but only A3, A73 and A99 show statistical significant differences. The descriptives show that the A94, A92, A73 and A70 tend to have shorter jams than A3, A6, A7 and A9.
-    \item \textit{Str} - \textit{SMax} : Maximum jam length is generally related to the street, with many road showing statistical significant differences. The descriptives show three groups of short (A94, A93, A92, A73 and A70), medium (A96 and A7) and long (A3, A6, A9 and A99) separated by about 50\,\% increases.
-    \item \textit{Str} - \textit{SAvg} : Average jam length is generally related to the street, with many road showing statistical significant differences. The descriptives show two groups of shorter (A70, A96, A73, A99, A92, A93 and A94) and longer (A3, A6, A9 and A7).
-    \item \textit{Str} - \textit{Cov} : Coverage is generally related to the street, with most road showing statistical significant differences. The descriptives show that jams on the A3 and A99 are about $\frac{1}{3}$ less dense than A6, A7, A9, A73, A70, A92 and A96.
+    \item \textit{Str} - \textit{SMax} : Maximum jam length is generally related to the street, with many road showing statistical significant differences. It can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96. The descriptives further show three groups of short (A94, A93, A92, A73 and A70), medium (A96 and A7) and long (A3, A6, A9 and A99) separated by about 50\,\% increases.
+    \item \textit{Str} - \textit{SAvg} : Average jam length is generally related to the street, with many road showing statistical significant differences. It can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99. The descriptives further show two groups of shorter (A70, A96, A73, A99, A92, A93 and A94) and longer (A3, A6, A9 and A7), based on $\bar{x}$ and $\sigma$.
+    \item \textit{Str} - \textit{Cov} : Coverage is generally related to the street, with most road showing statistical significant differences. The descriptives show that jams on the A3 and A99 are significant 30\,\% less dense than A6, A7, A9, A73, A70, A92 and A96.
 \end{itemize}
-In accordance with these finding, it can be interpreted that in general the street plays a significant role defining the size and form of a congestion. This is not surprising since the demand on the street, which varies heavily between the streets is the major factor influencing the buildup of a congestion. Non the less it is interesting the the differences are substantial with ranges from 30\,\% to 50\,\% increases between groups and are replicated over difference variable relations.
+
 
 The relation class of \text{Jam Intiator} and \text{Jam Follower} don't show any relevance in the found collections. In the case of the \text{Jam Intiator} this it especially unfortunate, since it is the most promising group for predictions.
 
-Unlike the before and after classification, the jam relation class of \text{Jam Effector}, which hold accidents during a congestion presents a number of relevant correlations:
+Unlike the before and after classification, the relation class of \text{Jam Effector}, which hold accidents during a congestion presents a number of relevant correlations:
 \begin{itemize}
     \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only an small number of groups show statistical significant differences. Descriptives show similar features like in the global dataset. Accidents on the A3 created twice as long congestions than on the other streets. The descriptives further separate the streets into three groups of long (A3, A7), medium (A6, A99, A93 and A73) and short (A94, A96, and A92), based on $\bar{x}$ and $\sigma$.
     \item \textit{Strasse} - \textit{TAvg} : Average jam duration is generally related to the street, but only two groups show statistical significant differences. Descriptives show similar features like in the global dataset. The significant differences show that the A3 and A7 have around 30\,\%-50\,\% longer jams than the A99 and A73. Based on $\bar{x}$ and $\sigma$ from the descriptives, the road can be groups into short (A92, A73, A94 and A99), medium (A6, A9 and A96) and long (A3, A93 and A7).
     \item \textit{Strasse} - \textit{SMax} : Maximum jam length is generally related to the street, with many road showing statistical significant differences. Descriptives show similar features like in the global dataset. The distribution of the significant $\bar{x}$ and $\sigma$ can be separated into three groups of short (A73, A92, A93 and A94), medium (A6, A7, A9, A96 and A99) and long (A3). Each of these groups differ by 50\,\% to 80\,\% increases.
     \item \textit{Strasse} - \textit{Cov} : The coverage is generally related to the street. The descriptives show that the coverage increases from A3 over A9 and A92 to A7, A96 and A92 by up to 80\,\%.
 \end{itemize}
+
+In accordance with these finding, it can be interpreted that in general the street plays a significant role defining the size and form of a congestion. This is not surprising since the demand on the street, which varies heavily between the streets is the major factor influencing the buildup of a congestion. Non the less it is interesting the the differences are substantial with ranges from 30\,\% to 50\,\% increases between groups and are replicated over difference variable relations.
+
+
 As already mentioned, these findings are mostly logical and not surprising. But they provide a statistical defined statement about the rations of increases or differences. 
 
 \subsection{Accident category (\textit{Kat})}

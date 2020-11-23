@@ -10,9 +10,8 @@ The results of the clustering and matching algorithm where visually reviewed to 
 
 \section{Correlation Processing}
 \label{analysis_processing_correlation}
-The resulting datasets created by the evaluation tool (see section \cref{methodology_detection} \cref{methodology_matching} and \cref{methodology_data_processing}), tasked with the detection and clustering of jams and search for adjacent incidents, are then processed by the correlation tool (\cref{methodology_correlation_processing}). The correlation tool calculates multiple matrix tables with the correlation effect size, correlation significance and used correction coefficient for all variable combinations. From these tables and interpretation guidelines defined in \cref{correlation_coefficient_types} for each coefficient type, we can deviated the strength of correlation and significance (see \cref{correlation_significance}) for each combination. To recap \cref{correlation_coefficient_types}, \cref{tbl:correlation_interpretation_guidelines} shows the guidelines for a weak, moderate and strong correlation effect size of the coefficients $r$,$\eta$,$r_{pq}$,$\tau$ and $V$. The significance is evaluated $\alpha=.05$.
-
-\begin{table}[ht]
+The resulting datasets created by the evaluation tool (see section \cref{methodology_detection} \cref{methodology_matching} and \cref{methodology_data_processing}) which is tasked with the detection and clustering of jams and search for adjacent incidents, are then processed by the correlation tool (\cref{methodology_correlation_processing}). The correlation tool calculates multiple matrix tables with the correlation effect size, correlation significance and used correction coefficient for all variable combinations. From these tables and interpretation guidelines defined in \cref{correlation_coefficient_types} for each coefficient type, we can deviated the strength of correlation and significance (see \cref{correlation_significance}) for each variable combination. To recap \cref{correlation_coefficient_types}, \cref{tbl:correlation_interpretation_guidelines} shows the guidelines for a weak, moderate and strong correlation effect size of the coefficients $r$,$\eta$,$r_{pq}$,$\tau$ and $V$. The significance is evaluated by an $\alpha$-level of .05.
+\begin{table}[ht!]
 	\centering
 	\begin{tabular}{r|c|c|c}  
 		\toprule
@@ -28,7 +27,6 @@ The resulting datasets created by the evaluation tool (see section \cref{methodo
 	\caption{Correlation effect size interpretation for coefficient $r$,$\eta$,$r_{pq}$,$\tau$ and $V$}
 	\label{tbl:correlation_interpretation_guidelines}
 \end{table}
-
 In the case of correlated and significant variables, it still needs to be determined what the found correlation predicates. This is done via the Post Hoc test, defined in \cref{correlation_posthoc}, which tests for for significance differences between the groups via the pairwise Wilcoxon $T$-test. The rest of this chapter is dedicated to elaborate on this tedious process of testing all groups for significance differences. This involves a enormous number of tables which need to be evaluated and involves repetitions, but is necessary to cover all assumptions and interpretations, referenced later on. For a summary of the significant differences and their interpretations, please forward to \cref{analysis_summary}.
 
 % -------------------------

@@ -277,21 +277,28 @@ The table shows that the groups A73 and A99 differ significantly from group A3, 
 \end{figure}
 % #### END: Table and Plot
 The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg,fig:descriptives_baysis_matched_Str_TAvg} show that the mean value of A3 is about 30\,\% higher than the means of A73 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on A73 and A96. The descriptives also show general increase of $\bar{x}$ and $\sigma$ around 35\,\% between the roads A94, A92, A73 and A70 to A3, A6, A7 and A9.
-\pgfplotstableread[col sep=comma]{
-	Road, meanTMax, meanTAvg
-	A3  , 225.76 , 89.66  
-	A6  , 153.05 , 69.94  
-	A9  , 170.85 , 72.92  
-	A70 , 106.55 , 50.10  
-	A96 , 118.32 , 61.37  
-	A7  , 153.37 , 86.55  
-	A73 , 125.95 , 54.78  
-	A99 , 169.09 , 58.97  
-	A92 , 103.86 , 55.24  
-	A93 , 163.57 , 82.33  
-	A94 , 101.59 , 49.86    
-}\data
-\barplotdoubleanalysis{\data}{Street}{TMax/TAvg}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
+\begin{figure}[ht!]
+	\pgfplotstableread[col sep=comma]{
+		Road, meanTMax, meanTAvg
+		A3  , 225.76 , 89.66  
+		A6  , 153.05 , 69.94  
+		A9  , 170.85 , 72.92  
+		A70 , 106.55 , 50.10  
+		A96 , 118.32 , 61.37  
+		A7  , 153.37 , 86.55  
+		A73 , 125.95 , 54.78  
+		A99 , 169.09 , 58.97  
+		A92 , 103.86 , 55.24  
+		A93 , 163.57 , 82.33  
+		A94 , 101.59 , 49.86    
+	}\data
+	\tiny
+	\centering
+	\barplotdoubleanalysis{\data}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
+	\caption{Comparison of descriptives $\bar{x}_{TMax}$ and $\bar{x}_{TAvg}$ (\textit{Street} by \textit{TMax/TAvg})}
+	\label{fig:baysis_matched_meancomparison_Str_temporal}
+	%\vspace{-8mm}
+\end{figure}
 When comparison the mean values of the maximal and average (temporal) extend it becomes clear that the average is significantly lower than the maximum, which is to be expected. It shows, that the differences between the groups are similar in both the maximal and average extend.
 
 % ##############################################
@@ -437,7 +444,7 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SMax,fig:descrip
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Average Spatial Extent}, see \cref{tbl:wilcoxon_baysis_matched_Str_SAvg_complete} for complete table}
 	\label{tbl:wilcoxon_baysis_matched_Str_SAvg}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Str_SAvg} shows, that the groups A70, A73, A92, A93, A94, A96 and A99 differ from group A3. The groups A73, A94 further differ from group A6 as well as A73, A99, A92 and A94 from group A9, but there is no distinctive general trend.
+It shows, that the groups A70, A73, A92, A93, A94, A96 and A99 differ from group A3. The groups A73, A94 further differ from group A6 as well as A73, A99, A92 and A94 from group A9, but there is no distinctive general trend.
 % #### START: Table and Plot
 \begin{figure}[ht!]
 	\centering
@@ -517,21 +524,28 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SMax,fig:descrip
 \end{figure}
 % #### END: Table and Plot
 The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SAvg,fig:descriptives_baysis_matched_Str_SAvg} show that the mean of A3 is 45\,\% - 55\,\% higher the means of A70, A73, A92, A93, A94, A96 and A99. It also shows that the means of the groups A6, A9 and A99 is about 30\,\% higher mean than the groups A73 and A94. It can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99. The groups can be separated into two groups based on $\bar{x}$ and $\sigma$. A3, A6, A9 and A7 tend to have longer (spatial) longer jams when A70, A96, A73, A99, A92, A93 and A94 tend to have shorter (spatial) jams.
-\pgfplotstableread[col sep=comma]{
-	Road, meanSMax, meanSAvg
-	A3  , 13874.96 , 4537.56  
-	A6  , 11067.98 , 4361.50  
-	A9  , 10680.48 , 4187.15  
-	A70 , 6676.39  , 3010.45  
-	A96 , 8551.75  , 3678.39  
-	A7  , 9018.27  , 4141.68  
-	A73 , 6502.88  , 2683.97  
-	A99 , 13244.02 , 3240.97  
-	A92 , 6186.80  , 2926.15  
-	A93 , 6765.00  , 2525.43  
-	A94 , 6220.38  , 2691.68    
-}\data
-\barplotdoubleanalysis{\data}{Street}{SMax/SAvg}{meanSMax}{meanSAvg}{$\bar{x}_{SMax}$}{$\bar{x}_{SAvg}$}
+\begin{figure}[ht!]
+	\pgfplotstableread[col sep=comma]{
+		Road, meanSMax, meanSAvg
+		A3  , 13874.96 , 4537.56  
+		A6  , 11067.98 , 4361.50  
+		A9  , 10680.48 , 4187.15  
+		A70 , 6676.39  , 3010.45  
+		A96 , 8551.75  , 3678.39  
+		A7  , 9018.27  , 4141.68  
+		A73 , 6502.88  , 2683.97  
+		A99 , 13244.02 , 3240.97  
+		A92 , 6186.80  , 2926.15  
+		A93 , 6765.00  , 2525.43  
+		A94 , 6220.38  , 2691.68    
+	}\data
+	\tiny
+	\centering
+	\barplotdoubleanalysis{\data}{meanSMax}{meanSAvg}{$\bar{x}_{SMax}$}{$\bar{x}_{SAvg}$}
+	\caption{Comparison of descriptives $\bar{x}_{SMax}$ and $\bar{x}_{SAvg}$ (\textit{Street} by \textit{TMax/TAvg})}
+	\label{fig:baysis_matched_meancomparison_Str_spatial}
+	%\vspace{-8mm}
+\end{figure}
 When comparison the mean values of the maximal and average (spatial) extend it becomes clear that the average is significantly lower than the maximum, which is to be expected. It also shows, that the difference between the groups are not the same in the maximal and average extend. This is due to the errors in the maximal (spatial) extend variable.
 
 % ##############################################

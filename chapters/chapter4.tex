@@ -20,7 +20,8 @@ Deep greens represent free flowing traffic with 130 km/h, according to the norm 
 
 \section{Accident Data (BAYSIS)}
 \label{dataset_baysis}
-The \acrfull{baysis} as described in \cref{introduction_street_information_systems}, collects a wide range of different information types, one of them being accidents with the corresponding police reports. The provided export from BAYSIS contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. Each accident report includes a variety of specifications which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved persons like nationality, age and gender. In total, one report contains 132 values describing the accident, participant and environment. As there shouldn't be a stereotype of accident participant formed but rather significant accident characteristics or environmental factors found, most of the descriptive values for the involved persons are not considered. Variables which contain no values or a single values and fall under the uncertainty threshold (see \cref{correlation_uncertainty}) are also neglected. From this curtailed pool of correlate able and analyze able characteristics all parameters that have a logical significance with causes or effects of an accident will be considered in the analysis. The referred figures are available as larger prints in the appendix \cref{appendix_baysis} for better readability, as they do not properly fit in the text. 
+The \acrfull{baysis} as described in \cref{introduction_street_information_systems}, collects a wide range of different information types, one of them being accidents with the corresponding police reports. The provided export from BAYSIS contains all accidents of the year 2019 on the Bavarian highway network, which are 10262 records in number. Each accident report includes a variety of specifications which covers environmental indicators like weather or light situation, accident characteristics like accident type, collision object or cause, as well as information over the involved persons like nationality, age and gender. In total, one report contains 132 values describing the accident, participant and environment. As there shouldn't be formed a stereotype of accident participant but rather significant accident characteristics or environmental factors be found, most of the descriptive values for the involved persons are not considered. Variables which contain no values or a single values and fall under the uncertainty threshold (see \cref{correlation_uncertainty}) are also neglected. From this curtailed pool of correlate able and analyze able characteristics all parameters that have a logical significance with causes or effects of an accident will be considered in the analysis. The referred figures are available as larger prints in the appendix \cref{appendix_baysis} for better readability, as they do not properly fit in the text. 
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.9]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_hist_month}
@@ -254,7 +255,7 @@ The light situation variable (shown in \cref{tbl:baysis_dataset_Lich} and visual
 \end{table} 
 \paragraph{Zust}
 \label{baysis_dataset_Zust}
-The road condition parameter (shown \cref{tbl:baysis_dataset_Zust} and visualized \cref{img:baysis_dataset_Zust}) describes in which condition the road was at time of the accident in the for of wet, dry, iced or slippery.
+The road condition parameter (shown in \cref{tbl:baysis_dataset_Zust} and visualized in \cref{img:baysis_dataset_Zust}) describes in which condition e.g. wet, dry, iced or slippery the road was at time of the accident. The condition can be ranked from best to worst and is therefore of an ordinal type.
 \begin{table}[ht]
 	\centering
 	\small
@@ -273,7 +274,7 @@ The road condition parameter (shown \cref{tbl:baysis_dataset_Zust} and visualize
 \end{table}
 \paragraph{Fstf}
 \label{baysis_dataset_Fstf}
-The variable references the lane on which the accident happened (shown in \cref{tbl:baysis_dataset_Fstf} and visualized in \cref{img:baysis_dataset_Fstf}). It names the number of lane from the right, the hard-shoulder or the wrong usage of a one-way street. It does not show an order of lanes, but not with the two other types of hard-shoulder and one-way street. It is therefore considered as nominal.
+The variable references the lane on which the accident happened (shown in \cref{tbl:baysis_dataset_Fstf} and visualized in \cref{img:baysis_dataset_Fstf}). It names the number of lane from the right, the hard-shoulder or the wrong usage of a one-way street. It shows a ranked order of the lane number, but not with the two other types of hard-shoulder (\textit{S}) and one-way street (\textit{F}). It is therefore considered as nominal type.
 \begin{table}[ht]
 	\centering
 	\small
@@ -286,8 +287,8 @@ The variable references the lane on which the accident happened (shown in \cref{
 		3 & 1582 	& 15.4 	& third lane from the right \\
 		4 & 150 	& 1.5 	& fourth lane from the right \\
 		5 & 26 		& 0.3 	& firth lane from the right \\ 
- 		S & 247 	& 2.4 	& accident happened on the hard-shoulder lane \\ 
-		%F & 7 		& 0.1 	& accident happened on opened hard-shoulder lane \\
+ 		S & 247 	& 2.4 	& on the hard-shoulder lane \\ 
+		%F & 7 		& 0.1 	& on opened hard-shoulder lane \\
 		\bottomrule
 	\end{tabular}
 	\caption{Descriptive of \textbf{Fstf}}
@@ -296,10 +297,10 @@ The variable references the lane on which the accident happened (shown in \cref{
 \end{table} 
 \paragraph{WoTag}
 \label{baysis_dataset_WoTag}
-The variable of WoTag relates to the day of week, when the accident happened (shown in \cref{img:baysis_dataset_WoTag}). It is debatable if week days can be ordered, but for this analysis we will consider the parameter of nominal type.
+The variable of WoTag relates to the day of the week the accident happened (shown in \cref{img:baysis_dataset_WoTag}). It is debatable if week days can be ordered but for this analysis the parameter will be considered a nominal type.
 \paragraph{FeiTag}
 \label{baysis_dataset_FeiTag}
-Only 157 accidents took place on a public holiday. This is not a feature itself but the a possible correlation to jams could be that they are longer because of the increased traffic demand on holidays.
+Only 157 accidents took place on a public holiday. This is not a feature itself but there could be a possible correlation to it, as the jams could be longer because of the increased traffic demand on holiday.
 	
 % ------- BAYSIS Dataset - Matrix --------
 % \newgeometry{left=1.5cm,right=1cm}
@@ -355,7 +356,7 @@ Only 157 accidents took place on a public holiday. This is not a feature itself 
 % 	\label{tab:baysis_variables}
 % \end{table}
 
-The designed evaluation tool, utilizes a PostgreSQL database for its data storage. Therefore the BAYSIS data in form of \acrfull{csv} needs to processed and converted into SQL data entities. Also, the data entities for each accident need to be uniform and comparable with our street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the necessary processing and import into the database, 7971 records end up being converted and persisted, which equivalent to 77,6\,\% of the total number of accidents. This 22,4\,\% of data loss is due to the conversion of from the BAYSIS geo-system to the HERE network, which tries to find a corresponding street network location to the legacy location of the BAYSIS dataset. If it is not able to locate the position of the BYSIS dataset on our street network, the record is discarded.
+The designed evaluation tool utilizes a PostgreSQL database for its data storage. Therefore the BAYSIS data in form of \acrfull{csv} needs to be processed and converted into SQL data entities. Also, the data entities for each accident need to be uniform and comparable with the street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the necessary processing and import into the database, 7971 records end up being converted and persisted, which is equivalent to 77,6\,\% of the total number of accidents. This 22,4\,\% of data loss can be explained due to the conversion of from the BAYSIS geo-system to the HERE network, which tries to find a corresponding street network location to the legacy location of the BAYSIS dataset. If it is not able to locate the position of the BYSIS dataset on our street network, the record is discarded.
 
 \section{Roadwork Data (ArbIS)}
 \label{dataset_arbis}

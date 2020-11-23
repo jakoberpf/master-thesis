@@ -76,54 +76,61 @@
 %      \end{tikzpicture}\vfill
 % }
 
-\newcommand{\barplotdouble}[7]{
-    \begin{figure}[ht!]
-        \tiny
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                ybar,
-                width=\textwidth,
-                height=4.7cm,
-                xmajorgrids=true,
-                ymajorgrids=true,
-                xtick=data,
-                xticklabels from table={#1}{[index]0}
-            ] 
-            \addplot table[x expr=\coordindex, y=#4] {#1};
-            \addplot table[x expr=\coordindex, y=#5] {#1};
-            \legend{#6,#7}
-            \end{axis}
-         \end{tikzpicture}
-        \caption{Comparison of descriptives #6 and #7 (\textit{#2} by \textit{#3})}
-        %\vspace{-8mm}
-    \end{figure}
+\newcommand{\barplotdouble}[5]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            width=\textwidth,
+            height=5cm,
+            xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xticklabels from table={#1}{[index]0}
+        ] 
+        \addplot table[x expr=\coordindex, y=#2] {#1};
+        \addplot table[x expr=\coordindex, y=#3] {#1};
+        \legend{#4,#5}
+        \end{axis}
+    \end{tikzpicture}
 }
 
-\newcommand{\barplotdoubleanalysis}[7]{
-    \begin{figure}[ht!]
-        \tiny
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                ybar,
-                width=\textwidth,
-                height=4.7cm,
-                xmajorgrids=true,
-                ymajorgrids=true,
-                xtick=data,
-                xticklabels from table={#1}{[index]0}
-            ] 
-            \addplot table[x expr=\coordindex, y=#4] {#1};
-            \addplot table[x expr=\coordindex, y=#5] {#1};
-            \legend{#6,#7}
-            \end{axis}
-         \end{tikzpicture}
-        \caption{Comparison of descriptives #6 and #7 (\textit{#2} by \textit{#3})}
-        %\vspace{-8mm}
-    \end{figure}
+\newcommand{\barplotquad}[9]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            width=\textwidth,
+            height=5cm,
+            xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xticklabels from table={#1}{[index]0}
+        ] 
+        \addplot table[x expr=\coordindex, y=#2] {#1};
+        \addplot table[x expr=\coordindex, y=#3] {#1};
+        \addplot table[x expr=\coordindex, y=#4] {#1};
+        \addplot table[x expr=\coordindex, y=#5] {#1};
+        \legend{#6,#7,#8,#9}
+        \end{axis}
+    \end{tikzpicture}
 }
 
+\newcommand{\barplotdoubleanalysis}[5]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            width=\textwidth,
+            height=5cm,
+            xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xticklabels from table={#1}{[index]0}
+        ] 
+        \addplot table[x expr=\coordindex, y=#2] {#1};
+        \addplot table[x expr=\coordindex, y=#3] {#1};
+        \legend{#4,#5}
+        \end{axis}
+\end{tikzpicture}
+}
 
 %% Math snippets
 

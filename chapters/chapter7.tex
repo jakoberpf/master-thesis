@@ -12,7 +12,7 @@ The relations of the variable \textit{Street} in the global congestion -  accide
 \begin{itemize}
     \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only individual groups show statistical significant differences. the descriptives show three groups of short (A94, A93, A92 and A70), medium (A99, A73, A7, A96, A9 and A6) and long (A3).
     \pgfplotstableread[col sep=comma]{
-        Road, globalMeanMax, globalMedianMax, globalStandartDeviationMax, effectorMeanMax, effectorMedianMax, effectorStandartDeviationMax
+        Road, gMeanM, gMedianM, gSDM, eMeanM, eMedianM, eSDM
         A3  , 225.76 , 210.36 , 156.0 , 297.62 , 219.09 , 243.0
         A6  , 153.05 , 150.42 , 108.0 , 236.59 , 183.03 , 207.0 
         A9  , 170.85 , 151.33 , 118.5 , 243.45 , 178.97 , 201.0 
@@ -25,7 +25,7 @@ The relations of the variable \textit{Street} in the global congestion -  accide
         A93 , 163.57 , 155.71 , 111.0 , 212.00 , 187.74 , 130.5
         A94 , 101.59 , 54.60  , 99.0  , 109.71 , 56.07  , 97.5
     }\data
-    \sumcompbarstreet{\data}{TMax}
+    \barplotdouble{\data}{Street}{TMax}{gMeanM}{eMeanM}{$\bar{x}_{global}$}{$\bar{x}_{effector}$}
     \item \textit{Str} - \textit{TAvg} : Average jam duration is generally related to the street, but only A3, A73 and A99 show statistical significant differences. The descriptives show that the A94, A92, A73 and A70 tend to have shorter jams than A3, A6, A7 and A9.
     \item \textit{Str} - \textit{SMax} : Maximum jam length is generally related to the street, with many road showing statistical significant differences. It can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96. The descriptives further show three groups of short (A94, A93, A92, A73 and A70), medium (A96 and A7) and long (A3, A6, A9 and A99) separated by about 50\,\% increases.
     \item \textit{Str} - \textit{SAvg} : Average jam length is generally related to the street, with many road showing statistical significant differences. It can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99. The descriptives further show two groups of shorter (A70, A96, A73, A99, A92, A93 and A94) and longer (A3, A6, A9 and A7), based on $\bar{x}$ and $\sigma$.

@@ -87,22 +87,6 @@ Next we need to verify that the correlation is significant and what the correlat
 \end{table}
 It shows that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ significantly from group A3, but there is no distinctive general trend.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A3  , 559 , 225.76 , 210.36 , 156.0 , 9  , 1323 , 1314 
-	A6  , 127 , 153.05 , 150.42 , 108.0 , 12 , 864  , 852  
-	A9  , 466 , 170.85 , 151.33 , 118.5 , 9  , 1194 , 1185 
-	A70 , 31  , 106.55 , 79.42  , 81.0 , 24 , 369  , 345  
-	A96 , 155 , 118.32 , 81.05  , 108.0 , 12 , 384  , 372  
-	A7  , 130 , 153.37 , 194.10 , 102.0 , 9  , 1341 , 1332 
-	A73 , 129 , 125.95 , 135.01 , 93.0 , 12 , 1323 , 1311 
-	A99 , 116 , 169.09 , 136.72 , 138.0 , 15 , 681  , 666  
-	A92 , 66  , 103.86 , 65.69  , 87.0 , 18 , 354  , 336  
-	A93 , 21  , 163.57 , 155.71 , 111.0 , 36 , 588  , 552  
-	A94 , 37  , 101.59 , 54.60  , 99.0 , 15 , 249  , 234  
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -132,6 +116,19 @@ It shows that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ significa
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_TMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma,header=false]{
+			A3  , 559 , 225.76 , 210.36 , 156.0 , 9  , 1323 , 1314 
+			A6  , 127 , 153.05 , 150.42 , 108.0 , 12 , 864  , 852  
+			A9  , 466 , 170.85 , 151.33 , 118.5 , 9  , 1194 , 1185 
+			A70 , 31  , 106.55 , 79.42  , 81.0  , 24 , 369  , 345  
+			A96 , 155 , 118.32 , 81.05  , 108.0 , 12 , 384  , 372  
+			A7  , 130 , 153.37 , 194.10 , 102.0 , 9  , 1341 , 1332 
+			A73 , 129 , 125.95 , 135.01 , 93.0  , 12 , 1323 , 1311 
+			A99 , 116 , 169.09 , 136.72 , 138.0 , 15 , 681  , 666  
+			A92 , 66  , 103.86 , 65.69  , 87.0  , 18 , 354  , 336  
+			A93 , 21  , 163.57 , 155.71 , 111.0 , 36 , 588  , 552  
+			A94 , 37  , 101.59 , 54.60  , 99.0  , 15 , 249  , 234  
+		}\data
 		\tiny
 		\centering
 		\begin{tikzpicture}
@@ -202,22 +199,6 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TMax,fig:descrip
 \end{table}
 The table shows that the groups A73 and A99 differ significantly from group A3, but there is no distinctive general trend.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A3  , 559 , 89.66 , 98.94  , 65.00 , 4  , 1260 , 1256 
-	A6  , 127 , 69.94 , 65.86  , 56.00 , 3  , 376  , 373  
-	A9  , 466 , 72.92 , 64.55  , 54.00 , 4  , 575  , 571  
-	A70 , 31  , 50.10 , 23.99  , 49.00 , 10 , 99   , 89   
-	A96 , 155 , 61.37 , 44.31  , 52.50 , 5  , 247  , 242  
-	A7  , 130 , 86.55 , 146.82 , 59.50 , 6  , 1326 , 1320 
-	A73 , 129 , 54.78 , 42.48  , 45.00 , 6  , 274  , 268  
-	A99 , 116 , 58.97 , 48.35  , 47.50 , 4  , 295  , 291  
-	A92 , 66  , 55.24 , 36.43  , 51.50 , 8  , 235  , 227  
-	A93 , 21  , 82.33 , 91.10  , 48.00 , 7  , 343  , 336  
-	A94 , 37  , 49.86 , 31.63  , 44.00 , 14 , 145  , 131   
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -247,6 +228,19 @@ The table shows that the groups A73 and A99 differ significantly from group A3, 
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_TAvg}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma,header=false]{
+			A3  , 559 , 89.66 , 98.94  , 65.00 , 4  , 1260 , 1256 
+			A6  , 127 , 69.94 , 65.86  , 56.00 , 3  , 376  , 373  
+			A9  , 466 , 72.92 , 64.55  , 54.00 , 4  , 575  , 571  
+			A70 , 31  , 50.10 , 23.99  , 49.00 , 10 , 99   , 89   
+			A96 , 155 , 61.37 , 44.31  , 52.50 , 5  , 247  , 242  
+			A7  , 130 , 86.55 , 146.82 , 59.50 , 6  , 1326 , 1320 
+			A73 , 129 , 54.78 , 42.48  , 45.00 , 6  , 274  , 268  
+			A99 , 116 , 58.97 , 48.35  , 47.50 , 4  , 295  , 291  
+			A92 , 66  , 55.24 , 36.43  , 51.50 , 8  , 235  , 227  
+			A93 , 21  , 82.33 , 91.10  , 48.00 , 7  , 343  , 336  
+			A94 , 37  , 49.86 , 31.63  , 44.00 , 14 , 145  , 131   
+		}\data
 		\tiny
 		\centering
 		\begin{tikzpicture}

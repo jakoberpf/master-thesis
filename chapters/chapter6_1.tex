@@ -109,14 +109,15 @@ It shows that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ significa
 			A93 & 21  & 163.57 & 155.71 & 111.0 & 36 & 588  & 552  \\ 
 			A94 & 37  & 101.59 & 54.60  & 99.0 & 15 & 249  & 234  \\ 
 			\bottomrule
-			% \bar{x} - sum = , mean = 
-			% \sigma - sum = , mean = 
+			% \bar{x} - sum = 1591.96, mean = 144.72
+			% \sigma - sum = 1414.41, mean = 128.58
 			% \tilde{x}
 		\end{tabular}
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_TMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\pgfplotstableread[col sep=comma,header=false]{
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
 			A3  , 559 , 225.76 , 210.36 , 156.0 , 9  , 1323 , 1314 
 			A6  , 127 , 153.05 , 150.42 , 108.0 , 12 , 864  , 852  
 			A9  , 466 , 170.85 , 151.33 , 118.5 , 9  , 1194 , 1185 
@@ -129,44 +130,17 @@ It shows that the groups A6, A9, A7, A70, A73, A92, A94 and A96 differ significa
 			A93 , 21  , 163.57 , 155.71 , 111.0 , 36 , 588  , 552  
 			A94 , 37  , 101.59 , 54.60  , 99.0  , 15 , 249  , 234  
 		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=10,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				% extra y ticks={201,161},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{144}{128}{10}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Str_TMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Maximal Temporal Extent}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TMax,fig:descriptives_baysis_matched_Str_TMax} show that the mean length of A3 is 27\,\% - 57\,\% higher than the means of A6, A7, A9, A70, A73, A92, and A94. Therefore it can be interpreted that accidents on the A3 are associated with significantly longer (temporal) jams than on the A6, A9, A7, A70, A73, A92, and A94. $\sigma$ and $\tilde{x}$ supports this interpretation with similar features. The descriptives also show three ranked groups of short (A70, A92, A94), medium (A99, A73, A7, A96, A9, A6) and long (A3).
-
-% ##############################################
+The significant descriptives from \cref{tbl:descriptives_baysis_matched_Str_TMax,fig:descriptives_baysis_matched_Str_TMax} show that the mean duration of the A3 is 72\,min - 154\,min higher than the means of A6, A7, A9, A70, A73, A92, and A94. Therefore it can be interpreted that accidents on the A3 are associated with significantly longer (temporal) jams than on the A6, A9, A7, A70, A73, A92, and A94. The descriptives show also that the A70, A73, A92, A94 and A96 are have considerable shorter durations, when the A3, A9 and A99 have considerable longer duration compared to the general mean.
 \groupintrosig{Str}{TAvg}{0.0004}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
@@ -197,7 +171,7 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TMax,fig:descrip
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Average Temporal Extent}, see \cref{tbl:wilcoxon_baysis_matched_Str_TAvg_complete} for complete table}
 	\label{tbl:wilcoxon_baysis_matched_Str_TAvg}
 \end{table}
-The table shows that the groups A73 and A99 differ significantly from group A3, but there is no distinctive general trend.
+The table shows that just the groups A73 and A99 differ significantly from group A3, but there is no distinctive general trend.
 % #### START: Table and Plot
 \begin{figure}[ht!]
 	\centering
@@ -221,14 +195,15 @@ The table shows that the groups A73 and A99 differ significantly from group A3, 
 			A93 & 21  & 82.33 & 91.10  & 48.00 & 7  & 343  & 336  \\ 
 			A94 & 37  & 49.86 & 31.63  & 44.00 & 14 & 145  & 131  \\ 
 			\bottomrule
-			% \bar{x} - sum = , mean = 
-			% \sigma - sum = , mean = 
+			% \bar{x} - sum = 731.72, mean = 66.52
+			% \sigma - sum = 694.46, mean = 63.13
 			% \tilde{x}
 		\end{tabular}
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_TAvg}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\pgfplotstableread[col sep=comma,header=false]{
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
 			A3  , 559 , 89.66 , 98.94  , 65.00 , 4  , 1260 , 1256 
 			A6  , 127 , 69.94 , 65.86  , 56.00 , 3  , 376  , 373  
 			A9  , 466 , 72.92 , 64.55  , 54.00 , 4  , 575  , 571  
@@ -241,42 +216,17 @@ The table shows that the groups A73 and A99 differ significantly from group A3, 
 			A93 , 21  , 82.33 , 91.10  , 48.00 , 7  , 343  , 336  
 			A94 , 37  , 49.86 , 31.63  , 44.00 , 14 , 145  , 131   
 		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=10,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				% extra y ticks={201,161},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{66}{63}{10}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Str_TAvg}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Average Temporal Extent}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg,fig:descriptives_baysis_matched_Str_TAvg} show that the mean value of A3 is about 30\,\% higher than the means of A73 and A96. We can interpret that accidents on the A3 are associated with significantly longer (temporal) jams than on A73 and A96. The descriptives also show general increase of $\bar{x}$ and $\sigma$ around 35\,\% between the roads A94, A92, A73 and A70 to A3, A6, A7 and A9.
+The significant descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg,fig:descriptives_baysis_matched_Str_TAvg} show that the mean value of A3 is about 30\,\% higher than the means of A73 and A96. Therefore it can be interpreted that accidents on the A3 are associated with significantly longer (temporal) jams than on the A73 and A96. The descriptives show also that the A3, A7, A9 and A93 are have considerable shorter durations, when the A70, A73, A92, and A94 have considerable longer duration compared to the general mean.
 \begin{figure}[ht!]
 	\pgfplotstableread[col sep=comma]{
 		Road, meanTMax, meanTAvg
@@ -292,14 +242,15 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg,fig:descrip
 		A93 , 163.57 , 82.33  
 		A94 , 101.59 , 49.86    
 	}\data
+	\pgfplotstablesort[sort key=meanTAvg, sort cmp=float >]{\datasorted}{\data}
 	\tiny
 	\centering
-	\barplotdoubleanalysis{\data}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
-	\caption{Comparison of descriptives $\bar{x}_{TMax}$ and $\bar{x}_{TAvg}$ (\textit{Street} by \textit{TMax/TAvg})}
+	\barplotdoubleanalysis{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
+	\caption{Comparison of descriptives $\bar{x}_{TMax}$ and $\bar{x}_{TAvg}$ (\textit{TMax/TAvg} by \textit{Street})}
 	\label{fig:baysis_matched_meancomparison_Str_temporal}
 	%\vspace{-8mm}
 \end{figure}
-When comparison the mean values of the maximal and average (temporal) extend it becomes clear that the average is significantly lower than the maximum, which is to be expected. It shows, that the differences between the groups are similar in both the maximal and average extend.
+When comparison the mean values of the maximal and average (temporal) extend it becomes clear that the average variable has considerable lower values than the maximum variable, which is to be expected. It shows, that the differences between the groups are similar in both the maximal and average extend.
 
 % ##############################################
 \groupintrosigsig{Str}{SMax}{baysis}{matched}
@@ -356,14 +307,15 @@ It shows, that the groups A7, A9, A70, A73, A92, A94 and A96 differ from group A
 			A93 & 21  & 6765.00  & 4403.32  & 5323.00  & 1244 & 16922 & 15678 \\ 
 			A94 & 37  & 6220.38  & 3984.46  & 5768.00  & 1167 & 15550 & 14383 \\ 
 			\bottomrule
-			% \bar{x} - sum = , mean = 
-			% \sigma - sum = , mean = 
+			% \bar{x} - sum = 98788.91, mean = 8980.81
+			% \sigma - sum = 72315.94, mean = 6574.17
 			% \tilde{x}
 		\end{tabular}
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Str_SMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\pgfplotstableread[col sep=comma,header=false]{
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
 			A3  , 559 , 13874.96 , 10064.51 , 11014.00 , 1084 , 46328 , 45244 
 			A6  , 127 , 11067.98 , 8428.07  , 8634.00  , 965  , 43156 , 42191 
 			A9  , 466 , 10680.48 , 7724.45  , 8977.50  , 832  , 49765 , 48933 
@@ -376,44 +328,17 @@ It shows, that the groups A7, A9, A70, A73, A92, A94 and A96 differ from group A
 			A93 , 21  , 6765.00  , 4403.32  , 5323.00  , 1244 , 16922 , 15678 
 			A94 , 37  , 6220.38  , 3984.46  , 5768.00  , 1167 , 15550 , 14383   
 		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=10,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				% extra y ticks={201,161},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithcustomavg{\datasorted}{8980}{6574}{0.89}{0.65}{10}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Str_SMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Maximal Spatial Extent}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives from \cref{tbl:descriptives_baysis_matched_Str_SMax,fig:descriptives_baysis_matched_Str_SMax} show that the mean of A3 is 44\,\% - 66\,\% higher than the means of A7, A9, A70, A73, A92, A94 and A96. It also shows that the groups A6, A9 and A99 have a up to 50\,\% higher mean than the groups A73 and A92. It can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96. Based on the $\bar{x}$ and $\sigma$ the roads can be separated into three groups of short (A94, A93, A92, A73 and A70), medium (A96 and A7) and long (A3, A6, A9 and A99).
-
-% ##############################################
+The significant descriptives from \cref{tbl:descriptives_baysis_matched_Str_SMax,fig:descriptives_baysis_matched_Str_SMax} show that the mean of A3 is 3194\,m - 7688\,m higher than the means of A7, A9, A70, A73, A92, A94 and A96. It also shows that the groups A6, A9 and A99 have a 5163\,m higher mean on average than the groups A73 and A92. It can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96. The descriptives show also that the A3, A6 A9 and A99 have a considerable longer lengths, when the A70, A73, A92, A93 and A94 have considerable shorter lengths compared to the general mean.
 \groupintrosig{Str}{SAvg}{0.0027}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny

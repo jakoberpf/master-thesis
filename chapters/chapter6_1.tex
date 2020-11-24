@@ -250,7 +250,7 @@ The significant descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg
 	\label{fig:baysis_matched_meancomparison_Str_temporal}
 	%\vspace{-8mm}
 \end{figure}
-When comparing the mean values of the maximal and average (temporal) extend it becomes clear that the average variable has considerable lower values than the maximum variable, which is to be expected. It also shows, that the differences between the groups are mostly similar in both the maximal and average extend, but vary considerably. In can be described that the follow the same tend. This trend is especially ignored by the A99, which probably means that there are more errors in the maximal (temporal) extend variable on the A99.
+When comparing the mean values of the maximal and average (temporal) extend (shown in \cref{fig:baysis_matched_meancomparison_Str_temporal}) it becomes clear that the average variable has considerable lower values than the maximum variable, which is to be expected. It also shows, that the differences between the groups are mostly similar in both the maximal and average extend, but vary considerably. In can be described that the follow the same tend. This trend is especially ignored by the A99, which probably means that there are more errors in the maximal (temporal) extend variable on the A99.
 
 % ##############################################
 \groupintrosigsig{Str}{SMax}{baysis}{matched}
@@ -448,7 +448,7 @@ The significant descriptives from \cref{tbl:descriptives_baysis_matched_Str_SAvg
 	\label{fig:baysis_matched_meancomparison_Str_spatial}
 	%\vspace{-8mm}
 \end{figure}
-When comparing the mean values of the maximal and average (spatial) extend it becomes clear that the average is significantly lower than the maximum, which is to be expected. It also shows, that the difference between the groups are similar in the maximal and average extend. In can be described that the follow the same tend. This trend is only ignored by the A99, which probably means that there are more errors in the maximal (spatial) extend variable on the A99.
+When comparing the mean values of the maximal and average (spatial) extend (shown in \cref{fig:baysis_matched_meancomparison_Str_spatial}) it becomes clear that the average is significantly lower than the maximum, which is to be expected. It also shows, that the difference between the groups are similar in the maximal and average extend. In can be described that the follow the same tend. This trend is only ignored by the A99, which probably means that there are more errors in the maximal (spatial) extend variable on the A99.
 
 % ##############################################
 \groupintrosig{Str}{Cov}{0.0018}{baysis}{matched}
@@ -562,17 +562,8 @@ The significant descriptives from \cref{tbl:descriptives_baysis_matched_Str_Cov,
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Kat_TMax}
 \end{table}
-It shows that all groups, besides of group 7 to group 3, have significant differences. 
+It shows that all groups, besides of group 7 to group 3 have significant differences. 
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	1 , 36  , 317.67 , 215.10 , 279 , 27 , 987  , 960 
-	2 , 216 , 189.03 , 164.93 , 135 , 9  , 1257 , 1248 
-	3 , 881 , 155.26 , 141.87 , 111 , 9  , 1323 , 1314 
-	7 , 718 , 179.35 , 192.33 , 117 , 9  , 1341 , 1332 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -588,8 +579,8 @@ It shows that all groups, besides of group 7 to group 3, have significant differ
 			3 & 881 & 155.26 & 141.87 & 111 & 9  & 1323 & 1314 \\ 
 			7 & 718 & 179.35 & 192.33 & 117 & 9  & 1341 & 1332 \\ 
 			\bottomrule
-			% \bar{x} - sum = , mean = 
-			% \sigma - sum = , mean = 
+			% \bar{x} - sum = 841.31, mean = 210.32
+			% \sigma - sum = 714.23, mean = 178.56
 			% \tilde{x}
 			%
 			% 189+155+179 / 3 = 174
@@ -599,44 +590,24 @@ It shows that all groups, besides of group 7 to group 3, have significant differ
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Kat_TMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=3,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				% extra y ticks={201,161},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			1 , 36  , 317.67 , 215.10 , 279 , 27 , 987  , 960 
+			2 , 216 , 189.03 , 164.93 , 135 , 9  , 1257 , 1248 
+			3 , 881 , 155.26 , 141.87 , 111 , 9  , 1323 , 1314 
+			7 , 718 , 179.35 , 192.33 , 117 , 9  , 1341 , 1332 
+		}\data
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{210}{178}{3}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Kat_TMax}
 	\end{minipage}%
-	\caption{Group descriptives of  \textit{Kat} and \textit{Maximal Temporal Extent}}
+	\caption{Group descriptives of \textit{Kat} and \textit{Maximal Temporal Extent}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TMax,fig:descriptives_baysis_matched_Kat_TMax} present increasing means from lightly injured to deathly accident. We can interpret that the maximal temporal jam length  increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 143\,min longer jams, than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the property damage group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 29\,min on average.
-
-% ################################################
+The significant descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TMax,fig:descriptives_baysis_matched_Kat_TMax} present increasing means from lightly injured to deathly accident. Therefore it can be interpreted that the maximal temporal jam length significant increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 143\,min longer jams, than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the property damage group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 29\,min on average.
 \groupintrosig{Kat}{TAvg}{0.0005}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
@@ -653,17 +624,8 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TMax,fig:descrip
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Average Temporal Extent}}
 	\label{tbl:wilcoxon_baysis_matched_Kat_TAvg}
 \end{table}
-It shows that all groups have significant differences.
+It shows that all groups have significant differences and therefore \textit{TAvg} has a general trend.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	1 , 36  , 156.06 , 104.55 , 143.0 , 20 , 502  , 482 
-	2 , 216 , 88.31  , 79.73  , 66.5  , 7  , 703  , 696 
-	3 , 881 , 67.32  , 53.98  , 54.0  , 3  , 469  , 466 
-	7 , 718 , 74.08  , 103.32 , 51.0  , 4  , 1326 , 1322
-}\data 
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -679,8 +641,8 @@ It shows that all groups have significant differences.
 			3 & 881 & 67.32  & 53.98  & 54.00  & 3  & 469  & 466  \\ 
 			7 & 718 & 74.08  & 103.32 & 51.00  & 4  & 1326 & 1322 \\ 
 			\bottomrule
-			% \bar{x} - sum = , mean = 
-			% \sigma - sum = , mean = 
+			% \bar{x} - sum = 385.77, mean = 96.44
+			% \sigma - sum = 341.58, mean = 85.40
 			% \tilde{x}
 			%
 			% 88+67+74 / 3 = 76
@@ -690,44 +652,43 @@ It shows that all groups have significant differences.
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Kat_TAvg}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=3,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				% extra y ticks={201,161},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			1 , 36  , 156.06 , 104.55 , 143.0 , 20 , 502  , 482 
+			2 , 216 , 88.31  , 79.73  , 66.5  , 7  , 703  , 696 
+			3 , 881 , 67.32  , 53.98  , 54.0  , 3  , 469  , 466 
+			7 , 718 , 74.08  , 103.32 , 51.0  , 4  , 1326 , 1322
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{96}{85}{3}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Kat_TAvg}
 	\end{minipage}%
 	\caption{Group descriptives of  \textit{Kat} and \textit{Average Temporal Extent}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TAvg} present increasing means from group 3 to 1. We can interpret that the average temporal jam length increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 80\,min longer jams than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 10\,min on average. 
+The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TAvg,fig:descriptives_baysis_matched_Kat_TAvg} present increasing means from group 3 to 1. Therefore it can be interpreted that the average temporal jam length increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is quite substantial, which means that the accidents with deaths are associated with 80\,min longer jams than others. The group of accidents with property damage does significantly differ from the others, but does not fit into the trend. A comparisons of means puts the group in-between of accidents with slightly and heavily injured. The groups 2, 3 and 7 differ by 10\,min on average. 
+\begin{figure}[ht!]
+	\pgfplotstableread[col sep=comma]{
+		Kat, meanTMax, meanTAvg  
+		1 , 317.67 , 156.06
+		2 , 189.03 , 88.31 
+		3 , 155.26 , 67.32 
+		7 , 179.35 , 74.08 
+	}\data
+    \pgfplotstablesort[sort key=meanTAvg, sort cmp=float >]{\datasorted}{\data}
+    \tiny
+    \centering
+	\barplotdoubleanalysis{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
+	\caption{Comparison of descriptives $\bar{x}_{TMax}$ and $\bar{x}_{TAvg}$ (\textit{TMax/TAvg} by \textit{Kat})}
+	\label{fig:baysis_matched_meancomparison_Kat_temporal}
+	%\vspace{-8mm}
+\end{figure}
+When comparing the mean values of the maximal and average (temporal) extend (shown in \cref{fig:baysis_matched_meancomparison_Kat_temporal}) it becomes clear that the average is significantly lower than the maximum, which is to be expected. It also shows, that the difference between the groups are similar in the maximal and average extend. In can be described that the follow the same tend. This trend is only ignored by the A99, which probably means that there are more errors in the maximal (spatial) extend variable on the A99.
 
-% #########################################
+% ###########################################
 \groupintrosigsig{Kat}{TDist}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
@@ -746,15 +707,6 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TAvg} present in
 \end{table}
 It shows that all groups have significant differences. 
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	1 , 36  , 10.39 , 7.36 , 10 , 0 , 22 , 22 
-	2 , 216 , 7.91  , 6.92 , 7  , 0 , 24 , 24 
-	3 , 881 , 5.81  , 6.82 , 4  , 0 , 24 , 24 
-	7 , 718 , 4.33  , 6.63 , 0  , 0 , 24 , 24 
-}\data 
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -770,8 +722,8 @@ It shows that all groups have significant differences.
 			3 & 881 & 5.81  & 6.82 & 4  & 0 & 24 & 24 \\ 
 			7 & 718 & 4.33  & 6.63 & 0  & 0 & 24 & 24 \\ 
 			\bottomrule
-			% \bar{x} - sum = , mean = 
-			% \sigma - sum = , mean = 
+			% \bar{x} - sum = 28.44, mean = 7.11
+			% \sigma - sum = 27.73, mean = 9.93
 			% \tilde{x}
 			%
 			% 88+67+74 / 3 = 76
@@ -781,42 +733,24 @@ It shows that all groups have significant differences.
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Kat_TDist}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=3,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				% extra y ticks={201,161},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			1 , 36  , 10.39 , 7.36 , 10 , 0 , 22 , 22 
+			2 , 216 , 7.91  , 6.92 , 7  , 0 , 24 , 24 
+			3 , 881 , 5.81  , 6.82 , 4  , 0 , 24 , 24 
+			7 , 718 , 4.33  , 6.63 , 0  , 0 , 24 , 24 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{7}{10}{3}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Kat_TDist}
 	\end{minipage}%
-	\caption{Group descriptives of  \textit{Kat} and \textit{Temporal Distance}}
+	\caption{Group descriptives of \textit{Kat} and \textit{Temporal Distance}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TDist} present increasing means from group 7 to 1. We can interpret that the temporal distance from accidents to jams increases with the gravity of the accident.
+The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TDist} present increasing means from group 7 to 1. It can be interpreted that the temporal distance from accidents to jams increases by up to 6\,min with the gravity of the accident.
 
 % ----------------------
 % -------- Typ ---------

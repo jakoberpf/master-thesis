@@ -160,7 +160,7 @@ The significant descriptives from \cref{tbl:descriptives_baysis_effector_Street_
     \caption{Pairwise Wilcoxon $T$-test for \textit{Strasse} and \textit{Average Temporal Extent} (Jam Effector)}
     \label{tbl:wilcoxon_baysis_effector_Street_TAvg}
 \end{table}
-The table shows that the roads A99 and A73 differ from the A3. The A73 also differs from A7.
+The table shows that the roads A99 and A73 differ significantly from the A3. The A73 also differs significantly from A7.
 % #### START: Table and Plot
 \begin{figure}[ht!]
 	\centering
@@ -264,23 +264,8 @@ When comparing the mean values of the maximal and average (temporal) extend it b
     \caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Maximal Spatial Extent} (Jam Effector)}
     \label{tbl:wilcoxon_baysis_effector_Street_SMax}
 \end{table}
-The table shows that the roads of A9, A73, and A92 differ significantly from A3. The roads A94, A73 and A92 also differ significantly from A6. A73 and A92 also differ significantly from A9 and A99, but there is no distinctive trend.
+The table shows that the roads of A73, A9, A92 and A94 differ significantly from A3. The roads A73, A92 and A93 also differ significantly from A6. The A73 and A92 also differ significantly from A9 and A99, but there is no distinctive trend.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A3   , 265 , 17755.15 , 11139.22 , 14811.0 , 1566 , 46328 , 44762 
-	A6   , 37  , 16711.43 , 9518.81  , 14449.0 , 2655 , 40033 , 37378 
-	A9   , 192 , 13271.42 , 8473.71  , 11654.5 , 1315 , 49765 , 48450 
-	A99  , 63  , 17558.70 , 12223.42 , 14698.0 , 2351 , 48278 , 45927 
-	A93  , 12  , 8158.42  , 4473.23  , 7461.5  , 2896 , 16922 , 14026 
-	A94  , 14  , 7277.64  , 4218.45  , 6947.0  , 1206 , 15550 , 14344 
-	A7   , 35  , 11825.00 , 8885.99  , 9506.0  , 3041 , 43244 , 40203 
-	A73  , 52  , 7964.98  , 5995.59  , 6559.5  , 1036 , 33764 , 32728 
-	A96  , 41  , 11825.98 , 6911.19  , 9676.0  , 2006 , 27965 , 25959 
-	A92  , 21  , 7255.76  , 3637.71  , 7364.0  , 1176 , 13522 , 12346 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -309,43 +294,30 @@ The table shows that the roads of A9, A73, and A92 differ significantly from A3.
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_effector_Street_SMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A3   , 265 , 17755.15 , 11139.22 , 14811.0 , 1566 , 46328 , 44762 
+			A6   , 37  , 16711.43 , 9518.81  , 14449.0 , 2655 , 40033 , 37378 
+			A9   , 192 , 13271.42 , 8473.71  , 11654.5 , 1315 , 49765 , 48450 
+			A99  , 63  , 17558.70 , 12223.42 , 14698.0 , 2351 , 48278 , 45927 
+			A93  , 12  , 8158.42  , 4473.23  , 7461.5  , 2896 , 16922 , 14026 
+			A94  , 14  , 7277.64  , 4218.45  , 6947.0  , 1206 , 15550 , 14344 
+			A7   , 35  , 11825.00 , 8885.99  , 9506.0  , 3041 , 43244 , 40203 
+			A73  , 52  , 7964.98  , 5995.59  , 6559.5  , 1036 , 33764 , 32728 
+			A96  , 41  , 11825.98 , 6911.19  , 9676.0  , 2006 , 27965 , 25959 
+			A92  , 21  , 7255.76  , 3637.71  , 7364.0  , 1176 , 13522 , 12346 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=9,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={11960,7547},
-				extra y tick labels={1.19,0.75}
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithcustomavg{\datasorted}{11960}{7547}{1.19}{0.75}{9}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_effector_Street_SMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Maximal Spatial Extent} (Jam Effector)}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives in \cref{tbl:descriptives_baysis_effector_Street_SMax,fig:descriptives_baysis_effector_Street_SMax} show that $\bar{x}$ of A6, A7, A9, A96 and A99 are between 50\,\% to 80\,\% higher than A73, A92, A93 and A94. The $\bar{x}$ of A3 supersedes the A6, A7, A9, A96 and A99 by a similar amount again. It can be interpreted that the maximal spatial distance varies from A73, A92, A93 and A94 over A6, A7, A9, A96 and A99 to the A3, by up to 340\,\%.
+The significant descriptives from \cref{tbl:descriptives_baysis_effector_Street_SMax,fig:descriptives_baysis_effector_Street_SMax} show that the mean of A3 is 4484\,m - 10500\,m higher than the means of A9, A73, A92 and A94. They also shows that the groups A6 have a 9212\,m higher mean on average than the groups A73 and A92. The mean of the groups A9 and A99 are 7805\,m higher than the A73 and A92. Therefore it can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A9, A73, A92 and A94. The descriptives show also that the A3, A6, A9 and A99 have a considerable longer lengths, when the A73, A92, A93 and A94 have considerable shorter lengths compared to the general mean.
 
 % ####################################################
 \groupintrosig{Street}{Cov}{0.0055}{baysis}{effector}
@@ -374,23 +346,8 @@ The descriptives in \cref{tbl:descriptives_baysis_effector_Street_SMax,fig:descr
     \caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Coverage} (Jam Effector)}
     \label{tbl:wilcoxon_baysis_effector_Street_Cov}
 \end{table}
-The table shows that roads A9 and A92 differ significantly from A3. The road A99 differs significantly A9. The roads A7, A96 and A92 differ significantly from A99.
+The table shows that roads A9 and A92 differ significantly from A3. The road A99 differs significantly A9. The roads A7, A92 and A96 differ significantly from A99.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A3   , 265 , 32.02 , 16.40 , 28.0 , 2  , 100 , 92 
-	A6   , 37  , 30.81 , 16.61 , 25.0 , 9  , 65  , 56 
-	A9   , 192 , 36.09 , 13.77 , 34.5 , 6  , 86  , 80 
-	A99  , 63  , 26.79 , 14.71 , 25.0 , 7  , 63  , 56 
-	A93  , 12  , 37.25 , 17.78 , 36.5 , 13 , 70  , 57 
-	A94  , 14  , 36.79 , 21.00 , 33.5 , 11 , 77  , 66 
-	A7   , 35  , 45.60 , 25.54 , 42.0 , 6  , 100 , 94 
-	A73  , 52  , 32.94 , 15.73 , 30.5 , 7  , 77  , 70 
-	A96  , 41  , 42.90 , 21.63 , 42.0 , 9  , 85  , 76 
-	A92  , 21  , 47.71 , 22.04 , 47.0 , 21 , 88  , 67 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -419,42 +376,30 @@ The table shows that roads A9 and A92 differ significantly from A3. The road A99
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_effector_Street_Cov}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A3   , 265 , 32.02 , 16.40 , 28.0 , 2  , 100 , 92 
+			A6   , 37  , 30.81 , 16.61 , 25.0 , 9  , 65  , 56 
+			A9   , 192 , 36.09 , 13.77 , 34.5 , 6  , 86  , 80 
+			A99  , 63  , 26.79 , 14.71 , 25.0 , 7  , 63  , 56 
+			A93  , 12  , 37.25 , 17.78 , 36.5 , 13 , 70  , 57 
+			A94  , 14  , 36.79 , 21.00 , 33.5 , 11 , 77  , 66 
+			A7   , 35  , 45.60 , 25.54 , 42.0 , 6  , 100 , 94 
+			A73  , 52  , 32.94 , 15.73 , 30.5 , 7  , 77  , 70 
+			A96  , 41  , 42.90 , 21.63 , 42.0 , 9  , 85  , 76 
+			A92  , 21  , 47.71 , 22.04 , 47.0 , 21 , 88  , 67 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=9,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={37,18},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{36}{18}{9}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_effector_Street_Cov}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Coverage} (Jam Effector)}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives in \cref{tbl:descriptives_baysis_effector_Street_Cov,fig:descriptives_baysis_effector_Street_Cov} show that the $\bar{x}$ of A9 and A92 is 20\,\% and 56\,\% higher than A3. The $\bar{x}$ of A99 is the lower and 38\,\% lower than A9. A7, A96 and A92 have the highest $\bar{x}$ with 73\,\%, 61\,\% and 80\,\% above A99. It can be interpreted that the coverage increases from A3 over A9 and A92 to A7, A96 and A92 by up to 80\,\%.
+The significant descriptives from \cref{tbl:descriptives_baysis_effector_Street_Cov,fig:descriptives_baysis_effector_Street_Cov} show that the mean of A3 is +4\,\% and -6\,\% different to the means of A9 and A92 respectively. They also shows that the mean of A9 is about 10\,\% higher than the mean of A99, which has a 16\,\% - 21\,\% lower mean on average than the A7, A92 and A96. Therefore it can be interpreted that accidents on the A3 and A99 are associated with significantly less dense jams than on A7, A9, A92 and A96. The descriptives show also that the A7, A92 and A96 are have considerable higher coverage, when the A3, A6, A73 and A99 have considerable lower coverage compared to the general mean.
 
 % ----------------------
 % -------- Kat ---------

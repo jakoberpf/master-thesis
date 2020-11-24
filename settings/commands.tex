@@ -94,27 +94,6 @@
     \end{tikzpicture}
 }
 
-\newcommand{\barplotquad}[9]{
-    \begin{tikzpicture}
-        \begin{axis}[
-            ybar,
-            bar width=.1cm,
-            width=\textwidth,
-            height=5cm,
-            xmajorgrids=true,
-            ymajorgrids=true,
-            xtick=data,
-            xticklabels from table={#1}{[index]0}
-        ] 
-        \addplot table[x expr=\coordindex, y=#2] {#1};
-        \addplot table[x expr=\coordindex, y=#3] {#1};
-        \addplot table[x expr=\coordindex, y=#4] {#1};
-        \addplot table[x expr=\coordindex, y=#5] {#1};
-        \legend{#6,#7,#8,#9}
-        \end{axis}
-    \end{tikzpicture}
-}
-
 \newcommand{\barplotdoubleanalysis}[5]{
     \begin{tikzpicture}
         \begin{axis}[
@@ -130,9 +109,142 @@
         \addplot table[x expr=\coordindex, y=#3] {#1};
         \legend{#4,#5}
         \end{axis}
-\end{tikzpicture}
+    \end{tikzpicture}
 }
 
+\newcommand{\barplotdoublewithmeans}[4]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            bar width=.1cm,
+             % Gitterlinien für y-Ticks
+            width=\textwidth,
+            height=5cm,
+            % xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xticklabels from table={#1}{[index]0},
+            % zusätzliche Beschriftung an y-Achse
+            every extra y tick/.style={
+                tick0/.initial=teal,
+                yticklabel style={
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                },
+            },
+            extra y ticks={#4},
+        ] 
+        \addplot table[x expr=\coordindex, y index={1}] {#1};
+        \addplot table[x expr=\coordindex, y index={2}] {#1};
+        \addplot[draw=teal,smooth] table[x expr=\coordindex, y index={3}] {#1};
+        \legend{#2,#3}
+        \end{axis}
+    \end{tikzpicture}
+}
+
+\newcommand{\barplottriple}[7]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            bar width=.1cm,
+             % Gitterlinien für y-Ticks
+            width=\textwidth,
+            height=5cm,
+            xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xticklabels from table={#1}{[index]0}
+        ] 
+        \addplot table[x expr=\coordindex, y=#2] {#1};
+        \addplot table[x expr=\coordindex, y=#3] {#1};
+        \addplot table[x expr=\coordindex, y=#4] {#1};
+        \legend{#5,#6,#7}
+        \end{axis}
+    \end{tikzpicture}
+}
+
+\newcommand{\barplottriplewithmeans}[5]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            bar width=.1cm,
+             % Gitterlinien für y-Ticks
+            width=\textwidth,
+            height=5cm,
+            % xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xticklabels from table={#1}{[index]0},
+            % zusätzliche Beschriftung an y-Achse
+            every extra y tick/.style={
+                tick0/.initial=teal,
+                yticklabel style={
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                },
+            },
+            extra y ticks={#5},
+        ] 
+        \addplot table[x expr=\coordindex, y index={1}] {#1};
+        \addplot table[x expr=\coordindex, y index={2}] {#1};
+        \addplot table[x expr=\coordindex, y index={3}] {#1};
+        \addplot[draw=teal,smooth] table[x expr=\coordindex, y index={4}] {#1};
+        \legend{#2,#3,#4}
+        \end{axis}
+    \end{tikzpicture}
+}
+
+\newcommand{\barplotquad}[5]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            bar width=.1cm,
+            width=\textwidth,
+            height=5cm,
+            % xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xticklabels from table={#1}{[index]0}
+        ] 
+        \addplot table[x expr=\coordindex, y index={1}] {#1};
+        \addplot table[x expr=\coordindex, y index={2}] {#1};
+        \addplot table[x expr=\coordindex, y index={3}] {#1};
+        \addplot table[x expr=\coordindex, y index={4}] {#1};
+        \legend{#2,#3,#4,#5}
+        \end{axis}
+    \end{tikzpicture}
+}
+
+\newcommand{\barplotquadwithmeans}[6]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            bar width=.1cm,
+             % Gitterlinien für y-Ticks
+            width=\textwidth,
+            height=5cm,
+            % xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xticklabels from table={#1}{[index]0},
+            % zusätzliche Beschriftung an y-Achse
+            every extra y tick/.style={
+                tick0/.initial=teal,
+                yticklabel style={
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                },
+            },
+            extra y ticks={#6},
+        ] 
+        \addplot table[x expr=\coordindex, y index={1}] {#1};
+        \addplot table[x expr=\coordindex, y index={2}] {#1};
+        \addplot table[x expr=\coordindex, y index={3}] {#1};
+        \addplot table[x expr=\coordindex, y index={4}] {#1};
+        \addplot[draw=teal,smooth] table[x expr=\coordindex, y index={5}] {#1};
+        \legend{#2,#3,#4,#5}
+        \end{axis}
+    \end{tikzpicture}
+}
+
+% Descriptive Line Plot without average
 \newcommand{\descplotfigwithoutavg}[3]{
     \begin{tikzpicture}
         \begin{axis}[
@@ -154,6 +266,7 @@
     \end{tikzpicture}\vfill
 }
 
+% Descriptive Line Plot with average
 \newcommand{\descplotfigwithavg}[5]{
     \begin{tikzpicture}
         \begin{axis}[
@@ -184,6 +297,7 @@
     \end{tikzpicture}\vfill
 }
 
+% Descriptive Line Plot with average and custom labels
 \newcommand{\descplotfigwithcustomavg}[7]{
     \begin{tikzpicture}
         \begin{axis}[
@@ -229,3 +343,24 @@
 %     \pgfplotstableforeachcolumnelement{#1}\of\data\as\cellValue{\pgfmathsetmacro{\buffer}{max(\buffer,\cellValue)}}
 % }
 
+\newcommand\DrawVMean[1][]{
+    \draw[#1] 
+    (axis cs:200,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:200,\pgfkeysvalueof{/pgfplots/ymax});
+}
+
+\newcommand\DrawHMean[1][]{
+    \draw[#1] 
+    (axis cs:\pgfkeysvalueof{/pgfplots/xmin},\Mean) -- (axis cs:\pgfkeysvalueof{/pgfplots/xmax},\Mean);
+}
+
+\newcommand{\MakeMeans}[2]{
+  \pgfplotstableset{
+    create on use/new/.style={
+    create col/expr={\pgfmathaccuma + \thisrow{#2}}},
+  }
+  \pgfplotstablegetrowsof{#1}
+  \pgfmathsetmacro{\NumRows}{\pgfplotsretval}
+  \pgfplotstablegetelem{\numexpr\NumRows-1\relax}{new}\of{#1} 
+  \pgfmathsetmacro{\Sum}{\pgfplotsretval}
+  \pgfmathsetmacro{\Mean}{\Sum/\NumRows}
+}

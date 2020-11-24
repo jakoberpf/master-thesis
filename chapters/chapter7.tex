@@ -9,51 +9,83 @@ The analysis of the congestion -  accidents correlations is separated into secti
 \label{analysis_sum_Strasse}
 The relation classes of \text{Jam Intiator} and \text{Jam Follower} don't show any relevance in the found collections. In the case of the \text{Jam Intiator} this it especially unfortunate, since it is the most promising group for predictions. The relations in the complete matched dataset and the relation class of \text{Jam Effector} are summarizes in the following.
 
-\textit{Str} - \textit{TMax} : The maximum and average jam duration is generally related to the street, but only individual streets show statistical significant differences. Therefore there is no general significant trend to be interpreted. But since the relation has a general significance and individual significant difference it can be assumed, that the descriptives are representable. 
-
-The descriptives from the complete matched data shows three groups of short (A94, A93, A92 and A70), medium (A99, A73, A7, A96, A9 and A6) and long (A3). The descriptives of the \text{Jam Effector} dataset show that the A94, A92, A73 and A70 tend to have shorter jams than A3, A6, A7 and A9. 
-
+\textbf{Duration} : The maximum and average jam duration is generally related to the street, but not all streets show statistical significant differences. Therefore there is no general significant trend to be interpreted but since the relation has a general significance and individual significant differences are present it can be assumed, that the descriptives are generally representable. When comparing all descriptive means (shown in \cref{fig:baysis_summary_Str_duration_barplot}) it becomes clear, that the maximum and average variables differ by high ranges, which is to be expected, but also show a similar tend.
 \begin{figure}[ht!]
     \pgfplotstableread[col sep=comma]{
-        Road, gMeanTMax, gMeanTAvg, eMeanTMax, eMeanTAvg
-        A3  , 225.76   , 89.66    , 297.62   , 104.05
-        A6  , 153.05   , 69.94    , 236.59   , 82.43 
-        A9  , 170.85   , 72.92    , 243.45   , 91.31
-        A70 , 106.55   , 50.10    ,          ,
-        A96 , 118.32   , 61.37    , 155.85   , 74.39
-        A7  , 153.37   , 86.55    , 254.66   , 143.74
-        A73 , 125.95   , 54.78    , 157.21   , 47.63
-        A99 , 169.09   , 58.97    , 212.57   , 65.73  
-        A92 , 103.86   , 55.24    , 134.71   , 64.52 
-        A93 , 163.57   , 82.33    , 212.00   , 104.83
-        A94 , 101.59   , 49.86    , 109.71   , 45.93  
+        Road, gMeanTMax, gMeanTAvg, eMeanTMax, eMeanTAvg, means
+        A3  , 225.76   , 89.66    , 297.62   , 104.05 , 179
+        A6  , 153.05   , 69.94    , 236.59   , 82.43  , 136
+        A9  , 170.85   , 72.92    , 243.45   , 91.31  , 145
+        A70 , 106.55   , 50.10    ,          ,        , 78
+        A96 , 118.32   , 61.37    , 155.85   , 74.39  , 102
+        A7  , 153.37   , 86.55    , 254.66   , 143.74 , 160
+        A73 , 125.95   , 54.78    , 157.21   , 47.63  , 96
+        A99 , 169.09   , 58.97    , 212.57   , 65.73  , 127
+        A92 , 103.86   , 55.24    , 134.71   , 64.52  , 90
+        A93 , 163.57   , 82.33    , 212.00   , 104.83 , 141
+        A94 , 101.59   , 49.86    , 109.71   , 45.93  , 77
     }\data
+    \pgfplotstablesort[sort key=means, sort cmp=float >]{\datasorted}{\data}
     \tiny
     \centering
-    \barplotquad{\data}{gMeanTMax}{gMeanTAvg}{eMeanTMax}{eMeanTAvg}{$\bar{x}_{TMax,global}$}{$\bar{x}_{TAvg,global}$}{$\bar{x}_{TMax,effector}$}{$\bar{x}_{TAvg,effector}$}
+    \barplotquadwithmeans{\datasorted}{$\bar{x}_{TMax,global}$}{$\bar{x}_{TAvg,global}$}{$\bar{x}_{TMax,effector}$}{$\bar{x}_{TAvg,effector}$}{121}
     \caption{Comparison of descriptives $\bar{x}_{TMax,global}$, $\bar{x}_{TAvg,global}$, $\bar{x}_{TMax,effector}$ and $\bar{x}_{TAvg,effector}$}
+    \label{fig:baysis_summary_Str_duration_barplot}
     %\vspace{-8mm}
 \end{figure}
+The comparison of the global and \text{Jam Effectors} variables presents an general increase of means from the global to \text{Jam Effectors} variable. This means that accidents during a congestion are associated with (temporal) longer jams, than jams in general.
 
-\textit{Str} - \textit{TAvg} : Average jam duration is generally related to the street, but only A3, A73 and A99 show statistical significant differences. 
+\textbf{Length} : The maximum and average jam length is generally related to the street, but not all streets show statistical significant differences. Therefore there is no general significant trend to be interpreted but since the relation has a general significance and individual significant differences are present it can be assumed, that the descriptives are generally representable. When comparing all descriptive means (shown in \cref{fig:baysis_summary_Str_length_barplot}) it becomes clear, that the maximum and average variables differ by high ranges, which is to be expected, but also show a similar tend.
+\begin{figure}[ht!]
+    \pgfplotstableread[col sep=comma]{
+        Road, meanSMax, meanSAvg, eMeanTMax, means
+        A3  , 13874.96 , 4537.56 , 17755.15 , 12056
+        A6  , 11067.98 , 4361.50 , 16711.43 , 10714
+        A9  , 10680.48 , 4187.15 , 13271.42 , 9380
+        A70 , 6676.39  , 3010.45 ,          , 4843
+        A96 , 8551.75  , 3678.39 , 11825.98 , 8019
+        A7  , 9018.27  , 4141.68 , 11825.00 , 8328
+        A73 , 6502.88  , 2683.97 , 7964.98  , 5717
+        A99 , 13244.02 , 3240.97 , 17558.70 , 11348
+        A92 , 6186.80  , 2926.15 , 7255.76  , 5456
+        A93 , 6765.00  , 2525.43 , 8158.42  , 5816
+        A94 , 6220.38  , 2691.68 , 7277.64  , 5397
+    }\data
+    \pgfplotstablesort[sort key=means, sort cmp=float >]{\datasorted}{\data}
+    \tiny
+    \centering
+    \barplottriplewithmeans{\datasorted}{$\bar{x}_{SMax,global}$}{$\bar{x}_{SAvg,global}$}{$\bar{x}_{SMax,effector}$}{7916}
+    \caption{Comparison of descriptives $\bar{x}_{SMax,global}$, $\bar{x}_{SAvg,global}$ and $\bar{x}_{SMax,effector}$}
+    \label{fig:baysis_summary_Str_length_barplot}
+    %\vspace{-8mm}
+\end{figure}
+The comparison of the global and \text{Jam Effectors} variables presents like with the jam duration an general increase of means from the global to \text{Jam Effectors} variable. This means that accidents during a congestion are associated with (spatial) longer jams, than jams in general.
 
-\textit{Str} - \textit{SMax} : Maximum jam length is generally related to the street, with many road showing statistical significant differences. It can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A7, A73, A92, A94 and A96. The descriptives further show three groups of short (A94, A93, A92, A73 and A70), medium (A96 and A7) and long (A3, A6, A9 and A99) separated by about 50\,\% increases.
-
-\textit{Str} - \textit{SAvg} : Average jam length is generally related to the street, with many road showing statistical significant differences. It can be interpreted that accidents on the A3, A6, A9 and A99 are associated with significantly longer (spatial) jams than on A70, A73, A92, A93, A94, A96 and A99. The descriptives further show two groups of shorter (A70, A96, A73, A99, A92, A93 and A94) and longer (A3, A6, A9 and A7), based on $\bar{x}$ and $\sigma$.
-
-\textit{Str} - \textit{Cov} : Coverage is generally related to the street, with most road showing statistical significant differences. The descriptives show that jams on the A3 and A99 are significant 30\,\% less dense than A6, A7, A9, A73, A70, A92 and A96.
-
-\begin{itemize}
-    \item \textit{Str} - \textit{TMax} : Maximum jam duration is generally related to the street, but only an small number of groups show statistical significant differences. Descriptives show similar features like in the global dataset. Accidents on the A3 created twice as long congestions than on the other streets. The descriptives further separate the streets into three groups of long (A3, A7), medium (A6, A99, A93 and A73) and short (A94, A96, and A92), based on $\bar{x}$ and $\sigma$.
-    \item \textit{Strasse} - \textit{TAvg} : Average jam duration is generally related to the street, but only two groups show statistical significant differences. Descriptives show similar features like in the global dataset. The significant differences show that the A3 and A7 have around 30\,\%-50\,\% longer jams than the A99 and A73. Based on $\bar{x}$ and $\sigma$ from the descriptives, the road can be groups into short (A92, A73, A94 and A99), medium (A6, A9 and A96) and long (A3, A93 and A7).
-    \item \textit{Strasse} - \textit{SMax} : Maximum jam length is generally related to the street, with many road showing statistical significant differences. Descriptives show similar features like in the global dataset. The distribution of the significant $\bar{x}$ and $\sigma$ can be separated into three groups of short (A73, A92, A93 and A94), medium (A6, A7, A9, A96 and A99) and long (A3). Each of these groups differ by 50\,\% to 80\,\% increases.
-    \item \textit{Strasse} - \textit{Cov} : The coverage is generally related to the street. The descriptives show that the coverage increases from A3 over A9 and A92 to A7, A96 and A92 by up to 80\,\%.
-\end{itemize}
-
-In accordance with these finding, it can be interpreted that in general the street plays a significant role defining the size and form of a congestion. This is not surprising since the demand on the street, which varies heavily between the streets is the major factor influencing the buildup of a congestion. Non the less it is interesting the the differences are substantial with ranges from 30\,\% to 50\,\% increases between groups and are replicated over difference variable relations.
-
-
-As already mentioned, these findings are mostly logical and not surprising. But they provide a statistical defined statement about the rations of increases or differences. 
+\textbf{Coverage} The jam coverage is generally related to the street, with most road showing statistical significant differences. Therefore it can be assumed, that the descriptives are generally representable. The comparison of the global and \text{Jam Effectors} variables (shown in \cref{fig:baysis_summary_Str_coverage_barplot}) presents an general decrease of means from the global to \text{Jam Effectors} variable. This means that accidents during a congestion are associated with less denser jams, than jams in general.
+\begin{figure}[ht!]
+    \pgfplotstableread[col sep=comma]{
+        Road, meanCov, eMeanCov, means
+        A3  , 38.44 , 32.02 , 35 
+        A6  , 46.99 , 30.81 , 39 
+        A9  , 43.93 , 36.09 , 40 
+        % A70 , 50.29 ,       , 25  
+        A96 , 51.94 , 42.90 , 47 
+        A7  , 53.46 , 45.60 , 50  
+        A73 , 46.49 , 32.94 , 40 
+        A99 , 33.21 , 26.79 , 30 
+        A92 , 53.15 , 47.71 , 50 
+        A93 , 40.81 , 37.25 , 39  
+        A94 , 47.76 , 36.79 , 42  
+    }\data
+    \pgfplotstablesort[sort key=means, sort cmp=float >]{\datasorted}{\data}
+    \tiny
+    \centering
+    \barplotdoublewithmeans{\datasorted}{$\bar{x}_{Cov,global}$}{$\bar{x}_{Cov,effector}$}{40}
+    \caption{Comparison of descriptives $\bar{x}_{Cov,global}$ and $\bar{x}_{Cov,effector}$}
+    \label{fig:baysis_summary_Str_coverage_barplot}
+    %\vspace{-8mm}
+\end{figure}
+In accordance with these finding, it can be interpreted that in general the street plays a significant role defining the size and form of a congestion. This is not surprising since the demand on the street, which varies heavily between the streets is the major factor influencing the buildup of a congestion. Non the less it is interesting the the differences are substantial with ranges up to 60\,\% increases between groups and are replicated over difference variable relations. Another effect it the increased jam duration and length with the \text{Jam Effectors} in comparison with jams in general. This is due to either the higher probability of a accident in very long jams or that accident during a can jam increase the jam extends itself.
 
 \subsection{Accident category (\textit{Kat})}
 \label{analysis_sum_Kat}

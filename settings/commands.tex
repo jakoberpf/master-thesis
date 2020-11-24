@@ -133,6 +133,88 @@
 \end{tikzpicture}
 }
 
+\newcommand{\descplotfigwithoutavg}[3]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            % Gitterlinien für y-Ticks
+            width=\textwidth,
+            height=#3cm,
+            xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xmin=0,xmax=#2,
+            xticklabels from table={#1}{[index]0}
+        ]
+        \addplot table [y expr=(\thisrow{mean}), x expr=\coordindex] {#1};
+        \addplot table [y expr=(\thisrow{median}), x expr=\coordindex] {#1};
+        \addplot table [y expr=(\thisrow{sd}), x expr=\coordindex] {#1};
+        \legend{
+            $\bar{x}$,$\sigma$,$\tilde{x}$}
+        \end{axis}
+    \end{tikzpicture}\vfill
+}
+
+\newcommand{\descplotfigwithavg}[5]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            % Gitterlinien für y-Ticks
+            width=\textwidth,
+            height=#5cm,
+            xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xmin=0,xmax=#4,
+            xticklabels from table={#1}{[index]0},
+            % zusätzliche Beschriftung an y-Achse
+            every extra y tick/.style={
+                tick0/.initial=blue,
+                tick1/.initial=red,
+                yticklabel style={
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                },
+            },
+            extra y ticks={#2,#3},
+        ]
+        \addplot table [y expr=(\thisrow{mean}), x expr=\coordindex] {#1};
+        \addplot table [y expr=(\thisrow{median}), x expr=\coordindex] {#1};
+        \addplot table [y expr=(\thisrow{sd}), x expr=\coordindex] {#1};
+        \legend{
+            $\bar{x}$,$\sigma$,$\tilde{x}$}
+        \end{axis}
+    \end{tikzpicture}\vfill
+}
+
+\newcommand{\descplotfigwithcustomavg}[7]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            % Gitterlinien für y-Ticks
+            width=\textwidth,
+            height=#7cm,
+            xmajorgrids=true,
+            ymajorgrids=true,
+            xtick=data,
+            xmin=0,xmax=#6,
+            xticklabels from table={#1}{[index]0},
+            % zusätzliche Beschriftung an y-Achse
+            every extra y tick/.style={
+                tick0/.initial=blue,
+                tick1/.initial=red,
+                yticklabel style={
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                },
+            },
+            extra y ticks={#2,#3},
+            extra y tick labels={#4,#5}
+        ]
+        \addplot table [y expr=(\thisrow{mean}), x expr=\coordindex] {#1};
+        \addplot table [y expr=(\thisrow{median}), x expr=\coordindex] {#1};
+        \addplot table [y expr=(\thisrow{sd}), x expr=\coordindex] {#1};
+        \legend{
+            $\bar{x}$,$\sigma$,$\tilde{x}$}
+        \end{axis}
+    \end{tikzpicture}\vfill
+}
+
 %% Math snippets
 
 % \newcommand{\maxVal}[1]{

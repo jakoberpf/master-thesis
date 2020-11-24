@@ -89,9 +89,24 @@ In accordance with these finding, it can be interpreted that in general the stre
 
 \subsection{Accident category (\textit{Kat})}
 \label{analysis_sum_Kat}
-In the global dataset the variable \textit{Kat} showed a general dependence to the maximum and average duration and a general trend of increasing duration with the injury gravity of the accident. The category of accidents with property damage does not fit into this trend and sits in-between the lightly and heavily injured category. This changes when considering just the \textit{Jam Initiators}, where all categories follow one increasing trend. The differences between the categories of lightly injured, heavily injured and property damage is 29\,min/10\,min, but the category of deadly accident differs from the the rest by up to 143\,min/80\,min in maximum/average duration. The differences are roughly the same for the \textit{Jam Initiators}.
-
-Unlike the temporal length, the spatial length does not correlate with the accident category. According to the global dataset, the temporal distance is heavily related to the accident category. But the differences of $\bar{x}$ and $\sigma$ only show a maximum differences of 5\,min, which is arguably low for an interpretation. Non the less in can be said, that the temporal distance between accident and congestion increased with the injury gravity. The variable also correlates in other datasets, but without significant differences.
+In the global dataset the variable \textit{Kat} showed a general dependence to the maximum and average duration and a general trend of increasing duration with the injury gravity of the accident. The category of accidents with property damage does not fit into this trend and sits in-between the lightly and heavily injured category. This changes when considering just the \textit{Jam Initiators}, where all categories follow one increasing trend. When comparing all descriptive means (shown in \cref{fig:baysis_summary_Kat_duration_barplot}) it becomes clear, that the maximum and average variables differ by high ranges, which is to be expected. The comparison also show that that the jam duration significant increases with the gravity of the accident. The category of deadly accident differs by 130\,min from accidents of lightly injured and property damage accidents. 
+\begin{figure}[ht!]
+    \pgfplotstableread[col sep=comma]{
+        Kat, gMeanTMax, gMeanTAvg, eMeanTMax, eMeanTAvg, means
+        1 , 317.67 , 156.06 , 290.07 , 148.76 , 228
+        2 , 189.03 , 88.31  , 156.23 , 80.91  , 129
+        3 , 155.26 , 67.32  , 120.18 , 63.75  , 102
+        7 , 179.35 , 74.08  , 103.13 , 53.61  , 103
+    }\data
+    \pgfplotstablesort[sort key=means, sort cmp=float >]{\datasorted}{\data}
+    \tiny
+    \centering
+    \barplotquadwithmeans{\datasorted}{$\bar{x}_{TMax,global}$}{$\bar{x}_{TAvg,global}$}{$\bar{x}_{TMax,initiator}$}{$\bar{x}_{TAvg,initiator}$}{140}
+    \caption{Comparison of descriptives $\bar{x}_{TMax,global}$, $\bar{x}_{TAvg,global}$, $\bar{x}_{TMax,initiator}$ and $\bar{x}_{TAvg,initiator}$}
+    \label{fig:baysis_summary_Kat_duration_barplot}
+    %\vspace{-8mm}
+\end{figure}
+Unlike the temporal length, the spatial length does not correlate with the accident category. According to the global dataset, the temporal distance is heavily related to the accident category, but the descriptives only show a maximum differences of 6\,min, which is arguably low for an interpretation. Non the less in can be stated, that the temporal distance between accident and congestion increased significantly with the injury gravity. The variable also correlates in other datasets, but without significant differences.
 
 \subsection{Accident type (\textit{Typ})}
 \label{analysis_sum_Typ}

@@ -50,15 +50,16 @@ Next we need to verify that the correlation is significant and what the correlat
 % -------- Strasse ---------
 % --------------------------
 \centerheading{Strasse}
-All of the Kruskal-Wallis rank sum test for \textit{Strasse} - \textit{TMax}, \textit{Strasse} - \textit{TAvg}, \textit{Strasse} - \textit{SMax}, \textit{Strasse} - \textit{SAvg}, \textit{Strasse} - \textit{Cov} and \textit{Strasse}-\textit{TLCar} produce a $p$-value above the defined $\alpha$-level of .05. This means that the correlation of the variable \textit{Strasse} can be neglected.
+\varintronosigmul{Kat}{\textit{Strasse} - \textit{TMax}, \textit{Strasse} - \textit{TAvg}, \textit{Strasse} - \textit{SMax}, \textit{Strasse} - \textit{SAvg}, \textit{Strasse} - \textit{Cov} and \textit{Strasse}-\textit{TLCar}}
 
 % ----------------------
 % -------- Kat ---------
 % ----------------------
 \centerheading{Kat}
-This section analyzes the correlated relations of the variable \textit{Kat}. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The Kruskal-Wallis tests of \textit{Kat}-\textit{SMax} and \textit{Kat}-\textit{SAvg} produce a $p$-value above the $\alpha$-level. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Kat} in these relations.
+\varintrowithsam{baysis}{Kat} \varintronosigmul{Kat}{\textit{Kat}-\textit{SMax} and \textit{Kat}-\textit{SAvg}}
 
-The Kruskal-Wallis test of \textit{Kat}-\textit{TMax} produces a $p$-value of 0.0002, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TMax} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TMax}. 
+% ###########################################
+\groupintrosigsig{Kat}{TMax}{baysis}{initiator}
 \begin{table}[ht!]
     \tiny
 	\centering
@@ -74,29 +75,53 @@ The Kruskal-Wallis test of \textit{Kat}-\textit{TMax} produces a $p$-value of 0.
     \caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Maximal Temporal Extent} (Jam Initiator)}
     \label{tbl:wilcoxon_baysis_initiator_Kat_TMax}
 \end{table}
-The matrix shows that there is a general trend and all groups differ significantly.
-\begin{table}[ht!]
-    \tiny
+It shows that all groups have significant differences and therefore \textit{TMax} has a general trend.
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\toprule  
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-        \midrule
-        1 & 29  & 290.07 & 190.59 & 255.00 & 27 & 864  & 837 \\ 
-        2 & 144 & 156.23 & 119.44 & 120.00 & 9  & 657  & 648 \\ 
-        3 & 422 & 120.18 & 103.92 & 99.00  & 9  & 1116 & 1107 \\ 
-        7 & 181 & 103.13 & 143.89 & 75.00  & 9  & 1341 & 1332 \\ 
- 		\bottomrule
-	\end{tabular}
-    \caption{Descriptives of the groups of \textit{Kat} and \textit{Maximal Temporal Extent} (Jam Initiator)}
-    \label{tbl:descriptives_baysis_initiator_Kat_TMax}
-\end{table}
-% 156+121+103 / 3 = 126
-% diff 126,290 = 164
-% mean diff 156,121,103 = 26
-With the descriptives from \cref{tbl:descriptives_baysis_initiator_Kat_TMax} that the $\bar{x}$ and $\tilde{x}$ increases from group 7 to 1. The difference between the group 1 and the others is 164\,min, when the groups 2, 3 and 7 differ on average by 26\,min. We can therefore interpret that the maximal duration of jams, created by accidents increases with the gravity of the accident. 
-
-The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TAvg} produces a $p$-value of 0.0087, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TAvg} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Kat_TAvg}. 
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+            1 & 29  & 290.07 & 190.59 & 255.00 & 27 & 864  & 837 \\ 
+            2 & 144 & 156.23 & 119.44 & 120.00 & 9  & 657  & 648 \\ 
+            3 & 422 & 120.18 & 103.92 & 99.00  & 9  & 1116 & 1107 \\ 
+            7 & 181 & 103.13 & 143.89 & 75.00  & 9  & 1341 & 1332 \\ 
+			\bottomrule
+			% \bar{x} - sum = 669.61, mean = 167.40
+			% \sigma - sum = 557.84, mean = 139.46
+			% \tilde{x}
+			%
+            % 156+121+103 / 3 = 126
+            % diff 126,290 = 164
+            % mean diff 156,121,103 = 26
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_initiator_Kat_TMax}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+            1 , 29  , 290.07 , 190.59 , 255 , 27 , 864  , 837 
+            2 , 144 , 156.23 , 119.44 , 120 , 9  , 657  , 648 
+            3 , 422 , 120.18 , 103.92 , 99  , 9  , 1116 , 1107 
+            7 , 181 , 103.13 , 143.89 , 75  , 9  , 1341 , 1332 
+		}\data
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{167}{139}{3}{4.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_initiator_Kat_TMax}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Kat} and \textit{Maximal Temporal Extent} (Jam Initiator)}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+The significant descriptives from \cref{tbl:descriptives_baysis_initiator_Kat_TMax,fig:descriptives_baysis_initiator_Kat_TMax} present increasing means from accidents with property damage to deathly accidents. Therefore it can be interpreted that the maximal temporal jam length significant increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is considerable, which means that the accidents with deaths are associated with 164\,min longer jams, than others. The groups 2, 3 and 7 differ on by 26\,min on average. 
+\groupintrosigsig{Kat}{TAvg}{baysis}{initiator} 
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -112,28 +137,69 @@ The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TAvg} produces a $p$-va
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Kat} and \textit{Average Temporal Extent} (Jam Initiator)}
 	\label{tbl:wilcoxon_baysis_initiator_Kat_TAvg}
 \end{table}
-The $p$-values show that all groups differ significantly from each other.
-\begin{table}[ht!]
-	\tiny
+It shows that all groups have significant differences and therefore \textit{TAvg} has a general trend.
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-    \begin{tabular}{c|c|c|c|c|c|c|c}
-        \toprule
-        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-        \midrule
-        1 & 29  & 148.76 & 90.65 & 144.00 & 20 & 376 & 356 \\ 
-        2 & 144 & 80.91  & 67.52 & 61.50  & 7  & 426 & 419 \\ 
-        3 & 422 & 63.75  & 51.27 & 53.00  & 5  & 469 & 464 \\ 
-        7 & 181 & 53.61  & 80.96 & 39.00  & 4  & 920 & 916 \\ 
-        \bottomrule
-    \end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+            1 & 29  & 148.76 & 90.65 & 144.0 & 20 & 376 & 356 \\ 
+            2 & 144 & 80.91  & 67.52 & 61.5  & 7  & 426 & 419 \\ 
+            3 & 422 & 63.75  & 51.27 & 53.0  & 5  & 469 & 464 \\ 
+            7 & 181 & 53.61  & 80.96 & 39.0  & 4  & 920 & 916 \\ 
+			\bottomrule
+			% \bar{x} - sum = 347.03, mean = 86.75
+			% \sigma - sum = 290.40, mean = 72.6
+			% \tilde{x}
+			%
+            % 80+63+53 / 3 = 65
+            % diff 148,65 = 83
+            % mean diff 80,63,53 = 10
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_initiator_Kat_TAvg}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+            1 , 29  , 148.76 , 90.65 , 144.0 , 20 , 376 , 356 
+            2 , 144 , 80.91  , 67.52 , 61.5  , 7  , 426 , 419 
+            3 , 422 , 63.75  , 51.27 , 53.0  , 5  , 469 , 464 
+            7 , 181 , 53.61  , 80.96 , 39.0  , 4  , 920 , 916 
+		}\data
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{86}{72}{3}{4.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_initiator_Kat_TAvg}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{Kat} and \textit{Average temporal Extent} (Jam Initiator)}
-	\label{tbl:descriptives_baysis_initiator_Kat_TAvg}
 	%\vspace{-8mm}
-\end{table}
-% 80+63+53 / 3 = 65
-% diff 148,65 = 83
-% mean diff 80,63,53 = 10
-The descriptives in table \cref{tbl:descriptives_baysis_initiator_Kat_TAvg}, show that $\bar{x}$ and $\tilde{x}$ increases with the groups from 7 to 1, like \textit{TMax}. The difference between the group 1 and the others is 83\,min, when the groups 2, 3 and 7 differ on average by 10\,min. The interpretation is therefore similar that the average duration of jams created by accident increases with the gravity of the accident.
+\end{figure}
+% #### END: Table and Plot
+The significant descriptives from \cref{tbl:descriptives_baysis_initiator_Kat_TAvg,fig:descriptives_baysis_initiator_Kat_TAvg} present increasing means from accidents with property damage to deathly accidents. Therefore it can be interpreted that the average temporal jam length significant increases with the gravity of the accident. Also the difference of group 1 to group 2, 3 and 7 is considerable, which means that the accidents with deaths are associated with 83\,min longer jams, than others. The groups 2, 3 and 7 differ on by 10\,min on average. 
+\begin{figure}[ht!]
+	\pgfplotstableread[col sep=comma]{
+		Kat, meanTMax, meanTAvg  
+		1 , 290.07 , 148.76
+		2 , 156.23 , 80.91 
+		3 , 120.18 , 63.75 
+		7 , 103.13 , 53.61 
+	}\data
+    \pgfplotstablesort[sort key=meanTAvg, sort cmp=float >]{\datasorted}{\data}
+    \tiny
+    \centering
+	\barplotdoubleanalysis{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
+	\caption{Comparison of descriptives $\bar{x}_{TMax}$ and $\bar{x}_{TAvg}$ (\textit{TMax/TAvg} by \textit{Kat})}
+	\label{fig:baysis_initiator_meancomparison_Kat_temporal}
+	%\vspace{-8mm}
+\end{figure}
+When comparing the mean values of the maximal and average (temporal) extend (shown in \cref{fig:baysis_initiator_meancomparison_Kat_temporal}) it becomes clear that the average is significantly lower than the maximum, which is to be expected. It also shows, that the difference between the groups are similar in the maximal and average extend. In can be described that they follow the same tend, that the jam duration significant increases with the gravity of the accident.
 
 % ----------------------
 % -------- Typ ---------

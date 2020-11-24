@@ -126,16 +126,14 @@ The table shows that the roads A73, A94, A95 and A96 differ from the A3. The A73
         \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
         \tiny
         \centering
-        \descplotfigwithavg{\datasorted}{201}{161}{10}{4.7}
+        \descplotfigwithavg{\datasorted}{201}{161}{9}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_effector_Street_TMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Maximal Temporal Extent} (Jam Effector)}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives from \cref{tbl:descriptives_baysis_effector_Street_TMax} show that the A94, A73 and A96 (the A95 is uncertain) have a mean maximal temporal distance of 140\,min. Compared to the $\bar{x}$ of the A3 of 311\,min it can be interpreted that accidents on the A3 is associated with twice as long jams than the other groups. For the A9 can be interpreted that it's accidents are associated with 40\,\% longer jams, than the A73.
-
-% ####################################################
+The significant descriptives from \cref{tbl:descriptives_baysis_effector_Street_TMax,fig:descriptives_baysis_effector_Street_TMax} that the mean of A3 is 140\,min - 188\,min higher than the means of A73, A94, A95 and A96. They also show that the mean of A73 is 86\,min lower than the mean of A9. Therefore it can be interpreted that accidents on the A3 and A9 are associated with significantly longer (temporal) jams than on the A73, A94, A95 and A96. The descriptives also show that the A73, A92, A94 and A96 are have considerable shorter durations, when the A3, A6, A7 and A9 have considerable longer durations compared to the general mean.
 \groupintrosig{Street}{TAvg}{0.0003}{baysis}{effector}
 \begin{table}[ht!]
 	\tiny
@@ -191,7 +189,8 @@ The table shows that the roads A99 and A73 differ from the A3. The A73 also diff
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_effector_Street_TAvg}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\pgfplotstableread[col sep=comma,header=false]{
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
 			A3   , 265 , 104.05 , 87.02  , 84 , 7  , 703  , 696 
 			A6   , 37  , 82.43  , 74.19  , 70 , 3  , 301  , 298 
 			A9   , 192 , 91.31  , 74.64  , 75 , 5  , 575  , 570  
@@ -203,42 +202,17 @@ The table shows that the roads A99 and A73 differ from the A3. The A73 also diff
 			A96  , 41  , 74.39  , 54.53  , 70 , 6  , 247  , 241 
 			A92  , 21  , 64.52  , 48.86  , 56 , 8  , 235  , 227 
 		}\data
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=9,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={82,81},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{82}{80}{9}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_effector_Street_TAvg}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Average Temporal Extent} (Jam Effector)}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives in \cref{tbl:descriptives_baysis_effector_Street_TAvg,fig:descriptives_baysis_effector_Street_TAvg} show that the mean $\bar{x}$ of the groups A99 and A73 is 56\,min, which is nearly 50\,\% lower than the $\bar{x}$ of A3. The $\bar{x}$ of A73 is also just $\frac{1}{3}$ compared to the A94. It can be interpreted that accidents on the A3 and A7 are associated with significantly longer jams than on other roads.
+The significant descriptives from \cref{tbl:descriptives_baysis_effector_Street_TAvg,fig:descriptives_baysis_effector_Street_TAvg} that the mean of A3 is 39\,min - 57\,min higher than the means of A99 and A73. They also show that the mean of A73 is 100\,min lower than the mean of A7, which breaks the general trend of the variable and could be the result of errors. Never the less it can be interpreted that accidents on the A3 and A7 are associated with significantly longer (temporal) jams than on the A99 and A73. The descriptives also show that the A73, A92, A94 and A96 are have considerable shorter durations, when the A3, A7, A9 and A99 have considerable longer durations compared to the general mean.
 \begin{figure}[ht!]
 	\pgfplotstableread[col sep=comma]{
 		Road, meanTMax, meanTAvg
@@ -253,14 +227,15 @@ The descriptives in \cref{tbl:descriptives_baysis_effector_Street_TAvg,fig:descr
 		A96 , 155.85  , 74.39 
 		A92 , 134.71  , 64.52   
 	}\data 
+	\pgfplotstablesort[sort key=meanTAvg, sort cmp=float >]{\datasorted}{\data}
 	\tiny
 	\centering
-	\barplotdoubleanalysis{\data}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
-	\caption{Comparison of descriptives $\bar{x}_{SMax}$ and $\bar{x}_{SAvg}$ (\textit{Street} by \textit{TMax/TAvg})}
+	\barplotdoubleanalysis{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
+	\caption{Comparison of descriptives $\bar{x}_{SMax}$ and $\bar{x}_{SAvg}$ (\textit{TMax/TAvg} by \textit{Street})}
 	\label{fig:baysis_effector_meancomparison_Str_spatial}
 	%\vspace{-8mm}
 \end{figure}
-When comparison the mean values of the maximal and average (temporal) extend it becomes clear that the average is significantly lower than the maximum, which is to be expected. It shows, that the differences between the groups are similar in both the maximal and average extend.
+When comparing the mean values of the maximal and average (temporal) extend it becomes clear that the average variable has considerable lower values than the maximum variable, which is to be expected. It also shows, that the differences between the groups are mostly different in the maximal and average extend and vary considerably. In can be described that they follow tend, but A3, A9, A6 and A99 have higher maximal durations than the average trend.
 
 % ####################################################
 \groupintrosig{Street}{SMax}{0.0025}{baysis}{effector}

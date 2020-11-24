@@ -49,7 +49,9 @@ Next we need to verify that the correlation is significant and what the correlat
 % -------- Street ---------
 % --------------------------
 \centerheading{Street}
-This section analyzes the correlated relations of the accident variable \textit{Strasse}. The correlations of \textit{Strasse} - \textit{SAvg} and \textit{Strasse} - \textit{TLHGV} produces a $p$-value above the $\alpha$-level of .05 in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected for these relations and there are no significant groups to identify.
+\label{ana:baysis_effector_Str}
+\varintrosimplewithsam{Str}
+\varintronosigmul{Str}{\textit{Strasse} - \textit{SAvg} and \textit{Strasse} - \textit{TLHGV}}
 
 % #################################################
 \groupintrosig{Street}{TMax}{0.0104}{baysis}{effector}
@@ -78,7 +80,7 @@ This section analyzes the correlated relations of the accident variable \textit{
     \caption{Pairwise Wilcoxon $T$-test for \textit{Street} and \textit{Maximal Temporal Extent} (Jam Effector)}
     \label{tbl:wilcoxon_baysis_effector_Street_TMax}
 \end{table}
-The table shows that the roads A94, A73, A96 and A95 differs from the A3. The A73 differs from the A9.
+The table shows that the roads A94, A73, A96 and A95 differ from the A3. The A73 also differs from the A9, but there is no distinctive general trend.
 % #### START: Table and Plot
 \begin{figure}[ht!]
 	\centering
@@ -108,7 +110,8 @@ The table shows that the roads A94, A73, A96 and A95 differs from the A3. The A7
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_effector_Street_TMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\pgfplotstableread[col sep=comma,header=false]{
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
 			A3   , 265 , 297.62 , 219.09 , 243.0 , 18 , 1257 , 1239
 			A6   , 37  , 236.59 , 183.03 , 207.0 , 18 , 705  , 687 
 			A9   , 192 , 243.45 , 178.97 , 201.0 , 15 , 1194 , 1179
@@ -120,35 +123,10 @@ The table shows that the roads A94, A73, A96 and A95 differs from the A3. The A7
 			A96  , 41  , 155.85 , 84.33  , 144.0 , 30 , 381  , 351 
 			A92  , 21  , 134.71 , 82.25  , 138.0 , 18 , 354  , 336 
 		}\data
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.7cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=9,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={201,161},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{201}{161}{10}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_effector_Street_TMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Street} and \textit{Maximal Temporal Extent} (Jam Effector)}

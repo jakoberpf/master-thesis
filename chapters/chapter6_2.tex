@@ -363,40 +363,18 @@ It shows that the significant differences are not related to any specific group 
 % -------- AUrs1 ---------
 % ------------------------
 \centerheading{AUrs}
-This section analyzes the correlated relations of the accident variable \textit{AUrs1} and \textit{AUrs2}, also introducing a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{AUrs} is shown in \cref{tbl:baysis_dataset_AUrs}. The Kruskal-Wallis rank sum test of \textit{AUrs1}-\textit{TMax}, \textit{AUrs1}-\textit{TAvg}, \textit{AUrs1}-\textit{SMax}, \textit{AUrs1}-\textit{SAvg}, \textit{AUrs1}-\textit{TDist} and \textit{AUrs1}-\textit{TLCar} produce $p$-values above the $\alpha$-level. This means that the null hypothesis can't be rejected and there is no significant difference between the groups of \textit{UArt1} in these relations. 
+\varintrowithsam{baysis}{AUrs} The variable value of group 0, which occurs in the dataset is undefined by BAYSIS and will be therefore neglected for the interpretation. \varintronosigmul{AUrs}{\textit{AUrs1}-\textit{TMax}, \textit{AUrs1}-\textit{TAvg}, \textit{AUrs1}-\textit{SMax}, \textit{AUrs1}-\textit{SAvg}, \textit{AUrs1}-\textit{TDist} and \textit{AUrs1}-\textit{TLCar}} 
 
-The Kruskal-Wallis rank sum test of \textit{AUrs1}-\textit{Cov} produces a $p$-value of 0.0176, which is below $\alpha$. The null hypothesis can therefore be rejected, pointing to a significant difference between the groups of \textit{AUrs1}. The pairwise Wilcoxon $T$-test of \textit{AUrs1}-\textit{Cov} for identification of the relevant groups (see \cref{tbl:wilcoxon_baysis_initiator_AUrs1_Cov}) shows that the significance differences is not group specific. The correlation can therefore be neglected. \todo{Add descriptives}
-\begin{table}[ht!]
-	\small
-	\centering
-    \begin{tabular}{rrrrrrrrrrrrr}
-        \toprule
-           & 72 & 73 & 75 & 77 & 81 & 82 & 83 & 84 & 86 & 87 & 88 \\ 
-        \midrule
-        72 &  &  &  &  &  &  &  &  &  &  &  \\ 
-        73 & 0.63 &  &  &  &  &  &  &  &  &  &  \\ 
-        75 & 1.00 & 1.00 &  &  &  &  &  &  &  &  &  \\ 
-        77 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  &  \\ 
-        81 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
-        82 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  &  \\ 
-        83 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
-        84 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
-        86 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
-        87 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
-        88 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
-        89 & 0.33 & 0.96 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 0.91 & 1.00 & 1.00 \\ 
-        \bottomrule
-    \end{tabular}
-    \caption{Pairwise Wilcoxon $T$-test for \textit{AUrs1} and \textit{Coverage} (Jam Initiator)}
-    \label{tbl:wilcoxon_baysis_initiator_AUrs1_Cov}
-\end{table}
+% #############################################
+\groupintrosig{AUrs1}{Cov}{0.0176}{baysis}{initiator}
+It show shows that the significance differences is not group specific. The correlation can therefore be neglected.
+% ######################## Expand if time ########################
 
 % ------------------------
 % -------- AUrs2 ---------
 % ------------------------
 \medskip
-All relations of the second \textit{AUrs} variable \textit{AUrs2} (\textit{AUrs2}-\textit{TMax}, \textit{AUrs2}-\textit{TAvg}, \textit{AUrs2}-\textit{SAvg} and \textit{AUrs2}-\textit{TDist}) produce $p$-values above $\alpha$-level. The null hypothesizes can't be rejected and there is no significant differences between the groups of \textit{AUrs2}. There are therefore no significant groups to identify.
-
+All relations of the second \textit{AUrs} variable \textit{AUrs2} (\textit{AUrs2}-\textit{TMax}, \textit{AUrs2}-\textit{TAvg}, \textit{AUrs2}-\textit{SAvg} and \textit{AUrs2}-\textit{TDist}) produce $p$-values above the defined $\alpha$-level. Therefore the null hypothesizes can't be rejected and no significant differences in \textit{AUrs2} are present for these relations.
 % ------------------------
 % -------- AufHi ---------
 % ------------------------

@@ -759,7 +759,7 @@ The significant descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TDis
 \varintrowithsam{baysis}{Typ} \varintronosigsing{Typ}{Cov}
 
 % ############################################
-\groupintrosigsig{Typ}{TDist}{baysis}{matched}
+\groupintrosig{Typ}{TDist}{0.0003}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -811,22 +811,23 @@ It show the groups 3 and 6 differ significant from 1 and group 7 from 6. The gro
         \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
         \tiny
         \centering
-        \descplotfigwithavg{\datasorted}{6.18}{6.87}{3}{3.7}
+        \descplotfigwithavg{\datasorted}{6}{6}{3}{3.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Typ_TDist}
 	\end{minipage}%
-	\caption{Group descriptives of \textit{Kat} and \textit{Temporal Distance}}
+	\caption{Group descriptives of \textit{Typ} and \textit{Temporal Distance}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The significant descriptives in \cref{tbl:descriptives_baysis_matched_Typ_TDist,fig:descriptives_baysis_matched_Typ_TDist} show that the groups 1 and 7 have higher means than group 3 and 6. Therefore it can be interpreted that temporal distance of \textit{driving} and \textit{other} accidents (average of 8.5\,min) is significantly higher than for \textit{merging}, \textit{crossing} and \textit{straight traffic} accidents (average of 3.5\,min). 
+The significant descriptives in \cref{tbl:descriptives_baysis_matched_Typ_TDist,fig:descriptives_baysis_matched_Typ_TDist} show that the groups 1 and 7 have 5\,min higher means on average than group 3 and 6. Therefore it can be interpreted that temporal distance of \textit{driving} and \textit{other} accidents (average of 8.5\,min) is significantly higher than for \textit{merging}, \textit{crossing} and \textit{straight traffic} accidents (average of 3.5\,min). 
 
 % -----------------------
 % -------- UArt ---------
 % -----------------------
 \centerheading{UArt}
-This section analyzes the correlated relations of the accident variable \textit{UArt}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{UArt} is shown in \cref{tbl:baysis_dataset_UArt}. The Kruskal-Wallis rank sum test of \textit{UArt}-\textit{SAvg} produces a $p$-value of 0.2081, which is above the $\alpha$-level. The null hypothesis can't be rejected and there is \textit{no} significant difference between the groups of \textit{UArt}. There are no significant groups to identify.
+\varintrowithsam{baysis}{UArt} \varintronosigsing{UArt1}{SAvg}
 
-The Kruskal-Wallis test of \textit{UArt}-\textit{TDist} produces a $p$-value of below 0.0001, which is way below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{UArt}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_matched_UArt_TDist}. 
+% ############################################
+\groupintrosigsig{UArt1}{TDist}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -845,34 +846,62 @@ The Kruskal-Wallis test of \textit{UArt}-\textit{TDist} produces a $p$-value of 
 		9 & \red{0.01} & \red{0.00} & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 0.50 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{UArt} and \textit{Temporal Distance}}
-	\label{tbl:wilcoxon_baysis_matched_UArt_TDist}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{UArt} and \textit{Temporal Distance}, see \cref{tbl:wilcoxon_baysis_matched_UArt1_TDist_complete} for complete table}
+	\label{tbl:wilcoxon_baysis_matched_UArt1_TDist}
 \end{table}
-The $p$-values in \cref{tbl:wilcoxon_baysis_matched_UArt_TDist} show that group 5 differs from 2, 3 and 4. The groups 7, 8 and 9 differ from the groups 0, 1, 2, 3 and 5.
-\begin{table}[ht!]
-	\tiny
+It shows that group 5 differs significantly from 2, 3 and 4. The groups 7, 8 and 9 differ significantly from the groups 0, 1, 2, 3 and 5.
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\hline
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-		\hline
-		0 & 63  & 5.30  & 6.83 & 0.00  & 0 & 22 & 22 \\ 
-		1 & 86  & 4.44  & 6.58 & 0.00  & 0 & 24 & 24 \\ 
-		2 & 831 & 5.05  & 6.53 & 1.00  & 0 & 24 & 24 \\ 
-		3 & 447 & 4.53  & 6.30 & 0.00  & 0 & 24 & 24 \\ 
-		5 & 90  & 2.44  & 5.48 & 0.00  & 0 & 24 & 24 \\  
-		7 & 35  & 12.63 & 8.62 & 14.00 & 0 & 24 & 24 \\ 
-		8 & 165 & 8.79  & 7.55 & 8.00  & 0 & 24 & 24 \\ 
-		9 & 124 & 9.10  & 7.00 & 9.00  & 0 & 24 & 24 \\ 
-		\hline
-	\end{tabular}
-	\caption{Group descriptives of \textit{UArt} and \textit{Temporal Distance}}
-	\label{tbl:descriptives_baysis_matched_UArt_TDist}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			0 & 63  & 5.30  & 6.83 & 0  & 0 & 22 & 22 \\ 
+			1 & 86  & 4.44  & 6.58 & 0  & 0 & 24 & 24 \\ 
+			2 & 831 & 5.05  & 6.53 & 1  & 0 & 24 & 24 \\ 
+			3 & 447 & 4.53  & 6.30 & 0  & 0 & 24 & 24 \\ 
+			5 & 90  & 2.44  & 5.48 & 0  & 0 & 24 & 24 \\  
+			7 & 35  & 12.63 & 8.62 & 14 & 0 & 24 & 24 \\ 
+			8 & 165 & 8.79  & 7.55 & 8  & 0 & 24 & 24 \\ 
+			9 & 124 & 9.10  & 7.00 & 9  & 0 & 24 & 24 \\ 
+			\bottomrule
+			% \bar{x} - sum = 52.28, mean = 6.53
+			% \sigma - sum = 54.89, mean = 6.86
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_UArt1_TDist}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			0 , 63  , 5.30  , 6.83 , 0  , 0 , 22 , 22 
+			1 , 86  , 4.44  , 6.58 , 0  , 0 , 24 , 24 
+			2 , 831 , 5.05  , 6.53 , 1  , 0 , 24 , 24 
+			3 , 447 , 4.53  , 6.30 , 0  , 0 , 24 , 24 
+			5 , 90  , 2.44  , 5.48 , 0  , 0 , 24 , 24  
+			7 , 35  , 12.63 , 8.62 , 14 , 0 , 24 , 24 
+			8 , 165 , 8.79  , 7.55 , 8  , 0 , 24 , 24 
+			9 , 124 , 9.10  , 7.00 , 9  , 0 , 24 , 24 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{6}{7}{7}{4.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_UArt1_TDist}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{UArt1} and \textit{Temporal Distance}}
 	%\vspace{-8mm}
-\end{table}
-The descriptives in \cref{tbl:descriptives_baysis_matched_UArt_TDist} reveal that group 5 has the lowest $\bar{x}$ and $\sigma$ of all groups and the groups 7, 8 and 9 have the highest. This can be interpreted as accident collisions with \textit{turning} and \textit{crossing} vehicles have a close temporal reaction, when jams of accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles take longer to create (average of 8\,min). The categories describing \textit{starting}, \textit{standing}, \textit{stopping}, \textit{ahead and waiting vehicle} and \textit{vehicle on separate lane in same direction} have an average of 5\,min.
+\end{figure}
+% #### END: Table and Plot
+The descriptives in \cref{tbl:descriptives_baysis_matched_UArt1_TDist,fig:descriptives_baysis_matched_UArt1_TDist} reveal that the groups 7, 8 and 9 have considerably higher means, than the groups 1, 2, 3 and 5. Therefore it can be interpreted as accident collisions with \textit{starting}, \textit{standing}, \textit{stopping}, \textit{ahead and waiting vehicle} and \textit{vehicle on separate lane in same direction} vehicles (average of 5\,min) have a closer temporal reaction, when jams of accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles take longer to create (average of 8\,min). Accidents of the category \textit{turning} and \textit{crossing} vehicles have the most immediate reaction of 2.5\,min.
 
-The Kruskal-Wallis test of \textit{UArt}-\textit{Cov} produces a $p$-value of 0.0001, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{UArt}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{UArt}-\textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_UArt_Cov}.
+% ############################################
+\groupintrosigsig{UArt1}{Cov}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -891,32 +920,59 @@ The Kruskal-Wallis test of \textit{UArt}-\textit{Cov} produces a $p$-value of 0.
 		9 & \red{0.05} & 0.07 & \red{0.00} & \red{0.00} & 1.00 & \red{0.00} & 1.00 & 1.00 & 1.00 \\ 
 		\bottomrule
 	\end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{UArt} and \textit{Coverage}}
-	\label{tbl:wilcoxon_baysis_matched_UArt_Cov}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{UArt1} and \textit{Coverage}, see \cref{tbl:wilcoxon_baysis_matched_UArt1_Cov_complete} for complete table}
+	\label{tbl:wilcoxon_baysis_matched_UArt1_Cov}
 \end{table}
-The $p$-values in \cref{tbl:wilcoxon_baysis_matched_UArt_Cov} show that group 5 differs from 2, 3 and group 7 differs from group 3. Further does the group 8 differs from groups 0, 1 ,2 , 3 and 5. Group 9 differs from 2, 3 and 4.
-\begin{table}[ht!]
-	\tiny
+It shows that group 5 differs significantly from 2, 3. Group 7 differs significantly from group 3 and group 8 from groups 0, 1 ,2 , 3 and 5. Also group 9 differs from 2, 3 and 4.
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
-		\midrule
-		0 & 63  & 41.40 & 20.09 & 37.00 & 5  & 96  & 91 \\ 
-		1 & 86  & 42.29 & 20.19 & 40.50 & 2  & 96  & 94 \\ 
-		2 & 831 & 42.86 & 20.00 & 41.00 & 2  & 100 & 98 \\ 
-		3 & 447 & 41.21 & 19.59 & 39.00 & 2  & 98  & 96 \\  
-		5 & 90  & 33.81 & 18.18 & 30.00 & 10 & 88  & 78 \\ 
-		7 & 35  & 56.31 & 26.88 & 56.00 & 11 & 100 & 89 \\ 
-		8 & 165 & 53.96 & 24.35 & 53.00 & 7  & 100 & 93 \\ 
-		9 & 124 & 52.44 & 23.26 & 49.00 & 3  & 100 & 97 \\ 
-		\bottomrule
-	\end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			0 & 63  & 41.40 & 20.09 & 37.0 & 5  & 96  & 91 \\ 
+			1 & 86  & 42.29 & 20.19 & 40.5 & 2  & 96  & 94 \\ 
+			2 & 831 & 42.86 & 20.00 & 41.0 & 2  & 100 & 98 \\ 
+			3 & 447 & 41.21 & 19.59 & 39.0 & 2  & 98  & 96 \\  
+			5 & 90  & 33.81 & 18.18 & 30.0 & 10 & 88  & 78 \\ 
+			7 & 35  & 56.31 & 26.88 & 56.0 & 11 & 100 & 89 \\ 
+			8 & 165 & 53.96 & 24.35 & 53.0 & 7  & 100 & 93 \\ 
+			9 & 124 & 52.44 & 23.26 & 49.0 & 3  & 100 & 97 \\ 
+			\bottomrule
+			% \bar{x} - sum = 364.28, mean = 45.53
+			% \sigma - sum = 172.54, mean = 21.56
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_UArt1_Cov}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			0 , 63  , 41.40 , 20.09 , 37.0 , 5  , 96  , 91 
+			1 , 86  , 42.29 , 20.19 , 40.5 , 2  , 96  , 94 
+			2 , 831 , 42.86 , 20.00 , 41.0 , 2  , 100 , 98 
+			3 , 447 , 41.21 , 19.59 , 39.0 , 2  , 98  , 96  
+			5 , 90  , 33.81 , 18.18 , 30.0 , 10 , 88  , 78 
+			7 , 35  , 56.31 , 26.88 , 56.0 , 11 , 100 , 89 
+			8 , 165 , 53.96 , 24.35 , 53.0 , 7  , 100 , 93 
+			9 , 124 , 52.44 , 23.26 , 49.0 , 3  , 100 , 97 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{45}{21}{7}{4.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_UArt1_Cov}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{UArt} and \textit{Coverage}}
-	\label{tbl:descriptives_baysis_matched_UArt_Cov}
 	%\vspace{-8mm}
-\end{table}
-The descriptives in \cref{tbl:descriptives_baysis_matched_UArt_Cov} reveal that group 5 has the lowest $\bar{x}$ of all groups. The groups 7, 8 and 9 have the highest $\sigma$. This can be interpreted as accident collisions with \textit{turning} and \textit{crossing} vehicles are associated with lesser dense jams, when accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles are related with 20\,\% denser jams (average of 65\,\%). The categories describing \textit{starting}, \textit{standing}, \textit{stopping}, \textit{ahead and waiting vehicle} and \textit{vehicle on separate lane in same direction} have an average of 41\,\%.
+\end{figure}
+% #### END: Table and Plot
+The significantly descriptives in \cref{tbl:descriptives_baysis_matched_UArt1_Cov,fig:descriptives_baysis_matched_UArt1_Cov} show that the groups 7, 8 and 9 have considerable higher means than the groups 0, 1, 2, 3 and 5. Therefore it can be interpreted that accident collisions with \textit{starting}, \textit{standing}, \textit{stopping}, \textit{ahead and waiting vehicle} and \textit{vehicle on separate lane in same direction} vehicles (average of 41\,\%) are associated with less dense jams than accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles (average of 54\,\%). Jams associated with accidents of the category \textit{turning} and \textit{crossing} vehicles are the least dense with 33\,\%.
 
 % -----------------------
 % -------- AUrs ---------

@@ -743,14 +743,14 @@ It shows that all groups have significant differences.
         \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
         \tiny
         \centering
-        \descplotfigwithavg{\datasorted}{7}{10}{3}{4.7}
+        \descplotfigwithavg{\datasorted}{7}{10}{3}{3.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Kat_TDist}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Kat} and \textit{Temporal Distance}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TDist} present increasing means from group 7 to 1. It can be interpreted that the temporal distance from accidents to jams increases by up to 6\,min with the gravity of the accident.
+The significant descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TDist} present increasing means from group 7 to 1. It can be interpreted that the temporal distance from accidents to jams increases by up to 6\,min with the gravity of the accident.
 
 % ----------------------
 % -------- Typ ---------
@@ -777,25 +777,48 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TDist} present i
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Typ} and \textit{Temporal Distance}}
 	\label{tbl:wilcoxon_baysis_matched_Typ_TDist}
 \end{table}
-The $p$-values in \cref{tbl:wilcoxon_baysis_matched_Kat_TDist} show the groups 3 and 6 differ from 1, group 6 and 7 differ from 3 and group 7 differs from 6.
-\begin{table}[ht!]
-	\tiny
+It show the groups 3 and 6 differ significant from 1 and group 7 from 6. The group 4, 6 and 7 also differ significantly from 3, but there is no distinctive general trend.
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		\toprule
-		Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
-		\midrule
-		1 & 300  & 8.33 & 7.39 & 7 & 0 & 24 & 24 \\ 
-		3 & 120  & 2.91 & 5.46 & 0 & 0 & 22 & 22 \\ 
-		6 & 1299 & 4.78 & 6.49 & 1 & 0 & 24 & 24 \\ 
-		7 & 117  & 8.70 & 8.15 & 7 & 0 & 24 & 24 \\ 
-		\bottomrule
-	\end{tabular}
-	\caption{Group descriptives of \textit{Typ} and \textit{Temporal Distance}}
-	\label{tbl:descriptives_baysis_matched_Typ_TDist}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			1 & 300  & 8.33 & 7.39 & 7 & 0 & 24 & 24 \\ 
+			3 & 120  & 2.91 & 5.46 & 0 & 0 & 22 & 22 \\ 
+			6 & 1299 & 4.78 & 6.49 & 1 & 0 & 24 & 24 \\ 
+			7 & 117  & 8.70 & 8.15 & 7 & 0 & 24 & 24 \\ 
+			\bottomrule
+			% \bar{x} - sum = , mean = 
+			% \sigma - sum = , mean = 
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Typ_TDist}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			1 , 300  , 8.33 , 7.39 , 7 , 0 , 24 , 24 
+			3 , 120  , 2.91 , 5.46 , 0 , 0 , 22 , 22 
+			6 , 1299 , 4.78 , 6.49 , 1 , 0 , 24 , 24 
+			7 , 117  , 8.70 , 8.15 , 7 , 0 , 24 , 24 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{7}{10}{3}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Typ_TDist}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Kat} and \textit{Temporal Distance}}
 	%\vspace{-8mm}
-\end{table}
-The descriptives in \cref{tbl:descriptives_baysis_matched_Typ_TDist} reveal that the groups 1 and 7 have a higher $\bar{x}$ than group 3 and 6. We can interpret that temporal distance of \textit{driving} and \textit{other} (average of 8\,min) accidents is substantial higher than for \textit{merging}, \textit{crossing} and \textit{straight traffic} (average of 3.5\,min) accidents. 
+\end{figure}
+% #### END: Table and Plot
+The significant descriptives in \cref{tbl:descriptives_baysis_matched_Typ_TDist,fig:descriptives_baysis_matched_Typ_TDist} show that the groups 1 and 7 have higher means than group 3 and 6. Therefore it can be interpreted that temporal distance of \textit{driving} and \textit{other} (average of 8.5\,min) accidents is substantial higher than for \textit{merging}, \textit{crossing} and \textit{straight traffic} (average of 3.5\,min) accidents. 
 
 % -----------------------
 % -------- UArt ---------

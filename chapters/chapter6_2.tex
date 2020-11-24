@@ -205,10 +205,10 @@ When comparing the mean values of the maximal and average (temporal) extend (sho
 % -------- Typ ---------
 % ----------------------
 \centerheading{Typ}
-This section analyzes the correlated relations of the accident variable \textit{Typ}. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{Typ} is shown in \cref{tbl:baysis_dataset_Typ}. The relations of \textit{Kat}-\textit{SAvg} and 
-\textit{Kat}-\textit{Cov} produce a $p$-value above the $\alpha$-level in the Kruskal-Wallis rank sum test. The null hypothesis can't therefore be rejected and there is no significant difference between the groups of \textit{Typ} for these relations. The are also no significant groups to be identified for these relations.
+\varintrowithsam{baysis}{Typ} \varintronosigsing{Typ}{Cov}
 
-The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TDist} produces a $p$-value of 0.0264, which is way below $\alpha=.05$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Kat}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Kat}-\textit{TDist} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Typ_TDist}. 
+% ############################################
+\groupintrosig{Typ}{TDist}{0.0264}{baysis}{initiator}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -223,28 +223,51 @@ The Kruskal-Wallis rank sum test of \textit{Kat}-\textit{TDist} produces a $p$-v
         7 & 1.00 & \red{0.04} & 1.00 & 0.96 & \red{0.01} \\ 
         \bottomrule
     \end{tabular}
-    \caption{Pairwise Wilcoxon $T$-test for \textit{Typ} and \textit{Temporal Distance} (Jam Initiator)}
+    \caption{Pairwise Wilcoxon $T$-test for \textit{Typ} and \textit{Temporal Distance} (Jam Initiator), see \cref{tbl:wilcoxon_baysis_initiator_Typ_TDist_complete} for complete table}
     \label{tbl:wilcoxon_baysis_initiator_Typ_TDist}
 \end{table}
-The significance matrix \cref{tbl:wilcoxon_baysis_initiator_Typ_TDist} shows that group 6 differs from group 1 and group 7 differs from 6. 
-\begin{table}[ht!]
-	\tiny
+It shows that group 6 differs significantly from group 1 and group 7 from 6, but there is no distinctive general trend.
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-    \begin{tabular}{c|c|c|c|c|c|c|c}
-        \toprule
-        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-        \midrule
-        1 & 181 & 11.40 & 6.38 & 10.00 & 1  & 24 & 23 \\ 
-        3 & 24  & 7.67  & 6.06 & 7.00  & 1  & 22 & 21 \\ 
-        6 & 495 & 9.21  & 5.88 & 8.00  & 0  & 24 & 24 \\ 
-        7 & 70  & 12.27 & 7.09 & 11.00 & 0  & 24 & 24 \\ 
-        \bottomrule
-    \end{tabular}
-    \caption{Group descriptives of \textit{Typ} and \textit{Temporal Distance} (Jam Initiator)}
-    \label{tbl:descriptives_baysis_initiator_Typ_TDist}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+            1 & 181 & 11.40 & 6.38 & 10.00 & 1  & 24 & 23 \\ 
+            3 & 24  & 7.67  & 6.06 & 7.00  & 1  & 22 & 21 \\ 
+            6 & 495 & 9.21  & 5.88 & 8.00  & 0  & 24 & 24 \\ 
+            7 & 70  & 12.27 & 7.09 & 11.00 & 0  & 24 & 24 \\ 
+			\bottomrule
+			% \bar{x} - sum = 40.55, mean = 10.13
+			% \sigma - sum = 25.41, mean = 6.35
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_initiator_Typ_TDist}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+            1 , 181 , 11.40 , 6.38 , 10 , 1 , 24 , 23 
+            3 , 24  , 7.67  , 6.06 , 7  , 1 , 22 , 21 
+            6 , 495 , 9.21  , 5.88 , 8  , 0 , 24 , 24 
+            7 , 70  , 12.27 , 7.09 , 11 , 0 , 24 , 24 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{10.13}{6.35}{3}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_initiator_Typ_TDist}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Kat} and \textit{Temporal Distance}}
 	%\vspace{-8mm}
-\end{table}
-The descriptives from \cref{tbl:descriptives_baysis_initiator_Typ_TDist} also shows that the temporal distance in group 1 and 7 is 25\,\% higher than in group 6. Group 3 also shows a substantial gap in $\bar{x}$ but only is barely significance with $p=.05$. Because the groups of \textit{driving} and \textit{straight traffic} accidents are very similar, there is no clear interpretation to be drawn.
+\end{figure}
+% #### END: Table and Plot
+The significant descriptives in \cref{tbl:descriptives_baysis_initiator_Typ_TDist,fig:descriptives_baysis_initiator_Typ_TDist} show that the groups 1 and 7 have higher means than group 3 and 6. Therefore it can be interpreted that temporal distance of \textit{driving} and \textit{other} accidents (average of 12\,min) is substantial higher than for \textit{merging}, \textit{crossing} and \textit{straight traffic} accidents (average of 8\,min).
 
 % ------------------------
 % -------- UArt1 ---------

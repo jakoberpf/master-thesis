@@ -89,10 +89,10 @@ In accordance with these finding, it can be interpreted that in general the stre
 
 \subsection{Accident category (\textit{Kat})}
 \label{analysis_sum_Kat}
-In the global dataset the variable \textit{Kat} showed a general dependence to the maximum and average duration and a general trend of increasing duration with the injury gravity of the accident. The category of accidents with property damage does not fit into this trend and sits in-between the lightly and heavily injured category. This changes when considering just the \textit{Jam Initiators}, where all categories follow one increasing trend. When comparing all descriptive means (shown in \cref{fig:baysis_summary_Kat_duration_barplot}) it becomes clear, that the maximum and average variables differ by high ranges, which is to be expected. The comparison also show that that the jam duration significant increases with the gravity of the accident. The category of deadly accident differs by 130\,min from accidents of lightly injured and property damage accidents. 
+The variable \textit{Kat} showed a general dependence to the maximum and average duration and a general trend of increasing duration with the injury gravity of the accident in the global and \textit{Jam Initiators} dataset. In the global dataset the category of accidents with property damage does not fit into this trend and sits in-between the lightly and heavily injured category. This changes when considering just the \textit{Jam Initiators}, where all categories follow one increasing trend. When comparing all descriptive means (shown in \cref{fig:baysis_summary_Kat_duration_barplot}) it becomes clear, that the maximum and average variables differ by high ranges, which is to be expected. The comparison also show that that the jam duration significant increases with the gravity of the accident. The category of deadly accident differs by 130\,min from accidents of lightly injured and property damage accidents. 
 \begin{figure}[ht!]
     \pgfplotstableread[col sep=comma]{
-        Kat, gMeanTMax, gMeanTAvg, eMeanTMax, eMeanTAvg, means
+        Kat, gMeanTMax, gMeanTAvg, iMeanTMax, iMeanTAvg, means
         1 , 317.67 , 156.06 , 290.07 , 148.76 , 228
         2 , 189.03 , 88.31  , 156.23 , 80.91  , 129
         3 , 155.26 , 67.32  , 120.18 , 63.75  , 102
@@ -110,7 +110,24 @@ Unlike the temporal length, the spatial length does not correlate with the accid
 
 \subsection{Accident type (\textit{Typ})}
 \label{analysis_sum_Typ}
-The \textit{Typ} only significantly relates to the temporal distance between the accident and congestion. Accidents of the kind \textit{Driving accident} and \textit{Other} (average of 8\,min) have a longer temporal distance than crossing accident or accidents in straight traffic (average of 3.5\,min) A significant difference can be also observed on the \text{Jam Intiator} for the temporal distance, but only between the similar groups \textit{driving} and \textit{straight traffic}. The variable also correlates with other variables, but without significant differences.
+The \textit{Typ} only significantly relates to the temporal distance between the accident and congestion. In the global dataset accidents of the kind \textit{Driving accident} and \textit{Other} (average of 8.5\,min) have a longer temporal distance than crossing accident or accidents in straight traffic (average of 3.5\,min). A significant differences of similar kinds can be also observed in the \text{Jam Intiator} dataset with a temporal distance of \textit{driving} and \textit{other} accidents (average of 12\,min) compared to \textit{merging}, \textit{crossing} and \textit{straight traffic} accidents (average of 8\,min). The variable also correlates with other variables, but without significant differences. When comparing all descriptive means (shown in \cref{fig:baysis_summary_Typ_TDist_barplot}) it becomes clear, that the temporal distance increases for \text{Jam Intiators}
+and the trend shown in both dataset is mirrored.
+\begin{figure}[ht!]
+    \pgfplotstableread[col sep=comma]{
+        Typ, gMeanTDist, iMeanTDist, means
+        1 , 8.33 , 11.40 , 9.9
+        3 , 2.91 , 7.67  , 5.3
+        6 , 4.78 , 9.21  , 7.0
+        7 , 8.70 , 12.27 , 10.5
+    }\data
+    \pgfplotstablesort[sort key=means, sort cmp=float >]{\datasorted}{\data}
+    \tiny
+    \centering
+    \barplotdoublewithmeans{\datasorted}{$\bar{x}_{TDist,global}$}{$\bar{x}_{TDist,initiator}$}{8.2}
+    \caption{Comparison of descriptives $\bar{x}_{TDist,global}$ and $\bar{x}_{TDist,initiator}$}
+    \label{fig:baysis_summary_Typ_TDist_barplot}
+    %\vspace{-8mm}
+\end{figure}
 
 \subsection{Accident kind (\textit{UArt})}
 \label{analysis_sum_UArt}

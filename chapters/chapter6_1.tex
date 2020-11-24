@@ -794,8 +794,8 @@ It show the groups 3 and 6 differ significant from 1 and group 7 from 6. The gro
 			6 & 1299 & 4.78 & 6.49 & 1 & 0 & 24 & 24 \\ 
 			7 & 117  & 8.70 & 8.15 & 7 & 0 & 24 & 24 \\ 
 			\bottomrule
-			% \bar{x} - sum = , mean = 
-			% \sigma - sum = , mean = 
+			% \bar{x} - sum = 24.72, mean = 6.18
+			% \sigma - sum = 27.49, mean = 6.87
 			% \tilde{x}
 		\end{tabular}
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Typ_TDist}
@@ -811,14 +811,14 @@ It show the groups 3 and 6 differ significant from 1 and group 7 from 6. The gro
         \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
         \tiny
         \centering
-        \descplotfigwithavg{\datasorted}{7}{10}{3}{3.7}
+        \descplotfigwithavg{\datasorted}{6.18}{6.87}{3}{3.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Typ_TDist}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Kat} and \textit{Temporal Distance}}
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The significant descriptives in \cref{tbl:descriptives_baysis_matched_Typ_TDist,fig:descriptives_baysis_matched_Typ_TDist} show that the groups 1 and 7 have higher means than group 3 and 6. Therefore it can be interpreted that temporal distance of \textit{driving} and \textit{other} (average of 8.5\,min) accidents is substantial higher than for \textit{merging}, \textit{crossing} and \textit{straight traffic} (average of 3.5\,min) accidents. 
+The significant descriptives in \cref{tbl:descriptives_baysis_matched_Typ_TDist,fig:descriptives_baysis_matched_Typ_TDist} show that the groups 1 and 7 have higher means than group 3 and 6. Therefore it can be interpreted that temporal distance of \textit{driving} and \textit{other} accidents (average of 8.5\,min) is significantly higher than for \textit{merging}, \textit{crossing} and \textit{straight traffic} accidents (average of 3.5\,min). 
 
 % -----------------------
 % -------- UArt ---------

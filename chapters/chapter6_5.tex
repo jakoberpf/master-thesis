@@ -67,24 +67,6 @@ As \cref{tbl:correlation_list_arbis_matched} show, only the variables Strasse an
 \end{table}
 The table shows, that the groups A3 and A93 differ from group A9, A7 and A6. The A93 also differs from A96, A995 and A92. The A96 differs from A3 and A99.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A9   , 656  , 159.55 , 175.78 , 100.50 , 9   , 1323 , 1314
-	A7   , 302  , 158.38 , 213.55 , 87.00  , 9   , 1323 , 1314
-	A70  , 50   , 228.90 , 279.03 , 105.00 , 15  , 963  , 948 
-	A71  , 10   , 83.40  , 72.87  , 48.00  , 36  , 249  , 213 
-	A6   , 198  , 142.24 , 166.46 , 85.50  , 9   , 864  , 855 
-	A73  , 86   , 153.59 , 235.85 , 100.50 , 9   , 1323 , 1314
-	A3   , 1023 , 233.66 , 279.35 , 123.00 , 9   , 1326 , 1317
-	A99  , 312  , 158.88 , 155.05 , 135.00 , 9   , 1320 , 1311
-	A96  , 230  , 105.80 , 95.17  , 75.00  , 9   , 384  , 375 
-	A995 , 14   , 60.00  , 28.70  , 48.00  , 18  , 105  , 87 
-	A92  , 82   , 132.40 , 134.72 , 79.50  , 9   , 768  , 759 
-	A93  , 160  , 157.33 , 55.97  , 189.00 , 9   , 312  , 303 
-	A94  , 56   , 179.57 , 124.79 , 165.00 , 15  , 369  , 354 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -116,37 +98,26 @@ The table shows, that the groups A3 and A93 differ from group A9, A7 and A6. The
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_TMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A9   , 656  , 159.55 , 175.78 , 100.50 , 9   , 1323 , 1314
+			A7   , 302  , 158.38 , 213.55 , 87.00  , 9   , 1323 , 1314
+			A70  , 50   , 228.90 , 279.03 , 105.00 , 15  , 963  , 948 
+			A71  , 10   , 83.40  , 72.87  , 48.00  , 36  , 249  , 213 
+			A6   , 198  , 142.24 , 166.46 , 85.50  , 9   , 864  , 855 
+			A73  , 86   , 153.59 , 235.85 , 100.50 , 9   , 1323 , 1314
+			A3   , 1023 , 233.66 , 279.35 , 123.00 , 9   , 1326 , 1317
+			A99  , 312  , 158.88 , 155.05 , 135.00 , 9   , 1320 , 1311
+			A96  , 230  , 105.80 , 95.17  , 75.00  , 9   , 384  , 375 
+			A995 , 14   , 60.00  , 28.70  , 48.00  , 18  , 105  , 87 
+			A92  , 82   , 132.40 , 134.72 , 79.50  , 9   , 768  , 759 
+			A93  , 160  , 157.33 , 55.97  , 189.00 , 9   , 312  , 303 
+			A94  , 56   , 179.57 , 124.79 , 165.00 , 15  , 369  , 354 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		% https://texwelt.de/fragen/26286/zwei-gruppen-bei-einem-gestapelten-balkendiagramm-und-zentrierte-balkenbeschriftungen
-		% https://tex.stackexchange.com/questions/275229/forcing-all-axis-labels-to-display-in-a-plot
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=5.5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={150,155},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{150}{155}{12}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_TMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Temporal Extent}}
@@ -188,24 +159,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TMax} and 
 \end{table}
 The table shows, that the groups A99 and A93 differ from group A9 and A7. The A93 also differs from the A6, A73, A3, A99, A96, A995 and A92. The A92 differs from A99 and A99 from A3. The A94 differs from the A99 and A93.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A9   , 656  , 85.61  , 100.78 , 42.00  , 5  , 575  , 570  
-	A7   , 302  , 87.76  , 117.13 , 44.50  , 5  , 858  , 853  
-	A70  , 50   , 154.38 , 236.49 , 55.50  , 6  , 966  , 960  
-	A71  , 10   , 64.90  , 71.81  , 38.00  , 18 , 252  , 234  
-	A6   , 198  , 65.60  , 86.36  , 41.00  , 4  , 630  , 626  
-	A73  , 86   , 56.23  , 45.35  , 42.50  , 6  , 190  , 184  
-	A3   , 1023 , 89.94  , 124.69 , 51.00  , 3  , 1326 , 1323 
-	A99  , 312  , 45.38  , 41.73  , 33.00  , 3  , 291  , 288  
-	A96  , 230  , 69.31  , 73.52  , 43.00  , 5  , 290  , 285  
-	A995 , 14   , 37.14  , 23.98  , 23.00  , 8  , 74   , 66 
-	A92  , 82   , 81.83  , 90.35  , 45.50  , 5  , 489  , 484  
-	A93  , 160  , 115.96 , 50.96  , 141.00 , 6  , 199  , 193  
-	A94  , 56   , 84.98  , 64.07  , 70.00  , 6  , 248  , 242  
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -237,36 +190,26 @@ The table shows, that the groups A99 and A93 differ from group A9 and A7. The A9
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_TAvg}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A9   , 656  , 85.61  , 100.78 , 42.00  , 5  , 575  , 570  
+			A7   , 302  , 87.76  , 117.13 , 44.50  , 5  , 858  , 853  
+			A70  , 50   , 154.38 , 236.49 , 55.50  , 6  , 966  , 960  
+			A71  , 10   , 64.90  , 71.81  , 38.00  , 18 , 252  , 234  
+			A6   , 198  , 65.60  , 86.36  , 41.00  , 4  , 630  , 626  
+			A73  , 86   , 56.23  , 45.35  , 42.50  , 6  , 190  , 184  
+			A3   , 1023 , 89.94  , 124.69 , 51.00  , 3  , 1326 , 1323 
+			A99  , 312  , 45.38  , 41.73  , 33.00  , 3  , 291  , 288  
+			A96  , 230  , 69.31  , 73.52  , 43.00  , 5  , 290  , 285  
+			A995 , 14   , 37.14  , 23.98  , 23.00  , 8  , 74   , 66 
+			A92  , 82   , 81.83  , 90.35  , 45.50  , 5  , 489  , 484  
+			A93  , 160  , 115.96 , 50.96  , 141.00 , 6  , 199  , 193  
+			A94  , 56   , 84.98  , 64.07  , 70.00  , 6  , 248  , 242  
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=5.5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				% xticklabels={A9,A7,A70,A71,A6,A73,A3,A99,A96,A995,A92,A93,A94},
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={80,87},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{79}{86}{12}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_TAvg}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Average Temporal Extent}}
@@ -308,24 +251,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TAvg,fig:d
 \end{table}
 The table shows, that the groups A3 and A93 differ from group A6, A7, A70, A73, A9, A96, A92, A93 and A94. The group A99 also differs from A96, A995, A92, A93 and A94. The A94 also differs from A99.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A9   , 656  , 8655.57  , 8521.51  , 4778 , 1035 , 49765 , 48730 
-	A7   , 302  , 6238.63  , 4902.30  , 4397 , 902  , 20030 , 19128 
-	A70  , 50   , 5729.56  , 4763.20  , 3224 , 1365 , 20249 , 18884 
-	A71  , 10   , 3899.00  , 2746.84  , 2339 , 2075 , 10225 , 8150  
-	A6   , 198  , 8421.67  , 8209.85  , 5690 , 965  , 40033 , 39068 
-	A73  , 86   , 7717.21  , 7747.18  , 4813 , 1095 , 33764 , 32669 
-	A3   , 1023 , 11836.50 , 11045.29 , 7979 , 1014 , 47607 , 46593 
-	A99  , 312  , 9337.49  , 7230.99  , 7978 , 991  , 48987 , 47996 
-	A96  , 230  , 5639.41  , 6034.92  , 3072 , 951  , 27965 , 27014 
-	A995 , 14   , 3618.14  , 1331.10  , 4288 , 1613 , 4825  , 3212  
-	A92  , 82   , 5758.10  , 3673.73  , 4544 , 999  , 16931 , 15932 
-	A93  , 160  , 3530.39  , 3718.54  , 1926 , 99   , 22528 , 21829 
-	A94  , 56   , 5849.05  , 3394.57  , 5785 , 1025 , 12582 , 11557 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -357,35 +282,26 @@ The table shows, that the groups A3 and A93 differ from group A6, A7, A70, A73, 
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_SMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A9   , 656  , 8655.57  , 8521.51  , 4778 , 1035 , 49765 , 48730 
+			A7   , 302  , 6238.63  , 4902.30  , 4397 , 902  , 20030 , 19128 
+			A70  , 50   , 5729.56  , 4763.20  , 3224 , 1365 , 20249 , 18884 
+			A71  , 10   , 3899.00  , 2746.84  , 2339 , 2075 , 10225 , 8150  
+			A6   , 198  , 8421.67  , 8209.85  , 5690 , 965  , 40033 , 39068 
+			A73  , 86   , 7717.21  , 7747.18  , 4813 , 1095 , 33764 , 32669 
+			A3   , 1023 , 11836.50 , 11045.29 , 7979 , 1014 , 47607 , 46593 
+			A99  , 312  , 9337.49  , 7230.99  , 7978 , 991  , 48987 , 47996 
+			A96  , 230  , 5639.41  , 6034.92  , 3072 , 951  , 27965 , 27014 
+			A995 , 14   , 3618.14  , 1331.10  , 4288 , 1613 , 4825  , 3212  
+			A92  , 82   , 5758.10  , 3673.73  , 4544 , 999  , 16931 , 15932 
+			A93  , 160  , 3530.39  , 3718.54  , 1926 , 99   , 22528 , 21829 
+			A94  , 56   , 5849.05  , 3394.57  , 5785 , 1025 , 12582 , 11557 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5.5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={6633,5640},
-				extra y tick labels={0.6,0.5}
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{6633}{5640}{12}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_SMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Maximal Spatial Extent}}
@@ -427,24 +343,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SMax,fig:d
 \end{table}
 It shows, that the groups A99, A96 and A93 differ from group A9 and A3. The A93 also differs from A92 and A73 from A3.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A9   , 656  , 3537.87 , 3014.80 , 2388.50 , 697 , 14785 , 14088 
-	A7   , 302  , 2917.97 , 2988.99 , 2113.50 , 284 , 15602 , 15318 
-	A70  , 50   , 3170.10 , 3033.98 , 1816.00 , 532 , 12543 , 12011 
-	A71  , 10   , 2572.50 , 3027.05 , 1323.00 , 802 , 10425 , 9623  
-	A6   , 198  , 3189.79 , 2385.78 , 2267.00 , 458 , 14150 , 13692 
-	A73  , 86   , 2508.40 , 1834.03 , 2006.00 , 419 , 10039 , 9620  
-	A3   , 1023 , 3733.90 , 2979.43 , 2835.00 , 355 , 15054 , 14699 
-	A99  , 312  , 2381.29 , 1265.40 , 1974.00 , 502 , 5931  , 5429  
-	A96  , 230  , 2488.22 , 1790.94 , 2160.00 , 404 , 9767  , 9363  
-	A995 , 14   , 1976.93 , 1044.51 , 1950.00 , 569 , 3196  , 2627  
-	A92  , 82   , 3360.88 , 2294.30 , 2882.00 , 457 , 11703 , 11246 
-	A93  , 160  , 2243.26 , 2065.34 , 1575.00 , 461 , 11161 , 10700  
-	A94  , 56   , 2557.62 , 1655.86 , 2551.00 , 506 , 6393  , 5887  
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -476,34 +374,26 @@ It shows, that the groups A99, A96 and A93 differ from group A9 and A3. The A93 
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_SAvg}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A9   , 656  , 3537.87 , 3014.80 , 2388.50 , 697 , 14785 , 14088 
+			A7   , 302  , 2917.97 , 2988.99 , 2113.50 , 284 , 15602 , 15318 
+			A70  , 50   , 3170.10 , 3033.98 , 1816.00 , 532 , 12543 , 12011 
+			A71  , 10   , 2572.50 , 3027.05 , 1323.00 , 802 , 10425 , 9623  
+			A6   , 198  , 3189.79 , 2385.78 , 2267.00 , 458 , 14150 , 13692 
+			A73  , 86   , 2508.40 , 1834.03 , 2006.00 , 419 , 10039 , 9620  
+			A3   , 1023 , 3733.90 , 2979.43 , 2835.00 , 355 , 15054 , 14699 
+			A99  , 312  , 2381.29 , 1265.40 , 1974.00 , 502 , 5931  , 5429  
+			A96  , 230  , 2488.22 , 1790.94 , 2160.00 , 404 , 9767  , 9363  
+			A995 , 14   , 1976.93 , 1044.51 , 1950.00 , 569 , 3196  , 2627  
+			A92  , 82   , 3360.88 , 2294.30 , 2882.00 , 457 , 11703 , 11246 
+			A93  , 160  , 2243.26 , 2065.34 , 1575.00 , 461 , 11161 , 10700  
+			A94  , 56   , 2557.62 , 1655.86 , 2551.00 , 506 , 6393  , 5887  
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5.5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={2818,2260},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{2818}{2260}{12}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_SAvg}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Average Spatial Extent}}
@@ -545,24 +435,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SAvg,fig:d
 \end{table}
 It shows, that the groups A7, A3 and A92 differ from group A9. The A96 differs from the A3.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A9   , 656  , 4.12 , 7.16 , 0 , 0 , 24 , 24 
-	A7   , 302  , 2.10 , 5.21 , 0 , 0 , 24 , 24 
-	A70  , 50   , 1.64 , 5.20 , 0 , 0 , 23 , 23 
-	A71  , 10   , 3.40 , 4.74 , 0 , 0 , 13 , 13 
-	A6   , 198  , 2.09 , 5.07 , 0 , 0 , 23 , 23 
-	A73  , 86   , 3.16 , 6.33 , 0 , 0 , 24 , 24 
-	A3   , 1023 , 1.81 , 4.92 , 0 , 0 , 24 , 24 
-	A99  , 312  , 2.72 , 5.91 , 0 , 0 , 24 , 24 
-	A96  , 230  , 3.09 , 6.17 , 0 , 0 , 24 , 24 
-	A995 , 14   , 1.64 , 6.15 , 0 , 0 , 23 , 23 
-	A92  , 82   , 1.20 , 3.85 , 0 , 0 , 22 , 22 
-	A93  , 160  , 2.39 , 5.50 , 0 , 0 , 23 , 23 
-	A94  , 56   , 2.18 , 5.06 , 0 , 0 , 23 , 23 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -594,34 +466,26 @@ It shows, that the groups A7, A3 and A92 differ from group A9. The A96 differs f
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_TDist}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A9   , 656  , 4.12 , 7.16 , 0 , 0 , 24 , 24 
+			A7   , 302  , 2.10 , 5.21 , 0 , 0 , 24 , 24 
+			A70  , 50   , 1.64 , 5.20 , 0 , 0 , 23 , 23 
+			A71  , 10   , 3.40 , 4.74 , 0 , 0 , 13 , 13 
+			A6   , 198  , 2.09 , 5.07 , 0 , 0 , 23 , 23 
+			A73  , 86   , 3.16 , 6.33 , 0 , 0 , 24 , 24 
+			A3   , 1023 , 1.81 , 4.92 , 0 , 0 , 24 , 24 
+			A99  , 312  , 2.72 , 5.91 , 0 , 0 , 24 , 24 
+			A96  , 230  , 3.09 , 6.17 , 0 , 0 , 24 , 24 
+			A995 , 14   , 1.64 , 6.15 , 0 , 0 , 23 , 23 
+			A92  , 82   , 1.20 , 3.85 , 0 , 0 , 22 , 22 
+			A93  , 160  , 2.39 , 5.50 , 0 , 0 , 23 , 23 
+			A94  , 56   , 2.18 , 5.06 , 0 , 0 , 23 , 23 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5.5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={2.42,5.48},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{2.45}{5.48}{12}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_TDist}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Temporal Distance}}
@@ -663,24 +527,6 @@ The descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TDist,fig:descr
 \end{table}
 It shows that the groups A3, A73, A93, A94 and A99 differ significantly.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A9   , 656  , 216.54 , 466.13 , 0.00 , 0 , 1988 , 1988 
-	A7   , 302  , 106.12 , 329.01 , 0.00 , 0 , 1882 , 1882 
-	A70  , 50   , 72.94  , 257.26 , 0.00 , 0 , 1253 , 1253 
-	A71  , 10   , 25.80  , 81.59  , 0.00 , 0 , 258  , 258  
-	A6   , 198  , 130.20 , 379.68 , 0.00 , 0 , 1968 , 1968 
-	A73  , 86   , 49.74  , 245.74 , 0.00 , 0 , 1924 , 1924 
-	A3   , 1023 , 137.75 , 381.13 , 0.00 , 0 , 1979 , 1979 
-	A99  , 312  , 260.51 , 542.02 , 0.00 , 0 , 1977 , 1977 
-	A96  , 230  , 146.79 , 395.78 , 0.00 , 0 , 1958 , 1958 
-	A995 , 14   , 288.29 , 545.94 , 0.00 , 0 , 1749 , 1749 
-	A92  , 82   , 96.22  , 295.14 , 0.00 , 0 , 1626 , 1626 
-	A93  , 160  , 34.58  , 189.72 , 0.00 , 0 , 1769 , 1769 
-	A94  , 56   , 327.38 , 606.32 , 0.00 , 0 , 1983 , 1983  
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -712,34 +558,26 @@ It shows that the groups A3, A73, A93, A94 and A99 differ significantly.
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_SDist}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A9   , 656  , 216.54 , 466.13 , 0.00 , 0 , 1988 , 1988 
+			A7   , 302  , 106.12 , 329.01 , 0.00 , 0 , 1882 , 1882 
+			A70  , 50   , 72.94  , 257.26 , 0.00 , 0 , 1253 , 1253 
+			A71  , 10   , 25.80  , 81.59  , 0.00 , 0 , 258  , 258  
+			A6   , 198  , 130.20 , 379.68 , 0.00 , 0 , 1968 , 1968 
+			A73  , 86   , 49.74  , 245.74 , 0.00 , 0 , 1924 , 1924 
+			A3   , 1023 , 137.75 , 381.13 , 0.00 , 0 , 1979 , 1979 
+			A99  , 312  , 260.51 , 542.02 , 0.00 , 0 , 1977 , 1977 
+			A96  , 230  , 146.79 , 395.78 , 0.00 , 0 , 1958 , 1958 
+			A995 , 14   , 288.29 , 545.94 , 0.00 , 0 , 1749 , 1749 
+			A92  , 82   , 96.22  , 295.14 , 0.00 , 0 , 1626 , 1626 
+			A93  , 160  , 34.58  , 189.72 , 0.00 , 0 , 1769 , 1769 
+			A94  , 56   , 327.38 , 606.32 , 0.00 , 0 , 1983 , 1983  
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5.1cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={145,362},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{145}{362}{12}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_SDist}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Spatial Distance}}
@@ -781,24 +619,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_SDist,fig:
 \end{table}
 It shows that the groups A3, A7, A70, A73, A9, A92, A93, A94, A96, A99 and A995 differ significantly.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A9   , 656  , 45.42 , 16.80 , 47.00 , 7  , 100 , 93 
-	A7   , 302  , 51.75 , 26.20 , 53.00 , 6  , 100 , 94 
-	A70  , 50   , 56.12 , 21.77 , 56.00 , 15 , 100 , 85 
-	A71  , 10   , 59.30 , 26.46 , 56.50 , 18 , 100 , 82 
-	A6   , 198  , 47.91 , 24.26 , 45.50 , 9  , 100 , 91 
-	A73  , 86   , 44.52 , 24.04 , 41.00 , 7  , 99  , 92 
-	A3   , 1023 , 40.19 , 21.02 , 36.00 , 4  , 100 , 96 
-	A99  , 312  , 31.20 , 17.36 , 26.00 , 4  , 93  , 89 
-	A96  , 230  , 58.77 , 25.54 , 58.00 , 7  , 100 , 93 
-	A995 , 14   , 49.21 , 17.17 , 44.00 , 26 , 73  , 47 
-	A92  , 82   , 56.78 , 19.62 , 59.00 , 12 , 100 , 88 
-	A93  , 160  , 69.51 , 16.48 , 68.00 , 22 , 91  , 69 
-	A94  , 56   , 47.82 , 23.60 , 44.00 , 10 , 100 , 90 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -830,34 +650,26 @@ It shows that the groups A3, A7, A70, A73, A9, A92, A93, A94, A96, A99 and A995 
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_Cov}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A9   , 656  , 45.42 , 16.80 , 47.00 , 7  , 100 , 93 
+			A7   , 302  , 51.75 , 26.20 , 53.00 , 6  , 100 , 94 
+			A70  , 50   , 56.12 , 21.77 , 56.00 , 15 , 100 , 85 
+			A71  , 10   , 59.30 , 26.46 , 56.50 , 18 , 100 , 82 
+			A6   , 198  , 47.91 , 24.26 , 45.50 , 9  , 100 , 91 
+			A73  , 86   , 44.52 , 24.04 , 41.00 , 7  , 99  , 92 
+			A3   , 1023 , 40.19 , 21.02 , 36.00 , 4  , 100 , 96 
+			A99  , 312  , 31.20 , 17.36 , 26.00 , 4  , 93  , 89 
+			A96  , 230  , 58.77 , 25.54 , 58.00 , 7  , 100 , 93 
+			A995 , 14   , 49.21 , 17.17 , 44.00 , 26 , 73  , 47 
+			A92  , 82   , 56.78 , 19.62 , 59.00 , 12 , 100 , 88 
+			A93  , 160  , 69.51 , 16.48 , 68.00 , 22 , 91  , 69 
+			A94  , 56   , 47.82 , 23.60 , 44.00 , 10 , 100 , 90 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5.1cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={50,21},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{50}{21}{12}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_Cov}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Coverage}}
@@ -899,29 +711,11 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_Cov,fig:de
 \end{table}
 It shows that the groups A3, A7, A70, A73, A92, A93, A94, A96 and A99 differ significantly.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A9   , 656  , 1519.32 , 255.65 , 1555.00 , 1001 , 1994 , 993 
-	A7   , 302  , 1545.96 , 295.36 , 1585.50 , 1000 , 1999 , 999 
-	A70  , 50   , 1471.40 , 287.41 , 1496.00 , 1015 , 1984 , 969 
-	A71  , 10   , 1482.50 , 229.21 , 1503.00 , 1132 , 1819 , 687 
-	A6   , 198  , 1459.12 , 273.55 , 1438.50 , 1013 , 1997 , 984 
-	A73  , 86   , 1489.05 , 300.96 , 1498.00 , 1003 , 1974 , 971 
-	A3   , 1023 , 1510.49 , 302.14 , 1498.00 , 1000 , 1999 , 999 
-	A99  , 312  , 1513.44 , 276.21 , 1527.00 , 1005 , 1991 , 986 
-	A96  , 230  , 1494.62 , 278.01 , 1530.00 , 1010 , 1997 , 987 
-	A995 , 14   , 1497.86 , 252.08 , 1592.00 , 1034 , 1813 , 779 
-	A92  , 82   , 1525.43 , 267.00 , 1595.00 , 1056 , 1976 , 920 
-	A93  , 160  , 1368.61 , 249.94 , 1297.00 , 1012 , 1988 , 976 
-	A94  , 56   , 1537.91 , 274.00 , 1540.00 , 1079 , 1990 , 911 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
 		\tiny
-		% \setlength{\tabcolsep}{4pt}
+		\setlength{\tabcolsep}{4pt}
 		\centering
 		\begin{tabular}{c|c|c|c|c|c|c|c}
 			\toprule
@@ -948,34 +742,26 @@ It shows that the groups A3, A7, A70, A73, A92, A93, A94, A96 and A99 differ sig
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_TLCar}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A9   , 656  , 1519.32 , 255.65 , 1555.00 , 1001 , 1994 , 993 
+			A7   , 302  , 1545.96 , 295.36 , 1585.50 , 1000 , 1999 , 999 
+			A70  , 50   , 1471.40 , 287.41 , 1496.00 , 1015 , 1984 , 969 
+			A71  , 10   , 1482.50 , 229.21 , 1503.00 , 1132 , 1819 , 687 
+			A6   , 198  , 1459.12 , 273.55 , 1438.50 , 1013 , 1997 , 984 
+			A73  , 86   , 1489.05 , 300.96 , 1498.00 , 1003 , 1974 , 971 
+			A3   , 1023 , 1510.49 , 302.14 , 1498.00 , 1000 , 1999 , 999 
+			A99  , 312  , 1513.44 , 276.21 , 1527.00 , 1005 , 1991 , 986 
+			A96  , 230  , 1494.62 , 278.01 , 1530.00 , 1010 , 1997 , 987 
+			A995 , 14   , 1497.86 , 252.08 , 1592.00 , 1034 , 1813 , 779 
+			A92  , 82   , 1525.43 , 267.00 , 1595.00 , 1056 , 1976 , 920 
+			A93  , 160  , 1368.61 , 249.94 , 1297.00 , 1012 , 1988 , 976 
+			A94  , 56   , 1537.91 , 274.00 , 1540.00 , 1079 , 1990 , 911 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5.1cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={1493,272},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{1493}{272}{12}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_TLCar}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Time-loss Car}}
@@ -1017,24 +803,6 @@ Although the groups differ significantly, the descriptives in \cref{tbl:descript
 \end{table}
 It shows that the groups A3, A7, A70, A73, A92, A93, A94, A96 and A99 differ significantly.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	A9   , 656  , 750.33 , 141.34 , 785.00 , 506 , 997 , 491 
-	A7   , 302  , 732.96 , 145.27 , 723.00 , 500 , 997 , 497 
-	A70  , 50   , 761.96 , 124.17 , 791.50 , 540 , 955 , 415 
-	A71  , 10   , 772.70 , 111.11 , 754.00 , 565 , 981 , 416 
-	A6   , 198  , 739.95 , 153.70 , 748.00 , 504 , 996 , 492 
-	A73  , 86   , 702.86 , 137.21 , 676.00 , 502 , 964 , 462 
-	A3   , 1023 , 731.93 , 136.09 , 724.00 , 501 , 996 , 495 
-	A99  , 312  , 717.33 , 144.89 , 706.00 , 501 , 998 , 497 
-	A96  , 230  , 750.74 , 141.48 , 737.00 , 500 , 999 , 499 
-	A995 , 14   , 704.50 , 82.95  , 752.50 , 567 , 810 , 243 
-	A92  , 82   , 739.94 , 152.04 , 703.00 , 529 , 979 , 450 
-	A93  , 160  , 648.00 , 175.73 , 551.00 , 500 , 999 , 499 
-	A94  , 56   , 771.16 , 129.38 , 799.00 , 559 , 959 , 400 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -1066,34 +834,26 @@ It shows that the groups A3, A7, A70, A73, A92, A93, A94, A96 and A99 differ sig
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Strasse_TLHGV}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			A9   , 656  , 750.33 , 141.34 , 785.00 , 506 , 997 , 491 
+			A7   , 302  , 732.96 , 145.27 , 723.00 , 500 , 997 , 497 
+			A70  , 50   , 761.96 , 124.17 , 791.50 , 540 , 955 , 415 
+			A71  , 10   , 772.70 , 111.11 , 754.00 , 565 , 981 , 416 
+			A6   , 198  , 739.95 , 153.70 , 748.00 , 504 , 996 , 492 
+			A73  , 86   , 702.86 , 137.21 , 676.00 , 502 , 964 , 462 
+			A3   , 1023 , 731.93 , 136.09 , 724.00 , 501 , 996 , 495 
+			A99  , 312  , 717.33 , 144.89 , 706.00 , 501 , 998 , 497 
+			A96  , 230  , 750.74 , 141.48 , 737.00 , 500 , 999 , 499 
+			A995 , 14   , 704.50 , 82.95  , 752.50 , 567 , 810 , 243 
+			A92  , 82   , 739.94 , 152.04 , 703.00 , 529 , 979 , 450 
+			A93  , 160  , 648.00 , 175.73 , 551.00 , 500 , 999 , 499 
+			A94  , 56   , 771.16 , 129.38 , 799.00 , 559 , 959 , 400 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5.1cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={732,136},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{732}{136}{12}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Strasse_TLHGV}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Strasse} and \textit{Time-loss Heavy goods vehicle}}

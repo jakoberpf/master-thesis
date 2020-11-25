@@ -1028,23 +1028,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_TAvg,fig:des
 \end{table}
 It shows that all groups have significantly differences form some other group. The groups of February, April, July, August, October and November differ from a relative high number of groups.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	Jan , 118 , 10172.38 , 8829.63  , 6320.00 , 1109 , 44751 , 43642
-	Feb , 160 , 12219.37 , 12948.08 , 6214.00 , 999  , 48987 , 47988
-	Mar , 216 , 7325.81  , 6207.77  , 5007.00 , 1436 , 31160 , 29724
-	Apr , 271 , 10553.42 , 9582.49  , 8387.00 , 1350 , 47196 , 45846
-	May , 268 , 9677.59  , 9065.93  , 6742.00 , 1035 , 40805 , 39770
-	Jun , 186 , 9062.72  , 8839.51  , 5695.00 , 1084 , 34411 , 33327
-	Jul , 529 , 10596.79 , 10632.15 , 6586.00 , 902  , 49765 , 48863
-	Aug , 273 , 6356.36  , 5593.06  , 3497.00 , 699  , 32154 , 31455
-	Sep , 370 , 8167.19  , 8370.94  , 4982.00 , 965  , 41011 , 40046
-	Oct , 307 , 6838.37  , 6394.64  , 4414.00 , 1025 , 31676 , 30651 
-	Nov , 213 , 6521.21  , 7176.02  , 3955.00 , 1014 , 33764 , 32750
-	Dec , 278 , 8165.85  , 7680.25  , 4731.00 , 951  , 34227 , 33276
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -1075,34 +1058,21 @@ It shows that all groups have significantly differences form some other group. T
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_SMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=11,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={8804,8443},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			Jan , 118 , 10172.38 , 8829.63  , 6320.00 , 1109 , 44751 , 43642
+			Feb , 160 , 12219.37 , 12948.08 , 6214.00 , 999  , 48987 , 47988
+			Mar , 216 , 7325.81  , 6207.77  , 5007.00 , 1436 , 31160 , 29724
+			Apr , 271 , 10553.42 , 9582.49  , 8387.00 , 1350 , 47196 , 45846
+			May , 268 , 9677.59  , 9065.93  , 6742.00 , 1035 , 40805 , 39770
+			Jun , 186 , 9062.72  , 8839.51  , 5695.00 , 1084 , 34411 , 33327
+			Jul , 529 , 10596.79 , 10632.15 , 6586.00 , 902  , 49765 , 48863
+			Aug , 273 , 6356.36  , 5593.06  , 3497.00 , 699  , 32154 , 31455
+			Sep , 370 , 8167.19  , 8370.94  , 4982.00 , 965  , 41011 , 40046
+			Oct , 307 , 6838.37  , 6394.64  , 4414.00 , 1025 , 31676 , 30651 
+			Nov , 213 , 6521.21  , 7176.02  , 3955.00 , 1014 , 33764 , 32750
+			Dec , 278 , 8165.85  , 7680.25  , 4731.00 , 951  , 34227 , 33276
+		}\data
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_SMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Maximal Spatial Extent}}
@@ -1139,23 +1109,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_SMax,fig:des
 \end{table}
 It shows that most groups have significantly differences to another group. The groups of February, April and November differ from a relative high number of groups.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	Jan , 118 , 4011.67 , 3677.51 , 2525.00 , 651 , 14785 , 14134
-	Feb , 160 , 3976.34 , 3246.48 , 2666.50 , 718 , 14150 , 13432
-	Mar , 216 , 2899.98 , 1945.37 , 2295.00 , 676 , 9748  , 9072 
-	Apr , 271 , 3633.27 , 3073.18 , 2598.00 , 569 , 15602 , 15033
-	May , 268 , 3160.32 , 2197.68 , 2732.00 , 458 , 10860 , 10402
-	Jun , 186 , 3002.61 , 2171.31 , 2291.00 , 692 , 11206 , 10514
-	Jul , 529 , 3292.55 , 2763.41 , 2132.00 , 502 , 13146 , 12644
-	Aug , 273 , 2793.92 , 2224.25 , 2141.00 , 506 , 12288 , 11782
-	Sep , 370 , 3269.36 , 3012.09 , 2096.00 , 404 , 14776 , 14372
-	Oct , 307 , 2751.38 , 2013.59 , 2282.00 , 625 , 11161 , 10536
-	Nov , 213 , 2639.70 , 2401.25 , 1916.00 , 305 , 13639 , 13334
-	Dec , 278 , 3423.72 , 3129.03 , 2036.00 , 284 , 15054 , 14770
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -1186,34 +1139,21 @@ It shows that most groups have significantly differences to another group. The g
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_SAvg}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=11,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={3238,2655},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			Jan , 118 , 4011.67 , 3677.51 , 2525.00 , 651 , 14785 , 14134
+			Feb , 160 , 3976.34 , 3246.48 , 2666.50 , 718 , 14150 , 13432
+			Mar , 216 , 2899.98 , 1945.37 , 2295.00 , 676 , 9748  , 9072 
+			Apr , 271 , 3633.27 , 3073.18 , 2598.00 , 569 , 15602 , 15033
+			May , 268 , 3160.32 , 2197.68 , 2732.00 , 458 , 10860 , 10402
+			Jun , 186 , 3002.61 , 2171.31 , 2291.00 , 692 , 11206 , 10514
+			Jul , 529 , 3292.55 , 2763.41 , 2132.00 , 502 , 13146 , 12644
+			Aug , 273 , 2793.92 , 2224.25 , 2141.00 , 506 , 12288 , 11782
+			Sep , 370 , 3269.36 , 3012.09 , 2096.00 , 404 , 14776 , 14372
+			Oct , 307 , 2751.38 , 2013.59 , 2282.00 , 625 , 11161 , 10536
+			Nov , 213 , 2639.70 , 2401.25 , 1916.00 , 305 , 13639 , 13334
+			Dec , 278 , 3423.72 , 3129.03 , 2036.00 , 284 , 15054 , 14770
+		}\data
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_SAvg}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Maximal Spatial Extent}}
@@ -1250,23 +1190,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_SAvg,fig:des
 \end{table}
 It shows that most groups have significantly differences to another group. The groups of February, July, November and December differ from a relative high number of groups.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	Jan , 118 , 79.52  , 273.88 , 0 , 0 , 1686 , 1686 
-	Feb , 160 , 83.44  , 319.89 , 0 , 0 , 1615 , 1615 
-	Mar , 216 , 149.79 , 404.38 , 0 , 0 , 1861 , 1861 
-	Apr , 271 , 150.68 , 408.76 , 0 , 0 , 1910 , 1910 
-	May , 268 , 146.19 , 409.04 , 0 , 0 , 1979 , 1979 
-	Jun , 186 , 124.91 , 351.03 , 0 , 0 , 1879 , 1879 
-	Jul , 529 , 93.17  , 330.01 , 0 , 0 , 1973 , 1973 
-	Aug , 273 , 170.69 , 421.76 , 0 , 0 , 1859 , 1859 
-	Sep , 370 , 185.51 , 403.48 , 0 , 0 , 1968 , 1968 
-	Oct , 307 , 194.72 , 469.83 , 0 , 0 , 1983 , 1983 
-	Nov , 213 , 176.46 , 406.35 , 0 , 0 , 1925 , 1925 
-	Dec , 278 , 287.55 , 559.68 , 0 , 0 , 1988 , 1988 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -1297,34 +1220,21 @@ It shows that most groups have significantly differences to another group. The g
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_SDist}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={153,395},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			Jan , 118 , 79.52  , 273.88 , 0 , 0 , 1686 , 1686 
+			Feb , 160 , 83.44  , 319.89 , 0 , 0 , 1615 , 1615 
+			Mar , 216 , 149.79 , 404.38 , 0 , 0 , 1861 , 1861 
+			Apr , 271 , 150.68 , 408.76 , 0 , 0 , 1910 , 1910 
+			May , 268 , 146.19 , 409.04 , 0 , 0 , 1979 , 1979 
+			Jun , 186 , 124.91 , 351.03 , 0 , 0 , 1879 , 1879 
+			Jul , 529 , 93.17  , 330.01 , 0 , 0 , 1973 , 1973 
+			Aug , 273 , 170.69 , 421.76 , 0 , 0 , 1859 , 1859 
+			Sep , 370 , 185.51 , 403.48 , 0 , 0 , 1968 , 1968 
+			Oct , 307 , 194.72 , 469.83 , 0 , 0 , 1983 , 1983 
+			Nov , 213 , 176.46 , 406.35 , 0 , 0 , 1925 , 1925 
+			Dec , 278 , 287.55 , 559.68 , 0 , 0 , 1988 , 1988 
+		}\data
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_SDist}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Spatial Distance}}
@@ -1361,23 +1271,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_SDist,fig:de
 \end{table}
 It shows that most groups have significantly differences to another group. The groups of April, May, July, September, November and December differ from a relative high number of groups. Only January doesn't show any significant differences.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	Jan , 118 , 44.60 , 23.91 , 41 , 7 , 100 , 93 
-	Feb , 160 , 44.26 , 22.06 , 40 , 9 , 100 , 91 
-	Mar , 216 , 44.06 , 18.71 , 42 , 8 , 100 , 92 
-	Apr , 271 , 41.35 , 22.90 , 34 , 8 , 100 , 92 
-	May , 268 , 40.62 , 21.17 , 37 , 7 , 100 , 93 
-	Jun , 186 , 44.35 , 22.91 , 43 , 4 , 100 , 96 
-	Jul , 529 , 39.25 , 18.30 , 39 , 4 , 100 , 96 
-	Aug , 273 , 48.62 , 19.09 , 48 , 7 , 100 , 93 
-	Sep , 370 , 52.62 , 25.63 , 52 , 9 , 100 , 91 
-	Oct , 307 , 51.11 , 25.16 , 47 , 8 , 100 , 92 
-	Nov , 213 , 53.48 , 25.65 , 54 , 6 , 100 , 94 
-	Dec , 278 , 48.60 , 22.92 , 47 , 7 , 100 , 93 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -1408,34 +1301,21 @@ It shows that most groups have significantly differences to another group. The g
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_Cov}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={46,22},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			Jan , 118 , 44.60 , 23.91 , 41 , 7 , 100 , 93 
+			Feb , 160 , 44.26 , 22.06 , 40 , 9 , 100 , 91 
+			Mar , 216 , 44.06 , 18.71 , 42 , 8 , 100 , 92 
+			Apr , 271 , 41.35 , 22.90 , 34 , 8 , 100 , 92 
+			May , 268 , 40.62 , 21.17 , 37 , 7 , 100 , 93 
+			Jun , 186 , 44.35 , 22.91 , 43 , 4 , 100 , 96 
+			Jul , 529 , 39.25 , 18.30 , 39 , 4 , 100 , 96 
+			Aug , 273 , 48.62 , 19.09 , 48 , 7 , 100 , 93 
+			Sep , 370 , 52.62 , 25.63 , 52 , 9 , 100 , 91 
+			Oct , 307 , 51.11 , 25.16 , 47 , 8 , 100 , 92 
+			Nov , 213 , 53.48 , 25.65 , 54 , 6 , 100 , 94 
+			Dec , 278 , 48.60 , 22.92 , 47 , 7 , 100 , 93 
+		}\data
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_Cov}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Coverage}}
@@ -1472,23 +1352,6 @@ With the descriptives in \cref{tbl:descriptives_arbis_matched_Month_Cov,fig:desc
 \end{table}
 It shows that most groups have significantly differences to another group. The groups of February, May and June don't show any significant differences.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	Jan , 118 , 1428.22 , 303.79 , 1388.5 , 1012 , 1966 , 954 
-	Feb , 160 , 1486.67 , 295.94 , 1486.0 , 1005 , 1997 , 992
-	Mar , 216 , 1538.59 , 304.77 , 1553.5 , 1010 , 1997 , 987
-	Apr , 271 , 1549.43 , 283.26 , 1574.0 , 1001 , 1976 , 975
-	May , 268 , 1504.66 , 289.40 , 1499.0 , 1003 , 1999 , 996
-	Jun , 186 , 1481.70 , 276.89 , 1473.0 , 1021 , 1994 , 973 
-	Jul , 529 , 1527.63 , 243.81 , 1555.0 , 1001 , 1999 , 998
-	Aug , 273 , 1531.97 , 306.05 , 1619.0 , 1000 , 1989 , 989
-	Sep , 370 , 1461.87 , 249.90 , 1477.5 , 1001 , 1982 , 981 
-	Oct , 307 , 1555.69 , 297.27 , 1629.0 , 1007 , 1996 , 989
-	Nov , 213 , 1452.33 , 266.82 , 1359.0 , 1036 , 1988 , 952 
-	Dec , 278 , 1452.09 , 310.35 , 1399.0 , 1000 , 1997 , 997 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -1519,34 +1382,21 @@ It shows that most groups have significantly differences to another group. The g
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_TLCar}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\tiny
-		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=12,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={3238,2655},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			Jan , 118 , 1428.22 , 303.79 , 1388.5 , 1012 , 1966 , 954 
+			Feb , 160 , 1486.67 , 295.94 , 1486.0 , 1005 , 1997 , 992
+			Mar , 216 , 1538.59 , 304.77 , 1553.5 , 1010 , 1997 , 987
+			Apr , 271 , 1549.43 , 283.26 , 1574.0 , 1001 , 1976 , 975
+			May , 268 , 1504.66 , 289.40 , 1499.0 , 1003 , 1999 , 996
+			Jun , 186 , 1481.70 , 276.89 , 1473.0 , 1021 , 1994 , 973 
+			Jul , 529 , 1527.63 , 243.81 , 1555.0 , 1001 , 1999 , 998
+			Aug , 273 , 1531.97 , 306.05 , 1619.0 , 1000 , 1989 , 989
+			Sep , 370 , 1461.87 , 249.90 , 1477.5 , 1001 , 1982 , 981 
+			Oct , 307 , 1555.69 , 297.27 , 1629.0 , 1007 , 1996 , 989
+			Nov , 213 , 1452.33 , 266.82 , 1359.0 , 1036 , 1988 , 952 
+			Dec , 278 , 1452.09 , 310.35 , 1399.0 , 1000 , 1997 , 997 
+		}\data
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_TLCar}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Time-loss Car}}

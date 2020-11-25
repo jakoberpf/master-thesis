@@ -128,7 +128,8 @@
             every extra y tick/.style={
                 tick0/.initial=teal,
                 yticklabel style={
-                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum},
+                    xshift=-8pt
                 },
             },
             extra y ticks={#4},
@@ -178,7 +179,8 @@
             every extra y tick/.style={
                 tick0/.initial=teal,
                 yticklabel style={
-                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum},
+                    xshift=-8pt
                 },
             },
             extra y ticks={#5},
@@ -229,7 +231,8 @@
             every extra y tick/.style={
                 tick0/.initial=teal,
                 yticklabel style={
-                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum},
+                    xshift=-8pt
                 },
             },
             extra y ticks={#6},
@@ -254,7 +257,7 @@
             xmajorgrids=true,
             ymajorgrids=true,
             xtick=data,
-            xmin=0,xmax=#2,
+            xmin=-0.2,xmax=#2 + 0.2,
             xticklabels from table={#1}{[index]0}
         ]
         \addplot table [y expr=(\thisrow{mean}), x expr=\coordindex] {#1};
@@ -276,14 +279,16 @@
             xmajorgrids=true,
             ymajorgrids=true,
             xtick=data,
-            xmin=0,xmax=#4,
+            xmin=-0.2,xmax=#4 + 0.2,
             xticklabels from table={#1}{[index]0},
             % zusätzliche Beschriftung an y-Achse
             every extra y tick/.style={
+                very thick,
                 tick0/.initial=blue,
                 tick1/.initial=red,
                 yticklabel style={
-                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum},
+                    xshift=-8pt
                 },
             },
             extra y ticks={#2,#3},
@@ -307,14 +312,16 @@
             xmajorgrids=true,
             ymajorgrids=true,
             xtick=data,
-            xmin=0,xmax=#6,
+            xmin=-0.2,xmax=#6 + 0.2,
             xticklabels from table={#1}{[index]0},
             % zusätzliche Beschriftung an y-Achse
             every extra y tick/.style={
+                very thick,
                 tick0/.initial=blue,
                 tick1/.initial=red,
                 yticklabel style={
-                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
+                    color=\pgfkeysvalueof{/pgfplots/tick\ticknum},
+                    xshift=-8pt
                 },
             },
             extra y ticks={#2,#3},
@@ -343,24 +350,24 @@
 %     \pgfplotstableforeachcolumnelement{#1}\of\data\as\cellValue{\pgfmathsetmacro{\buffer}{max(\buffer,\cellValue)}}
 % }
 
-\newcommand\DrawVMean[1][]{
-    \draw[#1] 
-    (axis cs:200,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:200,\pgfkeysvalueof{/pgfplots/ymax});
-}
+% \newcommand\DrawVMean[1][]{
+%     \draw[#1] 
+%     (axis cs:200,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:200,\pgfkeysvalueof{/pgfplots/ymax});
+% }
 
-\newcommand\DrawHMean[1][]{
-    \draw[#1] 
-    (axis cs:\pgfkeysvalueof{/pgfplots/xmin},\Mean) -- (axis cs:\pgfkeysvalueof{/pgfplots/xmax},\Mean);
-}
+% \newcommand\DrawHMean[1][]{
+%     \draw[#1] 
+%     (axis cs:\pgfkeysvalueof{/pgfplots/xmin},\Mean) -- (axis cs:\pgfkeysvalueof{/pgfplots/xmax},\Mean);
+% }
 
-\newcommand{\MakeMeans}[2]{
-  \pgfplotstableset{
-    create on use/new/.style={
-    create col/expr={\pgfmathaccuma + \thisrow{#2}}},
-  }
-  \pgfplotstablegetrowsof{#1}
-  \pgfmathsetmacro{\NumRows}{\pgfplotsretval}
-  \pgfplotstablegetelem{\numexpr\NumRows-1\relax}{new}\of{#1} 
-  \pgfmathsetmacro{\Sum}{\pgfplotsretval}
-  \pgfmathsetmacro{\Mean}{\Sum/\NumRows}
-}
+% \newcommand{\MakeMeans}[2]{
+%   \pgfplotstableset{
+%     create on use/new/.style={
+%     create col/expr={\pgfmathaccuma + \thisrow{#2}}},
+%   }
+%   \pgfplotstablegetrowsof{#1}
+%   \pgfmathsetmacro{\NumRows}{\pgfplotsretval}
+%   \pgfplotstablegetelem{\numexpr\NumRows-1\relax}{new}\of{#1} 
+%   \pgfmathsetmacro{\Sum}{\pgfplotsretval}
+%   \pgfmathsetmacro{\Mean}{\Sum/\NumRows}
+% }

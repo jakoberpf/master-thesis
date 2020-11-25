@@ -999,9 +999,10 @@ As with the variable \textit{TDist}, it show that the only significant $p$-value
 % -------- AufHi ---------
 % ------------------------
 \centerheading{AufHi}
-This section analyzes the correlated relations of the accident variable \textit{AufHi} and introduces a initial interpretation of each significant correlation. Groups with an insufficient sample size (see \cref{correlation_uncertainty} are neglected and not considered. The encoding and description of the variable \textit{AufHi} is shown in \cref{tbl:baysis_dataset_AufHi}. The Kruskal-Wallis test of \textit{AufHi} - \textit{TMax} and \textit{AufHi} - \textit{TAvg} produce a $p$-value above the $\alpha$-level. The null hypothesis can't be rejected and there are no significant differences between the groups of \textit{AufHi} in these relations.
+\varintrowithsam{baysis}{AufHi} \varintronosigmul{AufHi}{\textit{AufHi} - \textit{TMax} and \textit{AufHi} - \textit{TAvg}} 
 
-The Kruskal-Wallis test of \textit{AUrs} - \textit{TDist} produces a $p$-value of $p < 0.0001$, which is way below $\alpha$. The null hypothesis can therefore be rejected, which $\bar{x}$ there is a significant difference between the groups of \textit{AUrs}. A pairwise Wilcoxon $T$-test for \textit{AUrs} - \textit{TDist} produces \cref{tbl:wilcoxon_baysis_matched_AufHi_TDist}.
+% #############################################
+\groupintrosigsig{AufHi}{TDist}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -1022,26 +1023,50 @@ The Kruskal-Wallis test of \textit{AUrs} - \textit{TDist} produces a $p$-value o
 	\label{tbl:wilcoxon_baysis_matched_AufHi_TDist}
 \end{table}
 As \cref{tbl:wilcoxon_baysis_matched_AufHi_TDist} shows, the groups of 3 and 4 differ significantly from 0. 
-\begin{table}[ht!]
-	\tiny
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-    \begin{tabular}{c|c|c|c|c|c|c|c}
-        \toprule
-        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
-        \midrule
-        0 & 1404 & 4.77 & 6.65 & 0.00 & 0 & 24 & 24 \\ 
-        3 & 380 & 7.92 & 6.87 & 7.00 & 0 & 24 & 24 \\ 
-        4 & 44   & 8.43 & 8.13 & 7.00 & 0 & 24 & 24 \\ 
-        5 & 16   & 8.44 & 7.87 & 7.50 & 0 & 21 & 21 \\ 
-        \bottomrule
-      \end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			0 & 1404 & 4.77 & 6.65 & 0.0 & 0 & 24 & 24 \\ 
+			3 & 380  & 7.92 & 6.87 & 7.0 & 0 & 24 & 24 \\ 
+			4 & 44   & 8.43 & 8.13 & 7.0 & 0 & 24 & 24 \\ 
+			5 & 16   & 8.44 & 7.87 & 7.5 & 0 & 21 & 21 \\ 
+			\bottomrule
+			% \bar{x} - sum = 29.56, mean = 7.39
+			% \sigma - sum = 29.52, mean = 7.38
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_AufHi_TDist}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			0 , 1404 , 4.77 , 6.65 , 0.0 , 0 , 24 , 24 
+			3 , 380  , 7.92 , 6.87 , 7.0 , 0 , 24 , 24 
+			4 , 44   , 8.43 , 8.13 , 7.0 , 0 , 24 , 24 
+			5 , 16   , 8.44 , 7.87 , 7.5 , 0 , 21 , 21 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{7.39}{7.38}{3}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_AufHi_TDist}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{AufHi} and \textit{Temporal Distance}}
-	\label{tbl:descriptives_baysis_matched_AufHi_TDist}
 	%\vspace{-8mm}
-\end{table}
-When comparing $\bar{x}$ of the named groups, it becomes clear that the accidents with \textit{trees} ($\bar{x}$ of 4.7\,min) have a much shorter distance to the adjacent jam, than accidents with the \textit{guardrail} or \textit{other obstacles} ($\bar{x}$ of 8.4\,min).
+\end{figure}
+% #### END: Table and Plot
+The significantly descriptives in \cref{tbl:descriptives_baysis_matched_AufHi_TDist,fig:descriptives_baysis_matched_AufHi_TDist} show that accidents with \textit{trees} ($\bar{x}$ of 4.7\,min) have a much shorter distance to the adjacent jam, than accidents with the \textit{guardrail} or \textit{other obstacles} ($\bar{x}$ of 8.4\,min).
 
-The Kruskal-Wallis test of \textit{AufHi} - \textit{Cov} produces a $p$-value of $p < 0.0001$, which is way below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{AufHi}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{AufHi} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_AufHi_Cov}. 
+% #############################################
+\groupintrosigsig{AufHi}{Cov}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -1061,25 +1086,48 @@ The Kruskal-Wallis test of \textit{AufHi} - \textit{Cov} produces a $p$-value of
 	\caption{Pairwise Wilcoxon $T$-test for \textit{AufHi} and \textit{Coverage}}
 	\label{tbl:wilcoxon_baysis_matched_AufHi_Cov}
 \end{table}
-As \cref{tbl:wilcoxon_baysis_matched_AufHi_Cov} shows, only groups of 3 differs significantly from 0. 
-\begin{table}[ht!]
-	\tiny
+It shows that only groups of 3 differs significantly from 0. 
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-    \begin{tabular}{c|c|c|c|c|c|c|c}
-        \toprule
-        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
-        \midrule
-        0 & 1404 & 41.49 & 20.26 & 38.00 & 2  & 100 & 98 \\ 
-        3 & 380  & 51.55 & 22.22 & 50.00 & 3  & 100 & 97 \\ 
-        4 & 44   & 50.18 & 23.51 & 48.50 & 10 & 100 & 90 \\ 
-        5 & 16   & 51.50 & 20.07 & 42.00 & 22 & 89  & 67 \\ 
-        \bottomrule
-      \end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			0 & 1404 & 41.49 & 20.26 & 38.00 & 2  & 100 & 98 \\ 
+			3 & 380  & 51.55 & 22.22 & 50.00 & 3  & 100 & 97 \\ 
+			4 & 44   & 50.18 & 23.51 & 48.50 & 10 & 100 & 90 \\ 
+			5 & 16   & 51.50 & 20.07 & 42.00 & 22 & 89  & 67 \\  
+			\bottomrule
+			% \bar{x} - sum = 194.72, mean = 48.68
+			% \sigma - sum = 86.06, mean = 21.515
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_AufHi_Cov}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			0 , 1404 , 41.49 , 20.26 , 38.0 , 2  , 100 , 98 
+			3 , 380  , 51.55 , 22.22 , 50.0 , 3  , 100 , 97 
+			4 , 44   , 50.18 , 23.51 , 48.5 , 10 , 100 , 90 
+			5 , 16   , 51.50 , 20.07 , 42.0 , 22 , 89  , 67 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{48}{21}{3}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_AufHi_Cov}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{AufHi} and \textit{Coverage}}
-	\label{tbl:descriptives_baysis_matched_AufHi_Cov}
 	%\vspace{-8mm}
-\end{table}
-The $\bar{x}$ of group 3 and 0, show that accidents collisions with \textit{trees} have a 10\,\% shorter distance to the adjacent jam, than accidents with the \textit{guardrail} or \textit{other obstacles}.
+\end{figure}
+% #### END: Table and Plot
+The significantly descriptives in \cref{tbl:descriptives_baysis_matched_AufHi_Cov,fig:descriptives_baysis_matched_AufHi_Cov} show that accidents collisions with \textit{trees} are associated with 10\,\% less dense jams, than accidents with the \textit{guardrail} or \textit{other obstacles}.
 
 % -----------------------
 % -------- Lich ---------

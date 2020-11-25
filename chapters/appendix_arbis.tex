@@ -1,0 +1,130 @@
+    % -------------------------------
+    % -------------------------------
+    % ------- ArbIS Appendix --------
+    % -------------------------------
+    % -------------------------------
+    \chapter{ArbIS Figures, Tables and Listings}
+    \label{appendix_arbis}
+    % -------------------------------
+    % ------- ArbIS Dataset ---------
+    % -------------------------------
+    % \tocless\section{ArbIS Data Foundation}
+    % \label{appendix_arbis_dataset}
+
+    % ------- ArbIS Dataset - Figures --------
+    \begin{figure}[ht!]
+        \centering
+        \includegraphics[scale=0.7]{CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_count_multiple01}
+        \caption{Distribution of the accident category \textit{AnzGesperrtFs}, \textit{Einzug} and \textit{Richtung}}
+        \label{img:arbis_dataset_AnzGesperrtFs}
+        \label{img:arbis_dataset_Einzug}
+        \label{img:arbis_dataset_Richtung}
+    \end{figure}
+
+    \begin{figure}[ht!]
+        \centering
+        \includegraphics[scale=0.7]{CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_dist_Length}
+        \caption{Distribution of the roadwork parameter \textit{Length}}
+        \label{img:arbis_matched_Length}
+    \end{figure}
+
+    \begin{figure}[ht!]
+        \centering
+        \includegraphics[scale=0.7]{CorrAnalysis/data/ArbIS/01_dataset/plots/arbis_dataset_dist_Duration}
+        \caption{Distribution of the roadwork parameter \textit{Duration}}
+        \label{img:arbis_matched_Duration}
+    \end{figure}
+
+    % ------- ArbIS Dataset - Tables --------
+    % \newgeometry{left=1cm,right=1cm}
+    \begin{table}
+        \setlength{\tabcolsep}{4pt}
+        \centering
+        \include{CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_corr_cramers}
+        \caption{Correlation matrix for ArbIS dataset, calculated with Cramer's $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
+        \label{tbl:appendix_arbis_correlation_matrix_dataset_cramers}
+    \end{table}
+    \begin{table}
+        \setlength{\tabcolsep}{4pt}
+        \centering
+        \include{CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_corr_theils}
+        \caption{Correlation matrix for ArbIS dataset, calculated with Theil's $U$, $\eta$, $\tau$, $r_{pq}$, $r$}
+        \label{tbl:appendix_arbis_correlation_matrix_dataset_theils}
+    \end{table}
+    \begin{table}
+        \setlength{\tabcolsep}{4pt}
+        \centering
+        \include{CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_sign_cramers}
+        \caption{Significancy matrix for ArbIS dataset}
+        \label{tbl:appendix_arbis_significancy_matrix_dataset}
+    \end{table}
+    \begin{table}
+        \setlength{\tabcolsep}{4pt}
+        \centering
+        \include{CorrAnalysis/data/ArbIS/01_dataset/latex/arbis_dataset_coef_cramers}
+        \caption{Coefficient matrix for ArbIS dataset}
+        \label{tbl:appendix_arbis_coefficient_matrix_dataset}
+    \end{table}
+    % \restoregeometry
+    
+    % -------------------------------
+    % ------- ArbIS Matched ---------
+    % -------------------------------
+    % \tocless\section{ArbIS Matched Data}
+    % \label{appendix_ArbIS_matched}
+    
+    % ------- ArbIS Matched - Figures --------
+    \begin{figure}[ht!]
+        \centering
+        \includegraphics[scale=0.7]{CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_count_multiple01}
+        \caption{Distribution of the roadwork parameters \textit{AnzGesperrtFs}, \textit{Einzug} and \textit{Richtung}}
+        \label{img:arbis_matched_AnzGesperrtFs}
+        \label{img:arbis_matched_Einzug}
+        \label{img:arbis_matched_Richtung}
+    \end{figure}
+
+    \begin{figure}[ht!]
+        \centering
+        \includegraphics[scale=0.7]{CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_dist_Length}
+        \caption{Distribution of the roadwork parameter \textit{Length}}
+        \label{img:arbis_matched_Length}
+    \end{figure}
+
+    \begin{figure}[ht!]
+        \centering
+        \includegraphics[scale=0.7]{CorrAnalysis/data/ArbIS/02_matched/plots/arbis_matched_dist_Duration}
+        \caption{Distribution of the roadwork parameter \textit{Duration}}
+        \label{img:arbis_matched_Duration}
+    \end{figure}
+
+    % ------- ArbIS Matched - Tables --------
+    % \newgeometry{left=1cm,right=1cm,top=1cm}
+    \begin{sidewaystable}
+        \tiny
+        \setlength{\tabcolsep}{4pt}
+        \centering
+        \include{CorrAnalysis/data/ArbIS/02_matched/latex/arbis_matched_corr_cramers}
+        \caption{Correlation matrix for ArbIS matched data, calculated with Cramer's $V$, $\eta$, $\tau$, $r_{pq}$, $r$}
+    \end{sidewaystable}
+    \begin{sidewaystable}
+        \tiny
+        \setlength{\tabcolsep}{4pt}
+        \centering
+        \include{CorrAnalysis/data/ArbIS/02_matched/latex/arbis_matched_corr_theils}
+        \caption{Correlation matrix for ArbIS matched data, calculated with Theil's $U$, $\eta$, $\tau$, $r_{pq}$, $r$}
+    \end{sidewaystable}
+    \begin{sidewaystable}
+        \tiny
+        \setlength{\tabcolsep}{4pt}
+        \centering
+        \include{CorrAnalysis/data/ArbIS/02_matched/latex/arbis_matched_sign_cramers}
+        \caption{Significancy matrix for ArbIS matched data}
+    \end{sidewaystable}
+    \begin{sidewaystable}
+        \tiny
+        \setlength{\tabcolsep}{4pt}
+        \centering
+        \include{CorrAnalysis/data/ArbIS/02_matched/latex/arbis_matched_coef_cramers}
+        \caption{Coefficient matrix for ArbIS matched data}
+    \end{sidewaystable}
+    % \restoregeometry

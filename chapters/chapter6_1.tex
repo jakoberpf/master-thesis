@@ -982,18 +982,138 @@ The significantly descriptives in \cref{tbl:descriptives_baysis_matched_UArt1_Co
 
 % #################################################
 \groupintrosig{AUrs1}{SAvg}{0.0228}{baysis}{matched}
-It shows that only group 88 differs from 0 and 72. This is to be expected, because of the retained variable (see \cref{baysis_dataset_AUrs}). Since group 88 represents accident cause with \textit{other obstacles}, a meaningful interpretation is not really possible. 
-% ######################## Expand if time ########################
+It shows that only group 88 differs from 0 and 72. This is to be expected, because of the retained variable (see \cref{baysis_dataset_AUrs}). Since group 88 represents accident cause with \textit{other obstacles} it can not be meaningful interpreted. 
+% #### START: Table and Plot
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			72 & 41 & 5542.00 & 4347.10 & 4092 & 1009 & 16571 & 15562 \\ 
+			73 & 95 & 3190.11 & 2152.19 & 2498 & 652  & 12288 & 11636 \\ 
+			82 & 13 & 4610.15 & 2205.44 & 4119 & 1660 & 8426  & 6766  \\  
+			89 & 18 & 6106.22 & 3883.86 & 4648 & 347  & 12353 & 12006 \\ 
+			\bottomrule
+			% \bar{x} - sum = 19448.48, mean = 4862.12
+			% \sigma - sum = 12588.59, mean = 3147.14
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_AUrs1_SAvg}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			72 , 41 , 5542.00 , 4347.10 , 4092 , 1009 , 16571 , 15562 
+			73 , 95 , 3190.11 , 2152.19 , 2498 , 652  , 12288 , 11636 
+			82 , 13 , 4610.15 , 2205.44 , 4119 , 1660 , 8426  , 6766   
+			89 , 18 , 6106.22 , 3883.86 , 4648 , 347  , 12353 , 12006 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{4862}{3147}{3}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_AUrs1_SAvg}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{AUrs} and \textit{Average Spatial Extent}}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+The descriptives in \cref{tbl:descriptives_baysis_matched_AUrs1_SAvg,fig:descriptives_baysis_matched_AUrs1_SAvg} can still be evaluated. They show that the (spatial) jam length increases with the accident causes \textit{Slippery street due to rain} over \textit{Visibility issues due to sun or glare} to \textit{Slippery street due to snow or ice} by 2382\,m on average.
 
 % #############################################
 \groupintrosigsig{AUrs1}{TDist}{baysis}{matched}
-It show that the only significant $p$-value is with group 0. Since the group is undefined from BAYSIS, there is no further interpretation possible.
-% ######################## Expand if time ########################
+It show that the only significant $p$-value is with group 0. Since the group is undefined from BAYSIS, there is no significant interpretation possible.
+% #### START: Table and Plot
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			72 & 41 & 7.73 & 7.68 & 6  & 0 & 23 & 23 \\ 
+			73 & 95 & 7.60 & 6.45 & 6  & 0 & 24 & 24 \\ 
+			82 & 13 & 4.85 & 7.59 & 1  & 0 & 23 & 23 \\  
+			89 & 18 & 9.56 & 7.81 & 10 & 0 & 22 & 22 \\ 
+			\bottomrule
+			% \bar{x} - sum = 29.74, mean = 7.53
+			% \sigma - sum = 29.53, mean = 7.38
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_AUrs1_TDist}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			72 , 41 , 7.73 , 7.68 , 6  , 0 , 23 , 23 
+			73 , 95 , 7.60 , 6.45 , 6  , 0 , 24 , 24 
+			82 , 13 , 4.85 , 7.59 , 1  , 0 , 23 , 23  
+			89 , 18 , 9.56 , 7.81 , 10 , 0 , 22 , 22 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{7.53}{7.38}{3}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_AUrs1_TDist}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{AUrs} and \textit{Temporal Distance}}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+The descriptives in \cref{tbl:descriptives_baysis_matched_AUrs1_TDist,fig:descriptives_baysis_matched_AUrs1_TDist} can still be evaluated. They show that the temporal distance between accident and congestion decreases with the accident causes \textit{Slippery street due to snow or ice} and \textit{Slippery street due to rain} (average of 7.7\,min) to \textit{Visibility issues due to sun or glare} to by 3\,min on average.
 
 % #############################################
 \groupintrosigsig{AUrs1}{Cov}{baysis}{matched}
-As with the variable \textit{TDist}, it show that the only significant $p$-values are with group 0. Since the group is undefined from BAYSIS, there is no further interpretation possible.
-% ######################## Expand if time ########################
+As with the variable \textit{TDist}, it show that the only significant $p$-values are with group 0. Since the group is undefined from BAYSIS, there is no significant interpretation possible.
+% #### START: Table and Plot
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			72 & 41 & 59.29 & 28.58 & 65.00 & 10 & 100 & 90 \\ 
+			73 & 95 & 53.42 & 22.07 & 57.00 & 7  & 100 & 93 \\ 
+			82 & 13 & 40.15 & 12.75 & 39.00 & 18 & 67  & 49 \\ 
+			89 & 18 & 41.89 & 14.54 & 42.00 & 14 & 64  & 50 \\ 
+			\bottomrule
+			% \bar{x} - sum = 194.75, mean = 48.68
+			% \sigma - sum = 77.94, mean = 19.48
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_AUrs1_Cov}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			72 , 41 , 59.29 , 28.58 , 65.00 , 10 , 100 , 90 
+			73 , 95 , 53.42 , 22.07 , 57.00 , 7  , 100 , 93 
+			82 , 13 , 40.15 , 12.75 , 39.00 , 18 , 67  , 49 
+			89 , 18 , 41.89 , 14.54 , 42.00 , 14 , 64  , 50 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{48}{19}{3}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_AUrs1_Cov}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{AUrs} and \textit{Temporal Distance}}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+The descriptives in \cref{tbl:descriptives_baysis_matched_AUrs1_Cov,fig:descriptives_baysis_matched_AUrs1_Cov} can still be evaluated. They show that the jam coverage decreases with the accident causes \textit{Slippery street due to snow or ice} over \textit{Slippery street due to rain} to \textit{Visibility issues due to sun or glare} to by 17\,\% on average.
 
 % ------------------------
 % -------- AufHi ---------

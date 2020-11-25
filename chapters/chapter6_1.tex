@@ -1431,7 +1431,10 @@ This means there is a general trend, which can be interpreted with \cref{tbl:des
 % -------- WoTag ---------
 % ------------------------
 \centerheading{WoTag}
-This section analyzes the correlated relations of the accident variable \textit{WoTag} and introduces a initial interpretation of each significant correlation. The Kruskal-Wallis rank sum test of \textit{WoTag}-\textit{Cov} produces a $p$-value of 0.00009, which is way below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{WoTag}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{WoTag} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_WoTag_Cov}. 
+\varintrosimplewithsam{baysis}{WoTag}
+
+% #############################################
+\groupintrosigsig{WoTag}{Cov}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -1447,30 +1450,54 @@ This section analyzes the correlated relations of the accident variable \textit{
         Mo & \red{0.00} & \red{0.01} & \red{0.00} & 0.10 & 1.00 & 1.00 &  \\ 
         \bottomrule
       \end{tabular}
-	\caption{Pairwise Wilcoxon $T$-test for \textit{WoTag} and \textit{Coverage}}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{WoTag} and \textit{Coverage}, see \cref{tbl:wilcoxon_baysis_matched_WoTag_Cov_complete} for complete table}
 	\label{tbl:wilcoxon_baysis_matched_WoTag_Cov}
 \end{table}
-The significances in \cref{tbl:wilcoxon_baysis_matched_WoTag_Cov} show that the groups \textit{So} and \textit{Mo} differ from groups \textit{Di}, \textit{Mi}, \textit{Do} and \textit{Fr}. With the descriptives in \cref{tbl:descriptives_baysis_matched_WoTag_Cov} we can interpret that accidents on Sundays and Mondays are associated with jams 15\,\% denser than on other week days.
-\begin{table}[ht!]
-	\tiny
+It show that the groups \textit{So} and \textit{Mo} differ from groups \textit{Di}, \textit{Mi}, \textit{Do} and \textit{Fr}. 
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-    \begin{tabular}{c|c|c|c|c|c|c|c}
-        \toprule
-        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\ 
-        \midrule
-        Mo & 256 & 47.95 & 21.99 & 45.00 & 2  & 100 & 98 \\ 
-        Di & 280 & 40.62 & 20.88 & 37.00 & 6  & 100 & 94 \\ 
-        Mi & 287 & 41.47 & 18.91 & 39.00 & 6  & 90  & 84 \\ 
-        Do & 293 & 40.83 & 20.48 & 38.00 & 8  & 100 & 93 \\ 
-        Fr & 330 & 43.22 & 20.23 & 40.00 & 6  & 100 & 94 \\ 
-        Sa & 190 & 46.62 & 23.33 & 41.50 & 6  & 100 & 94 \\ 
-        So & 204 & 48.82 & 22.31 & 45.00 & 12 & 100 & 88 \\ 
-        \bottomrule
-      \end{tabular}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			Mo & 256 & 47.95 & 21.99 & 45.00 & 2  & 100 & 98 \\ 
+			Di & 280 & 40.62 & 20.88 & 37.00 & 6  & 100 & 94 \\ 
+			Mi & 287 & 41.47 & 18.91 & 39.00 & 6  & 90  & 84 \\ 
+			Do & 293 & 40.83 & 20.48 & 38.00 & 8  & 100 & 93 \\ 
+			Fr & 330 & 43.22 & 20.23 & 40.00 & 6  & 100 & 94 \\ 
+			Sa & 190 & 46.62 & 23.33 & 41.50 & 6  & 100 & 94 \\ 
+			So & 204 & 48.82 & 22.31 & 45.00 & 12 & 100 & 88 \\ 
+			\bottomrule
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_WoTag_Cov}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			Mo , 256 , 47.95 , 21.99 , 45.0 , 2  , 100 , 98 
+			Di , 280 , 40.62 , 20.88 , 37.0 , 6  , 100 , 94 
+			Mi , 287 , 41.47 , 18.91 , 39.0 , 6  , 90  , 84 
+			Do , 293 , 40.83 , 20.48 , 38.0 , 8  , 100 , 93 
+			Fr , 330 , 43.22 , 20.23 , 40.0 , 6  , 100 , 94 
+			Sa , 190 , 46.62 , 23.33 , 41.5 , 6  , 100 , 94 
+			So , 204 , 48.82 , 22.31 , 45.0 , 12 , 100 , 88 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithoutavg{\datasorted}{2}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_WoTag_Cov}
+	\end{minipage}%
 	\caption{Group descriptives of \textit{WoTag} and \textit{Coverage}}
-	\label{tbl:descriptives_baysis_matched_WoTag_Cov}
 	%\vspace{-8mm}
-\end{table}
+\end{figure}
+% #### END: Table and Plot
+With the descriptives in \cref{tbl:descriptives_baysis_matched_WoTag_Cov} we can interpret that accidents on Sundays and Mondays are associated with jams 8\,\% denser than on other week days.
 
 % ------------------------
 % -------- Month ---------

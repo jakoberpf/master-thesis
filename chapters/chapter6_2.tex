@@ -481,7 +481,7 @@ The descriptives in \cref{tbl:descriptives_baysis_initiator_UArt1_Cov,fig:descri
 \centerheading{AUrs}
 \varintrowithsam{baysis}{AUrs} The variable value of group 0, which occurs in the dataset is undefined by BAYSIS and will be therefore neglected for the interpretation. \varintronosigmul{AUrs}{\textit{AUrs1}-\textit{TMax}, \textit{AUrs1}-\textit{TAvg}, \textit{AUrs1}-\textit{SMax}, \textit{AUrs1}-\textit{SAvg}, \textit{AUrs1}-\textit{TDist} and \textit{AUrs1}-\textit{TLCar}} 
 
-% #############################################
+% ###################################################
 \groupintrosig{AUrs1}{Cov}{0.0176}{baysis}{initiator}
 It show shows that the significance differences is not group specific.
 % #### START: Table and Plot
@@ -536,6 +536,7 @@ All relations of the second \textit{AUrs} variable \textit{AUrs2} (\textit{AUrs2
 \centerheading{AufHi}
 \varintrowithsam{baysis}{AufHi} \varintronosigmul{AufHi}{\textit{AufHi}-\textit{TAvg} and \textit{AufHi}-\textit{Cov}}
 
+% ####################################################
 \groupintrosig{AufHi}{TMax}{0.0411}{baysis}{initiator}
 It shows that the significant differences are not related to any specific group.
 % #### START: Table and Plot
@@ -578,6 +579,7 @@ It shows that the significant differences are not related to any specific group.
 % #### END: Table and Plot
 The descriptives in \cref{tbl:descriptives_baysis_initiator_AufHi_TMax,fig:descriptives_baysis_initiator_AufHi_TMax} can still be evaluated. They show $\bar{x}$ 12\,min lower for accident \textit{Other objects}, than for \textit{Guardrail} and \textit{No collision}. This doesn't provide a meaningful base for interpretation.
 
+% #####################################################
 \groupintrosig{AufHi}{TDist}{0.0007}{baysis}{initiator}
 It shows that the significant differences are not related to any specific group.
 % #### START: Table and Plot
@@ -633,12 +635,13 @@ The descriptives in \cref{tbl:descriptives_baysis_initiator_AufHi_TDist,fig:desc
 \varintronosigmul{Lich}{\textit{Lich1} - \textit{TDist} and \textit{Lich2} - \textit{TDist}}
 
 % ------------------------
-% -------- Zust1 ---------
+% -------- Zust2 ---------
 % ------------------------
 \centerheading{Zust}
-This section analyzes the correlated relations of the accident variable \textit{Zust1}/\textit{Zust2}. The encoding and description of the variable \textit{Zust} is shown in \cref{tbl:baysis_dataset_Zust}. The relations of \textit{Zust2} - \textit{SAvg} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are no significant differences between the groups of \textit{Zust2}. The Kruskal-Wallis rank sum test of \textit{Zust2} - \textit{TAvg} produces a $p$-value below 0.0001, which is significant. But because the distribution only contains a single values, there are no interpretations to be draw and the correlation can be neglected.
+\varintrowithsam{baysis}{Zust} \varintronosigmul{Zust2}{\textit{Zust2} - \textit{SAvg} and \textit{Zust2} - \textit{TAvg}}
 
-The Kruskal-Wallis rank sum test of \textit{Zust1} - \textit{Cov} produces a $p$-value of 0.0046, which is below the $\alpha$-level. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Zust1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Zust1} - \textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_initiator_Zust1_Cov}. 
+% ###################################################
+\groupintrosig{Zust1}{Cov}{0.0046}{baysis}{initiator}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -655,26 +658,45 @@ The Kruskal-Wallis rank sum test of \textit{Zust1} - \textit{Cov} produces a $p$
     \label{tbl:wilcoxon_baysis_initiator_Zust1_Cov}
 \end{table}
 The table shows that all groups differ significantly, which means that there is a general trend.
-\begin{table}[ht!]
-	\tiny
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-    \begin{tabular}{c|c|c|c|c|c|c|c}
-        \toprule
-        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-        \midrule
-        0 & 548 & 50.80 & 20.28 & 49.50 & 6  & 100 & 94 \\ 
-        1 & 208 & 55.35 & 21.35 & 55.00 & 5  & 100 & 95 \\ 
-        2 & 18  & 74.06 & 26.80 & 87.50 & 18 & 100 & 82 \\ 
-        \bottomrule
-      \end{tabular}
-    \caption{Group descriptives of \textit{Zust1} and \textit{Coverage}}
-    \label{tbl:descriptives_baysis_initiator_Zust1_Cov}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			0 & 548 & 50.80 & 20.28 & 49.50 & 6  & 100 & 94 \\ 
+			1 & 208 & 55.35 & 21.35 & 55.00 & 5  & 100 & 95 \\ 
+			2 & 18  & 74.06 & 26.80 & 87.50 & 18 & 100 & 82 \\ 
+			\bottomrule
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_initiator_Zust1_Cov}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			0 , 548 , 50.80 , 20.28 , 49.50 , 6  , 100 , 94 
+			1 , 208 , 55.35 , 21.35 , 55.00 , 5  , 100 , 95 
+			2 , 18  , 74.06 , 26.80 , 87.50 , 18 , 100 , 82 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithoutavg{\datasorted}{2}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_initiator_Zust1_Cov}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Zust1} and \textit{Coverage} (Jam Initiator)}
 	%\vspace{-8mm}
-\end{table}
-With the descriptives in \cref*{tbl:descriptives_baysis_initiator_Zust1_Cov} it can be interpreted that the coverage of the jam increases from \textit{dry} over \textit{wet} to \textit{ice} by nearly 25\,\%.
+\end{figure}
+% #### END: Table and Plot
+With the descriptives in \cref{tbl:descriptives_baysis_initiator_Zust1_Cov,fig:descriptives_baysis_initiator_Zust1_Cov} it can be interpreted that the coverage of the jam increases from \textit{dry} over \textit{wet} to \textit{ice} by nearly 25\,\%.
 
 % ------------------------
 % -------- Month ---------
 % ------------------------
 \centerheading{Month}
-This section analyzes the correlated relations of the accident variable \textit{Month}. The relations of \textit{Month} - \textit{TMax}, \textit{Month} - \textit{Cov} and \textit{Month} - \textit{TLHGV} produce a $p$-value above the $\alpha$-level. The null hypothesizes can't be rejected and there are \textit{no} significant differences between the groups of \textit{Month} for the mentioned relations. There are no significant groups to identify.
+\varintronosigmul{Zust}{\textit{Month} - \textit{TMax}, \textit{Month} - \textit{Cov} and \textit{Month} - \textit{TLHGV}}

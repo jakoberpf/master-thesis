@@ -230,7 +230,7 @@ The significant descriptives from \cref{tbl:descriptives_baysis_effector_Street_
 	\pgfplotstablesort[sort key=meanTAvg, sort cmp=float >]{\datasorted}{\data}
 	\tiny
 	\centering
-	\barplotdoubleanalysis{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
+	\barplotdouble{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
 	\caption{Comparison of descriptives $\bar{x}_{TMax}$ and $\bar{x}_{TAvg}$ (\textit{TMax/TAvg} by \textit{Street})}
 	\label{fig:baysis_effector_meancomparison_Str_temporal}
 	%\vspace{-8mm}
@@ -458,18 +458,6 @@ The significant descriptives from \cref{tbl:descriptives_baysis_effector_Street_
 \end{table}
 The table show, that the groups of Wednesday and Sunday differ significantly from Tuesday and Wednesday respectively.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	Mo , 89  , 728.10 , 134.08 , 727.00 , 514 , 986 , 472 
-	Di , 115 , 766.97 , 141.79 , 794.00 , 518 , 999 , 481 	
-	Mi , 124 , 709.44 , 140.31 , 692.50 , 501 , 995 , 494 
-	Do , 129 , 739.48 , 143.28 , 720.00 , 511 , 983 , 472 
-	Fr , 142 , 739.78 , 155.44 , 720.00 , 502 , 998 , 496 
-	Sa , 65  , 750.46 , 143.80 , 778.00 , 507 , 988 , 481 
-	So , 73  , 774.67 , 141.34 , 784.00 , 534 , 994 , 460 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -495,35 +483,20 @@ The table show, that the groups of Wednesday and Sunday differ significantly fro
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_effector_WoTag_TLHGV}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			Mo , 89  , 728.10 , 134.08 , 727.00 , 514 , 986 , 472 
+			Di , 115 , 766.97 , 141.79 , 794.00 , 518 , 999 , 481 	
+			Mi , 124 , 709.44 , 140.31 , 692.50 , 501 , 995 , 494 
+			Do , 129 , 739.48 , 143.28 , 720.00 , 511 , 983 , 472 
+			Fr , 142 , 739.78 , 155.44 , 720.00 , 502 , 998 , 496 
+			Sa , 65  , 750.46 , 143.80 , 778.00 , 507 , 988 , 481 
+			So , 73  , 774.67 , 141.34 , 784.00 , 534 , 994 , 460 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				% Gitterlinien für y-Ticks
-				width=\textwidth,
-				height=4.2cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=6,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={744,143},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{36}{18}{6}{4.7}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_effector_WoTag_TLHGV}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{WoTag} and \textit{Time-loss HGV} (Jam Effector)}

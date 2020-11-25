@@ -245,7 +245,7 @@ The significant descriptives from \cref{tbl:descriptives_baysis_matched_Str_TAvg
 	\pgfplotstablesort[sort key=meanTAvg, sort cmp=float >]{\datasorted}{\data}
 	\tiny
 	\centering
-	\barplotdoubleanalysis{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
+	\barplotdouble{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
 	\caption{Comparison of descriptives $\bar{x}_{TMax}$ and $\bar{x}_{TAvg}$ (\textit{TMax/TAvg} by \textit{Street})}
 	\label{fig:baysis_matched_meancomparison_Str_temporal}
 	%\vspace{-8mm}
@@ -443,7 +443,7 @@ The significant descriptives from \cref{tbl:descriptives_baysis_matched_Str_SAvg
     \pgfplotstablesort[sort key=meanSAvg, sort cmp=float >]{\datasorted}{\data}
     \tiny
     \centering
-	\barplotdoubleanalysis{\datasorted}{meanSMax}{meanSAvg}{$\bar{x}_{SMax}$}{$\bar{x}_{SAvg}$}
+	\barplotdouble{\datasorted}{meanSMax}{meanSAvg}{$\bar{x}_{SMax}$}{$\bar{x}_{SAvg}$}
 	\caption{Comparison of descriptives $\bar{x}_{SMax}$ and $\bar{x}_{SAvg}$ (\textit{SMax/SAvg} by \textit{Street})}
 	\label{fig:baysis_matched_meancomparison_Str_spatial}
 	%\vspace{-8mm}
@@ -681,7 +681,7 @@ The descriptives from \cref{tbl:descriptives_baysis_matched_Kat_TAvg,fig:descrip
     \pgfplotstablesort[sort key=meanTAvg, sort cmp=float >]{\datasorted}{\data}
     \tiny
     \centering
-	\barplotdoubleanalysis{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
+	\barplotdouble{\datasorted}{meanTMax}{meanTAvg}{$\bar{x}_{TMax}$}{$\bar{x}_{TAvg}$}
 	\caption{Comparison of descriptives $\bar{x}_{TMax}$ and $\bar{x}_{TAvg}$ (\textit{TMax/TAvg} by \textit{Kat})}
 	\label{fig:baysis_matched_meancomparison_Kat_temporal}
 	%\vspace{-8mm}

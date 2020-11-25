@@ -352,12 +352,59 @@ The table shows, that groups 7, 8 and 9 differ from group 2 and 3.
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-The descriptives in \cref{tbl:descriptives_baysis_initiator_UArt1_TDist,fig:descriptives_baysis_initiator_UArt1_TDist} reveal that the groups 7, 8 and 9 have considerably higher means, than the groups 1, 2, 3 and 5. Therefore it can be interpreted as accident collisions with \textit{starting}, \textit{standing}, \textit{stopping}, \textit{turning}, \textit{crossing}, \textit{ahead and waiting vehicle} and \textit{vehicle on separate lane in same direction} vehicles (average of 9\,min) have a closer temporal reaction, when jams of accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles take longer to create (average of 12\,min).
+The descriptives in \cref{tbl:descriptives_baysis_initiator_UArt1_TDist,fig:descriptives_baysis_initiator_UArt1_TDist} reveal that the groups 7, 8 and 9 have considerably higher $\bar{x}$, than the groups 1, 2, 3 and 5. Therefore it can be interpreted as accident collisions with \textit{starting}, \textit{standing}, \textit{stopping}, \textit{turning}, \textit{crossing}, \textit{ahead and waiting vehicle} and \textit{vehicle on separate lane in same direction} vehicles (average of 9\,min) have a closer temporal reaction, when jams of accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles take longer to create (average of 12\,min).
 
 % ############################################
 \groupintrosig{UArt1}{Cov}{0.0337}{baysis}{initiator}
-It shows that the significant differences are not related to any specific group of \textit{UArt1} and the correlation can be neglected.
-% ######################## Expand if time ########################
+It shows that the significant differences are not related to any specific group of \textit{UArt1} and the correlation it not group specific.
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			0 & 24  & 51.38 & 20.70 & 45.5 & 23 & 96  & 73 \\ 
+			1 & 31  & 53.68 & 18.85 & 50.0 & 28 & 96  & 68 \\ 
+			2 & 344 & 50.81 & 19.88 & 50.0 & 7  & 100 & 93 \\ 
+			3 & 144 & 48.90 & 19.87 & 50.0 & 5  & 98  & 93 \\ 
+			5 & 15  & 43.27 & 21.32 & 42.0 & 12 & 88  & 76 \\  
+			7 & 23  & 59.09 & 25.74 & 62.0 & 18 & 100 & 82 \\ 
+			8 & 107 & 58.85 & 23.92 & 57.0 & 7  & 100 & 93 \\ 
+			9 & 80  & 56.73 & 21.86 & 54.0 & 18 & 100 & 82 \\ 
+			\bottomrule
+			% \bar{x} - sum = 422.71, mean = 52.83
+			% \sigma - sum = 172.14, mean = 21.51
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_initiator_UArt1_Cov}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			0 , 24  , 51.38 , 20.70 , 45.5 , 23 , 96  , 73 
+			1 , 31  , 53.68 , 18.85 , 50.0 , 28 , 96  , 68 
+			2 , 344 , 50.81 , 19.88 , 50.0 , 7  , 100 , 93 
+			3 , 144 , 48.90 , 19.87 , 50.0 , 5  , 98  , 93 
+			5 , 15  , 43.27 , 21.32 , 42.0 , 12 , 88  , 76  
+			7 , 23  , 59.09 , 25.74 , 62.0 , 18 , 100 , 82 
+			8 , 107 , 58.85 , 23.92 , 57.0 , 7  , 100 , 93 
+			9 , 80  , 56.73 , 21.86 , 54.0 , 18 , 100 , 82 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{52}{21}{7}{4.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_initiator_UArt1_Cov}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{UArt1} and \textit{Coverage} (Jam Initiator)}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+The descriptives in \cref{tbl:descriptives_baysis_initiator_UArt1_Cov,fig:descriptives_baysis_initiator_UArt1_Cov} can still be evaluated. They show that the groups 7, 8 and 9 have considerable higher $\bar{x}$ than the groups 2, 3 and 5. Therefore it can be interpreted that accident collisions with \textit{ahead and waiting vehicle} and \textit{vehicle on separate lane in same direction} vehicles (average of 50\,\%) are associated with less dense jams than accident collisions with \textit{obstacles} or \textit{left/right} nearby vehicles (average of 58\,\%). Jams associated with accidents of the category \textit{turning} and \textit{crossing} vehicles are the least dense with 43\,\%.
 
 % ------------------------
 % -------- AUrs1 ---------
@@ -375,6 +422,7 @@ It show shows that the significance differences is not group specific. The corre
 % ------------------------
 \medskip
 All relations of the second \textit{AUrs} variable \textit{AUrs2} (\textit{AUrs2}-\textit{TMax}, \textit{AUrs2}-\textit{TAvg}, \textit{AUrs2}-\textit{SAvg} and \textit{AUrs2}-\textit{TDist}) produce $p$-values above the defined $\alpha$-level. Therefore the null hypothesizes can't be rejected and no significant differences in \textit{AUrs2} are present for these relations.
+
 % ------------------------
 % -------- AufHi ---------
 % ------------------------

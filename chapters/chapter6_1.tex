@@ -1257,9 +1257,10 @@ The significantly descriptives in \cref{tbl:descriptives_baysis_matched_AufHi_Co
 % -------- Lich ---------
 % -----------------------
 \centerheading{Lich}
-This section analyzes the correlated relations of the accident variable \textit{Lich1} as well as \textit{Lich2}. The encoding and description of the variable \textit{Lich} is shown in \cref{tbl:baysis_dataset_AufHi}.
+\varintrowithsam{baysis}{Lich}
 
-The Kruskal-Wallis rank sum test of \textit{Lich1} - \textit{Cov} produces a $p$-value of 0.0021, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Lich1}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Lich1}-\textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Lich1_Cov}. 
+% #############################################
+\groupintrosig{Lich1}{Cov}{0.0021}{baysis}{matched}
 \begin{table}[ht!]
 	\tiny
 	\centering
@@ -1274,24 +1275,43 @@ The Kruskal-Wallis rank sum test of \textit{Lich1} - \textit{Cov} produces a $p$
 	\caption{Pairwise Wilcoxon $T$-test for \textit{Lich1} and \textit{Coverage}}
 	\label{tbl:wilcoxon_baysis_matched_Lich1_Cov}
 \end{table}
-\cref{tbl:wilcoxon_baysis_matched_Lich1_Cov} shows that only group 2 differs significantly from group 0. 
-\begin{table}[ht!]
-	\tiny
-	\centering
-    \begin{tabular}{c|c|c|c|c|c|c|c}
-        \toprule
-        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\  
-        \midrule
-        0 & 1492 & 42.42 & 20.62 & 40 & 2  & 100 & 95 \\ 
-        1 & 97   & 45.69 & 22.58 & 44 & 10 & 100 & 90 \\ 
-        2 & 262  & 51.77 & 22.37 & 48 & 3  & 100 & 93 \\ 
-        \bottomrule
-      \end{tabular}
-	\caption{Group descriptives of \textit{Lich1} and \textit{Coverage}}
-	\label{tbl:descriptives_baysis_matched_Lich1_Cov}
-	%\vspace{-8mm}
-\end{table}
-With the descriptives from \cref{tbl:descriptives_baysis_matched_Lich1_Cov} it can be stated that accidents during \textit{darkness} are associated with 10\,\% denser jams than in \textit{daylight}.
+It shows that only group 2 differs significantly from group 0. 
+% % #### START: Table and Plot
+% \begin{figure}[ht!]
+% 	\centering
+% 	\begin{minipage}{0.5\textwidth}
+% 		\tiny
+% 		\setlength{\tabcolsep}{4pt}
+% 		\centering
+% 		\begin{tabular}{c|c|c|c|c|c|c|c}
+% 			\toprule
+% 			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+% 			\midrule
+% 			0 & 1492 & 42.42 & 20.62 & 40 & 2  & 100 & 95 \\ 
+% 			1 & 97   & 45.69 & 22.58 & 44 & 10 & 100 & 90 \\ 
+% 			2 & 262  & 51.77 & 22.37 & 48 & 3  & 100 & 93 \\ 
+% 			\bottomrule
+% 		\end{tabular}
+% 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Lich1_Cov}
+% 	\end{minipage}%
+% 	\begin{minipage}{0.55\textwidth}
+% 		\pgfplotstableread[col sep=comma]{
+% 			road, count, mean, median, sd, min, max, delta
+% 			0 & 1492 & 42.42 & 20.62 & 40 & 2  & 100 & 95 \\ 
+% 			1 & 97   & 45.69 & 22.58 & 44 & 10 & 100 & 90 \\ 
+% 			2 & 262  & 51.77 & 22.37 & 48 & 3  & 100 & 93 \\  
+% 		}\data 
+%         \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+%         \tiny
+%         \centering
+%         \descplotfigwithoutavg{\datasorted}{3}{3.7}
+% 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Lich1_Cov}
+% 	\end{minipage}%
+% 	\caption{Group descriptives of \textit{Lich1} and \textit{Coverage}}
+% 	%\vspace{-8mm}
+% \end{figure}
+% % #### END: Table and Plot
+With the descriptives from \cref{tbl:descriptives_baysis_matched_Lich1_Cov,fig:descriptives_baysis_matched_Lich1_Cov} it can be stated that accidents during \textit{darkness} are associated with 10\,\% denser jams than in \textit{daylight}.
 
 The Kruskal-Wallis rank sum test of \textit{Lich2}-\textit{Cov} produces a $p$-value of 0.0018, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Lich2}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Lich2}-\textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Lich2_Cov}. 
 \begin{table}[ht!]

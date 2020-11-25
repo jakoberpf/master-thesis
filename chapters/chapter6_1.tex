@@ -1276,41 +1276,41 @@ The significantly descriptives in \cref{tbl:descriptives_baysis_matched_AufHi_Co
 	\label{tbl:wilcoxon_baysis_matched_Lich1_Cov}
 \end{table}
 It shows that only group 2 differs significantly from group 0. 
-% % #### START: Table and Plot
-% \begin{figure}[ht!]
-% 	\centering
-% 	\begin{minipage}{0.5\textwidth}
-% 		\tiny
-% 		\setlength{\tabcolsep}{4pt}
-% 		\centering
-% 		\begin{tabular}{c|c|c|c|c|c|c|c}
-% 			\toprule
-% 			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
-% 			\midrule
-% 			0 & 1492 & 42.42 & 20.62 & 40 & 2  & 100 & 95 \\ 
-% 			1 & 97   & 45.69 & 22.58 & 44 & 10 & 100 & 90 \\ 
-% 			2 & 262  & 51.77 & 22.37 & 48 & 3  & 100 & 93 \\ 
-% 			\bottomrule
-% 		\end{tabular}
-% 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Lich1_Cov}
-% 	\end{minipage}%
-% 	\begin{minipage}{0.55\textwidth}
-% 		\pgfplotstableread[col sep=comma]{
-% 			road, count, mean, median, sd, min, max, delta
-% 			0 & 1492 & 42.42 & 20.62 & 40 & 2  & 100 & 95 \\ 
-% 			1 & 97   & 45.69 & 22.58 & 44 & 10 & 100 & 90 \\ 
-% 			2 & 262  & 51.77 & 22.37 & 48 & 3  & 100 & 93 \\  
-% 		}\data 
-%         \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
-%         \tiny
-%         \centering
-%         \descplotfigwithoutavg{\datasorted}{3}{3.7}
-% 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Lich1_Cov}
-% 	\end{minipage}%
-% 	\caption{Group descriptives of \textit{Lich1} and \textit{Coverage}}
-% 	%\vspace{-8mm}
-% \end{figure}
-% % #### END: Table and Plot
+% #### START: Table and Plot
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			0 & 1492 & 42.42 & 20.62 & 40 & 2  & 100 & 95 \\ 
+			1 & 97   & 45.69 & 22.58 & 44 & 10 & 100 & 90 \\ 
+			2 & 262  & 51.77 & 22.37 & 48 & 3  & 100 & 93 \\ 
+			\bottomrule
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Lich1_Cov}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			0 , 1492 , 42.42 , 20.62 , 40 , 2  , 100 , 95 
+			1 , 97   , 45.69 , 22.58 , 44 , 10 , 100 , 90 
+			2 , 262  , 51.77 , 22.37 , 48 , 3  , 100 , 93  
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithoutavg{\datasorted}{2}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Lich1_Cov}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Lich1} and \textit{Coverage}}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
 With the descriptives from \cref{tbl:descriptives_baysis_matched_Lich1_Cov,fig:descriptives_baysis_matched_Lich1_Cov} it can be stated that accidents during \textit{darkness} are associated with 10\,\% denser jams than in \textit{daylight}.
 
 The Kruskal-Wallis rank sum test of \textit{Lich2}-\textit{Cov} produces a $p$-value of 0.0018, which is below $\alpha$. The null hypothesis can therefore be rejected, which means there is a significant difference between the groups of \textit{Lich2}. To identify the significant groups, a pairwise Wilcoxon $T$-test for \textit{Lich2}-\textit{Cov} is run, which produces \cref{tbl:wilcoxon_baysis_matched_Lich2_Cov}. 
@@ -1329,23 +1329,42 @@ The Kruskal-Wallis rank sum test of \textit{Lich2}-\textit{Cov} produces a $p$-v
 	\label{tbl:wilcoxon_baysis_matched_Lich2_Cov}
 \end{table}
 Similar to \textit{Lich1} the \cref{tbl:wilcoxon_baysis_matched_Lich2_Cov} only group 4 differs significantly from group 0. 
-\begin{table}[ht!]
-	\tiny
+% #### START: Table and Plot
+\begin{figure}[ht!]
 	\centering
-    \begin{tabular}{c|c|c|c|c|c|c|c}
-        \toprule
-        Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\   
-        \midrule
-        0 & 1492 & 42.42 & 20.62 & 40 & 2  & 100 & 95 \\ 
-        3 & 16   & 41.06 & 14.67 & 37 & 18 & 75  & 57 \\ 
-        4 & 343  & 50.55 & 22.78 & 48 & 3  & 100 & 93 \\ 
-        \bottomrule
-      \end{tabular}
-	\caption{Group descriptives of \textit{Lich2} and \textit{Coverage}}
-	\label{tbl:descriptives_baysis_matched_Lich2_Cov}
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			0 & 1492 & 42.42 & 20.62 & 40 & 2  & 100 & 95 \\ 
+			3 & 16   & 41.06 & 14.67 & 37 & 18 & 75  & 57 \\ 
+			4 & 343  & 50.55 & 22.78 & 48 & 3  & 100 & 93 \\ 
+			\bottomrule
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_matched_Lich2_Cov}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			0 , 1492 , 42.42 , 20.62 , 40 , 2  , 100 , 95 
+			3 , 16   , 41.06 , 14.67 , 37 , 18 , 75  , 57 
+			4 , 343  , 50.55 , 22.78 , 48 , 3  , 100 , 93  
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithoutavg{\datasorted}{2}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_matched_Lich2_Cov}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{Lich1} and \textit{Coverage}}
 	%\vspace{-8mm}
-\end{table}
-With the descriptives from \cref{tbl:descriptives_baysis_matched_Lich2_Cov} it can state like for that accidents in ares where street light are disabled are associated with 8\,\% denser jams than in daylight, like \textit{Lich1}.
+\end{figure}
+% #### END: Table and Plot
+With the descriptives from \cref{tbl:descriptives_baysis_matched_Lich2_Cov,fig:descriptives_baysis_matched_Lich2_Cov} it can state like for that accidents in ares where street light are disabled are associated with 8\,\% denser jams than in daylight, like \textit{Lich1}.
 
 % -----------------------
 % -------- Zust ---------

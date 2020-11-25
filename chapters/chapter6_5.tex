@@ -1073,6 +1073,10 @@ It shows that all groups have significantly differences form some other group. T
 			Nov , 213 , 6521.21  , 7176.02  , 3955.00 , 1014 , 33764 , 32750
 			Dec , 278 , 8165.85  , 7680.25  , 4731.00 , 951  , 34227 , 33276
 		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+		\tiny
+		\centering
+		\descplotfigwithavg{\datasorted}{8804}{8443}{11}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_SMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Maximal Spatial Extent}}
@@ -1153,7 +1157,11 @@ It shows that most groups have significantly differences to another group. The g
 			Oct , 307 , 2751.38 , 2013.59 , 2282.00 , 625 , 11161 , 10536
 			Nov , 213 , 2639.70 , 2401.25 , 1916.00 , 305 , 13639 , 13334
 			Dec , 278 , 3423.72 , 3129.03 , 2036.00 , 284 , 15054 , 14770
-		}\data
+		}\data		
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+		\tiny
+		\centering
+		\descplotfigwithavg{\datasorted}{3237}{2654}{11}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_SAvg}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Maximal Spatial Extent}}
@@ -1235,6 +1243,10 @@ It shows that most groups have significantly differences to another group. The g
 			Nov , 213 , 176.46 , 406.35 , 0 , 0 , 1925 , 1925 
 			Dec , 278 , 287.55 , 559.68 , 0 , 0 , 1988 , 1988 
 		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+		\tiny
+		\centering
+		\descplotfigwithavg{\datasorted}{153}{395}{11}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_SDist}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Spatial Distance}}
@@ -1316,6 +1328,10 @@ It shows that most groups have significantly differences to another group. The g
 			Nov , 213 , 53.48 , 25.65 , 54 , 6 , 100 , 94 
 			Dec , 278 , 48.60 , 22.92 , 47 , 7 , 100 , 93 
 		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+		\tiny
+		\centering
+		\descplotfigwithavg{\datasorted}{46}{22}{11}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_Cov}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Coverage}}
@@ -1375,8 +1391,8 @@ It shows that most groups have significantly differences to another group. The g
 			Nov & 213 & 1452.33 & 266.82 & 1359.00 & 1036 & 1988 & 952 \\ 
 			Dec & 278 & 1452.09 & 310.35 & 1399.00 & 1000 & 1997 & 997 \\ 
 			\bottomrule
-			% \bar{x} - sum = , mean = 
-			% \sigma - sum = , mean = 
+			% \bar{x} - sum = 17970.85, mean = 1497.57
+			% \sigma - sum = 3428.25, mean = 285.68
 			% \tilde{x} 
 		\end{tabular}
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_TLCar}
@@ -1397,6 +1413,10 @@ It shows that most groups have significantly differences to another group. The g
 			Nov , 213 , 1452.33 , 266.82 , 1359.0 , 1036 , 1988 , 952 
 			Dec , 278 , 1452.09 , 310.35 , 1399.0 , 1000 , 1997 , 997 
 		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+		\tiny
+		\centering
+		\descplotfigwithavg{\datasorted}{1497}{285}{11}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_TLCar}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Time-loss Car}}

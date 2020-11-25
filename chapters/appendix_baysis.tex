@@ -438,6 +438,24 @@
     % -------- Zust ---------
 
     % -------- WoTag ---------
+    \begin{table}[ht!]
+        \tiny
+        \centering
+        \begin{tabular}{rrrrrrrr}
+            \toprule
+            & Di & Mi & Do & Fr & Sa & So & Mo \\ 
+            \midrule
+            Mi & 1.00 &  &  &  &  &  &  \\ 
+            Do & 1.00 & 1.00 &  &  &  &  &  \\ 
+            Fr & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+            Sa & 0.20 & 0.48 & 0.20 & 1.00 &  &  &  \\ 
+            So & \red{0.00} & \red{0.02} & \red{0.00} & 0.14 & 1.00 &  &  \\ 
+            Mo & \red{0.00} & \red{0.01} & \red{0.00} & 0.10 & 1.00 & 1.00 &  \\ 
+            \bottomrule
+          \end{tabular}
+        \caption{Pairwise Wilcoxon $T$-test for \textit{WoTag} and \textit{Coverage} complete}
+        \label{tbl:wilcoxon_baysis_matched_WoTag_Cov_complete}
+    \end{table}
 
     % -------- Month ---------
 
@@ -775,7 +793,7 @@
             \bottomrule
             \end{tabular}
         \caption{Pairwise Wilcoxon $T$-test for \textit{WoTag} and \textit{Maximal Spatial Extent} (Jam Effector)}
-        \label{tbl:wilcoxon_baysis_effector_WoTag_TMax}
+        \label{tbl:wilcoxon_baysis_effector_WoTag_SMax}
     \end{table}
 
     \begin{table}[ht!]

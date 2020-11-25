@@ -537,20 +537,94 @@ All relations of the second \textit{AUrs} variable \textit{AUrs2} (\textit{AUrs2
 \varintrowithsam{baysis}{AufHi} \varintronosigmul{AufHi}{\textit{AufHi}-\textit{TAvg} and \textit{AufHi}-\textit{Cov}}
 
 \groupintrosig{AufHi}{TMax}{0.0411}{baysis}{initiator}
-It shows that the significant differences are not related to any specific group of \textit{AufHi} and the correlation can be neglected.
-\todo{Add sig tabel to appendix}
-% ######################## Expand if time ########################
+It shows that the significant differences are not related to any specific group.
+% #### START: Table and Plot
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			3 & 241 & 125.49 & 126.64 & 93.0  & 12  & 1152 & 1140 \\
+			4 & 24  & 113.50 & 70.60  & 97.5  & 21  & 321  & 300  \\
+			5 & 12  & 127.00 & 110.21 & 73.5  & 45  & 405  & 360  \\
+			\bottomrule
+			% \bar{x} - sum = 365.99, mean = 121.99
+			% \sigma - sum = 307.45, mean = 102.48
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_initiator_AufHi_TMax}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			3 , 241 , 125.49 , 126.64 , 93.0  , 12  , 1152 , 1140
+			4 , 24  , 113.50 , 70.60  , 97.5  , 21  , 321  , 300 
+			5 , 12  , 127.00 , 110.21 , 73.5  , 45  , 405  , 360 
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{122}{102}{2}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_initiator_AufHi_TMax}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{AufHi} and \textit{Maximal Temporal Extent} (Jam Initiator)}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+The descriptives in \cref{tbl:descriptives_baysis_initiator_AufHi_TMax,fig:descriptives_baysis_initiator_AufHi_TMax} can still be evaluated. They show $\bar{x}$ 12\,min lower for accident \textit{Other objects}, than for \textit{Guardrail} and \textit{No collision}. This doesn't provide a meaningful base for interpretation.
 
 \groupintrosig{AufHi}{TDist}{0.0007}{baysis}{initiator}
-It shows that the significant differences are not related to any specific group of \textit{AufHi} and the correlation can be neglected.
-\todo{Add sig tabel to appendix}
-% ######################## Expand if time ########################
+It shows that the significant differences are not related to any specific group.
+% #### START: Table and Plot
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			3 & 241 & 10.52 & 5.94 & 9  & 1 & 24 & 23 \\
+			4 & 24  & 13.21 & 6.78 & 13 & 2 & 24 & 22 \\
+			5 & 12  & 10.33 & 7.78 & 9  & 1 & 21 & 20 \\
+			\bottomrule
+			% \bar{x} - sum = 34.06, mean = 11.35
+			% \sigma - sum = 20.5, mean = 6.83
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_initiator_AufHi_TDist}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			3 , 241 , 10.52 , 5.94 , 9  , 1 , 24 , 23
+			4 , 24  , 13.21 , 6.78 , 13 , 2 , 24 , 22
+			5 , 12  , 10.33 , 7.78 , 9  , 1 , 21 , 20
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{11.35}{6.83}{2}{3.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_initiator_AufHi_TDist}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{AufHi} and \textit{Temporal Distance} (Jam Initiator)}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+The descriptives in \cref{tbl:descriptives_baysis_initiator_AufHi_TDist,fig:descriptives_baysis_initiator_AufHi_TDist} can still be evaluated. They show $\bar{x}$ 3\,min higher for accident \textit{Other objects}, than for \textit{Guardrail} and \textit{No collision}. This doesn't provide a meaningful base for interpretation.
 
 % ------------------------
-% -------- Char1 ---------
+% -------- Char ---------
 % ------------------------
 \centerheading{Char}
-This section analyzes the correlated relations of the accident variable \textit{Char}. The relations of \textit{Char1}-\textit{TDist} produces a $p$-value above the $\alpha$-level. The null hypothesis can't be rejected and there is no significant difference between the groups of \textit{Char1}. There are therefore also no significant groups to identify.
+\varintrowithsam{baysis}{Char} \varintronosigsing{AufHi}{TDist}
 
 % --------------------------------
 % -------- Lich1 & Lich2 ---------

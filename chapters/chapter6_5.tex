@@ -815,7 +815,7 @@ It shows that the groups A3, A7, A70, A73, A92, A93, A94, A96 and A99 differ sig
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-Although the groups differ significantly, the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TLCar,fig:descriptives_arbis_matched_Strasse_TLCar} don't provide interpretable differences.
+Although the groups differ significantly, the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TLCar,fig:descriptives_arbis_matched_Strasse_TLCar} don't provide interpretable differences, because all groups descriptives are very similar. The descriptives values are also very similar to the $\bar{x}$, $\sigma$ or $\tilde{x}$ respectively.
 
 % ###############################################
 \groupintrosigsig{Strasse}{TLHGV}{arbis}{matched}
@@ -907,7 +907,7 @@ It shows that the groups A3, A7, A70, A73, A92, A93, A94, A96 and A99 differ sig
 	%\vspace{-8mm}
 \end{figure}
 % #### END: Table and Plot
-Although the groups differ significantly, the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TLHGV,fig:descriptives_arbis_matched_Strasse_TLHGV} don't provide interpretable differences.
+Although the groups differ significantly, the descriptives in \cref{tbl:descriptives_arbis_matched_Strasse_TLHGV,fig:descriptives_arbis_matched_Strasse_TLHGV} don't provide interpretable differences, because all groups descriptives are very similar. The descriptives values are also very similar to the $\bar{x}$, $\sigma$ or $\tilde{x}$ respectively.
 
 % ------------------------
 % -------- Month ---------
@@ -943,23 +943,6 @@ Although the groups differ significantly, the descriptives in \cref{tbl:descript
 \end{table}
 It shows that all groups have significantly differences from group of September.
 % #### START: Table and Plot
-\pgfplotstableread[col sep=comma,header=false]{
-	Jan , 118 , 86.61  , 107.08 , 40.50 , 6 , 630  , 624  
-	Feb , 160 , 87.44  , 94.17  , 47.00 , 4 , 394  , 390  
-	Mar , 216 , 63.76  , 87.26  , 44.00 , 6 , 673  , 667  
-	Apr , 271 , 70.06  , 70.37  , 43.00 , 7 , 381  , 374  
-	May , 268 , 55.76  , 51.77  , 42.50 , 4 , 399  , 395  
-	Jun , 186 , 68.30  , 75.52  , 42.00 , 3 , 515  , 512  
-	Jul , 529 , 73.41  , 83.37  , 34.00 , 5 , 575  , 570  
-	Aug , 273 , 77.21  , 91.11  , 50.00 , 4 , 581  , 577  
-	Sep , 370 , 133.56 , 144.37 , 94.00 , 3 , 966  , 963  
-	Oct , 307 , 78.98  , 90.51  , 48.00 , 5 , 447  , 442  
-	Nov , 213 , 82.36  , 137.96 , 38.00 , 5 , 1326 , 1321 
-	Dec , 278 , 98.18  , 153.84 , 44.50 , 5 , 1326 , 1321 
-}\data
-\pgfplotstablecreatecol[
-  create col/expr={\thisrow{1} + \thisrow{2} + \thisrow{3} + \thisrow{4}}
-]{sum}{\data}
 \begin{figure}[ht!]
 	\centering
 	\begin{minipage}{0.5\textwidth}
@@ -990,34 +973,25 @@ It shows that all groups have significantly differences from group of September.
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_arbis_matched_Month_TAvg}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			month, count, mean, median, sd, min, max, delta
+			Jan , 118 , 86.61  , 107.08 , 40.50 , 6 , 630  , 624  
+			Feb , 160 , 87.44  , 94.17  , 47.00 , 4 , 394  , 390  
+			Mar , 216 , 63.76  , 87.26  , 44.00 , 6 , 673  , 667  
+			Apr , 271 , 70.06  , 70.37  , 43.00 , 7 , 381  , 374  
+			May , 268 , 55.76  , 51.77  , 42.50 , 4 , 399  , 395  
+			Jun , 186 , 68.30  , 75.52  , 42.00 , 3 , 515  , 512  
+			Jul , 529 , 73.41  , 83.37  , 34.00 , 5 , 575  , 570  
+			Aug , 273 , 77.21  , 91.11  , 50.00 , 4 , 581  , 577  
+			Sep , 370 , 133.56 , 144.37 , 94.00 , 3 , 966  , 963  
+			Oct , 307 , 78.98  , 90.51  , 48.00 , 5 , 447  , 442  
+			Nov , 213 , 82.36  , 137.96 , 38.00 , 5 , 1326 , 1321 
+			Dec , 278 , 98.18  , 153.84 , 44.50 , 5 , 1326 , 1321 
+		}\data
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		\begin{tikzpicture}
-			\begin{axis}[
-				width=\textwidth,
-				height=5cm,
-				xmajorgrids=true,
-				ymajorgrids=true,
-				xtick=data,
-				xmin=0,xmax=11,
-				xticklabels from table={\data}{[index]0},
-				% zusätzliche Beschriftung an y-Achse
-				every extra y tick/.style={
-					tick0/.initial=blue,
-					tick1/.initial=red,
-					yticklabel style={
-						color=\pgfkeysvalueof{/pgfplots/tick\ticknum}
-					},
-				},
-				extra y ticks={81,99},
-			]
-			\addplot table [absolute series=2] {\data};
-			\addplot table [absolute series=3] {\data};
-			\addplot table [absolute series=4] {\data};
-			\legend{
-				$\bar{x}$,$\sigma$,$\tilde{x}$}
-			\end{axis}
-		 \end{tikzpicture}\vfill
+		\descplotfigwithavg{\datasorted}{81}{98}{11}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_arbis_matched_Month_TAvg}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Average Temporal Extent}}

@@ -277,8 +277,77 @@ The significant descriptives in \cref{tbl:descriptives_baysis_initiator_Typ_TDis
 
 % ############################################
 \groupintrosig{UArt1}{TMax}{0.0014}{baysis}{initiator}
-It shows that only groups 4 and 7 differ significantly from group 1, but because group 4 only contains 4 samples it is neglected (see \cref{correlation_uncertainty}). 
-% ######################## Expand if time ########################
+\begin{table}[ht!]
+	\tiny
+	\centering
+	\begin{tabular}{rrrrrrrrrr}
+		\toprule
+		& 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+		\midrule
+		% 1 & 1.00 &  &  &  &  &  &  &  &  \\ 
+		% 2 & 1.00 & 1.00 &  &  &  &  &  &  &  \\ 
+		3 & 1.00 & \red{0.04} & 0.00 &  &  &  &  &  &  \\ 
+		% 4 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  &  \\ 
+		% 5 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  &  \\ 
+		% 6 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  &  &  \\ 
+		7 & 0.75 & \red{0.05} & 0.13 & 1.00 & 1.00 & 1.00 & 1.00 &  &  \\ 
+		% 8 & 1.00 & 0.21 & 0.47 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 &  \\ 
+		% 9 & 1.00 & 0.45 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ 
+		\bottomrule
+	\end{tabular}
+	\caption{Pairwise Wilcoxon $T$-test for \textit{UArt1} and \textit{Maximal Temporal Extent} (Jam Initiator), see \cref{tbl:wilcoxon_baysis_initiator_UArt1_TMax_complete} for complete table}
+	\label{tbl:wilcoxon_baysis_initiator_UArt1_TMax}
+\end{table}
+It shows that only groups 3 and 7 differ significantly from group 1.
+  % #### START: Table and Plot
+\begin{figure}[ht!]
+	\centering
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\setlength{\tabcolsep}{4pt}
+		\centering
+		\begin{tabular}{c|c|c|c|c|c|c|c}
+			\toprule
+			Group & $n$ & $\bar{x}$ & $\sigma$ & $\tilde{x}$ & $min$ & $max$ & $\Delta$ \\
+			\midrule
+			0 & 24  & 140.75 & 100.75 & 114.0 & 30 & 375  & 345  \\
+			1 & 31  & 198.58 & 166.25 & 126.0 & 39 & 612  & 573  \\
+			2 & 344 & 133.84 & 107.15 & 105.0 & 9  & 864  & 855  \\
+			3 & 144 & 111.79 & 123.13 & 81.0  & 9  & 1116 & 1107 \\
+			5 & 15  & 179.60 & 324.31 & 99.0  & 15 & 1341 & 1326 \\
+			7 & 23  & 87.91  & 93.15  & 48.0  & 12 & 384  & 372  \\
+			8 & 107 & 118.46 & 117.62 & 87.0  & 18 & 813  & 79   \\
+			9 & 80  & 122.47 & 143.91 & 91.5  & 12 & 1152 & 1140 \\
+			\bottomrule
+			% \bar{x} - sum = 1093.4, mean = 136.67
+			% \sigma - sum = 1176.27, mean = 147.03
+			% \tilde{x}
+		\end{tabular}
+		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_initiator_UArt1_TMax}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\pgfplotstableread[col sep=comma]{
+			road, count, mean, median, sd, min, max, delta
+			0 , 24  , 140.75 , 100.75 , 114.0 , 30 , 375  , 345 
+			1 , 31  , 198.58 , 166.25 , 126.0 , 39 , 612  , 573 
+			2 , 344 , 133.84 , 107.15 , 105.0 , 9  , 864  , 855 
+			3 , 144 , 111.79 , 123.13 , 81.0  , 9  , 1116 , 1107
+			5 , 15  , 179.60 , 324.31 , 99.0  , 15 , 1341 , 1326
+			7 , 23  , 87.91  , 93.15  , 48.0  , 12 , 384  , 372 
+			8 , 107 , 118.46 , 117.62 , 87.0  , 18 , 813  , 79  
+			9 , 80  , 122.47 , 143.91 , 91.5  , 12 , 1152 , 1140
+		}\data 
+        \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+        \tiny
+        \centering
+        \descplotfigwithavg{\datasorted}{136}{147}{7}{4.7}
+		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_initiator_UArt1_TMax}
+	\end{minipage}%
+	\caption{Group descriptives of \textit{UArt1} and \textit{Maximal Temporal Extent} (Jam Initiator)}
+	%\vspace{-8mm}
+\end{figure}
+% #### END: Table and Plot
+The descriptives in \cref{tbl:descriptives_baysis_initiator_UArt1_TDist,fig:descriptives_baysis_initiator_UArt1_TDist} reveal that $\bar{x}$ of group 3 and 7 differ by 24\,min, but there is no considerable general trend. It can therefore only be interpreted that accidents with vehicles on the \textit{separate lane in the same direction} can be associated with 24\,min longer jams, than accidents with \textit{obstacles}.
 
 % ############################################
 \groupintrosig{UArt1}{TDist}{0.0082}{baysis}{initiator}

@@ -160,11 +160,11 @@
     \end{tikzpicture}
 }
 
-\newcommand{\barplottriplewithmeans}[5]{
+\newcommand{\barplottriplewithmeans}[6]{
     \begin{tikzpicture}
         \begin{axis}[
             ybar,
-            bar width=.1cm,
+            bar width=#6cm,
              % Gitterlinien für y-Ticks
             width=\textwidth,
             height=5cm,

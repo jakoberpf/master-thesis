@@ -249,6 +249,31 @@ For the coverage it can be interpreted that the road A70, A92, A93, and A96 have
 \subsection{Month (\textit{Month})}
 The month of the roadwork correlates strongly with most of the congestion characteristics.
 
+% \begin{figure}[ht!]
+% 	\pgfplotstableread[col sep=comma]{
+% 		month, gMeanSAvg
+% 		Jan , 86.61  , 
+% 		Feb , 87.44  , 
+% 		Mar , 63.76  , 
+% 		Apr , 70.06  , 
+% 		May , 55.76  , 
+% 		Jun , 68.30  , 
+% 		Jul , 73.41  , 
+% 		Aug , 77.21  , 
+% 		Sep , 133.56 , 
+% 		Oct , 78.98  , 
+% 		Nov , 82.36  , 
+% 		Dec , 98.18  ,  
+% 	}\data
+% 	\pgfplotstablesort[sort key=meanSAvg, sort cmp=float >]{\datasorted}{\data}
+% 	\tiny
+% 	\centering
+% 	\barplotdouble{\datasorted}{meanSMax}{meanSAvg}{$\bar{x}_{SMax}$}{$\bar{x}_{SAvg}$}
+% 	\caption{Comparison of descriptives $\bar{x}_{SMax}$ and $\bar{x}_{SAvg}$ (\textit{SMax/SAvg} by \textit{Month})}
+% 	\label{fig:arbis_matched_meancomparison_month_spatial}
+% 	%\vspace{-8mm}
+% \end{figure}show that the $\bar{x}$ of September deviated heavily from the mean, with 52\,min. Therefore it can be interpreted that roadworks in September result in significantly longer jam durations than the average. The descriptives also show that April, May, June and July have considerable lower $\bar{x}$ than the average. Therefore it can be interpreted that roadworks in April, May, June and July result be significantly shorter jam durations than the average.
+
 \begin{figure}[ht!]
 	\pgfplotstableread[col sep=comma]{
 		month, meanSMax, meanSAvg

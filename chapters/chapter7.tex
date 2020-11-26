@@ -249,5 +249,35 @@ For the coverage it can be interpreted that the road A70, A92, A93, and A96 have
 \subsection{Month (\textit{Month})}
 The month of the roadwork correlates strongly with most of the congestion characteristics.
 
-\section{Predictability ??}
+\begin{figure}[ht!]
+	\pgfplotstableread[col sep=comma]{
+		month, meanSMax, meanSAvg
+		Jan , 10172.38 , 4011.67 
+		Feb , 12219.37 , 3976.34 
+		Mar , 7325.81  , 2899.98 
+		Apr , 10553.42 , 3633.27 
+		May , 9677.59  , 3160.32 
+		Jun , 9062.72  , 3002.61 
+		Jul , 10596.79 , 3292.55 
+		Aug , 6356.36  , 2793.92 
+		Sep , 8167.19  , 3269.36 
+		Oct , 6838.37  , 2751.38 
+		Nov , 6521.21  , 2639.70 
+		Dec , 8165.85  , 3423.72  
+	}\data
+	\pgfplotstablesort[sort key=meanSAvg, sort cmp=float >]{\datasorted}{\data}
+	\tiny
+	\centering
+	\barplotdouble{\datasorted}{meanSMax}{meanSAvg}{$\bar{x}_{SMax}$}{$\bar{x}_{SAvg}$}
+	\caption{Comparison of descriptives $\bar{x}_{SMax}$ and $\bar{x}_{SAvg}$ (\textit{SMax/SAvg} by \textit{Month})}
+	\label{fig:arbis_matched_meancomparison_month_spatial}
+	%\vspace{-8mm}
+\end{figure}
+
+be interpreted that roadworks in October and December result in significantly longer spatial distances than the average. The roadwork jams in January, February and July tend to have significantly shorter spatial distances than the average.
+
+that roadworks in September, October, November and December result in significantly denser jams than the average. The roadwork jams in March and July tend to be significantly less dense jams than the average.
+
+\section{Predictability of accidents and jams}
+Although in the introduction the goal was stated to improved the knowledge about the Predictability of accidents and jams, the time frame of the thesis didn't allow to finish the analysis. The correlation summary in the section before showed, that there are multiple accident characteristics, which correlate significantly with jams features. 
 

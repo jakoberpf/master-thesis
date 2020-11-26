@@ -8,60 +8,60 @@ Correlation is an analysis procedure that measures the correlation coefficient, 
 
 \section{Variable Types}
 \label{correlation_variable_types}
-Data variables can be grouped into continuous and categorical variables, depending on what kind of observation they describe. Variables are considered to be continuous, also known as quantitative, when relating to measurements like speed, distance or age, which can take on an unlimited number of values between the lowest and highest points of measurement \parencite{McCue2007}. These continuous variables can be separated into two subsets. 
+Data variables can be grouped into continuous and categorical variables, depending on what kind of observation they describe. Variables are considered to be continuous, also known as quantitative, if they relate to measurements like speed, distance or age, which can take on an unlimited number of values between the lowest and highest points of measurement \parencite{McCue2007}. These continuous variables can be separated into two subsets. 
 
 \begin{itemize}
-	\item \textbf{Interval} variables can be measured along a continuum and have a numerical value. \parencite{Laerd2020}
-    \item \textbf{Ratio} variables are interval variables, with the added condition that the values are zero if there is no measurement for this value. \parencite{Laerd2020}
+	\item \textbf{Interval} variables can be measured along a continuum and have a numerical value \parencite{Laerd2020}.
+    \item \textbf{Ratio} variables are interval variables, with the added condition that the values are set to zero if there is no measurement for this value \parencite{Laerd2020}.
 \end{itemize}
 
 Categorical variables on the other hand are limited in the number of values, referring to a category, rank or choice, like a vehicle type or Yes/No answers. These categorical variables can be separated into three subsets.
 
 \begin{itemize}
-	\item \textbf{Nominal} variables have two or more categories, but with no intrinsic order. \parencite{Laerd2020}
-	\item \textbf{Dichotomous} are nominal variables which have only two categories or levels. \parencite{Laerd2020}
-    \item \textbf{Ordinal} are nominal variables that have two or more categories and are ordered or ranked. \parencite{Laerd2020}
+	\item \textbf{Nominal} variables have two or more categories, but with no intrinsic order \parencite{Laerd2020}.
+	\item \textbf{Dichotomous} are nominal variables which have only two categories or levels \parencite{Laerd2020}.
+    \item \textbf{Ordinal} are nominal variables that have two or more categories and are ordered or ranked \parencite{Laerd2020}.
 \end{itemize}
 
 The datasets to be examined in this thesis include continuous variables of the type interval and all three types of categorical variables (see \cref{dataset_baysis,dataset_arbis}).
 
 \section{Correlation Types}
 \label{correlation_coefficient_types}
-The datasets from \acrshort{baysis}, \acrshort{arbis} (see \cref{dataset_baysis,dataset_arbis}) and the processing tool (see \cref{methodology_data_processing}) includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristics the appropriate correlation coefficient suited for the apparent variables needs to be chosen. This task itself is quite complex due to the number of coefficients to evaluate, amount of literature, numerous assumptions and disagreements in the field of statistics. From a comprehensive literature review the following correlation coefficients and tests were selected because of their appearance in current studies and papers and in dependency of their suitability for the apparent relation.
+The datasets from \acrshort{baysis}, \acrshort{arbis} (see \cref{dataset_baysis,dataset_arbis}) and the processing tool (see \cref{methodology_data_processing}) includes continuous, as well as categorical variables, describing interval, nominal, dichotomous and ordinal characteristics. For an exact analysis of relations between these characteristics the appropriate correlation coefficient suited for the respective variables needs to be chosen. This task itself is quite complex due to the number of coefficients to evaluate, amount of literature and numerous assumptions in the field of statistics. From a comprehensive literature review the following correlation coefficients and tests were selected because of their appearance in current studies and papers and in dependency of their suitability for the respective relation.
 
-For a flattened introduction into correlation statistic, the article of Jun Ye \textit{Everything you need to know about correlation}\footnote{https://junye0798.com/post/everythin-you-need-to-know-about-correlation/} is highly recommended. \parencite{Yun2020}
+For a fundamental introduction into correlation statistic, the article of Jun Ye \textit{Everything you need to know about correlation}\footnote{https://junye0798.com/post/everythin-you-need-to-know-about-correlation/} is highly recommended \parencite{Yun2020}.
 
-\subsection{Continuous - Continuous}
+\subsection{Correlation coefficient for continuous - continuous relations}
 \label{correlation_pearson}
 
 As stated in \cref{correlation_variable_types} continuous variables are metric measurements in form of distances or durations. The most common correlation coefficient for continuous variables is the so called non-parametric Pearson's $r$.
 
 \subsubsection{Pearson's $r$}
-
-Pearson's $r$ describes the linear correlation of such continuous, non-ranked variables and does not assume normality or a normal distributed sample set as it is non-parametric. It is therefore suitable for the examination of continuous - continuous variable relations, where finite size of variance and covariance can be assumed. \parencite{BenestyChenHuang2009,Sulthan2018}
+Pearson's $r$ describes the linear correlation of continuous, non-ranked variables and does not assume normality or a normal distributed sample set as it is non-parametric. It is therefore suitable for the examination of continuous - continuous variable relations, where finite size of variance and covariance can be assumed. \parencite{BenestyChenHuang2009,Sulthan2018}
  
-The general correlation coefficient, shown in \cref{formula_correlation_basic} is the foundation for deducing Pearson's $r$. It is defined by the fraction of the covariance, \cref{formula_correlation_covariant} of two vectors $x$ / $y$ of length $i$ / $j$ and their standard deviation, see \cref{formula_correlation_deviation}. \parencite{HerzSchlicherSiegener1992}
+The general correlation coefficient, shown in \cref{formula_correlation_basic} is the foundation for deducing Pearson's $r$. It is defined by the fraction of the covariance $\sigma_{xy}$ of two vectors $x$,$y$ of length $i$, see \cref{formula_correlation_covariant} and their standard deviation $\sigma_{x,y}$, see \cref{formula_correlation_deviation} \parencite{HerzSchlicherSiegener1992}.
 
 \smallskip
 
 \begin{equation}
-\label{formula_correlation_basic}
+	\label{formula_correlation_basic}
 	\rho = \frac{\sigma_{xy}}{\sigma_{x}\sigma_{y}}
 \end{equation}
-
 \begin{equation}
-\label{formula_correlation_covariant}
-	\sigma_{xy} = \sum_{ij}(x_i-\mu_X)(y_n-\mu_Y) \cdot p(x_i,y_j)
+	\label{formula_correlation_covariant}
+	\sigma_{xy} = \sqrt{\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{n}}
 \end{equation}
-
 \begin{equation}
-\label{formula_correlation_deviation}
-	\sigma_{x,y} = \sum_{i}(x_i,y_i-\mu_{x,y})^2 \cdot p_i
+	\label{formula_correlation_deviation}
+	\begin{split}
+		\sigma_{x} = \sqrt{\frac{\sum_{i}^{n}(x_i-\bar{x})^2}{n}} \\ 
+		\sigma_{y} = \sqrt{\frac{\sum_{i}^{n}(y_i-\bar{y})^2}{n}}
+	\end{split}
 \end{equation}
 
 \bigskip
 
-The \cref{formula_pearson} shows Pearson's correlation coefficient $r$, which is a direct usage of the definition in \cref{formula_correlation_basic}, assuming that both data variables have the same length, named $i$. The symbols $\bar{x}$ and $\bar{y}$ correspond to the means of the data variable $x$ and $y$, respectively. \parencite{BenestyChenHuang2009,Zychlinski2018}
+The following \cref{formula_pearson} shows Pearson's correlation coefficient $r$, which is a direct usage of the definition in \cref{formula_correlation_basic}, assuming that both data variables have the same length, named $i$. The symbols $\bar{x}$ and $\bar{y}$ correspond to the means of the data variable $x$ and $y$, respectively. \parencite{BenestyChenHuang2009,Zychlinski2018}
 
 \smallskip
 
@@ -82,18 +82,9 @@ This equation can be simplified to \cref{formula_pearson_simplified} with the $S
 \end{equation}
 
 \subsubsection{Interpretation of $r$}
-Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable moving in a positive direction, whereas a second variable is moving in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the ration of change in the variables. When both variables change at the same ratio, they are linearly correlated. When both variables do not change in the same ratio, then they are non-linearly or curvy-linear correlated. 
+Pearson's $r$ can have values of the range $-1$ to $+1$. If one variable moves in the same direction as the other, it is called positive correlation, represented by a positive correlation coefficient. In the case of one variable changing in a positive direction, whereas a second variable is changing in a negative direction, the correlation is called negative and has a negative coefficient. Another characteristic is the rate of change in the variables. When both variables change at the same rate, they are linearly correlated. When both variables do not change in the same rate, then they are non-linearly or curvy-linear correlated and $r$ approximate to zero, showing no correlation.
 
-\subsubsection{Interpretation of effect size $|r|$}
-The degree of correlation, also described as strength of association is called effect size and shows how strong two variables are related with each other. It is defined specifically for Person's $r$ as the absolute values of $r$, mathematical written as $|r|$. According to Cohen \parencite{Cohen1988} the effect sizes of each correlation coefficient falls into one of two categories $D$ and $R$. $D$ corresponds to coefficients utilizing the mean difference and standardized mean difference. He defined the values of $D$ coefficients as small $D$ = .20, medium $D$ = .50, and large $D$ = .80 \parencite{Piegorsch2002}. The group of $R$ coefficients includes measures based on variance \parencite{Walker2005}. Cohen proposes vastly different values of .01, .06, and .14 as indicators of small, medium, and large effect sizes for the $R$ group \parencite{Cohen1988}. However, if these values fit the purpose of the analysis, depends on the underlying data and is at discretion of the researcher.
-
-\todo{If .. then ??}
-
-% http://www.leeds.ac.uk/educol/documents/00002182.htm
-% https://www.psychometrica.de/effect_size.html
-% https://www.cedu.niu.edu/~walker/personal/Walker%20Kendall's%20Tau.pdf
-
-According to Cohen recommendations for mean-based coefficients \parencite{Cohen1988,Piegorsch2002,Walker2005} and with consideration of the guidelines of Wolfe \parencite{Wolfe2017} and Regber \parencite{Regber2016}, which induces an increased scale due to the high sensitivity of Pearson's $r$, the following rules are defined for the interpretation of the effect size of $r$.
+The effect size of Person's $r$ defined the absolute value of $r$, mathematic written as $|r|$. According to Cohen recommendations for mean-based coefficients (explained in \cref{correlation_effect_size}) and with consideration of the guidelines by Wolfe \parencite{Wolfe2017} and Regber \parencite{Regber2016}, which advocate an increased scale due to the high sensitivity of Pearson's $r$, the following rules are defined for the interpretation of the effect size of $r$.
 
 \begin{itemize}
   \item When both variables change in the same ratio, the absolute value is 1.0, which is called perfect correlation.
@@ -101,23 +92,20 @@ According to Cohen recommendations for mean-based coefficients \parencite{Cohen1
   \item A moderate degree of correlation lays in the range of .50 to .80.
   \item When the range is between .30 to .50, it is called low degree of correlation.
   \item If the range is lower than .30 no correlation can be proven. It is called absence of correlation.
-\end{itemize}	
-
-There a many other effect sizes like Cohen's $w$, $f^2$ or Heghes $g$, which can be used for the interpretation of relations. But there is also a high amount of contradictions from one source to another, depending on the author, time of publication and data foundation. The interpretation of $r$ and its associated definition by Cohen is the most robust and common ground found in literature and will be used as a mathematical and guideline base for other correlation coefficients.
-% https://de.wikipedia.org/wiki/Effektst%C3%A4rke#Umrechnung_in_r
+\end{itemize}
 
 \subsubsection{Significance of $r$}
 To determine if $r$ is statically significant a chi-square test is generally applied to find the $p$-value, testing the probability of independence (see \cref{correlation_significance}). 
 
-\subsection{Continuous - Nominal}
-This type of relation is objectively the most complex to evaluate. One well known method to analyze the relation between a continuous and categorical variable, which is not ranked and has more than two values, is the analysis of variance (ANOVA). Unfortunately, it assumes normal or gaussian distributed variables, which are not given in the dataset (see \cref{data}), as it is categorized as a parametric test. A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis H-test \parencite{Leon1998}. Both tests indicate if at least one variable stochastically dominates another, but not in which groups or in how many groups this domination occurs \parencite{OTSD2020}. They therefore do not provide a statement about the correlation strength, but the statistical significance of variances between groups.
+\subsection{Correlation coefficient for continuous - nominal relations}
+This type of relation is objectively the most complex to evaluate. One well known method to analyze the relation between a continuous and categorical variables, which is not ranked and has more than two values, is the analysis of variance (ANOVA). Unfortunately, it assumes normal or gaussian distributed variables, which are not given in the dataset (see \cref{data}), as it is categorized as a parametric test. A non parametric approach of the ANOVA is the rather uncommon Kruskal-Wallis $h$-test \parencite{Leon1998}. Both tests indicate if at least one variable stochastically dominates another, but not in which groups or in how many groups this domination occurs \parencite{OTSD2020}. They therefore do not provide a statement about the correlation strength, but the statistical significance of variances between groups.
 
-Further research of a non-parametric correlation coefficient only provided one suitable option, eta ($\eta$) coefficient from Pearson \parencite{Benninghaus2007}, describing the relationship between variables based on the sums of squares used in the ANOVA \parencite{Lewis2012,Benninghaus2007}.
+Further research of a non-parametric correlation coefficient only provided one suitable option, the eta ($\eta$) coefficient by Pearson \parencite{Benninghaus2007}, describing the relationship between variables based on the sums of squares used in the ANOVA \parencite{Lewis2012,Benninghaus2007}.
 
 \subsubsection{Eta ($\eta$) coefficient}
 % https://stackoverflow.com/questions/52083501/how-to-compute-correlation-ratio-or-eta-in-python/52084418
 % https://www.frontiersin.org/articles/10.3389/fpsyg.2013.00863/full
-The $\eta$ coefficient, also called correlation ratio, is a measurement for the proportion of the variation in $y$, which is associated with a membership of different groups in $x$ \parencite{Laken2013}. Or mathematically $\eta$ is the squared root of the ratio between $SS_x$ and $SS_y$ \parencite{Shaldehi2013,SAGE2014}. When calculated the value of $\eta^2$ represents the percentage of total variance which can be accounted to a group relation.
+The $\eta$ coefficient, also called correlation ratio, is a measurement for the proportion of the variation in $y$, which is associated with a membership of different groups in $x$ \parencite{Laken2013}. Or mathematically $\eta$ is the squared root of the ratio between $SS_x$ and $SS_y$ \parencite{Shaldehi2013,SAGE2014}. When calculated the value of $\eta^2$ represents the percentage of total variance which can be accounted to a group relation \parencite{Laken2013}.
 
 \smallskip
 \begin{equation}
@@ -126,66 +114,66 @@ The $\eta$ coefficient, also called correlation ratio, is a measurement for the 
 \end{equation}
 
 \subsubsection{Interpretation of $\eta$}
-The coefficient $\eta$ can have values in the range from $0$ to $1$ and equals to Person's $r$ according to \parencite{Laken2013}. The effect size, which is categorized in the $R$ group and can therefore be interpreted as follows \parencite{Regber2016,Cohen1988}.
+The coefficient $\eta$ can have values in the range from $0$ to $1$ and can be interpreted similar to Person's $r$ according to \parencite{Laken2013}. The effect size, which is categorized in the $R$ group and can therefore be interpreted as follows \parencite{Regber2016,Cohen1988}:
 % https://stats.stackexchange.com/questions/166696/how-do-i-convert-eta2-to-pearsons-r
 % https://www.researchgate.net/post/Whats_the_reason_for_deriving_Cohens_w_from_Cramers_V_if_the_latter_is_already_a_measure_of_effect_size
 \begin{itemize}
-	\item $\eta <= .06$ : The correlation strength is weak
-	\item $.06 < \eta < .14$ : A moderate strength of correlation
-	\item $\eta >= .14$ : There is a strong correlation
+	\item $\eta <= .06$ : the correlation strength is weak
+	\item $.06 < \eta < .14$ : a moderate strength of correlation
+	\item $\eta >= .14$ : there is a strong correlation.
 \end{itemize}
 
 \subsubsection{Significance of $\eta$}
 The significance evaluation for the $\eta$ coefficient is generally performed via the $p$-value of the Kruskal-Wallis $h$-test, since it is a non-parametric test. It is calculated with the chi-squared test ($\chi^2$), defined in \cref{correlation_significance} \parencite{Filipiak2013}. In the case of both a correlated $\eta$ and a significant $h$-test, the exact related groups need to be determined via a post-hoc test (see \cref{correlation_posthoc}).
 
-\subsection{Continuous - Dichotomous}
+\subsection{Correlation coefficient for continuous - dichotomous relations}
 The Point Biserial correlation is a special form of the Pearson's $r$ correlation coefficient and suited to evaluate the association of continuous-dichotomous relations. 
 
 \subsubsection{Point Biserial}
 The Point Biserial notation, shown in \cref{formula_point_biserial}, can be derived from Person's $r$ with the assumption of $y$ only taking dichotomy values of 0 and 1, so that $\bar{y} = p$. The distinction of the cases
 
 \begin{itemize}
-	\item $i \cdot p$ referring to $y=1$ an with $1 - p = q$ bigger than $\bar{y}$
-	\item $i \cdot q$ referring to $y=0$ an with $1 - p = -p$ smaller than $\bar{y}$
+	\item $n \cdot p$ referring to $y=1$ an with $1 - p = q$ bigger than $\bar{y}$
+	\item $n \cdot q$ referring to $y=0$ an with $0 - p = -p$ smaller than $\bar{y}$
 \end{itemize}
-allow to form \cref{formula_point_biserial_from_pearson} from \cref{formula_pearson}, which can be simplified to \cref{formula_point_biserial}. \parencite{Tate1954,CohenWest2003,Bortz2004,DeJesus2019}
+allow to form \cref{formula_point_biserial_from_pearson} from \cref{formula_pearson}, which can be simplified to \cref{formula_point_biserial} with the intermediate step of \cref{formula_point_biserial_from_pearson_simplyfied} \parencite{Tate1954,CohenWest2003,Bortz2004,DeJesus2019}.
 
 \smallskip
 
 \begin{equation}
-\label{formula_point_biserial_from_pearson}
+	\label{formula_point_biserial_from_pearson}
 	r_{pq} =  \frac{n \cdot p (\bar{x}_{y=1}-\bar{x}) \cdot q + n \cdot p (\bar{x}_{y=0}-\bar{x}) \cdot (-q)}{\sqrt{\sum_{i}{(x_i-\bar{x})^2} \cdot (n \cdot p \cdot q^2 + n \cdot q \cdot (-p)^2)}}
 \end{equation}
-%\begin{equation}
-%\label{formula_point_biserial_from_pearson_simplyfied}
-%	r_{pqi} =  \frac{n \cdot p \cdot q \cdot (\bar{x}_{y=1}-\bar{x}_{y=0})}{\sqrt{\sum_{i}{(x_i-\bar{x})^2} \cdot (n \cdot p \cdot q)}}
-%\end{equation}
 \begin{equation}
-\label{formula_point_biserial}
+	\label{formula_point_biserial_from_pearson_simplyfied}
+	r_{pqi} =  \frac{n \cdot p \cdot q \cdot (\bar{x}_{y=1}-\bar{x}_{y=0})}{\sqrt{\sum_{i}{(x_i-\bar{x})^2} \cdot (n \cdot p \cdot q)}}
+\end{equation}
+\begin{equation}
+	\label{formula_point_biserial}
 	r_{pq} =  \frac{\bar{x}_{y=1}-\bar{x}_{y=0}}{\sqrt{\sum_{i}{(x_i-\bar{x})^2}}} \cdot \sqrt{n \cdot p \cdot q \cdot} 
 \end{equation}
 
 \smallskip
 
-It must be pointed out that if the dichotomous variable is artificially binarized, i.e. there is likely continuous data underlying it, biserial correlation is more a measurement of similarity instead of association.
+It must be pointed out that if the dichotomous variable is artificially binarized, i.e. there is likely continuous data underlying it, biserial correlation is more a measurement of similarity instead of association \parencite{OTSD2020}.
 
 \subsubsection{Interpretation of $r_{pq}$}
-Due to the mathematical similarity of the Point Biserial to the Pearson's $r$, the general interpretation of Pearson's $r$ in \textit{Interpretation of effect size $|r|$} of \cref{correlation_pearson} can be applied to Point Biserial with some adjustments. The range of the Point Biserial coefficient, from $0$ to $1$ removes the direction of correlation from the interpretation. According to Cohen \parencite{Cohen1988} the following can be used as guidelines for the effect size $r_{pq}$ \parencite{Leblanc2017}.
+Due to the mathematical similarity of the Point Biserial to the Pearson's $r$, the general interpretation of Pearson's $r$ defined in \cref{correlation_pearson} can be applied to Point Biserial with some adjustments. The range of the Point Biserial coefficient, from $0$ to $1$ removes the direction of correlation from the interpretation. According to Cohen \parencite{Cohen1988} the following can be used as guidelines for the effect size $r_{pq}$ \parencite{Leblanc2017}:
 
 \begin{itemize}
 	\item $r_{pq} < \: .30$ : The correlation strength is weak
-	\item $\: .30 =< r_{pq} < \: .50$ : A moderate strength of correlation
-	\item $r_{pq} >= \: .50$ : There is a strong correlation
+	\item $\: .30 =< r_{pq} < \: .50$ : a moderate strength of correlation
+	\item $r_{pq} >= \: .50$ : there is a strong correlation.
 \end{itemize}
 
 \subsubsection{Significance of $r_{pq}$}
 The significance evaluation of the Point Biserial coefficient is done via the 2-tailed $p$-value, a doubled chi-square test (see \cref{correlation_significance}).
 
-\subsection{Continuous - Ordinal}
+\subsection{Correlation coefficient for continuous - ordinal relations}
 For ordinal variables, also called ranked or rank ordered, the commonly used Spearman's $\rho$ can be applied, but should be replaced by Kendall's $\tau$ because of it superiority over Spearman \parencite{Newson2002}. 
 
 \subsubsection{Kendall's $\tau$}
-Kendalls $\tau$ evaluates the order of rank pairs, instead of the squared rank difference, which makes is more robust against outliners. Because it can be assumed that the data has ties implemented, the $\tau$ with ties must be used. The general definition is shown in \cref{formula_kendalls_r_complex}, with $P$ referring to the \textit{proversion} and $I$ to the \textit{inversion}. With the assumption that the continuous measurement $x$ is or can be ordered, the ordinal/ranked variable $y$ will be wrongly ordered. After forming all possible rank pairs between $x$ and $y$, $P$ and $I$ can be deduced and $\tau$ can be calculated. \parencite{Reiter2015,Bossart2017}
+Kendalls $\tau$ evaluates the order of rank pairs, instead of the squared rank difference, which makes it more robust against outliers. Because it can be assumed that the data has ties implemented, the $\tau$ with ties must be used. The general definition is shown in \cref{formula_kendalls_r_complex}, with $P$ referring to the proversion and $I$ to the inversion. With the assumption that the continuous measurement $x$ is or can be ordered, the ordinal/ranked variable $y$ will be wrongly ordered. After forming all possible rank pairs between $x$ and $y$, $P$ and $I$ can be deduced and $\tau$ can be calculated. \parencite{Reiter2015,Bossart2017}
 
 \begin{itemize}	
 	\item[] \textbf{Proversion} ($+$) is the number if pairs, where $x < y$ 
@@ -194,15 +182,15 @@ Kendalls $\tau$ evaluates the order of rank pairs, instead of the squared rank d
 \end{itemize}
 
 \begin{equation}
-\label{formula_kendalls_r_complex}
-	\tau = \frac{P-I}{\sqrt{(\frac{n(n-1)}{2}-T_x) \cdot (\frac{n(n-1)}{2}-T_y)}}
+	\label{formula_kendalls_r_complex}
+	\tau = \frac{P-I}{\sqrt{\left(\frac{N(N-1)}{2}-T_x\right) \cdot \left(\frac{N(N-1)}{2}-T_y\right)}}
 \end{equation}
 \begin{equation}
-\label{formula_kendalls_r_tx}
+	\label{formula_kendalls_r_tx}
 	T_x = \sum_{i=1}^n \frac{t_{x_i}(t_{x_i}-1)}{2}
 \end{equation}
 \begin{equation}
-\label{formula_kendalls_r_ty}
+	\label{formula_kendalls_r_ty}
 	T_y = \sum_{j=1}^m \frac{t_{y_j}(t_{y_j}-1)}{2}
 \end{equation}
 \smallskip
@@ -218,7 +206,7 @@ Kendalls $\tau$ evaluates the order of rank pairs, instead of the squared rank d
 
 \bigskip
 
-Thought transformation we can simplify the general definition to equation \ref{formula_kendalls_r} \parencite{Reiter2015}.
+Through transformation of \cref{formula_kendalls_r_complex} we can simplify the general definition to equation \ref{formula_kendalls_r} \parencite{Reiter2015}.
 
 \begin{equation}
 \label{formula_kendalls_r}
@@ -227,7 +215,7 @@ Thought transformation we can simplify the general definition to equation \ref{f
 
 \subsubsection{Interpretation of $\tau$}
 % https://www.reddit.com/r/AskStatistics/comments/44ypc4/kendall_taus_effect_size_question/
-Strictly speaking, Kendall's $\tau$ is not a measure of effect size, like Pearson's $r$, but tends to be of similar magnitude. Because of this similarity the general interpretation defined in the sub section \textit{Interpretation of effect size $|r|$} in \cref{correlation_pearson} can be applied. To adapt the guidelines to the lesser sensitivity of $\tau$, they are scaled downwards \parencite{Regber2016}.
+Strictly speaking, Kendall's $\tau$ is not a measure of effect size, like Pearson's $r$, but tends to be of similar magnitude. Because of this similarity the general interpretation defined in \cref{correlation_pearson} and \cref{correlation_effect_size} can be applied. To adapt the guidelines to the lesser sensitivity of $\tau$, they are scaled downwards \parencite{Regber2016}.
 
 \begin{itemize}
 	\item $\tau < \: .30$ : The correlation strength is weak
@@ -238,12 +226,12 @@ Strictly speaking, Kendall's $\tau$ is not a measure of effect size, like Pearso
 \subsubsection{Significance}
 The significance evaluation of Kendall's $\tau$ coefficient is carried out via the 2-tailed $p$-value, elaborated in \cref{correlation_significance}.
 
-\subsection{Categorical - Categorical}
-The Pearson's $\chi^2$ test from \cref{correlation_pearson} can also be applied to categorical data for independence statistics. Two correlation coefficients using $\chi^2$ are Cramer’s $V$ and Theil’s $U$. Both can be used to analyze categorical - categorical relations, but differ in the type of result they provide \parencite{OutsideTwoStandardDeviations2018}. Cramer’s $V$ is a symmetric measure providing a measure of association strength. Theil’s $U$, the uncertainty coefficient, on the other hand is a conditional measure and represents the predictability of an association \parencite{Akoglu2018,StackExchange2020}. Because the Theil’s $U$ measurement of predictability provides a better interpretability, it is the preferred  result choice for the interpretation and implementation. 
+\subsection{Correlation coefficient for categorical - categorical relations}
+The Pearson's $\chi^2$ test from \cref{correlation_pearson} can also be applied to categorical data for independence statistics. Two correlation coefficients using $\chi^2$ are Cramer’s $V$ and Theil’s $U$. Both can be used to analyze categorical - categorical relations, but differ in the type of result they provide \parencite{OutsideTwoStandardDeviations2018}. Cramer’s $V$ is a symmetric measure providing a measure of association strength. Theil’s $U$, the uncertainty coefficient, on the other hand is a conditional measure and represents the predictability of an association \parencite{Akoglu2018,StackExchange2020}. Therefore the Theil’s $U$ measurement it is the preferred choice for the analysis of predictability and Cramer’s $V$ is used in the correlation analysis.
 
 \subsubsection{Cramer’s V}
 
-Cramer’s V, also called Cramer's phi ($\Phi_c$), is a measurement for the relation of two nominal variables. In \cref{formula_cramers_v_biased}, showing the notation of Cramer’s $V$, $k$ and $r$ are the number of columns and rows, respectively. $\varphi$, the phi coefficient, is defined by $\frac{{\chi^2}}{n_{ij}}$. The $\chi^2$ shown in \cref{formula_cramers_v_chi} is derived from \cref{formula_chi_squared_simplified} with the expansion to columns and rows. \parencite{Sheskin1997,Bergsma2013}
+Cramer’s $V$, also called Cramer's phi ($\Phi_c$), is a measurement for the relation of two nominal variables. In \cref{formula_cramers_v_biased}, showing the notation of Cramer’s $V$, $k$ and $r$ are the number of columns and rows, respectively. $\varphi$, the phi coefficient, is defined by $\frac{{\chi^2}}{n_{ij}}$. The $\chi^2$ shown in \cref{formula_cramers_v_chi} is derived from \cref{formula_chi_squared_simplified} with the expansion to columns and rows \parencite{Sheskin1997,Bergsma2013}.
 \smallskip
 \begin{equation}
 \label{formula_cramers_v_biased}
@@ -251,7 +239,7 @@ Cramer’s V, also called Cramer's phi ($\Phi_c$), is a measurement for the rela
 \end{equation}
 \begin{equation}
 \label{formula_cramers_v_chi}
-	\chi^2 =  \sum_{i,j}{\frac{(n_{ij}-\frac{n_i n_j}{n})^2}{\frac{n_i n_j}{n}}}
+	\chi^2 =  \sum_{i,j}{\frac{\left(n_{ij}-\frac{n_i n_j}{n}\right)^2}{\frac{n_i n_j}{n}}}
 \end{equation}
 
 \smallskip
@@ -260,11 +248,11 @@ The above notation of $\Phi_c$ can be heavily biased, trending to overestimate t
 \smallskip
 \begin{equation}
 \label{formula_cramers_v_corrected}
-	\tilde{V} = \tilde{\Phi_c} = \sqrt{\frac{\tilde{\varphi^2}}{min(\tilde{i_{max}}-1,\tilde{j_{max}}-1)}}
+	\tilde{V} = \tilde{\Phi_c} = \sqrt{\frac{\tilde{\varphi^2}}{\text{min}(\tilde{i_{\text{max}}}-1,\tilde{j_{\text{max}}}-1)}}
 \end{equation}
 \begin{equation}
 \label{formula_cramers_v_phi_corrected}
-	\tilde{\varphi^2} = max(0,\varphi^2 - \frac{(k-1)(r-1)}{n-1})
+	\tilde{\varphi^2} = \text{max}\left(0,\varphi^2 - \frac{(k-1)(r-1)}{n-1}\right)
 \end{equation}
 \begin{equation}
 \label{formula_cramers_v_k_corrected}
@@ -279,7 +267,7 @@ The above notation of $\Phi_c$ can be heavily biased, trending to overestimate t
 
 \subsubsection{Theil’s U}
 % https://rstudio-pubs-static.s3.amazonaws.com/558925_38b86f0530c9480fad4d029a4e4aea68.html
-The uncertainty coefficient, also called entropy coefficient, is a measurement for the association between two nominal variables and in comparison to Cramers V, provides a much better predictability statement. It is based on the concept of comparing the entropies of variables to determine a degree of association \parencite{Hoang2019}. The entropy of a distribution (see \cref{formula_theils_hx}) and the conditional entropy (see \cref{formula_theils_hxy}) are used to calculate the uncertainty coefficient $U(X)$ \parencite{Glen2017,Glen2018}, which tells us: given Y, what can fraction can be predicted for X \parencite{Hoang2019}.
+The uncertainty coefficient, also called entropy coefficient, is a measurement for the association between two nominal variables and in comparison to Cramers $V$, provides a much better predictability statement. It is based on the concept of comparing the entropies of variables to determine a degree of association \parencite{Hoang2019}. The entropy of a distribution (see \cref{formula_theils_hx}) and the conditional entropy (see \cref{formula_theils_hxy}) are used to calculate the uncertainty coefficient $U(X)$ \parencite{Glen2017,Glen2018}, which tells us: given Y, what fraction can be predicted for X \parencite{Hoang2019}.
 
 \smallskip
 \begin{equation}
@@ -288,11 +276,11 @@ The uncertainty coefficient, also called entropy coefficient, is a measurement f
 \end{equation}
 \begin{equation}
 \label{formula_theils_hx}
-	H(X) = -\sum_{x} p_{X}(x)log p_X(x)
+	H(X) = -\sum_{x} p_{X} \log_{p_X} (x)
 \end{equation}
 \begin{equation}
 \label{formula_theils_hxy}
-	H(X) = -\sum_{x,y} p_{X,Y}(x,y)log p_{X,Y}(x,y)
+	H(X|Y) = -\sum_{x,y} p_{X,Y} \log_{p_{X,Y}} (x,y)
 \end{equation}
 
 % Definition: Theil’s U symmetrical
@@ -302,36 +290,36 @@ The uncertainty coefficient, also called entropy coefficient, is a measurement f
 %\end{equation}
 
 \subsubsection{Interpretation}
-For the interpretation of Cramers $V$ an adaption to Pearson's $r$ is necessary, but at the same time quite controversial. Some studies convert $V$ to the effect size $w$ for an equal measurement to $r$ ($r$ is representable over different studies), whereas $V$ is already a measure of effect size by itself. \parencite{Baguley2016}
+For the interpretation of Cramers $V$ an adaption to Pearson's $r$ is necessary, but at the same time quite controversial. Some studies convert $V$ to the effect size $w$ for an equal measurement to $r$ ($r$ is representable over different studies), whereas $V$ is already a measure of effect size by itself \parencite{Baguley2016}.
 % https://www.researchgate.net/post/Whats_the_reason_for_deriving_Cohens_w_from_Cramers_V_if_the_latter_is_already_a_measure_of_effect_size
 % https://www.researchgate.net/post/How_can_I_intepret_the_effect_sizes_of_Cramers_V_when_DF_3
 
 \smallskip
 \begin{equation}
 \label{formula_cohens_w}
-	w = V \cdot \sqrt{min(i_{max}-1,j_{max}-1)}
+	w = V \cdot \sqrt{\text{min}(i_{\text{max}}-1,j_{\text{max}}-1)}
 \end{equation}
 
 \medskip
 
-As shown in \cref{formula_cohens_w} \parencite{Baguley2016} the conversion from $V$ to $w$ is similar to the reduction of $\phi$ in $V$ (see \cref{formula_cramers_v_corrected}). This advocates the opinion that the conversion to $w$ is necessary within a single study and an adaption of scale is sufficient \parencite{Baguley2016}. In terms of this thesis an adapted scale of effect size according to Ellis is used to interpret $\eta$ in the range of $0$ to $1$ \parencite{Cohen1988,Ellis2010,Hemmerich2019}.
+As shown in \cref{formula_cohens_w} \parencite{Baguley2016} the conversion from $V$ to $w$ is similar to the reduction of $\Phi_c$ in $V$ (see \cref{formula_cramers_v_corrected}). This conversion to $w$ is necessary within a single study and an adaption of scale is sufficient \parencite{Baguley2016}. In terms of this thesis an adapted scale of effect size according to Ellis is used to interpret $w$ in the range of $0$ to $1$ \parencite{Cohen1988,Ellis2010,Hemmerich2019}.
 
 \begin{itemize}
-	\item $V < \: .30$ : The correlation strength is weak
-	\item $\: .30 =< V < \: .40$ : A moderate strength of correlation
-	\item $V >= \: .40$ : There is a strong correlation
+	\item $w < \: .30$ : the correlation strength is weak
+	\item $\: .30 =< w < \: .40$ : A moderate strength of correlation
+	\item $w >= \: .40$ : There is a strong correlation
 \end{itemize}
 
-The values of Theil's $U$ show the predictability of the association, where the following rules for interpretation apply. \parencite{TheilsInt01,TheilsInt02,TheilsInt03}
+The values of Theil's $U$ show the predictability of the association, where the following rules for interpretation apply \parencite{TheilsInt01,TheilsInt02,TheilsInt03}
 
 \begin{itemize}
-	\item $U < \: 1$ : The forecasting is better than guessing.
-	\item $U \sim \: 1$ : The forecasting is about as good as guessing.
-	\item $U > \: 1$ : The forecasting is worse than guessing.
+	\item $U < \: 1$ : the forecasting is better than guessing
+	\item $U \sim \: 1$ : the forecasting is about as good as guessing
+	\item $U > \: 1$ : the forecasting is worse than guessing.
 \end{itemize}
 
 \section{Correlation Matrix}
-As a result the following correlation coefficients and statistical tests are used for the mixed analysis of continuous and categorical variables. These will be implemented into a processing script in \cref{methodology_correlation_processing}.
+As a result the following correlation coefficients and statistical tests are used for the mixed analysis of continuous and categorical variables. These will be implemented into a correlation processing script, which is explained in \cref{methodology_correlation_processing}.
 
 \bigskip
 
@@ -350,13 +338,23 @@ As a result the following correlation coefficients and statistical tests are use
 		\textbf{Continuous}		& Kendall's $\tau$ 	& Point Biserial $r$	& Eta $\eta$		& Pearson's $r$			\\
 		\bottomrule
 	\end{tabular}
-	\caption{Correlation Coefficients Matrix}
+	\caption{Selected Correlation Coefficients}
 	\label{tab:correlation_coefficient_matrix}
 \end{table}
 
+\section{Effect size}
+\label{correlation_effect_size}
+The degree of correlation, also described as the strength of association is called effect size and shows how strong two variables are related with each other. According to Cohen \parencite{Cohen1988} the effect size of each correlation coefficient falls into one of two categories $D$ and $R$. $D$ corresponds to coefficients utilizing the mean difference and standardized mean difference. He defined the values of $D$ coefficients as small $D$ = .20, medium $D$ = .50, and large $D$ = .80 \parencite{Piegorsch2002}. The group of $R$ coefficients includes measures based on variance \parencite{Walker2005}. Cohen proposes vastly different values of .01, .06, and .14 as indicators of small, medium, and large effect sizes for the $R$ group \parencite{Cohen1988}. However, if these values fit the purpose of the analysis, depends on the underlying data and is at discretion of the researcher. This means the values for interpreting the effect size can and should be adapted to fit the underlying data and the usage of the interpretation.
+
+% http://www.leeds.ac.uk/educol/documents/00002182.htm
+% https://www.psychometrica.de/effect_size.html
+% https://www.cedu.niu.edu/~walker/personal/Walker%20Kendall's%20Tau.pdf
+
+There are many effect sizes like Cohen's $f^2$ or Heghes $g$, which can be used for the interpretation of relations. The interpretation by Cohen for $r$ is the most robust and common ground found in literature and will be used as a mathematical base for other correlation coefficients.
+
 \section{Significance vs. Uncertainty}
 \label{correlation_significance_uncertainty}
-Pure correlation results are not sufficient to prove a relation between variables, especially when using the correlation evidence for predictive purposes. Depending on the sample data, statistical results can be random or biased and therefore need to be examined for their probability of error. This is commonly evaluated via the well known statistical significance. Even thought statistical significance is \textbf{the} common standard procedure for evaluating the probability of error, it became a subject of debate in recent years if statistical significance is to generally used and potential misleading. It is often advocated to additionally used statistical uncertainty instead of only relying on statistical significance. \parencite{Harris2019}
+Pure correlation results are not sufficient to prove a relation between variables, especially when using the correlation evidence for predictive purposes. Depending on the sample data, statistical results can be random or biased and therefore need to be examined for their probability of error. This is commonly evaluated via the well known statistical significance. Even thought statistical significance is the common standard procedure for evaluating the probability of error, it became a subject of debate in recent years if statistical significance is to generally used and potential misleading. It is often advocated to additionally used statistical uncertainty instead of only relying on statistical significance. \parencite{Harris2019}
 
 \subsection{Uncertainty}
 \label{correlation_uncertainty}

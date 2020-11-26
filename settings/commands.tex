@@ -86,7 +86,6 @@
             extra y ticks={#3},
         ] 
         \addplot table[x expr=\coordindex, y index={1}] {#1};
-        \addplot[draw=teal,smooth] table[x expr=\coordindex, y index={2}] {#1};
         \legend{#2}
         \end{axis}
     \end{tikzpicture}

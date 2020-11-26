@@ -246,63 +246,68 @@ The spatial distance can be interpreted that the roads A94 and A99 have a higher
 
 For the coverage it can be interpreted that the road A70, A92, A93, and A96 have a significantly higher coverage than the A3, A73 and A99. The time-loss of cars and heavy goods vehicles correlate significantly, but don't provide interpretable differences.
 
+\subsection{Number closed lanes (\textit{AnzGesperrtFs})}
+The number of closed lane does not correlate with any congestion characteristic.
+
+\subsection{Lane diversion (\textit{Einzug})}
+The gravity of the lane diversion does not correlate with any congestion characteristic.
+
+\subsection{Spatial length (\textit{Length})}
+The spatial length of the roadwork does not correlate with any congestion characteristic. 
+
 \subsection{Month (\textit{Month})}
-The month of the roadwork correlates strongly with most of the congestion characteristics.
-
-% \begin{figure}[ht!]
-% 	\pgfplotstableread[col sep=comma]{
-% 		month, gMeanSAvg
-% 		Jan , 86.61  , 
-% 		Feb , 87.44  , 
-% 		Mar , 63.76  , 
-% 		Apr , 70.06  , 
-% 		May , 55.76  , 
-% 		Jun , 68.30  , 
-% 		Jul , 73.41  , 
-% 		Aug , 77.21  , 
-% 		Sep , 133.56 , 
-% 		Oct , 78.98  , 
-% 		Nov , 82.36  , 
-% 		Dec , 98.18  ,  
-% 	}\data
-% 	\pgfplotstablesort[sort key=meanSAvg, sort cmp=float >]{\datasorted}{\data}
-% 	\tiny
-% 	\centering
-% 	\barplotdouble{\datasorted}{meanSMax}{meanSAvg}{$\bar{x}_{SMax}$}{$\bar{x}_{SAvg}$}
-% 	\caption{Comparison of descriptives $\bar{x}_{SMax}$ and $\bar{x}_{SAvg}$ (\textit{SMax/SAvg} by \textit{Month})}
-% 	\label{fig:arbis_matched_meancomparison_month_spatial}
-% 	%\vspace{-8mm}
-% \end{figure}show that the $\bar{x}$ of September deviated heavily from the mean, with 52\,min. Therefore it can be interpreted that roadworks in September result in significantly longer jam durations than the average. The descriptives also show that April, May, June and July have considerable lower $\bar{x}$ than the average. Therefore it can be interpreted that roadworks in April, May, June and July result be significantly shorter jam durations than the average.
-
+The month of the roadwork correlates strongly with most of the congestion characteristics. The jam duration only significantly correlates in the average variable, which distribution is shown in \cref{fig:arbis_summary_month_duration}.
 \begin{figure}[ht!]
 	\pgfplotstableread[col sep=comma]{
-		month, meanSMax, meanSAvg
-		Jan , 10172.38 , 4011.67 
-		Feb , 12219.37 , 3976.34 
-		Mar , 7325.81  , 2899.98 
-		Apr , 10553.42 , 3633.27 
-		May , 9677.59  , 3160.32 
-		Jun , 9062.72  , 3002.61 
-		Jul , 10596.79 , 3292.55 
-		Aug , 6356.36  , 2793.92 
-		Sep , 8167.19  , 3269.36 
-		Oct , 6838.37  , 2751.38 
-		Nov , 6521.21  , 2639.70 
-		Dec , 8165.85  , 3423.72  
+		month, gMeanSAvg
+		Jan , 86.61 
+		Feb , 87.44 
+		Mar , 63.76 
+		Apr , 70.06 
+		May , 55.76 
+		Jun , 68.30 
+		Jul , 73.41 
+		Aug , 77.21 
+		Sep , 133.56
+		Oct , 78.98 
+		Nov , 82.36 
+		Dec , 98.18  
 	}\data
-	\pgfplotstablesort[sort key=meanSAvg, sort cmp=float >]{\datasorted}{\data}
+	\pgfplotstablesort[sort key=gMeanSAvg, sort cmp=float >]{\datasorted}{\data}
 	\tiny
 	\centering
-	\barplotdouble{\datasorted}{meanSMax}{meanSAvg}{$\bar{x}_{SMax}$}{$\bar{x}_{SAvg}$}
+	\barplotsinglewithmeans{\datasorted}{$\bar{x}_{TAvg}$}{81.3}
+	\caption{Comparison of descriptives $\bar{x}_{TAvg}$ (\textit{TAvg} by \textit{Month})}
+	\label{fig:arbis_summary_month_duration}
+	%\vspace{-8mm}
+\end{figure}
+The distribution shows that the September deviated heavily from the mean, with 52\,min. Therefore it can be interpreted that roadworks in September result in significantly longer jam durations than the average. The descriptives also show that April, May, June and July have considerable lower durations than the average. Therefore it can be interpreted that roadworks in April, May, June and July result be significantly shorter jam durations than the average. The spatial length of the congestion also correlates with the \textit{Month} and is show in \cref{fig:arbis_matched_meancomparison_month_spatial}.
+\begin{figure}[ht!]
+	\pgfplotstableread[col sep=comma]{
+		month, meanSMax, meanSAvg, means
+		Jan , 10172.38 , 4011.67 , 7092 
+		Feb , 12219.37 , 3976.34 , 8098 
+		Mar , 7325.81  , 2899.98 , 5113 
+		Apr , 10553.42 , 3633.27 , 7093 
+		May , 9677.59  , 3160.32 , 6419 
+		Jun , 9062.72  , 3002.61 , 6033 
+		Jul , 10596.79 , 3292.55 , 6945 
+		Aug , 6356.36  , 2793.92 , 4575 
+		Sep , 8167.19  , 3269.36 , 5718 
+		Oct , 6838.37  , 2751.38 , 4795 
+		Nov , 6521.21  , 2639.70 , 4580 
+		Dec , 8165.85  , 3423.72 , 5795  
+	}\data
+	\pgfplotstablesort[sort key=means, sort cmp=float >]{\datasorted}{\data}
+	\tiny
+	\centering
+	\barplotdoublewithmeans{\datasorted}{$\bar{x}_{SMax}$}{$\bar{x}_{SAvg}$}{6021}
 	\caption{Comparison of descriptives $\bar{x}_{SMax}$ and $\bar{x}_{SAvg}$ (\textit{SMax/SAvg} by \textit{Month})}
 	\label{fig:arbis_matched_meancomparison_month_spatial}
 	%\vspace{-8mm}
 \end{figure}
-
-be interpreted that roadworks in October and December result in significantly longer spatial distances than the average. The roadwork jams in January, February and July tend to have significantly shorter spatial distances than the average.
-
-that roadworks in September, October, November and December result in significantly denser jams than the average. The roadwork jams in March and July tend to be significantly less dense jams than the average.
+The distribution can be interpreted that roadworks in October and December result in significantly longer spatial distances than the average. The roadwork jams in January, February and July result in significantly shorter spatial distances than the average. The coverage of jams shows that roadworks in September, October, November and December result in significantly denser jams than the average. The roadwork jams in March and July tend to be significantly less dense jams than the average. The time-loss correlation show significance, but very similar descriptives, which means there are no interpretable differences.
 
 \section{Predictability of accidents and jams}
-Although in the introduction the goal was stated to improved the knowledge about the Predictability of accidents and jams, the time frame of the thesis didn't allow to finish the analysis. The correlation summary in the section before showed, that there are multiple accident characteristics, which correlate significantly with jams features. 
+Although in the introduction the goal was stated to improved the knowledge about the Predictability of accidents and jams, the time frame of the thesis didn't allow to finish the analysis of Predictability. The correlation summary in the sections before showed that there are multiple accident characteristics, which correlate significantly with jams features. Theses significant correlations already provide a statement about the predictions for these variables, but should be further investigated for reliable results. This could be done statistical e.g. the Theil's $U$ or other procedures.
 

@@ -302,12 +302,12 @@ For the interpretation of Cramers $V$ an adaption to Pearson's $r$ is necessary,
 
 \medskip
 
-As shown in \cref{formula_cohens_w} \parencite{Baguley2016} the conversion from $V$ to $w$ is similar to the reduction of $\Phi_c$ in $V$ (see \cref{formula_cramers_v_corrected}). This conversion to $w$ is necessary within a single study and an adaption of scale is sufficient \parencite{Baguley2016}. In terms of this thesis an adapted scale of effect size according to Ellis is used to interpret $w$ in the range of $0$ to $1$ \parencite{Cohen1988,Ellis2010,Hemmerich2019}.
+As shown in \cref{formula_cohens_w} \parencite{Baguley2016} the conversion from $V$ to $w$ is similar to the reduction of $\Phi_c$ in $V$ (see \cref{formula_cramers_v_corrected}). This conversion to $w$ is necessary within a single study and an adaption of scale is sufficient \parencite{Baguley2016}. In terms of this thesis an adapted scale of effect size according to Ellis is used to interpret $w$ in the range of $0$ to $1$ \parencite{Cohen1988,Ellis2010,Hemmerich2019}
 
 \begin{itemize}
 	\item $w < \: .30$ : the correlation strength is weak
-	\item $\: .30 =< w < \: .40$ : A moderate strength of correlation
-	\item $w >= \: .40$ : There is a strong correlation
+	\item $\: .30 =< w < \: .40$ : a moderate strength of correlation
+	\item $w >= \: .40$ : there is a strong correlation.
 \end{itemize}
 
 The values of Theil's $U$ show the predictability of the association, where the following rules for interpretation apply \parencite{TheilsInt01,TheilsInt02,TheilsInt03}
@@ -354,13 +354,13 @@ There are many effect sizes like Cohen's $f^2$ or Heghes $g$, which can be used 
 
 \section{Significance vs. Uncertainty}
 \label{correlation_significance_uncertainty}
-Pure correlation results are not sufficient to prove a relation between variables, especially when using the correlation evidence for predictive purposes. Depending on the sample data, statistical results can be random or biased and therefore need to be examined for their probability of error. This is commonly evaluated via the well known statistical significance. Even thought statistical significance is the common standard procedure for evaluating the probability of error, it became a subject of debate in recent years if statistical significance is to generally used and potential misleading. It is often advocated to additionally used statistical uncertainty instead of only relying on statistical significance. \parencite{Harris2019}
+Pure correlation results are not sufficient to prove a relation between variables, especially when using the correlation evidence for predictive purposes. Depending on the sample data, statistical results can be random or biased and therefore need to be examined for their probability of error. This is commonly evaluated via the well known statistical significance. Even though statistical significance is the common standard procedure for evaluating the probability of error, it became a subject of debate in recent years if statistical significance is to be generally used and if it is potentially misleading. It is often advocated to additionally used statistical uncertainty instead of only relying on statistical significance \parencite{Harris2019}.
 
 \subsection{Uncertainty}
 \label{correlation_uncertainty}
-The uncertainty assessment aims to determine if a variable has suitable statistical characteristics for the intended analysis or in colloquial terms, is \textit{fit for the purpose}. The literature research showed that there are a number of different procedures for the evaluation of uncertainty. \textit{The Evaluation of Measurement Data - Guide to the Expression of Uncertainty in Measurement}\footnote{https://www.bipm.org/utils/common/documents/jcgm/JCGM.pdf} (also referred to as GUM) defines reliable but also complex guidelines and is recommended for an in depth understanding of uncertainty evaluation \parencite{Farrance2012}. The complexity of the GUM procedures (which are beyond of the scope of this thesis) and the apparent data foundation favored the usage of simpler methods like the \textit{population sampling error}. \parencite{ONS2020}
+The uncertainty assessment aims to determine if a variable has suitable statistical characteristics for the intended analysis or in colloquial terms, is \textit{fit for the purpose}. The literature research showed that there are a number of different procedures for the evaluation of uncertainty. \textit{The Evaluation of Measurement Data -- Guide to the Expression of Uncertainty in Measurement}\footnote{https://www.bipm.org/utils/common/documents/jcgm/JCGM.pdf} (also referred to as GUM) defines reliable but also complex guidelines and is recommended for an in depth understanding of uncertainty evaluation \parencite{Farrance2012}. The complexity of the GUM procedures (which are beyond of the scope of this thesis) and the data foundation favored the usage of simpler methods like the \textit{population sampling error} \parencite{ONS2020}.
 
-The sampling error is the uncertainty created selecting a subset from a population. This can result in poorly distributed variables, which induces a high probability of random correlations based on a small number of samples. A initial review of the variable distributions in the \acrshort{baysis} and \acrshort{arbis} dataset showed that there are many  sample size that below 10, which is an arguably low count. Research into the minimal sample size showed, that for categorical variables a minimal number of 20 ($k=3$) or 200 ($k=10$) should be asserted \parencite{Cicchetti1981}. From these guidelines and the exploratory approach of this thesis, variables with a sample size below 10 are considered to be uncertain and associated correlations should be neglected.
+The sampling error is the uncertainty created by selecting a subset from a population. This can result in poorly distributed variables, which induces a high probability of random correlations based on a small number of samples. An initial review of the variable distributions in the \acrshort{baysis} and \acrshort{arbis} dataset showed that there are many sample sizes below 10 (see \cref{dataset_baysis,dataset_arbis}), which is an arguably low count. Research into the minimal sample size showed, that for categorical variables, with number of categories $k$ a minimal number of 20 ($k=3$) or 200 ($k=10$) should be asserted \parencite{Cicchetti1981}. From these guidelines and the exploratory approach of this thesis, which allows for lower thresholds, a sample size below 10 are considered to be uncertain and associated correlations should be neglected by default.
 
 \todo{Fix footnote and cite}
 % https://www.bipm.org/utils/common/documents/jcgm/JCGM_100_2008_E.pdf
@@ -376,7 +376,7 @@ Because statistical results are usually based on sample sets, it is necessary to
 
 \begin{equation}
 \label{formula_chi_squared_simplified}	
-	\chi^2 = \sum_{i=1}^{n}{\frac{(O_i-E_i)^2}{E_i}} == N\sum_{i=1}^{n}{\frac{(O_i/N-p_i)^2}{p_i}}
+	\chi^2 = \sum_{i=1}^{n}{\frac{(O_i-E_i)^2}{E_i}} = N\sum_{i=1}^{n}{\frac{(O_i/N-p_i)^2}{p_i}}
 \end{equation}
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
@@ -387,16 +387,18 @@ Because statistical results are usually based on sample sets, it is necessary to
 
 \medskip
 
-The $p$-value can then be comprised by comparing $\chi^2$ to a $\chi^2$-distribution by calculation or by using a conversion table \parencite{Piegorsch2002} with the degree of freedom $df = (n_x - 1) \cdot (n_y - 1)$. The resulting  $p$-value is compared to the $\alpha$-level to either accept ($p > \alpha$) or reject ($p <= \alpha$) the null hypothesis \textit{"The means are equal to the population"}. For a 2-tailed $p$-value, $p$ will be doubled to incorporate both ends of the distribution. Usually a value of $.05$ is chosen for $\alpha$ which there will be a 5\,\% risk of falsely rejecting the null hypothesis. Out of this definition the following two interpretations of the correlation coefficient can be drawn. \parencite{Tenny2020,OTSD2020}
+\todo{Expand with longer explnanation of why two hypothesizes and how to...}
+
+The $p$-value can then be comprised by comparing $\chi^2$ to a $\chi^2$-distribution by calculation or by using a conversion table \parencite{Piegorsch2002} with the degree of freedom $df = (n_x - 1) \cdot (n_y - 1)$. The resulting  $p$-value is compared to the $\alpha$-level to either accept ($p > \alpha$) or reject ($p \le \alpha$) the null hypothesis \textit{"The means are equal to the population"}. For a 2-tailed $p$-value, $p$ will be doubled to incorporate both ends of the distribution. Usually a value of $.05$ is chosen for $\alpha$ which there will be a 5\,\% risk of falsely rejecting the null hypothesis. Out of this definition the following two interpretations of the correlation coefficient can be drawn \parencite{Tenny2020,OTSD2020}.
 
 \begin{itemize}
 	\item $p <= \alpha$ means that the null hypothesis can be rejected and indicates that there is a significant dependency between the two tested variables. It can be concluded that the increase or decrease of one variable does significantly relate to the increase or decrease of the other.
-	\item $p > \alpha$ means that there is \textbf{no} significant dependency between the two variables and no conclusion can be drawn for the correlation.
+	\item $p > \alpha$ means that there is \textbf{no} significant dependency between the two variables and no conclusion can be drawn from the correlation.
 \end{itemize}
 
 \section{Post Hoc}
 \label{correlation_posthoc}
-In the case of a relation of a categorical variable the correlation effect size and it's significance do not provide any statement on which categories are related. This needs to be further evaluated with a Post Hoc test. In our case the Post Hoc test is based on two separated tests. First the variables will be tested for significance with a Kruskal-Wallis rank sum test. 
+In the case of a relation of a categorical variable the correlation effect size and its significance do not provide any statement on which categories are related. This needs to be further evaluated with a Post Hoc test. In our case the Post Hoc test is based on two separated tests. First the variables will be tested for significance with a Kruskal-Wallis rank sum test. 
 
 % https://www.sciencedirect.com/topics/nursing-and-health-professions/kruskal-wallis-test
 \smallskip
@@ -404,6 +406,8 @@ In the case of a relation of a categorical variable the correlation effect size 
 \label{formula_kruskal_wallis}	
 	h = \frac{12}{n(n+1)}\sum_{h}{\frac{S_h^2}{n_h}}-3(n+1)
 \end{equation}
+
+\todo{Add descriptives for equation variables}
 
 \medskip
 
@@ -426,11 +430,14 @@ The Wilcoxon $T$-test is a non-parametric univariate alternative to the dependen
   	\end{tikzpicture}	
   	\caption{2-dimensional Wilcoxon ranked sum test significance matrix}
 \end{figure}
+
+\todo{Explain G}
+
 From the resulting matrix of $p$-values and the analog interpretation with the $\alpha$-level (see \cref{correlation_significance}) the significant groups can be identified. These identified groups are considered to have a significant difference to the other groups and therefore can predictably point to a measurement characteristic from a category or vice versa.
 
-A non significant difference between does not mean that there is no correlation, but only that the sample set and size can not support significancy. There are also cases, where the $p$-value of the correlation coefficient and the general Kruskal-Wallis rank sum test show significant differences in the variable, but the pairwise Wilcoxon ranked sum test does not show any significant differences between the groups. This unfitting difference between the \textit{global} and \textit{specific} significance appears when variables have differences between the samples, but the differences are not reflected by the groups or the sample size is not sufficient to support the significancy of the differences. These controversial correlations can also be evaluated in a exploratory data analysis, keeping in mind their limited interpretability and predictability.
+A non significant difference does not mean that there is no correlation, but only that the sample set and size can not support significance. There are also cases where the $p$-value of the correlation coefficient and the general Kruskal-Wallis rank sum test show significant differences in the variable, but the pairwise Wilcoxon ranked sum test does not show any significant differences between the groups. This unfitting difference between the \textit{global} and \textit{specific} significance appears when variables have differences between the samples, but the differences are not reflected by the groups or the sample size is not sufficient to support the significance of the differences. These controversial correlations can also be evaluated in a exploratory data analysis, keeping in mind their limited interpretability and predictability.
 
-To define what the significant, as well the non significant groups are referring in the variable, the statical indicators of count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) are considered. These a quite common for describing statical data and can be considered as robust. These indicators can be presented as table or visual plot, as shown in \cref{tbl:descriptives_sample,fig:descriptives_sample}.
+To define what the significant, as well as the non significant groups are referring to in the variable, the statical indicators of count ($n$), mean ($\bar{x}$), standard deviation ($\sigma$), median ($\tilde{x}$), $min$, $max$ and range ($\Delta$) are considered. These are quite common for describing statical data and can be considered as robust. These indicators can be presented as a table or visual plot, as shown in \cref{tbl:descriptives_sample,fig:descriptives_sample}.
 \pgfplotstableread[col sep=comma,header=false]{
 	G1 , 0 , 70  , 60  , 50 
 	G2 , 0 , 90  , 95  , 70 
@@ -497,7 +504,10 @@ To define what the significant, as well the non significant groups are referring
 	\caption{Group descriptives sample}
 	%\vspace{-8mm}
 \end{figure}
-The table show the values of all descriptives for all groups, when the figure on the right show a plot of mean ($\bar{x}$), standard deviation ($\sigma$) and median ($\tilde{x}$) with the color coded means From these the amount of difference between the groups can be deviated, by looking for outliners or distinct variances in the distributions, which can be interpreted accordingly. The indicators of $min$, $max$ and range ($\Delta$) can give clues what distributions should be expected and if the variable is sufficiently distributed. 
+
+\todo{Explain Plot Axis and Sample Data}
+
+The table shows the values of all descriptives for all groups, whereas the figure on the right show a plot of mean ($\bar{x}$), standard deviation ($\sigma$) and median ($\tilde{x}$) with the color coded means. From these the absolute value of difference between the groups can be deviated by looking for outliners or distinct variances in the distributions, which can be interpreted accordingly. The indicators of $min$, $max$ and range ($\Delta$) can give clues what distributions should be expected and if the variable is \todo{sufficiently} distributed. 
 
 %\todo{Ergänze Effektstärke für Mann-Whitney-U}
 %https://statistikguru.de/spss/mann-whitney-u-test/effektstaerke-berechnen-3.html

@@ -310,12 +310,11 @@ As shown in \cref{formula_cohens_w} \parencite{Baguley2016} the conversion from 
 	\item $w >= \: .40$ : there is a strong correlation.
 \end{itemize}
 
-The values of Theil's $U$ show the predictability of the association, where the following rules for interpretation apply \parencite{TheilsInt01,TheilsInt02,TheilsInt03}
+The values of Theil's $U$ show the predictability of the association, where the following rules for interpretation apply to the implementation \parencite{TheilsInt01,TheilsInt02,TheilsInt03}.
 
 \begin{itemize}
-	\item $U < \: 1$ : the forecasting is better than guessing
-	\item $U \sim \: 1$ : the forecasting is about as good as guessing
-	\item $U > \: 1$ : the forecasting is worse than guessing.
+	\item $U$ close to $\: 0$ : $y$ provides no information about $x$
+	\item $U$ close to $\: 1$ : $y$ provides full information about $x$
 \end{itemize}
 
 \section{Correlation Matrix}

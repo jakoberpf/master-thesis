@@ -364,7 +364,7 @@ The sampling error is the uncertainty created by selecting a subset from a popul
 
 \subsection{Significance}
 \label{correlation_significance}
-Because statistical results are usually based on sample sets, it is necessary to test if the results can be applied on the population or are significant. This significance of a relation can be evaluated by the common dependent $t$-test which compares the significance value $p$ to the error probability level $\alpha$. The $p$-value is generally calculated via chi-squared, shown in \cref{formula_chi_squared_simplified} (chi-squared statistic), which was taken from Wikipedia and cited from Karl Pearson \parencite{Pearson1990}.
+Because statistical results are usually based on sample sets, it is necessary to test if the results can be applied on the population or are significant. Therefore a decision on one of the two hypothesis of \textit{"The averages are equal to the population"} which means the statistical results can be applied on the general population and \textit{"The averages are not equal to the population"} which means the statistical results can not be applied on the general population, need to be determined. This can be evaluated by the common dependent $t$-test which compares the significance value $p$ to the error probability level $\alpha$. The $p$-value is generally calculated via chi-squared, shown in \cref{formula_chi_squared_simplified} (chi-squared statistic), which was taken from Wikipedia and cited from Karl Pearson \parencite{Pearson1990}.
 
 % \begin{equation}
 % \label{formula_chi_squared}	
@@ -383,8 +383,6 @@ Because statistical results are usually based on sample sets, it is necessary to
 \end{itemize}
 
 \medskip
-
-\todo{Expand with longer explnanation of why two hypothesizes and how to...}
 
 The $p$-value can then be comprised by comparing $\chi^2$ to a $\chi^2$-distribution by calculation or by using a conversion table \parencite{Piegorsch2002} with the degree of freedom $df = (n_x - 1) \cdot (n_y - 1)$. The resulting  $p$-value is compared to the $\alpha$-level to either accept ($p > \alpha$) or reject ($p \le \alpha$) the null hypothesis \textit{"The means are equal to the population"}. For a 2-tailed $p$-value, $p$ will be doubled to incorporate both ends of the distribution. Usually a value of $.05$ is chosen for $\alpha$ which there will be a 5\,\% risk of falsely rejecting the null hypothesis. Out of this definition the following two interpretations of the correlation coefficient can be drawn \parencite{Tenny2020,OTSD2020}.
 

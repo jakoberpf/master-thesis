@@ -399,10 +399,14 @@ In the case of a relation of a categorical variable the correlation effect size 
 \smallskip
 \begin{equation}
 \label{formula_kruskal_wallis}	
-	h = \frac{12}{n(n+1)}\sum_{h}{\frac{S_h^2}{n_h}}-3(n+1)
+	h = \frac{12}{N(N+1)}\sum_{h}{\frac{S_h^2}{n_h}}-3(N+1)
 \end{equation}
-
-\todo{Add descriptives for equation variables}
+\begin{itemize}
+	\setlength\itemsep{0.1em}	
+	\item[] $N$ is the total number of samples 
+	\item[] $n$ is the number of samples in group $h$
+	\item[] $S_h$ rank sum of group $h$
+\end{itemize}
 
 \medskip
 
@@ -426,9 +430,7 @@ The Wilcoxon $T$-test is a non-parametric univariate alternative to the dependen
   	\caption{2-dimensional Wilcoxon ranked sum test significance matrix}
 \end{figure}
 
-\todo{Explain G}
-
-From the resulting matrix of $p$-values and the analog interpretation with the $\alpha$-level (see \cref{correlation_significance}) the significant groups can be identified. These identified groups are considered to have a significant difference to the other groups and therefore can predictably point to a measurement characteristic from a category or vice versa.
+From the resulting matrix of $p$-values for each group ($G_{1,...n}$) and the analog interpretation with the $\alpha$-level (see \cref{correlation_significance}) the significant groups can be identified. These identified groups are considered to have a significant difference to the other groups and therefore can predictably point to a measurement characteristic from a category or vice versa.
 
 A non significant difference does not mean that there is no correlation, but only that the sample set and size can not support significance. There are also cases where the $p$-value of the correlation coefficient and the general Kruskal-Wallis rank sum test show significant differences in the variable, but the pairwise Wilcoxon ranked sum test does not show any significant differences between the groups. This unfitting difference between the \textit{global} and \textit{specific} significance appears when variables have differences between the samples, but the differences are not reflected by the groups or the sample size is not sufficient to support the significance of the differences. These controversial correlations can also be evaluated in a exploratory data analysis, keeping in mind their limited interpretability and predictability.
 

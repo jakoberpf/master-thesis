@@ -164,24 +164,33 @@ if __name__ == '__main__':
 
     # define column types
     nominal_columns = [
-        "Str", "Kat", "Typ",
+        "TMax",
+        "TAvg",
+        "SMax",
+        "SAvg",
+        "TDist",
+        "SDist",
+        "Cov",
+        "TLCar",
+        "TLHGV",
+        # Accident Data
+        "Str",
+        "Kat", "Typ", "Betei",
         "UArt1", "UArt2",
         "AUrs1", "AUrs2",
         "AufHi",
+        "Alkoh",
         "Char1", "Char2",
+        "Bes1", "Bes2",
         "Lich1", "Lich2",
         "Zust1", "Zust2",
+        "Fstf",
         "WoTag",
-        'Month']
-    dichotomous_columns = ["Alkoh"]
-    ordinal_columns = ["Betei", "Fstf", "FeiTag",
-                       "TempMax",
-                       "TempAvg",
-                       "SpatMax",
-                       "SpatAvg",
-                       "Coverage",
-                       "TLCar",
-                       "TLHGV"]
+        "FeiTag",
+        'Month'
+    ]
+    dichotomous_columns = []
+    ordinal_columns = []
 
     # Encode non numerical columns
     baysis_encoded, baysis_encoded_dict = numerical_encoding(baysis_selected,

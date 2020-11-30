@@ -1,6 +1,6 @@
 \chapter{Methodology of processing}
 \label{methodology}
-The previous chapters provided an introduction into the systems, data and methods which will be used to determine if jams characteristics, detected in \acrshort{fcd} and incident characteristics from accidents (\acrshort{baysis}) and roadworks (\acrshort{arbis}) are statistically related to each other. The research question to be answered stands as follows:
+The previous chapters provided an introduction into the systems, data and methods which will be used to determine if jam characteristics detected in \acrshort{fcd} and incident characteristics from accidents (\acrshort{baysis}) and roadworks (\acrshort{arbis}) are statistically related to each other. The research question to be answered can be termed as:
 
 \begin{center}
 	\textit{Do congestion- and incident-characteristics correlate?}
@@ -8,126 +8,57 @@ The previous chapters provided an introduction into the systems, data and method
 
 \medskip
 
-The methodology to answer these research questions, will be elaborated in this chapter, starting with the detection of jams in the FCD. This also contains the generation of congestion characteristics and collection of adjacent incident. The \acrshort{fcd} is a continuous time series of datapoint which represents the mean absolute and relative speed of the street section at each 3-minute interval on a road section. In \ref{dataset_fcd} we determined that thought a manual visual analysis jams can be easily identified. This manual identification will be automated because of the amount of data representing a complete year and all Bavarian highways. The gathered tuples of congestion and incident are then processed and exported into a unified data-structure. 
+The methodology to answer this research question will be elaborated in this chapter, starting with the detection of jams in the FCD. This also contains the generation of congestion characteristics and collection of adjacent incidents. \acrshort{fcd} is a continuous time series of datapoint which represents the mean absolute and relative speed of the street section at each 3-minute interval on a road section. In \cref{dataset_fcd} it was determined, that trough a manual visual analysis jams can be easily identified. This manual identification will be automated because of the amount of data representing a complete year and all Bavarian highways. The gathered tuples of congestion and incident are then processed and exported into a unified data-structure. 
 
-The \gls{evaltool} from the \gls{congstats} service, the project which inspired this thesis, was developed for this purpose and will be expanded with required features. Afterward the stored dataset of congestion and incidents events will be analyzed for correlations and other statistic indicators.
+The evaluation tool of the \gls{congstats} service which is the project this thesis was inspired of, was developed for this purpose and will be expanded with required features. Afterwards the stored dataset of congestion and incidents events will be analyzed for correlations and other statistic indicators.
 
 \bigskip
 
 \section{Detection Algorithm}
 \label{methodology_detection}
-First step is the detection of congestion events. The definition in \ref{definition_congestion} states that a congestion is a dense, timely and spatial accumulation of jammed cells, also describable as cluster of jammed cells. Therefore a clustering algorithm would be suitable to identify congestion events.
+The first step is the detection of congestion events. In \cref{definition_congestion} a congestion is defined as a dense, temporal and spatial accumulation of jammed cells, also describable as a cluster of jammed cells. Therefore a clustering algorithm would be suitable to identify congestion events.
 
-For the classification of the congestion events into different types, by theirs spatial and timely extends a shaping algorithm is needed. It is supposed to convert the accumulation of cells into a simple describable shape, which can be put into groups.
+A shaping algorithm is needed for the classification of the congestion events into different types by their spatial and temporal extends. It is supposed to convert the accumulation of cells into a simple describable shape which can be put into groups.
 
 \subsection{Clustering of Floating-Car-Data}
 \label{methodology_detection_clustering}
-The term clustering is the short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in they strategies, methods and performance \parencite{Busch2004}. For example k-means or k-metoid (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers) or spectral clustering (graph distance), which can be sorted into the categories of partition-based, hierarchical-based and density-based clustering \parencite{Chauhan2020,Yildirim2020}.
-
-% https://texample.net/tikz/examples/probability-tree/
-% https://webis.de/downloads/theses/papers/busch_2005.pdf 1.6
-%\begin{tikzpicture}[grow=right, sloped]
-%\node[bag] {Cluster Algorithms}
-%    child {
-%        node[bag] {hierarchic}        
-%             child {
-%                node[end, label=right:
-%                    {single-linkage, group-average}] {}                
-%                edge from parent
-%            }         
-%            edge from parent 
-%    }
-%    child {
-%        node[bag] {iterative}        
-%            child {
-%                node[end, label=right:
-%                    {k-means, k-metoid, Kerninghan-Lin}] {}                
-%                edge from parent
-%            }         
-%            edge from parent 
-%    }
-%    child {
-%        node[bag] {density-based}        
-%            child {
-%                node[end, label=right:
-%                    {DBSCAN, MajorClust}] {}                
-%             	edge from parent
-%            }
-%            edge from parent
-%    }
-%	child {
-%        node[bag] {meta-search}        
-%                 child {
-%                node[end, label=right:
-%                    {genetic algorithms}] {}
-%                edge from parent
-%            }            
-%            edge from parent
-%    }
-%    child {
-%        node[bag] {statistical}        
-%        child {
-%                node[end, label=right:
-%                    {gaussian mixtures}] {}
-%                edge from parent
-%            }
-%            edge from parent         
-%    };
-%\end{tikzpicture}
+The term clustering is a short form of a data mining technique also called numerical taxonomy or cluster analysis with the goal of finding data structures or associations. For this purpose a multitude of algorithms where developed over time, varying in their strategies, methods and performance \parencite{Busch2004}. For example k-means or k-metoid (point distance), affinity propagation (graph distance), mean-shift (point distance), DBSCAN (nearest point distance), gaussian mixtures (mahalanobis distance to centers) or spectral clustering (graph distance), which can be sorted into the categories of partition-based, hierarchical-based and density-based clustering \parencite{Chauhan2020,Yildirim2020}
 
 \bigskip
 
-\begin{figure}[ht]
+\begin{figure}[ht!]
 	\centering
 	\includegraphics[scale=0.5]{images/cluster_seperate.png}
 	\caption{Example clustered by k-means algorithm \parencite{Yildirim2020}}
 	\label{cluster_kmeans}
 \end{figure}
 
-To illustrate which problems can occur when using cluster algorithms and to defined the features which makes algorithm suitable, the k-means is used as base comparison. The figure \ref{cluster_kmeans} shows three differently colored groups of points, which are clustered into three clusters, represented by the circles around the groups. It demonstrates the general principle of clustering and was done by the common k-means algorithm with the $a$ $priori$ parameter of three clusters. 
+To illustrate which problems can occur when using cluster algorithms and to define the features which makes an algorithm suitable, the $k$-means is used as base comparison. The \cref{cluster_kmeans} shows three differently colored groups of points which are grouped into three clusters by the $k$-means algorithm, represented by the colored circles around the groups. It demonstrates the general principle of clustering and was done by the common $k$-means algorithm with the a priori parameter of three clusters. 
 
-\begin{figure}[ht]
+\begin{figure}[ht!]
 	\centering
-	\includegraphics[scale=0.4]{images/cluster_1.png}
-	\includegraphics[scale=0.4]{images/cluster_2.png}
+	\includegraphics[scale=0.3]{images/cluster_1.png}
+	\includegraphics[scale=0.3]{images/cluster_2.png}
 	\includegraphics[scale=0.4]{images/cluster_3.png}
 	\caption{Example clustered by density-based algorithm \parencite{Yildirim2020}}
 	\label{cluster_dbscan}
 \end{figure}
 
-This works well as long as the groups don't overlay, intersect or have arbitrary shapes like in the figures \ref{cluster_dbscan}. When this is the case, the k-mean may cluster loosely related point together, which actually are more strongly related to other points, because it considers every point as possible neighbor. Since jams in FCD data can overlay and have any number of shape, as suitable algorithms need to be able to handle such data.
+This algorithm produces representable results as long as the groups don't overlay, intersect or have arbitrary shapes like in \cref{cluster_dbscan} which was clustered by the DBSCAN algorithm. If this is the case, the $k$-mean may cluster loosely related points together which actually are more strongly related to other points, because it considers every point as a possible neighbor and other algorithms are better suited. Since jams in \acrshort{fcd} can overlay and appear in any shape, a suitable algorithm is needed to be able to handle such data.
 
-Another issue with many clustering algorithms is the increasing runtime when processing larger amounts of data. The objective function \ref{formula_kmeans} of the exemplary k-mean states that $n$ distances are calculated for $k$ points \parencite{Santhanam2010}. With the assumption that every distance for every point will be calculated and therefore $k=n$, the Big $\Theta$ notation, commonly known as Big $O$, describing the scaleable time complexity of an algorithm, is $O(n \cdot K \cdot I \cdot d)$ ($n$ = number of points, $K$ = number of clusters, $I$ = number of iterations, $d$ = number of attributes) \parencite{Dalatu2016}. It is commonly simplified in literature to $O(n^2)$, a quadratic complexity \parencite{Pakhira2014}. The assumption also entails that in a worst case scenario $n^2$ calculations have to be computed over all iterations.
-
-\begin{equation}
-\label{formula_kmeans}
-	k_{mean} =  \sum_{j=1}^k{\sum_{i=1}^n{\abs{x_i^j-c_j}}}
-\end{equation}
-
-\bigskip
-
-A Big $O$ notation of $O(n^2)$ can generally be described as inefficient, but if we would apply the worst case scenario as an example on the data of the highway A3 and a timeframe of 24 hours, which contains 836.752 data points, the runtime issue becomes quite obvious. As the equation \ref{equation_kmeans_nn} show, the total number of calculation is quite high, resulting in a considerable runtime. \parencite{Busch2004}
-
-\begin{equation}
-\label{equation_kmeans_nn}
-	 = 836752 \cdot 836752 = 700.153.909.504 = 7 \cdot 10^{11}
-\end{equation}
-
-\bigskip
-
-Entering density-based methods, which are better suited to identify distinctive, arbitrary clusters in, by looking for a contiguous region of high point density, separated from others by contiguous regions of low point density \parencite{Chauhan2020}. These do not necessarily have less runtime, but better cluster representation.
+Entering density-based methods which are better suited to identify distinctive, arbitrary clusters, by looking for a contiguous region of high point density, separated from others by contiguous regions of low point density \parencite{Chauhan2020}. 
 
 \subsubsection{Density Clustering Algorithm}
-The DBSCAN algorithm, standing for \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise. The basic idea of this algorithm is to form cluster of points, which are close too \textbf{many} other points of the cluster. For this strategy two thresholds parameters are needed. The first being the minimal size of a cluster, referred to as $MinPts$, which defines the minimum number of points necessary to form a cluster. And secondly the maximum distance threshold between points, $eps$ ($\varepsilon$), to be considered as neighbors and become part of a cluster. These thresholds classify a data point as core point, (directly) density-reachable point or noise. \parencite{Yildirim2020,Chauhan2020,Padro2017}
+The DBSCAN algorithm meaning \textbf{d}ensity-\textbf{b}ased \textbf{s}patial \textbf{c}lustering of \textbf{a}pplications with \textbf{n}oise, is able to find arbitrary shaped cluster and clusters by considering the spatial density, which also represents noise. The basic idea of this algorithm is to form cluster of points, which are close too many other points. For this strategy two threshold parameters are needed. The first being the minimal size of a cluster, referred to as $MinPts$, which defines the minimum number of points necessary to form a cluster. And secondly the maximum distance threshold between points, $eps$ ($\varepsilon$), to be considered as neighbors and become part of a cluster. These thresholds classify a data point as a core point, a (directly) density-reachable point or noise. \parencite{Yildirim2020,Chauhan2020,Padro2017}
 
 \begin{itemize}
-	\item A \textbf{core} point $q$ has at least $MinPts$ points around them within the neighborhood $\varepsilon$, including itself.
+	\item A \textbf{core} point $q$ has at least $MinPts$ points around it within the neighborhood $\varepsilon$, including itself.
     \item \textbf{Directly density-reachable} border points have at least one core point within the neighborhood $\varepsilon$.
-     \item \textbf{Density-reachable} border points have at least one core point within the neighborhood $\varepsilon$ of a cain of points $p_1,p_2,...p_n$.
- 	\item \textbf{Noise} or outliner point are neither core points nor are they density-reachable and therefore have less than $MinPts$ in their neighborhood $\varepsilon$, including itself.
+    \item \textbf{Density-reachable} border points have at least one core point within the neighborhood $\varepsilon$ of a chain of points $p_1,p_2,...p_n$.
+ 	\item \textbf{Noise} or outliner point are neither core points nor are they density-reachable and therefore have less than $MinPts$ in their neighborhood $\varepsilon$, including themselves.
 \end{itemize}
 
-The general procedure of the algorithm is as follows \parencite{Zhao2018}, with the input of $n$ points, neighborhood radius $\varepsilon$ and density threshold $MinPts$:
+The general procedure of the algorithm, with the input of $n$ points, neighborhood radius $\varepsilon$ and density threshold $MinPts$ is the following \parencite{Zhao2018}:
 
 \begin{itemize}
 	\item[\textbf{1.}] Mark all points as \textit{unvisited}
@@ -136,20 +67,14 @@ The general procedure of the algorithm is as follows \parencite{Zhao2018}, with 
 		\item[\textbf{a.}] Choose point $p$ randomly from all \textit{unvisited} points and mark $p$ as \textit{visited}.
 		\item[\textbf{b.}] Count points in the neighborhood $\varepsilon$ to check if $p$ is core point. If $p$ is core point, create new cluster $C$ and add all directly density-reachable and \textit{unvisited} points. Otherwise mark $p$ as noise.
 		\item[\textbf{c.}] Choose point $p'$ randomly from all \textit{unvisited} points of $C$ and mark $p$ as \textit{visited}.
-		\item[\textbf{d.}] Count points in the neighborhood $\varepsilon$ to check if $p'$ is core point. If $p$ is core point add all directly density-reachable points, which do not already belong to a cluster, to $C$. Otherwise mark $p$ as noise.
-		\item[\textbf{e.}] Repeat \textbf{c} and \textbf{d} until there are no \textit{unvisited} points left in $C$.	
+		\item[\textbf{d.}] Count points in the neighborhood $\varepsilon$ to check if $p'$ is core point. If $p$ is core point add all directly density-reachable points which do not already belong to a cluster to $C$. Otherwise mark $p$ as noise.
+		\item[\textbf{e.}] Repeat step \textbf{c} and \textbf{d} until there are no \textit{unvisited} points left in $C$.	
 	\end{itemize} 
-	\item[\textbf{3.}] Repeat \textbf{2} until all points are \textit{visited} 
+	\item[\textbf{3.}] Repeat step \textbf{2} until all points are \textit{visited} 
 \end{itemize}
 
-%https://www.kde.cs.uni-kassel.de/wp-content/uploads/ws/LLWA03/fgml/final/Kirchner.pdf
-%https://www.researchgate.net/publication/322729622_Characterizing_Diffusion_Dynamics_of_Disease_Clustering_A_Modified_Space-Time_DBSCAN_MST-DBSCAN_Algorithm
-%https://www.nature.com/articles/s41598-017-12852-z
-%http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.1629&rep=rep1&type=pdf
-%http://cucis.eecs.northwestern.edu/publications/pdf/HAL18.pdf
-
 \subsubsection{Artificial Distance Measuring}
-The algorithm is based on the density of points. This density representation is achieved via checking the neighborhood $\varepsilon$ against calculation of distance from point $A$ to $B$, typical the Euclidean distance, which is based on the pythagorean theorem (see equation \ref{formula_euclidean} \parencite{Erhard2020}).
+The algorithm is based on the density of points. This density representation is achieved via checking the neighborhood $\varepsilon$ against the calculation of distance from point $A$ to $B$. Typically the Euclidean distance, which is based on the pythagorean theorem is used (see equation \ref{formula_euclidean} \parencite{Erhard2020}).
 
 \begin{figure}[ht]
 	\centering
@@ -200,7 +125,7 @@ The algorithm is based on the density of points. This density representation is 
 
 \medskip
 
-As shown above, the euclidean distance calculation assumes a Euclidean space, meaning equal scaling of both axis, which is not the case with FCD. The 2D-space of the FCD is defined by a spatial and a temporal dimension, which are scaled differently as mentioned in section \ref{dataset_fcd}. The vertical axis shows the temporal dimension is regular scales in 3 minute intervals. The horizontal axis is the spatial extend, scaled in one cell per step, representing one road link (road link are rather small subsection of roads, defining the course), which vary heavily in their length. This can be visualized like:
+As shown above the Euclidean distance calculation assumes a Euclidean space and therefore the equal scaling of both axis, which are not given with provided FCD. The 2D-space of the FCD is defined by a spatial and a temporal dimension which are scaled differently as already mentioned in section \ref{dataset_fcd}. The vertical axis shows the temporal dimension is scaled regularly in 3 minute intervals. The horizontal axis is the spatial extend, scaled in one cell per step, representing one road link (road links are rather small subsections of roads, defining the course), which vary heavily in their length. This can be visualized like in the following \cref{figure_non_euclidean_fcd}:
 
 \begin{figure}[ht]
 	\centering	
@@ -255,53 +180,17 @@ As shown above, the euclidean distance calculation assumes a Euclidean space, me
 		\draw ($(P)!2mm!(C)$) coordinate (V) -- ($(V)!2mm!90:(C)$) --($(P)!2mm!(B)$);
 				
 	\end{tikzpicture}
-	\caption{Euclidian distance in 2-dimensional non-euclidian space}
+	\caption{Euclidian distance in 2-dimensional non-Euclidian space}
+	\label{figure_non_euclidean_fcd}
 \end{figure}
 
 \bigskip
 
-This makes a direct application of the Euclidian distance invalid to calculate the distance from point $A$ to point $B$. But then how can distances be represented in this 2D-space with different units? The solution developed for this application is to expand the 2D-representation of time and space into a 3D-representation of time, space and speed (absolute mean traveling speed is part of \acrshort{fcd}, see section \ref{dataset_fcd}). Because speed $[km/h]$ consist of both time $[min]$ and space $[m]$ is allows for the introduction of the common unit travel time, which can be comprise from these three parameters traveling speed, time duration and link length. At this point it has to be noted, the implemented definition does not represent actual travel time but server the need of being common unit and rough representation. To separate both terms the term \textit{artificial travel time} will be used instead of \textit{travel time}.
-
-\begin{figure}[ht]
-	\centering	
-	\begin{tikzpicture}
-	
-		\begin{axis}[
-			view={120}{40},
-			width=220pt,
-			height=220pt,
-			grid=major,
-			z buffer=sort,
-			xmin=1,xmax=9,
-			ymin=1,ymax=9,
-			zmin=1,zmax=9,
-			enlargelimits=upper,
-			xtick={1,...,9},
-			ytick={1,...,9},
-			ztick={1,...,9},
-			xlabel={$time$},
-			ylabel={$link$},
-			zlabel={$speed$},
-			point meta={x+y+z+3},
-			colormap={summap}{
-				color=(black); color=(blue); 
-				color=(black); color=(white) 
-				color=(orange) color=(violet) 
-				color=(red)
-			},
-			scatter/use mapped color={
-				draw=mapped color,fill=mapped color!70},
-			]
-			% http://pgfplots.sourceforge.net/gallery.html. 
-		\end{axis}
-		
-	\end{tikzpicture}
-	\caption{3-dimensional space representation of \acrshort{fcd}}
-\end{figure}
+This makes a direct application of the Euclidian distance invalid to calculate the distance from point $A$ to point $B$. But then how can distances be represented in this 2D-space with different units? As a solution the 2D representation of time and space can be expanded into a 3D-representation of time, space and speed (absolute mean traveling speed is part of \acrshort{fcd}). Because speed $[km/h]$ consist of both time $[min]$ and space $[m]$ it allows for the introduction of the common unit travel time which can be comprised from these three parameters traveling speed, time duration and link length. At this point it has to be noted that the implemented definition does not represent actual travel time but server the need of being common unit and rough representation. To separate both terms the term \textit{artificial travel time} will be used instead of \textit{travel time}.
 
 Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv y=[y_1,...,y_n]$ and $speed$ $\equiv z=[z_1,...,z_n]$ the mathematical definition of calculation for the distance from point $A$ to point $B$ is as follows.
 
-\paragraph{Time dimension} Traveling just in the time dimension is not actual possible, hence the term artificial travel time. But assuming that both point $A$ and $B$ are at the same \textbf{space} step, the distance is calculated by:
+\paragraph{Time dimension :} Traveling just in the time dimension is not actually possible, hence the term artificial travel time. But assuming that both points $A$ and $B$ are at the same \textbf{space} step, the distance is calculated by:
 \begin{equation}
 	t_{x,A,B}^{artificial} = (x_B - x_A) \cdot ( x_{interval} + 1 )
 	\label{equation_t_v_time}
@@ -312,6 +201,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $x_{interval}$ is the time interval or step duration
 \end{itemize}
 
+The \cref{lst:distance_calc_vertical} shows the evaluation tool implementation of the the vertical distance calculation.
 \begin{lstlisting}[basicstyle=\tiny, style=java, caption={Implementation of \textit{vertical distance calculation}}, label=lst:distance_calc_vertical] 
     /**
      * Computes the vertical distance from A to B in [s]
@@ -330,7 +220,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
     }
 \end{lstlisting}
 
-\paragraph{Space dimension} Traveling just through space is also not actual possible, but in the artificial travel time. Under the assumption that point $A$ and point $B$ are in the \textbf{time} step, the distance is calculated by:  
+\paragraph{Space dimension :} Traveling just through space is also not actually possible, but only in the artificial travel time. Under the assumption that point $A$ and point $B$ are in the \textbf{time} step, the distance is calculated by:  
 \begin{equation}
 	t_{y,A,B}^{artificial} = (\frac{y_{A}^{length}}{2}  \cdot z_{A}^{speed}) + (\frac{y_{B}^{length}}{2} \cdot z_{B}^{speed}) + \sum_{i}^{y_A + 1,...,y_B - 1} (y_{i}^{length} \cdot z_{i}^{speed})
 \end{equation}
@@ -341,6 +231,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $z_{speed}$ is the speed in the cell
 \end{itemize}
 
+The \cref{lst:distance_calc_horizontal} shows the evaluation tool implementation of the the vertical distance calculation.
 \begin{lstlisting}[basicstyle=\tiny, style=java, caption={Implementation of \textit{horizontal distance calculation}}, label=lst:distance_calc_horizontal] 
 	/**
 	* Computes the horizontal distance from A to B in [s]
@@ -370,7 +261,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
    }
 \end{lstlisting}
 
-\paragraph{Diagonal time/space dimension} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the conversion to the artificial travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary. This achieved by using the aimed gap thresholds to form a calibrator value, which scales the axis appropriately, to be of equal scaling. This makes it possible to use the artificial travel time a distance parameters, for horizontal, vertical and diagonal movements.
+\paragraph{Diagonal time/space dimension :} The diagonal distance or time/space distance is based on the concept of the Euclidian distance. Although the conversion to the artificial travel time fixes the disparity of the axis units, a calibration for weighing the time and space axis is still necessary. This can be achieved by using the aimed gap thresholds to form a calibrator value which scales the axis appropriately to be of equal scaling. This makes it possible to use the artificial travel time a distance parameters, for horizontal, vertical and diagonal movements.
 \begin{equation}
 	t_{x,y,A,B}^{artificial} = \sqrt{(t_{x,A,B}^{art})^2 + (t_{y,A,B}^{art} \cdot c)^2}
 \end{equation}
@@ -391,7 +282,7 @@ Assuming an 3D-space of $time steps$ $\equiv x=[x_1,...,x_n]$ , $space$ $\equiv 
 	\item[] $v_{freeflow}$ is the assumed free flowing speed (typically 130\,[km/h])
 \end{itemize}
 
-The \cref{lst:distance_calc_diagonal} shows 
+The \cref{lst:distance_calc_diagonal} shows the evaluation tool implementation of the the vertical distance calculation.
 \begin{lstlisting}[basicstyle=\tiny, style=java, caption={Implementation of \textit{diagonal distance calculation}}, label=lst:distance_calc_diagonal] 
 	/**
 	* Computes the distance between two n-dimensional vectors.
@@ -471,18 +362,13 @@ The \cref{lst:distance_calc_diagonal} shows
    }
 \end{lstlisting}
 
-% TODO read and add infos: https://diglib.tugraz.at/download.php?id=576a764ebc982&location=browse \parencite{Hatbauer2011}
-
 \subsubsection{Performance Tuning}
-Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing system to store the clustering data in a space representation, like a 2D-Tree. This reduces the number of point to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just adjacent points \parencite{Chauhan2020}. For initially testing a $kd$-Tree was implemented, which stores data points as leafs in a tree, where the nodes divide the space consecutively in the $x$ and $y$ dimension \parencite{Hucker2020,Dalitz2009}. This improved the runtime performance, but also added complexity, which endorsed the use of a natively implemented data structure, like the TreeMap. The TreeMap strictly speaking is no a 2D-Tree, but has an average complexity of $O(nlog_n)$ and be used as a 2D-Tree by filtering with two parameters (see source code ??). \parencite{Baeldung2020_1,Baeldung2020_2}
+A considerable performance issue of clustering algorithms is the runtime complexity when processing larger amounts of data. It is defined with the Big $O$ notation, describing the mathematical runtime complexity of an algorithm. Leaving out the runtime implication of the distance measurer, the complexity of DBSCAN clustering algorithm can be as low as $O(nlog_n)$. This best case scenario can be achieved by using indexing systems to store the clustering data in a space representation like a 2D-Tree. This reduces the number of points to check for neighborhood, from all points in a worst case scenario (equivalent to a complexity of $O(n^2)$), to just adjacent points \parencite{Chauhan2020}. For initial testing a proprietary $kd$-Tree was implemented, which stores data points as leafs in a tree, where the nodes divide the space consecutively in the $x$ and $y$ dimension \parencite{Hucker2020,Dalitz2009}. This improved the runtime performance, but also added complexity, which endorsed the use of a natively implemented data structure, like the TreeMap. The TreeMap strictly speaking is not a 2D-Tree, but has an average complexity of $O(nlog_n)$ and be used as a 2D-Tree by filtering with two parameters (see source code in repository \textit{code/congestion/clustering/pool}) \parencite{Baeldung2020_1,Baeldung2020_2}.
 
-% https://de.wikipedia.org/wiki/K-d-Baum
-% https://github.com/jmhodges/kdtree2/blob/master/doc/kdtree2.tex
-
-To further accelerate the algorithm, is is implemented with support of parallel computation or threading, which allows the executing Java VM to used multiple CPU cores and run multiple processes in parallel.
+To further accelerate the algorithm it is implemented with support of parallel computation or threading which allows the executing Java VM to used multiple CPU cores and run multiple processes in parallel (see source code in repository.
 
 \subsubsection{Calibration}
-Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters as adjustments. If $\varepsilon$ is too small, part of the data will not be clustered, since the distances to many points is below the threshold. These points are therefore considered as outliner/noise and reduce the actual size of the cluster or make the cluster neglect able because $minPoints$ will not be reached to create a dense region. On the other side, if the value is chosen too high, a high number of point will be considered as one cluster, when they should be multiple separate clusters. The $minPoints$ threshold should generally satisfy $minPoints > D + 1$ and should be high enough for our implementation to neglect small and arbitrary jams. \parencite{Padro2017}. For the implemented variation of distance measuring the aimed time gap $t_{min,gap}$ and aimed space gap $l_{min,gap}$ threshold also need to be set. This is necessary to scale the axis so that they represent the aimed thresholds through neighborhood $\varepsilon$. The following values are the result of iterative testing, to find the most representable cluster consolidation results. 
+Parameter calibration and estimation is a vital task when implementing algorithms. The DBSCAN uses the neighborhood $\varepsilon$ and $minPoints$ parameters as adjustments. If $\varepsilon$ is too small, part of the data will not be clustered, since the distances to many points is below the threshold. These points are therefore considered as outliner/noise and reduce the actual size of the cluster or make the cluster neglect able because $minPoints$ will not be reached to create a dense region. On the other side, if the value is chosen too high, a high number of points will be considered as one cluster, when they should be multiple separate clusters. The $minPoints$ threshold should generally satisfy $minPoints > D + 1$ and should be high enough for our implementation to neglect small and arbitrary jams. \parencite{Padro2017}. For the implemented variation of distance measuring the aimed time gap $t_{min,gap}$ and aimed space gap $l_{min,gap}$ threshold also need to be set. This is necessary to scale the axis so that they represent the aimed thresholds through neighborhood $\varepsilon$. The following values are the result of iterative testing to find the most representable cluster consolidation results. 
 
 \begin{itemize}
 	\item Aimed spatial gap : $l_{min,gap} = 5000 \,[m]$
@@ -491,9 +377,9 @@ Parameter calibration and estimation is a vital task when implementing algorithm
 \end{itemize}
 
 \subsection{Pre and Post Data Revision}
-Datasets are rarely flawless and as mentioned in section \ref{dataset_fcd}, the provided FCD dataset has some defects. To reduce these defects before the clustering, static speed blocks are removed as pre-processing measure. When the speed is consistent in a a continuous time and space extent, we assume that the data block is flawed because of the implausible consistent speeds. (see source code ??) 
+Datasets are rarely flawless and as mentioned in section \ref{dataset_fcd}, the provided FCD dataset has some defects. To reduce these defects before the clustering, static speed blocks are removed as pre-processing measure. When the speed is consistent in a continuous time and space extent, it can be assumed that the data block is flawed because of the implausible consistent speeds.
 
-As post processing, clusters which are too short in duration and length are removed. We assume that below a threshold a cluster can not be considered as a jam, and should be neglected. The following values for the minimal duration and length of a congestion where used. (see source code ??)
+As post processing, clusters which are too short in duration and length are removed. It was assumed that below a threshold a cluster can not be considered as a jam and should be neglected. The following values for the minimal duration and length of a congestion where used.
 
 \begin{itemize}
 	\item Minimum spatial length of an congestion event : $l_{min} = 1000 \,[m]$
@@ -525,13 +411,19 @@ The matching process for finding adjacent incidents around jams is rather simple
 	\item The temporal distance an adjacent incident : $t_{min,dist} = 25 \,[min]$
 \end{itemize}
 
+\bigskip
+
+\bigskip
+
+The final implementation of the detection and clustering algorithm of the evaluation tool can be reviewed in \textit{code/congestion/} of the repository which is linked in the introduction. 
+
 \section{Data Processing}
 \label{methodology_data_processing}
-As result of the previous detection a matching algorithms we now have a list of congestion objects with spatial and timely adjacent incidents objects (accidents and roadworks). For the statistical analysis these congestion and incident matches will be expanded with additionally features and exported in to a local data format.
+As a result of the previous detection and matching algorithms a list of congestion objects with spatial and timely adjacent incidents objects (accidents and roadworks) was created. For the statistical analysis these congestion and incident matches will be expanded with additionally features and exported into a local data format.
 
-For the analysis we are interested in the length and duration of the congestions. The length and duration of congestions, defined by the boundary rectangle can be heavily biased. It is also a very rough representation of the extends, and is therefore considered to be the maximum length and maximum duration. To have another representation of the time and space extends, an average duration and length is calculated. This is done by iteration over the time step or link step and calculating the mean of the jam length or duration respectively.
+For the analysis the length and duration of the congestions is of interest and therefore needs to be defined and calculated. When defined by the boundary rectangle the two measurements can be heavily biased. It is also a very rough representation of the extends and is therefore considered to be the maximum length and maximum duration. To have another representation of the time and space extends, an average duration and length is calculated. This is done by iteration over the time- or link step and calculating the mean of the jam length or duration respectively.
 
-For the analysis of social impact the congestion object is expanded with a time loss estimation, differentiated for passenger cars and heavy goods vehicles (HGV). This part was not implemented by the writer, but from the mentor Stefan Gürtler (S\&W) and used as implemented. Since it is used in the analysis, the calculation will explained in the following. First the headway with the cell speed is calculated with the assumption that drivers follow the two second rule, see \cref{equation_timeloss_vehicles_headway}.
+For the analysis of social impact the congestion object is expanded with a time loss estimation, differentiated for passenger cars and heavy goods vehicles (HGV). This part was not implemented by the writer, but from the mentor Stefan Gürtler (S\&W) and was used as implemented. Since it is used in the analysis, the calculation will be explained in the following. First the headway with the cell speed is calculated with the assumption that drivers follow the two second rule, see \cref{equation_timeloss_vehicles_headway}.
 \begin{equation}
 	l_{headway} = 2 \cdot \frac{v_{cell}}{3600}
 	\label{equation_timeloss_vehicles_headway}
@@ -565,7 +457,7 @@ The appropriate vehicle count can then be deviated by \cref{equation_timeloss_ve
 	n_{hgv} = r \cdot n_{vehicles}
 	\label{equation_timeloss_vehicles_count_hgv}
 \end{equation}
-To calculate the total hours lost for either passenger car or heavy goods vehicle due to the jam, \cref{equation_timeloss} is applied with the appropriate 
+To calculate the total hours lost due to the jam, for either passenger car or heavy goods vehicle, \cref{equation_timeloss} is applied with the values calculated before.
 \begin{equation}
 	t_{loss,car/hgv} = n_{car/hgv} \cdot n_{lanes} \cdot l_{cell} \cdot ( v_{free} - v_{cell})
 	\label{equation_timeloss}
@@ -580,14 +472,14 @@ To calculate the total hours lost for either passenger car or heavy goods vehicl
 
 \bigskip
 
-A analysis based on all matches could be heavily biased. For a more specialized analysis, the congestion - incident matches should be categorizable into different relation types, like initiation or effect. For accidents the three categories to be evaluated separately can be described as \textit{Initiators}, \textit{Effectors} and \textit{Followers}. For roadworks the same detailed categorization is not that viable, but a single selection of \textit{Initiators} is.
+An analysis based on all matches could be heavily biased. For a more specialized analysis the congestion - incident matches should be categorizable into different relation types like initiation or effect. For accidents the three categories to be evaluated separately can be described as \textit{Initiators}, \textit{Effectors} and \textit{Followers}. For roadworks the same detailed categorization is not that viable, but a single selection of \textit{Initiators} is.
 \begin{itemize}
 	\setlength\itemsep{0.1em}	
-	\item[] \textbf{Jam Initiator} are matches, where the accident happened before or immediately at the beginning of a congestion. These could be the initiator or cause for the congestion and are subjectively the most interesting for analysis. In terms of roadwork it are matches, where the roadwork is located after or during the congestion and the roadwork could be considered as cause.
-	\item[] \textbf{Jam Effector} are matches, where the accident happened during a congestion or overlaps with the congestion. These probably have the jam as a cause, like rear-end accidents.
-	\item[] \textbf{Jam Follower} are matches, where the accident happened after the congestion. 
+	\item[] \textbf{Jam Initiators} are matches where the accident happened before or immediately at the beginning of a congestion. These could be the initiator or cause for the congestion and are subjectively the most interesting kinds for analysis. In terms of roadwork these are matches where the roadwork is located after or during the congestion and the roadwork could be considered as cause.
+	\item[] \textbf{Jam Effectors} are matches where the accident happened during a congestion or overlaps with the congestion and probably have the jam as a cause, like rear-end accidents.
+	\item[] \textbf{Jam Follower} are matches where the accident happened after the congestion. 
 \end{itemize}
-This classification can be visually represented like in \cref{img:jam_classifation}, where the red traveling symbolizes a congestion in the FCD space. The three classifications \textit{Initiator}, \textit{Effector} and \textit{Follower} are symbolized with the different hatchings of yellow stripes, green squares and red rhombus.
+This classification can be visually represented like in \cref{img:jam_classifation}, where the red triangle symbolizes a congestion in the FCD space. The three classifications \textit{Initiator}, \textit{Effector} and \textit{Follower} are symbolized with the different hatchings of yellow stripes, green squares and red rhombus.
 \begin{figure}[htp]
 	% https://www.mathcha.io/editor
 	\centering
@@ -604,7 +496,7 @@ This classification can be visually represented like in \cref{img:jam_classifati
 	\caption{Visual representation of the accident and roadwork classifications \textit{Initiator} (yellow stripes), \textit{Effector} (green squares) and \textit{Follower} (red rhombus)}
 	\label{img:jam_classifation}
 \end{figure}
-To be able to do the categorization after the runtime intensive detection and matching processing, which allows for easier testing and calibration, four additional congestion parameters are introduced into the congestion object. They describe the relative location of the accident to the congestion event. The temporal reference of the accident to the congestion is described by the parameter \textit{temporalGlobalLocation} (shown in \cref{tbl:jam_classification_GLT}), based on the temporal distance.
+To be able to categorize after the runtime intensive detection and matching processing, which allows easier testing and calibration, four additional congestion parameters are introduced into the congestion object. They describe the relative location of the accident to the congestion event. The temporal reference of the accident to the congestion is described by the parameter \textit{temporalGlobalLocation} (shown in \cref{tbl:jam_classification_GLT}), based on the temporal distance.
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|l}  
@@ -618,7 +510,7 @@ To be able to do the categorization after the runtime intensive detection and ma
 	\label{tbl:jam_classification_GLT}
 	\vspace{-4mm}
 \end{table}
-The spatial reference of if the incident to the congestion is described by the parameter \textit{spatialGlobalLocation} (shown in \cref{tbl:jam_classification_GLS}), based on the spatial distance.
+The spatial reference of the incident to the congestion is described by the parameter \textit{spatialGlobalLocation} (shown in \cref{tbl:jam_classification_GLS}), based on the spatial distance.
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|l}  
@@ -630,7 +522,7 @@ The spatial reference of if the incident to the congestion is described by the p
 	\label{tbl:jam_classification_GLS}
 	\vspace{-4mm}
 \end{table}
-In the case that the incident happened temporal during the congestion. The (\textit{temporalInternalLocation} (shown in \cref{tbl:jam_classification_ILT}) parameter is set. It describes percentile threshold where the incident is located during the congestion.
+In case that the incident happened temporal during the congestion. The (\textit{temporalInternalLocation} (shown in \cref{tbl:jam_classification_ILT}) parameter is set. It describes percentile thresholds where the incident is located during the congestion.
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|l}  
@@ -644,7 +536,7 @@ In the case that the incident happened temporal during the congestion. The (\tex
 	\label{tbl:jam_classification_ILT}
 	\vspace{-4mm}
 \end{table}
-In the case that the incident happened spatial during the congestion. The \textit{spatialInternalLocation} (shown in \cref{tbl:jam_classification_ILS}) parameter is set. It describes is percentile threshold where the incident is located during the congestion.
+In case that the incident happened spatial during the congestion. The \textit{spatialInternalLocation} (shown in \cref{tbl:jam_classification_ILS}) parameter is set. It describes is percentile thresholds where the incident is located during the congestion.
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|l}  
@@ -659,7 +551,7 @@ In the case that the incident happened spatial during the congestion. The \texti
 	\vspace{-4mm}
 \end{table}
     
-As a result the congestion object has the following attributes.
+After the processing and expansion a congestion object contains the following attributes.
 \begin{table}[ht!]
 	\centering
 	\begin{tabular}{c|c|l} 
@@ -680,26 +572,24 @@ As a result the congestion object has the following attributes.
 	\caption{Variables, Units and descriptions of congestion object}
 \end{table}
 
-The incident objects contain the variables described in the \cref{dataset_baysis} and \cref{dataset_baysis}.
+The incident objects for accident and roadworks contain the variables described in the \cref{dataset_baysis} and \cref{dataset_baysis}.
 
 \section{Correlation Processing}
 \label{methodology_correlation_processing}
-The correlation processing is written in Python and R with the help of some common data analysis frameworks like Pandas, NumPy or Psych. The code base was inspired by the analysis tool from Potvin \parencite{Potvin2020}. This section will explain the process of analyzing the two dataset from the evaluation processing (roadwork-congestion and accident-congestion). The first step in any data analysis is the data import and preparation, explain in \cref{methodology_correlation_processing_revision} and \cref{methodology_correlation_processing_encoding}. After this initial steps the tool calculates the correlations and significances for all variable combinations, explain in \cref{methodology_correlation_processing_correlation} and \cref{methodology_correlation_processing_significanc}. 
+The correlation processing is written in Python and R with the help of some common data analysis frameworks like Pandas, NumPy or Psych. The code base was inspired by the analysis tool from Potvin \parencite{Potvin2020} and can be review in the repository linked in the introduction. This section will explain the process of analyzing the two datasets from the evaluation processing (roadwork-congestion and accident-congestion). The first step in any data analysis is the data import and preparation. After these initial steps the tool calculates the correlations and significances for all variable combinations. These step are applied to each of the two datasets of congestion - accident and congestion - roadwork as well as their respective subsets of \textit{Initiator}, \textit{Effector} and \textit{Follower} (see \textit{./code/main\_ ... .py} files).
 
 \subsubsection{Data Revision}
 \label{methodology_correlation_processing_revision}
-The data processing in the evaluation tool already clean the ingress data from most defects, however it does not remove flawed data samples. During the analysis it became clear that the congestion detection still produces congestions with abnormal and non plausible extends. As a preprocessing of the correlation analysis, jams with a length over 50\,km are removed, to remove samples like 200km length. Besides of this empty values, $-1$ and are considered as \textit{NaN} or not available.
+The data processing in the evaluation tool already cleaned the ingress data from most defects, however it does not remove not defective but flawed data samples. During the analysis it became clear that the congestion detection still produces congestions with abnormal and non plausible extends. As a preprocessing of the correlation analysis, jams with a length over 50\,km are removed, to remove samples with abnormal length like 200\,km and beyond. Also empty values and $-1$ values are considered as not available (\textit{NaN}) and are removed from the sample set.
 
 \subsubsection{Data Encoding}
 \label{methodology_correlation_processing_encoding}
-\todo{How is the data encoded for processing?}
-
+The statistical methods to be used and defined in \cref{correlation_coefficient_types} can only be applied on numerical data (not to be confounded with the variable type nominal from \cref{correlation_variable_types}). Therefore the variables which contain characters or other non-numerical data need to be encoded. This is done by assigning an increasing integer to a non-numerical variable referring to a group. This increasing integer and the corresponding group is then saved in a code - group dictionary to be able the refer back to the original group.
 
 \subsubsection{Correlation Calculation}
 \label{methodology_correlation_processing_correlation}
-\todo{How does the correlation processing work?}
-
+The correlation calculation is the implementation of the statistical methods which are defined in \cref{correlation_coefficient_types}. The Python function \textit{compute\_correlations} (see \textit{./code/func\_correlation.py}) takes the encoded dataset and computes the effect size of each appropriate correlation coefficient for each variable relation, from which an initial group of correlated characteristics can be identified.
 
 \subsubsection{Significancy Evaluation}
 \label{methodology_correlation_processing_significanc}
-\todo{How does the correlation processing work?}
+As described in \cref{correlation_significance} the correlated relations need to be further tested for significance. This is done via the post hoc test and is implemented in the R scripts \textit{baysis\_ ... .R} and \textit{arbis\_ ... .R} (see \textit{./code}). The script takes the correlated characteristics and tests the relation for significance and significant differences as defined in \cref{correlation_posthoc}. The results of the post hoc test provide a definitive answer about the association and predictability of the relation.

@@ -227,7 +227,7 @@ Strictly speaking, Kendall's $\tau$ is not a measure of effect size, like Pearso
 The significance evaluation of Kendall's $\tau$ coefficient is carried out via the 2-tailed $p$-value, elaborated in \cref{correlation_significance}.
 
 \subsection{Correlation coefficient for categorical - categorical relations}
-The Pearson's $\chi^2$ test from \cref{correlation_pearson} can also be applied to categorical data for independence statistics. Two correlation coefficients using $\chi^2$ are Cramer’s $V$ and Theil’s $U$. Both can be used to analyze categorical - categorical relations, but differ in the type of result they provide \parencite{OutsideTwoStandardDeviations2018}. Cramer’s $V$ is a symmetric measure providing a measure of association strength. Theil’s $U$, the uncertainty coefficient, on the other hand is a conditional measure and represents the predictability of an association \parencite{Akoglu2018,StackExchange2020}. Therefore the Theil’s $U$ measurement it is the preferred choice for the analysis of predictability and Cramer’s $V$ is used in the correlation analysis.
+The Pearson's $\chi^2$ test from \cref{correlation_pearson} can also be applied to categorical data for independence statistics. Two correlation coefficients using $\chi^2$ are Cramer’s $V$ and Theil’s $U$. Both can be used to analyze categorical - categorical relations, but differ in the type of result they provide \parencite{OutsideTwoStandardDeviations2018}. Cramer’s $V$ is a symmetric measure providing a measure of association strength. Theil’s $U$, the uncertainty coefficient, on the other hand is a conditional measure and represents the predictability of an association \parencite{Akoglu2018,StackExchange2020}. Therefore the Theil’s $U$ measurement (see \cref{correlation_predictability}) it is the preferred choice for the analysis of predictability and Cramer’s $V$ is used in the correlation analysis.
 
 \subsubsection{Cramer’s V}
 
@@ -265,30 +265,6 @@ The above notation of $\Phi_c$ can be heavily biased, trending to overestimate t
 
 \bigskip
 
-\subsubsection{Theil’s U}
-% https://rstudio-pubs-static.s3.amazonaws.com/558925_38b86f0530c9480fad4d029a4e4aea68.html
-The uncertainty coefficient, also called entropy coefficient, is a measurement for the association between two nominal variables and in comparison to Cramers $V$, provides a much better predictability statement. It is based on the concept of comparing the entropies of variables to determine a degree of association \parencite{Hoang2019}. The entropy of a distribution (see \cref{formula_theils_hx}) and the conditional entropy (see \cref{formula_theils_hxy}) are used to calculate the uncertainty coefficient $U(X)$ \parencite{Glen2017,Glen2018}, which tells us: given Y, what fraction can be predicted for X \parencite{Hoang2019}.
-
-\smallskip
-\begin{equation}
-\label{formula_theils}
-	U(X) = \frac{H(X)-H(X|Y)}{H(X)}
-\end{equation}
-\begin{equation}
-\label{formula_theils_hx}
-	H(X) = -\sum_{x} p_{X} \log_{p_X} (x)
-\end{equation}
-\begin{equation}
-\label{formula_theils_hxy}
-	H(X|Y) = -\sum_{x,y} p_{X,Y} \log_{p_{X,Y}} (x,y)
-\end{equation}
-
-% Definition: Theil’s U symmetrical
-%\begin{equation}
-%\label{formula_theils_sym}
-%	U(X,Y) = \frac{H(X)U(X|Y)-H(Y)U(Y|X)}{H(X)+H()Y} = 2[\frac{H(X)+H(Y)-H(X|Y)}{H(X)+H(Y)}]
-%\end{equation}
-
 \subsubsection{Interpretation}
 For the interpretation of Cramers $V$ an adaption to Pearson's $r$ is necessary, but at the same time quite controversial. Some studies convert $V$ to the effect size $w$ for an equal measurement to $r$ ($r$ is representable over different studies), whereas $V$ is already a measure of effect size by itself \parencite{Baguley2016}.
 % https://www.researchgate.net/post/Whats_the_reason_for_deriving_Cohens_w_from_Cramers_V_if_the_latter_is_already_a_measure_of_effect_size
@@ -308,13 +284,6 @@ As shown in \cref{formula_cohens_w} \parencite{Baguley2016} the conversion from 
 	\item $w < \: .30$ : the correlation strength is weak
 	\item $\: .30 =< w < \: .40$ : a moderate strength of correlation
 	\item $w >= \: .40$ : there is a strong correlation.
-\end{itemize}
-
-The values of Theil's $U$ show the predictability of the association, where the following rules for interpretation apply to the implementation \parencite{TheilsInt01,TheilsInt02,TheilsInt03}.
-
-\begin{itemize}
-	\item $U$ close to $\: 0$ : $y$ provides no information about $x$
-	\item $U$ close to $\: 1$ : $y$ provides full information about $x$
 \end{itemize}
 
 \section{Correlation Matrix}
@@ -505,3 +474,35 @@ The example table shows the values of all descriptives for all groups, whereas t
 
 %\todo{Ergänze Effektstärke für Mann-Whitney-U}
 %https://statistikguru.de/spss/mann-whitney-u-test/effektstaerke-berechnen-3.html
+
+\section{Predictability}
+\label{correlation_predictability}
+% https://rstudio-pubs-static.s3.amazonaws.com/558925_38b86f0530c9480fad4d029a4e4aea68.html
+The uncertainty coefficient Theil’s $U$, also called entropy coefficient, is a measurement for the association between two nominal variables and in comparison to Cramers $V$, provides a much better predictability statement. It is based on the concept of comparing the entropies of variables to determine a degree of association \parencite{Hoang2019}. The entropy of a distribution (see \cref{formula_theils_hx}) and the conditional entropy (see \cref{formula_theils_hxy}) are used to calculate the uncertainty coefficient $U(X)$ \parencite{Glen2017,Glen2018}, which tells us: given Y, what fraction can be predicted for X \parencite{Hoang2019}.
+
+\smallskip
+\begin{equation}
+\label{formula_theils}
+	U(X) = \frac{H(X)-H(X|Y)}{H(X)}
+\end{equation}
+\begin{equation}
+\label{formula_theils_hx}
+	H(X) = -\sum_{x} p_{X} \log_{p_X} (x)
+\end{equation}
+\begin{equation}
+\label{formula_theils_hxy}
+	H(X|Y) = -\sum_{x,y} p_{X,Y} \log_{p_{X,Y}} (x,y)
+\end{equation}
+
+% Definition: Theil’s U symmetrical
+%\begin{equation}
+%\label{formula_theils_sym}
+%	U(X,Y) = \frac{H(X)U(X|Y)-H(Y)U(Y|X)}{H(X)+H()Y} = 2[\frac{H(X)+H(Y)-H(X|Y)}{H(X)+H(Y)}]
+%\end{equation}
+
+The value $U$ of Theil's $U$ shows the predictability of the association, where the following rules for interpretation apply to the implementation \parencite{TheilsInt01,TheilsInt02,TheilsInt03}.
+
+\begin{itemize}
+	\item $U$ close to $\: 0$ : $y$ provides no information about $x$
+	\item $U$ close to $\: 1$ : $y$ provides full information about $x$
+\end{itemize}

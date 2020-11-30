@@ -1013,3 +1013,35 @@
     	\label{table:appendix_coefficient_matrix_selected_endJam}
     \end{sidewaystable}
     % \restoregeometry
+
+
+    % --------------------------------------
+    % ------- BAYSIS Predictability --------
+    % --------------------------------------
+    \tocless\section{BAYSIS Selected Data - Jam Follower}
+    \label{appendix_baysis_selected_endJam}
+
+    \begin{figure}[!ht]
+        \centering
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.4\textwidth, trim=0cm 2.5cm 6cm 3cm]{CorrAnalysis/data/BAYSIS/04_predicted/plots/baysis_predicted_corr_theils}%
+        }
+        \caption{Predictability matrix for congestion-accident matched data calculated with Theil's $U$, $\eta$, $\tau$, $r_{pq}$, $r$}
+        \label{img:baysis_predictability_matrix}
+    \end{figure}
+    \begin{sidewaystable}
+    	\tiny
+    	\setlength{\tabcolsep}{2pt}
+    	\centering
+    	\include{CorrAnalysis/data/BAYSIS//04_predicted/latex/baysis_predicted_corr_theils}
+    	\caption{Predictability matrix for BAYSIS selected data, calculated with Theil's $U$, $\eta$, $\tau$, $r_{pq}$, $r$}
+    	\label{tbl:baysis_predictability_matrix}
+    \end{sidewaystable}
+    \begin{sidewaystable}
+    	\tiny
+    	\setlength{\tabcolsep}{2pt}
+    	\centering
+    	\include{CorrAnalysis/data/BAYSIS//04_predicted/latex/baysis_predicted_coef_theils}
+    	\caption{Coefficient matrix for BAYSIS selected data}
+    	\label{tbl:baysis_predictability_matrix_coef}
+    \end{sidewaystable}

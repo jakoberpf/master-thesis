@@ -260,9 +260,9 @@ if __name__ == '__main__':
         report = ProfileReport(arbis_selected, title='ArbIS Matched Dataset Report')
         report.to_file(work_path + file_prefix + '_report.html')
 
-    ###################
-    ### Correlation ###
-    ###################
+    ################
+    ### Encoding ###
+    ################
 
     # define column types
     nominal_columns = ['Str',
@@ -281,6 +281,10 @@ if __name__ == '__main__':
     with open(csv_path + 'encoded_dict.csv', 'w') as tf:
         for key in arbis_encoded_dict.keys():
             tf.write("%s, %s\n" % (key, arbis_encoded_dict[key]))
+
+    ###################
+    ### Correlation ###
+    ###################
 
     arbis_encoded = arbis_encoded.rename(columns={"TempMax": "TMax",
                                                   "TempAvg": "TAvg",

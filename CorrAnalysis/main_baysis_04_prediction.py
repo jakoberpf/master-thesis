@@ -14,15 +14,12 @@
 #  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
 from pandas_profiling import ProfileReport
 
 from func_correlation import numerical_encoding, compute_correlations
-from func_plot import plot_correlation, tex_fonts, \
-    plot_congestion_dist, set_size
+from func_plot import plot_correlation
 from func_utils import date_parser, print_welcome
 
 if __name__ == '__main__':
@@ -34,14 +31,14 @@ if __name__ == '__main__':
     generate_report = True
 
     data_path = 'data/'
-    work_path = data_path + 'BAYSIS/03_selected_03_endJam/'
+    work_path = data_path + 'BAYSIS/04_predicted/'
     plot_path = work_path + 'plots/'
     tex_path = work_path + 'latex/'
     csv_path = work_path + 'csv/'
 
     work_file = 'BAYSIS_2019.csv'
 
-    file_prefix = 'baysis_selected'
+    file_prefix = 'baysis_predicted'
     file_plot_type = '.pdf'
 
     baysis_read = pd.read_csv(data_path + 'BAYSIS/02_matched/' + work_file, sep=';', decimal=',', parse_dates=True,
@@ -57,36 +54,6 @@ if __name__ == '__main__':
             "TempDist",
             "SpatDist",
             "Coverage",
-            # The temporal reference of if the incident to the congestion. The incident...
-            # [-1] = Not Set
-            # [1] = is before
-            # [2] = is overlapping before
-            # [3] = is during
-            # [4] = is overlapping after
-            # [5] = is after
-            "TempGL",
-            # The spatial reference of if the incident to the congestion. The incident...
-            # [-1] = Not Set in case of congestion with no distance
-            # [1] = is before
-            # [2] = is during or overlapping
-            # [3] = is after
-            "SpatGL",
-            # The temporal reference of if the incident is during the congestion. The incident is within...
-            # [-1] = Not Set in case not during or overlapping
-            # [1] = 10% to Beginning
-            # [2] = 10% - 30% to Beginning
-            # [3] = 30% - 70% (Middle)
-            # [4] = 30% - 10% to Ending
-            # [5] = 10% to Ending
-            "TempIL",
-            # The spatial reference of if the incident is during the congestion. The incident is within...
-            # [-1] = Not Set in case not during or overlapping
-            # [1] = 10% to Beginning
-            # [2] = 10% - 30% to Beginning
-            # [3] = 30% - 70% (Middle)
-            # [4] = 30% - 10% to Ending
-            # [5] = 10% to Ending
-            "SpatIL",
             "TLCar",
             "TLHGV",
             # Accident Data
@@ -129,33 +96,11 @@ if __name__ == '__main__':
     ### Selection ###
     #################
 
-    baysis_selected = baysis_import.loc[
-        (baysis_import["TempGL"].isin([3, 4, 5]))
-    ]
-
-    baysis_selected = baysis_selected.loc[
-        (baysis_selected["TempIL"].isin([-1, 4, 5]))
-    ]
-
-    baysis_selected = baysis_selected.loc[
-        (baysis_selected["SpatGL"].isin([2, 3]))
-    ]
+    baysis_selected = baysis_import
 
     ####################################
     ### Congestion (Before Cleaning) ###
     ####################################
-
-    plot_congestion_dist(
-        ["TempMax",
-         "TempAvg",
-         "SpatMax",
-         "SpatAvg",
-         "TempDist",
-         "SpatDist",
-         "Coverage",
-         "TLCar",
-         "TLHGV"],
-        baysis_selected, plot_path + 'cong_before_clean/', file_prefix, save_plot, show_plot)
 
     ################
     ### Cleaning ###
@@ -167,129 +112,13 @@ if __name__ == '__main__':
     ### Congestion (After Cleaning) ###
     ####################################
 
-    plot_congestion_dist(
-        ["TempMax",
-         "TempAvg",
-         "SpatMax",
-         "SpatAvg",
-         "TempDist",
-         "SpatDist",
-         "Coverage",
-         "TLCar",
-         "TLHGV"],
-        baysis_selected, plot_path + 'cong_after_clean/', file_prefix, save_plot, show_plot)
-
     ##################
     ### Histograms ###
     ##################
 
-    # Plot histogram of accidents over time / months
-    plt.figure(figsize=(13, 6))
-    plt.title('Histogram of accidents per month, with at least one adjacent congestion')
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    plt.ylabel('Count')
-    ax = sns.countplot(x='Month', data=baysis_selected, palette='Spectral', order=months)
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_hist_month.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    # Remove month column
-    # baysis_selected.drop('Month', axis='columns', inplace=True)
-
-    # Plot histogram of accidents over highway
-    plt.figure(figsize=(13, 6))
-    plt.title('Histogram of accidents per highways, with at least one adjacent congestion')
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    plt.ylabel('Count')
-    ax = sns.countplot(x='Strasse', data=baysis_selected, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_hist_highway.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
     ##############
     ### Counts ###
     ##############
-
-    # Multi plots
-
-    scale = 1.0
-    (width, height) = set_size(418, scale)
-
-    fig, axs = plt.subplots(4, 1, figsize=(width, 3.5 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    sns.countplot(ax=axs[0], x='Kat', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[1], x='Typ', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[2], x='Betei', data=baysis_selected, palette='Spectral')
-    atr = 'UArt'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[3], x=atr, data=concat, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple01.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    fig, axs = plt.subplots(4, 1, figsize=(width, 3.5  * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    atr = 'AUrs'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
-    sns.countplot(ax=axs[1], x='AufHi', data=baysis_selected, palette='Spectral')
-    atr = 'Char'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[2], x=atr, data=concat, palette='Spectral')
-    atr = 'Bes'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[3], x=atr, data=concat, palette='Spectral')
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple02.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    fig, axs = plt.subplots(4, 1, figsize=(width, 3.5 * height))
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    atr = 'Lich'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[0], x=atr, data=concat, palette='Spectral')
-    atr = 'Zust'
-    concat = pd.concat([baysis_selected[atr + '1'], baysis_selected[atr + '2']], keys=[atr])
-    sns.countplot(ax=axs[1], x=atr, data=concat, palette='Spectral')
-    sns.countplot(ax=axs[2], x='Fstf', data=baysis_selected, palette='Spectral')
-    sns.countplot(ax=axs[3], x='WoTag', data=baysis_selected, palette='Spectral',
-                  order=['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'])
-    if save_plot:
-        plt.savefig(plot_path + file_prefix + '_count_multiple03.pdf')
-        if not show_plot:
-            plt.close()
-    if show_plot:
-        plt.show()
-    else:
-        plt.close()
-
-    baysis_selected.drop('Bes1', axis='columns', inplace=True)
-    baysis_selected.drop('Bes2', axis='columns', inplace=True)
 
     ###############
     ### Scatter ###
@@ -299,17 +128,39 @@ if __name__ == '__main__':
     ### Box ###
     ###########
 
+    #################
+    ### Quantiles ###
+    #################
+
+    baysis_selected["TempMax"] = pd.qcut(baysis_selected["TempMax"], 4)
+    baysis_selected["TempAvg"] = pd.qcut(baysis_selected["TempAvg"], 4)
+    baysis_selected["SpatMax"] = pd.qcut(baysis_selected["SpatMax"], 4)
+    baysis_selected["SpatAvg"] = pd.qcut(baysis_selected["SpatAvg"], 4)
+    # baysis_selected["TempDist"] = pd.qcut(baysis_selected["TempDist"], 4)
+    # baysis_selected["SpatDist"] = pd.qcut(baysis_selected["SpatDist"], 4)
+    baysis_selected["Coverage"] = pd.qcut(baysis_selected["Coverage"], 4)
+    baysis_selected["TLCar"] = pd.qcut(baysis_selected["TLCar"], 4)
+    baysis_selected["TLHGV"] = pd.qcut(baysis_selected["TLHGV"], 4)
+
+    baysis_selected["TempMax"] = baysis_selected["TempMax"].astype('string')
+    baysis_selected["TempAvg"] = baysis_selected["TempAvg"].astype('string')
+    baysis_selected["SpatMax"] = baysis_selected["SpatMax"].astype('string')
+    baysis_selected["SpatAvg"] = baysis_selected["SpatAvg"].astype('string')
+    baysis_selected["Coverage"] = baysis_selected["Coverage"].astype('string')
+    baysis_selected["TLCar"] = baysis_selected["TLCar"].astype('string')
+    baysis_selected["TLHGV"] = baysis_selected["TLHGV"].astype('string')
+
     ##############
     ### Report ###
     ##############
 
     if generate_report:
-        report = ProfileReport(baysis_selected, title='BAYSIS Selected Dataset Report')
+        report = ProfileReport(baysis_selected, title='BAYSIS Prediction Dataset Report')
         report.to_file(work_path + file_prefix + '_report.html')
 
-    ###################
+    ################
     ### Encoding ###
-    ###################
+    ################
 
     # define column types
     nominal_columns = [
@@ -323,13 +174,28 @@ if __name__ == '__main__':
         "WoTag",
         'Month']
     dichotomous_columns = ["Alkoh"]
-    ordinal_columns = ["Betei", "Fstf", "FeiTag"]
+    ordinal_columns = ["Betei", "Fstf", "FeiTag",
+                       "TempMax",
+                       "TempAvg",
+                       "SpatMax",
+                       "SpatAvg",
+                       "Coverage",
+                       "TLCar",
+                       "TLHGV"]
 
     # Encode non numerical columns
     baysis_encoded, baysis_encoded_dict = numerical_encoding(baysis_selected,
                                                              ["Strasse",
                                                               "Fstf",
-                                                              'Month'],
+                                                              'Month',
+                                                              "TempMax",
+                                                              "TempAvg",
+                                                              "SpatMax",
+                                                              "SpatAvg",
+                                                              "Coverage",
+                                                              "TLCar",
+                                                              "TLHGV"
+                                                              ],
                                                              drop_single_label=False,
                                                              drop_fact_dict=False)
     baysis_encoded.to_csv(csv_path + 'encoded.csv', index=False, sep=';')
@@ -351,10 +217,10 @@ if __name__ == '__main__':
                                                     "SpatDist": "SDist",
                                                     'Strasse': "Str"})
 
-    baysis_encoded = baysis_encoded.drop(columns=["TempGL",
-                                                  "SpatGL",
-                                                  "TempIL",
-                                                  "SpatIL"])
+    # baysis_encoded = baysis_encoded.drop(columns=["TempGL",
+    #                                               "SpatGL",
+    #                                               "TempIL",
+    #                                               "SpatIL"])
 
     # Calculate with Cramers 's V
     results = None  # To make sure that no old data is reused

@@ -549,3 +549,34 @@
         \caption{Coefficient matrix for ArbIS matched data}
     \end{sidewaystable}
     % \restoregeometry
+
+    % --------------------------------------
+    % ------- ArbIS Predictability --------
+    % --------------------------------------
+    % \tocless\section{ArbIS Predictability}
+    % \label{appendix_arbis_predictability}
+
+    \begin{figure}[!ht]
+        \centering
+        \makebox[\textwidth][c]{%
+            \includegraphics[width=1.4\textwidth, trim=0cm 2.5cm 6cm 3cm]{CorrAnalysis/data/ArbIS/04_predicted/plots/arbis_predicted_corr_theils_edited}%
+        }
+        \caption{Predictability matrix for congestion-accident matched data calculated with Theil's $U$}
+        \label{img:arbis_predictability_matrix}
+    \end{figure}
+    \begin{sidewaystable}
+    	\tiny
+    	\setlength{\tabcolsep}{2pt}
+    	\centering
+    	\include{CorrAnalysis/data/ArbIS/04_predicted/latex/arbis_predicted_corr_theils}
+    	\caption{Predictability matrix for ArbIS selected data, calculated with Theil's $U$}
+    	\label{tbl:arbis_predictability_matrix}
+    \end{sidewaystable}
+    \begin{sidewaystable}
+    	\tiny
+    	\setlength{\tabcolsep}{2pt}
+    	\centering
+    	\include{CorrAnalysis/data/ArbIS/04_predicted/latex/arbis_predicted_coef_theils}
+    	\caption{Predictability coefficient matrix for ArbIS}
+    	\label{tbl:arbis_predictability_matrix_coef}
+    \end{sidewaystable}

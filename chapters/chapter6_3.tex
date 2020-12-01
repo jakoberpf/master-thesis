@@ -624,7 +624,7 @@ The table shows, that only the groups of Nov differs significantly from Oct.
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_effector_Month_SMax}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\pgfplotstableread[col sep=comma,header=false]{
+		\pgfplotstableread[col sep=comma]{
 			month, count, mean, median, sd, min, max, delta
 			Jan , 39  , 15204.44 , 10633.53 , 11151.0 , 1772 , 38867 , 37095 
 			Feb , 38  , 13921.39 , 9612.90  , 12118.5 , 1176 , 44548 , 43372 
@@ -639,10 +639,10 @@ The table shows, that only the groups of Nov differs significantly from Oct.
 			Nov , 56  , 10844.89 , 8940.48  , 8712.0  , 1883 , 36151 , 34268 
 			Dec , 49  , 15302.61 , 11066.27 , 11386.0 , 1925 , 43244 , 41319 
 		}\data
-		% \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		% \descplotfigwithavg{\data}{14150}{9879}{11}{5}
+		\descplotfigwithavg{\datasorted}{14150}{9879}{11}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_effector_Month_SMax}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Maximal Spatial Extent} (Jam Effector)}
@@ -685,7 +685,7 @@ Although the Kruskal-Wallis test shows significant differences, the Wilcoxon tab
 		\subcaption[second caption.]{Table of all descriptives}\label{tbl:descriptives_baysis_effector_Month_SAvg}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\pgfplotstableread[col sep=comma,header=false]{
+		\pgfplotstableread[col sep=comma]{
 			month, count, mean, median, sd, min, max, delta
 			Jan , 39  , 4600.31 , 3223.30 , 4111.0 , 829  , 14785 , 13956 
 			Feb , 38  , 4046.26 , 2217.96 , 3833.5 , 853  , 84260 , 7573  
@@ -700,10 +700,10 @@ Although the Kruskal-Wallis test shows significant differences, the Wilcoxon tab
 			Nov , 56  , 3591.02 , 2391.39 , 2976.5 , 660  , 11167 , 10507 
 			Dec , 49  , 5380.88 , 3286.83 , 4804.0 , 1006 , 17805 , 16799 
 		}\data
-		% \pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
+		\pgfplotstablesort[sort key=mean, sort cmp=float >]{\datasorted}{\data}
 		\tiny
 		\centering
-		% \descplotfigwithavg{\data}{4293}{2580}{11}{5}
+		\descplotfigwithavg{\datasorted}{4293}{2580}{11}{5}
 		\subcaption[second caption.]{Plot of descriptives $\bar{x}$, $\sigma$ and $\tilde{x}$}\label{fig:descriptives_baysis_effector_Month_SAvg}
 	\end{minipage}%
 	\caption{Group descriptives of \textit{Month} and \textit{Average Spatial Extent} (Jam Effector)}

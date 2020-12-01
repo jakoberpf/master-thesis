@@ -1,26 +1,40 @@
 \chapter{Conclusion}
-In conclusion it can be generally stated that there are significant correlations between congestion and incident characteristics, but with many limitations. The summary of the analysis in \cref{analysis_summary} showed, that general characteristics like Month and Location (Road) are considerably related to congestion characteristics like duration, length and 
+In conclusion it can be generally stated that there are significant correlations between congestion and incident characteristics, but with many limitations. The summary of the analysis in \cref{analysis_summary} showed, that general characteristics like Month and Location (Road) are considerably related to congestion characteristics like duration and length. The more specific incident characteristics like accident cause, type and environment or roadwork gravity (number of closed lanes, physical diversion, ...) also often correlate with the congestion characteristics but not significantly in many cases. This missing significance is also present between the categories of the correlated relations/variables.
 
-\section{Answer of research question}
+\section{Answer of research questions}
+\paragraph{Correlation}
+In accordance of the summary in \cref{analysis_summary} and conclusion introduction, the research question of "\textit{Do congestion- and incident-characteristics correlate?}" can be answered with yes, but at the same time it needs to be pointed out that many of the correlations are not significant enough (missing significant differences) for reliable or interpretable results.
 
-In accodance of the summary and conlustion the reserach wquation of ?? can be ansered with yes, they do. But at the same time it need to be said that most of the correlation are not reliable and generla enought to be used for prdic
+The characteristics of Month and Location (Road) however are strongly correlated with the length and duration of jams and also show considerable differences between their groups (e.g. Jan and Feb or A3 and A9). Therefore it can be stated that the significant findings about the correlation of the month and road to the length and duration of jams can be applied on the population (see \cref{analysis_summary} for detailed findings).
 
-\section{Usability of results and interpretation}
+This is not the case for the specific incident characteristics like accident cause, type and environment or roadwork gravity (number of closed lanes, physical diversion, ...). As already mentioned these relation are partly strongly correlated and significant but often do not provide significant differences between their groups. This means that there are significant correlations but without interpretable results. As described in \cref{correlation_significance} this happens when the groups (e.g. \textit{AUrs} code 1, 2, 3, ...) do not have a sufficient sample size to show the same significance which was found in the general variable (\textit{AUrs}).
 
-\todo{Are the results usefull?}
+This being said there are some incident characteristics which have interpretable significant differences (e.g. \textit{accident lighting environment}, \textit{accident collision object type}, \textit{accident kind}, \textit{accident type} or \textit{accident category}) which are presented in \cref{analysis_summary}.
+
+\paragraph{Prediction} The predictability analysis in \cref{analysis_summary_predictability} showed that the characteristics of jams and incidents are not predictable based on the used statistical methods. Therefore the research question of "\textit{Are congestion- and incident-characteristics predictable?}" must be answered with no for this analysis. This being said, the results of the correlation analysis can also provide a statement of predictability with additional research of causality.
 
 \section{Future development and possible improvements} 
+The methods and tools applied in the evaluation and analysis where developed to fit the purpose and timeframe of this thesis which leave much room for improvements. The analysis of the detection algorithm in \cref{analysis_processing_evaluation} showed that the calibration is sufficient for a exploratory data analysis approach but did not cover the problems of the detection algorithm which result in wrongly clustered jams. The impact of these were not researched.
 
-\todo{What could be improved and what could be developed?}
+\subsubsection{Improving the clustering algorithm}
+The implemented DBSCAN algorithm seems to be suited for provided FCD (see \cref{analysis_processing_evaluation}) but also show problems with adjacent cluster and overlapping clusters in the spatial dimension. Besides of tuning the calibration and add more rules there is another concept how to improve the results of the algorithm. The current algorithm calculated the distances between point based on the artificial travel time (see \cref{methodology_detection}) which apparently can lead to considerable wrong results because of the usage of the mean speed of all cells instead of the native speed of each cell. This could be solved by using the actual 3D space of time, space and speed for clustering instead of the artificial travel time as 3D like representation.
 
-\subsubsection{intraclass correlation coefficient (ICC)}
-Usage of ICC instead of Eta and Kruskal-Wallis H.
-% https://stats.stackexchange.com/questions/73065/correlation-coefficient-between-a-non-dichotomous-nominal-variable-and-a-numer
-% https://pingouin-stats.org/generated/pingouin.intraclass_corr.html
+Another area for improvements is the algorithm performance. An improved version of the DBSCAN algorithm was present by Yuzhen Zhao, Xiyu Liu and Xiufeng Li \footcite{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0200751}, which is based on cell-like P systems with promoters and inhibitors. This approach showed a reduction of runtime to $O(n)$ from the implemented $O(n^2)$.
 
-\subsubsection{Improve DBSCAN}
-The improved DBSCAN algorithm based on cell-like P systems with promoters and inhibitors
-% https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0200751
+\bigskip
 
-\subsubsection{Clustering in 3D (including cell speed)}
-Expand DBSCAN to three dimension from space and time (2D) to include cell speed into clustering algorithm.
+The thesis also focused on the mathematical and statistical methods used for the analysis which resulted in \cref{definition_correlation}. The explained and used methods are definitely suited for the applied analysis but might not be the best option.
+
+\subsubsection{Improving the correlation evaluation}
+Statistical correlation is a broad and heavily discussed field of mathematics. As an result there are often many way and also more complex ways to do statistical analyzes. The intraclass correlation coefficient (ICC) is a quite new way of analyzing the correlation of categorical - categorical relations ships and could be a improved supplement for the correlation coefficient of $\eta$ and the Kruskal-Wallis $h$-test \footcite{https://stats.stackexchange.com/questions/73065/correlation-coefficient-between-a-non-dichotomous-nominal-variable-and-a-numer} \footcite{https://pingouin-stats.org/generated/pingouin.intraclass_corr.html}.
+
+\bigskip
+
+The summary of the correlation processing did not only present some significant correlations but also reveals a mayor problem which is the sample size. Although the datasets contain thousands of sample when separating the dataset into specific relation and analysis specific groups the sample size of these groups are often to small for any significant results. This means that for better and reliable results a larger dataset or better distributed dataset is necessary.
+
+\section{Final thoughts}
+The thesis showed that congestion and incident characteristics are partly correlated with each other and also show considerable differences. The theory of the statistical methods made clear that proving associations in mixed datasets can be very complex. In contrary to my initial believe these associations where not sufficient for any predictions. In general the thesis showed me that finding and proving associations based on statistical concepts is way harder than expected and the logical believe that incident characteristics must have an impact in jams does not necessary hold up in a statistical analysis. Besides of these learning about data science and statistical methods, the writing of the thesis also showed me with new ways of approaching research and the associated problems. 
+
+\bigskip
+
+I want to thank thank my mentor at Schlothauer \& Wauer Dipl. - Ing. Stefan Gürtler for helping me with every step of developing the evaluation tool and providing the initial code base. I also want to thank Dipl. - Ing. Johannes Grötsch for providing the necessary datasets and my mentors at the TUM M. Eng. Barbara Karl and Dr. - Ing. Matthias Spangler for assisting me with writing the thesis.

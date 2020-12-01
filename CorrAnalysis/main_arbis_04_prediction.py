@@ -150,6 +150,12 @@ if __name__ == '__main__':
     arbis_selected["TLCar"] = arbis_selected["TLCar"].astype('string')
     arbis_selected["TLHGV"] = arbis_selected["TLHGV"].astype('string')
 
+    arbis_selected["Length"] = pd.qcut(arbis_selected["Length"], q=[0, 1/3, 2/3, 1])
+    arbis_selected["Duration"] = pd.qcut(arbis_selected["Duration"], 4)
+
+    arbis_selected["Length"] = arbis_selected["Length"].astype('string')
+    arbis_selected["Duration"] = arbis_selected["Duration"].astype('string')
+
     ##############
     ### Report ###
     ##############
@@ -163,22 +169,34 @@ if __name__ == '__main__':
     ###################
 
     # define column types
-    nominal_columns = ['Str',
-                       'Month']
-    dichotomous_columns = ['Richtung']
-    ordinal_columns = ['AnzGesperrtFs', 'Einzug',
-                       "TempMax",
-                       "TempAvg",
-                       "SpatMax",
-                       "SpatAvg",
-                       "Coverage",
-                       "TLCar",
-                       "TLHGV"]
+    nominal_columns = [
+        "TMax",
+        "TAvg",
+        "SMax",
+        "SAvg",
+        "TDist",
+        "SDist",
+        "Cov",
+        "TLCar",
+        "TLHGV",
+        # Accident Data
+        "Str",
+        "AGF",
+        "Einzug",
+        "Richtung",
+        "Length",
+        "Duration",
+        'Month'
+    ]
+    dichotomous_columns = []
+    ordinal_columns = []
 
     # Encode non numerical columns
     arbis_encoded, arbis_encoded_dict = numerical_encoding(arbis_selected,
                                                            ["Strasse",
                                                             'Month',
+                                                            "Length",
+                                                            "Duration",
                                                             "TempMax",
                                                             "TempAvg",
                                                             "SpatMax",

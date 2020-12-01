@@ -16,6 +16,8 @@ TLHGV, Index(['(848.0, 999.0]', '(499.999, 612.0]', '(736.0, 848.0]',
 Strasse, Index(['A 9', 'A 7', 'A 70', 'A 71', 'A 6', 'A 73', 'A 3', 'A 99', 'A 96',
        'A 995', 'A 92', 'A 72', 'A 93', 'A 95', 'A 94', 'A 980', 'A 45'],
       dtype='object')
+Length, Index(['(-0.001, 71.0]', '(795.333, 24500.0]', '(71.0, 795.333]'], dtype='object')
+Duration, Index(['(4.0, 27.0]', '(27.0, 93.0]', '(-0.001, 4.0]', '(93.0, 187650.0]'], dtype='object')
 Month, Index(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
        'Nov', 'Dec'],
       dtype='object')

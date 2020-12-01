@@ -286,7 +286,7 @@ As shown in \cref{formula_cohens_w} \parencite{Baguley2016} the conversion from 
 	\item $w >= \: .40$ : there is a strong correlation.
 \end{itemize}
 
-\section{Correlation Matrix}
+\section{Correlation Coefficient Matrix}
 As a result the following correlation coefficients and statistical tests are used for the mixed analysis of continuous and categorical variables. These will be implemented into a correlation processing script, which is explained in \cref{methodology_correlation_processing}.
 
 \bigskip
@@ -310,7 +310,7 @@ As a result the following correlation coefficients and statistical tests are use
 	\label{tab:correlation_coefficient_matrix}
 \end{table}
 
-\section{Effect size}
+\section{The Effect Size}
 \label{correlation_effect_size}
 The degree of correlation, also described as the strength of association is called effect size and shows how strong two variables are related with each other. According to Cohen \parencite{Cohen1988} the effect size of each correlation coefficient falls into one of two categories $D$ and $R$. $D$ corresponds to coefficients utilizing the mean difference and standardized mean difference. He defined the values of $D$ coefficients as small $D$ = .20, medium $D$ = .50, and large $D$ = .80 \parencite{Piegorsch2002}. The group of $R$ coefficients includes measures based on variance \parencite{Walker2005}. Cohen proposes vastly different values of .01, .06, and .14 as indicators of small, medium, and large effect sizes for the $R$ group \parencite{Cohen1988}. However, if these values fit the purpose of the analysis, depends on the underlying data and is at discretion of the researcher. This means the values for interpreting the effect size can and should be adapted to fit the underlying data and the usage of the interpretation.
 
@@ -359,7 +359,7 @@ The $p$-value can then be comprised by comparing $\chi^2$ to a $\chi^2$-distribu
 	\item $p > \alpha$ means that there is \textbf{no} significant dependency between the two variables and no conclusion can be drawn from the correlation.
 \end{itemize}
 
-\section{Post Hoc}
+\section{The Post Hoc Analysis}
 \label{correlation_posthoc}
 In the case of a relation of a categorical variable the correlation effect size and its significance do not provide any statement on which categories are related. This needs to be further evaluated with a Post Hoc test. In our case the Post Hoc test is based on two separated tests. First the variables will be tested for significance with a Kruskal-Wallis rank sum test. 
 
@@ -475,7 +475,7 @@ The example table shows the values of all descriptives for all groups, whereas t
 %\todo{Ergänze Effektstärke für Mann-Whitney-U}
 %https://statistikguru.de/spss/mann-whitney-u-test/effektstaerke-berechnen-3.html
 
-\section{Predictability}
+\section{The Predictability Analysis}
 \label{correlation_predictability}
 % https://rstudio-pubs-static.s3.amazonaws.com/558925_38b86f0530c9480fad4d029a4e4aea68.html
 The uncertainty coefficient Theil’s $U$, also called entropy coefficient, is a measurement for the association between two nominal variables and in comparison to Cramers $V$, provides a much better predictability statement. It is based on the concept of comparing the entropies of variables to determine a degree of association \parencite{Hoang2019}. The entropy of a distribution (see \cref{formula_theils_hx}) and the conditional entropy (see \cref{formula_theils_hxy}) are used to calculate the uncertainty coefficient $U(X)$ \parencite{Glen2017,Glen2018}, which tells us: given Y, what fraction can be predicted for X \parencite{Hoang2019}.

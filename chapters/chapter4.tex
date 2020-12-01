@@ -44,7 +44,7 @@ The accident category (shown in \cref{tbl:baysis_dataset_Kat} and visualized in 
 	\small
 	\begin{tabular}{c|c|c|l} 
 		\toprule
-		Code & Count & [\%] & Description \\ 
+		Code & \textbf{Kat} & [\%] & Description \\ 
 		\midrule
  		0 	& - 	& 	-	& Minor Accident  \\
  		1 	& 76 	& 0.7 	& Accident with deaths  \\ 
@@ -65,7 +65,7 @@ The accident type variable (shown in \cref{tbl:baysis_dataset_Typ} and visualize
 	\small
 	\begin{tabular}{c|c|c|l} 
 		\toprule
-		Code & Count & [\%] & Description \\ 
+		Code & \textbf{Typ} & [\%] & Description \\ 
 		\midrule
  		1 & 2820	& 27.5	& Driving accident \\ 
  		%2 & 1		& < 0.1 & Turning accident \\
@@ -90,7 +90,7 @@ The distribution of the number of involved persons (shown in \cref{tbl:baysis_da
 		\toprule
 		 			& 1		& 2		& 3		& 4		& 5		& 6  	& > 7\\ 
 		\midrule
- 		Count 		& 2768	& 6047	& 1085	& 235	& 72 	& 24	& 30 \\ 
+		\textbf{Betei}		& 2768	& 6047	& 1085	& 235	& 72 	& 24	& 30 \\ 
  		Freq. 	& 27.0	& 58.9	& 10.6 	& 2.3	& 0.7 	& 0.2 	& 0.1 \\
 		\bottomrule
 	\end{tabular}
@@ -106,7 +106,7 @@ The accident cause type is defined by the two variables \textbf{UArt1} and \text
 	\small
 	\begin{tabular}{c|c|c|c|l} 
 		\toprule
-		Code & Count[1] & Count[2] & Freq. & Description \\ 
+		Code & \textbf{UArt1} & \textbf{UArt2} & Freq. & Description \\ 
 		\midrule
  		1 & 466		& 13	& 4.2  & Collision with starting, standing or stopping vehicle  \\ 
  		2 & 2111	& 44 	& 18.8 & Collision with ahead and waiting vehicle  \\
@@ -132,7 +132,7 @@ The summarized distribution of the parameters \textbf{AUrs1} and \textbf{AUrs2} 
 	\small
 	\begin{tabular}{c|c|c|c|l}
 		\toprule
-		Code & Count[1] & Count[2] & [\%] & Description \\ 
+		Code & \textbf{AUrs1} & \textbf{AUrs2} & [\%] & Description \\ 
 		\midrule
 		%70 & - 	& -		&     & Slippery street due to oil \\
 		%71 & -		& -		&     & Slippery street due to dirt \\
@@ -169,7 +169,7 @@ The obstacle collision distribution (shown in \cref{tbl:baysis_dataset_AufHi} an
 	\small
 	\begin{tabular}{c|c|c|l} 
 		\toprule
-		Code & Count & [\%] & Description \\ 
+		Code & \textbf{AufHi} & [\%] & Description \\ 
 		\midrule 
 		0 & 16 		& 0.2	& Single tree \\
 		1 & 12 		& 0.1	& Pillar \\
@@ -197,7 +197,7 @@ The variable Char1 and Char2 (shown in \autoref{tbl:baysis_dataset_Char} and vis
 	\small
 	\begin{tabular}{c|c|c|c|l}
 		\toprule
-		Code & Count[1] & Count[2] & [\%] & Description \\ 
+		Code & \textbf{Char1} & \textbf{Char1} & [\%] & Description \\ 
 		\midrule
 		%1 & - 	& -		& 		& Crossing \\
 	    2 & 42	& -		& 2.9	& Entry / Exit \\
@@ -301,21 +301,8 @@ The variable of WoTag relates to the day of the week the accident happened (show
 \paragraph{FeiTag}
 \label{baysis_dataset_FeiTag}
 Only 157 accidents took place on a public holiday. This is not a feature itself but there could be a possible correlation to it, as the jams could be longer because of the increased traffic demand on holiday.
-	
-% ------- BAYSIS Dataset - Matrix --------
-% \newgeometry{left=1.5cm,right=1cm}
-% \pagestyle{empty}
-% \begin{figure}[ht]
-% 	\centering
-% 	\includegraphics[scale=0.4, trim=4cm 6cm 0cm 6cm]{CorrAnalysis/data/BAYSIS/01_dataset/plots/baysis_dataset_corr_cramers}
-% 	\caption{Correlation matrix for BAYSIS dataset, calculated with Cramer's $V$}
-% 	\label{img:correlation_matrix_dataset_cramers}
-% \end{figure}
-% \restoregeometry
-% \pagestyle{headings}
-% To check for dependent variables which need to be considered in a correlation analysis, the correlation matrix for all relevant parameters in the BAYSIS dataset is calculated for Cramer's $V$. Cramer's $V$ reveals several strong relationships, which are 'Typ'-'UArt1'. 'AUrs1'-'Zust1', 'AUrs1'-'Zust2' and some  trivial relations of 'Char1'-'Char2', 'Bes1'-'Bes2', 'Lich1'-'Lich2'. The results of Theil's $U$ confirms the relationships identified by Cramer's $V$ with a moderate effect size and show the association of 'Aufhi'-'UArt' with a strong effect size. 
 
-% \autoref{tab:baysis_variables} show all categorized parameters, relevant for the correlation analysis, with variable group, type and the format of the containing data. 
+% \cref{tbl:baysis_variables} show all categorized parameters, relevant for the correlation analysis, with variable group, type and the format of the containing data. 
 % \begin{table}[ht]
 % 	\centering
 % 	\small
@@ -353,7 +340,7 @@ Only 157 accidents took place on a public holiday. This is not a feature itself 
 % 		\bottomrule
 % 	\end{tabular}
 % 	\caption{Variable types of \acrshort{baysis} dataset}
-% 	\label{tab:baysis_variables}
+% 	\label{tbl:baysis_variables}
 % \end{table}
 
 The designed evaluation tool utilizes a PostgreSQL database for its data storage. Therefore the BAYSIS data in form of \acrfull{csv} needs to be processed and converted into SQL data entities. Also, the data entities for each accident need to be uniform and comparable with the street network and other entities like roadworks, which makes it necessary to process and map the accidents onto our street network. After the necessary processing and import into the database, 7971 records end up being converted and persisted, which is equivalent to 77,6\,\% of the total number of accidents. This 22,4\,\% of data loss can be explained due to the conversion of from the BAYSIS geo-system to the HERE network, which tries to find a corresponding street network location to the legacy location of the BAYSIS dataset. If it is not able to locate the position of the BYSIS dataset on our street network, the record is discarded.
@@ -384,7 +371,7 @@ The monthly distribution of roadworks in the year 2019 in figure \autoref{img:ar
 	\small
 	\begin{tabular}{c|c|c} 
 		\toprule
-		\textit{AnzGesperrtFs} & Count & [\%] \\ 
+		\textbf{AnzGesperrtFs} & Count & [\%] \\ 
 		\midrule
 		% -1 & 3		& < 0.1 \\
 		0  & 215977	& 33.4  \\ 
@@ -404,7 +391,7 @@ The monthly distribution of roadworks in the year 2019 in figure \autoref{img:ar
 	\small
 	\begin{tabular}{c|c|c} 
 		\toprule
-		\textit{Einzug} & Count & [\%] \\ 
+		\textbf{Einzug} & Count & [\%] \\ 
 		\midrule
 		1 & 230192 & 35.6  \\
 		2 & 201289 & 31.1  \\ 
@@ -419,22 +406,22 @@ The monthly distribution of roadworks in the year 2019 in figure \autoref{img:ar
 
 Since \textbf{Length} and \textbf{Duration} are not part of the original dataset, they are calculated from the dataset parameters \textit{VonKilometer} / \textit{BisKilometer} and \textit{Von} / \textit{Bis} respectively. They are measurements and therefore are of an interval type.
 
-\autoref{table:arbis_variables} shows all categorized parameters, relevant for the correlation analysis, with variable group, type and the format of the containing data.	
-\begin{table}[!ht]
-	\centering
-	\begin{tabular}{c|c|c|c}
-		\toprule
-		\textbf{Variable} 	& \textbf{Group} 	& \textbf{Type} 		& \textbf{Format} \\
-		\midrule
-		AnzGesperrtFs  	& categorical 	& ordinal 	& numeric\\
-		\midrule
-		Einzug  		& categorical 	& ordinal 	& numeric\\
-		\midrule
-		Length  		& continuous 	& interval 	& numeric\\
-		\midrule
-		Duration  		& continuous 	& interval 	& numeric\\
-		\bottomrule
-	\end{tabular}
-	\caption{Variable types of \acrshort{baysis} dataset}
-	\label{table:arbis_variables}
-\end{table}
+% \cref{table:arbis_variables} shows all categorized parameters, relevant for the correlation analysis, with variable group, type and the format of the containing data.	
+% \begin{table}[!ht]
+% 	\centering
+% 	\begin{tabular}{c|c|c|c}
+% 		\toprule
+% 		\textbf{Variable} 	& \textbf{Group} 	& \textbf{Type} 		& \textbf{Format} \\
+% 		\midrule
+% 		AnzGesperrtFs  	& categorical 	& ordinal 	& numeric\\
+% 		\midrule
+% 		Einzug  		& categorical 	& ordinal 	& numeric\\
+% 		\midrule
+% 		Length  		& continuous 	& interval 	& numeric\\
+% 		\midrule
+% 		Duration  		& continuous 	& interval 	& numeric\\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Variable types of \acrshort{baysis} dataset}
+% 	\label{table:arbis_variables}
+% \end{table}

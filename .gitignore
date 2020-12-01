@@ -154,7 +154,7 @@ TSWLatexianTemp*
 # auto folder when using emacs and auctex 
 /auto/*
 # ignore raw dataset, because confidential
-/Data
+/data
 # ingore python development enviroment
 /CorrAnalysis/venv
 /CorrAnalysis/.idea
@@ -165,7 +165,6 @@ TSWLatexianTemp*
 /CorrAnalysis/data/ArbIS/02_matched/_monthly
 /CorrAnalysis/data/ArbIS/02_matched/ArbIS_2019.csv
 /CorrAnalysis/data/ArbIS/02_matched/ArbIS_2019.xlsx
-/CorrAnalysis/data/ArbIS/03_selected/csv/encoded.csv
 /CorrAnalysis/data/BAYSIS/01_dataset/BAYSIS_2019.csv
 /CorrAnalysis/data/BAYSIS/01_dataset/BAYSIS_2019.xlsx
 /CorrAnalysis/data/BAYSIS/02_matched/_monthly
@@ -173,26 +172,24 @@ TSWLatexianTemp*
 /CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019_nan.csv
 /CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019_cleaned.csv
 /CorrAnalysis/data/BAYSIS/02_matched/BAYSIS_2019.xlsx
-/CorrAnalysis/data/BAYSIS/03_selected_01_startJam/csv/encoded.csv
-/CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/csv/encoded.csv
-/CorrAnalysis/data/BAYSIS/03_selected_03_endJam/csv/encoded.csv
-# ignore old word docs
-/Thesis/word
 # ignore evaluation code for now
-/CongEvaluation
-/chapters/__latexindent_temp.tex
+/CorrAnalysis/congestion
+/CorrAnalysis/export
 # ignore r project files
 .Rproj.user
 /CorrAnalysis/.RData
 /CorrAnalysis/CorrAnalysis.Rproj
 # ignore generated datasets 
 /CorrAnalysis/data/ArbIS/01_dataset/csv/encoded.csv
-/CorrAnalysis/data/BAYSIS/01_dataset/csv/encoded.csv
 /CorrAnalysis/data/ArbIS/02_matched/csv/encoded.csv
+/CorrAnalysis/data/ArbIS/03_selected/csv/encoded.csv
+/CorrAnalysis/data/ArbIS/04_predicted/csv/encoded.csv
+/CorrAnalysis/data/BAYSIS/01_dataset/csv/encoded.csv
 /CorrAnalysis/data/BAYSIS/02_matched/csv/encoded.csv
-/CorrAnalysis/data/BAYSIS/03_selected/csv/encoded.csv
-# ignore pdf for now
-/Thesis/Masterthesis_JakobErpf.pdf
+/CorrAnalysis/data/BAYSIS/03_selected_01_startJam/csv/encoded.csv
+/CorrAnalysis/data/BAYSIS/03_selected_02_duringJam/csv/encoded.csv
+/CorrAnalysis/data/BAYSIS/03_selected_03_endJam/csv/encoded.csv
+/CorrAnalysis/data/BAYSIS/04_predicted/csv/encoded.csv
 # ignore unkown latex compiler files
 /Thesis/Masterthesis_JakobErpf.acn
 /Thesis/Masterthesis_JakobErpf.aux
@@ -210,8 +207,7 @@ TSWLatexianTemp*
 /Thesis/Masterthesis_JakobErpf.dvi
 # Others
 /backup
-/CorrAnalysis/congestion
-/CorrAnalysis/export
+/chapters/__latexindent_temp.tex
 
-/CorrAnalysis/data/BAYSIS/04_predicted/csv/encoded.csv
-/CorrAnalysis/data/ArbIS/04_predicted/csv/encoded.csv
+
+

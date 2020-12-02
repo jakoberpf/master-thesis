@@ -87,21 +87,20 @@ if __name__ == '__main__':
     # Removing whitespaces
     baysis_matched['Strasse'] = baysis_matched['Strasse'].str.replace(' ', '')
 
-    ##################
-    ### Histograms ###
-    ##################
-
     # Plot histogram of accidents over time / months
-    plt.figure(figsize=(13, 6))
-    plt.title('Histogram of accidents per month, with at least one adjacent congestion')
-    plt.style.use('seaborn')
-    plt.rcParams.update(tex_fonts)
-    plt.ylabel('Count')
-    plt.xlabel('Month of 2019')
-    # https://seaborn.pydata.org/examples/scatterplot_matrix.html
-    sns.set_theme(style='ticks')
-    sns.pairplot(baysis_matched, hue='Kat')
-    plt.show()
+    sns.set()
+    cols = ["TempMax",
+            "TempAvg",
+            "SpatMax",
+            "SpatAvg",
+            "TempDist",
+            "SpatDist",
+            "Coverage",
+            "TLCar",
+            "TLHGV",
+            "Kat"]
+    sns.pairplot(baysis_matched[cols], hue='Kat', size=2.5, palette='Spectral')
+
     if save_plot:
         plt.savefig('data/poster/' + 'pairplot.pdf')
         if not show_plot:
@@ -110,6 +109,3 @@ if __name__ == '__main__':
         plt.show()
     else:
         plt.close()
-
-
-

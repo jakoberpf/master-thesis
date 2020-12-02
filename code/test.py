@@ -20,7 +20,7 @@ import unittest
 
 import pandas
 
-from func_correlation import associations, compute_correlations, kruskal_wallis
+from func_correlation import compute_correlations, kruskal_wallis
 
 
 class MyTestCase(unittest.TestCase):

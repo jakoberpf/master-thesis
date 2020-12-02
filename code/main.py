@@ -32,7 +32,3 @@ def print_welcome():
 
 if __name__ == '__main__':
     print_welcome()
-
-    # run dataset analytics for ArbIS and BAYSIS
-
-    # run dateset analytics

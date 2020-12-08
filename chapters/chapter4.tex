@@ -270,7 +270,7 @@ The road condition parameter (shown in \cref{tbl:baysis_dataset_Zust} and visual
 	\end{tabular}
 	\caption{Descriptive of \textbf{Zust}}
 	\label{tbl:baysis_dataset_Zust}
-	\vspace{-8mm}
+	% \vspace{-8mm}
 \end{table}
 \paragraph{Fstf}
 \label{baysis_dataset_Fstf}
@@ -349,21 +349,21 @@ The designed evaluation tool utilizes a PostgreSQL database for its data storage
 \label{dataset_arbis}
 
 The \acrfull{arbis} as described in \autoref{dataset_arbis} is a collection service of all roadworks or maintenance which is planned, ongoing or finished on the Bavarian street network. The dataset for 2019 contains close to 650.000 data-points which each describe the temporal and spatial extend, road name and number of closed lanes of a roadwork fragment. This fragmentation of events makes it hard to statically analyze this dataset since each roadwork is spitted into any number of fragments which are only linked by a roadwork identifier. Therefore the analysis of the dataset in this section is relatively basic. The import processing works similarly to the \acrshort{baysis} data in \autoref{dataset_baysis} and produces 282.839 roadwork events in the database after the aggregation of fragments. 
-
-With 4500 long term and more than 40.000 short term building sites on German highways per year \parencite{LAPID2018,Stmi2020} road construction makes up for the majority of traffic obstructions during the summer months. Throughout the colder months, in which a majority of construction projects are not possible, snow clearings or long-term constructions are the main obstacles. This also means that the number and type of roadworks varies during the course of a year \parencite{Stmi2020}. 
-\begin{figure}[ht]
+ 
+\begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../code/data/ArbIS/01_dataset/plots/arbis_dataset_hist_month}
 	\caption{Monthly distribution of roadwork fraction counts}
 	\label{img:arbis_dataset_dist_month}
 \end{figure}
-The monthly distribution of roadworks in the year 2019 in figure \autoref{img:arbis_dataset_dist_month} supports this statement, since the winter months of January, February and December tend to have less roadwork that others. In July most of the roadwork is done. Similar to the BAYSIS data the road \textit{A3} and \text{A9} have the highest numbers of roadworks (shown in figure \autoref{img:arbis_dataset_dist_highway}).
-\begin{figure}[ht]
+With 4500 long term and more than 40.000 short term building sites on German highways per year \parencite{LAPID2018,Stmi2020} road construction makes up for the majority of traffic obstructions during the summer months. Throughout the colder months, in which a majority of construction projects are not possible, snow clearings or long-term constructions are the main obstacles.
+\begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../code/data/ArbIS/01_dataset/plots/arbis_dataset_hist_highway}
 	\caption{Distribution of roadwork fraction counts, by road}
 	\label{img:arbis_dataset_dist_highway}
 \end{figure}
+This also means that the number and type of roadworks varies during the course of a year \parencite{Stmi2020}. The monthly distribution of roadworks in the year 2019 in figure \autoref{img:arbis_dataset_dist_month} supports this statement, since the winter months of January, February and December tend to have less roadwork that others. In July most of the roadwork is done. Similar to the BAYSIS data the road \textit{A3} and \text{A9} have the highest numbers of roadworks (shown in figure \autoref{img:arbis_dataset_dist_highway}).
 
 \paragraph{AnzGesperrtFs} refers to the number of closed lanes for the time of the incident. The distribution shows that two states of zero and one block lane hold nearly 100\,\% of all samples. Since the variable can be ordered by the number of lanes, it is of an ordinal type.
 \begin{table}[!ht]
@@ -382,7 +382,7 @@ The monthly distribution of roadworks in the year 2019 in figure \autoref{img:ar
 	\end{tabular}
 	\caption{Descriptive of \textbf{AnzGesperrtFs}}
 	\label{tbl:arbis_dataset_AnzGesperrtFs}
-	\vspace{-8mm}
+	% \vspace{-8mm}
 \end{table}
 
 \paragraph{Einzug} describes the shift of the road way due to physical changes measured in the number of lanes. It ranges from one to five lanes, where one, two and five are equally frequent. The variable is limited, can be sorted and therefore is of an ordinal type.
